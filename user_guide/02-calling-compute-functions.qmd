@@ -1,0 +1,106 @@
+---
+title: "Calling compute functions"
+---
+
+Every published Chart Data result is a keyword-only `compute_*` function. There
+is no evaluation context to open, and no `set_*` step that writes cells before
+a solve. You pass the leaves that function needs and it returns that one result.
+
+# Arguments are keyword-only
+
+A function that depends on a single scalar looks like ordinary Python:
+
+```{python}
+from lic_dsf_2025_08_12.api import compute_tailored_stress_market_financing_applicable
+
+compute_tailored_stress_market_financing_applicable(
+    country="Ghana",
+    input6_tailored_tests_enabled="On",
+)
+```
+
+Switching tailored tests off is another explicit call, not a mutation of a
+shared workbook object:
+
+```{python}
+compute_tailored_stress_market_financing_applicable(
+    country="Ghana",
+    input6_tailored_tests_enabled="Off",
+)
+```
+
+Positional arguments are rejected. That is deliberate: a 60-argument DSA call
+is unsafe to line up by position.
+
+# Scalars stay scalars; series are named tensors
+
+A country name, a discount rate, or an on/off flag is a bare Python value. A
+time series or an instrument schedule is a typed tensor from
+`lic_dsf_2025_08_12.data`. The tensor carries the axis names and legal keys so
+a value is never silently aligned to the wrong year or instrument.
+
+A plain list is not accepted:
+
+```{python}
+from lic_dsf_2025_08_12 import data
+from lic_dsf_2025_08_12.api import compute_tailored_stress_commodity_price_applicable
+from lic_dsf_2025_08_12.tensor import SchemaError
+
+try:
+    compute_tailored_stress_commodity_price_applicable(
+        input6_commodity_group_relevant=["Yes", "Yes", "Yes", "Yes"],
+        input6_tailored_tests_enabled=data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT,
+        input3_input_3_macro_exports_of_goods_and_services=data.INPUT3_INPUT_3_MACRO_EXPORTS_OF_GOODS_AND_SERVICES_DEFAULT,
+        input3_input_3_macro_exports_commodity_fuel=data.INPUT3_INPUT_3_MACRO_EXPORTS_COMMODITY_FUEL_DEFAULT,
+        input3_input_3_macro_exports_commodity_non_fuel=data.INPUT3_INPUT_3_MACRO_EXPORTS_COMMODITY_NON_FUEL_DEFAULT,
+        input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number=data.INPUT3_INPUT_3_MACRO_IMPORTS_COMMODITY_FUEL_ENTER_AS_A_POSITIVE_NUMBER_DEFAULT,
+        input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number=data.INPUT3_INPUT_3_MACRO_IMPORTS_COMMODITY_NON_FUEL_ENTER_AS_A_POSITIVE_NUMBER_DEFAULT,
+    )
+except SchemaError as error:
+    print(error)
+```
+
+Build or copy a typed series instead. The next page shows how to revise one
+coordinate of a template series.
+
+# Load the template snapshot
+
+The generated `data` module stores the IDA21 template values as
+`<ARGUMENT>_DEFAULT`. Rating and chart functions take several dozen arguments;
+gathering those snapshot values by name is the practical way to start a run:
+
+```{python}
+import inspect
+
+from lic_dsf_2025_08_12 import data
+
+
+def template_inputs(compute):
+    """Return the 2025-08-12 template snapshot for every argument of `compute`."""
+    return {
+        name: getattr(data, f"{name.upper()}_DEFAULT")
+        for name in inspect.signature(compute).parameters
+    }
+
+
+inputs = template_inputs(compute_tailored_stress_commodity_price_applicable)
+compute_tailored_stress_commodity_price_applicable(**inputs)
+```
+
+Override only the assumptions you are changing. The rest stay at the template
+vintage:
+
+```{python}
+inputs["input6_tailored_tests_enabled"] = "Off"
+compute_tailored_stress_commodity_price_applicable(**inputs)
+```
+
+# What comes back
+
+Scalar Chart Data cells return a `float` or a `str` -- a 0/1 flag, a rating
+word such as `"High"`, or a most-extreme-shock label such as `"Exports"`.
+
+Chart rows return a tensor keyed by the same coordinates the workbook uses
+(`SCENARIO`, `TIME_PERIOD`, and similar). Convert that tensor to records with
+`as_records` so a table or a plot never depends on positional indexes. The
+[chart series](chart-series.qmd) page works through that shape.

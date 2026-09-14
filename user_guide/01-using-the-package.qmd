@@ -1,0 +1,89 @@
+---
+title: "Using LIC-DSF 2025-08-12"
+toc: false
+bread-crumbs: false
+---
+
+The `lic-dsf-2025-08-12` package is a Python reimplementation of the
+IMF-World Bank Low-Income Country Debt Sustainability Framework (LIC-DSF)
+IDA21 workbook, vintage 2025-08-12. Use it when you want the workbook's
+mechanical results -- risk-rating signals, tailored-stress flags, fiscal-space
+text, and the Chart Data series behind the DSA figures -- from a reproducible
+script rather than from a live `.xlsm` file.
+
+The package calculates the same published surface as the workbook's
+`Chart Data` sheet. Display tabs such as `Output 2-1` and `Output 2-2` mostly
+mirror that sheet. Yellow input cells on Inputs 1-8 remain the economist's
+entry point; green engine sheets (`Macro-Debt_Data`, `PV_Base`, stress tabs)
+are calculation surfaces, not a public API.
+
+## Install
+
+```bash
+uv add lic-dsf-2025-08-12
+```
+
+The public functions live in `lic_dsf_2025_08_12.api`. Template labels,
+projection years, and the snapshot of the IDA21 workbook sit in
+`lic_dsf_2025_08_12.data`.
+
+## A first result
+
+Some Chart Data cells depend only on the country name. The natural-disaster
+tailored test is one of them: the workbook stores a 0/1 applicability flag at
+`Chart Data!I17`.
+
+```{python}
+from lic_dsf_2025_08_12.api import compute_tailored_stress_natural_disaster_applicable
+
+compute_tailored_stress_natural_disaster_applicable(country="Bangladesh")
+```
+
+`1.0` means the test applies; `0.0` means it does not. Country names must
+match the workbook spelling exactly -- `Bangladesh` works, `BGD` does not.
+
+```{python}
+compute_tailored_stress_natural_disaster_applicable(country="Ghana")
+```
+
+Ghana is a valid LIC-DSF country, but it is not on the natural-disaster list,
+so the flag is `0.0`.
+
+## Recommended route
+
+1. Read how to [call `compute_*` functions](user-guide/calling-compute-functions.qmd)
+   and how to load the template snapshot.
+2. Map your country file onto the [Input 1-8 arguments](user-guide/country-inputs.qmd).
+3. Evaluate the [risk-rating signals](user-guide/risk-ratings.qmd) you would
+   quote in the DSA write-up.
+4. Pull the [chart series](user-guide/chart-series.qmd) that feed Figures 1
+   and 2 and the public-debt stress blocks.
+5. Keep baseline and shock assumptions as separate
+   [named scenarios](user-guide/scenarios.qmd).
+
+## What this library does not do
+
+It reproduces workbook arithmetic. It does not choose a data vintage, decide
+debt coverage, design a customized scenario, or write the judgement paragraph
+that sits next to a mechanical rating. Those remain economist decisions.
+
+Workbook comparison for the shipped scenario sweep is documented on
+[Excel parity validation](user-guide/excel-parity-validation.qmd).
+
+
+::: {.gd-meta-sidebar}
+#### Links
+
+<a href="https://pypi.org/project/lic-dsf-2025-08-12/">View on PyPI<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -0.05em; margin-left: 0em; margin-top: 0.1em;" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a><br>
+
+#### AI / Agents
+
+<a href="skills.html">Skills<svg class="gd-sparkle" xmlns="http://www.w3.org/2000/svg" width="0.85em" height="0.85em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -0.1em; margin-left: 0.25em;"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .963L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg></a><br>
+[llms.txt](llms.txt)<br>
+[llms-full.txt](llms-full.txt)<br>
+
+#### Meta
+
+**Requires:** Python `>=3.13`<br>
+[Package Info](package-info.html)
+:::

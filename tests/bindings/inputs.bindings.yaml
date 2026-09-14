@@ -1,0 +1,2349 @@
+schema_version: 1.16.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+  - id: HOLDER
+    name: Debt holder residency
+    dtype: string
+  - id: CURRENCY
+    name: Currency denomination
+    dtype: string
+  - id: DSA_SECTION
+    name: DSA statement section
+    dtype: string
+series:
+- id: country
+  sheet: Input 1 - Basics
+  data_range: '''Input 1 - Basics''!C7'
+  layout: scalar
+  input:
+    domain:
+      enum:
+      - Afghanistan
+      - Bangladesh
+      - Benin
+      - Bhutan
+      - Burkina Faso
+      - Burundi
+      - Cabo Verde
+      - Cambodia
+      - Cameroon
+      - Central African Republic
+      - Chad
+      - Comoros
+      - Congo, DR
+      - Congo, Republic of
+      - Cote d'Ivoire
+      - Djibouti
+      - Dominica
+      - Eritrea
+      - Ethiopia
+      - Gambia, The
+      - Ghana
+      - Grenada
+      - Guinea
+      - Guinea-Bissau
+      - Guyana
+      - Haiti
+      - Honduras
+      - Kenya
+      - Kiribati
+      - Kyrgyz Republic
+      - Lao PDR
+      - Lesotho
+      - Liberia
+      - Madagascar
+      - Malawi
+      - Maldives
+      - Mali
+      - Marshall Islands
+      - Mauritania
+      - Micronesia
+      - Moldova
+      - Mozambique
+      - Myanmar
+      - Nepal
+      - Nicaragua
+      - Niger
+      - Papua New Guinea
+      - Rwanda
+      - Samoa
+      - Sao Tome & Principe
+      - Senegal
+      - Sierra Leone
+      - Solomon Islands
+      - Somalia
+      - South Sudan
+      - St. Lucia
+      - St. Vincent & the Grenadines
+      - Sudan
+      - Tajikistan
+      - Tanzania
+      - Timor-Leste
+      - Togo
+      - Tonga
+      - Tuvalu
+      - Uganda
+      - Uzbekistan
+      - Vanuatu
+      - Yemen, Republic of
+      - Zambia
+      - Zimbabwe
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_1.basics
+    PARAMETER: country
+  notes: Country name dropdown (Input 1!C7).
+- id: first_projection_year
+  sheet: Input 1 - Basics
+  data_range: '''Input 1 - Basics''!C18'
+  layout: scalar
+  input:
+    domain:
+      between:
+        min: 1990
+        max: 2100
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_1.basics
+    PARAMETER: first_projection_year
+  notes: First year of projections (Input 1!C18).
+- id: discount_rate
+  sheet: Input 1 - Basics
+  data_range: '''Input 1 - Basics''!C25'
+  layout: scalar
+  input:
+    domain:
+      real_between:
+        min: 0
+        max: 1
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_1.basics
+    PARAMETER: discount_rate
+  notes: Discount rate for PV calculations (Input 1!C25).
+- id: external_domestic_debt_definition
+  sheet: Input 1 - Basics
+  data_range: '''Input 1 - Basics''!C33'
+  layout: scalar
+  input:
+    domain:
+      enum:
+      - Residency-based
+      - Currency-based
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_1.basics
+    PARAMETER: external_domestic_debt_definition
+  notes: Definition of external vs domestic debt (Input 1!C33).
+- id: fiscal_space_moderate_assessment_flag
+  sheet: Chart Data
+  data_range: '''Chart Data''!C205'
+  layout: scalar
+  input:
+    domain:
+      between:
+        min: 0
+        max: 1
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.fiscal_space_params
+    PARAMETER: fiscal_space_moderate_assessment_flag
+  notes: Enable moderate-risk fiscal-space band charting when assessment is within the moderate category (Chart Data!C205).
+- id: fiscal_space_stock_band
+  sheet: Chart Data
+  data_range: '''Chart Data''!B208:B209'
+  layout: series
+  input:
+    domain:
+      real_between:
+        min: 0
+        max: 100
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+  key:
+  - PARAMETER
+  series_context:
+    TABLE: chart_data.fiscal_space_params
+    INDICATOR: Stock indicators
+  notes: Stock-indicator fiscal-space inner (x) and outer (y) band percents (Chart Data!B208:B209).
+- id: fiscal_space_flow_band
+  sheet: Chart Data
+  data_range: '''Chart Data''!B214:B215'
+  layout: series
+  input:
+    domain:
+      real_between:
+        min: 0
+        max: 100
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+  key:
+  - PARAMETER
+  series_context:
+    TABLE: chart_data.fiscal_space_params
+    INDICATOR: Flow indicators
+  notes: Flow-indicator fiscal-space inner (x) and outer (y) band percents (Chart Data!B214:B215).
+- id: contingent_liability_other_elements_pct_gdp
+  sheet: Input 2 - Debt Coverage
+  data_range: '''Input 2 - Debt Coverage''!D21'
+  layout: scalar
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_2.debt_coverage
+    PARAMETER: contingent_liability_other_elements_pct_gdp
+  notes: Other elements of general government not in headline coverage (% of GDP; Input 2!D21).
+- id: contingent_liability_soe_debt_pct_gdp
+  sheet: Input 2 - Debt Coverage
+  data_range: '''Input 2 - Debt Coverage''!D22'
+  layout: scalar
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_2.debt_coverage
+    PARAMETER: contingent_liability_soe_debt_pct_gdp
+  notes: SoE debt (guaranteed and not) shock default (% of GDP; Input 2!D22).
+- id: contingent_liability_financial_market_pct_gdp
+  sheet: Input 2 - Debt Coverage
+  data_range: '''Input 2 - Debt Coverage''!F24'
+  layout: scalar
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_2.debt_coverage
+    PARAMETER: contingent_liability_financial_market_pct_gdp
+  notes: Financial-market contingent liability used for analysis (% of GDP; Input 2!F24).
+- id: ppp_capital_stock_shock_pct
+  sheet: Input 2 - Debt Coverage
+  data_range: '''Input 2 - Debt Coverage''!E33'
+  layout: scalar
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_2.debt_coverage
+    PARAMETER: ppp_capital_stock_shock_pct
+  notes: Size of shock (%) to PPP capital stock (Input 2!E33).
+- id: customized_public_delta
+  sheet: Customized Scenario - public
+  data_range:
+  - '''Customized Scenario - public''!E11:Y11'
+  - '''Customized Scenario - public''!E13:Y13'
+  - '''Customized Scenario - public''!E15:Y15'
+  - '''Customized Scenario - public''!E17:Y17'
+  - '''Customized Scenario - public''!E20:Y20'
+  - '''Customized Scenario - public''!E22:Y22'
+  - '''Customized Scenario - public''!E24:Y24'
+  - '''Customized Scenario - public''!E28:Y28'
+  - '''Customized Scenario - public''!E38:Y38'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Revenue and grants: 11
+          Primary (noninterest) expenditure: 13
+          Grants: 15
+          Public Sector Assets (e.g. Deposits): 17
+          Real GDP growth (in percent): 20
+          Inflation rate (GDP deflator, in percent): 22
+          Nominal depreciation of local currency (percentage change in LC per dollar): 24
+          Exports: 28
+          GDP deflator in US dollar terms (change in percent): 38
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: customized_public.a2_path
+    VARIANT: Delta
+  notes: A2 customized-scenario deltas on the public and external-debt path variables,
+    keyed by indicator.
+- id: blend_ida_new_floating_currency
+  sheet: BLEND floating calculations WB
+  data_range: '''BLEND floating calculations WB''!C6'
+  layout: scalar
+  input:
+    domain:
+      enum:
+      - USD
+      - EUR
+      - JPY
+      - GBP
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: blend.ida_new_terms
+    INSTRUMENT: IDA NEW Blend floating
+    INDICATOR: Currency
+  notes: Currency chosen for IDA NEW Blend floating loans.
+- id: input_1_rer_overvaluation
+  sheet: Input 1 - Basics
+  data_range: '''Input 1 - Basics''!C31'
+  layout: scalar
+  input:
+    domain:
+      real_between:
+        min: -100
+        max: 100
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_1.basics
+    INDICATOR: 'Real exchange rate overvaluation (+: overvaluation)'
+  notes: Real exchange rate overvaluation used by the standard stress test.
+- id: customized_public_include_scenario
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!C3'
+  layout: scalar
+  input:
+    domain:
+      enum:
+      - 'Yes'
+      - 'No'
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: customized_public.controls
+    INDICATOR: Include fiscal customized scenario
+  notes: Whether the public customized fiscal scenario is included.
+- id: input6_commodity_group_relevant
+  sheet: Input 6 - Tailored Tests
+  data_range: '''Input 6 - Tailored Tests''!E38:E41'
+  layout: series
+  input:
+    domain:
+      enum:
+      - 'Yes'
+      - 'No'
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: COMMODITY
+      concept: COMMODITY
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+  key:
+  - COMMODITY
+  series_context:
+    TABLE: input_6.tailored_tests
+    INDICATOR: Commodity group relevance
+  notes: Yes/No flags for which non-fuel commodity groups enter the tailored commodity-price test.
+- id: input8_sdr_interest_rate
+  sheet: Input 8 - SDR
+  data_range: '''Input 8 - SDR''!C14:W14'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_8.sdr
+    INDICATOR: SDR interest rate
+  notes: SDR interest rate by projection year.
+- id: input6_tailored_tests_enabled
+  sheet: Input 6 - Tailored Tests
+  data_range: '''Input 6 - Tailored Tests''!C6'
+  layout: scalar
+  input:
+    domain:
+      enum:
+      - 'On'
+      - 'Off'
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_6.tailored_tests
+    INDICATOR: Tailored Shocks
+    VARIANT: enabled
+  notes: Whether tailored stress tests are applied.
+- id: input6_standard_size_threshold_mode
+  sheet: Input 6(optional)-Standard Test
+  data_range: '''Input 6(optional)-Standard Test''!C4'
+  layout: scalar
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_6.standard_test
+    INDICATOR: Size & Threshold
+  notes: Vintage for standard-test size and threshold settings.
+- id: input6_standard_interactions
+  sheet: Input 6(optional)-Standard Test
+  data_range: '''Input 6(optional)-Standard Test''!C8'
+  layout: scalar
+  input:
+    domain:
+      enum:
+      - 'On'
+      - 'Off'
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_6.standard_test
+    INDICATOR: Interactions
+  notes: Whether standard-test interaction elasticities are applied.
+- id: input6_standard_user_defined_threshold
+  sheet: Input 6(optional)-Standard Test
+  data_range:
+  - '''Input 6(optional)-Standard Test''!D18'
+  - '''Input 6(optional)-Standard Test''!D22'
+  - '''Input 6(optional)-Standard Test''!H22'
+  - '''Input 6(optional)-Standard Test''!D26'
+  - '''Input 6(optional)-Standard Test''!D30'
+  - '''Input 6(optional)-Standard Test''!D33'
+  - '''Input 6(optional)-Standard Test''!D42'
+  - '''Input 6(optional)-Standard Test''!D45'
+  - '''Input 6(optional)-Standard Test''!D48'
+  - '''Input 6(optional)-Standard Test''!D51'
+  - '''Input 6(optional)-Standard Test''!D54'
+  layout: series
+  input:
+    domain:
+      enum:
+      - Historical average only
+      - Baseline projection only
+      - Whichever is lower
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          B1. Real GDP growth: 18
+          B2. Primary balance: 22
+          B3. Exports: 26
+          B4. Other (non-debt creating) flows:
+          - 30
+          - 33
+          B6. Combination:
+          - 42
+          - 45
+          - 48
+          - 51
+          - 54
+        read: string
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          'Size of real GDP growth shock, # of standard deviations':
+          - 18
+          - 42
+          'Size of PB/GDP shock, # of standard deviations':
+          - 22
+          - 48
+          'Size of exports growth shock, # of standard deviations':
+          - 26
+          - 45
+          'Other flows (current transfers) shock, # of standard deviations':
+          - 30
+          - 51
+          'Other flows (FDI) shock, # of standard deviations':
+          - 33
+          - 54
+        read: string
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Size: D
+          Interactions: H
+        read: string
+  key:
+  - SCENARIO
+  - INDICATOR
+  - PARAMETER
+  series_context:
+    TABLE: input_6.standard_test
+    VARIANT: User defined
+  notes: User-defined threshold rules on the standard stress-test Size and Interactions
+    dropdowns, keyed by scenario, shock, and Size vs Interactions.
+- id: input3_input_3_macro_gross_domestic_product_us_dollars
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!M12:AR12'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Gross Domestic Product (US Dollars)
+  notes: Gross Domestic Product (US Dollars) on Input 3.
+- id: input3_input_3_macro_real_gross_domestic_product
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!M13:AR13'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Real gross Domestic Product
+  notes: Real gross Domestic Product on Input 3.
+- id: input3_input_3_macro_u_s_deflator
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!W18:AR18'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: U.S. Deflator
+  notes: U.S. Deflator on Input 3.
+- id: input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!N19:AR19'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: National Currency per U.S. Dollar (e.o.p.)
+  notes: National Currency per U.S. Dollar (e.o.p.) on Input 3.
+- id: input3_input_3_macro_national_currency_per_u_s_dollar_p_a
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!M20:AR20'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: National Currency per U.S. Dollar (p.a.)
+  notes: National Currency per U.S. Dollar (p.a.) on Input 3.
+- id: input3_input_3_macro_government_revenue_and_grants
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!N22:AR22'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Government revenue and grants
+  notes: Government revenue and grants on Input 3.
+- id: input3_input_3_macro_government_grants
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!X23:AR23'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Government grants
+  notes: Government grants on Input 3.
+- id: in3_macro_government_primary_expenditures_this_used_be
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!N24:AR24'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Government PRIMARY expenditures (this used to be total expenditure)
+  notes: Government PRIMARY expenditures (this used to be total expenditure) on Input 3.
+- id: in3_macro_public_sector_liquid_assets_stock_e_g_cash
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!W25:AR25'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Public sector liquid assets, stock (e.g. cash, deposits, and marketable securities)
+  notes: Public sector liquid assets, stock (e.g. cash, deposits, and marketable securities) on Input 3.
+- id: in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!X26:AR26'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: 'Liquid financial assets used to meet GFNs, flow (e.g. -ve: drawdown; +ve: accumulation)'
+  notes: 'Liquid financial assets used to meet GFNs, flow (e.g. -ve: drawdown; +ve: accumulation) on Input 3.'
+- id: input3_input_3_macro_privatization_proceeds
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!X27:AR27'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Privatization Proceeds
+  notes: Privatization Proceeds on Input 3.
+- id: in3_macro_recognition_of_contingent_liab_e_g_bank
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!X28:AR28'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Recognition of contingent liabilities (e.g., bank recapitalization)
+  notes: Recognition of contingent liabilities (e.g., bank recapitalization) on Input 3.
+- id: input3_input_3_macro_debt_relief_non_multilateral_hipc
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!X29:AR29'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Debt relief (non-multilateral HIPC)
+  notes: Debt relief (non-multilateral HIPC) on Input 3.
+- id: input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!X30:AR30'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Other debt creating or reducing flow (please specify)
+  notes: Other debt creating or reducing flow (please specify) on Input 3.
+- id: input3_input_3_macro_current_account
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!K34:AR34'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Current Account
+  notes: Current Account on Input 3.
+- id: input3_input_3_macro_exports_of_goods_and_services
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!M35:AR35'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Exports of goods and services
+  notes: Exports of goods and services on Input 3.
+- id: input3_input_3_macro_exports_commodity_fuel
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!U36:W36'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Exports - commodity (fuel)
+  notes: Exports - commodity (fuel) on Input 3.
+- id: input3_input_3_macro_exports_commodity_non_fuel
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!U37:W37'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Exports - commodity (non_fuel)
+  notes: Exports - commodity (non_fuel) on Input 3.
+- id: input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!Y38:AR38'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Imports of goods and services (enter as a positive number)
+  notes: Imports of goods and services (enter as a positive number) on Input 3.
+- id: input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!U39:W39'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Imports - commodity (fuel; enter as a positive number)
+  notes: Imports - commodity (fuel; enter as a positive number) on Input 3.
+- id: input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!U40:W40'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Imports - commodity (non_fuel; enter as a positive number)
+  notes: Imports - commodity (non_fuel; enter as a positive number) on Input 3.
+- id: input3_input_3_macro_current_transfers_net
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!K41:AR41'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Current transfers (net)
+  notes: Current transfers (net) on Input 3.
+- id: input3_input_3_macro_foreign_direct_investment
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!K43:AR43'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: Foreign direct investment
+  notes: Foreign direct investment on Input 3.
+- id: input3_input_3_external_debt_ppg_mlt_external_debt_outstanding
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!W51:W51'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.external_debt
+    INDICATOR: PPG MLT external debt outstanding
+  notes: PPG MLT external debt outstanding on Input 3.
+- id: input3_input_3_external_debt_ppg_st_external_debt_outstanding
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!W52:AR52'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.external_debt
+    INDICATOR: PPG ST external debt outstanding
+  notes: PPG ST external debt outstanding on Input 3.
+- id: input3_input_3_external_debt_ppg_external_debt_interest_due
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!N53:W53'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.external_debt
+    INDICATOR: PPG external debt interest due
+  notes: PPG external debt interest due on Input 3.
+- id: input3_input_3_external_debt_ppg_external_arrears
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!W55:AR55'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.external_debt
+    INDICATOR: PPG External arrears
+  notes: PPG External arrears on Input 3.
+- id: input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!W57:AR57'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.external_debt
+    INDICATOR: Private sector MLT external debt outstanding
+  notes: Private sector MLT external debt outstanding on Input 3.
+- id: input3_input_3_external_debt_private_sector_st_external_debt_outstanding
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!W58:AR58'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.external_debt
+    INDICATOR: Private sector ST external debt outstanding
+  notes: Private sector ST external debt outstanding on Input 3.
+- id: input3_input_3_external_debt_private_external_debt_interest_due
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!N59:AR59'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.external_debt
+    INDICATOR: Private external debt interest due
+  notes: Private external debt interest due on Input 3.
+- id: input3_input_3_external_debt_private_mlt_external_debt_amortization_due
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!X60:AR60'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.external_debt
+    INDICATOR: Private MLT external debt amortization due
+  notes: Private MLT external debt amortization due on Input 3.
+- id: input3_input_3_old_debt_service_total_principal_payment
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!X95:AR95'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.old_debt_service
+    INDICATOR: Total principal payment
+  notes: Total principal payment on Input 3.
+- id: customized_public_template_anchor
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!E1'
+  layout: scalar
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: customized_public.controls
+    INDICATOR: Please do not change these numbers
+  notes: Template sentinel adjacent to the customized-scenario instruction flag.
+- id: customized_public_natural_disaster_year
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!C42'
+  layout: scalar
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: customized_public.controls
+    INDICATOR: Natural disaster shock year
+  notes: Projection year (1st/2nd/3rd/…) in which the natural-disaster shock is applied; 0 leaves it off.
+- id: customized_public_external_mlt_disbursement_profile
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!E61'
+  layout: scalar
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: customized_public.debt_profile
+    INSTRUMENT: External MLT debt
+    INDICATOR: Disbursement
+  notes: Disbursement profile weight for customized-scenario external MLT debt.
+- id: customized_public_new_forex_borrowing_cumulative_overflow
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!Z83:AF83'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 60
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: customized_public.a2_path
+    INDICATOR: New forex borrowing (gross, USD)
+    VARIANT: cumulative
+  notes: Overflow years of New forex borrowing (gross, USD) on the public customized scenario.
+- id: customized_public_new_domestic_mlt_cumulative_overflow
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!Z96:AF96'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 60
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: customized_public.a2_path
+    INDICATOR: New domestic MLT borrowing (gross)
+    VARIANT: cumulative
+  notes: Overflow years of New domestic MLT borrowing (gross) on the public customized scenario.
+- id: customized_public_residual_overflow
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!AD142:AF142'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 60
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: customized_public.a2_path
+    INDICATOR: Residual
+  notes: Overflow years of Residual on the public customized scenario.
+- id: customized_public_new_forex_debt_stock_initial
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!D84'
+  layout: scalar
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: customized_public.a2_path
+    INDICATOR: Stock of new forex debt (in USD)
+    VARIANT: initial
+  notes: Pre-horizon stock of new forex debt on the public customized scenario.
+- id: customized_public_domestic_mlt_interest_initial
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!E100'
+  layout: scalar
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: customized_public.a2_path
+    INDICATOR: Interest
+    INSTRUMENT: New domestic MLT borrowing (gross)
+  notes: Interest on New domestic MLT borrowing (gross) for the first customized-scenario projection year.
+- id: customized_public_domestic_st_interest_initial
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!E109'
+  layout: scalar
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: customized_public.a2_path
+    INDICATOR: Interest
+    INSTRUMENT: New domestic short-term borrowing (gross; also stock of debt)
+  notes: Interest on New domestic short-term borrowing (gross; also stock of debt) for the first customized-scenario projection year.
+- id: customized_external_debt_profile_period
+  sheet: Customized Scenario-External
+  data_range: '''Customized Scenario-External''!D26'
+  layout: scalar
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: customized_external.debt_profile
+    INDICATOR: Period
+  notes: Starting period index for the external customized-scenario debt profile.
+- id: customized_external_debt_profile_disbursement
+  sheet: Customized Scenario-External
+  data_range: '''Customized Scenario-External''!D28'
+  layout: scalar
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: customized_external.debt_profile
+    INDICATOR: Disbursement
+  notes: Disbursement profile weight for the external customized scenario.
+- id: customized_external_new_forex_borrowing_cumulative_overflow
+  sheet: Customized Scenario-External
+  data_range: '''Customized Scenario-External''!Y37:AF37'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 27
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: customized_external.a2_path
+    INDICATOR: New forex borrowing (gross, USD)
+    VARIANT: cumulative
+  notes: Overflow years of cumulative new forex borrowing on the external customized scenario.
+- id: input8_sdr_stock
+  sheet: Input 8 - SDR
+  data_range: '''Input 8 - SDR''!B6:B7'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: input_8.sdr
+  notes: Total stocks of SDR allocation and holdings.
+- id: input3_old_debt_service
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range:
+  - '''Input 3 - Macro-Debt data(DMX)''!X65:BP65'
+  - '''Input 3 - Macro-Debt data(DMX)''!X66:BP66'
+  - '''Input 3 - Macro-Debt data(DMX)''!X67:BP67'
+  - '''Input 3 - Macro-Debt data(DMX)''!X68:BP68'
+  - '''Input 3 - Macro-Debt data(DMX)''!X69:BP69'
+  - '''Input 3 - Macro-Debt data(DMX)''!X70:BP70'
+  - '''Input 3 - Macro-Debt data(DMX)''!X72:BP72'
+  - '''Input 3 - Macro-Debt data(DMX)''!X73:BP73'
+  - '''Input 3 - Macro-Debt data(DMX)''!X74:BP74'
+  - '''Input 3 - Macro-Debt data(DMX)''!X77:BP77'
+  - '''Input 3 - Macro-Debt data(DMX)''!X78:BP78'
+  - '''Input 3 - Macro-Debt data(DMX)''!X79:BP79'
+  - '''Input 3 - Macro-Debt data(DMX)''!X80:BP80'
+  - '''Input 3 - Macro-Debt data(DMX)''!X81:BP81'
+  - '''Input 3 - Macro-Debt data(DMX)''!X83:BP83'
+  - '''Input 3 - Macro-Debt data(DMX)''!X84:BP84'
+  - '''Input 3 - Macro-Debt data(DMX)''!X85:BP85'
+  - '''Input 3 - Macro-Debt data(DMX)''!X86:BP86'
+  - '''Input 3 - Macro-Debt data(DMX)''!X87:BP87'
+  - '''Input 3 - Macro-Debt data(DMX)''!X89:BP89'
+  - '''Input 3 - Macro-Debt data(DMX)''!X90:BP90'
+  - '''Input 3 - Macro-Debt data(DMX)''!X91:BP91'
+  - '''Input 3 - Macro-Debt data(DMX)''!X92:BP92'
+  - '''Input 3 - Macro-Debt data(DMX)''!X93:BP93'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          IMF: 65
+          IDA (OLD_IDA1): 66
+          IDA (OLD_IDA2): 67
+          Multilateral1: 68
+          Multilateral2: 69
+          Multilateral3: 70
+          Other Multilateral1: 72
+          Other Multilateral2: 73
+          Other Multilateral3: 74
+          Paris Club1: 77
+          Paris Club2: 78
+          Paris Club3: 79
+          Paris Club4: 80
+          Paris Club5: 81
+          Non-Paris Club1: 83
+          Non-Paris Club2: 84
+          Non-Paris Club3: 85
+          Non-Paris Club4: 86
+          Non-Paris Club5: 87
+          Commercial1: 89
+          Commercial2: 90
+          Commercial3: 91
+          Commercial4: 92
+          Commercial5: 93
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.old_debt_service
+  notes: Input 3 old debt service, keyed by instrument.
+- id: input3_new_disbursements
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range:
+  - '''Input 3 - Macro-Debt data(DMX)''!AA100:AR100'
+  - '''Input 3 - Macro-Debt data(DMX)''!X101'
+  - '''Input 3 - Macro-Debt data(DMX)''!Z101:AR101'
+  - '''Input 3 - Macro-Debt data(DMX)''!X102:AR102'
+  - '''Input 3 - Macro-Debt data(DMX)''!X103:AR103'
+  - '''Input 3 - Macro-Debt data(DMX)''!X104:Y104'
+  - '''Input 3 - Macro-Debt data(DMX)''!X105:Y105'
+  - '''Input 3 - Macro-Debt data(DMX)''!X106'
+  - '''Input 3 - Macro-Debt data(DMX)''!X107'
+  - '''Input 3 - Macro-Debt data(DMX)''!AD108:AR108'
+  - '''Input 3 - Macro-Debt data(DMX)''!X109:AR109'
+  - '''Input 3 - Macro-Debt data(DMX)''!X111:AR111'
+  - '''Input 3 - Macro-Debt data(DMX)''!X112:AR112'
+  - '''Input 3 - Macro-Debt data(DMX)''!X113:AR113'
+  - '''Input 3 - Macro-Debt data(DMX)''!X116:AR116'
+  - '''Input 3 - Macro-Debt data(DMX)''!X117:AR117'
+  - '''Input 3 - Macro-Debt data(DMX)''!X118:AR118'
+  - '''Input 3 - Macro-Debt data(DMX)''!X119:AR119'
+  - '''Input 3 - Macro-Debt data(DMX)''!X120:AR120'
+  - '''Input 3 - Macro-Debt data(DMX)''!X122:AR122'
+  - '''Input 3 - Macro-Debt data(DMX)''!X123:AR123'
+  - '''Input 3 - Macro-Debt data(DMX)''!X124:AR124'
+  - '''Input 3 - Macro-Debt data(DMX)''!X125:AR125'
+  - '''Input 3 - Macro-Debt data(DMX)''!X126:AR126'
+  - '''Input 3 - Macro-Debt data(DMX)''!X128:AR128'
+  - '''Input 3 - Macro-Debt data(DMX)''!X129:AR129'
+  - '''Input 3 - Macro-Debt data(DMX)''!X130:AR130'
+  - '''Input 3 - Macro-Debt data(DMX)''!X131:AR131'
+  - '''Input 3 - Macro-Debt data(DMX)''!X132:AR132'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          IMF: 100
+          IDA - regular: 101
+          IDA - 50Y loans: 102
+          IDA - SML: 103
+          IDA NEW 40-year credits: 104
+          IDA NEW Regular: 105
+          IDA NEW Blend: 106
+          IDA NEW 60-year credits: 107
+          Multilateral2: 108
+          Multilateral3: 109
+          Other multilateral1: 111
+          Other multilateral2: 112
+          Other multilateral3: 113
+          Paris Club1: 116
+          Paris Club2: 117
+          Paris Club3: 118
+          Paris Club4: 119
+          Paris Club5: 120
+          Non-Paris Club1: 122
+          Non-Paris Club2: 123
+          Non-Paris Club3: 124
+          Non-Paris Club4: 125
+          Non-Paris Club5: 126
+          Commercial1: 128
+          Commercial2: 129
+          Commercial3: 130
+          Commercial4: 131
+          Commercial5: 132
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.new_disbursements
+  notes: Input 3 new disbursements, keyed by instrument.
+- id: input3_domestic_outstanding_of_existing_debt
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range:
+  - '''Input 3 - Macro-Debt data(DMX)''!W136'
+  - '''Input 3 - Macro-Debt data(DMX)''!W138'
+  - '''Input 3 - Macro-Debt data(DMX)''!W161'
+  - '''Input 3 - Macro-Debt data(DMX)''!W163'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: CURRENCY
+      concept: CURRENCY
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          local:
+          - 136
+          - 161
+          foreign:
+          - 138
+          - 163
+        read: string
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          residents:
+          - 136
+          - 138
+          non-residents:
+          - 161
+          - 163
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - CURRENCY
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.domestic
+    INDICATOR: Outstanding of existing debt
+  notes: Outstanding of existing domestic debt on Input 3, keyed by currency and holder residency.
+- id: input3_domestic_o_w_st
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range:
+  - '''Input 3 - Macro-Debt data(DMX)''!V137:W137'
+  - '''Input 3 - Macro-Debt data(DMX)''!V139:W139'
+  - '''Input 3 - Macro-Debt data(DMX)''!W162'
+  - '''Input 3 - Macro-Debt data(DMX)''!W164'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: CURRENCY
+      concept: CURRENCY
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          local:
+          - 137
+          - 162
+          foreign:
+          - 139
+          - 164
+        read: string
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          residents:
+          - 137
+          - 139
+          non-residents:
+          - 162
+          - 164
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - CURRENCY
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.domestic
+    INDICATOR: 'o/w: short-term'
+  notes: Short-term share of existing domestic debt on Input 3, keyed by currency and holder residency.
+- id: input3_domestic_interest_payment_from_existing_debt
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range:
+  - '''Input 3 - Macro-Debt data(DMX)''!X141:AR141'
+  - '''Input 3 - Macro-Debt data(DMX)''!N142:AR142'
+  - '''Input 3 - Macro-Debt data(DMX)''!N166:AR166'
+  - '''Input 3 - Macro-Debt data(DMX)''!N167:AR167'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: CURRENCY
+      concept: CURRENCY
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          local:
+          - 141
+          - 166
+          foreign:
+          - 142
+          - 167
+        read: string
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          residents:
+          - 141
+          - 142
+          non-residents:
+          - 166
+          - 167
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - CURRENCY
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.domestic
+    INDICATOR: Interest payment from existing debt
+  notes: Interest on existing domestic debt on Input 3, keyed by currency and holder residency.
+- id: input3_domestic_principal_payment_from_existing_debt
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range:
+  - '''Input 3 - Macro-Debt data(DMX)''!X143:AR144'
+  - '''Input 3 - Macro-Debt data(DMX)''!X168:AR169'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: CURRENCY
+      concept: CURRENCY
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          local:
+          - 143
+          - 168
+          foreign:
+          - 144
+          - 169
+        read: string
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          residents:
+          - 143
+          - 144
+          non-residents:
+          - 168
+          - 169
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - CURRENCY
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.domestic
+    INDICATOR: Principal payment from existing debt
+  notes: Principal on existing domestic debt on Input 3, keyed by currency and holder residency.
+- id: input3_domestic_new_gross_disbursement
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range:
+  - '''Input 3 - Macro-Debt data(DMX)''!X147:AR147'
+  - '''Input 3 - Macro-Debt data(DMX)''!X149:AR150'
+  - '''Input 3 - Macro-Debt data(DMX)''!X152:AR157'
+  - '''Input 3 - Macro-Debt data(DMX)''!X172:AR173'
+  - '''Input 3 - Macro-Debt data(DMX)''!X175:AR180'
+  layout: series
+  input: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Central bank: 147
+          T-bills_in local currency:
+          - 149
+          - 172
+          T-bills_in foreign currency:
+          - 150
+          - 173
+          Bonds (1-3 years) in local currency:
+          - 152
+          - 175
+          Bonds (4-7 years) in local currency:
+          - 153
+          - 176
+          Bonds (beyond 7 years) in local currency:
+          - 154
+          - 177
+          Bonds (1-3 years) in foreign currency:
+          - 155
+          - 178
+          Bonds (4-7 years) in foreign currency:
+          - 156
+          - 179
+          Bonds (beyond 7 years) in foreign currency:
+          - 157
+          - 180
+        read: string
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          residents:
+          - 147
+          - 149
+          - 150
+          - '152:157'
+          non-residents:
+          - 172
+          - 173
+          - '175:180'
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_3.domestic
+    INDICATOR: New gross disbursement
+  notes: Input 3 new gross disbursements of locally issued debt, keyed by instrument
+    and holder residency.

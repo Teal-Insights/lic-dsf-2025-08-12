@@ -1,0 +1,2231 @@
+schema_version: 1.16.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+  - id: DSA_SECTION
+    name: DSA statement section
+    dtype: string
+  - id: HOLDER
+    name: Debt holder residency
+    dtype: string
+series:
+- id: ext_debt_old_mlt_debt_service
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!E11:AX40
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.old_mlt_debt_service
+    INDICATOR: Debt service
+  notes: "Old MLT PPG external debt service by financing instrument, including creditor subtotals."
+- id: ext_debt_old_mlt_total
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F42:Z42
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.old_mlt_debt_service
+    INDICATOR: Total external debt (excluding locally-issued debt)
+  notes: Total old MLT debt service excluding locally-issued debt.
+- id: ext_debt_old_mlt_principal
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F43:Z43
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.old_mlt_debt_service
+    INDICATOR: "of which: principal"
+  notes: Principal component of old MLT debt service excluding locally-issued debt.
+- id: ext_debt_old_mlt_evolution
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!E45:Y45
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.old_mlt_debt_service
+    INDICATOR: (hide) Evolution of debt (excluding locally-issued debt)
+  notes: Hidden evolution of old MLT debt stock excluding locally-issued debt.
+- id: ext_debt_locally_issued_service_non_residents
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!E49:Z51
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.locally_issued_debt_service
+    HOLDER: non-residents
+    INDICATOR: Debt service
+  notes: "Old locally-issued debt service held by non-residents, by currency denomination."
+- id: ext_debt_locally_issued_service_residents
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F53:Z53
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.locally_issued_debt_service
+    HOLDER: residents
+    INDICATOR: Debt service
+  notes: Old locally-issued FX debt service held by residents.
+- id: ext_debt_locally_issued_service_total
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F55:Z55
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.locally_issued_debt_service
+    INDICATOR: Total locally-issued debt service
+  notes: Total old locally-issued debt service.
+- id: ext_debt_locally_issued_principal
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F56:Z56
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.locally_issued_debt_service
+    INDICATOR: "of which: principal"
+  notes: Principal component of old locally-issued debt service.
+- id: ext_debt_locally_issued_evolution
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!E58:Z58
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.locally_issued_debt_service
+    INDICATOR: Evolution of debt
+  notes: Evolution of old locally-issued debt stock.
+- id: ext_debt_total_including_locally_issued
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F61:Z61
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.total_external_debt_service
+    INDICATOR: Total external debt (including locally-issued debt)
+  notes: Total old external debt service including locally-issued debt.
+- id: ext_debt_total_principal
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F62:Z62
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.total_external_debt_service
+    INDICATOR: "of which: principal"
+  notes: Principal component of total old external debt service.
+- id: ext_debt_total_interest
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F63:Z63
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.total_external_debt_service
+    INDICATOR: "of which: interest"
+  notes: Interest component of total old external debt service.
+- id: ext_debt_stock_of_outstanding_arrears
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!E65:Z65
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.arrears
+    INDICATOR: Stock of outstanding arrears
+  notes: Stock of outstanding PPG external arrears.
+- id: ext_debt_old_mlt_stock_evolution
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!E67:Z67
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.arrears
+    INDICATOR: "Evolution of old MLT debt, excluding arrears (nominal)"
+  notes: Nominal evolution of old MLT debt excluding arrears.
+- id: ext_debt_new_disbursements_external
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F71:BN104
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.new_mlt_disbursements
+    INDICATOR: Disbursements
+  notes: New MLT disbursements on external instruments (including IDA NEW terms and creditor subtotals).
+- id: ext_debt_new_disbursements_non_residents
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F105:BN113
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.new_mlt_disbursements
+    HOLDER: non-residents
+    INDICATOR: Disbursements
+  notes: "New locally-issued disbursements held by non-residents, by instrument and currency."
+- id: ext_debt_new_disbursements_residents
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F115:BN118
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.new_mlt_disbursements
+    HOLDER: residents
+    INDICATOR: Disbursements
+  notes: New locally-issued FX disbursements held by residents.
+- id: ext_debt_new_disbursements_external_total
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F122:P122
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.new_mlt_disbursements
+    INDICATOR: Total new public external MLT disbursements
+  notes: Total new public external MLT disbursements.
+- id: ext_debt_new_disbursements_public_total
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F123:P123
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.new_mlt_disbursements
+    INDICATOR: "Total public new (external and domestic) ST&MLT disbursements"
+  notes: Total public new external and domestic ST and MLT disbursements.
+- id: ext_debt_marginal_share_external_ppg_mlt
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F126:P126
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.marginal_debt_shares
+    INDICATOR: External PPG medium and long-term
+  notes: "Yearly residual-financing share: External PPG medium and long-term."
+- id: ext_debt_marginal_share_external_ppg_mlt_average
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!D126
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: ext_debt_data.marginal_debt_shares
+    VARIANT: average
+    INDICATOR: External PPG medium and long-term
+  notes: "Average (F:P) residual-financing share: External PPG medium and long-term."
+- id: ext_debt_marginal_share_external_ppg_mlt_residual_financing
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!C126
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: ext_debt_data.marginal_debt_shares
+    VARIANT: residual financing
+    INDICATOR: External PPG medium and long-term
+  notes: Share of External PPG medium and long-term supplied to Input 7 residual financing.
+- id: ext_debt_marginal_share_domestic_mlt
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F127:P127
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.marginal_debt_shares
+    INDICATOR: Domestic medium and long-term
+  notes: "Yearly residual-financing share: Domestic medium and long-term."
+- id: ext_debt_marginal_share_domestic_mlt_average
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!D127
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: ext_debt_data.marginal_debt_shares
+    VARIANT: average
+    INDICATOR: Domestic medium and long-term
+  notes: "Average (F:P) residual-financing share: Domestic medium and long-term."
+- id: ext_debt_marginal_share_domestic_mlt_residual_financing
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!C127
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: ext_debt_data.marginal_debt_shares
+    VARIANT: residual financing
+    INDICATOR: Domestic medium and long-term
+  notes: Share of Domestic medium and long-term supplied to Input 7 residual financing.
+- id: ext_debt_marginal_share_domestic_st
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F128:P128
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.marginal_debt_shares
+    INDICATOR: Domestic short-term
+  notes: "Yearly residual-financing share: Domestic short-term."
+- id: ext_debt_marginal_share_domestic_st_average
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!D128
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: ext_debt_data.marginal_debt_shares
+    VARIANT: average
+    INDICATOR: Domestic short-term
+  notes: "Average (F:P) residual-financing share: Domestic short-term."
+- id: ext_debt_marginal_share_domestic_st_residual_financing
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!C128
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: ext_debt_data.marginal_debt_shares
+    VARIANT: residual financing
+    INDICATOR: Domestic short-term
+  notes: Share of Domestic short-term supplied to Input 7 residual financing.
+- id: ext_debt_residual_interest_rate
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F131:P131
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.residual_financing_terms
+    INDICATOR: Average interest rate on new debt
+  notes: "Yearly residual-financing term: Average interest rate on new debt."
+- id: ext_debt_residual_interest_rate_summary
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!D131
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: ext_debt_data.residual_financing_terms
+    VARIANT: average
+    INDICATOR: Average interest rate on new debt
+  notes: Summary average value for Average interest rate on new debt.
+- id: ext_debt_residual_grace_period
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F132:P132
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.residual_financing_terms
+    INDICATOR: Average grace period on new debt
+  notes: "Yearly residual-financing term: Average grace period on new debt."
+- id: ext_debt_residual_grace_period_summary
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!D132
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: ext_debt_data.residual_financing_terms
+    VARIANT: average
+    INDICATOR: Average grace period on new debt
+  notes: Summary average value for Average grace period on new debt.
+- id: ext_debt_residual_maturity
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F133:P133
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.residual_financing_terms
+    INDICATOR: Average maturity of new debt
+  notes: "Yearly residual-financing term: Average maturity of new debt."
+- id: ext_debt_residual_maturity_summary
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!D133
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: ext_debt_data.residual_financing_terms
+    VARIANT: average
+    INDICATOR: Average maturity of new debt
+  notes: Summary average value for Average maturity of new debt.
+- id: ext_debt_residual_grace_period_rounded_summary
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!D135
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: ext_debt_data.residual_financing_terms
+    VARIANT: rounded
+    INDICATOR: Average grace period on new debt (rounded down)
+  notes: Summary rounded value for Average grace period on new debt (rounded down).
+- id: ext_debt_residual_maturity_rounded_summary
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!D136
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: ext_debt_data.residual_financing_terms
+    VARIANT: rounded
+    INDICATOR: Average maturity of new debt (rounded down)
+  notes: Summary rounded value for Average maturity of new debt (rounded down).
+- id: ext_debt_residual_interest_rate_residual_financing
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!C131
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: ext_debt_data.residual_financing_terms
+    VARIANT: residual financing
+    INDICATOR: Average interest rate on new debt
+  notes: Average interest rate on new debt supplied to Input 7 residual financing.
+- id: ext_debt_residual_grace_period_residual_financing
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!C132
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: ext_debt_data.residual_financing_terms
+    VARIANT: residual financing
+    INDICATOR: Average grace period on new debt
+  notes: Average grace period on new debt supplied to Input 7 residual financing.
+- id: ext_debt_residual_maturity_residual_financing
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!C133
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: ext_debt_data.residual_financing_terms
+    VARIANT: residual financing
+    INDICATOR: Average maturity of new debt
+  notes: Average maturity of new debt supplied to Input 7 residual financing.
+- id: ext_debt_definition_external_domestic
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!C120
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: ext_debt_data.debt_definition
+    INDICATOR: Definition of external/domestic debt
+  notes: Residency-based vs currency-based external/domestic debt definition from Input 1.
+- id: ext_debt_new_debt_service_total
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F140:Z140
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.new_debt_service
+    INDICATOR: Total new debt service
+  notes: Total new MLT debt service.
+- id: ext_debt_new_interest_total
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F142:Z142
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.new_debt_service
+    INDICATOR: Interest
+  notes: Total interest on new MLT debt.
+- id: ext_debt_new_interest_external
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F143:BN176
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.new_debt_service
+    INDICATOR: Interest
+  notes: Interest on new external MLT debt by financing instrument.
+- id: ext_debt_new_interest_non_residents
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F177:BN185
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.new_debt_service
+    HOLDER: non-residents
+    INDICATOR: Interest
+  notes: Interest on new locally-issued debt held by non-residents.
+- id: ext_debt_new_interest_residents
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F187:BN190
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.new_debt_service
+    HOLDER: residents
+    INDICATOR: Interest
+  notes: Interest on new locally-issued FX debt held by residents.
+- id: ext_debt_new_amortization_total
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F192:Z192
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.new_debt_service
+    INDICATOR: Amortization
+  notes: Total amortization of new MLT debt.
+- id: ext_debt_new_amortization_external
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F193:BN226
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.new_debt_service
+    INDICATOR: Amortization
+  notes: Amortization of new external MLT debt by financing instrument.
+- id: ext_debt_new_amortization_non_residents
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F227:BN235
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.new_debt_service
+    HOLDER: non-residents
+    INDICATOR: Amortization
+  notes: Amortization of new locally-issued debt held by non-residents.
+- id: ext_debt_new_amortization_residents
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F237:BN240
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.new_debt_service
+    HOLDER: residents
+    INDICATOR: Amortization
+  notes: Amortization of new locally-issued FX debt held by residents.
+- id: ext_debt_pv_old_mlt_total
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F242:Z242
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.pv_old_mlt_debt
+    INDICATOR: PV of old MLT debt
+  notes: Present value of old MLT PPG external debt.
+- id: ext_debt_pv_old_mlt_by_instrument
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!E244:Z273
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.pv_old_mlt_debt
+    INDICATOR: PV of old MLT debt
+  notes: Present value of old MLT debt by financing instrument.
+- id: ext_debt_pv_old_locally_issued
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F274:Z274
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.pv_old_mlt_debt
+    INSTRUMENT: Locally-issued debt
+    INDICATOR: PV of old MLT debt
+  notes: Present value of old locally-issued debt (grant element assumed zero).
+- id: ext_debt_pv_existing_arrears
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F277:Z277
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.pv_old_mlt_debt
+    INDICATOR: PV of existing arrears
+  notes: Present value of existing arrears.
+- id: ext_debt_pv_new_mlt_total
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F279:Z279
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.pv_new_mlt_debt
+    INDICATOR: PV of new MLT debt
+  notes: Present value of new MLT debt.
+- id: ext_debt_pv_new_mlt_external
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F280:BN313
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.pv_new_mlt_debt
+    INDICATOR: PV of new MLT debt
+  notes: Present value of new external MLT debt by financing instrument.
+- id: ext_debt_pv_new_mlt_non_residents
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F314:BN322
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.pv_new_mlt_debt
+    HOLDER: non-residents
+    INDICATOR: PV of new MLT debt
+  notes: Present value of new locally-issued debt held by non-residents.
+- id: ext_debt_pv_new_mlt_residents
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F324:BN327
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.pv_new_mlt_debt
+    HOLDER: residents
+    INDICATOR: PV of new MLT debt
+  notes: Present value of new locally-issued FX debt held by residents.
+- id: ext_debt_nominal_new_mlt_total
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F329:Z329
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.nominal_new_mlt_debt
+    INDICATOR: Nominal value of new MLT debt
+  notes: Nominal value of new MLT debt.
+- id: ext_debt_nominal_new_mlt_external
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F330:BN363
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.nominal_new_mlt_debt
+    INDICATOR: Nominal value of new MLT debt
+  notes: Nominal value of new external MLT debt by financing instrument.
+- id: ext_debt_nominal_new_mlt_non_residents
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F364:BN372
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.nominal_new_mlt_debt
+    HOLDER: non-residents
+    INDICATOR: Nominal value of new MLT debt
+  notes: Nominal value of new locally-issued debt held by non-residents.
+- id: ext_debt_nominal_new_mlt_residents
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F374:BN377
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.nominal_new_mlt_debt
+    HOLDER: residents
+    INDICATOR: Nominal value of new MLT debt
+  notes: Nominal value of new locally-issued FX debt held by residents.
+- id: ext_debt_st_external_nominal
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!E379:Z379
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.st_external_debt
+    INDICATOR: Nominal value (=PV) of ST debt (excluding locally-issued debt)
+  notes: Nominal value (equal to PV) of short-term external debt excluding locally-issued debt.
+- id: ext_debt_st_external_interest
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F380:Z380
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.st_external_debt
+    INDICATOR: Interest
+  notes: Interest on short-term external debt excluding locally-issued debt.
+- id: ext_debt_st_locally_issued_nominal
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F382:Z382
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt.st_locally_issued
+    INDICATOR: Nominal value (=PV) of ST debt (locally-issued debt)
+  notes: Nominal value (equal to PV) of locally-issued short-term external debt.
+- id: ext_debt_st_locally_issued_principal
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!G383:Z383
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt.st_locally_issued
+    INDICATOR: Principal
+  notes: Principal on locally-issued short-term external debt (year-1 hole is a constant).
+- id: ext_debt_st_locally_issued_interest
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!G384:Z384
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt.st_locally_issued
+    INDICATOR: Interest
+  notes: Interest on locally-issued short-term external debt (year-1 hole is a constant).
+- id: ext_debt_st_total
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F386:Z386
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.st_total
+    INDICATOR: Total ST external debt
+  notes: Total short-term external debt including locally-issued.
+- id: ext_debt_st_total_principal
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F387:Z387
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.st_total
+    INDICATOR: Principal
+  notes: Principal on total short-term external debt.
+- id: ext_debt_st_total_interest
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F388:Z388
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.st_total
+    INDICATOR: Interest
+  notes: Interest on total short-term external debt.
+- id: ext_debt_pv_net_use_of_sdrs
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F390:Z390
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.pv_totals
+    INDICATOR: PV of net use of SDRs
+  notes: Present value of net use of SDRs.
+- id: ext_debt_total_pv_of_debt
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F391:Z391
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.pv_totals
+    INDICATOR: Total PV of debt
+  notes: Total present value of PPG external debt.
+- id: ext_debt_total_public_debt_service
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F394:Z394
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.public_debt_service
+    INDICATOR: Total public debt service
+  notes: Total public debt service.
+- id: ext_debt_public_debt_service_principal
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F395:Z395
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.public_debt_service
+    INDICATOR: "of which: principal"
+  notes: Principal component of total public debt service.
+- id: ext_debt_public_debt_service_interest
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F396:Z396
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.public_debt_service
+    INDICATOR: "of which: interest"
+  notes: Interest component of total public debt service.
+- id: ext_debt_external_debt_outstanding
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F398:Y398
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.outstanding
+    INDICATOR: External debt outstanding
+  notes: External debt outstanding.
+- id: ext_debt_fx_denominated_debt_outstanding
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F399:Y399
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt_data.outstanding
+    INDICATOR: FX-denominated debt outstanding
+  notes: FX-denominated debt outstanding.
+- id: ext_debt_exchange_rate_eop
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!E402:Z402
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt.memorandum
+    INDICATOR: Exchange rate (eop)
+  notes: End-of-period exchange rate on the Ext_Debt memorandum.
+- id: ext_debt_exchange_rate_period_average
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F403:Z403
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt.memorandum
+    INDICATOR: Exchange rate (period average)
+  notes: Period-average exchange rate; 2045-2051 holes are constants.

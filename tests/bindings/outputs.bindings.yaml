@@ -1,0 +1,1134 @@
+schema_version: 1.16.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+series:
+- id: external_dsa_risk_rating_signal
+  sheet: Chart Data
+  data_range: '''Chart Data''!D10'
+  layout: scalar
+  output:
+    compute:
+      name: compute_external_dsa_risk_rating_signal
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.external_risk_signals
+    PARAMETER: external_dsa_risk_rating_signal
+  notes: External DSA risk-rating text signal (Chart Data!D10; Signal for external risk rating).
+- id: external_dsa_risk_rating_numeric
+  sheet: Chart Data
+  data_range: '''Chart Data''!D11'
+  layout: scalar
+  output:
+    compute:
+      name: compute_external_dsa_risk_rating_numeric
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.external_risk_signals
+    PARAMETER: external_dsa_risk_rating_numeric
+  notes: External DSA risk-rating numeric code (Chart Data!D11; Signal for external risk rating (numeric)).
+- id: external_baseline_breach
+  sheet: Chart Data
+  data_range: '''Chart Data''!D12'
+  layout: scalar
+  output:
+    compute:
+      name: compute_external_baseline_breach
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.external_risk_signals
+    PARAMETER: external_baseline_breach
+  notes: External baseline breach flag (0/1) (Chart Data!D12; Baseline breach (0=no, 1=breach -- excl. 1-year breaches)).
+- id: external_shock_breach
+  sheet: Chart Data
+  data_range: '''Chart Data''!D13'
+  layout: scalar
+  output:
+    compute:
+      name: compute_external_shock_breach
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.external_risk_signals
+    PARAMETER: external_shock_breach
+  notes: External shock breach flag (0/1) (Chart Data!D13; Shock breach (0=no, 1=breach -- excl. 1-year breaches)).
+- id: external_pv_debt_to_gdp_mx_shock
+  sheet: Chart Data
+  data_range: '''Chart Data''!D14'
+  layout: scalar
+  output:
+    compute:
+      name: compute_external_pv_debt_to_gdp_mx_shock
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.external_risk_signals
+    PARAMETER: external_pv_debt_to_gdp_mx_shock
+  notes: External PV debt-to-GDP MX shock label (Chart Data!D14; PV of debt-to GDP ratio MX shock).
+- id: external_pv_debt_to_exports_mx_shock
+  sheet: Chart Data
+  data_range: '''Chart Data''!D15'
+  layout: scalar
+  output:
+    compute:
+      name: compute_external_pv_debt_to_exports_mx_shock
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.external_risk_signals
+    PARAMETER: external_pv_debt_to_exports_mx_shock
+  notes: External PV debt-to-exports MX shock label (Chart Data!D15; PV of debt-to-exports ratio MX shock).
+- id: external_debt_service_to_exports_mx_shock
+  sheet: Chart Data
+  data_range: '''Chart Data''!D16'
+  layout: scalar
+  output:
+    compute:
+      name: compute_external_debt_service_to_exports_mx_shock
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.external_risk_signals
+    PARAMETER: external_debt_service_to_exports_mx_shock
+  notes: External debt service-to-exports MX shock label (Chart Data!D16; Debt service-to-exports ratio MX shock).
+- id: external_debt_service_to_revenue_mx_shock
+  sheet: Chart Data
+  data_range: '''Chart Data''!D17'
+  layout: scalar
+  output:
+    compute:
+      name: compute_external_debt_service_to_revenue_mx_shock
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.external_risk_signals
+    PARAMETER: external_debt_service_to_revenue_mx_shock
+  notes: External debt service-to-revenue MX shock label (Chart Data!D17; Debt service to revenue MX shock - Market).
+- id: fiscal_risk_rating_signal
+  sheet: Chart Data
+  data_range: '''Chart Data''!I10'
+  layout: scalar
+  output:
+    compute:
+      name: compute_fiscal_risk_rating_signal
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.fiscal_risk_signals
+    PARAMETER: fiscal_risk_rating_signal
+  notes: Fiscal risk-rating text signal (Chart Data!I10; Signal for external risk rating).
+- id: fiscal_risk_rating_numeric
+  sheet: Chart Data
+  data_range: '''Chart Data''!I11'
+  layout: scalar
+  output:
+    compute:
+      name: compute_fiscal_risk_rating_numeric
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.fiscal_risk_signals
+    PARAMETER: fiscal_risk_rating_numeric
+  notes: Fiscal risk-rating numeric code (Chart Data!I11; Signal for external risk rating (numeric)).
+- id: fiscal_baseline_breach
+  sheet: Chart Data
+  data_range: '''Chart Data''!I12'
+  layout: scalar
+  output:
+    compute:
+      name: compute_fiscal_baseline_breach
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.fiscal_risk_signals
+    PARAMETER: fiscal_baseline_breach
+  notes: Fiscal baseline breach flag (0/1) (Chart Data!I12; Baseline breach (0=no, 1=breach -- excl. 1-year breaches)).
+- id: fiscal_shock_breach
+  sheet: Chart Data
+  data_range: '''Chart Data''!I13'
+  layout: scalar
+  output:
+    compute:
+      name: compute_fiscal_shock_breach
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.fiscal_risk_signals
+    PARAMETER: fiscal_shock_breach
+  notes: Fiscal shock breach flag (0/1) (Chart Data!I13; Shock breach (0=no, 1=breach -- excl. 1-year breaches)).
+- id: fiscal_pv_debt_to_gdp_mx_shock
+  sheet: Chart Data
+  data_range: '''Chart Data''!I14'
+  layout: scalar
+  output:
+    compute:
+      name: compute_fiscal_pv_debt_to_gdp_mx_shock
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.fiscal_risk_signals
+    PARAMETER: fiscal_pv_debt_to_gdp_mx_shock
+  notes: Fiscal PV debt-to-GDP MX shock label (Chart Data!I14; PV of debt-to GDP ratio MX shock).
+- id: tailored_stress_natural_disaster_applicable
+  sheet: Chart Data
+  data_range: '''Chart Data''!I17'
+  layout: scalar
+  output:
+    compute:
+      name: compute_tailored_stress_natural_disaster_applicable
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.tailored_stress_signals
+    PARAMETER: tailored_stress_natural_disaster_applicable
+  notes: Natural-disaster tailored stress applicable (0/1) (Chart Data!I17; Debt service to revenue MX shock - Market).
+- id: tailored_stress_commodity_price_applicable
+  sheet: Chart Data
+  data_range: '''Chart Data''!I18'
+  layout: scalar
+  output:
+    compute:
+      name: compute_tailored_stress_commodity_price_applicable
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.tailored_stress_signals
+    PARAMETER: tailored_stress_commodity_price_applicable
+  notes: Commodity-price tailored stress applicable (0/1) (Chart Data!I18; 1/ excluding 1-year breaches).
+- id: tailored_stress_market_financing_applicable
+  sheet: Chart Data
+  data_range: '''Chart Data''!I19'
+  layout: scalar
+  output:
+    compute:
+      name: compute_tailored_stress_market_financing_applicable
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.tailored_stress_signals
+    PARAMETER: tailored_stress_market_financing_applicable
+  notes: Market-financing tailored stress applicable (0/1) (Chart Data!I19; Market financing).
+- id: fiscal_space_moderate_risk_signal
+  sheet: Chart Data
+  data_range: '''Chart Data''!D23'
+  layout: scalar
+  output:
+    compute:
+      name: compute_fiscal_space_moderate_risk_signal
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.fiscal_space_signal
+    PARAMETER: fiscal_space_moderate_risk_signal
+  notes: Moderate-risk fiscal-space text signal (Chart Data!D23; Moderate risk category).
+- id: overall_risk_rating_signal
+  sheet: Chart Data
+  data_range: '''Chart Data''!L10'
+  layout: scalar
+  output:
+    compute:
+      name: compute_overall_risk_rating_signal
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.overall_rating
+    PARAMETER: overall_risk_rating_signal
+  notes: Overall combined risk-rating text signal (Chart Data!L10; Signal for external risk rating).
+- id: overall_risk_rating_numeric
+  sheet: Chart Data
+  data_range: '''Chart Data''!L11'
+  layout: scalar
+  output:
+    compute:
+      name: compute_overall_risk_rating_numeric
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.overall_rating
+    PARAMETER: overall_risk_rating_numeric
+  notes: Overall combined risk-rating numeric code (Chart Data!L11; Signal for external risk rating (numeric)).
+- id: chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D239:X239'
+  - '''Chart Data''!D240:X240'
+  - '''Chart Data''!D241:X241'
+  - '''Chart Data''!D242:X242'
+  - '''Chart Data''!D243:X243'
+  - '''Chart Data''!D244:X244'
+  - '''Chart Data''!D245:X245'
+  - '''Chart Data''!D246:X246'
+  - '''Chart Data''!D248:X248'
+  - '''Chart Data''!D249:X249'
+  - '''Chart Data''!D250:X250'
+  - '''Chart Data''!D251:X251'
+  - '''Chart Data''!D252:X252'
+  layout: series
+  output:
+    compute:
+      name: compute_chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Baseline: 239
+          A1. Key variables at their historical averages in 2024-2034 2/: 240
+          B1. Real GDP growth: 241
+          B2. Primary balance: 242
+          B3. Exports: 243
+          B4. Other flows 3/: 244
+          B5. Depreciation: 245
+          B6. Combination of B1-B5: 246
+          C1. Combined contingent liabilities: 248
+          C2. Natural disaster: 249
+          C3. Commodity price: 250
+          C4. Market Financing: 251
+          A2. Alternative Scenario :[Customize, enter title]: 252
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_gdp_ratio
+    INDICATOR: PV of Debt-to-GDP Ratio
+  notes: PV of Debt-to-GDP Ratio on Chart Data, keyed by scenario.
+- id: chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D281:X281'
+  - '''Chart Data''!D282:X282'
+  - '''Chart Data''!D283:X283'
+  - '''Chart Data''!D284:X284'
+  - '''Chart Data''!D285:X285'
+  - '''Chart Data''!D286:X286'
+  - '''Chart Data''!D287:X287'
+  - '''Chart Data''!D288:X288'
+  - '''Chart Data''!D290:X290'
+  - '''Chart Data''!D291:X291'
+  - '''Chart Data''!D292:X292'
+  - '''Chart Data''!D293:X293'
+  - '''Chart Data''!D294:X294'
+  layout: series
+  output:
+    compute:
+      name: compute_chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Baseline: 281
+          A1. Key variables at their historical averages in 2024-2034 2/: 282
+          B1. Real GDP growth: 283
+          B2. Primary balance: 284
+          B3. Exports: 285
+          B4. Other flows 3/: 286
+          B5. Depreciation: 287
+          B6. Combination of B1-B5: 288
+          C1. Combined contingent liabilities: 290
+          C2. Natural disaster: 291
+          C3. Commodity price: 292
+          C4. Market Financing: 293
+          A2. Alternative Scenario :[Customize, enter title]: 294
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_revenue_ratio
+    INDICATOR: PV of Debt-to-Revenue Ratio
+  notes: PV of Debt-to-Revenue Ratio on Chart Data, keyed by scenario.
+- id: chart_output_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D318:X318'
+  - '''Chart Data''!D319:X319'
+  - '''Chart Data''!D320:X320'
+  - '''Chart Data''!D321:X321'
+  - '''Chart Data''!D322:X322'
+  - '''Chart Data''!D323:X323'
+  - '''Chart Data''!D324:X324'
+  - '''Chart Data''!D325:X325'
+  - '''Chart Data''!D327:X327'
+  - '''Chart Data''!D328:X328'
+  - '''Chart Data''!D329:X329'
+  - '''Chart Data''!D330:X330'
+  - '''Chart Data''!D331:X331'
+  layout: series
+  output:
+    compute:
+      name: compute_chart_output_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Baseline: 318
+          A1. Key variables at their historical averages in 2024-2034 2/: 319
+          B1. Real GDP growth: 320
+          B2. Primary balance: 321
+          B3. Exports: 322
+          B4. Other flows 3/: 323
+          B5. Depreciation: 324
+          B6. Combination of B1-B5: 325
+          C1. Combined contingent liabilities: 327
+          C2. Natural disaster: 328
+          C3. Commodity price: 329
+          C4. Market Financing: 330
+          A2. Alternative Scenario :[Customize, enter title]: 331
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue_ratio
+    INDICATOR: Debt Service-to-Revenue Ratio
+  notes: Debt Service-to-Revenue Ratio on Chart Data, keyed by scenario.
+- id: chart_output_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D351:X351'
+  - '''Chart Data''!D352:X352'
+  - '''Chart Data''!D353:X353'
+  - '''Chart Data''!D354:X354'
+  - '''Chart Data''!D355:X355'
+  - '''Chart Data''!D356:X356'
+  - '''Chart Data''!D357:X357'
+  - '''Chart Data''!D358:X358'
+  - '''Chart Data''!D360:X360'
+  - '''Chart Data''!D361:X361'
+  - '''Chart Data''!D362:X362'
+  - '''Chart Data''!D363:X363'
+  - '''Chart Data''!D364:X364'
+  layout: series
+  output:
+    compute:
+      name: compute_chart_output_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Baseline: 351
+          A1. Key variables at their historical averages in 2024-2034 2/: 352
+          B1. Real GDP growth: 353
+          B2. Primary balance: 354
+          B3. Exports: 355
+          B4. Other flows 3/: 356
+          B5. Depreciation: 357
+          B6. Combination of B1-B5: 358
+          C1. Combined contingent liabilities: 360
+          C2. Natural disaster: 361
+          C3. Commodity price: 362
+          C4. Market Financing: 363
+          A2. Alternative Scenario :[Customize, enter title]: 364
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.debt_service_to_gdp_ratio
+    INDICATOR: Debt Service-to-GDP Ratio
+  notes: Debt Service-to-GDP Ratio on Chart Data, keyed by scenario.
+- id: chart_pv_debt_gdp_ratio_a2_alternative_scenario_customize_enter
+  sheet: Chart Data
+  data_range: '''Chart Data''!D51:X51'
+  layout: series
+  output:
+    compute:
+      name: compute_chart_pv_debt_gdp_ratio_a2_alternative_scenario_customize_enter
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.figure_r51
+    INDICATOR: PV of debt-to GDP ratio — A2. Alternative Scenario :[Customize, enter title]
+  notes: Chart Data row 51 (PV of debt-to GDP ratio — A2. Alternative Scenario :[Customize, enter title]), years from row 35.
+- id: chart_output_chart_data_figure_r61_pv_debt_gdp_ratio
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D61:X61'
+  - '''Chart Data''!D62:X62'
+  - '''Chart Data''!D63:X63'
+  - '''Chart Data''!D64:X64'
+  - '''Chart Data''!D66:X66'
+  layout: series
+  output:
+    compute:
+      name: compute_chart_output_chart_data_figure_r61_pv_debt_gdp_ratio
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Baseline: 61
+          Historical scenario: 62
+          MX shock Standard&Tailored: 63
+          MX value, 1 yr only shock Standard&Tailored - for chart: 64
+          Threshold: 66
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.figure_r61
+    INDICATOR: PV of debt-to GDP ratio
+  notes: PV of debt-to GDP ratio on Chart Data, keyed by scenario.
+- id: chart_pv_debt_to_exports_a2_alternative_scenario_customize_enter
+  sheet: Chart Data
+  data_range: '''Chart Data''!D93:X93'
+  layout: series
+  output:
+    compute:
+      name: compute_chart_pv_debt_to_exports_a2_alternative_scenario_customize_enter
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.figure_r93
+    INDICATOR: PV of debt-to-exports ratio — A2. Alternative Scenario :[Customize, enter title]
+  notes: Chart Data row 93 (PV of debt-to-exports ratio — A2. Alternative Scenario :[Customize, enter title]), years from row 35.
+- id: chart_output_chart_data_figure_r103_pv_debt_to_exports
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D103:X103'
+  - '''Chart Data''!D104:X104'
+  - '''Chart Data''!D105:X105'
+  - '''Chart Data''!D106:X106'
+  - '''Chart Data''!D108:X108'
+  layout: series
+  output:
+    compute:
+      name: compute_chart_output_chart_data_figure_r103_pv_debt_to_exports
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Baseline: 103
+          Historical scenario: 104
+          MX shock Standard&Tailored: 105
+          MX value, 1 yr only shock Standard&Tailored - for chart: 106
+          Threshold: 108
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.figure_r103
+    INDICATOR: PV of debt-to-exports ratio
+  notes: PV of debt-to-exports ratio on Chart Data, keyed by scenario.
+- id: chart_debt_service_to_exports_a2_alternative_scenario_customize_enter
+  sheet: Chart Data
+  data_range: '''Chart Data''!D135:X135'
+  layout: series
+  output:
+    compute:
+      name: compute_chart_debt_service_to_exports_a2_alternative_scenario_customize_enter
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.figure_r135
+    INDICATOR: Debt service-to-exports ratio — A2. Alternative Scenario :[Customize, enter title]
+  notes: Chart Data row 135 (Debt service-to-exports ratio — A2. Alternative Scenario :[Customize, enter title]), years from row 35.
+- id: chart_output_chart_data_figure_r145_debt_service_to_exports
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D145:X145'
+  - '''Chart Data''!D146:X146'
+  - '''Chart Data''!D147:X147'
+  - '''Chart Data''!D148:X148'
+  - '''Chart Data''!D150:X150'
+  layout: series
+  output:
+    compute:
+      name: compute_chart_output_chart_data_figure_r145_debt_service_to_exports
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Baseline: 145
+          Historical scenario: 146
+          MX shock Standard&Tailored: 147
+          MX value, 1 yr only shock Standard&Tailored - for chart: 148
+          Threshold: 150
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.figure_r145
+    INDICATOR: Debt service-to-exports ratio
+  notes: Debt service-to-exports ratio on Chart Data, keyed by scenario.
+- id: chart_debt_service_to_revenue_a2_alternative_scenario_customize_enter
+  sheet: Chart Data
+  data_range: '''Chart Data''!D177:X177'
+  layout: series
+  output:
+    compute:
+      name: compute_chart_debt_service_to_revenue_a2_alternative_scenario_customize_enter
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.figure_r177
+    INDICATOR: Debt service-to-revenue ratio — A2. Alternative Scenario :[Customize, enter title]
+  notes: Chart Data row 177 (Debt service-to-revenue ratio — A2. Alternative Scenario :[Customize, enter title]), years from row 35.
+- id: chart_output_chart_data_figure_r187_debt_service_to_revenue
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D187:X187'
+  - '''Chart Data''!D188:X188'
+  - '''Chart Data''!D189:X189'
+  - '''Chart Data''!D190:X190'
+  - '''Chart Data''!D192:X192'
+  layout: series
+  output:
+    compute:
+      name: compute_chart_output_chart_data_figure_r187_debt_service_to_revenue
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Baseline: 187
+          Historical scenario: 188
+          MX shock Standard&Tailored: 189
+          MX value, 1 yr only shock Standard&Tailored - for chart: 190
+          Threshold: 192
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.figure_r187
+    INDICATOR: Debt service-to-revenue ratio
+  notes: Debt service-to-revenue ratio on Chart Data, keyed by scenario.
+- id: chart_output_chart_data_figure_r263_pv_debt_to_gdp
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D263:X263'
+  - '''Chart Data''!D264:X264'
+  - '''Chart Data''!D265:X265'
+  - '''Chart Data''!D267:X267'
+  layout: series
+  output:
+    compute:
+      name: compute_chart_output_chart_data_figure_r263_pv_debt_to_gdp
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Historical scenario: 263
+          MX shock Standard&Tailored: 264
+          MX value, 1 yr only shock Standard&Tailored - for chart: 265
+          Public debt benchmark: 267
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.figure_r263
+    INDICATOR: PV of Debt-to-GDP Ratio
+  notes: PV of Debt-to-GDP Ratio on Chart Data, keyed by scenario.
+- id: chart_pv_debt_to_revenue_mx_shock_standard_tailored
+  sheet: Chart Data
+  data_range: '''Chart Data''!D306:X306'
+  layout: series
+  output:
+    compute:
+      name: compute_chart_pv_debt_to_revenue_mx_shock_standard_tailored
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.figure_r306
+    INDICATOR: PV of Debt-to-Revenue Ratio — MX shock Standard&Tailored
+  notes: Chart Data row 306 (PV of Debt-to-Revenue Ratio — MX shock Standard&Tailored), years from row 35.
+- id: chart_output_chart_data_figure_r341_debt_service_to_revenue
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D341:X341'
+  - '''Chart Data''!D342:X342'
+  - '''Chart Data''!D343:X343'
+  layout: series
+  output:
+    compute:
+      name: compute_chart_output_chart_data_figure_r341_debt_service_to_revenue
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Baseline: 341
+          Historical scenario: 342
+          MX shock Standard&Tailored: 343
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.figure_r341
+    INDICATOR: Debt Service-to-Revenue Ratio
+  notes: Debt Service-to-Revenue Ratio on Chart Data, keyed by scenario.

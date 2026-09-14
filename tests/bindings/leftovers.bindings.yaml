@@ -1,0 +1,2873 @@
+schema_version: 1.16.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+  - id: DSA_SECTION
+    name: DSA statement section
+    dtype: string
+  - id: HOLDER
+    name: Debt holder residency
+    dtype: string
+  - id: ISSUANCE_YEAR
+    name: Issuance year
+    dtype: int
+series:
+- id: leftover_exchange_rate_pa
+  sheet:
+  - B2_PB_mkt_pub
+  - B2_PB_non_mkt_pub
+  - Baseline - public
+  - C1_Combined CL
+  - C2_Natural disaster
+  data_range:
+  - B2_PB_mkt_pub!E110:Y110
+  - B2_PB_non_mkt_pub!E110:Y110
+  - '''Baseline - public''!O114:AI114'
+  - '''C1_Combined CL''!E110:Y110'
+  - '''C2_Natural disaster''!E111:Y111'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B2_PB_mkt_pub: B2_mkt
+          B2_PB_non_mkt_pub: B2_nonmkt
+          Baseline - public: Baseline
+          C1_Combined CL: C1
+          C2_Natural disaster: C2
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.scenario
+    PARAMETER: exchange_rate_pa
+  notes: exchange_rate_pa leftover on DSA scenario sheets, keyed by SCENARIO.
+  internal: {}
+- id: custom_pub_period
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!E59:BB59'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 60
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: custom_ext_exports_by_year
+  sheet: Customized Scenario-External
+  data_range: '''Customized Scenario-External''!C66:X66'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 55
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: Exports.
+  internal: {}
+- id: custom_ext_of_which_public_publicly_guaranteed_ppg
+  sheet: Customized Scenario-External
+  data_range: '''Customized Scenario-External''!C60:X60'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 55
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: 'of which: public and publicly guaranteed.'
+  internal: {}
+- id: c4_market_path_baseline_pv_of_debt
+  sheet: C4_Market_financing
+  data_range: C4_Market_financing!D78:X78
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: C4_Market
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: c4_market.stress
+    PARAMETER: baseline_pv_of_debt
+  notes: C4 stress path baseline_pv_of_debt; SCENARIO=C4_Market (apply_market_financing_shock, not Output 5-2 MarketFinancingInputs).
+- id: c4_market_path_exports
+  sheet: C4_Market_financing
+  data_range: C4_Market_financing!D93:X93
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: C4_Market
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: c4_market.stress
+    PARAMETER: exports
+  notes: C4 stress path exports; SCENARIO=C4_Market (apply_market_financing_shock, not Output 5-2 MarketFinancingInputs).
+- id: c4_market_path_nominal_gdp_stress
+  sheet: C4_Market_financing
+  data_range: C4_Market_financing!D84:X84
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: C4_Market
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: c4_market.stress
+    PARAMETER: nominal_gdp_stress
+  notes: C4 stress path nominal_gdp_stress; SCENARIO=C4_Market (apply_market_financing_shock, not Output 5-2 MarketFinancingInputs).
+- id: custom_ext_additional_debt_service_stress
+  sheet: Customized Scenario-External
+  data_range: '''Customized Scenario-External''!D134:X134'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: Additional debt service stress.
+  internal: {}
+- id: custom_ext_debt_service_ppg_baseline
+  sheet: Customized Scenario-External
+  data_range: '''Customized Scenario-External''!D132:X132'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: Debt service PPG baseline.
+  internal: {}
+- id: custom_ext_exports
+  sheet: Customized Scenario-External
+  data_range: '''Customized Scenario-External''!D10:X10'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: Exports.
+  internal: {}
+- id: custom_ext_gdp_deflator_in_us_dollar_terms_change_pct
+  sheet: Customized Scenario-External
+  data_range: '''Customized Scenario-External''!D17:X17'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: GDP deflator in US dollar terms.
+  internal: {}
+- id: custom_ext_gdp_deflator_in_us_dollar_terms_change_pct_by_year
+  sheet: Customized Scenario-External
+  data_range: '''Customized Scenario-External''!D98:X98'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: GDP deflator in US dollar terms.
+  internal: {}
+- id: custom_ext_pv_of_additional_borrowing
+  sheet: Customized Scenario-External
+  data_range: '''Customized Scenario-External''!D125:X125'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: PV of additional borrowing.
+  internal: {}
+- id: custom_ext_pv_ppg_baseline
+  sheet: Customized Scenario-External
+  data_range: '''Customized Scenario-External''!D124:X124'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: PV PPG baseline.
+  internal: {}
+- id: custom_ext_real_gdp_growth
+  sheet: Customized Scenario-External
+  data_range: '''Customized Scenario-External''!D16:X16'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: Real GDP growth.
+  internal: {}
+- id: custom_pub_inflation_rate_gdp_deflator_pct_by_year
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!E164:Y164'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: Inflation rate.
+  internal: {}
+- id: custom_pub_nominal_depreciation_of_lc_percentage_change_lc_by_year
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!E160:Y160'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: Nominal depreciation of local currency.
+  internal: {}
+- id: custom_pub_us_inflation_rate_gdp_deflator_pct
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!E165:Y165'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: US Inflation rate.
+  internal: {}
+- id: macro_debt_gross_financing_need
+  sheet: Macro-Debt_Data
+  data_range: '''Macro-Debt_Data''!U101:AO101'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: Gross financing need.
+  internal: {}
+- id: macro_debt_main_assumptions_us_dollars_by_year_6
+  sheet: Macro-Debt_Data
+  data_range: '''Macro-Debt_Data''!U24:AO24'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: US Dollars.
+  internal: {}
+- id: c4_market_path_pv_of_debt
+  sheet: C4_Market_financing
+  data_range: C4_Market_financing!E59:X59
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: C4_Market
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: c4_market.stress
+    PARAMETER: pv_of_debt
+  notes: C4 stress path pv_of_debt; SCENARIO=C4_Market (apply_market_financing_shock, not Output 5-2 MarketFinancingInputs).
+- id: c4_market_path_pv_of_debt_alt
+  sheet: C4_Market_financing
+  data_range: C4_Market_financing!E68:X68
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: C4_Market
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: c4_market.stress
+    PARAMETER: pv_of_debt_alt
+  notes: C4 stress path pv_of_debt_alt; SCENARIO=C4_Market (apply_market_financing_shock, not Output 5-2 MarketFinancingInputs).
+- id: c4_market_path_real_gdp_growth
+  sheet: C4_Market_financing
+  data_range: C4_Market_financing!E14:X14
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: C4_Market
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: c4_market.stress
+    PARAMETER: real_gdp_growth
+  notes: C4 stress path real_gdp_growth; SCENARIO=C4_Market (apply_market_financing_shock, not Output 5-2 MarketFinancingInputs).
+- id: c4_market_path_total_debt_service
+  sheet: C4_Market_financing
+  data_range: C4_Market_financing!E60:X60
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: C4_Market
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: c4_market.stress
+    PARAMETER: total_debt_service
+  notes: C4 stress path total_debt_service; SCENARIO=C4_Market (apply_market_financing_shock, not Output 5-2 MarketFinancingInputs).
+- id: c4_market_path_total_debt_service_alt
+  sheet: C4_Market_financing
+  data_range: C4_Market_financing!E69:X69
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: C4_Market
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: c4_market.stress
+    PARAMETER: total_debt_service_alt
+  notes: C4 stress path total_debt_service_alt; SCENARIO=C4_Market (apply_market_financing_shock, not Output 5-2 MarketFinancingInputs).
+- id: custom_pub_avg_real_interest_rate_by_year
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!F75:Y75'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: Avg. real interest rate.
+  internal: {}
+- id: custom_pub_avg_real_interest_rate_new_borrowing_by_year
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!F69:Y69'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: Avg. real interest rate on new borrowing.
+  internal: {}
+- id: input6_tailored_params_2
+  sheet: Input 6 - Tailored Tests
+  data_range: '''Input 6 - Tailored Tests''!H21:H58'
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '22:25'
+  - '27:32'
+  - '34:42'
+  - '44:45'
+  - '47:48'
+  - 51
+  - 53
+  - 57
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          mkt_ppg_debt_gdp_shock: 21
+          commodity_export_gdp_gap_years: 26
+          fuel_share_exports: 33
+          nonfuel_share_exports: 43
+          avg_price_shock: 46
+          fuel_price: 49
+          nonfuel_price: 50
+          mkt_financing_shock_on: 52
+          new_maturity_if_gt_5y_1: 54
+          new_maturity_if_gt_5y_2: 55
+          new_maturity_if_gt_5y_3: 56
+          fx_depreciation: 58
+        read: string
+  key:
+  - PARAMETER
+  series_context:
+    TABLE: input_6.tailored_tests
+  notes: input_6.tailored_tests leftover fields; PARAMETER is the lic_dsf field name.
+- id: c4_market_instruments
+  sheet: C4_Market_financing
+  data_range: C4_Market_financing!C35:D39
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Eurobond: 35
+          Commecial Bank: 36
+          COM3: 37
+          COM4: 38
+          COM5: 39
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: c4_market.lending_terms
+  notes: C4 commercial-loan names as INSTRUMENT (not INDICATOR), C:D terms.
+- id: ci_summary_gdp_us_dollars_billions
+  sheet: CI Summary
+  data_range: '''CI Summary''!C57:L57'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 45
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: GDP.
+  internal: {}
+- id: ci_summary_remittances_gross_us_dollars_billions
+  sheet: CI Summary
+  data_range: '''CI Summary''!C56:L56'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 45
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.passthrough
+  notes: "Remittances \n(Gross, US dollars, billions)."
+  internal: {}
+- id: imported_components
+  sheet: Imported data
+  data_range: '''Imported data''!AG68:AP68'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 68
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: input5_instrument_titles
+  sheet: Input 5 - Local-debt Financing
+  data_range: '''Input 5 - Local-debt Financing''!A83:A95'
+  layout: series
+  internal: {}
+  exclude_rows:
+  - 84
+  - 87:88
+  - 92
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Central bank financing: 83
+          T-bills (denominated in local currency): 85
+          T-bills (denominated in foreign currency): 86
+          Bonds (1 to 3 years)-LC: 89
+          Bonds (4 to 7 years)-LC: 90
+          Bonds (beyond 7 years)-LC: 91
+          Bonds (1 to 3 years)-FX: 93
+          Bonds (4 to 7 years)-FX: 94
+          Bonds (beyond 7 years)-FX: 95
+        read: string
+  key:
+  - INSTRUMENT
+  series_context:
+    TABLE: input_5.instrument_titles
+  notes: Input 5 column-A instrument titles; not folded into numeric terms.
+- id: input6_standard_params_2
+  sheet: Input 6(optional)-Standard Test
+  data_range: '''Input 6(optional)-Standard Test''!H17:H57'
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '18:20'
+  - '22:24'
+  - '26:35'
+  - '39:40'
+  - '42:55'
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          b1_real_gdp_growth: 17
+          b2_primary_balance: 21
+          b3_exports: 25
+          b5_depreciation_1: 36
+          b5_depreciation_2: 37
+          b5_depreciation_3: 38
+          b6_combination: 41
+          real_overvaluation_eba: 56
+          nominal_depreciation_to_close_gap: 57
+        read: string
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: default
+  key:
+  - PARAMETER
+  - VARIANT
+  series_context:
+    TABLE: input_6.standard_test
+  notes: input_6.standard_test leftover fields; PARAMETER is the lic_dsf field name.
+- id: leftover_primary_deficit
+  sheet:
+  - B2_PB_mkt_pub
+  - B2_PB_non_mkt_pub
+  - B6_combo_mkt_pub
+  - B6_combo_non-mkt_pub
+  data_range:
+  - B2_PB_mkt_pub!D63:F63
+  - B2_PB_non_mkt_pub!D63:F63
+  - B6_combo_mkt_pub!D63:F63
+  - '''B6_combo_non-mkt_pub''!D63:F63'
+  layout: series
+  internal: {}
+  exclude_columns:
+  - E
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B2_PB_mkt_pub: B2_mkt
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B6_combo_mkt_pub: B6_mkt
+          B6_combo_non-mkt_pub: B6_nonmkt
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.scenario
+    PARAMETER: primary_deficit
+  notes: primary_deficit leftover columns D/F, keyed by scenario and year.
+- id: customized_scenario_spec
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!C46:D50'
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '47:48'
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          size_of_shock: 46
+          size_of_associated_real_gdp_growth_shock: 49
+          size_of_associated_exports_growth_shock: 50
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - PARAMETER
+  - TIME_PERIOD
+  series_context:
+    TABLE: customized_scenario.spec
+  notes: CustomizedScenarioSpec numeric shock sizes (C:D); not Input 7 residual.
+- id: leftover_real_gdp_growth
+  sheet:
+  - B1_GDP_pub
+  - B6_combo_mkt_pub
+  - B6_combo_non-mkt_pub
+  data_range:
+  - B1_GDP_pub!D64:F64
+  - B6_combo_mkt_pub!D64:F64
+  - '''B6_combo_non-mkt_pub''!D64:F64'
+  layout: series
+  internal: {}
+  exclude_columns:
+  - E
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B6_combo_mkt_pub: B6_mkt
+          B6_combo_non-mkt_pub: B6_nonmkt
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: leftover.scenario
+    PARAMETER: real_gdp_growth
+  notes: real_gdp_growth leftover columns D/F, keyed by scenario and year.
+- id: c4_market_instruments_k
+  sheet: C4_Market_financing
+  data_range: C4_Market_financing!K35:K39
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+  key:
+  - INSTRUMENT
+  series_context:
+    TABLE: c4_market.lending_terms
+  notes: C4 commercial-loan column K keyed by INSTRUMENT.
+- id: input6_standard_params
+  sheet: Input 6(optional)-Standard Test
+  data_range: '''Input 6(optional)-Standard Test''!D17:D32'
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '18:20'
+  - '22:24'
+  - '26:28'
+  - '30:31'
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          b1_real_gdp_growth: 17
+          b2_primary_balance: 21
+          b3_exports: 25
+          b4_other_flows: 29
+          b4_fdi_shock_sd: 32
+        read: string
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: user
+  key:
+  - PARAMETER
+  - VARIANT
+  series_context:
+    TABLE: input_6.standard_test
+  notes: input_6.standard_test leftover fields; PARAMETER is the lic_dsf field name.
+- id: input6_tailored_params_3
+  sheet: Input 6 - Tailored Tests
+  data_range: '''Input 6 - Tailored Tests''!L21:L58'
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '23:25'
+  - '28:57'
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          disaster_shock_pct_gdp: 21
+          disaster_export_growth_shock: 22
+          commodity_export_gdp_gap_years: 26
+          disaster_revenue_drop: 27
+          fx_depreciation: 58
+        read: string
+  key:
+  - PARAMETER
+  series_context:
+    TABLE: input_6.tailored_tests
+  notes: input_6.tailored_tests leftover fields; PARAMETER is the lic_dsf field name.
+- id: leftover_us_gdp_deflator
+  sheet:
+  - B3_Exports_ext
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - C3_Commodity prices_ext
+  data_range:
+  - B3_Exports_ext!AA66
+  - B5_depreciation_ext!AA67
+  - B6_Combo_mkt_ext!AA66
+  - '''B6_Combo_non-mkt_ext''!AA66'
+  - '''C3_Commodity prices_ext''!AA66'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B3_Exports_ext: B3
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          C3_Commodity prices_ext: C3
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: leftover.scenario
+    PARAMETER: us_gdp_deflator
+  notes: us_gdp_deflator leftover on DSA scenario sheets, keyed by SCENARIO.
+  internal: {}
+- id: custom_ext_average_interest_rate_new_debt_by_row
+  sheet: Customized Scenario-External
+  data_range: '''Customized Scenario-External''!C21:C24'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: leftover.passthrough
+  notes: Average interest rate on new debt, keyed by row labels.
+  internal: {}
+- id: in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row
+  sheet: Input 7 - Residual Financing
+  data_range: '''Input 7 - Residual Financing''!D14:D17'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: leftover_real_interest_rate
+  sheet:
+  - B1_GDP_pub
+  - B5_depreciation_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  data_range:
+  - B1_GDP_pub!AA66
+  - B5_depreciation_pub!AA65
+  - '''C2_Natural disaster''!AA66'
+  - C3_commodity_prices_pub!AA66
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B5_depreciation_pub: B5
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: leftover.scenario
+    PARAMETER: real_interest_rate
+  notes: real_interest_rate leftover on DSA scenario sheets, keyed by SCENARIO.
+  internal: {}
+- id: c4_mkt_fin_net_non_debt_creating_flows_fdi_gdp_ratio_by_row
+  sheet: C4_Market_financing
+  data_range: C4_Market_financing!AB28:AB30
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: AA
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: ci_summary_medium
+  sheet: CI Summary
+  data_range: '''CI Summary''!D9:E9'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: leftover_export_growth_usd
+  sheet:
+  - B1_GDP_ext
+  - B5_depreciation_ext
+  data_range:
+  - B1_GDP_ext!AA67
+  - B5_depreciation_ext!AA68
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_ext: B1
+          B5_depreciation_ext: B5
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: leftover.scenario
+    PARAMETER: export_growth_usd
+  notes: export_growth_usd leftover on DSA scenario sheets, keyed by SCENARIO.
+  internal: {}
+- id: leftover_fdi_gdp
+  sheet:
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  data_range:
+  - B6_Combo_mkt_ext!AA69
+  - '''B6_Combo_non-mkt_ext''!AA69'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: leftover.scenario
+    PARAMETER: fdi_gdp
+  notes: fdi_gdp leftover on DSA scenario sheets, keyed by SCENARIO.
+  internal: {}
+- id: leftover_revenue_gdp
+  sheet:
+  - B6_combo_mkt_pub
+  - B6_combo_non-mkt_pub
+  data_range:
+  - B6_combo_mkt_pub!AB68
+  - '''B6_combo_non-mkt_pub''!AB68'
+  layout: series
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B6_combo_mkt_pub: B6_mkt
+          B6_combo_non-mkt_pub: B6_nonmkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: leftover.scenario
+    PARAMETER: revenue_gdp
+  notes: revenue_gdp leftover on DSA scenario sheets, keyed by SCENARIO.
+  internal: {}
+- id: b1_gdp_ext_ii_key_macroeconomic_assumptions
+  sheet: B1_GDP_ext
+  data_range: B1_GDP_ext!AA63
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b1_gdp_pub_key_macroeconomic_fiscal_assumptions
+  sheet: B1_GDP_pub
+  data_range: B1_GDP_pub!AA62
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b2_pb_mkt_pub_i_baseline_medium_term_projections
+  sheet: B2_PB_mkt_pub
+  data_range: B2_PB_mkt_pub!AA62
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b2_pb_nonmkt_pub_i_baseline_medium_term_projections
+  sheet: B2_PB_non_mkt_pub
+  data_range: B2_PB_non_mkt_pub!AA62
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b3_exports_ext_iii_averages_standard_deviations
+  sheet: B3_Exports_ext
+  data_range: B3_Exports_ext!AA62
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b4_otherflows_ext_ii_key_macroeconomic_assumptions
+  sheet: B4_other flows_ext
+  data_range: '''B4_other flows_ext''!AA63'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b6_combo_mkt_ext_ii_key_macroeconomic_assumptions
+  sheet: B6_Combo_mkt_ext
+  data_range: B6_Combo_mkt_ext!AA63
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_baseline
+  sheet: B6_Combo_mkt_ext
+  data_range: B6_Combo_mkt_ext!AA82
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_stress
+  sheet: B6_Combo_mkt_ext
+  data_range: B6_Combo_mkt_ext!AA84
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b6_combo_mkt_ext_y1_includes_both_public_private_sector_ext_debt
+  sheet: B6_Combo_mkt_ext
+  data_range: B6_Combo_mkt_ext!AA93
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b6_combo_mkt_ext_y1_includes_both_public_pv_total
+  sheet: B6_Combo_mkt_ext
+  data_range: B6_Combo_mkt_ext!AA92
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b6_combo_mkt_pub_i_baseline_medium_term_nominal_debt
+  sheet: B6_combo_mkt_pub
+  data_range: B6_combo_mkt_pub!AB79
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b6_combo_mkt_pub_i_baseline_medium_term_projections
+  sheet: B6_combo_mkt_pub
+  data_range: B6_combo_mkt_pub!AB62
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b6_combo_nonmkt_ext_ii_key_macroeconomic_assumptions
+  sheet: B6_Combo_non-mkt_ext
+  data_range: '''B6_Combo_non-mkt_ext''!AA63'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b6_combo_nonmkt_ext_increase
+  sheet: B6_Combo_non-mkt_ext
+  data_range: '''B6_Combo_non-mkt_ext''!AA83'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b6_combo_nonmkt_ext_y7_long_run_constant_balance_that_stabilizes
+  sheet: B6_Combo_non-mkt_ext
+  data_range: '''B6_Combo_non-mkt_ext''!AA81'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b6_combo_nonmkt_ext_y7_long_run_constant_private_debt_pv
+  sheet: B6_Combo_non-mkt_ext
+  data_range: '''B6_Combo_non-mkt_ext''!AA91'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b6_combo_nonmkt_ext_y7_long_run_constant_pv_total
+  sheet: B6_Combo_non-mkt_ext
+  data_range: '''B6_Combo_non-mkt_ext''!AA92'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b6_combo_nonmkt_pub_i_baseline_medium_term_projections
+  sheet: B6_combo_non-mkt_pub
+  data_range: '''B6_combo_non-mkt_pub''!AB62'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: b6_combo_nonmkt_pub_in_billions_of_lc
+  sheet: B6_combo_non-mkt_pub
+  data_range: '''B6_combo_non-mkt_pub''!AB78'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: c2_natdisaster_historical_statistics_key_variables_past_10
+  sheet: C2_Natural disaster
+  data_range: '''C2_Natural disaster''!AA62'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: c3_commodity_ext_ii_key_macroeconomic_assumptions
+  sheet: C3_Commodity prices_ext
+  data_range: '''C3_Commodity prices_ext''!AA63'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions
+  sheet: C3_Commodity prices_ext
+  data_range: '''C3_Commodity prices_ext''!AA70'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_2
+  sheet: C3_Commodity prices_ext
+  data_range: '''C3_Commodity prices_ext''!AA71'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_3
+  sheet: C3_Commodity prices_ext
+  data_range: '''C3_Commodity prices_ext''!AA73'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_4
+  sheet: C3_Commodity prices_ext
+  data_range: '''C3_Commodity prices_ext''!AA74'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_5
+  sheet: C3_Commodity prices_ext
+  data_range: '''C3_Commodity prices_ext''!AA76'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: c3_commodity_pub_historical_statistics_key_historical_statistics_key_variables_past_10
+  sheet: C3_commodity_prices_pub
+  data_range: C3_commodity_prices_pub!AA70
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: c3_commodity_pub_historical_statistics_key_historical_statistics_key_variables_past_10_2
+  sheet: C3_commodity_prices_pub
+  data_range: C3_commodity_prices_pub!AA71
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: c3_commodity_pub_historical_statistics_key_variables_past_10
+  sheet: C3_commodity_prices_pub
+  data_range: C3_commodity_prices_pub!AA62
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: c4_market_path_nominal_gdp
+  sheet: C4_Market_financing
+  data_range: C4_Market_financing!D12
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: C4_Market
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: c4_market.stress
+    PARAMETER: nominal_gdp
+  notes: C4 stress path nominal_gdp; SCENARIO=C4_Market (apply_market_financing_shock, not Output 5-2 MarketFinancingInputs).
+- id: c4_market_path_non_interest_ca_pct_gdp
+  sheet: C4_Market_financing
+  data_range: C4_Market_financing!AB23
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: C4_Market
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: c4_market.stress
+    PARAMETER: non_interest_ca_pct_gdp
+  notes: C4 stress path non_interest_ca_pct_gdp; SCENARIO=C4_Market (apply_market_financing_shock, not Output 5-2 MarketFinancingInputs).
+- id: c4_market_path_revised_pv_debt_exports
+  sheet: C4_Market_financing
+  data_range: C4_Market_financing!D95
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: C4_Market
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: c4_market.stress
+    PARAMETER: revised_pv_debt_exports
+  notes: C4 stress path revised_pv_debt_exports; SCENARIO=C4_Market (apply_market_financing_shock, not Output 5-2 MarketFinancingInputs).
+- id: c4_market_path_us_gdp_deflator
+  sheet: C4_Market_financing
+  data_range: C4_Market_financing!AB25
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: C4_Market
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: c4_market.stress
+    PARAMETER: us_gdp_deflator
+  notes: C4 stress path us_gdp_deflator; SCENARIO=C4_Market (apply_market_financing_shock, not Output 5-2 MarketFinancingInputs).
+- id: c4_mkt_fin_i_macro_indicators
+  sheet: C4_Market_financing
+  data_range: C4_Market_financing!AB22
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: custom_ext_ii_key_macroeconomic_nominal_gdp_million_of_us_dollars
+  sheet: Customized Scenario-External
+  data_range: '''Customized Scenario-External''!C93'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.passthrough
+  notes: Nominal GDP.
+  internal: {}
+- id: custom_ext_include_external_customized_scenario_in_charts
+  sheet: Customized Scenario-External
+  data_range: '''Customized Scenario-External''!D3'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: custom_ext_short_name_cumulative
+  sheet: Customized Scenario-External
+  data_range: '''Customized Scenario-External''!D37'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: custom_ext_y7_long_run_constant_nominal_gdp_million_of_us_dollars
+  sheet: Customized Scenario-External
+  data_range: '''Customized Scenario-External''!C156'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.passthrough
+  notes: Nominal GDP.
+  internal: {}
+- id: custom_pub_avg_grace_period
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!A64'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: custom_pub_avg_maturity_incl_grace_period
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!A63'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: custom_pub_avg_nominal_interest_rate_new_borrowing_usd
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!A61'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: custom_pub_avg_real_interest_rate
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!A75'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: custom_pub_avg_real_interest_rate_new_borrowing
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!A69'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: custom_pub_domestic_mlt
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!A57'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: custom_pub_domestic_st
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!A58'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: custom_pub_external_ppg_mlt
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!A56'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: custom_pub_in_billions_of_lc_of_which_short_term
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!D179'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.passthrough
+  notes: 'of which: Short term.'
+  internal: {}
+- id: custom_pub_key_macroeconomic_fiscal_exchange_rate_lc_per_us_dollar
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!D159'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.passthrough
+  notes: Exchange rate.
+  internal: {}
+- id: custom_pub_shares_of_marginal_debt_avg_grace_period
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!A71'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: custom_pub_shares_of_marginal_debt_avg_maturity_incl_grace_period
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!A70'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: custom_pub_usd_discount_rate
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!A62'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: custom_pub_variables_needed_public_public_sector_assets_e_g_deposits
+  sheet: Customized Scenario - public
+  data_range: '''Customized Scenario - public''!D16'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.passthrough
+  notes: Public Sector Assets.
+  internal: {}
+- id: imported_of
+  sheet: Imported data
+  data_range: '''Imported data''!C88'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: in2_coverage_other_elements_of_govt_not_captured_in_1
+  sheet: Input 2 - Debt Coverage
+  data_range: '''Input 2 - Debt Coverage''!F21'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: in2_coverage_soe_s_debt_guaranteed_not_guaranteed_government
+  sheet: Input 2 - Debt Coverage
+  data_range: '''Input 2 - Debt Coverage''!F22'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: input6_tailored_params
+  sheet: Input 6 - Tailored Tests
+  data_range: '''Input 6 - Tailored Tests''!H32'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: price_shock_fuel
+  key:
+  - PARAMETER
+  series_context:
+    TABLE: input_6.tailored_tests
+  notes: input_6.tailored_tests leftover fields; PARAMETER is the lic_dsf field name.
+- id: input6_tailored_params_fuel_label
+  sheet: Input 6 - Tailored Tests
+  data_range: '''Input 6 - Tailored Tests''!G32'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: price_shock_fuel
+  key:
+  - PARAMETER
+  series_context:
+    TABLE: input_6.tailored_tests
+    VARIANT: label
+  notes: Label cell for the fuel price-shock parameter.
+- id: input7_residual_params_sparse
+  sheet: Input 7 - Residual Financing
+  data_range: '''Input 7 - Residual Financing''!H11'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: domestic_st_share
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: default
+  key:
+  - PARAMETER
+  - VARIANT
+  series_context:
+    TABLE: input_7.residual_financing
+  notes: input_7.residual_financing leftover fields; PARAMETER is the lic_dsf field name.
+- id: leftover_inflation_gdp_deflator
+  sheet: B2_PB_mkt_pub
+  data_range: B2_PB_mkt_pub!AA67
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B2_PB_mkt_pub: B2_mkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: leftover.scenario
+    PARAMETER: inflation_gdp_deflator
+  notes: inflation_gdp_deflator leftover on DSA scenario sheets, keyed by SCENARIO.
+  internal: {}
+- id: leftover_nominal_interest_rate
+  sheet: C2_Natural disaster
+  data_range: '''C2_Natural disaster''!AA65'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          C2_Natural disaster: C2
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: leftover.scenario
+    PARAMETER: nominal_interest_rate
+  notes: nominal_interest_rate leftover on DSA scenario sheets, keyed by SCENARIO.
+  internal: {}
+- id: leftover_official_transfers_gdp
+  sheet: C3_Commodity prices_ext
+  data_range: '''C3_Commodity prices_ext''!AA68'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          C3_Commodity prices_ext: C3
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: leftover.scenario
+    PARAMETER: official_transfers_gdp
+  notes: official_transfers_gdp leftover on DSA scenario sheets, keyed by SCENARIO.
+  internal: {}
+- id: leftover_real_gdp_growth_2
+  sheet: C3_Commodity prices_ext
+  data_range: '''C3_Commodity prices_ext''!AA65'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          C3_Commodity prices_ext: C3
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: leftover.scenario
+    PARAMETER: real_gdp_growth
+  notes: real_gdp_growth leftover on DSA scenario sheets, keyed by SCENARIO.
+  internal: {}
+- id: leftover_us_gdp_deflator_2
+  sheet: B4_other flows_ext
+  data_range: '''B4_other flows_ext''!AA66'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B4_other flows_ext: B4
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: leftover.scenario
+    PARAMETER: us_gdp_deflator
+  notes: us_gdp_deflator leftover on DSA scenario sheets, keyed by SCENARIO.
+  internal: {}
+- id: lookup_afg
+  sheet: lookup
+  data_range: lookup!X4
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: macro_debt_data
+  sheet: Macro-Debt_Data
+  data_range: '''Macro-Debt_Data''!U4'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}
+- id: macro_debt_main_assumptions_further_details
+  sheet: Macro-Debt_Data
+  data_range: '''Macro-Debt_Data''!U5'
+  layout: scalar
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: leftover.chrome
+  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
+  internal: {}

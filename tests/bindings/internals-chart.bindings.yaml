@@ -1,0 +1,2782 @@
+schema_version: 1.16.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+  - id: DSA_SECTION
+    name: DSA statement section
+    dtype: string
+series:
+- id: chart_chart_data_scenario_labels_pv_debt_to_gdp
+  sheet: Chart Data
+  data_range: '''Chart Data''!B40:B50'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: chart_data.scenario_labels
+    INDICATOR: scenario label
+    VARIANT: pv_debt_to_gdp
+  exclude_rows:
+  - 46
+  - 47
+  notes: Translated scenario labels for the PV of debt-to GDP ratio stress-figure block (Chart Data!B40:B50; blank separator and hardcoded C1 label omitted).
+- id: chart_chart_data_scenario_labels_pv_debt_to_exports
+  sheet: Chart Data
+  data_range: '''Chart Data''!B82:B92'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: chart_data.scenario_labels
+    INDICATOR: scenario label
+    VARIANT: pv_debt_to_exports
+  exclude_rows:
+  - 88
+  notes: Translated scenario labels for the PV of debt-to-exports ratio stress-figure block (Chart Data!B82:B92; blank separator omitted).
+- id: chart_chart_data_scenario_labels_debt_service_to_exports
+  sheet: Chart Data
+  data_range: '''Chart Data''!B124:B134'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: chart_data.scenario_labels
+    INDICATOR: scenario label
+    VARIANT: debt_service_to_exports
+  exclude_rows:
+  - 130
+  notes: Translated scenario labels for the Debt service-to-exports ratio stress-figure block (Chart Data!B124:B134; blank separator omitted).
+- id: chart_chart_data_scenario_labels_debt_service_to_revenue
+  sheet: Chart Data
+  data_range: '''Chart Data''!B166:B176'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: chart_data.scenario_labels
+    INDICATOR: scenario label
+    VARIANT: debt_service_to_revenue
+  exclude_rows:
+  - 172
+  notes: Translated scenario labels for the Debt service-to-revenue ratio stress-figure block (Chart Data!B166:B176; blank separator omitted).
+- id: chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio
+  sheet: Chart Data
+  data_range: '''Chart Data''!B241:B251'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: chart_data.scenario_labels
+    INDICATOR: scenario label
+    VARIANT: pv_of_debt_to_gdp_ratio
+  exclude_rows:
+  - 247
+  notes: Translated scenario labels for the PV of Debt-to-GDP Ratio stress-figure block (Chart Data!B241:B251; blank separator omitted).
+- id: chart_chart_data_pv_debt_to_gdp_c2_natural_disaster_stress_path_applic
+  sheet: Chart Data
+  data_range: '''Chart Data''!A48'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_debt_to_gdp
+    INDICATOR: applicable_flag
+    SCENARIO: C2. Natural disaster
+    VARIANT: stress_path
+  notes: Applicability flag for PV of debt-to GDP ratio — C2. Natural disaster (Chart Data!A48).
+- id: chart_chart_data_pv_debt_to_gdp_c3_commodity_price_stress_path_applica
+  sheet: Chart Data
+  data_range: '''Chart Data''!A49'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_debt_to_gdp
+    INDICATOR: applicable_flag
+    SCENARIO: C3. Commodity price
+    VARIANT: stress_path
+  notes: Applicability flag for PV of debt-to GDP ratio — C3. Commodity price (Chart Data!A49).
+- id: chart_chart_data_pv_debt_to_gdp_c4_market_financing_stress_path_applic
+  sheet: Chart Data
+  data_range: '''Chart Data''!A50'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_debt_to_gdp
+    INDICATOR: applicable_flag
+    SCENARIO: C4. Market Financing
+    VARIANT: stress_path
+  notes: Applicability flag for PV of debt-to GDP ratio — C4. Market Financing (Chart Data!A50).
+- id: chart_pv_debt_to_gdp_applicable_flag_b2_1_primary_balance_market
+  sheet: Chart Data
+  data_range: '''Chart Data''!A53'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_debt_to_gdp
+    INDICATOR: applicable_flag
+    SCENARIO: B2.1 Primary balance Market
+    VARIANT: stress_path
+  notes: Applicability flag for PV of debt-to GDP ratio — B2.1 Primary balance Market (Chart Data!A53).
+- id: chart_pv_debt_to_gdp_applicable_flag_b6_1_combination_of_b1_b5_market
+  sheet: Chart Data
+  data_range: '''Chart Data''!A55'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_debt_to_gdp
+    INDICATOR: applicable_flag
+    SCENARIO: B6.1 Combination of B1-B5 Market
+    VARIANT: stress_path
+  notes: Applicability flag for PV of debt-to GDP ratio — B6.1 Combination of B1-B5 Market (Chart Data!A55).
+- id: chart_chart_data_pv_debt_to_gdp_most_extreme_shock
+  sheet: Chart Data
+  data_range: '''Chart Data''!C69'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_debt_to_gdp
+    INDICATOR: most_extreme_shock
+  notes: Most extreme shock label for PV of debt-to GDP ratio (Chart Data!C69).
+- id: chart_chart_data_pv_debt_to_gdp_baseline_breach_count
+  sheet: Chart Data
+  data_range: '''Chart Data''!D74'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_debt_to_gdp
+    INDICATOR: number of baseline breaches
+  notes: Count of baseline breaches for PV of debt-to GDP ratio (Chart Data!D74).
+- id: chart_chart_data_pv_debt_to_gdp_shock_breach_count
+  sheet: Chart Data
+  data_range: '''Chart Data''!D75'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_debt_to_gdp
+    INDICATOR: number of shock breaches
+  notes: Count of shock breaches for PV of debt-to GDP ratio (Chart Data!D75).
+- id: chart_chart_data_pv_debt_to_exports_c2_natural_disaster_stress_path_ap
+  sheet: Chart Data
+  data_range: '''Chart Data''!A90'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_debt_to_exports
+    INDICATOR: applicable_flag
+    SCENARIO: C2. Natural disaster
+    VARIANT: stress_path
+  notes: Applicability flag for PV of debt-to-exports ratio — C2. Natural disaster (Chart Data!A90).
+- id: chart_chart_data_pv_debt_to_exports_c3_commodity_price_stress_path_app
+  sheet: Chart Data
+  data_range: '''Chart Data''!A91'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_debt_to_exports
+    INDICATOR: applicable_flag
+    SCENARIO: C3. Commodity price
+    VARIANT: stress_path
+  notes: Applicability flag for PV of debt-to-exports ratio — C3. Commodity price (Chart Data!A91).
+- id: chart_chart_data_pv_debt_to_exports_c4_market_financing_stress_path_ap
+  sheet: Chart Data
+  data_range: '''Chart Data''!A92'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_debt_to_exports
+    INDICATOR: applicable_flag
+    SCENARIO: C4. Market Financing
+    VARIANT: stress_path
+  notes: Applicability flag for PV of debt-to-exports ratio — C4. Market Financing (Chart Data!A92).
+- id: chart_pv_debt_to_exports_applicable_flag_b2_1_primary_balance_market
+  sheet: Chart Data
+  data_range: '''Chart Data''!A95'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_debt_to_exports
+    INDICATOR: applicable_flag
+    SCENARIO: B2.1 Primary balance Market
+    VARIANT: stress_path
+  notes: Applicability flag for PV of debt-to-exports ratio — B2.1 Primary balance Market (Chart Data!A95).
+- id: chart_pv_debt_to_exports_applicable_flag_b6_1_combination_of_b1_b5_market
+  sheet: Chart Data
+  data_range: '''Chart Data''!A97'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_debt_to_exports
+    INDICATOR: applicable_flag
+    SCENARIO: B6.1 Combination of B1-B5 Market
+    VARIANT: stress_path
+  notes: Applicability flag for PV of debt-to-exports ratio — B6.1 Combination of B1-B5 Market (Chart Data!A97).
+- id: chart_chart_data_pv_debt_to_exports_most_extreme_shock
+  sheet: Chart Data
+  data_range: '''Chart Data''!C111'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_debt_to_exports
+    INDICATOR: most_extreme_shock
+  notes: Most extreme shock label for PV of debt-to-exports ratio (Chart Data!C111).
+- id: chart_chart_data_pv_debt_to_exports_baseline_breach_count
+  sheet: Chart Data
+  data_range: '''Chart Data''!D116'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_debt_to_exports
+    INDICATOR: number of baseline breaches
+  notes: Count of baseline breaches for PV of debt-to-exports ratio (Chart Data!D116).
+- id: chart_chart_data_pv_debt_to_exports_shock_breach_count
+  sheet: Chart Data
+  data_range: '''Chart Data''!D117'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_debt_to_exports
+    INDICATOR: number of shock breaches
+  notes: Count of shock breaches for PV of debt-to-exports ratio (Chart Data!D117).
+- id: chart_debt_service_to_exports_applicable_flag_c2_natdisaster
+  sheet: Chart Data
+  data_range: '''Chart Data''!A132'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_exports
+    INDICATOR: applicable_flag
+    SCENARIO: C2. Natural disaster
+    VARIANT: stress_path
+  notes: Applicability flag for Debt service-to-exports ratio — C2. Natural disaster (Chart Data!A132).
+- id: chart_debt_service_to_exports_applicable_flag_c3_commodity_price
+  sheet: Chart Data
+  data_range: '''Chart Data''!A133'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_exports
+    INDICATOR: applicable_flag
+    SCENARIO: C3. Commodity price
+    VARIANT: stress_path
+  notes: Applicability flag for Debt service-to-exports ratio — C3. Commodity price (Chart Data!A133).
+- id: chart_debt_service_to_exports_applicable_flag_c4_mkt_financing
+  sheet: Chart Data
+  data_range: '''Chart Data''!A134'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_exports
+    INDICATOR: applicable_flag
+    SCENARIO: C4. Market Financing
+    VARIANT: stress_path
+  notes: Applicability flag for Debt service-to-exports ratio — C4. Market Financing (Chart Data!A134).
+- id: chart_debt_service_to_exports_applicable_flag_b2_1_primary_balance_market
+  sheet: Chart Data
+  data_range: '''Chart Data''!A137'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_exports
+    INDICATOR: applicable_flag
+    SCENARIO: B2.1 Primary balance Market
+    VARIANT: stress_path
+  notes: Applicability flag for Debt service-to-exports ratio — B2.1 Primary balance Market (Chart Data!A137).
+- id: chart_debt_service_to_exports_applicable_flag_b6_1_combination_of_b1_b5_market
+  sheet: Chart Data
+  data_range: '''Chart Data''!A139'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_exports
+    INDICATOR: applicable_flag
+    SCENARIO: B6.1 Combination of B1-B5 Market
+    VARIANT: stress_path
+  notes: Applicability flag for Debt service-to-exports ratio — B6.1 Combination of B1-B5 Market (Chart Data!A139).
+- id: chart_chart_data_debt_service_to_exports_most_extreme_shock
+  sheet: Chart Data
+  data_range: '''Chart Data''!C153'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_exports
+    INDICATOR: most_extreme_shock
+  notes: Most extreme shock label for Debt service-to-exports ratio (Chart Data!C153).
+- id: chart_chart_data_debt_service_to_exports_baseline_breach_count
+  sheet: Chart Data
+  data_range: '''Chart Data''!D158'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_exports
+    INDICATOR: number of baseline breaches
+  notes: Count of baseline breaches for Debt service-to-exports ratio (Chart Data!D158).
+- id: chart_chart_data_debt_service_to_exports_shock_breach_count
+  sheet: Chart Data
+  data_range: '''Chart Data''!D159'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_exports
+    INDICATOR: number of shock breaches
+  notes: Count of shock breaches for Debt service-to-exports ratio (Chart Data!D159).
+- id: chart_debt_service_to_revenue_applicable_flag_c2_natdisaster
+  sheet: Chart Data
+  data_range: '''Chart Data''!A174'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue
+    INDICATOR: applicable_flag
+    SCENARIO: C2. Natural disaster
+    VARIANT: stress_path
+  notes: Applicability flag for Debt service-to-revenue ratio — C2. Natural disaster (Chart Data!A174).
+- id: chart_debt_service_to_revenue_applicable_flag_c3_commodity_price
+  sheet: Chart Data
+  data_range: '''Chart Data''!A175'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue
+    INDICATOR: applicable_flag
+    SCENARIO: C3. Commodity price
+    VARIANT: stress_path
+  notes: Applicability flag for Debt service-to-revenue ratio — C3. Commodity price (Chart Data!A175).
+- id: chart_debt_service_to_revenue_applicable_flag_c4_mkt_financing
+  sheet: Chart Data
+  data_range: '''Chart Data''!A176'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue
+    INDICATOR: applicable_flag
+    SCENARIO: C4. Market Financing
+    VARIANT: stress_path
+  notes: Applicability flag for Debt service-to-revenue ratio — C4. Market Financing (Chart Data!A176).
+- id: chart_debt_service_to_revenue_applicable_flag_b2_1_primary_balance_market
+  sheet: Chart Data
+  data_range: '''Chart Data''!A179'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue
+    INDICATOR: applicable_flag
+    SCENARIO: B2.1 Primary balance Market
+    VARIANT: stress_path
+  notes: Applicability flag for Debt service-to-revenue ratio — B2.1 Primary balance Market (Chart Data!A179).
+- id: chart_debt_service_to_revenue_applicable_flag_b6_1_combination_of_b1_b5_market
+  sheet: Chart Data
+  data_range: '''Chart Data''!A181'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue
+    INDICATOR: applicable_flag
+    SCENARIO: B6.1 Combination of B1-B5 Market
+    VARIANT: stress_path
+  notes: Applicability flag for Debt service-to-revenue ratio — B6.1 Combination of B1-B5 Market (Chart Data!A181).
+- id: chart_chart_data_debt_service_to_revenue_most_extreme_shock
+  sheet: Chart Data
+  data_range: '''Chart Data''!C195'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue
+    INDICATOR: most_extreme_shock
+  notes: Most extreme shock label for Debt service-to-revenue ratio (Chart Data!C195).
+- id: chart_chart_data_debt_service_to_revenue_baseline_breach_count
+  sheet: Chart Data
+  data_range: '''Chart Data''!D200'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue
+    INDICATOR: number of baseline breaches
+  notes: Count of baseline breaches for Debt service-to-revenue ratio (Chart Data!D200).
+- id: chart_chart_data_debt_service_to_revenue_shock_breach_count
+  sheet: Chart Data
+  data_range: '''Chart Data''!D201'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue
+    INDICATOR: number of shock breaches
+  notes: Count of shock breaches for Debt service-to-revenue ratio (Chart Data!D201).
+- id: chart_chart_data_pv_of_debt_to_gdp_ratio_c2_natural_disaster_stress_pa
+  sheet: Chart Data
+  data_range: '''Chart Data''!A249'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_gdp_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: C2. Natural disaster
+    VARIANT: stress_path
+  notes: Applicability flag for PV of Debt-to-GDP Ratio — C2. Natural disaster (Chart Data!A249).
+- id: chart_chart_data_pv_of_debt_to_gdp_ratio_c3_commodity_price_stress_pat
+  sheet: Chart Data
+  data_range: '''Chart Data''!A250'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_gdp_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: C3. Commodity price
+    VARIANT: stress_path
+  notes: Applicability flag for PV of Debt-to-GDP Ratio — C3. Commodity price (Chart Data!A250).
+- id: chart_chart_data_pv_of_debt_to_gdp_ratio_c4_market_financing_stress_pa
+  sheet: Chart Data
+  data_range: '''Chart Data''!A251'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_gdp_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: C4. Market Financing
+    VARIANT: stress_path
+  notes: Applicability flag for PV of Debt-to-GDP Ratio — C4. Market Financing (Chart Data!A251).
+- id: chart_pv_of_debt_to_gdp_ratio_applicable_flag_b2_1_primary_balance_market
+  sheet: Chart Data
+  data_range: '''Chart Data''!A254'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_gdp_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: B2.1 Primary balance Market
+    VARIANT: stress_path
+  notes: Applicability flag for PV of Debt-to-GDP Ratio — B2.1 Primary balance Market (Chart Data!A254).
+- id: chart_pv_of_debt_to_gdp_ratio_applicable_flag_b6_1_combination_of_b1_b5_market
+  sheet: Chart Data
+  data_range: '''Chart Data''!A256'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_gdp_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: B6.1 Combination of B1-B5 Market
+    VARIANT: stress_path
+  notes: Applicability flag for PV of Debt-to-GDP Ratio — B6.1 Combination of B1-B5 Market (Chart Data!A256).
+- id: chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock
+  sheet: Chart Data
+  data_range: '''Chart Data''!C270'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_gdp_ratio
+    INDICATOR: most_extreme_shock
+  notes: Most extreme shock label for PV of Debt-to-GDP Ratio (Chart Data!C270).
+- id: chart_chart_data_pv_of_debt_to_gdp_ratio_baseline_breach_count
+  sheet: Chart Data
+  data_range: '''Chart Data''!D275'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_gdp_ratio
+    INDICATOR: number of baseline breaches
+  notes: Count of baseline breaches for PV of Debt-to-GDP Ratio (Chart Data!D275).
+- id: chart_chart_data_pv_of_debt_to_gdp_ratio_shock_breach_count
+  sheet: Chart Data
+  data_range: '''Chart Data''!D276'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_gdp_ratio
+    INDICATOR: number of shock breaches
+  notes: Count of shock breaches for PV of Debt-to-GDP Ratio (Chart Data!D276).
+- id: chart_chart_data_pv_of_debt_to_revenue_ratio_c2_natural_disaster_stres
+  sheet: Chart Data
+  data_range: '''Chart Data''!A291'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_revenue_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: C2. Natural disaster
+    VARIANT: stress_path
+  notes: Applicability flag for PV of Debt-to-Revenue Ratio — C2. Natural disaster (Chart Data!A291).
+- id: chart_chart_data_pv_of_debt_to_revenue_ratio_c3_commodity_price_stress
+  sheet: Chart Data
+  data_range: '''Chart Data''!A292'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_revenue_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: C3. Commodity price
+    VARIANT: stress_path
+  notes: Applicability flag for PV of Debt-to-Revenue Ratio — C3. Commodity price (Chart Data!A292).
+- id: chart_chart_data_pv_of_debt_to_revenue_ratio_c4_market_financing_stres
+  sheet: Chart Data
+  data_range: '''Chart Data''!A293'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_revenue_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: C4. Market Financing
+    VARIANT: stress_path
+  notes: Applicability flag for PV of Debt-to-Revenue Ratio — C4. Market Financing (Chart Data!A293).
+- id: chart_pv_of_debt_to_revenue_ratio_applicable_flag_b2_1_primary_balance_market
+  sheet: Chart Data
+  data_range: '''Chart Data''!A296'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_revenue_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: B2.1 Primary balance Market
+    VARIANT: stress_path
+  notes: Applicability flag for PV of Debt-to-Revenue Ratio — B2.1 Primary balance Market (Chart Data!A296).
+- id: chart_pv_of_debt_to_revenue_ratio_applicable_flag_b6_1_combination_of_b1_b5_market
+  sheet: Chart Data
+  data_range: '''Chart Data''!A298'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_revenue_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: B6.1 Combination of B1-B5 Market
+    VARIANT: stress_path
+  notes: Applicability flag for PV of Debt-to-Revenue Ratio — B6.1 Combination of B1-B5 Market (Chart Data!A298).
+- id: chart_chart_data_debt_service_to_revenue_ratio_c2_natural_disaster_str
+  sheet: Chart Data
+  data_range: '''Chart Data''!A328'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: C2. Natural disaster
+    VARIANT: stress_path
+  notes: Applicability flag for Debt Service-to-Revenue Ratio — C2. Natural disaster (Chart Data!A328).
+- id: chart_chart_data_debt_service_to_revenue_ratio_c3_commodity_price_stre
+  sheet: Chart Data
+  data_range: '''Chart Data''!A329'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: C3. Commodity price
+    VARIANT: stress_path
+  notes: Applicability flag for Debt Service-to-Revenue Ratio — C3. Commodity price (Chart Data!A329).
+- id: chart_chart_data_debt_service_to_revenue_ratio_c4_market_financing_str
+  sheet: Chart Data
+  data_range: '''Chart Data''!A330'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: C4. Market Financing
+    VARIANT: stress_path
+  notes: Applicability flag for Debt Service-to-Revenue Ratio — C4. Market Financing (Chart Data!A330).
+- id: chart_applicable_flag_b2_1_primary_balance_market
+  sheet: Chart Data
+  data_range: '''Chart Data''!A333'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: B2.1 Primary balance Market
+    VARIANT: stress_path
+  notes: Applicability flag for Debt Service-to-Revenue Ratio — B2.1 Primary balance Market (Chart Data!A333).
+- id: chart_applicable_flag_b6_1_combination_of_b1_b5_market
+  sheet: Chart Data
+  data_range: '''Chart Data''!A335'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: B6.1 Combination of B1-B5 Market
+    VARIANT: stress_path
+  notes: Applicability flag for Debt Service-to-Revenue Ratio — B6.1 Combination of B1-B5 Market (Chart Data!A335).
+- id: chart_chart_data_debt_service_to_gdp_ratio_c2_natural_disaster_stress_
+  sheet: Chart Data
+  data_range: '''Chart Data''!A361'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_gdp_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: C2. Natural disaster
+    VARIANT: stress_path
+  notes: Applicability flag for Debt Service-to-GDP Ratio — C2. Natural disaster (Chart Data!A361).
+- id: chart_chart_data_debt_service_to_gdp_ratio_c3_commodity_price_stress_p
+  sheet: Chart Data
+  data_range: '''Chart Data''!A362'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_gdp_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: C3. Commodity price
+    VARIANT: stress_path
+  notes: Applicability flag for Debt Service-to-GDP Ratio — C3. Commodity price (Chart Data!A362).
+- id: chart_chart_data_debt_service_to_gdp_ratio_c4_market_financing_stress_
+  sheet: Chart Data
+  data_range: '''Chart Data''!A363'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_gdp_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: C4. Market Financing
+    VARIANT: stress_path
+  notes: Applicability flag for Debt Service-to-GDP Ratio — C4. Market Financing (Chart Data!A363).
+- id: chart_debt_service_to_gdp_ratio_applicable_flag_b2_1_primary_balance_market
+  sheet: Chart Data
+  data_range: '''Chart Data''!A366'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_gdp_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: B2.1 Primary balance Market
+    VARIANT: stress_path
+  notes: Applicability flag for Debt Service-to-GDP Ratio — B2.1 Primary balance Market (Chart Data!A366).
+- id: chart_debt_service_to_gdp_ratio_applicable_flag_b6_1_combination_of_b1_b5_market
+  sheet: Chart Data
+  data_range: '''Chart Data''!A368'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.debt_service_to_gdp_ratio
+    INDICATOR: applicable_flag
+    SCENARIO: B6.1 Combination of B1-B5 Market
+    VARIANT: stress_path
+  notes: Applicability flag for Debt Service-to-GDP Ratio — B6.1 Combination of B1-B5 Market (Chart Data!A368).
+- id: chart_fiscal_space_pv_of_debt_to_gdp_max_baseline_breach
+  sheet: Chart Data
+  data_range: '''Chart Data''!Y211'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.fiscal_space
+    INDICATOR: PV of debt to GDP
+    VARIANT: max_baseline_breach
+  notes: MAX of the PV of debt to GDP baseline-breach flags (Chart Data!Y211).
+- id: chart_fiscal_space_pv_of_debt_to_exports_max_baseline_breach
+  sheet: Chart Data
+  data_range: '''Chart Data''!Y218'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.fiscal_space
+    INDICATOR: PV of debt to exports
+    VARIANT: max_baseline_breach
+  notes: MAX of the PV of debt to exports baseline-breach flags (Chart Data!Y218).
+- id: chart_fiscal_space_debt_service_to_exports_max_baseline_breach
+  sheet: Chart Data
+  data_range: '''Chart Data''!Y225'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.fiscal_space
+    INDICATOR: Debt service to exports
+    VARIANT: max_baseline_breach
+  notes: MAX of the Debt service to exports baseline-breach flags (Chart Data!Y225).
+- id: chart_fiscal_space_debt_service_to_revenue_max_baseline_breach
+  sheet: Chart Data
+  data_range: '''Chart Data''!Y232'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.fiscal_space
+    INDICATOR: Debt service to revenue
+    VARIANT: max_baseline_breach
+  notes: MAX of the Debt service to revenue baseline-breach flags (Chart Data!Y232).
+- id: chart_projection_years
+  sheet: Chart Data
+  data_range: '''Chart Data''!D35:X35'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.projection_years
+    INDICATOR: year
+    SCENARIO: projection window
+    VARIANT: header
+  notes: Projection-year axis pulled from Macro-Debt_Data onto Chart Data row 35.
+- id: chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D38:X38'
+  - '''Chart Data''!D39:X39'
+  - '''Chart Data''!D40:X40'
+  - '''Chart Data''!D41:X41'
+  - '''Chart Data''!D42:X42'
+  - '''Chart Data''!D43:X43'
+  - '''Chart Data''!D44:X44'
+  - '''Chart Data''!D45:X45'
+  - '''Chart Data''!D47:X47'
+  - '''Chart Data''!D48:X48'
+  - '''Chart Data''!D49:X49'
+  - '''Chart Data''!D50:X50'
+  - '''Chart Data''!D53:X53'
+  - '''Chart Data''!D54:X54'
+  - '''Chart Data''!D55:X55'
+  - '''Chart Data''!D56:X56'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Baseline: 38
+          A1. Key variables at their historical averages in 2024-2034 2/: 39
+          B1. Real GDP growth: 40
+          B2. Primary balance: 41
+          B3. Exports: 42
+          B4. Other flows 3/: 43
+          B5. Depreciation: 44
+          B6. Combination of B1-B5: 45
+          C1. Combined contingent liabilities: 47
+          C2. Natural disaster: 48
+          C3. Commodity price: 49
+          C4. Market Financing: 50
+          B2.1 Primary balance Market: 53
+          B2.2 Primary balance Non-Market: 54
+          B6.1 Combination of B1-B5 Market: 55
+          B6.2 Combination of B1-B5 Non-Market: 56
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.pv_debt_to_gdp
+    INDICATOR: PV of debt-to GDP ratio
+    VARIANT: stress_path
+  notes: PV of debt-to GDP ratio on Chart Data, keyed by scenario and stress_path.
+- id: chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!Z40:AK40'
+  - '''Chart Data''!Z41:AK41'
+  - '''Chart Data''!Z42:AK42'
+  - '''Chart Data''!Z43:AK43'
+  - '''Chart Data''!Z44:AK44'
+  - '''Chart Data''!Z45:AK45'
+  - '''Chart Data''!Z47:AK47'
+  - '''Chart Data''!Z48:AK48'
+  - '''Chart Data''!Z49:AK49'
+  - '''Chart Data''!Z50:AK50'
+  - '''Chart Data''!AC51:AK51'
+  - '''Chart Data''!AF54:AF54'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          B1. Real GDP growth: 40
+          B2. Primary balance: 41
+          B3. Exports: 42
+          B4. Other flows 3/: 43
+          B5. Depreciation: 44
+          B6. Combination of B1-B5: 45
+          C1. Combined contingent liabilities: 47
+          C2. Natural disaster: 48
+          C3. Commodity price: 49
+          C4. Market Financing: 50
+          A2. Alternative Scenario :[Customize, enter title]: 51
+          B2.2 Primary balance Non-Market: 54
+        read: string
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 36
+        read: string
+        normalize: strip
+  key:
+  - SCENARIO
+  - VARIANT
+  series_context:
+    TABLE: chart_data.pv_debt_to_gdp
+    INDICATOR: PV of debt-to GDP ratio
+  notes: PV of debt-to GDP ratio on Chart Data, keyed by scenario.
+- id: chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D58:X58'
+  - '''Chart Data''!D59:X59'
+  - '''Chart Data''!D60:X60'
+  - '''Chart Data''!D67:N67'
+  - '''Chart Data''!D68:N68'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          C2. Natural disaster: 58
+          C3. Commodity price: 59
+          C4. Market Financing: 60
+          Baseline breach: 67
+          Shock breach: 68
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.pv_debt_to_gdp
+    INDICATOR: PV of debt-to GDP ratio
+    VARIANT: figure
+  notes: PV of debt-to GDP ratio on Chart Data, keyed by scenario and figure.
+- id: chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D80:X80'
+  - '''Chart Data''!D81:X81'
+  - '''Chart Data''!D82:X82'
+  - '''Chart Data''!D83:X83'
+  - '''Chart Data''!D84:X84'
+  - '''Chart Data''!D85:X85'
+  - '''Chart Data''!D86:X86'
+  - '''Chart Data''!D87:X87'
+  - '''Chart Data''!D89:X89'
+  - '''Chart Data''!D90:X90'
+  - '''Chart Data''!D91:X91'
+  - '''Chart Data''!D92:X92'
+  - '''Chart Data''!D95:X95'
+  - '''Chart Data''!D96:X96'
+  - '''Chart Data''!D97:X97'
+  - '''Chart Data''!D98:X98'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Baseline: 80
+          A1. Key variables at their historical averages in 2024-2034 2/: 81
+          B1. Real GDP growth: 82
+          B2. Primary balance: 83
+          B3. Exports: 84
+          B4. Other flows 3/: 85
+          B5. Depreciation: 86
+          B6. Combination of B1-B5: 87
+          C1. Combined contingent liabilities: 89
+          C2. Natural disaster: 90
+          C3. Commodity price: 91
+          C4. Market Financing: 92
+          B2.1 Primary balance Market: 95
+          B2.2 Primary balance Non-Market: 96
+          B6.1 Combination of B1-B5 Market: 97
+          B6.2 Combination of B1-B5 Non-Market: 98
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.pv_debt_to_exports
+    INDICATOR: PV of debt-to-exports ratio
+    VARIANT: stress_path
+  notes: PV of debt-to-exports ratio on Chart Data, keyed by scenario and stress_path.
+- id: chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!Z82:AK82'
+  - '''Chart Data''!Z83:AK83'
+  - '''Chart Data''!Z84:AK84'
+  - '''Chart Data''!Z85:AK85'
+  - '''Chart Data''!Z86:AK86'
+  - '''Chart Data''!Z87:AK87'
+  - '''Chart Data''!Z89:AK89'
+  - '''Chart Data''!Z90:AK90'
+  - '''Chart Data''!Z91:AK91'
+  - '''Chart Data''!Z92:AK92'
+  - '''Chart Data''!AC93:AK93'
+  - '''Chart Data''!AF96:AF96'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          B1. Real GDP growth: 82
+          B2. Primary balance: 83
+          B3. Exports: 84
+          B4. Other flows 3/: 85
+          B5. Depreciation: 86
+          B6. Combination of B1-B5: 87
+          C1. Combined contingent liabilities: 89
+          C2. Natural disaster: 90
+          C3. Commodity price: 91
+          C4. Market Financing: 92
+          A2. Alternative Scenario :[Customize, enter title]: 93
+          B2.2 Primary balance Non-Market: 96
+        read: string
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 36
+        read: string
+        normalize: strip
+  key:
+  - SCENARIO
+  - VARIANT
+  series_context:
+    TABLE: chart_data.pv_debt_to_exports
+    INDICATOR: PV of debt-to-exports ratio
+  notes: PV of debt-to-exports ratio on Chart Data, keyed by scenario.
+- id: chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D100:X100'
+  - '''Chart Data''!D101:X101'
+  - '''Chart Data''!D102:X102'
+  - '''Chart Data''!D109:N109'
+  - '''Chart Data''!D110:N110'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          C2. Natural disaster: 100
+          C3. Commodity price: 101
+          C4. Market Financing: 102
+          Baseline breach: 109
+          Shock breach: 110
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.pv_debt_to_exports
+    INDICATOR: PV of debt-to-exports ratio
+    VARIANT: figure
+  notes: PV of debt-to-exports ratio on Chart Data, keyed by scenario and figure.
+- id: chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D122:X122'
+  - '''Chart Data''!D123:X123'
+  - '''Chart Data''!D124:X124'
+  - '''Chart Data''!D125:X125'
+  - '''Chart Data''!D126:X126'
+  - '''Chart Data''!D127:X127'
+  - '''Chart Data''!D128:X128'
+  - '''Chart Data''!D129:X129'
+  - '''Chart Data''!D131:X131'
+  - '''Chart Data''!D132:X132'
+  - '''Chart Data''!D133:X133'
+  - '''Chart Data''!D134:X134'
+  - '''Chart Data''!D137:X137'
+  - '''Chart Data''!D138:X138'
+  - '''Chart Data''!D139:X139'
+  - '''Chart Data''!D140:X140'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Baseline: 122
+          A1. Key variables at their historical averages in 2024-2034 2/: 123
+          B1. Real GDP growth: 124
+          B2. Primary balance: 125
+          B3. Exports: 126
+          B4. Other flows 3/: 127
+          B5. Depreciation: 128
+          B6. Combination of B1-B5: 129
+          C1. Combined contingent liabilities: 131
+          C2. Natural disaster: 132
+          C3. Commodity price: 133
+          C4. Market Financing: 134
+          B2.1 Primary balance Market: 137
+          B2.2 Primary balance Non-Market: 138
+          B6.1 Combination of B1-B5 Market: 139
+          B6.2 Combination of B1-B5 Non-Market: 140
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.debt_service_to_exports
+    INDICATOR: Debt service-to-exports ratio
+    VARIANT: stress_path
+  notes: Debt service-to-exports ratio on Chart Data, keyed by scenario and stress_path.
+- id: chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!Z124:AK124'
+  - '''Chart Data''!Z125:AK125'
+  - '''Chart Data''!Z126:AK126'
+  - '''Chart Data''!Z127:AK127'
+  - '''Chart Data''!Z128:AK128'
+  - '''Chart Data''!Z129:AK129'
+  - '''Chart Data''!Z131:AK131'
+  - '''Chart Data''!Z132:AK132'
+  - '''Chart Data''!Z133:AK133'
+  - '''Chart Data''!Z134:AK134'
+  - '''Chart Data''!AC135:AK135'
+  - '''Chart Data''!AF138:AF138'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          B1. Real GDP growth: 124
+          B2. Primary balance: 125
+          B3. Exports: 126
+          B4. Other flows 3/: 127
+          B5. Depreciation: 128
+          B6. Combination of B1-B5: 129
+          C1. Combined contingent liabilities: 131
+          C2. Natural disaster: 132
+          C3. Commodity price: 133
+          C4. Market Financing: 134
+          A2. Alternative Scenario :[Customize, enter title]: 135
+          B2.2 Primary balance Non-Market: 138
+        read: string
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 36
+        read: string
+        normalize: strip
+  key:
+  - SCENARIO
+  - VARIANT
+  series_context:
+    TABLE: chart_data.debt_service_to_exports
+    INDICATOR: Debt service-to-exports ratio
+  notes: Debt service-to-exports ratio on Chart Data, keyed by scenario.
+- id: chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D142:X142'
+  - '''Chart Data''!D143:X143'
+  - '''Chart Data''!D144:X144'
+  - '''Chart Data''!D151:N151'
+  - '''Chart Data''!D152:N152'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          C2. Natural disaster: 142
+          C3. Commodity price: 143
+          C4. Market Financing: 144
+          Baseline breach: 151
+          Shock breach: 152
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.debt_service_to_exports
+    INDICATOR: Debt service-to-exports ratio
+    VARIANT: figure
+  notes: Debt service-to-exports ratio on Chart Data, keyed by scenario and figure.
+- id: chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D164:X164'
+  - '''Chart Data''!D165:X165'
+  - '''Chart Data''!D166:X166'
+  - '''Chart Data''!D167:X167'
+  - '''Chart Data''!D168:X168'
+  - '''Chart Data''!D169:X169'
+  - '''Chart Data''!D170:X170'
+  - '''Chart Data''!D171:X171'
+  - '''Chart Data''!D173:X173'
+  - '''Chart Data''!D174:X174'
+  - '''Chart Data''!D175:X175'
+  - '''Chart Data''!D176:X176'
+  - '''Chart Data''!D179:X179'
+  - '''Chart Data''!D180:X180'
+  - '''Chart Data''!D181:X181'
+  - '''Chart Data''!D182:X182'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Baseline: 164
+          A1. Key variables at their historical averages in 2024-2034 2/: 165
+          B1. Real GDP growth: 166
+          B2. Primary balance: 167
+          B3. Exports: 168
+          B4. Other flows 3/: 169
+          B5. Depreciation: 170
+          B6. Combination of B1-B5: 171
+          C1. Combined contingent liabilities: 173
+          C2. Natural disaster: 174
+          C3. Commodity price: 175
+          C4. Market Financing: 176
+          B2.1 Primary balance Market: 179
+          B2.2 Primary balance Non-Market: 180
+          B6.1 Combination of B1-B5 Market: 181
+          B6.2 Combination of B1-B5 Non-Market: 182
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue
+    INDICATOR: Debt service-to-revenue ratio
+    VARIANT: stress_path
+  notes: Debt service-to-revenue ratio on Chart Data, keyed by scenario and stress_path.
+- id: chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!Z166:AK166'
+  - '''Chart Data''!Z167:AK167'
+  - '''Chart Data''!Z168:AK168'
+  - '''Chart Data''!Z169:AK169'
+  - '''Chart Data''!Z170:AK170'
+  - '''Chart Data''!Z171:AK171'
+  - '''Chart Data''!Z173:AK173'
+  - '''Chart Data''!Z174:AK174'
+  - '''Chart Data''!Z175:AK175'
+  - '''Chart Data''!Z176:AK176'
+  - '''Chart Data''!AC177:AK177'
+  - '''Chart Data''!AF180:AF180'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          B1. Real GDP growth: 166
+          B2. Primary balance: 167
+          B3. Exports: 168
+          B4. Other flows 3/: 169
+          B5. Depreciation: 170
+          B6. Combination of B1-B5: 171
+          C1. Combined contingent liabilities: 173
+          C2. Natural disaster: 174
+          C3. Commodity price: 175
+          C4. Market Financing: 176
+          A2. Alternative Scenario :[Customize, enter title]: 177
+          B2.2 Primary balance Non-Market: 180
+        read: string
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 36
+        read: string
+        normalize: strip
+  key:
+  - SCENARIO
+  - VARIANT
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue
+    INDICATOR: Debt service-to-revenue ratio
+  notes: Debt service-to-revenue ratio on Chart Data, keyed by scenario.
+- id: chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D184:X184'
+  - '''Chart Data''!D185:X185'
+  - '''Chart Data''!D186:X186'
+  - '''Chart Data''!D193:N193'
+  - '''Chart Data''!D194:N194'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          C2. Natural disaster: 184
+          C3. Commodity price: 185
+          C4. Market Financing: 186
+          Baseline breach: 193
+          Shock breach: 194
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue
+    INDICATOR: Debt service-to-revenue ratio
+    VARIANT: figure
+  notes: Debt service-to-revenue ratio on Chart Data, keyed by scenario and figure.
+- id: chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!Z241:AK241'
+  - '''Chart Data''!Z242:AK242'
+  - '''Chart Data''!Z243:AK243'
+  - '''Chart Data''!Z244:AK244'
+  - '''Chart Data''!Z245:AK245'
+  - '''Chart Data''!Z246:AK246'
+  - '''Chart Data''!Z248:AK248'
+  - '''Chart Data''!Z249:AK249'
+  - '''Chart Data''!Z250:AK250'
+  - '''Chart Data''!Z251:AK251'
+  - '''Chart Data''!AC252:AK252'
+  - '''Chart Data''!AF255:AF255'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          B1. Real GDP growth: 241
+          B2. Primary balance: 242
+          B3. Exports: 243
+          B4. Other flows 3/: 244
+          B5. Depreciation: 245
+          B6. Combination of B1-B5: 246
+          C1. Combined contingent liabilities: 248
+          C2. Natural disaster: 249
+          C3. Commodity price: 250
+          C4. Market Financing: 251
+          A2. Alternative Scenario :[Customize, enter title]: 252
+          B2.2 Primary balance Non-Market: 255
+        read: string
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 36
+        read: string
+        normalize: strip
+  key:
+  - SCENARIO
+  - VARIANT
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_gdp_ratio
+    INDICATOR: PV of Debt-to-GDP Ratio
+  notes: PV of Debt-to-GDP Ratio on Chart Data, keyed by scenario.
+- id: chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D254:X254'
+  - '''Chart Data''!D255:X255'
+  - '''Chart Data''!D256:X256'
+  - '''Chart Data''!D257:X257'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          B2.1 Primary balance Market: 254
+          B2.2 Primary balance Non-Market: 255
+          B6.1 Combination of B1-B5 Market: 256
+          B6.2 Combination of B1-B5 Non-Market: 257
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_gdp_ratio
+    INDICATOR: PV of Debt-to-GDP Ratio
+    VARIANT: stress_path
+  notes: PV of Debt-to-GDP Ratio on Chart Data, keyed by scenario and stress_path.
+- id: chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D259:X259'
+  - '''Chart Data''!D260:X260'
+  - '''Chart Data''!D261:X261'
+  - '''Chart Data''!D262:N262'
+  - '''Chart Data''!D268:N268'
+  - '''Chart Data''!D269:N269'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          C2. Natural disaster: 259
+          C3. Commodity price: 260
+          C4. Market Financing: 261
+          Baseline: 262
+          Baseline breach: 268
+          Shock breach: 269
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_gdp_ratio
+    INDICATOR: PV of Debt-to-GDP Ratio
+    VARIANT: figure
+  notes: PV of Debt-to-GDP Ratio on Chart Data, keyed by scenario and figure.
+- id: chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!Z283:AA283'
+  - '''Chart Data''!Z284:AA284'
+  - '''Chart Data''!Z285:AA285'
+  - '''Chart Data''!Z286:AA286'
+  - '''Chart Data''!Z287:AA287'
+  - '''Chart Data''!Z288:AA288'
+  - '''Chart Data''!Z290:AA290'
+  - '''Chart Data''!Z291:AA291'
+  - '''Chart Data''!Z292:AA292'
+  - '''Chart Data''!Z293:AA293'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          B1. Real GDP growth: 283
+          B2. Primary balance: 284
+          B3. Exports: 285
+          B4. Other flows 3/: 286
+          B5. Depreciation: 287
+          B6. Combination of B1-B5: 288
+          C1. Combined contingent liabilities: 290
+          C2. Natural disaster: 291
+          C3. Commodity price: 292
+          C4. Market Financing: 293
+        read: string
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 36
+        read: string
+        normalize: strip
+  key:
+  - SCENARIO
+  - VARIANT
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_revenue_ratio
+    INDICATOR: PV of Debt-to-Revenue Ratio
+  notes: PV of Debt-to-Revenue Ratio on Chart Data, keyed by scenario.
+- id: chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue_stress_path
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D296:X296'
+  - '''Chart Data''!D297:X297'
+  - '''Chart Data''!D298:X298'
+  - '''Chart Data''!D299:X299'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          B2.1 Primary balance Market: 296
+          B2.2 Primary balance Non-Market: 297
+          B6.1 Combination of B1-B5 Market: 298
+          B6.2 Combination of B1-B5 Non-Market: 299
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_revenue_ratio
+    INDICATOR: PV of Debt-to-Revenue Ratio
+    VARIANT: stress_path
+  notes: PV of Debt-to-Revenue Ratio on Chart Data, keyed by scenario and stress_path.
+- id: chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue_figure
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D301:X301'
+  - '''Chart Data''!D302:X302'
+  - '''Chart Data''!D303:X303'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          C2. Natural disaster: 301
+          C3. Commodity price: 302
+          C4. Market Financing: 303
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_revenue_ratio
+    INDICATOR: PV of Debt-to-Revenue Ratio
+    VARIANT: figure
+  notes: PV of Debt-to-Revenue Ratio on Chart Data, keyed by scenario and figure.
+- id: chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!Z320:AA320'
+  - '''Chart Data''!Z321:AA321'
+  - '''Chart Data''!Z322:AA322'
+  - '''Chart Data''!Z323:AA323'
+  - '''Chart Data''!Z324:AA324'
+  - '''Chart Data''!Z325:AA325'
+  - '''Chart Data''!Z327:AA327'
+  - '''Chart Data''!Z328:AA328'
+  - '''Chart Data''!Z329:AA329'
+  - '''Chart Data''!Z330:AA330'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          B1. Real GDP growth: 320
+          B2. Primary balance: 321
+          B3. Exports: 322
+          B4. Other flows 3/: 323
+          B5. Depreciation: 324
+          B6. Combination of B1-B5: 325
+          C1. Combined contingent liabilities: 327
+          C2. Natural disaster: 328
+          C3. Commodity price: 329
+          C4. Market Financing: 330
+        read: string
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 36
+        read: string
+        normalize: strip
+  key:
+  - SCENARIO
+  - VARIANT
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue_ratio
+    INDICATOR: Debt Service-to-Revenue Ratio
+  notes: Debt Service-to-Revenue Ratio on Chart Data, keyed by scenario.
+- id: chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue_stress_path
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D333:X333'
+  - '''Chart Data''!D334:X334'
+  - '''Chart Data''!D335:X335'
+  - '''Chart Data''!D336:X336'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          B2.1 Primary balance Market: 333
+          B2.2 Primary balance Non-Market: 334
+          B6.1 Combination of B1-B5 Market: 335
+          B6.2 Combination of B1-B5 Non-Market: 336
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue_ratio
+    INDICATOR: Debt Service-to-Revenue Ratio
+    VARIANT: stress_path
+  notes: Debt Service-to-Revenue Ratio on Chart Data, keyed by scenario and stress_path.
+- id: chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue_figure
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D338:X338'
+  - '''Chart Data''!D339:X339'
+  - '''Chart Data''!D340:X340'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          C2. Natural disaster: 338
+          C3. Commodity price: 339
+          C4. Market Financing: 340
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue_ratio
+    INDICATOR: Debt Service-to-Revenue Ratio
+    VARIANT: figure
+  notes: Debt Service-to-Revenue Ratio on Chart Data, keyed by scenario and figure.
+- id: chart_internal_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio_stress_path
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D366:X366'
+  - '''Chart Data''!D367:X367'
+  - '''Chart Data''!D368:X368'
+  - '''Chart Data''!D369:X369'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          B2.1 Primary balance Market: 366
+          B2.2 Primary balance Non-Market: 367
+          B6.1 Combination of B1-B5 Market: 368
+          B6.2 Combination of B1-B5 Non-Market: 369
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.debt_service_to_gdp_ratio
+    INDICATOR: Debt Service-to-GDP Ratio
+    VARIANT: stress_path
+  notes: Debt Service-to-GDP Ratio on Chart Data, keyed by scenario and stress_path.
+- id: chart_internal_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio_figure
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D371:X371'
+  - '''Chart Data''!D372:X372'
+  - '''Chart Data''!D373:X373'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          C2. Natural disaster: 371
+          C3. Commodity price: 372
+          C4. Market Financing: 373
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.debt_service_to_gdp_ratio
+    INDICATOR: Debt Service-to-GDP Ratio
+    VARIANT: figure
+  notes: Debt Service-to-GDP Ratio on Chart Data, keyed by scenario and figure.
+- id: chart_internal_chart_data_fiscal_space_pv_debt_gdp_moderate_space
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D208:N208'
+  - '''Chart Data''!D209:N209'
+  - '''Chart Data''!D210:N210'
+  - '''Chart Data''!D211:N211'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          (1-x)*Threshold: 208
+          (1-y)*Threshold: 209
+          Baseline: 210
+          Baseline breach: 211
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.fiscal_space
+    INDICATOR: PV of debt to GDP
+    VARIANT: moderate_space
+  notes: PV of debt to GDP on Chart Data, keyed by scenario and moderate_space.
+- id: chart_internal_chart_data_fiscal_space_pv_debt_exports_moderate_space
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D215:N215'
+  - '''Chart Data''!D216:N216'
+  - '''Chart Data''!D217:N217'
+  - '''Chart Data''!D218:N218'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          (1-x)*Threshold: 215
+          (1-y)*Threshold: 216
+          Baseline: 217
+          Baseline breach: 218
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.fiscal_space
+    INDICATOR: PV of debt to exports
+    VARIANT: moderate_space
+  notes: PV of debt to exports on Chart Data, keyed by scenario and moderate_space.
+- id: chart_internal_chart_data_fiscal_space_debt_service_exports_moderate_space
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D222:N222'
+  - '''Chart Data''!D223:N223'
+  - '''Chart Data''!D224:N224'
+  - '''Chart Data''!D225:N225'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          (1-x)*Threshold: 222
+          (1-y)*Threshold: 223
+          Baseline: 224
+          Baseline breach: 225
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.fiscal_space
+    INDICATOR: Debt service to exports
+    VARIANT: moderate_space
+  notes: Debt service to exports on Chart Data, keyed by scenario and moderate_space.
+- id: chart_internal_chart_data_fiscal_space_debt_service_revenue_moderate_space
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!D229:N229'
+  - '''Chart Data''!D230:N230'
+  - '''Chart Data''!D231:N231'
+  - '''Chart Data''!D232:N232'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          (1-x)*Threshold: 229
+          (1-y)*Threshold: 230
+          Baseline: 231
+          Baseline breach: 232
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 35
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: chart_data.fiscal_space
+    INDICATOR: Debt service to revenue
+    VARIANT: moderate_space
+  notes: Debt service to revenue on Chart Data, keyed by scenario and moderate_space.

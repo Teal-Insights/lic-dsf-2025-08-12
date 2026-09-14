@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lic-dsf-2025-08-12"
+version = "0.1.0"
+description = "Python implementation of the IMF-World Bank Low-Income Country Debt Sustainability Framework (LIC-DSF) IDA21 template, 2025-08-12 vintage."
+requires-python = ">=3.13"
+dependencies = [
+    "fastpyxl",
+    "numpy",
+]
+
+[tool.setuptools]
+packages = ["lic_dsf_2025_08_12"]
+
+[dependency-groups]
+dev = [
+    "quarto>=0.1.0",
+    "great-docs>=0.12.0",
+    "pandas",
+    "polars",
+    "matplotlib",
+]
+validation = [
+    "excel-grapher>=18.0.0",
+]

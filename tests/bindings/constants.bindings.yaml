@@ -1,0 +1,5809 @@
+schema_version: 1.16.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: HOLDER
+    name: Debt holder residency
+    dtype: string
+  - id: ISSUANCE_YEAR
+    name: Issuance year
+    dtype: int
+  - id: LANGUAGE
+    name: Language
+    dtype: string
+  - id: DSA_SECTION
+    name: DSA statement section
+    dtype: string
+series:
+- id: start_working_language
+  sheet: START
+  data_range: START!K10
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: start.language
+    INDICATOR: Working language
+  notes: Workbook language selected on START.
+- id: com_as_of_date
+  sheet: COM
+  data_range: COM!A4:A8
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: COMMODITY
+      concept: COMMODITY
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+  key:
+  - COMMODITY
+  series_context:
+    TABLE: com.prices
+    INDICATOR: As-of date
+  notes: Price-table as-of date (Excel serial) for each commodity on COM.
+- id: com_prices
+  sheet: COM
+  data_range: COM!D4:G8
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: COMMODITY
+      concept: COMMODITY
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 3
+        read: string
+        normalize: strip
+  key:
+  - COMMODITY
+  - INDICATOR
+  series_context:
+    TABLE: com.prices
+  notes: 'COM commodity price grid: latest actual, percentile forecasts, and percent change.'
+- id: lookup_imf_country_code
+  sheet: lookup
+  data_range: lookup!B4:B73
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: lookup.countries
+    INDICATOR: IMF country code
+  notes: IMF IFS country code keyed by ISO3 on lookup.
+- id: lookup_imf_country_code_index
+  sheet: lookup
+  data_range: lookup!G4:G73
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: H
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: lookup.countries
+    INDICATOR: IMF country code (reverse index)
+  notes: Reverse-index copy of the IMF country code, keyed by ISO3 in column H.
+- id: trigger_country_flags
+  sheet: Trigger
+  data_range: Trigger!E5:F58
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 4
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  - INDICATOR
+  series_context:
+    TABLE: trigger.country_flags
+  notes: Trigger incgr and licdsf flags by ISO3.
+- id: blend_ida_new_fixed_interest_rate
+  sheet: BLEND floating calculations WB
+  data_range: '''BLEND floating calculations WB''!D5'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: blend.ida_new_terms
+    INSTRUMENT: IDA NEW Blend fixed
+    INDICATOR: Interest rate
+  notes: Hardcoded interest rate for IDA NEW Blend fixed loans.
+- id: blend_ida_new_floating_maturity
+  sheet: BLEND floating calculations WB
+  data_range: '''BLEND floating calculations WB''!F6'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: blend.ida_new_terms
+    INSTRUMENT: IDA NEW Blend floating
+    INDICATOR: Maturity
+  notes: Maturity in years for IDA NEW Blend floating; tenor used to pick the SOFR rate.
+- id: blend_ibrd_group_a_pricing
+  sheet: BLEND floating calculations WB
+  data_range: '''BLEND floating calculations WB''!L6'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: blend.ida_new_terms
+    INDICATOR: IBRD Group A pricing
+  notes: Manually entered IBRD Group A variable spread used in the blend floating rate.
+- id: blend_sofr_swap_curve
+  sheet: BLEND floating calculations WB
+  data_range: '''BLEND floating calculations WB''!K10:K24'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TENOR
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: J
+        read: string
+        normalize: strip
+  key:
+  - TENOR
+  series_context:
+    TABLE: blend.sofr_swap_curve
+    INDICATOR: SOFR swap rate
+  notes: Published SOFR swap rates by tenor.
+- id: ci_cutoff_weak
+  sheet: CI Summary
+  data_range: '''CI Summary''!J19'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: ci.cutoffs
+    INDICATOR: Composite indicator cutoff
+    VARIANT: weak
+  notes: Weak-CI cutoff (CI < 2.69).
+- id: ci_cutoff_strong
+  sheet: CI Summary
+  data_range: '''CI Summary''!J21'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: ci.cutoffs
+    INDICATOR: Composite indicator cutoff
+    VARIANT: strong
+  notes: Strong-CI cutoff (CI > 3.05).
+- id: ci_remittances_higher_cutoff
+  sheet: CI Summary
+  data_range: '''CI Summary''!C58'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: ci.remittances
+    INDICATOR: Higher remittances cutoff
+  notes: One-standard-deviation remittances cutoff from the 2000-2015 LIC sample.
+- id: ci_probit_coefficients
+  sheet: CI Summary
+  data_range: '''CI Summary''!C88:F93'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          PV of debt to GDP: C
+          PV of debt to exports: D
+          PV of debt to revenue: E
+          Debt service to exports: F
+  key:
+  - PARAMETER
+  - INDICATOR
+  series_context:
+    TABLE: ci.probit
+  notes: Baseline probit coefficients by regressor and debt-burden ratio.
+- id: chart_years_of_breaches_to_exclude
+  sheet: Chart Data
+  data_range: '''Chart Data''!AC16'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart.parameters
+    INDICATOR: Years of breaches to exclude
+  notes: Length of one-year breaches excluded from the mechanical risk signal.
+- id: chart_numeric_risk_rating
+  sheet: Chart Data
+  data_range: '''Chart Data''!Z19:Z23'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: AA
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: chart.parameters
+    INDICATOR: Numeric risk rating
+  notes: Numeric codes for Low / Moderate / High mechanical risk.
+  exclude_rows:
+  - 21
+  - 22
+- id: fiscal_space_some_threshold
+  sheet: Chart Data
+  data_range: '''Chart Data''!E26'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.fiscal_space_thresholds
+    PARAMETER: fiscal_space_some_threshold
+  notes: Fiscal-space 'Some' threshold marker (Chart Data!E26; Some).
+- id: fiscal_space_substantial_threshold
+  sheet: Chart Data
+  data_range: '''Chart Data''!E27'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.fiscal_space_thresholds
+    PARAMETER: fiscal_space_substantial_threshold
+  notes: Fiscal-space 'Substantial' threshold marker (Chart Data!E27; Substantial).
+- id: ext_debt_st_principal_y1
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F383
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt.st_locally_issued
+    INDICATOR: Principal
+  notes: Year-1 principal on locally-issued short-term external debt.
+- id: ext_debt_st_interest_y1
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!F384
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt.st_locally_issued
+    INDICATOR: Interest
+  notes: Year-1 interest on locally-issued short-term external debt.
+- id: ext_debt_fx_period_average_tail
+  sheet: Ext_Debt_Data
+  data_range: Ext_Debt_Data!AA403:AG403
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: ext_debt.memorandum
+    INDICATOR: Exchange rate (period average)
+  notes: Unfilled 2045-2051 period-average FX cells on the Ext_Debt memorandum row.
+- id: lookup_country_table_headers
+  sheet: lookup
+  data_range: "lookup!A3:E3"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 3
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: lookup.countries
+    INDICATOR: column_header
+  notes: Column headers for the lookup country table.
+- id: lookup_iso3
+  sheet: lookup
+  data_range: "lookup!A4:A73"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: lookup.countries
+    INDICATOR: ISO3
+  notes: "ISO3 country codes on lookup, keyed by themselves."
+- id: lookup_country_name
+  sheet: lookup
+  data_range: "lookup!C4:C73"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: lookup.countries
+    INDICATOR: Country name
+  notes: LIC country names keyed by ISO3 on lookup.
+- id: lookup_hipc_status
+  sheet: lookup
+  data_range: "lookup!D4:D73"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: lookup.countries
+    INDICATOR: HIPC status
+  notes: HIPC completion / non-HIPC status keyed by ISO3.
+- id: lookup_mdri
+  sheet: lookup
+  data_range: "lookup!E4:E73"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: lookup.countries
+    INDICATOR: MDRI
+  notes: MDRI eligibility flag keyed by ISO3.
+- id: lookup_ida_terms_new
+  sheet: lookup
+  data_range: "lookup!AF4"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: lookup.switches
+    INDICATOR: IDA terms vintage
+    VARIANT: New
+  notes: New-terms side of the lookup New/Old switch.
+- id: lookup_ida_terms_old
+  sheet: lookup
+  data_range: "lookup!AF5"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: lookup.switches
+    INDICATOR: IDA terms vintage
+    VARIANT: Old
+  notes: Old-terms side of the lookup New/Old switch.
+- id: lookup_onoff_off
+  sheet: lookup
+  data_range: "lookup!AH5"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: lookup.switches
+    INDICATOR: On/Off switch
+    VARIANT: "Off"
+  notes: Off label for the lookup On/Off switch.
+- id: lookup_language_native_name
+  sheet: lookup
+  data_range: "lookup!BB4:BB7"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: BC
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: lookup.languages
+    INDICATOR: Native language name
+  notes: "Workbook language names as shown on START, keyed by English language id."
+- id: lookup_language_english_name
+  sheet: lookup
+  data_range: "lookup!BC4:BC7"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: BC
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: lookup.languages
+    INDICATOR: English language name
+  notes: English language identifiers for the START language map.
+- id: translation_input_1_basics_blue_cells_are_populated_automatically
+  sheet: translation
+  data_range: "translation!C66:F66"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Blue cells are populated automatically
+    DSA_SECTION: Input 1 - Basics
+  notes: "Translation dictionary for 'Blue cells are populated automatically' (Input 1 - Basics)."
+- id: translation_input_1_basics_residency_based
+  sheet: translation
+  data_range: translation!C90:C90
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Residency-based
+    DSA_SECTION: Input 1 - Basics
+  notes: "Translation dictionary for 'Residency-based' (Input 1 - Basics)."
+- id: translation_input_2_debt_coverage_external_debt_burden_thresholds
+  sheet: translation
+  data_range: "translation!C196:F196"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: EXTERNAL debt burden thresholds
+    DSA_SECTION: Input 2 - Debt Coverage
+  notes: "Translation dictionary for 'EXTERNAL debt burden thresholds' (Input 2 - Debt Coverage)."
+- id: translation_input_2_debt_coverage_pv_of_debt_in_of
+  sheet: translation
+  data_range: "translation!C197:F197"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: "PV of debt in % of"
+    DSA_SECTION: Input 2 - Debt Coverage
+  notes: "Translation dictionary for 'PV of debt in % of' (Input 2 - Debt Coverage)."
+- id: translation_input_2_debt_coverage_exports_pv_of_debt_in_of
+  sheet: translation
+  data_range: "translation!C198:F198"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Exports
+    DSA_SECTION: Input 2 - Debt Coverage
+    VARIANT: "PV of debt in % of"
+  notes: "Translation dictionary for 'Exports' (Input 2 - Debt Coverage)."
+- id: translation_input_2_debt_coverage_gdp
+  sheet: translation
+  data_range: "translation!C199:F199"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: GDP
+    DSA_SECTION: Input 2 - Debt Coverage
+  notes: "Translation dictionary for 'GDP' (Input 2 - Debt Coverage)."
+- id: translation_input_2_debt_coverage_exports_debt_service_in_of
+  sheet: translation
+  data_range: "translation!C202:F202"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Exports
+    DSA_SECTION: Input 2 - Debt Coverage
+    VARIANT: "Debt service in % of"
+  notes: "Translation dictionary for 'Exports' (Input 2 - Debt Coverage)."
+- id: translation_input_2_debt_coverage_revenue
+  sheet: translation
+  data_range: "translation!C203:F203"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Revenue
+    DSA_SECTION: Input 2 - Debt Coverage
+  notes: "Translation dictionary for 'Revenue' (Input 2 - Debt Coverage)."
+- id: translation_input_2_debt_coverage_total_public_debt_benchmark
+  sheet: translation
+  data_range: "translation!C204:F204"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: TOTAL public debt benchmark
+    DSA_SECTION: Input 2 - Debt Coverage
+  notes: "Translation dictionary for 'TOTAL public debt benchmark' (Input 2 - Debt Coverage)."
+- id: translation_input_2_debt_coverage_pv_of_total_public_debt_in_percent_of_gdp
+  sheet: translation
+  data_range: "translation!C205:F205"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: PV of total public debt in percent of GDP
+    DSA_SECTION: Input 2 - Debt Coverage
+  notes: "Translation dictionary for 'PV of total public debt in percent of GDP' (Input 2 - Debt Coverage)."
+- id: translation_input_3_macro_debt_data_dmx_held_by_residents
+  sheet: translation
+  data_range: "translation!C297:F297"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Held by residents
+    DSA_SECTION: Input 3 - Macro-Debt data(DMX)
+  notes: "Translation dictionary for 'Held by residents' (Input 3 - Macro-Debt data(DMX))."
+- id: translation_input_3_macro_debt_data_dmx_interest_rate_on_domestic_debt
+  sheet: translation
+  data_range: "translation!C402:F402"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Interest rate on domestic debt
+    DSA_SECTION: Input 3 - Macro-Debt data(DMX)
+  notes: "Translation dictionary for 'Interest rate on domestic debt' (Input 3 - Macro-Debt data(DMX))."
+- id: translation_input_4_external_fin_terms_ida_information
+  sheet: translation
+  data_range: "translation!C446"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: IDA Information
+    DSA_SECTION: Input 4 - External Fin Terms
+    LANGUAGE: English
+  notes: English-only translation phrase on row 446.
+- id: translation_input_4_external_fin_terms_grace_period
+  sheet: translation
+  data_range: "translation!C451:F451"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Grace period
+    DSA_SECTION: Input 4 - External Fin Terms
+  notes: "Translation dictionary for 'Grace period' (Input 4 - External Fin Terms)."
+- id: translation_input_5_domestic_financing_assumptions_on_domestic_financial_instruments
+  sheet: translation
+  data_range: "translation!C487:F487"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Assumptions on domestic financial instruments
+    DSA_SECTION: Input 5 - Domestic Financing
+  notes: "Translation dictionary for 'Assumptions on domestic financial instruments' (Input 5 - Domestic Financing)."
+- id: translation_input_5_domestic_financing_locally_issued_debt
+  sheet: translation
+  data_range: "translation!C493:F493"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Locally-issued debt
+    DSA_SECTION: Input 5 - Domestic Financing
+  notes: "Translation dictionary for 'Locally-issued debt' (Input 5 - Domestic Financing)."
+- id: translation_input_5_domestic_financing_maturity
+  sheet: translation
+  data_range: "translation!C494:F494"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Maturity
+    DSA_SECTION: Input 5 - Domestic Financing
+  notes: "Translation dictionary for 'Maturity' (Input 5 - Domestic Financing)."
+- id: translation_input_5_domestic_financing_central_bank_financing
+  sheet: translation
+  data_range: "translation!C498:F498"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Central bank financing
+    DSA_SECTION: Input 5 - Domestic Financing
+  notes: "Translation dictionary for 'Central bank financing' (Input 5 - Domestic Financing)."
+- id: translation_input_5_domestic_financing_t_bills_denominated_in_local_currency
+  sheet: translation
+  data_range: "translation!C500:F500"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: T-bills (denominated in local currency)
+    DSA_SECTION: Input 5 - Domestic Financing
+  notes: "Translation dictionary for 'T-bills (denominated in local currency)' (Input 5 - Domestic Financing)."
+- id: translation_input_5_domestic_financing_t_bills_denominated_in_foreign_currency
+  sheet: translation
+  data_range: "translation!C501:F501"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: T-bills (denominated in foreign currency)
+    DSA_SECTION: Input 5 - Domestic Financing
+  notes: "Translation dictionary for 'T-bills (denominated in foreign currency)' (Input 5 - Domestic Financing)."
+- id: translation_input_5_domestic_financing_mlt_debt
+  sheet: translation
+  data_range: "translation!C502:F502"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: MLT debt
+    DSA_SECTION: Input 5 - Domestic Financing
+  notes: "Translation dictionary for 'MLT debt' (Input 5 - Domestic Financing)."
+- id: translation_input_5_domestic_financing_denominated_in_local_currency_lc
+  sheet: translation
+  data_range: "translation!C503:F503"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Denominated in local currency (LC)
+    DSA_SECTION: Input 5 - Domestic Financing
+  notes: "Translation dictionary for 'Denominated in local currency (LC)' (Input 5 - Domestic Financing)."
+- id: translation_input_5_domestic_financing_bonds_1_to_3_years_lc
+  sheet: translation
+  data_range: "translation!C504:F504"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Bonds (1 to 3 years)-LC
+    DSA_SECTION: Input 5 - Domestic Financing
+  notes: "Translation dictionary for 'Bonds (1 to 3 years)-LC' (Input 5 - Domestic Financing)."
+- id: translation_input_5_domestic_financing_bonds_4_to_7_years_lc
+  sheet: translation
+  data_range: "translation!C505:F505"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Bonds (4 to 7 years)-LC
+    DSA_SECTION: Input 5 - Domestic Financing
+  notes: "Translation dictionary for 'Bonds (4 to 7 years)-LC' (Input 5 - Domestic Financing)."
+- id: translation_input_5_domestic_financing_bonds_beyond_7_years_lc
+  sheet: translation
+  data_range: "translation!C506:F506"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Bonds (beyond 7 years)-LC
+    DSA_SECTION: Input 5 - Domestic Financing
+  notes: "Translation dictionary for 'Bonds (beyond 7 years)-LC' (Input 5 - Domestic Financing)."
+- id: translation_input_5_domestic_financing_bonds_1_to_3_years_fx
+  sheet: translation
+  data_range: "translation!C508:F508"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Bonds (1 to 3 years)-FX
+    DSA_SECTION: Input 5 - Domestic Financing
+  notes: "Translation dictionary for 'Bonds (1 to 3 years)-FX' (Input 5 - Domestic Financing)."
+- id: translation_input_5_domestic_financing_bonds_4_to_7_years_fx
+  sheet: translation
+  data_range: "translation!C509:F509"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Bonds (4 to 7 years)-FX
+    DSA_SECTION: Input 5 - Domestic Financing
+  notes: "Translation dictionary for 'Bonds (4 to 7 years)-FX' (Input 5 - Domestic Financing)."
+- id: translation_input_5_domestic_financing_bonds_beyond_7_years_fx
+  sheet: translation
+  data_range: "translation!C510:F510"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Bonds (beyond 7 years)-FX
+    DSA_SECTION: Input 5 - Domestic Financing
+  notes: "Translation dictionary for 'Bonds (beyond 7 years)-FX' (Input 5 - Domestic Financing)."
+- id: translation_input_5_domestic_financing_denominated_in_foreign_currency_fx
+  sheet: translation
+  data_range: "translation!C511:F511"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Denominated in foreign currency (FX)
+    DSA_SECTION: Input 5 - Domestic Financing
+  notes: "Translation dictionary for 'Denominated in foreign currency (FX)' (Input 5 - Domestic Financing)."
+- id: translation_input_5_domestic_financing_denominated_in_foreign_currency_fx_external_debt
+  sheet: translation
+  data_range: "translation!C512:F512"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Denominated in foreign currency (FX) - External debt
+    DSA_SECTION: Input 5 - Domestic Financing
+  notes: "Translation dictionary for 'Denominated in foreign currency (FX) - External debt' (Input 5 - Domestic Financing)."
+- id: translation_labels_short_term_debt
+  sheet: translation
+  data_range: "translation!C824:F824"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Short-term debt
+    DSA_SECTION: Labels
+  notes: "Translation dictionary for 'Short-term debt' (Labels)."
+- id: translation_chart_data_growth
+  sheet: translation
+  data_range: "translation!C1980:F1980"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Growth
+    DSA_SECTION: Chart data
+  notes: "Translation dictionary for 'Growth' (Chart data)."
+- id: translation_chart_data_exports
+  sheet: translation
+  data_range: "translation!C1981:F1981"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Exports
+    DSA_SECTION: Chart data
+  notes: "Translation dictionary for 'Exports' (Chart data)."
+- id: translation_chart_data_non_debt_flows
+  sheet: translation
+  data_range: "translation!C1983:F1983"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Non-debt flows
+    DSA_SECTION: Chart data
+  notes: "Translation dictionary for 'Non-debt flows' (Chart data)."
+- id: translation_chart_data_one_time_depreciation
+  sheet: translation
+  data_range: "translation!C1985:F1985"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: One-time depreciation
+    DSA_SECTION: Chart data
+  notes: "Translation dictionary for 'One-time depreciation' (Chart data)."
+- id: translation_chart_data_primary_balance
+  sheet: translation
+  data_range: "translation!C1990:F1990"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Primary Balance
+    DSA_SECTION: Chart data
+  notes: "Translation dictionary for 'Primary Balance' (Chart data)."
+- id: translation_chart_data_combination
+  sheet: translation
+  data_range: "translation!C1991:F1991"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: Combination
+    DSA_SECTION: Chart data
+  notes: "Translation dictionary for 'Combination' (Chart data)."
+- id: ci_class_labels_cutoffs
+  sheet: CI Summary
+  data_range: "'CI Summary'!H19:H21"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: H
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: ci.cutoffs
+    INDICATOR: CI class label
+  notes: Weak / Medium / Strong labels beside the composite-indicator cutoffs.
+- id: ci_class_labels_thresholds
+  sheet: CI Summary
+  data_range: "'CI Summary'!C32:E32"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 32
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: ci.thresholds
+    INDICATOR: CI class label
+  notes: Weak / Medium / Strong column headers on the debt-burden threshold grid.
+- id: ci_ext_pv_debt_exports
+  sheet: CI Summary
+  data_range: "'CI Summary'!C34:E34"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 32
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: ci.thresholds
+    INDICATOR: PV of PPG external debt to exports
+    DSA_SECTION: external
+  notes: Published PV of PPG external debt to exports thresholds by CI class (external).
+- id: ci_ext_pv_debt_gdp
+  sheet: CI Summary
+  data_range: "'CI Summary'!C35:E35"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 32
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: ci.thresholds
+    INDICATOR: PV of PPG external debt to GDP
+    DSA_SECTION: external
+  notes: Published PV of PPG external debt to GDP thresholds by CI class (external).
+- id: ci_ext_debt_service_exports
+  sheet: CI Summary
+  data_range: "'CI Summary'!C37:E37"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 32
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: ci.thresholds
+    INDICATOR: PPG external debt service to exports
+    DSA_SECTION: external
+  notes: Published PPG external debt service to exports thresholds by CI class (external).
+- id: ci_ext_debt_service_revenue
+  sheet: CI Summary
+  data_range: "'CI Summary'!C38:E38"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 32
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: ci.thresholds
+    INDICATOR: PPG external debt service to revenue
+    DSA_SECTION: external
+  notes: Published PPG external debt service to revenue thresholds by CI class (external).
+- id: ci_pub_pv_debt_exports
+  sheet: CI Summary
+  data_range: "'CI Summary'!C74:E74"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 72
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: ci.thresholds
+    INDICATOR: PV of public debt to exports
+    DSA_SECTION: public
+  notes: Published PV of public debt to exports thresholds by CI class (public).
+- id: ci_pub_pv_debt_gdp
+  sheet: CI Summary
+  data_range: "'CI Summary'!C75:E75"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 72
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: ci.thresholds
+    INDICATOR: PV of public debt to GDP
+    DSA_SECTION: public
+  notes: Published PV of public debt to GDP thresholds by CI class (public).
+- id: ci_pub_debt_service_exports
+  sheet: CI Summary
+  data_range: "'CI Summary'!C78:E78"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 72
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: ci.thresholds
+    INDICATOR: Public debt service to exports
+    DSA_SECTION: public
+  notes: Published Public debt service to exports thresholds by CI class (public).
+- id: ci_pub_debt_service_revenue
+  sheet: CI Summary
+  data_range: "'CI Summary'!C79:E79"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 72
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: ci.thresholds
+    INDICATOR: Public debt service to revenue
+    DSA_SECTION: public
+  notes: Published Public debt service to revenue thresholds by CI class (public).
+- id: ci_pub_pv_debt_gdp_new
+  sheet: CI Summary
+  data_range: "'CI Summary'!K33:M33"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 32
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: ci.thresholds
+    INDICATOR: PV of total public debt to GDP
+    DSA_SECTION: public_new
+  notes: Published PV of total public debt to GDP thresholds by CI class (public_new).
+- id: ci_pub_pv_debt_gdp_old
+  sheet: CI Summary
+  data_range: "'CI Summary'!K73:M73"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 72
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: ci.thresholds
+    INDICATOR: PV of total public debt to GDP
+    DSA_SECTION: public_old
+  notes: Published PV of total public debt to GDP thresholds by CI class (public_old).
+- id: ci_debt_service_in_percent_of
+  sheet: CI Summary
+  data_range: "'CI Summary'!B36"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: ci.thresholds
+    INDICATOR: "Debt service in % of"
+    DSA_SECTION: external
+  notes: Stub label introducing the external debt-service threshold rows.
+- id: ci_public_pv_gdp_caption
+  sheet: CI Summary
+  data_range: "'CI Summary'!R67"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: ci.thresholds
+    INDICATOR: PV of total public debt in percent of GDP
+    VARIANT: caption
+  notes: Caption for the public PV-to-GDP benchmark.
+- id: ci_ref_pv_of_debt_in_of_exports
+  sheet: CI Summary
+  data_range: "'CI Summary'!O68"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: ci.thresholds
+    INDICATOR: Exports
+    VARIANT: "PV of debt in % of"
+    DSA_SECTION: reference
+  notes: "Reference denominator label 'Exports' under 'PV of debt in % of'."
+- id: ci_ref_pv_of_debt_in_of_gdp
+  sheet: CI Summary
+  data_range: "'CI Summary'!O69"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: ci.thresholds
+    INDICATOR: GDP
+    VARIANT: "PV of debt in % of"
+    DSA_SECTION: reference
+  notes: "Reference denominator label 'GDP' under 'PV of debt in % of'."
+- id: ci_ref_debt_service_in_of_exports
+  sheet: CI Summary
+  data_range: "'CI Summary'!O71"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: ci.thresholds
+    INDICATOR: Exports
+    VARIANT: "Debt service in % of"
+    DSA_SECTION: reference
+  notes: "Reference denominator label 'Exports' under 'Debt service in % of'."
+- id: ci_ref_debt_service_in_of_revenue
+  sheet: CI Summary
+  data_range: "'CI Summary'!O72"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: ci.thresholds
+    INDICATOR: Revenue
+    VARIANT: "Debt service in % of"
+    DSA_SECTION: reference
+  notes: "Reference denominator label 'Revenue' under 'Debt service in % of'."
+- id: chart_tailored_test_names
+  sheet: Chart Data
+  data_range: "'Chart Data'!F17:F19"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: F
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: chart.parameters
+    INDICATOR: Applicable tailored stress test name
+  notes: Display names for the three applicable tailored stress tests.
+- id: chart_combined_contingent_liabilities_label
+  sheet: Chart Data
+  data_range: "'Chart Data'!B47"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: chart_data.scenario_labels
+    INDICATOR: scenario label
+    SCENARIO: Combined contingent liabilities
+  notes: Hardcoded C1 combined-contingent-liabilities legend label copied by later figure blocks (Chart Data!B47).
+- id: chart_numeric_risk_header
+  sheet: Chart Data
+  data_range: "'Chart Data'!Z18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: chart.parameters
+    INDICATOR: Numeric risk
+    VARIANT: column_header
+  notes: Header for the numeric mechanical-risk codes.
+- id: chart_label_risk_header
+  sheet: Chart Data
+  data_range: "'Chart Data'!AA18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: chart.parameters
+    INDICATOR: Label risk
+    VARIANT: column_header
+  notes: Header for the Low / Moderate / High risk labels.
+- id: chart_risk_labels
+  sheet: Chart Data
+  data_range: "'Chart Data'!AA19:AA23"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: AA
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: chart.parameters
+    INDICATOR: Label risk
+  notes: Low / Moderate / High labels for the mechanical risk rating.
+  exclude_rows:
+  - 21
+  - 22
+- id: chart_tailored_test_marker
+  sheet: Chart Data
+  data_range: "'Chart Data'!I21"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: chart.parameters
+    INDICATOR: Applicable tailored stress-test marker
+  notes: Numeric marker applied to applicable tailored stress tests.
+- id: com_id_as_of_date
+  sheet: COM
+  data_range: "COM!B2"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: com.prices
+    INDICATOR: As-of date
+    VARIANT: id_prefix
+  notes: Excel serial used as the prefix of COM commodity ids.
+- id: com_price_column_headers
+  sheet: COM
+  data_range: "COM!A3:G3"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 3
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: com.prices
+    INDICATOR: column_header
+  notes: Column headers for the COM price table.
+- id: com_commodity_ids
+  sheet: COM
+  data_range: "COM!B4:B8"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: COMMODITY
+      concept: COMMODITY
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+  key:
+  - COMMODITY
+  series_context:
+    TABLE: com.prices
+    INDICATOR: Commodity id
+  notes: Composite commodity ids (as-of serial plus name) on COM.
+- id: com_commodity_names
+  sheet: COM
+  data_range: "COM!C4:C8"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: COMMODITY
+      concept: COMMODITY
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+  key:
+  - COMMODITY
+  series_context:
+    TABLE: com.prices
+    INDICATOR: Commodity name
+  notes: Commodity names on the COM price table.
+- id: blend_ida_new_fixed_name
+  sheet: BLEND floating calculations WB
+  data_range: "'BLEND floating calculations WB'!B5"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: blend.ida_new_terms
+    INSTRUMENT: IDA NEW Blend fixed
+    INDICATOR: instrument_name
+  notes: Published name for IDA NEW Blend fixed terms.
+- id: blend_ida_new_floating_name
+  sheet: BLEND floating calculations WB
+  data_range: "'BLEND floating calculations WB'!B6"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: blend.ida_new_terms
+    INSTRUMENT: IDA NEW Blend floating
+    INDICATOR: instrument_name
+  notes: Published name for IDA NEW Blend floating terms.
+- id: blend_year_header
+  sheet: BLEND floating calculations WB
+  data_range: "'BLEND floating calculations WB'!M9"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: blend.sofr_swap_curve
+    INDICATOR: Year
+    VARIANT: column_header
+  notes: Year-index header for the blend interpolation column.
+- id: blend_linear_interpolation_header
+  sheet: BLEND floating calculations WB
+  data_range: "'BLEND floating calculations WB'!O9"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: blend.sofr_swap_curve
+    INDICATOR: Linear interpolation
+    VARIANT: column_header
+  notes: Header for the linearly interpolated swap curve.
+- id: blend_sofr_tenor_labels
+  sheet: BLEND floating calculations WB
+  data_range: "'BLEND floating calculations WB'!J10:J24"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: J
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: blend.sofr_swap_curve
+    INDICATOR: tenor_label
+  notes: SOFR tenor labels beside the published swap curve.
+- id: blend_interpolation_index
+  sheet: BLEND floating calculations WB
+  data_range: "'BLEND floating calculations WB'!M10:M39"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: M
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: blend.sofr_swap_curve
+    INDICATOR: interpolation_index
+  notes: Integer year index used to interpolate the SOFR swap curve.
+- id: blend_reference_rate_currency
+  sheet: BLEND floating calculations WB
+  data_range: "'BLEND floating calculations WB'!A45:A48"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: blend.reference_rates
+    INDICATOR: currency_code
+  notes: Currency codes for IDA blend floating reference rates.
+- id: blend_reference_rate_name
+  sheet: BLEND floating calculations WB
+  data_range: "'BLEND floating calculations WB'!B45:B48"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: blend.reference_rates
+    INDICATOR: reference_rate_name
+  notes: "Reference-rate names (SOFR, EURIBOR, TONA, SONIA) by currency."
+- id: country_information_headers
+  sheet: Country_Information
+  data_range: "Country_Information!A1:D1"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: country_information.roster
+    INDICATOR: column_header
+  notes: Column headers for the IMF country-information roster.
+- id: country_information_ifs_code
+  sheet: Country_Information
+  data_range: "Country_Information!A2:A80"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: country_information.roster
+    INDICATOR: IFS country code
+  notes: IMF IFS country codes keyed by country name.
+- id: country_information_name
+  sheet: Country_Information
+  data_range: "Country_Information!B2:B80"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: country_information.roster
+    INDICATOR: Country name
+  notes: Country names on the IMF country-information roster.
+- id: country_information_eurobond
+  sheet: Country_Information
+  data_range: "Country_Information!C2:C80"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: country_information.roster
+    INDICATOR: Eurobond
+  notes: Eurobond market-access flag by country.
+  exclude_rows:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 8
+  - 9
+  - 26
+  - 31
+  - 48
+  - 54
+  - 64
+  - 77
+  - 80
+- id: country_information_prgt
+  sheet: Country_Information
+  data_range: "Country_Information!D2:D80"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: country_information.roster
+    INDICATOR: PRGT market access
+  notes: PRGT market-access flag by country.
+  exclude_rows:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 9
+  - 10
+  - 11
+  - 12
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 21
+  - 22
+  - 23
+  - 24
+  - 25
+  - 26
+  - 28
+  - 29
+  - 30
+  - 31
+  - 32
+  - 35
+  - 36
+  - 38
+  - 39
+  - 40
+  - 41
+  - 43
+  - 44
+  - 45
+  - 46
+  - 47
+  - 48
+  - 49
+  - 50
+  - 51
+  - 52
+  - 53
+  - 54
+  - 55
+  - 56
+  - 57
+  - 58
+  - 59
+  - 60
+  - 61
+  - 62
+  - 63
+  - 64
+  - 65
+  - 66
+  - 67
+  - 68
+  - 69
+  - 70
+  - 71
+  - 72
+  - 73
+  - 74
+  - 75
+  - 76
+  - 77
+  - 78
+  - 80
+- id: trigger_left_headers
+  sheet: Trigger
+  data_range: "Trigger!A4:J4"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 4
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: trigger.country_flags
+    INDICATOR: column_header
+  notes: Headers for the Trigger PPP / LIC-DSF country flag table.
+- id: trigger_right_headers
+  sheet: Trigger
+  data_range: "Trigger!AA4:AE4"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 4
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: trigger.market_access
+    INDICATOR: column_header
+  notes: Headers for the Trigger Eurobond / PRGT / market-access columns.
+- id: trigger_country_names
+  sheet: Trigger
+  data_range: "Trigger!AB5:AB74"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: AB
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: trigger.country_flags
+    INDICATOR: Country name
+  notes: "Country names on the Trigger roster, keyed by themselves."
+- id: trigger_natural_disaster_sample
+  sheet: Trigger
+  data_range: "Trigger!W5:W27"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: W
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: trigger.natural_disaster_sample
+    INDICATOR: Country name
+  notes: Sample of disaster-prone countries used by the natural-disaster module.
+- id: imported_series_stub_cpia
+  sheet: Imported data
+  data_range: "'Imported data'!AF69"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: imported.classification_stubs
+    INDICATOR: CPIA
+    VARIANT: code_prefix
+  notes: "Classification series-code prefix 'CPIA.'."
+- id: imported_series_stub_gr_a
+  sheet: Imported data
+  data_range: "'Imported data'!AF70"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: imported.classification_stubs
+    INDICATOR: Gr.A
+    VARIANT: code_prefix
+  notes: "Classification series-code prefix 'Gr.A.'."
+- id: imported_series_stub_res_a
+  sheet: Imported data
+  data_range: "'Imported data'!AF71"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: imported.classification_stubs
+    INDICATOR: Res.A
+    VARIANT: code_prefix
+  notes: "Classification series-code prefix 'Res.A.'."
+- id: imported_series_stub_wgr
+  sheet: Imported data
+  data_range: "'Imported data'!AF74"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: imported.classification_stubs
+    INDICATOR: WGr
+    VARIANT: code_prefix
+  notes: "Classification series-code prefix 'WGr.'."
+- id: imported_class_code_weak
+  sheet: Imported data
+  data_range: "'Imported data'!AI77"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: imported.classification_stubs
+    INDICATOR: CI class code
+    VARIANT: Weak
+  notes: Letter code W for Weak CI class.
+- id: imported_class_label_weak
+  sheet: Imported data
+  data_range: "'Imported data'!AJ77"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: imported.classification_stubs
+    INDICATOR: CI class label
+    VARIANT: Weak
+  notes: Weak CI class label.
+- id: imported_class_code_medium
+  sheet: Imported data
+  data_range: "'Imported data'!AI78"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: imported.classification_stubs
+    INDICATOR: CI class code
+    VARIANT: Medium
+  notes: Letter code M for Medium CI class.
+- id: imported_class_label_medium
+  sheet: Imported data
+  data_range: "'Imported data'!AJ78"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: imported.classification_stubs
+    INDICATOR: CI class label
+    VARIANT: Medium
+  notes: Medium CI class label.
+- id: imported_class_code_strong
+  sheet: Imported data
+  data_range: "'Imported data'!AI79"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: imported.classification_stubs
+    INDICATOR: CI class code
+    VARIANT: Strong
+  notes: Letter code S for Strong CI class.
+- id: imported_class_label_strong
+  sheet: Imported data
+  data_range: "'Imported data'!AJ79"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: imported.classification_stubs
+    INDICATOR: CI class label
+    VARIANT: Strong
+  notes: Strong CI class label.
+- id: imported_classification_t1
+  sheet: Imported data
+  data_range: "'Imported data'!AF78"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: imported.classification_stubs
+    INDICATOR: Classification t-1
+  notes: Prior-vintage classification header.
+- id: imported_classification_t2
+  sheet: Imported data
+  data_range: "'Imported data'!AG78"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: imported.classification_stubs
+    INDICATOR: Classification t-2
+  notes: Two-vintages-ago classification header.
+- id: imported_com_latest_actual_header
+  sheet: Imported data
+  data_range: "'Imported data'!E91"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: imported.commodity_prices
+    INDICATOR: Latest actual
+    VARIANT: column_header
+  notes: Latest-actual header on the imported commodity price stub.
+- id: imported_com_p16_header
+  sheet: Imported data
+  data_range: "'Imported data'!F91"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: imported.commodity_prices
+    INDICATOR: 1-year ahead 16th percentile price
+    VARIANT: column_header
+  notes: 16th-percentile forecast header on the imported commodity stub.
+- id: imported_commodity_names
+  sheet: Imported data
+  data_range: "'Imported data'!D92:D96"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: COMMODITY
+      concept: COMMODITY
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: D
+        read: string
+        normalize: strip
+  key:
+  - COMMODITY
+  series_context:
+    TABLE: imported.commodity_prices
+    INDICATOR: Commodity name
+  notes: Commodity names on the imported price stub.
+- id: imported_prgt_header
+  sheet: Imported data
+  data_range: "'Imported data'!D105"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: imported.country_flags
+    INDICATOR: PRGT market access
+    VARIANT: column_header
+  notes: PRGT market-access header on Imported data.
+- id: imported_ppp_headers
+  sheet: Imported data
+  data_range: "'Imported data'!B215:I215"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 215
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: imported.ppp
+    INDICATOR: column_header
+  notes: Headers for the 2017 PPP percent-of-GDP reference table.
+- id: imported_ppp_ifs_code
+  sheet: Imported data
+  data_range: "'Imported data'!B216:B270"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: imported.ppp
+    INDICATOR: IFS country code
+  notes: IFS codes in the 2017 PPP reference table.
+- id: imported_ppp_country_name
+  sheet: Imported data
+  data_range: "'Imported data'!C216:C270"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: imported.ppp
+    INDICATOR: Country name
+  notes: Country names in the 2017 PPP reference table.
+- id: imported_ppp_year
+  sheet: Imported data
+  data_range: "'Imported data'!D216:D270"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: imported.ppp
+    INDICATOR: year
+  notes: Reference year (2017) in the PPP table.
+- id: imported_ppp_incgr
+  sheet: Imported data
+  data_range: "'Imported data'!E216:E270"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: imported.ppp
+    INDICATOR: incgr
+  notes: Income-group flag in the PPP table.
+- id: imported_ppp_licdsf
+  sheet: Imported data
+  data_range: "'Imported data'!F216:F270"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: imported.ppp
+    INDICATOR: licdsf
+  notes: LIC-DSF coverage flag in the PPP table.
+- id: imported_ppp_kppp
+  sheet: Imported data
+  data_range: "'Imported data'!G216:G270"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: imported.ppp
+    INDICATOR: kppp_rppp
+  notes: "PPP capital stock; some countries store '-' as text."
+- id: imported_ppp_gdp
+  sheet: Imported data
+  data_range: "'Imported data'!H216:H270"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: imported.ppp
+    INDICATOR: GDP_rppp
+  notes: PPP GDP in the 2017 reference table.
+- id: imported_ppp_ratio
+  sheet: Imported data
+  data_range: "'Imported data'!I216:I270"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: imported.ppp
+    INDICATOR: "PPP%GDP"
+  notes: PPP as percent of GDP; some countries store Excel errors as text.
+- id: classification_cpia_reported_codes
+  sheet: Classification
+  data_range: "Classification!R16:AB16"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CPIA
+    VARIANT: reported_series_code
+  notes: Classification series codes for CPIA (reported).
+- id: classification_cpia_reported_years
+  sheet: Classification
+  data_range: "Classification!R17:AB17"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CPIA
+    VARIANT: reported_year
+  notes: Year headers for CPIA (reported) on Classification.
+- id: classification_cpia_reported_values
+  sheet: Classification
+  data_range: "Classification!R18:AB18"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CPIA
+    VARIANT: reported
+  notes: Ghana CPIA series (reported) on the Classification vintage grid.
+- id: classification_growth_reported_codes
+  sheet: Classification
+  data_range: "Classification!AF16:AP16"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Growth
+    VARIANT: reported_series_code
+  notes: Classification series codes for Growth (reported).
+- id: classification_growth_reported_years
+  sheet: Classification
+  data_range: "Classification!AF17:AP17"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Growth
+    VARIANT: reported_year
+  notes: Year headers for Growth (reported) on Classification.
+- id: classification_growth_reported_values
+  sheet: Classification
+  data_range: "Classification!AF18:AP18"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Growth
+    VARIANT: reported
+  notes: Ghana Growth series (reported) on the Classification vintage grid.
+- id: classification_growth_actual_codes
+  sheet: Classification
+  data_range: "Classification!AQ16:BA16"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Growth
+    VARIANT: actual_series_code
+  notes: Classification series codes for Growth (actual).
+- id: classification_growth_actual_years
+  sheet: Classification
+  data_range: "Classification!AQ17:BA17"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Growth
+    VARIANT: actual_year
+  notes: Year headers for Growth (actual) on Classification.
+- id: classification_growth_actual_values
+  sheet: Classification
+  data_range: "Classification!AQ18:BA18"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Growth
+    VARIANT: actual
+  notes: Ghana Growth series (actual) on the Classification vintage grid.
+- id: classification_reserves_reported_codes
+  sheet: Classification
+  data_range: "Classification!BD16:BN16"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Reserves
+    VARIANT: reported_series_code
+  notes: Classification series codes for Reserves (reported).
+- id: classification_reserves_reported_years
+  sheet: Classification
+  data_range: "Classification!BD17:BN17"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Reserves
+    VARIANT: reported_year
+  notes: Year headers for Reserves (reported) on Classification.
+- id: classification_reserves_reported_values
+  sheet: Classification
+  data_range: "Classification!BD18:BN18"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Reserves
+    VARIANT: reported
+  notes: Ghana Reserves series (reported) on the Classification vintage grid.
+- id: classification_reserves_actual_codes
+  sheet: Classification
+  data_range: "Classification!BO16:BY16"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Reserves
+    VARIANT: actual_series_code
+  notes: Classification series codes for Reserves (actual).
+- id: classification_reserves_actual_years
+  sheet: Classification
+  data_range: "Classification!BO17:BY17"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Reserves
+    VARIANT: actual_year
+  notes: Year headers for Reserves (actual) on Classification.
+- id: classification_reserves_actual_values
+  sheet: Classification
+  data_range: "Classification!BO18:BY18"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Reserves
+    VARIANT: actual
+  notes: Ghana Reserves series (actual) on the Classification vintage grid.
+- id: classification_remittances_reported_codes
+  sheet: Classification
+  data_range: "Classification!CB16:CL16"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Remittances
+    VARIANT: reported_series_code
+  notes: Classification series codes for Remittances (reported).
+- id: classification_remittances_reported_years
+  sheet: Classification
+  data_range: "Classification!CB17:CL17"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Remittances
+    VARIANT: reported_year
+  notes: Year headers for Remittances (reported) on Classification.
+- id: classification_remittances_reported_values
+  sheet: Classification
+  data_range: "Classification!CB18:CL18"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Remittances
+    VARIANT: reported
+  notes: Ghana Remittances series (reported) on the Classification vintage grid.
+- id: classification_remittances_actual_codes
+  sheet: Classification
+  data_range: "Classification!CM16:CW16"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Remittances
+    VARIANT: actual_series_code
+  notes: Classification series codes for Remittances (actual).
+- id: classification_remittances_actual_years
+  sheet: Classification
+  data_range: "Classification!CM17:CW17"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Remittances
+    VARIANT: actual_year
+  notes: Year headers for Remittances (actual) on Classification.
+- id: classification_remittances_actual_values
+  sheet: Classification
+  data_range: "Classification!CM18:CW18"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Remittances
+    VARIANT: actual
+  notes: Ghana Remittances series (actual) on the Classification vintage grid.
+- id: classification_world_growth_reported_codes
+  sheet: Classification
+  data_range: "Classification!CY16:DI16"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: World growth
+    VARIANT: reported_series_code
+  notes: Classification series codes for World growth (reported).
+- id: classification_world_growth_reported_years
+  sheet: Classification
+  data_range: "Classification!CY17:DI17"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: World growth
+    VARIANT: reported_year
+  notes: Year headers for World growth (reported) on Classification.
+- id: classification_world_growth_reported_values
+  sheet: Classification
+  data_range: "Classification!CY18:DI18"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: World growth
+    VARIANT: reported
+  notes: Ghana World growth series (reported) on the Classification vintage grid.
+- id: classification_lookup_year_id_note
+  sheet: Classification
+  data_range: "Classification!A16"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: hide (Year ID for lookup)
+    VARIANT: header
+  notes: Classification identifier/header cell A16.
+- id: classification_classification_t1_header
+  sheet: Classification
+  data_range: "Classification!G16"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Classification t-1
+    VARIANT: header
+  notes: Classification identifier/header cell G16.
+- id: classification_classification_t2_header
+  sheet: Classification
+  data_range: "Classification!H16"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Classification t-2
+    VARIANT: header
+  notes: Classification identifier/header cell H16.
+- id: classification_ci_score_t1_header
+  sheet: Classification
+  data_range: "Classification!J16"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CI Score t-1
+    VARIANT: header
+  notes: Classification identifier/header cell J16.
+- id: classification_ci_score_t2_header
+  sheet: Classification
+  data_range: "Classification!K16"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CI Score t-2
+    VARIANT: header
+  notes: Classification identifier/header cell K16.
+- id: classification_ifs_code_header
+  sheet: Classification
+  data_range: "Classification!A17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: IFS Code
+    VARIANT: header
+  notes: Classification identifier/header cell A17.
+- id: classification_iso_code_header
+  sheet: Classification
+  data_range: "Classification!B17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: ISO Code
+    VARIANT: header
+  notes: Classification identifier/header cell B17.
+- id: classification_country_header
+  sheet: Classification
+  data_range: "Classification!C17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Country
+    VARIANT: header
+  notes: Classification identifier/header cell C17.
+- id: classification_incomplete_header
+  sheet: Classification
+  data_range: "Classification!D17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Incomplete
+    VARIANT: header
+  notes: Classification identifier/header cell D17.
+- id: classification_classification_final_header
+  sheet: Classification
+  data_range: "Classification!E17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Classification - FINAL
+    VARIANT: header
+  notes: Classification identifier/header cell E17.
+- id: classification_classification_current_header
+  sheet: Classification
+  data_range: "Classification!F17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Classification - Current Vintage
+    VARIANT: header
+  notes: Classification identifier/header cell F17.
+- id: classification_classification_prev_header
+  sheet: Classification
+  data_range: "Classification!G17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Classification - Previous vintage
+    VARIANT: header
+  notes: Classification identifier/header cell G17.
+- id: classification_classification_final_prev_header
+  sheet: Classification
+  data_range: "Classification!H17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Classification - Final previous
+    VARIANT: header
+  notes: Classification identifier/header cell H17.
+- id: classification_ci_score_current_header
+  sheet: Classification
+  data_range: "Classification!I17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CI Score Current vintage
+    VARIANT: header
+  notes: Classification identifier/header cell I17.
+- id: classification_ci_score_prev_header
+  sheet: Classification
+  data_range: "Classification!J17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CI Score Previous vintage
+    VARIANT: header
+  notes: Classification identifier/header cell J17.
+- id: classification_ci_score_t2_header_r17
+  sheet: Classification
+  data_range: "Classification!K17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CI Score 2 vintages ago
+    VARIANT: header
+  notes: Classification identifier/header cell K17.
+- id: classification_cpia_current_header
+  sheet: Classification
+  data_range: "Classification!L17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CPIA
+    VARIANT: header
+  notes: Classification identifier/header cell L17.
+- id: classification_growth_current_header
+  sheet: Classification
+  data_range: "Classification!M17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Growth
+    VARIANT: header
+  notes: Classification identifier/header cell M17.
+- id: classification_reserves_current_header
+  sheet: Classification
+  data_range: "Classification!N17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Resverves
+    VARIANT: header
+  notes: Classification identifier/header cell N17.
+- id: classification_rem_current_header
+  sheet: Classification
+  data_range: "Classification!O17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: REM
+    VARIANT: header
+  notes: Classification identifier/header cell O17.
+- id: classification_wgrowth_current_header
+  sheet: Classification
+  data_range: "Classification!P17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: W_GROWTH
+    VARIANT: header
+  notes: Classification identifier/header cell P17.
+- id: classification_ifs_code
+  sheet: Classification
+  data_range: "Classification!A18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: IFS country code
+    VARIANT: identifier
+  notes: Classification identifier/header cell A18.
+- id: classification_iso3
+  sheet: Classification
+  data_range: "Classification!B18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: ISO3
+    VARIANT: identifier
+  notes: Classification identifier/header cell B18.
+- id: classification_country_name
+  sheet: Classification
+  data_range: "Classification!C18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Country name
+    VARIANT: identifier
+  notes: Classification identifier/header cell C18.
+- id: classification_classification_final
+  sheet: Classification
+  data_range: "Classification!E18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Classification - FINAL
+  notes: Ghana CI class letter for Classification - FINAL.
+- id: classification_classification_current_vintage
+  sheet: Classification
+  data_range: "Classification!F18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Classification - Current Vintage
+  notes: Ghana CI class letter for Classification - Current Vintage.
+- id: classification_classification_previous_vintage
+  sheet: Classification
+  data_range: "Classification!G18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Classification - Previous vintage
+  notes: Ghana CI class letter for Classification - Previous vintage.
+- id: classification_classification_final_previous
+  sheet: Classification
+  data_range: "Classification!H18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Classification - Final previous
+  notes: Ghana CI class letter for Classification - Final previous.
+- id: classification_current_ci_score_current_vintage
+  sheet: Classification
+  data_range: "Classification!I18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CI Score Current vintage
+    VARIANT: current_vintage
+  notes: Ghana current-vintage CI Score Current vintage on Classification.
+- id: classification_current_ci_score_previous_vintage
+  sheet: Classification
+  data_range: "Classification!J18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CI Score Previous vintage
+    VARIANT: current_vintage
+  notes: Ghana current-vintage CI Score Previous vintage on Classification.
+- id: classification_current_ci_score_2_vintages_ago
+  sheet: Classification
+  data_range: "Classification!K18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CI Score 2 vintages ago
+    VARIANT: current_vintage
+  notes: Ghana current-vintage CI Score 2 vintages ago on Classification.
+- id: classification_current_cpia
+  sheet: Classification
+  data_range: "Classification!L18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CPIA
+    VARIANT: current_vintage
+  notes: Ghana current-vintage CPIA on Classification.
+- id: classification_current_growth
+  sheet: Classification
+  data_range: "Classification!M18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Growth
+    VARIANT: current_vintage
+  notes: Ghana current-vintage Growth on Classification.
+- id: classification_current_reserves
+  sheet: Classification
+  data_range: "Classification!N18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Reserves
+    VARIANT: current_vintage
+  notes: Ghana current-vintage Reserves on Classification.
+- id: classification_current_remittances
+  sheet: Classification
+  data_range: "Classification!O18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Remittances
+    VARIANT: current_vintage
+  notes: Ghana current-vintage Remittances on Classification.
+- id: classification_current_world_growth
+  sheet: Classification
+  data_range: "Classification!P18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: World growth
+    VARIANT: current_vintage
+  notes: Ghana current-vintage World growth on Classification.
+- id: classification_memo_ad18
+  sheet: Classification
+  data_range: "Classification!AD18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Growth
+    VARIANT: left_of_reported
+  notes: Memo statistic left of the Growth block (AD18).
+- id: classification_memo_ae18
+  sheet: Classification
+  data_range: "Classification!AE18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Growth
+    VARIANT: left_of_reported_2
+  notes: Memo statistic left of the Growth block (AE18).
+- id: classification_memo_bc18
+  sheet: Classification
+  data_range: "Classification!BC18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Reserves
+    VARIANT: left_of_reported
+  notes: Memo statistic left of the Reserves block (BC18).
+- id: classification_memo_ca18
+  sheet: Classification
+  data_range: "Classification!CA18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: Remittances
+    VARIANT: left_of_reported
+  notes: Memo statistic left of the Remittances block (CA18).
+- id: classification_ci_score_2018_oct_header
+  sheet: Classification
+  data_range: "Classification!DK16"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CI score 2018 Oct
+    VARIANT: series_code
+  notes: Series code for the October 2018 CI score.
+- id: classification_ci_class_2018_oct_header
+  sheet: Classification
+  data_range: "Classification!DL16"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CI class 2018 Oct
+    VARIANT: series_code
+  notes: Series code for the October 2018 CI class.
+- id: classification_ci_score_2018_oct_label
+  sheet: Classification
+  data_range: "Classification!DK17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CI score 2018 Oct
+    VARIANT: header
+  notes: Score header for the October 2018 CI snapshot.
+- id: classification_ci_class_2018_oct_label
+  sheet: Classification
+  data_range: "Classification!DL17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CI class 2018 Oct
+    VARIANT: header
+  notes: Class header for the October 2018 CI snapshot.
+- id: classification_ci_score_2018_oct
+  sheet: Classification
+  data_range: "Classification!DK18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CI score 2018 Oct
+  notes: Ghana October 2018 CI score.
+- id: classification_ci_class_2018_oct
+  sheet: Classification
+  data_range: "Classification!DL18"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    INDICATOR: CI class 2018 Oct
+  notes: Ghana October 2018 CI class letter.
+- id: classification_ci_components_share_headers
+  sheet: Classification
+  data_range: "Classification!DN17:DS17"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    VARIANT: share_header
+  notes: Component headers for CI share on Classification.
+- id: classification_ci_components_share
+  sheet: Classification
+  data_range: "Classification!DN18:DS18"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    VARIANT: share
+  notes: Ghana CI component share values on Classification.
+- id: classification_ci_components_contribution_headers
+  sheet: Classification
+  data_range: "Classification!DT17:DY17"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    VARIANT: contribution_header
+  notes: Component headers for CI contribution on Classification.
+- id: classification_ci_components_contribution
+  sheet: Classification
+  data_range: "Classification!DT18:DY18"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 17
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: classification.vintage
+    REF_AREA: GHA
+    VARIANT: contribution
+  notes: Ghana CI component contribution values on Classification.
+- id: data_rem_headers
+  sheet: data_REM_FINAL
+  data_range: "data_REM_FINAL!A1:U1"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: rem.extract
+    INDICATOR: column_header
+  notes: Column headers for the remittances DSA extract.
+- id: data_rem_notes_header
+  sheet: data_REM_FINAL
+  data_range: "data_REM_FINAL!X1"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: rem.extract
+    INDICATOR: column_header
+    VARIANT: Notes
+  notes: Notes header on the remittances extract.
+- id: data_rem_metadata
+  sheet: data_REM_FINAL
+  data_range: "data_REM_FINAL!A2:T2"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: rem.extract
+    INDICATOR: extract_metadata
+    REF_AREA: GHA
+  notes: Ghana remittances extract metadata and annual values stored as text.
+- id: data_gdpusd_headers
+  sheet: data_GDPUSD
+  data_range: "data_GDPUSD!A1:S1"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: weo.gdp_usd
+    INDICATOR: column_header
+  notes: Column headers for the WEO GDP-USD extract.
+- id: data_gdpusd_country_code_note
+  sheet: data_GDPUSD
+  data_range: "data_GDPUSD!W1"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: weo.gdp_usd
+    INDICATOR: column_header
+    VARIANT: Country Code saved as number (not text)
+  notes: Note that the WEO extract stores IFS codes as numbers.
+- id: data_gdpusd_metadata
+  sheet: data_GDPUSD
+  data_range: "data_GDPUSD!A2:S2"
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: weo.gdp_usd
+    INDICATOR: extract_metadata
+    REF_AREA: GHA
+  notes: Ghana WEO GDP-USD extract metadata and annual values stored as text.
+- id: data_gdpusd_ifs_code
+  sheet: data_GDPUSD
+  data_range: "data_GDPUSD!W2"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: weo.gdp_usd
+    INDICATOR: IFS country code
+    REF_AREA: GHA
+  notes: Ghana IFS code stored as a number on the WEO extract.
+- id: b6_combo_non_mkt_pub_gdp_shock_label
+  sheet: B6_combo_non-mkt_pub
+  data_range: "'B6_combo_non-mkt_pub'!AA62"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key:
+    []
+  series_context:
+    TABLE: b6_combo_non_mkt_pub.dsa
+    INDICATOR: Size of real GDP growth shock
+    VARIANT: caption
+  notes: Caption for the real GDP growth shock size on the non-market combo sheet.
+- id: input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations
+  sheet: "Input 6(optional)-Standard Test"
+  data_range: "'Input 6(optional)-Standard Test'!C17"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: "input_6.standard_test"
+    SCENARIO: "B1. Real GDP growth"
+    INDICATOR: "Size of real GDP growth shock, # of standard deviations"
+  notes: "Default Size of real GDP growth shock, # of standard deviations for B1. Real GDP growth."
+- id: input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations
+  sheet: "Input 6(optional)-Standard Test"
+  data_range: "'Input 6(optional)-Standard Test'!C21"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: "input_6.standard_test"
+    SCENARIO: "B2. Primary balance"
+    INDICATOR: "Size of PB/GDP shock, # of standard deviations"
+  notes: "Default Size of PB/GDP shock, # of standard deviations for B2. Primary balance."
+- id: input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations
+  sheet: "Input 6(optional)-Standard Test"
+  data_range: "'Input 6(optional)-Standard Test'!C25"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: "input_6.standard_test"
+    SCENARIO: "B3. Exports"
+    INDICATOR: "Size of exports growth shock, # of standard deviations"
+  notes: "Default Size of exports growth shock, # of standard deviations for B3. Exports."
+- id: input6_standard_b4_other_non_debt_creating_flows_other_flows_current_transfers_shock_of_standard_deviations
+  sheet: "Input 6(optional)-Standard Test"
+  data_range: "'Input 6(optional)-Standard Test'!C29"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: "input_6.standard_test"
+    SCENARIO: "B4. Other (non-debt creating) flows"
+    INDICATOR: "Other flows (current transfers) shock, # of standard deviations"
+  notes: "Default Other flows (current transfers) shock, # of standard deviations for B4. Other (non-debt creating) flows."
+- id: input6_standard_b4_other_non_debt_creating_flows_other_flows_fdi_shock_of_standard_deviations
+  sheet: "Input 6(optional)-Standard Test"
+  data_range: "'Input 6(optional)-Standard Test'!C32"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: "input_6.standard_test"
+    SCENARIO: "B4. Other (non-debt creating) flows"
+    INDICATOR: "Other flows (FDI) shock, # of standard deviations"
+  notes: "Default Other flows (FDI) shock, # of standard deviations for B4. Other (non-debt creating) flows."
+- id: input6_standard_size_threshold_option_historical_average_only
+  sheet: "Input 6(optional)-Standard Test"
+  data_range: "'Input 6(optional)-Standard Test'!C5"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: "input_6.standard_test"
+    INDICATOR: "Size & Threshold"
+    VARIANT: "Historical average only"
+  notes: "Listed Size & Threshold option 'Historical average only'."
+- id: input6_standard_size_threshold_option_whichever_is_lower
+  sheet: "Input 6(optional)-Standard Test"
+  data_range: "'Input 6(optional)-Standard Test'!C7"
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: "input_6.standard_test"
+    INDICATOR: "Size & Threshold"
+    VARIANT: "Whichever is lower"
+  notes: "Listed Size & Threshold option 'Whichever is lower'."

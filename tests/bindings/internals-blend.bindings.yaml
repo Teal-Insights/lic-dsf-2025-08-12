@@ -1,0 +1,225 @@
+schema_version: 1.16.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+  - id: DSA_SECTION
+    name: DSA statement section
+    dtype: string
+series:
+- id: blend_calculated_blend_rate
+  sheet: BLEND floating calculations WB
+  data_range: '''BLEND floating calculations WB''!L4'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: blend.ida_new_terms
+    INSTRUMENT: IDA NEW Blend floating
+    INDICATOR: Calculated blend rate
+  notes: Uncapped blend floating rate (selected swap + IBRD Group A pricing - 2.5%).
+- id: blend_sofr_selected_by_maturity
+  sheet: BLEND floating calculations WB
+  data_range: '''BLEND floating calculations WB''!L5'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: blend.ida_new_terms
+    INSTRUMENT: IDA NEW Blend floating
+    INDICATOR: SOFR selected by maturity
+  notes: Interpolated swap rate looked up by floating-loan maturity.
+- id: blend_ida_new_floating_interest_rate
+  sheet: BLEND floating calculations WB
+  data_range: '''BLEND floating calculations WB''!D6'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: blend.ida_new_terms
+    INSTRUMENT: IDA NEW Blend floating
+    INDICATOR: Interest rate
+  notes: Blend floating interest rate after 0.75% floor and 5% ceiling.
+- id: blend_selected_base_rate
+  sheet: BLEND floating calculations WB
+  data_range: '''BLEND floating calculations WB''!J5'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: blend.ida_new_terms
+    INSTRUMENT: IDA NEW Blend floating
+    INDICATOR: Selected base rate
+  notes: Base-rate name (SOFR / EURIBOR / TONA / SONIA) looked up from the chosen currency.
+- id: blend_quoted_rate_column_header
+  sheet: BLEND floating calculations WB
+  data_range: '''BLEND floating calculations WB''!N9'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: blend.sofr_quoted_rate
+    INDICATOR: Quoted-rate column header
+  notes: Column-N header built from the selected base-rate name.
+- id: blend_published_tenor_years
+  sheet: BLEND floating calculations WB
+  data_range: '''BLEND floating calculations WB''!I10:I24'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TENOR
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: J
+        read: string
+        normalize: strip
+  key:
+  - TENOR
+  series_context:
+    TABLE: blend.sofr_swap_curve
+    INDICATOR: Published tenor years
+  notes: Numeric tenor parsed from published swap-curve labels in column J.
+- id: blend_sofr_quoted_rate
+  sheet: BLEND floating calculations WB
+  data_range: '''BLEND floating calculations WB''!N10:N39'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TENOR
+      concept: PARAMETER
+      role: key
+      scope: cell
+      dtype: int
+      bind:
+        kind: row_label
+        label_column: M
+        read: int
+  key:
+  - TENOR
+  series_context:
+    TABLE: blend.sofr_quoted_rate
+    INDICATOR: SOFR swap rate
+  exclude_rows:
+  - 20
+  - 22
+  - 23
+  - "25:28"
+  - "30:33"
+  - "35:38"
+  notes: Published swap rates aligned onto the 1-30 year interpolation grid (blank years omitted).
+- id: blend_sofr_interpolated_rate
+  sheet: BLEND floating calculations WB
+  data_range: '''BLEND floating calculations WB''!O10:O39'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TENOR
+      concept: PARAMETER
+      role: key
+      scope: cell
+      dtype: int
+      bind:
+        kind: row_label
+        label_column: M
+        read: int
+  key:
+  - TENOR
+  series_context:
+    TABLE: blend.sofr_quoted_rate
+    INDICATOR: Linear interpolation
+  notes: Linear interpolation of the quoted swap curve across every tenor 1-30.
