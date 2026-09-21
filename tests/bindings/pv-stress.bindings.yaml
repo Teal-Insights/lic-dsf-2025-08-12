@@ -608,10 +608,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: SCENARIO
       concept: SCENARIO
@@ -704,10 +704,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: SCENARIO
       concept: SCENARIO
@@ -2491,10 +2491,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: INSTRUMENT
       concept: INSTRUMENT
@@ -2727,10 +2727,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: INSTRUMENT
       concept: INSTRUMENT
@@ -4134,10 +4134,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: INSTRUMENT
       concept: INSTRUMENT
@@ -4196,10 +4196,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: INSTRUMENT
       concept: INSTRUMENT
@@ -4461,10 +4461,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: INSTRUMENT
       concept: INSTRUMENT
@@ -4523,10 +4523,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: INSTRUMENT
       concept: INSTRUMENT
@@ -5364,10 +5364,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: INSTRUMENT
       concept: INSTRUMENT
@@ -5458,10 +5458,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: INSTRUMENT
       concept: INSTRUMENT
@@ -6515,10 +6515,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: INSTRUMENT
       concept: INSTRUMENT
@@ -6609,10 +6609,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: INSTRUMENT
       concept: INSTRUMENT
@@ -7488,10 +7488,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: SCENARIO
       concept: SCENARIO
@@ -7576,10 +7576,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: SCENARIO
       concept: SCENARIO

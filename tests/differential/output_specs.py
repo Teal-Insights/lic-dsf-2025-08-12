@@ -68,6 +68,32 @@ def specs_covering_addresses(
     return tuple(selected)
 
 
+def outputs_from_named_axis_tensor(
+    specs: tuple[OutputCellSpec, ...],
+    tensor: Any,
+) -> dict[str, Any]:
+    """Look up ``spec.keys`` on a named-axis ``Series`` / ``Tensor``.
+
+    Unlike catalog-order tuples, this may subset the tensor: compared cells
+    need not exhaust the generated domain.
+    """
+    ambiguity = Counter((spec.compute, spec.keys) for spec in specs)
+    values: dict[str, Any] = {}
+    for spec in specs:
+        if ambiguity[(spec.compute, spec.keys)] > 1:
+            values[spec.label] = None
+            continue
+        by_field = dict(spec.keys)
+        try:
+            coord = tuple(by_field[axis.name] for axis in tensor.domain.axes)
+            values[spec.label] = tensor[coord]
+        except KeyError as exc:
+            raise LookupError(
+                f"{spec.compute} has no cell for {dict(spec.keys)}"
+            ) from exc
+    return values
+
+
 def outputs_from_tuple(
     specs: tuple[OutputCellSpec, ...],
     values_by_compute: Mapping[str, Sequence[Any]],

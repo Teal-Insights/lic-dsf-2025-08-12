@@ -47,24 +47,6 @@ concept_scheme:
     name: DSA statement section
     dtype: string
 series:
-- id: start_working_language
-  sheet: START
-  data_range: START!K10
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions: []
-  key: []
-  series_context:
-    TABLE: start.language
-    INDICATOR: Working language
-  notes: Workbook language selected on START.
 - id: com_as_of_date
   sheet: COM
   data_range: COM!A4:A8

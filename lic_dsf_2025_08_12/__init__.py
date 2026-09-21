@@ -46,5 +46,5 @@ __all__ = [
     'compute_chart_output_chart_data_figure_r341_debt_service_to_revenue',
 ]
 
-from .tensor import Axis, Domain, Tensor, TensorSchema
-__all__ += ['Axis', 'Domain', 'Tensor', 'TensorSchema']
+from .tensor import Axis, Domain, Series, Tensor, TensorSchema
+__all__ += ['Axis', 'Domain', 'Series', 'Tensor', 'TensorSchema']

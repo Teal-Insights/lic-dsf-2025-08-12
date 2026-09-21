@@ -3992,10 +3992,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions: []
   key: []
   series_context:
@@ -6012,10 +6012,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: TIME_PERIOD
       concept: TIME_PERIOD
@@ -6039,10 +6039,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: TIME_PERIOD
       concept: TIME_PERIOD
@@ -7897,10 +7897,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: VARIANT
       concept: VARIANT
@@ -8124,10 +8124,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: VARIANT
       concept: VARIANT
@@ -8805,10 +8805,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: TIME_PERIOD
       concept: TIME_PERIOD
@@ -8886,10 +8886,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: TIME_PERIOD
       concept: TIME_PERIOD

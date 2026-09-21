@@ -1,0 +1,120 @@
+---
+title: Read the Chart Data
+guide-section: Working with a case
+---
+
+Ratings collapse a large scenario ladder to one word. The DSA write-up also needs the **paths**: PV of debt-to-GDP, PV of debt-to-revenue, debt service-to-revenue, debt service-to-GDP, and the Figure 1 / Figure 2 series that plot baseline, historical average, MX shock, and threshold.
+
+Those functions return a `Series` (a labeled tensor). `as_records` turns the tensor into a list of dictionaries that pandas or polars can ingest.
+
+```{python}
+import inspect
+
+import pandas as pd
+
+from lic_dsf_2025_08_12 import api, as_records, data
+
+
+def workbook_defaults(compute):
+    return {
+        name: getattr(data, f"{name.upper()}_DEFAULT")
+        for name in inspect.signature(compute).parameters
+    }
+```
+
+## Public-debt stress ladder
+
+`compute_chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp` is the Chart Data block that starts at row 239: one path per scenario, years 2024–2044.
+
+```{python}
+compute_pv_gdp = api.compute_chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp
+pv_gdp = compute_pv_gdp(**workbook_defaults(compute_pv_gdp))
+pv_gdp.domain.axes[0].keys
+```
+
+```{python}
+{
+    "2024": pv_gdp.sel(SCENARIO="Baseline", TIME_PERIOD=2024),
+    "2034": pv_gdp.sel(SCENARIO="Baseline", TIME_PERIOD=2034),
+}
+```
+
+On the shipped snapshot, public PV of debt-to-GDP starts near 67 percent of GDP and declines to about 45 percent by 2034 under the baseline.
+
+`as_records` uses the function’s published key (`SCENARIO`, `TIME_PERIOD`) and names the measure `OBS_VALUE`:
+
+```{python}
+records = as_records(compute_pv_gdp, pv_gdp)
+ladder = pd.DataFrame.from_records(records)
+wide = (
+    ladder.loc[ladder["TIME_PERIOD"].between(2024, 2029)]
+    .pivot(index="TIME_PERIOD", columns="SCENARIO", values="OBS_VALUE")
+    .loc[:, ["Baseline", "B1. Real GDP growth", "B2. Primary balance", "B3. Exports"]]
+)
+wide
+```
+
+The same pattern applies to the other three public-debt blocks:
+
+| Metric | Function |
+| --- | --- |
+| PV of debt-to-GDP | `compute_chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp` |
+| PV of debt-to-revenue | `compute_chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue` |
+| Debt service-to-revenue | `compute_chart_output_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue` |
+| Debt service-to-GDP | `compute_chart_output_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio` |
+
+Each is keyed by the standard scenario ladder: Baseline, A1 historical, B1–B6, C1–C4, and the A2 customized title.
+
+## Figure 1 / Figure 2 series
+
+The stress-chart functions use a shorter scenario list — the rows the workbook actually plots. Figure R61 is the external PV of debt-to-GDP chart: baseline, historical, MX shock, one-year MX, and the threshold.
+
+```{python}
+compute_fig = api.compute_chart_output_chart_data_figure_r61_pv_debt_gdp_ratio
+figure = compute_fig(**workbook_defaults(compute_fig))
+list(figure.domain.axes[0].keys)
+```
+
+```{python}
+#| fig-cap: "External PV of PPG debt to GDP — baseline, most-extreme shock, and threshold (template snapshot)."
+#| fig-alt: "Line chart of external PV of debt-to-GDP for 2024–2044 under the baseline, the MX shock, and the LIC-DSF threshold."
+
+import matplotlib.pyplot as plt
+
+years = list(figure.domain.axes[1].keys)
+series = {
+    "Baseline": [figure.sel(SCENARIO="Baseline", TIME_PERIOD=year) for year in years],
+    "MX shock": [
+        figure.sel(SCENARIO="MX shock Standard&Tailored", TIME_PERIOD=year)
+        for year in years
+    ],
+    "Threshold": [figure.sel(SCENARIO="Threshold", TIME_PERIOD=year) for year in years],
+}
+
+fig, ax = plt.subplots()
+for label, values in series.items():
+    ax.plot(years, values, label=label)
+ax.set_xlabel("Year")
+ax.set_ylabel("PV of debt to GDP")
+ax.legend()
+ax.set_title("External DSA — Figure R61")
+fig
+```
+
+The public-debt analogue is `compute_chart_output_chart_data_figure_r263_pv_debt_to_gdp`. Other figure helpers follow the Chart Data row numbers in their names (`r103` PV of debt-to-exports, `r145` debt service-to-exports, `r187` / `r341` debt service-to-revenue).
+
+## Customized A2 as its own series
+
+When you only need the customized-enter path (Chart Data row 51 for PV of public debt-to-GDP), use the dedicated A2 function. It is keyed by `TIME_PERIOD` alone:
+
+```{python}
+compute_a2 = api.compute_chart_pv_debt_gdp_ratio_a2_alternative_scenario_customize_enter
+a2 = compute_a2(**workbook_defaults(compute_a2))
+pd.DataFrame(as_records(compute_a2, a2)).head()
+```
+
+On the snapshot the A2 path matches the baseline until you fill `customized_public_delta` — see [Stress tests and what-ifs](05-stress-tests-and-what-ifs.qmd).
+
+::: {.callout-note}
+`as_records(compute, result)` needs the **function**, not only the result. The function carries `__key__` and `__domain__`; the tensor carries the values. Passing the wrong function raises a domain mismatch.
+:::

@@ -44,6 +44,30 @@ concept_scheme:
     name: DSA statement section
     dtype: string
 series:
+- id: start_working_language
+  sheet: START
+  data_range: START!K10
+  layout: scalar
+  input:
+    domain:
+      enum:
+      - English
+      - Français
+      - Portugues
+      - Español
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: start.language
+    PARAMETER: start_working_language
+  notes: Working language dropdown (START!K10). List is lookup!BB4:BB7.
 - id: country
   sheet: Input 1 - Basics
   data_range: '''Input 1 - Basics''!C7'

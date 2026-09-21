@@ -65,6 +65,12 @@ def _apply_cmp(op: str, cmp: int) -> bool:
         return cmp >= 0
     raise ValueError(f'Unknown comparison operator: {op}')
 
+def _coerce_one(value: object, dtype: str) -> object:
+    """Rewrite `int` to `float` when `dtype` is `float`; otherwise return `value`."""
+    if dtype == 'float' and (not isinstance(value, bool)) and isinstance(value, int):
+        return float(value)
+    return value
+
 def _criteria_compare(op: str, left: T, right: T) -> bool:
     """Compare two values of the same type."""
     if op == '=':
@@ -111,8 +117,31 @@ def _in_closed_bounds(value: int | float, bounds: Mapping[str, Any]) -> bool:
     hi = bounds.get('max')
     return (lo is None or value >= lo) and (hi is None or value <= hi)
 
+def _is_between_int(value: object) -> TypeGuard[int]:
+    """Return whether `value` is a non-bool integer (`between` membership)."""
+    return isinstance(value, int) and (not isinstance(value, bool))
+
+def _is_mapping(value: object) -> TypeGuard[Mapping[str, object]]:
+    return isinstance(value, Mapping) and (not isinstance(value, (str, bytes, bytearray)))
+
+def _coerce_named_tensor(value: object, dtype: str) -> object | None:
+    """Rewrite tensor members when `value` looks like a generated `Series`."""
+    domain = getattr(value, 'domain', None)
+    items = getattr(value, 'items', None)
+    if domain is None or not callable(items) or _is_mapping(value):
+        return None
+    coerced = tuple((_coerce_one(member, dtype) for _coord, member in items()))
+    replace = getattr(value, 'with_values', None)
+    if callable(replace):
+        return replace(coerced)
+    return cast(Any, type(value))(domain, coerced)
+
 def _is_measure_sequence(value: object) -> TypeGuard[Sequence[object]]:
     return isinstance(value, Sequence) and (not isinstance(value, (str, bytes, bytearray)))
+
+def _is_real_number(value: object) -> TypeGuard[int | float]:
+    """Return whether `value` is a non-bool int or float (`real_between`)."""
+    return isinstance(value, (int, float)) and (not isinstance(value, bool))
 
 def _ndarray_grid_shape(value: object) -> tuple[int, int] | None:
     """Read a 1-D/2-D ndarray-like shape as ``(nrows, ncols)`` without converting it.
@@ -162,11 +191,11 @@ def _value_in_measure_domain(value: object, domain: Mapping[str, Any]) -> bool:
     if 'enum' in domain:
         return value in domain['enum']
     if 'between' in domain:
-        if isinstance(value, bool) or not isinstance(value, int):
+        if not _is_between_int(value):
             return False
         return _in_closed_bounds(value, domain['between'])
     if 'real_between' in domain:
-        if isinstance(value, bool) or not isinstance(value, (int, float)):
+        if not _is_real_number(value):
             return False
         return _in_closed_bounds(value, domain['real_between'])
     return True
@@ -175,6 +204,10 @@ def _reject_out_of_domain(value: object, domain: Mapping[str, Any], *, label: st
     """Raise `ValueError` when a non-null `value` is outside `domain`."""
     if value is None:
         return
+    if 'between' in domain and (not _is_between_int(value)):
+        raise ValueError(f'{label} has type {type(value).__name__}; between requires int')
+    if 'real_between' in domain and (not _is_real_number(value)):
+        raise ValueError(f'{label} has type {type(value).__name__}; real_between requires int or float')
     if not _value_in_measure_domain(value, domain):
         raise ValueError(f'{label} out of domain: {value!r} not in {_format_measure_domain(domain)}')
 
@@ -242,6 +275,33 @@ def apply_input_value_map(value: object, mapping: Mapping[Any, Any], *, series_i
     except (KeyError, TypeError):
         keys = ', '.join((repr(key) for key in sorted(mapping, key=repr)))
         raise ValueError(f'{series_id} value {value!r} is not in value_map; expected one of {{{keys}}}') from None
+
+def coerce_input_measure(value: object, dtype: str, *, series_id: str) -> object:
+    """Rewrite a public compute input using setter dtype rules.
+
+    `int` becomes `float` when `dtype` is `float`. Sequences and tensors are
+    rewritten memberwise. Other measure values (`str` error codes, bools,
+    `None`) pass through. `float` is never narrowed to `int`.
+
+    Args:
+        value: One measure, a catalog-order sequence, or a named tensor.
+        dtype: Binding measure dtype (`float`, `int`, `number`, ...).
+        series_id: Binding series id; reserved for type-error messages.
+
+    Returns:
+        The value, possibly after a safe `int` -> `float` coercion.
+    """
+    tensor = _coerce_named_tensor(value, dtype)
+    if tensor is not None:
+        return tensor
+    if _is_measure_sequence(value):
+        members = [_coerce_one(member, dtype) for member in value]
+        if isinstance(value, tuple):
+            return tuple(members)
+        if isinstance(value, list):
+            return members
+        return type(value)(members)
+    return _coerce_one(value, dtype)
 
 def datetime_to_excel_serial(value: datetime) -> float:
     """Convert a naive datetime to an Excel day serial (1900 date system)."""
@@ -743,7 +803,8 @@ def require_input_domain(value: object, domain: Mapping[str, Any], *, series_id:
         series_id: Binding series id used in the error message.
 
     Raises:
-        ValueError: When any non-`None` member is outside `domain`.
+        ValueError: When any non-`None` member is outside `domain`, or has a
+            type the domain kind does not accept (`between` requires `int`).
     """
     if _is_measure_sequence(value):
         for index, member in enumerate(value):
@@ -1092,6 +1153,15 @@ def _values_match(a: object, b: object) -> bool:
     if not isinstance(an, CoreXlError) and (not isinstance(bn, CoreXlError)):
         return an == bn
     return a == b
+
+def abs_number(*args: CellValue) -> float | CoreXlError:
+    """Return the absolute value of a number (Excel ``ABS``)."""
+    if len(args) != 1:
+        return CoreXlError.VALUE
+    n = to_number(args[0])
+    if isinstance(n, CoreXlError):
+        return n
+    return float(abs(n))
 
 def average_cells(*args: CellValue) -> float | CoreXlError:
     """Return the average of numeric cells."""
@@ -1658,6 +1728,39 @@ def sumproduct_cells(*args: CellValue) -> float | CoreXlError:
         result += product
     return result
 
+def text_format(value: CellValue, format_text: CellValue) -> str | CoreXlError:
+    """Format a value as text using a format string."""
+    scalar = as_scalar(value)
+    if isinstance(scalar, CoreXlError):
+        return scalar
+    if isinstance(format_text, CoreXlError):
+        return format_text
+    fmt = to_string(format_text)
+    n = to_number(cast(CellValue, scalar))
+    if isinstance(n, CoreXlError):
+        return to_string(cast(CellValue, scalar))
+    if fmt == '0':
+        return str(int(round(n)))
+    if fmt == '0.0':
+        return f'{n:.1f}'
+    if fmt == '0.00':
+        return f'{n:.2f}'
+    if fmt == '0.000':
+        return f'{n:.3f}'
+    if fmt == '#,##0':
+        return f'{int(round(n)):,}'
+    if fmt == '#,##0.00':
+        return f'{n:,.2f}'
+    if fmt == '0%':
+        return f'{int(round(n * 100))}%'
+    if fmt == '0.0%':
+        return f'{n * 100:.1f}%'
+    if fmt == '0.00%':
+        return f'{n * 100:.2f}%'
+    if n == int(n):
+        return str(int(n))
+    return str(n)
+
 def try_fastpath_arithmetic_array(op: str, arr_left: Any, arr_right: Any) -> Any | CoreXlError | None:
     return None
 
@@ -1764,6 +1867,13 @@ def _xl_concat(left: FormulaValue, right: FormulaValue) -> FormulaValue:
             return large
         return cast(FormulaValue, map_concat(left, right))
     return _concat_scalars(cast(CellValue, left), cast(CellValue, right))
+
+def value_from_text(text: CellValue) -> float | CoreXlError:
+    """Convert locale-formatted text to a number (Excel VALUE)."""
+    parsed = numbervalue_parse(text)
+    if parsed is CoreXlError.VALUE and isinstance(text, str):
+        return to_number(text)
+    return parsed
 
 def vlookup_cells(lookup_value: object, table_array: object, col_index_num: object, range_lookup: object=True) -> Scalar:
     """Excel VLOOKUP over a lazy grid or nested-list array."""
@@ -1879,6 +1989,14 @@ def _shared_isnumber(value_fn: Callable[[], CellValue]) -> bool:
         return False
     return not isinstance(value, bool) and isinstance(value, (int, float))
 
+def _shared_istext(value_fn: Callable[[], CellValue]) -> bool:
+    """Excel ISTEXT: False for errors; True only for non-error strings."""
+    try:
+        value = _resolve_scalar(value_fn)
+    except XlErrorException:
+        return False
+    return isinstance(value, str) and (not isinstance(value, CoreXlError))
+
 def _shared_large(array: CellValue, k: CellValue) -> float:
     """Return the k-th largest value, raising on Excel errors."""
     return raise_if_sentinel_float(large_kth(array, k))
@@ -1937,6 +2055,10 @@ def _shared_stdev(*args: CellValue) -> float:
 
 def _core_sub(left: FormulaValue, right: FormulaValue) -> FormulaValue:
     return _xl_arithmetic('-', left, right)
+
+def _shared_text(value: CellValue, format_text: CellValue) -> str:
+    """Format a value as text, raising on Excel errors."""
+    return raise_if_sentinel_str(text_format(value, format_text))
 
 def xlookup_cells(lookup_value: object, lookup_array: object, return_array: object, if_not_found: object=None, match_mode: object=0, search_mode: object=1) -> object:
     """Excel XLOOKUP (exact match; search forward or backward)."""
@@ -2012,7 +2134,7 @@ def as_measure(value: object, dtype: Literal["int"]) -> int | str: ...
 
 
 @overload
-def as_measure(value: object, dtype: Literal["str"]) -> str: ...
+def as_measure(value: object, dtype: Literal["str"]) -> str | int | float | bool: ...
 
 
 @overload
@@ -2033,6 +2155,8 @@ def as_measure(value: object, dtype: str = "float") -> int | float | str | bool 
 
     Overloads narrow the return by `dtype`: the default `float` path is
     `float | str` so generated `list[float | str]` accumulators type-check.
+    A `str` measure keeps Excel numbers and bools so `INDEX(...)=1` on a
+    string-dtyped computed 0/1 series stays numeric, matching the evaluator.
     """
     if value is None:
         return None
@@ -2049,6 +2173,8 @@ def as_measure(value: object, dtype: str = "float") -> int | float | str | bool 
             return int(value)
         raise TypeError(f"cannot coerce {type(value).__name__} to int measure")
     if dtype == "str":
+        if isinstance(value, bool | int | float):
+            return value
         return str(value)
     if dtype == "bool":
         return bool(value)
@@ -2107,10 +2233,12 @@ def _as_formula(value: object) -> FormulaValue:
 
 
 def _arith_operand(value: object) -> FormulaValue:
-    """Prepare an arithmetic operand for `core` (blank text is `0`)."""
+    """Prepare an arithmetic operand for `core`.
+
+    Blank cells (`None`) stay `None` so `to_number` coerces them to `0`. Empty
+    text (`""`) is left as text so arithmetic raises `#VALUE!` (Excel / #420).
+    """
     _raise_stored_error(value)
-    if isinstance(value, str) and value.replace("\u00a0", "").strip() == "":
-        return 0.0
     return _as_formula(value)
 
 
@@ -2223,11 +2351,39 @@ OPERATOR_TABLE = {
 }
 
 
+def xl_bool(value: object) -> bool:
+    """Coerce an `IF` condition with Excel boolean rules.
+
+    `to_bool("")` is `False` (evaluator / `to_bool`), not Excel's `#VALUE!`.
+    Non-boolean text such as `"nope"` raises `#VALUE!`.
+    """
+    _raise_stored_error(value)
+    result = _adapt_core(to_bool(_as_formula(value)))
+    assert isinstance(result, bool), f"IF condition returned {type(result).__name__}"
+    return result
+
+
 def xl_exp(*args: object) -> object:
     """Excel `EXP` via `core.math_funcs.exp_number`."""
     for arg in args:
         _raise_stored_error(arg)
     return _adapt_core(exp_number(*cast(tuple[CellValue, ...], args)))
+
+
+def xl_abs(*args: object) -> object:
+    """Excel `ABS` via `core.math_funcs.abs_number`."""
+    for arg in args:
+        _raise_stored_error(arg)
+    return _adapt_core(abs_number(*cast(tuple[CellValue, ...], args)))
+
+
+def xl_value(*args: object) -> object:
+    """Excel `VALUE` via `core.text_funcs.value_from_text`."""
+    for arg in args:
+        _raise_stored_error(arg)
+    if len(args) != 1:
+        raise XlError("#VALUE!")
+    return _adapt_core(value_from_text(cast(CellValue, args[0])))
 
 
 def xl_sum(*args: object) -> object:
@@ -2306,6 +2462,56 @@ def xl_choose_range(index: object, cells: Range) -> object:
     return cells.cell(selected // cols + 1, selected % cols + 1)
 
 
+def xl_lookup_cell(measure: object, workbook: object) -> object:
+    """Return `measure`, restoring `workbook`'s Excel type after dtype stringify.
+
+    INDEX/MATCH tables still read the bound series so `overrides` apply. A
+    string measure that is only `str(workbook)` is the series dtype hiding a
+    number or bool; Excel `INDEX` returns the worksheet type.
+    """
+    if measure == workbook:
+        return measure
+    if isinstance(measure, str) and measure == str(workbook):
+        return workbook
+    return measure
+
+
+def _as_native_grid(natives: object, height: int, width: int) -> tuple[tuple[object, ...], ...]:
+    """Interpret `natives` as a `height` by `width` row-major grid."""
+    if isinstance(natives, str) or not isinstance(natives, Sequence):
+        raise TypeError("natives must be a nested sequence")
+    rows = list(natives)
+    if height == 1 and width == len(rows) and (not rows or not isinstance(rows[0], Sequence)):
+        return (tuple(rows),)
+    grid: list[tuple[object, ...]] = []
+    for row in rows:
+        if isinstance(row, str) or not isinstance(row, Sequence):
+            grid.append((row,))
+        else:
+            grid.append(tuple(row))
+    if len(grid) != height or any(len(row) != width for row in grid):
+        got = f"{len(grid)}x{len(grid[0]) if grid else 0}"
+        raise ValueError(f"natives shape {got} != {height}x{width}")
+    return tuple(grid)
+
+
+def xl_typed_range(values: Range, natives: object) -> Range:
+    """Apply `xl_lookup_cell` to each cell of `values` using `natives`.
+
+    `natives` is a row-major nested sequence matching `values.shape`.
+    """
+    height, width = values.shape
+    grid = _as_native_grid(natives, height, width)
+
+    def resolve(row: int, column: int) -> FormulaValue:
+        return cast(
+            FormulaValue,
+            xl_lookup_cell(values.cell(row, column), grid[row - 1][column - 1]),
+        )
+
+    return Range("", 1, 1, height, width, lambda address: None, _coord_resolver=resolve)
+
+
 def xl_index(array: object, row_num: object = None, col_num: object = None) -> object:
     """Excel `INDEX` via `core.lookup_funcs.index_cells`."""
     return _adapt_core(index_cells(array, row_num, col_num))
@@ -2332,13 +2538,6 @@ def xl_vlookup(
     _raise_stored_error(col_index_num)
     _raise_stored_error(range_lookup)
     return _adapt_core(vlookup_cells(lookup, table_array, col_index_num, range_lookup))
-
-
-def xl_isnumber(value: object) -> bool:
-    """Excel `ISNUMBER`: True only for non-bool numbers; False for blanks and errors."""
-    if isinstance(value, str) and is_error(value):
-        return False
-    return not isinstance(value, bool) and isinstance(value, int | float)
 
 
 def _call_shared(function: Callable[..., object], *args: object) -> object:
@@ -2402,9 +2601,14 @@ def xl_isblank(value: Callable[[], object]) -> object:
     return _call_shared(_shared_isblank, _shared_thunk(value))
 
 
-def xl_isnumber_lazy(value: Callable[[], object]) -> object:
+def xl_isnumber(value: Callable[[], object]) -> object:
     """Inspect a possibly failing expression for a numeric value."""
     return _call_shared(_shared_isnumber, _shared_thunk(value))
+
+
+def xl_istext(value: Callable[[], object]) -> object:
+    """Inspect a possibly failing expression for a text value."""
+    return _call_shared(_shared_istext, _shared_thunk(value))
 
 
 def xl_npv(*args: object) -> object:
@@ -2445,6 +2649,11 @@ def xl_rounddown(*args: object) -> object:
 def xl_numbervalue(*args: object) -> object:
     """Parse numeric text with the shared Excel implementation."""
     return _shared_value(_shared_numbervalue, *args)
+
+
+def xl_text(*args: object) -> object:
+    """Format a value as text with the shared Excel implementation."""
+    return _shared_value(_shared_text, *args)
 
 
 def xl_left(*args: object) -> object:

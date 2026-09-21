@@ -1,0 +1,122 @@
+---
+title: Fill the input sheets
+guide-section: Working with a case
+---
+
+An economist does not type 70 keyword arguments by hand. You start from the shipped template snapshot and replace the cells you would have edited in yellow on Input 1–8.
+
+```{python}
+import inspect
+
+from lic_dsf_2025_08_12 import api, data
+
+
+def workbook_defaults(compute):
+    return {
+        name: getattr(data, f"{name.upper()}_DEFAULT")
+        for name in inspect.signature(compute).parameters
+    }
+```
+
+`compute_external_dsa_risk_rating_signal` needs 69 inputs; the overall rating needs 81. Each name is the snake_case form of an Input-sheet series. The matching default lives on `data` as `{NAME}_DEFAULT`.
+
+## Scalars you change first
+
+These are the Input 1 / Input 2 / Input 6 switches that usually move first in a new vintage:
+
+```{python}
+{
+    "country": data.COUNTRY_DEFAULT,
+    "first_projection_year": data.FIRST_PROJECTION_YEAR_DEFAULT,
+    "discount_rate": data.DISCOUNT_RATE_DEFAULT,
+    "external_domestic_debt_definition": data.EXTERNAL_DOMESTIC_DEBT_DEFINITION_DEFAULT,
+    "input_1_rer_overvaluation": data.INPUT_1_RER_OVERVALUATION_DEFAULT,
+    "input6_tailored_tests_enabled": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT,
+    "contingent_liability_soe_debt_pct_gdp": data.CONTINGENT_LIABILITY_SOE_DEBT_PCT_GDP_DEFAULT,
+    "contingent_liability_financial_market_pct_gdp": data.CONTINGENT_LIABILITY_FINANCIAL_MARKET_PCT_GDP_DEFAULT,
+    "ppp_capital_stock_shock_pct": data.PPP_CAPITAL_STOCK_SHOCK_PCT_DEFAULT,
+}
+```
+
+| Workbook cell | Argument | Snapshot | Allowed values |
+| --- | --- | --- | --- |
+| Input 1 `C7` | `country` | `Ghana` | LIC-DSF country names as spelled in the template (`Gambia, The`, `Congo, DR`, …) |
+| Input 1 `C18` | `first_projection_year` | `2024` | Integer year |
+| Input 1 `C25` | `discount_rate` | `0.05` | Decimal in `[0, 1]` — `0.05` is 5 percent, not `5` |
+| Input 1 `C31` | `input_1_rer_overvaluation` | `20.0` | Percent overvaluation |
+| Input 1 `C33` | `external_domestic_debt_definition` | `Residency-based` | `Residency-based` or `Currency-based` |
+| Input 6 `C6` | `input6_tailored_tests_enabled` | `On` | `On` or `Off` |
+
+The package validates those domains before the formulas run. A misspelled country name or a discount rate of `5` (instead of `0.05`) fails closed.
+
+## Macro and financing series
+
+Input 3–5 are labeled `Series` objects — immutable tensors with named axes, not plain lists. Nominal GDP on Input 3 is a single `TIME_PERIOD` axis covering history and the projection:
+
+```{python}
+gdp = data.INPUT3_INPUT_3_MACRO_GROSS_DOMESTIC_PRODUCT_US_DOLLARS_DEFAULT
+print("axes:", [axis.name for axis in gdp.domain.axes])
+print("years:", gdp.domain.axes[0].keys[0], "…", gdp.domain.axes[0].keys[-1])
+print("2024 GDP:", gdp.sel(TIME_PERIOD=2024))
+```
+
+`sel` drops the axes you fix. For a one-axis series that is just the observation. You can also index with the year itself (`gdp[2024]`) or the coordinate tuple (`gdp[(2024,)]`).
+
+Input 4 interest rates are keyed by `INSTRUMENT` — the same creditor rows as the external-financing sheet:
+
+```{python}
+rates = data.INPUT4_INTEREST_RATE_DEFAULT
+{
+    instrument: rates.sel(INSTRUMENT=instrument)
+    for instrument in ("IMF", "Eurobond", "PPG ST external debt")
+}
+```
+
+Exports of goods and services (Input 3) use the same year axis as GDP:
+
+```{python}
+exports = data.INPUT3_INPUT_3_MACRO_EXPORTS_OF_GOODS_AND_SERVICES_DEFAULT
+exports.sel(TIME_PERIOD=2024)
+```
+
+## Override one cell, keep the rest
+
+Copy the defaults, replace a scalar, and recompute. The call below is the Excel action “type 4 percent in Input 1 `C25`”:
+
+```{python}
+case = workbook_defaults(api.compute_external_dsa_risk_rating_signal)
+case["discount_rate"] = 0.04
+api.compute_external_dsa_risk_rating_signal(**case)
+```
+
+To edit a time series, rebuild it with `with_records` so the schema and cell provenance stay attached. The example raises 2024 nominal GDP and leaves every other year untouched:
+
+```{python}
+gdp = data.INPUT3_INPUT_3_MACRO_GROSS_DOMESTIC_PRODUCT_US_DOLLARS_DEFAULT
+gdp_revised = gdp.with_records(
+    (coord, 50_000.0 if coord == (2024,) else value)
+    for coord, value in gdp.items()
+)
+(gdp.sel(TIME_PERIOD=2024), gdp_revised.sel(TIME_PERIOD=2024), gdp_revised.sel(TIME_PERIOD=2025))
+```
+
+Pass `gdp_revised` as `input3_input_3_macro_gross_domestic_product_us_dollars` in the keyword arguments.
+
+Two-axis series (Input 4 disbursements are `INSTRUMENT` × `TIME_PERIOD`; customized public deltas are `INDICATOR` × `TIME_PERIOD`) use the same pattern: iterate `items()`, change the coordinates you care about, and call `with_records`.
+
+## Sheet → argument groups
+
+| Workbook sheet | Typical arguments |
+| --- | --- |
+| Input 1 – Basics | `country`, `first_projection_year`, `discount_rate`, `external_domestic_debt_definition`, `input_1_rer_overvaluation` |
+| Input 2 – Debt coverage | `contingent_liability_*_pct_gdp`, `ppp_capital_stock_shock_pct` |
+| Input 3 – Macro-debt | `input3_input_3_macro_*`, `input3_input_3_external_debt_*`, `input3_domestic_*`, `input3_old_debt_service`, `input3_new_disbursements` |
+| Input 4 – External financing | `input4_interest_rate`, `input4_grace_period`, `input4_loan_maturity`, `input4_disbursements`, `input4_blend_variant` |
+| Input 5 – Local-debt financing | `input5_grace_period`, `input5_interest_rate_on_domestic_debt`, `input5_maturity`, `input5_gfn_share` |
+| Input 6 – Tailored / standard tests | `input6_tailored_tests_enabled`, `input6_commodity_group_relevant`, `input6_standard_*` |
+| Input 8 – SDR | `input8_sdr_stock`, `input8_sdr_interest_rate` |
+| Customized scenario – public | `customized_public_include_scenario`, `customized_public_delta`, overflow and initial-stock scalars |
+
+::: {.callout-tip}
+Keep the helper and a single `case` dict in your notebook. Change one key, re-run the rating functions, and you have a one-assumption sensitivity — the same discipline as shocking a single yellow cell and pressing F9.
+:::

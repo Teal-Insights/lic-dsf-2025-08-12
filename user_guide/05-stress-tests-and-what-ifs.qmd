@@ -1,0 +1,116 @@
+---
+title: Stress tests and what-ifs
+guide-section: Working with a case
+---
+
+The LIC-DSF rating is a statement about the baseline **and** the stress envelope. This page covers the Input 6 switches, the tailored-test applicability flags on Chart Data, and the one-cell shocks that correspond to the starter scenario matrix for this vintage.
+
+```{python}
+import inspect
+
+from lic_dsf_2025_08_12 import api, data
+
+
+def workbook_defaults(compute):
+    return {
+        name: getattr(data, f"{name.upper()}_DEFAULT")
+        for name in inspect.signature(compute).parameters
+    }
+```
+
+## Which tailored tests apply?
+
+Chart Data `I17:I19` stores 0/1 flags for natural disaster, commodity price, and market financing. Those flags are cheap to evaluate and depend on country lists plus (for commodities) Input 3 trade shares and Input 6 relevance ticks.
+
+```{python}
+{
+    "natural_disaster": api.compute_tailored_stress_natural_disaster_applicable(
+        country=data.COUNTRY_DEFAULT
+    ),
+    "commodity_price": api.compute_tailored_stress_commodity_price_applicable(
+        **workbook_defaults(api.compute_tailored_stress_commodity_price_applicable)
+    ),
+    "market_financing": api.compute_tailored_stress_market_financing_applicable(
+        country=data.COUNTRY_DEFAULT,
+        input6_tailored_tests_enabled=data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT,
+    ),
+}
+```
+
+For the shipped Ghana case, natural disaster is **off** (`0`) and both commodity-price and market-financing tests are **on** (`1`). Input 6 commodity-group ticks in the snapshot mark precious metals and other agricultural commodities as relevant:
+
+```{python}
+relevant = data.INPUT6_COMMODITY_GROUP_RELEVANT_DEFAULT
+{
+    group: relevant.sel(COMMODITY=group)
+    for group in relevant.domain.axes[0].keys
+}
+```
+
+The master switch is `input6_tailored_tests_enabled`. Setting it to `"Off"` is the Excel action on Input 6 `C6`:
+
+```{python}
+api.compute_tailored_stress_market_financing_applicable(
+    country=data.COUNTRY_DEFAULT,
+    input6_tailored_tests_enabled="Off",
+)
+```
+
+Standardized tests (B1 real GDP, B2 primary balance, B3 exports, B4 other flows, B5 depreciation, B6 combination) stay available. Their size mode and interaction switch are `input6_standard_size_threshold_mode` (`New` in the snapshot) and `input6_standard_interactions` (`On`).
+
+## One-assumption shocks
+
+The functions below each change a single Input 1 / Input 6 scalar and recompute the external rating. On this High snapshot none of them flips the mechanical rating — which is itself a useful result when you are documenting robustness.
+
+```{python}
+def external_rating(**overrides):
+    case = workbook_defaults(api.compute_external_dsa_risk_rating_signal)
+    case.update(overrides)
+    return api.compute_external_dsa_risk_rating_signal(**case)
+
+
+{
+    "template snapshot": external_rating(),
+    "discount rate 4%": external_rating(discount_rate=0.04),
+    "discount rate 6%": external_rating(discount_rate=0.06),
+    "currency-based debt": external_rating(
+        external_domestic_debt_definition="Currency-based"
+    ),
+    "tailored tests off": external_rating(input6_tailored_tests_enabled="Off"),
+    "REER overvaluation 0": external_rating(input_1_rer_overvaluation=0),
+    "REER overvaluation 40": external_rating(input_1_rer_overvaluation=40),
+}
+```
+
+Use the same `overrides` dict with `compute_fiscal_risk_rating_signal` or `compute_overall_risk_rating_signal` when the question is the public-debt or combined rating. For path-level questions, pass the same dict into a Chart Data series function and compare `sel(SCENARIO=..., TIME_PERIOD=...)`.
+
+## Customized scenario (A2)
+
+The public customized sheet is included in the snapshot (`customized_public_include_scenario` is `"Yes"`) but the delta grid is zeros, so A2 coincides with the baseline until you fill it.
+
+`customized_public_delta` is `INDICATOR` × `TIME_PERIOD`. Indicators include revenue and grants, primary expenditure, real GDP growth, inflation, the exchange rate, and exports. To enter a one-year growth shock in 2025:
+
+```{python}
+delta = data.CUSTOMIZED_PUBLIC_DELTA_DEFAULT
+print(list(delta.domain.axes[0].keys))
+
+growth = "Real GDP growth (in percent)"
+shocked = delta.with_records(
+    (coord, -2.0 if coord == (growth, 2025) else value)
+    for coord, value in delta.items()
+)
+shocked.sel(INDICATOR=growth, TIME_PERIOD=2025)
+```
+
+Pass `shocked` as `customized_public_delta` (and keep `customized_public_include_scenario="Yes"`) into `compute_chart_pv_debt_gdp_ratio_a2_alternative_scenario_customize_enter` or any rating function that accepts the customized-public arguments.
+
+## A working sequence
+
+1. Load `workbook_defaults` for the function you need.
+2. Confirm tailored-test flags for the country.
+3. Replace Input 3–5 series that differ from the template.
+4. Compute the three ratings and the breach / MX scalars.
+5. Pull the Chart Data paths you will plot in the write-up.
+6. Re-run steps 4–5 under one-assumption shocks (discount rate, debt definition, tailored on/off, REER, A2 deltas).
+
+That is the same loop as filling a LIC-DSF workbook, without leaving Python.

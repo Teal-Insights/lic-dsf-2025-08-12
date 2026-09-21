@@ -1,0 +1,118 @@
+---
+title: Compute a risk rating
+guide-section: Start here
+---
+
+Chart Data publishes three rating blocks: **external DSA**, **fiscal (total public debt)**, and the **overall** combination. Each block has a text signal, a numeric companion, and (for external and fiscal) baseline/shock breach flags.
+
+Every rating function is keyword-only. The `data` module stores the template snapshot as `{ARGUMENT}_DEFAULT`. The helper below fills every required argument from that snapshot so you can start from the shipped Ghana case and override only what you care about.
+
+```{python}
+import inspect
+
+from lic_dsf_2025_08_12 import api, data
+
+
+def workbook_defaults(compute):
+    """Keyword arguments that reproduce the shipped IDA21 template snapshot."""
+    return {
+        name: getattr(data, f"{name.upper()}_DEFAULT")
+        for name in inspect.signature(compute).parameters
+    }
+```
+
+## The three ratings
+
+```{python}
+external = api.compute_external_dsa_risk_rating_signal(
+    **workbook_defaults(api.compute_external_dsa_risk_rating_signal)
+)
+fiscal = api.compute_fiscal_risk_rating_signal(
+    **workbook_defaults(api.compute_fiscal_risk_rating_signal)
+)
+overall = api.compute_overall_risk_rating_signal(
+    **workbook_defaults(api.compute_overall_risk_rating_signal)
+)
+
+{"external": external, "fiscal": fiscal, "overall": overall}
+```
+
+On this vintage the template snapshot is **High** on all three signals. The numeric companions (Chart Data `D11`, `I11`, `L11`) use the same ordering the workbook does — `3.0` for High:
+
+```{python}
+{
+    "external": api.compute_external_dsa_risk_rating_numeric(
+        **workbook_defaults(api.compute_external_dsa_risk_rating_numeric)
+    ),
+    "fiscal": api.compute_fiscal_risk_rating_numeric(
+        **workbook_defaults(api.compute_fiscal_risk_rating_numeric)
+    ),
+    "overall": api.compute_overall_risk_rating_numeric(
+        **workbook_defaults(api.compute_overall_risk_rating_numeric)
+    ),
+}
+```
+
+## Breaches and the most-extreme shock
+
+A rating of High is not a black box. Chart Data also stores whether the **baseline** or a **shock** path breaches a threshold (`1` = breach, `0` = no breach), and which standardized or tailored shock is the most extreme (the MX label).
+
+```{python}
+{
+    "external_baseline_breach": api.compute_external_baseline_breach(
+        **workbook_defaults(api.compute_external_baseline_breach)
+    ),
+    "external_shock_breach": api.compute_external_shock_breach(
+        **workbook_defaults(api.compute_external_shock_breach)
+    ),
+    "fiscal_baseline_breach": api.compute_fiscal_baseline_breach(
+        **workbook_defaults(api.compute_fiscal_baseline_breach)
+    ),
+    "fiscal_shock_breach": api.compute_fiscal_shock_breach(
+        **workbook_defaults(api.compute_fiscal_shock_breach)
+    ),
+}
+```
+
+```{python}
+{
+    "external_pv_debt_to_gdp_mx": api.compute_external_pv_debt_to_gdp_mx_shock(
+        **workbook_defaults(api.compute_external_pv_debt_to_gdp_mx_shock)
+    ),
+    "external_pv_debt_to_exports_mx": api.compute_external_pv_debt_to_exports_mx_shock(
+        **workbook_defaults(api.compute_external_pv_debt_to_exports_mx_shock)
+    ),
+    "external_debt_service_to_exports_mx": api.compute_external_debt_service_to_exports_mx_shock(
+        **workbook_defaults(api.compute_external_debt_service_to_exports_mx_shock)
+    ),
+    "fiscal_pv_debt_to_gdp_mx": api.compute_fiscal_pv_debt_to_gdp_mx_shock(
+        **workbook_defaults(api.compute_fiscal_pv_debt_to_gdp_mx_shock)
+    ),
+}
+```
+
+In this snapshot the external MX shock on the stock and flow ratios is **Exports**; the fiscal MX shock on PV of debt-to-GDP is **Primary Balance**. Those labels are the same strings the workbook writes next to the rating block.
+
+## Fiscal space (moderate risk)
+
+When the mechanical rating is moderate, Chart Data also carries a fiscal-space phrase (`D23`). The function still evaluates on this High case:
+
+```{python}
+api.compute_fiscal_space_moderate_risk_signal(
+    **workbook_defaults(api.compute_fiscal_space_moderate_risk_signal)
+)
+```
+
+## Chart Data map
+
+| What you want | Function | Workbook cell |
+| --- | --- | --- |
+| External rating text | `compute_external_dsa_risk_rating_signal` | `Chart Data!D10` |
+| External rating number | `compute_external_dsa_risk_rating_numeric` | `Chart Data!D11` |
+| External baseline / shock breach | `compute_external_baseline_breach`, `compute_external_shock_breach` | `D12`, `D13` |
+| Fiscal rating text / number | `compute_fiscal_risk_rating_signal`, `compute_fiscal_risk_rating_numeric` | `I10`, `I11` |
+| Fiscal baseline / shock breach | `compute_fiscal_baseline_breach`, `compute_fiscal_shock_breach` | `I12`, `I13` |
+| Overall rating | `compute_overall_risk_rating_signal`, `compute_overall_risk_rating_numeric` | `L10`, `L11` |
+| Fiscal space phrase | `compute_fiscal_space_moderate_risk_signal` | `D23` |
+
+The indicator *paths* behind those scalars — baseline, historical, B1–B6, C1–C4, A2 — are the subject of [Read the Chart Data](04-read-the-chart-data.qmd).

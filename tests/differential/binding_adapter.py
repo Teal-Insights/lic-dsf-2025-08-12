@@ -8,7 +8,11 @@ from typing import Any, cast
 
 from excel_grapher.core.address_keys import normalize_key
 
-from .output_specs import OutputCellSpec, outputs_from_tuple
+from .output_specs import (
+    OutputCellSpec,
+    outputs_from_named_axis_tensor,
+    outputs_from_tuple,
+)
 
 _RECORD_VALUE_FIELD = "OBS_VALUE"
 
@@ -47,13 +51,53 @@ def _record_sequence(value: object) -> Sequence[Mapping[str, Any]]:
     raise TypeError(f"expected a sequence of records, got {type(value).__name__}")
 
 
+def _is_named_axis_tensor(value: object) -> bool:
+    return hasattr(value, "domain") and hasattr(value, "items")
+
+
+def _overlay_named_axis_tensor(
+    series_id: str,
+    default: Any,
+    records: Sequence[Mapping[str, Any]],
+) -> Any:
+    """Patch coordinate values on a generated ``Series`` / ``Tensor`` default."""
+    if not records:
+        return default
+    by_coord = dict(default.items())
+    for record in records:
+        coord = tuple(record[axis.name] for axis in default.domain.axes)
+        if coord not in by_coord:
+            raise LookupError(
+                f"{series_id} has no cell for "
+                f"{dict(zip((axis.name for axis in default.domain.axes), coord, strict=True))}"
+            )
+        by_coord[coord] = record[_RECORD_VALUE_FIELD]
+    values = tuple(by_coord[coord] for coord in default.domain)
+    with_values = getattr(default, "with_values", None)
+    if callable(with_values):
+        return with_values(values)
+    return type(default)(default.domain, values)
+
+
 def overlay_series_values(
     series: Mapping[str, Any],
-    default: Sequence[Any],
+    default: object,
     records: Sequence[Mapping[str, Any]] = (),
-) -> tuple[Any, ...]:
-    """Return catalog-order values with sparse record overlays."""
+) -> object:
+    """Return catalog-order values with sparse record overlays.
+
+    Tuple defaults stay tuples. Named-axis ``Series`` defaults stay that type
+    (schema and cells included) so ``compute_*`` receives the object internals
+    validate.
+    """
     series_id = str(series["id"])
+    if _is_named_axis_tensor(default):
+        return _overlay_named_axis_tensor(series_id, default, records)
+    if not isinstance(default, Sequence) or isinstance(default, (str, bytes)):
+        raise TypeError(
+            f"{series_id} default must be a sequence or named-axis tensor, "
+            f"got {type(default).__name__}"
+        )
     cells = series["cells"]
     if len(default) != len(cells):
         raise ValueError(
@@ -242,15 +286,15 @@ def compute_outputs_for_writes(
     input_series: Sequence[Mapping[str, Any]],
     output_specs: tuple[OutputCellSpec, ...],
 ) -> dict[str, Any]:
-    """Call each unique ``compute_*`` with binding-mapped kwargs; zip results."""
+    """Call each unique ``compute_*`` with binding-mapped kwargs; map results."""
     series_inputs = series_inputs_from_excel_writes(input_series, excel_writes)
     shocked_ids = frozenset(series_inputs)
     shocked_series = [
         series for series in input_series if str(series["id"]) in shocked_ids
     ]
-    values_by_compute: dict[str, Sequence[Any]] = {}
+    results_by_compute: dict[str, object] = {}
     for spec in output_specs:
-        if spec.compute in values_by_compute:
+        if spec.compute in results_by_compute:
             continue
         function = getattr(api, spec.compute)
         kwargs = input_kwargs_for_compute(
@@ -259,5 +303,19 @@ def compute_outputs_for_writes(
             inputs=series_inputs,
             input_series=shocked_series,
         )
-        values_by_compute[spec.compute] = _catalog_order_values(function(**kwargs))
-    return outputs_from_tuple(output_specs, values_by_compute)
+        results_by_compute[spec.compute] = function(**kwargs)
+
+    values: dict[str, Any] = {}
+    grouped: dict[str, list[OutputCellSpec]] = {}
+    for spec in output_specs:
+        grouped.setdefault(spec.compute, []).append(spec)
+    for compute, compute_specs in grouped.items():
+        result = results_by_compute[compute]
+        spec_tuple = tuple(compute_specs)
+        if _is_named_axis_tensor(result):
+            values.update(outputs_from_named_axis_tensor(spec_tuple, result))
+            continue
+        values.update(
+            outputs_from_tuple(spec_tuple, {compute: _catalog_order_values(result)})
+        )
+    return values
