@@ -1,0 +1,2933 @@
+schema_version: 1.19.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+  - id: DSA_SECTION
+    name: DSA statement section
+    dtype: string
+  - id: HOLDER
+    name: Debt holder residency
+    dtype: string
+  - id: ISSUANCE_YEAR
+    name: Issuance year
+    dtype: int
+series:
+- id: pv_lc_nr1_terms_fx_pa_growth
+  sheet: PV_LC_NR1
+  data_range: PV_LC_NR1!T1:X1
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: Bonds (1 to 3 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 3
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.terms
+    INDICATOR: FX (pa) growth
+  notes: 'Lifted from 1 internal series on pv_lc.terms: FX (pa) growth. Instrument: Bonds (1 to 3 years)-LC. Holder: non-residents (constant).'
+- id: pv_lc_nr1_terms_fx_pa_growth_avg
+  sheet: PV_LC_NR1
+  data_range: PV_LC_NR1!Y1
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: Bonds (1 to 3 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+  key:
+  - INSTRUMENT
+  - HOLDER
+  series_context:
+    TABLE: pv_lc.terms
+    INDICATOR: FX (pa) growth 5-year average
+  notes: 'Lifted from 1 internal series on pv_lc.terms: FX (pa) growth 5-year average. Instrument: Bonds (1 to 3 years)-LC. Holder: non-residents (constant).'
+- id: pv_lc_nr1_terms_projection_year
+  sheet: PV_LC_NR1
+  data_range: PV_LC_NR1!D3:BB3
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: Bonds (1 to 3 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 3
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.terms
+    INDICATOR: Projection year
+  notes: 'Lifted from 1 internal series on pv_lc.terms: Projection year. Instrument: Bonds (1 to 3 years)-LC. Holder: non-residents (constant).'
+- id: pv_lc_nr1_terms_fx_pa
+  sheet: PV_LC_NR1
+  data_range: PV_LC_NR1!D4:BB4
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: Bonds (1 to 3 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 3
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.terms
+    INDICATOR: FX (pa)
+  notes: 'Lifted from 1 internal series on pv_lc.terms: FX (pa). Instrument: Bonds (1 to 3 years)-LC. Holder: non-residents (constant).'
+- id: pv_lc_nr1_terms_fx_eop
+  sheet: PV_LC_NR1
+  data_range: PV_LC_NR1!D5:BB5
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: Bonds (1 to 3 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 3
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.terms
+    INDICATOR: FX (eop)
+  notes: 'Lifted from 1 internal series on pv_lc.terms: FX (eop). Instrument: Bonds (1 to 3 years)-LC. Holder: non-residents (constant).'
+- id: pv_lc_terms_gross_financing_in_lc
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D6:X6
+  - PV_LC_NR2!D6:X6
+  - PV_LC_NR3!D6:X6
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 3
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.terms
+    INDICATOR: Gross financing (in LC)
+  notes: Gross financing (in LC) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_terms_interest_rate_local_currency
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D7:X7
+  - PV_LC_NR2!D7:X7
+  - PV_LC_NR3!D7:X7
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 3
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.terms
+    INDICATOR: Interest rate (local currency)
+  notes: Interest rate (local currency) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_summary_stock_of_debt_in_usd
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D14:X14
+  - PV_LC_NR2!D14:X14
+  - PV_LC_NR3!D14:X14
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 3
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.summary
+    INDICATOR: Stock of debt (in USD)
+  notes: Stock of debt (in USD) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_summary_pv_of_debt_in_usd
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D15:X15
+  - PV_LC_NR2!D15:X15
+  - PV_LC_NR3!D15:X15
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 3
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.summary
+    INDICATOR: PV of debt (in USD)
+  notes: PV of debt (in USD) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_terms_grace
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!B16
+  - PV_LC_NR2!B16
+  - PV_LC_NR3!B16
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+  key:
+  - INSTRUMENT
+  - HOLDER
+  series_context:
+    TABLE: pv_lc.terms
+    INDICATOR: Grace
+  notes: Grace on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_summary_interest_in_usd
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D17:X17
+  - PV_LC_NR2!D17:X17
+  - PV_LC_NR3!D17:X17
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 3
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.summary
+    INDICATOR: Interest (in USD)
+  notes: Interest (in USD) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_terms_maturity
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!B17
+  - PV_LC_NR2!B17
+  - PV_LC_NR3!B17
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+  key:
+  - INSTRUMENT
+  - HOLDER
+  series_context:
+    TABLE: pv_lc.terms
+    INDICATOR: Maturity
+  notes: Maturity on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_summary_amortization_in_usd
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D18:X18
+  - PV_LC_NR2!D18:X18
+  - PV_LC_NR3!D18:X18
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 3
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.summary
+    INDICATOR: Amortization (in USD)
+  notes: Amortization (in USD) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_terms_discount
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!B19
+  - PV_LC_NR2!B19
+  - PV_LC_NR3!B19
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+  key:
+  - INSTRUMENT
+  - HOLDER
+  series_context:
+    TABLE: pv_lc.terms
+    INDICATOR: Discount
+    VARIANT: discount
+  notes: Discount on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_issuance_year
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!C21:C401
+  - PV_LC_NR2!C21:C401
+  - PV_LC_NR3!C21:C401
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '22:39'
+  - '41:58'
+  - 60:77
+  - 79:96
+  - 98:115
+  - 117:134
+  - 136:153
+  - 155:172
+  - 174:191
+  - 193:210
+  - 212:229
+  - 231:248
+  - 250:267
+  - 269:286
+  - 288:305
+  - 307:324
+  - 326:343
+  - 345:362
+  - 364:381
+  - 383:400
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 21
+          2025: 40
+          2026: 59
+          2027: 78
+          2028: 97
+          2029: 116
+          2030: 135
+          2031: 154
+          2032: 173
+          2033: 192
+          2034: 211
+          2035: 230
+          2036: 249
+          2037: 268
+          2038: 287
+          2039: 306
+          2040: 325
+          2041: 344
+          2042: 363
+          2043: 382
+          2044: 401
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: Issuance year
+    VARIANT: output
+  notes: Issuance year on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_period_index
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D23:AE403
+  - PV_LC_NR2!D23:AE403
+  - PV_LC_NR3!D23:AE403
+  layout: series
+  internal: {}
+  domain:
+    between:
+      min: 0
+      max: 50
+  exclude_rows:
+  - '24:41'
+  - 43:60
+  - 62:79
+  - 81:98
+  - 100:117
+  - 119:136
+  - 138:155
+  - 157:174
+  - 176:193
+  - 195:212
+  - 214:231
+  - 233:250
+  - 252:269
+  - 271:288
+  - 290:307
+  - 309:326
+  - 328:345
+  - 347:364
+  - 366:383
+  - 385:402
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 23
+          2025: 42
+          2026: 61
+          2027: 80
+          2028: 99
+          2029: 118
+          2030: 137
+          2031: 156
+          2032: 175
+          2033: 194
+          2034: 213
+          2035: 232
+          2036: 251
+          2037: 270
+          2038: 289
+          2039: 308
+          2040: 327
+          2041: 346
+          2042: 365
+          2043: 384
+          2044: 403
+        read: int
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: Period index
+    VARIANT: output
+  notes: Period index on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_projection_year
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D24:AE404
+  - PV_LC_NR2!D24:AE404
+  - PV_LC_NR3!D24:AE404
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '25:42'
+  - 44:61
+  - 63:80
+  - 82:99
+  - 101:118
+  - 120:137
+  - 139:156
+  - 158:175
+  - 177:194
+  - 196:213
+  - 215:232
+  - 234:251
+  - 253:270
+  - 272:289
+  - 291:308
+  - 310:327
+  - 329:346
+  - 348:365
+  - 367:384
+  - 386:403
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 24
+          2025: 43
+          2026: 62
+          2027: 81
+          2028: 100
+          2029: 119
+          2030: 138
+          2031: 157
+          2032: 176
+          2033: 195
+          2034: 214
+          2035: 233
+          2036: 252
+          2037: 271
+          2038: 290
+          2039: 309
+          2040: 328
+          2041: 347
+          2042: 366
+          2043: 385
+          2044: 404
+        read: int
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: Projection year
+    VARIANT: output
+  notes: Projection year on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_new_borrowing_gross_in_local_currency
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D25:AE405
+  - PV_LC_NR2!D25:AE405
+  - PV_LC_NR3!D25:AE405
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '26:43'
+  - 45:62
+  - 64:81
+  - 83:100
+  - 102:119
+  - 121:138
+  - 140:157
+  - 159:176
+  - 178:195
+  - 197:214
+  - 216:233
+  - 235:252
+  - 254:271
+  - 273:290
+  - 292:309
+  - 311:328
+  - 330:347
+  - 349:366
+  - 368:385
+  - 387:404
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 25
+          2025: 44
+          2026: 63
+          2027: 82
+          2028: 101
+          2029: 120
+          2030: 139
+          2031: 158
+          2032: 177
+          2033: 196
+          2034: 215
+          2035: 234
+          2036: 253
+          2037: 272
+          2038: 291
+          2039: 310
+          2040: 329
+          2041: 348
+          2042: 367
+          2043: 386
+          2044: 405
+        read: int
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: New borrowing (gross, in local currency)
+    VARIANT: output
+  notes: New borrowing (gross, in local currency) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_cumulative
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D26:AE406
+  - PV_LC_NR2!D26:AE406
+  - PV_LC_NR3!D26:AE406
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '27:44'
+  - 46:63
+  - 65:82
+  - 84:101
+  - 103:120
+  - 122:139
+  - 141:158
+  - 160:177
+  - 179:196
+  - 198:215
+  - 217:234
+  - 236:253
+  - 255:272
+  - 274:291
+  - 293:310
+  - 312:329
+  - 331:348
+  - 350:367
+  - 369:386
+  - 388:405
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 26
+          2025: 45
+          2026: 64
+          2027: 83
+          2028: 102
+          2029: 121
+          2030: 140
+          2031: 159
+          2032: 178
+          2033: 197
+          2034: 216
+          2035: 235
+          2036: 254
+          2037: 273
+          2038: 292
+          2039: 311
+          2040: 330
+          2041: 349
+          2042: 368
+          2043: 387
+          2044: 406
+        read: int
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: cumulative
+    VARIANT: output
+  notes: cumulative on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_stock_of_debt_in_usd
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D27:X407
+  - PV_LC_NR2!D27:X407
+  - PV_LC_NR3!D27:X407
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '28:45'
+  - 47:64
+  - 66:83
+  - 85:102
+  - 104:121
+  - 123:140
+  - 142:159
+  - 161:178
+  - 180:197
+  - 199:216
+  - 218:235
+  - 237:254
+  - 256:273
+  - 275:292
+  - 294:311
+  - 313:330
+  - 332:349
+  - 351:368
+  - 370:387
+  - 389:406
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 27
+          2025: 46
+          2026: 65
+          2027: 84
+          2028: 103
+          2029: 122
+          2030: 141
+          2031: 160
+          2032: 179
+          2033: 198
+          2034: 217
+          2035: 236
+          2036: 255
+          2037: 274
+          2038: 293
+          2039: 312
+          2040: 331
+          2041: 350
+          2042: 369
+          2043: 388
+          2044: 407
+        read: int
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: Stock of debt (in USD)
+    VARIANT: output
+  notes: Stock of debt (in USD) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_labels_stock_of_debt_in_lc
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!C28
+  - PV_LC_NR2!C28
+  - PV_LC_NR3!C28
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+  key:
+  - INSTRUMENT
+  - HOLDER
+  series_context:
+    TABLE: pv_lc.labels
+    INDICATOR: Stock of debt (in LC)
+  notes: Stock of debt (in LC) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_stock_of_debt_in_lc
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D28:AD408
+  - PV_LC_NR2!D28:AD408
+  - PV_LC_NR3!D28:AD408
+  layout: series
+  internal: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
+  exclude_rows:
+  - '29:46'
+  - 48:65
+  - 67:84
+  - 86:103
+  - 105:122
+  - 124:141
+  - 143:160
+  - 162:179
+  - 181:198
+  - 200:217
+  - 219:236
+  - 238:255
+  - 257:274
+  - 276:293
+  - 295:312
+  - 314:331
+  - 333:350
+  - 352:369
+  - 371:388
+  - 390:407
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 28
+          2025: 47
+          2026: 66
+          2027: 85
+          2028: 104
+          2029: 123
+          2030: 142
+          2031: 161
+          2032: 180
+          2033: 199
+          2034: 218
+          2035: 237
+          2036: 256
+          2037: 275
+          2038: 294
+          2039: 313
+          2040: 332
+          2041: 351
+          2042: 370
+          2043: 389
+          2044: 408
+        read: int
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: Stock of debt (in LC)
+    VARIANT: output
+  notes: Stock of debt (in LC) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_pv_of_debt_in_usd
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D29:X409
+  - PV_LC_NR2!D29:X409
+  - PV_LC_NR3!D29:X409
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '30:47'
+  - 49:66
+  - 68:85
+  - 87:104
+  - 106:123
+  - 125:142
+  - 144:161
+  - 163:180
+  - 182:199
+  - 201:218
+  - 220:237
+  - 239:256
+  - 258:275
+  - 277:294
+  - 296:313
+  - 315:332
+  - 334:351
+  - 353:370
+  - 372:389
+  - 391:408
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 29
+          2025: 48
+          2026: 67
+          2027: 86
+          2028: 105
+          2029: 124
+          2030: 143
+          2031: 162
+          2032: 181
+          2033: 200
+          2034: 219
+          2035: 238
+          2036: 257
+          2037: 276
+          2038: 295
+          2039: 314
+          2040: 333
+          2041: 352
+          2042: 371
+          2043: 390
+          2044: 409
+        read: int
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: PV of debt (in USD)
+    VARIANT: output
+  notes: PV of debt (in USD) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_grace
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!B30:B410
+  - PV_LC_NR2!B30:B410
+  - PV_LC_NR3!B30:B410
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '31:48'
+  - 50:67
+  - 69:86
+  - 88:105
+  - 107:124
+  - 126:143
+  - 145:162
+  - 164:181
+  - 183:200
+  - 202:219
+  - 221:238
+  - 240:257
+  - 259:276
+  - 278:295
+  - 297:314
+  - 316:333
+  - 335:352
+  - 354:371
+  - 373:390
+  - 392:409
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 30
+          2025: 49
+          2026: 68
+          2027: 87
+          2028: 106
+          2029: 125
+          2030: 144
+          2031: 163
+          2032: 182
+          2033: 201
+          2034: 220
+          2035: 239
+          2036: 258
+          2037: 277
+          2038: 296
+          2039: 315
+          2040: 334
+          2041: 353
+          2042: 372
+          2043: 391
+          2044: 410
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: Grace
+    VARIANT: output
+  notes: Grace on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_total_debt_service_in_usd
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!E30:AE410
+  - PV_LC_NR2!E30:AE410
+  - PV_LC_NR3!E30:AE410
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '31:48'
+  - 50:67
+  - 69:86
+  - 88:105
+  - 107:124
+  - 126:143
+  - 145:162
+  - 164:181
+  - 183:200
+  - 202:219
+  - 221:238
+  - 240:257
+  - 259:276
+  - 278:295
+  - 297:314
+  - 316:333
+  - 335:352
+  - 354:371
+  - 373:390
+  - 392:409
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 30
+          2025: 49
+          2026: 68
+          2027: 87
+          2028: 106
+          2029: 125
+          2030: 144
+          2031: 163
+          2032: 182
+          2033: 201
+          2034: 220
+          2035: 239
+          2036: 258
+          2037: 277
+          2038: 296
+          2039: 315
+          2040: 334
+          2041: 353
+          2042: 372
+          2043: 391
+          2044: 410
+        read: int
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: Total debt service (in USD)
+    VARIANT: output
+  notes: Total debt service (in USD) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_interest_in_usd
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!E31:AE411
+  - PV_LC_NR2!E31:AE411
+  - PV_LC_NR3!E31:AE411
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '32:49'
+  - 51:68
+  - 70:87
+  - 89:106
+  - 108:125
+  - 127:144
+  - 146:163
+  - 165:182
+  - 184:201
+  - 203:220
+  - 222:239
+  - 241:258
+  - 260:277
+  - 279:296
+  - 298:315
+  - 317:334
+  - 336:353
+  - 355:372
+  - 374:391
+  - 393:410
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 31
+          2025: 50
+          2026: 69
+          2027: 88
+          2028: 107
+          2029: 126
+          2030: 145
+          2031: 164
+          2032: 183
+          2033: 202
+          2034: 221
+          2035: 240
+          2036: 259
+          2037: 278
+          2038: 297
+          2039: 316
+          2040: 335
+          2041: 354
+          2042: 373
+          2043: 392
+          2044: 411
+        read: int
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: Interest (in USD)
+    VARIANT: output
+  notes: Interest (in USD) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_maturity
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!B31:B411
+  - PV_LC_NR2!B31:B411
+  - PV_LC_NR3!B31:B411
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '32:49'
+  - 51:68
+  - 70:87
+  - 89:106
+  - 108:125
+  - 127:144
+  - 146:163
+  - 165:182
+  - 184:201
+  - 203:220
+  - 222:239
+  - 241:258
+  - 260:277
+  - 279:296
+  - 298:315
+  - 317:334
+  - 336:353
+  - 355:372
+  - 374:391
+  - 393:410
+  domain:
+    between:
+      min: 1
+      max: 100
+  relations:
+  - not_equal: pv_lc_output_grace
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 31
+          2025: 50
+          2026: 69
+          2027: 88
+          2028: 107
+          2029: 126
+          2030: 145
+          2031: 164
+          2032: 183
+          2033: 202
+          2034: 221
+          2035: 240
+          2036: 259
+          2037: 278
+          2038: 297
+          2039: 316
+          2040: 335
+          2041: 354
+          2042: 373
+          2043: 392
+          2044: 411
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: Maturity
+    VARIANT: output
+  notes: Maturity on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_amortization_in_usd
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D32:AE412
+  - PV_LC_NR2!D32:AE412
+  - PV_LC_NR3!D32:AE412
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '33:50'
+  - 52:69
+  - 71:88
+  - 90:107
+  - 109:126
+  - 128:145
+  - 147:164
+  - 166:183
+  - 185:202
+  - 204:221
+  - 223:240
+  - 242:259
+  - 261:278
+  - 280:297
+  - 299:316
+  - 318:335
+  - 337:354
+  - 356:373
+  - 375:392
+  - 394:411
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 32
+          2025: 51
+          2026: 70
+          2027: 89
+          2028: 108
+          2029: 127
+          2030: 146
+          2031: 165
+          2032: 184
+          2033: 203
+          2034: 222
+          2035: 241
+          2036: 260
+          2037: 279
+          2038: 298
+          2039: 317
+          2040: 336
+          2041: 355
+          2042: 374
+          2043: 393
+          2044: 412
+        read: int
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: Amortization (in USD)
+    VARIANT: output
+  notes: Amortization (in USD) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_interest_rate_local_currency
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!B32:B412
+  - PV_LC_NR2!B32:B412
+  - PV_LC_NR3!B32:B412
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '33:50'
+  - 52:69
+  - 71:88
+  - 90:107
+  - 109:126
+  - 128:145
+  - 147:164
+  - 166:183
+  - 185:202
+  - 204:221
+  - 223:240
+  - 242:259
+  - 261:278
+  - 280:297
+  - 299:316
+  - 318:335
+  - 337:354
+  - 356:373
+  - 375:392
+  - 394:411
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 32
+          2025: 51
+          2026: 70
+          2027: 89
+          2028: 108
+          2029: 127
+          2030: 146
+          2031: 165
+          2032: 184
+          2033: 203
+          2034: 222
+          2035: 241
+          2036: 260
+          2037: 279
+          2038: 298
+          2039: 317
+          2040: 336
+          2041: 355
+          2042: 374
+          2043: 393
+          2044: 412
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: Interest rate (local currency)
+    VARIANT: output
+  notes: Interest rate (local currency) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_amortization_in_lc
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D33:AE413
+  - PV_LC_NR2!D33:AE413
+  - PV_LC_NR3!D33:AE413
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '34:51'
+  - 53:70
+  - 72:89
+  - 91:108
+  - 110:127
+  - 129:146
+  - 148:165
+  - 167:184
+  - 186:203
+  - 205:222
+  - 224:241
+  - 243:260
+  - 262:279
+  - 281:298
+  - 300:317
+  - 319:336
+  - 338:355
+  - 357:374
+  - 376:393
+  - 395:412
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 33
+          2025: 52
+          2026: 71
+          2027: 90
+          2028: 109
+          2029: 128
+          2030: 147
+          2031: 166
+          2032: 185
+          2033: 204
+          2034: 223
+          2035: 242
+          2036: 261
+          2037: 280
+          2038: 299
+          2039: 318
+          2040: 337
+          2041: 356
+          2042: 375
+          2043: 394
+          2044: 413
+        read: int
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: Amortization (in LC)
+    VARIANT: output
+  notes: Amortization (in LC) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_discount
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!B33:B413
+  - PV_LC_NR2!B33:B413
+  - PV_LC_NR3!B33:B413
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '34:51'
+  - 53:70
+  - 72:89
+  - 91:108
+  - 110:127
+  - 129:146
+  - 148:165
+  - 167:184
+  - 186:203
+  - 205:222
+  - 224:241
+  - 243:260
+  - 262:279
+  - 281:298
+  - 300:317
+  - 319:336
+  - 338:355
+  - 357:374
+  - 376:393
+  - 395:412
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 33
+          2025: 52
+          2026: 71
+          2027: 90
+          2028: 109
+          2029: 128
+          2030: 147
+          2031: 166
+          2032: 185
+          2033: 204
+          2034: 223
+          2035: 242
+          2036: 261
+          2037: 280
+          2038: 299
+          2039: 318
+          2040: 337
+          2041: 356
+          2042: 375
+          2043: 394
+          2044: 413
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: Discount
+    VARIANT: discount
+  notes: Discount on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_t_g_0
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D34:AE414
+  - PV_LC_NR2!D34:AE414
+  - PV_LC_NR3!D34:AE414
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '35:52'
+  - 54:71
+  - 73:90
+  - 92:109
+  - 111:128
+  - 130:147
+  - 149:166
+  - 168:185
+  - 187:204
+  - 206:223
+  - 225:242
+  - 244:261
+  - 263:280
+  - 282:299
+  - 301:318
+  - 320:337
+  - 339:356
+  - 358:375
+  - 377:394
+  - 396:413
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 34
+          2025: 53
+          2026: 72
+          2027: 91
+          2028: 110
+          2029: 129
+          2030: 148
+          2031: 167
+          2032: 186
+          2033: 205
+          2034: 224
+          2035: 243
+          2036: 262
+          2037: 281
+          2038: 300
+          2039: 319
+          2040: 338
+          2041: 357
+          2042: 376
+          2043: 395
+          2044: 414
+        read: int
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: t-g>0
+    VARIANT: output
+  notes: t-g>0 on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_grace_end_cumulative
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D35:AE415
+  - PV_LC_NR2!D35:AE415
+  - PV_LC_NR3!D35:AE415
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '36:53'
+  - 55:72
+  - 74:91
+  - 93:110
+  - 112:129
+  - 131:148
+  - 150:167
+  - 169:186
+  - 188:205
+  - 207:224
+  - 226:243
+  - 245:262
+  - 264:281
+  - 283:300
+  - 302:319
+  - 321:338
+  - 340:357
+  - 359:376
+  - 378:395
+  - 397:414
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 35
+          2025: 54
+          2026: 73
+          2027: 92
+          2028: 111
+          2029: 130
+          2030: 149
+          2031: 168
+          2032: 187
+          2033: 206
+          2034: 225
+          2035: 244
+          2036: 263
+          2037: 282
+          2038: 301
+          2039: 320
+          2040: 339
+          2041: 358
+          2042: 377
+          2043: 396
+          2044: 415
+        read: int
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: Grace-end cumulative
+    VARIANT: output
+  notes: Grace-end cumulative on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_t_m_condition
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D36:AE416
+  - PV_LC_NR2!D36:AE416
+  - PV_LC_NR3!D36:AE416
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '37:54'
+  - 56:73
+  - 75:92
+  - 94:111
+  - 113:130
+  - 132:149
+  - 151:168
+  - 170:187
+  - 189:206
+  - 208:225
+  - 227:244
+  - 246:263
+  - 265:282
+  - 284:301
+  - 303:320
+  - 322:339
+  - 341:358
+  - 360:377
+  - 379:396
+  - 398:415
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 36
+          2025: 55
+          2026: 74
+          2027: 93
+          2028: 112
+          2029: 131
+          2030: 150
+          2031: 169
+          2032: 188
+          2033: 207
+          2034: 226
+          2035: 245
+          2036: 264
+          2037: 283
+          2038: 302
+          2039: 321
+          2040: 340
+          2041: 359
+          2042: 378
+          2043: 397
+          2044: 416
+        read: int
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: t-m condition
+    VARIANT: output
+  notes: t-m condition on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_output_maturity_end_cumulative
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D37:AE417
+  - PV_LC_NR2!D37:AE417
+  - PV_LC_NR3!D37:AE417
+  layout: series
+  internal: {}
+  exclude_rows:
+  - '38:55'
+  - 57:74
+  - 76:93
+  - 95:112
+  - 114:131
+  - 133:150
+  - 152:169
+  - 171:188
+  - 190:207
+  - 209:226
+  - 228:245
+  - 247:264
+  - 266:283
+  - 285:302
+  - 304:321
+  - 323:340
+  - 342:359
+  - 361:378
+  - 380:397
+  - 399:416
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 37
+          2025: 56
+          2026: 75
+          2027: 94
+          2028: 113
+          2029: 132
+          2030: 151
+          2031: 170
+          2032: 189
+          2033: 208
+          2034: 227
+          2035: 246
+          2036: 265
+          2037: 284
+          2038: 303
+          2039: 322
+          2040: 341
+          2041: 360
+          2042: 379
+          2043: 398
+          2044: 417
+        read: int
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: Maturity-end cumulative
+    VARIANT: output
+  notes: Maturity-end cumulative on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_terms_projection_year
+  sheet:
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR2!D3:BD3
+  - PV_LC_NR3!D3:BD3
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 3
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.terms
+    INDICATOR: Projection year
+  notes: Projection year on PV_LC, keyed by INSTRUMENT across PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_terms_fx_pa
+  sheet:
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR2!D4:BD4
+  - PV_LC_NR3!D4:BD4
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 3
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.terms
+    INDICATOR: FX (pa)
+  notes: FX (pa) on PV_LC, keyed by INSTRUMENT across PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_terms_fx_eop
+  sheet:
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR2!D5:BD5
+  - PV_LC_NR3!D5:BD5
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 3
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.terms
+    INDICATOR: FX (eop)
+  notes: FX (eop) on PV_LC, keyed by INSTRUMENT across PV_LC_NR2, PV_LC_NR3.
