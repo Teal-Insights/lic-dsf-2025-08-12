@@ -1,0 +1,3669 @@
+schema_version: 1.19.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: "Observation value"
+    dtype: number
+  - id: TIME_PERIOD
+    name: "Time period"
+    dtype: int
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: "Reference area"
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: "Financing instrument"
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+  - id: DSA_SECTION
+    name: "DSA statement section"
+    dtype: string
+series:
+- id: dsa_ext_external_debt_nominal_1
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!C12:X12"
+  - "B1_GDP_ext!C12:X12"
+  - "B3_Exports_ext!C12:X12"
+  - "'B4_other flows_ext'!C12:X12"
+  - "B5_depreciation_ext!C12:X12"
+  - "B6_Combo_mkt_ext!C12:X12"
+  - "'B6_Combo_non-mkt_ext'!C12:X12"
+  - "'C3_Commodity prices_ext'!C12:X12"
+  - "'Baseline - external'!M12:AH12"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "External debt (nominal) 1/"
+  notes: "External debt (nominal) 1/ (A1_historical_ext), keyed by scenario and years from\
+    \ row 8."
+- id: dsa_ext_change_in_external_debt
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!E15:X15"
+  - "B1_GDP_ext!E15:X15"
+  - "B3_Exports_ext!E15:X15"
+  - "'B4_other flows_ext'!E15:X15"
+  - "B5_depreciation_ext!E15:X15"
+  - "B6_Combo_mkt_ext!E15:X15"
+  - "'B6_Combo_non-mkt_ext'!E15:X15"
+  - "'C3_Commodity prices_ext'!E15:X15"
+  - "'Baseline - external'!O15:AH15"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "Change in external debt"
+  notes: "Change in external debt (A1_historical_ext), keyed by scenario and years from row\
+    \ 8."
+- id: dsa_ext_identified_net_debt_creating_flows
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!E16:X16"
+  - "B1_GDP_ext!E16:X16"
+  - "B3_Exports_ext!E16:X16"
+  - "'B4_other flows_ext'!E16:X16"
+  - "B5_depreciation_ext!E16:X16"
+  - "B6_Combo_mkt_ext!E16:X16"
+  - "'B6_Combo_non-mkt_ext'!E16:X16"
+  - "'C3_Commodity prices_ext'!E16:X16"
+  - "'Baseline - external'!O16:AH16"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "Identified net debt-creating flows"
+  notes: "Identified net debt-creating flows (A1_historical_ext), keyed by scenario and years\
+    \ from row 8."
+- id: dsa_ext_non_interest_current_account_deficit
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!E17:X17"
+  - "B1_GDP_ext!E17:X17"
+  - "B3_Exports_ext!E17:X17"
+  - "'B4_other flows_ext'!E17:X17"
+  - "B5_depreciation_ext!E17:X17"
+  - "B6_Combo_mkt_ext!E17:X17"
+  - "'B6_Combo_non-mkt_ext'!E17:X17"
+  - "'C3_Commodity prices_ext'!E17:X17"
+  - "'Baseline - external'!C17:AH17"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "Non-interest current account deficit"
+  notes: "Non-interest current account deficit (A1_historical_ext), keyed by scenario and\
+    \ years from row 8."
+- id: dsa_ext_exports
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!E19:X19"
+  - "B1_GDP_ext!E19:X19"
+  - "B3_Exports_ext!D19:X19"
+  - "'B4_other flows_ext'!E19:X19"
+  - "B5_depreciation_ext!E19:X19"
+  - "B6_Combo_mkt_ext!D19:X19"
+  - "'B6_Combo_non-mkt_ext'!D19:X19"
+  - "'C3_Commodity prices_ext'!D19:X19"
+  - "'Baseline - external'!M19:AH19"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: Exports
+  notes: "Exports (A1_historical_ext), keyed by scenario and years from row 8."
+- id: dsa_ext_net_fdi_negative_inflow
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!E24:X24"
+  - "B1_GDP_ext!E24:X24"
+  - "B3_Exports_ext!E24:X24"
+  - "'B4_other flows_ext'!E24:X24"
+  - "B5_depreciation_ext!E24:X24"
+  - "B6_Combo_mkt_ext!E24:X24"
+  - "'B6_Combo_non-mkt_ext'!E24:X24"
+  - "'C3_Commodity prices_ext'!E24:X24"
+  - "'Baseline - external'!C24:AH24"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "Net FDI (negative = inflow)"
+  notes: "Net FDI (negative = inflow) (A1_historical_ext), keyed by scenario and years from\
+    \ row 8."
+- id: dsa_ext_endogenous_debt_dynamics_2
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!E25:X25"
+  - "B1_GDP_ext!E25:X25"
+  - "B3_Exports_ext!E25:X25"
+  - "'B4_other flows_ext'!E25:X25"
+  - "B5_depreciation_ext!E25:X25"
+  - "B6_Combo_mkt_ext!E25:X25"
+  - "'B6_Combo_non-mkt_ext'!E25:X25"
+  - "'C3_Commodity prices_ext'!E25:X25"
+  - "'Baseline - external'!O25:AH25"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "Endogenous debt dynamics 2/"
+  notes: "Endogenous debt dynamics 2/ (A1_historical_ext), keyed by scenario and years from\
+    \ row 8."
+- id: dsa_ext_denominator_1_g_g
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!E26:X26"
+  - "B1_GDP_ext!E26:X26"
+  - "B3_Exports_ext!E26:X26"
+  - "'B4_other flows_ext'!E26:X26"
+  - "B5_depreciation_ext!E26:X26"
+  - "B6_Combo_mkt_ext!E26:X26"
+  - "'B6_Combo_non-mkt_ext'!E26:X26"
+  - "'C3_Commodity prices_ext'!E26:X26"
+  - "'Baseline - external'!O26:AH26"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "Denominator: 1+g+ρ+gρ"
+  notes: "Denominator: 1+g+ρ+gρ (A1_historical_ext), keyed by scenario and years from row\
+    \ 8."
+- id: dsa_ext_contribution_from_nominal_interest_rate
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!E27:X27"
+  - "B1_GDP_ext!E27:X27"
+  - "B3_Exports_ext!E27:X27"
+  - "'B4_other flows_ext'!E27:X27"
+  - "B5_depreciation_ext!E27:X27"
+  - "B6_Combo_mkt_ext!E27:X27"
+  - "'B6_Combo_non-mkt_ext'!E27:X27"
+  - "'C3_Commodity prices_ext'!E27:X27"
+  - "'Baseline - external'!O27:AH27"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "Contribution from nominal interest rate"
+  notes: "Contribution from nominal interest rate (A1_historical_ext), keyed by scenario and\
+    \ years from row 8."
+- id: dsa_ext_contribution_from_real_gdp_growth
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!E28:X28"
+  - "B1_GDP_ext!E28:X28"
+  - "B3_Exports_ext!E28:X28"
+  - "'B4_other flows_ext'!E28:X28"
+  - "B5_depreciation_ext!E28:X28"
+  - "B6_Combo_mkt_ext!E28:X28"
+  - "'B6_Combo_non-mkt_ext'!E28:X28"
+  - "'C3_Commodity prices_ext'!E28:X28"
+  - "'Baseline - external'!O28:AH28"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "Contribution from real GDP growth"
+  notes: "Contribution from real GDP growth (A1_historical_ext), keyed by scenario and years\
+    \ from row 8."
+- id: dsa_ext_contribution_from_price_and_exchange_rate_changes
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!E29:X29"
+  - "B1_GDP_ext!E29:X29"
+  - "B3_Exports_ext!E29:X29"
+  - "'B4_other flows_ext'!E29:X29"
+  - "B5_depreciation_ext!E29:X29"
+  - "B6_Combo_mkt_ext!E29:X29"
+  - "'B6_Combo_non-mkt_ext'!E29:X29"
+  - "'C3_Commodity prices_ext'!E29:X29"
+  - "'Baseline - external'!O29:AH29"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "Contribution from price and exchange rate changes"
+  notes: "Contribution from price and exchange rate changes (A1_historical_ext), keyed by\
+    \ scenario and years from row 8."
+- id: dsa_ext_residual_3
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!E30:X30"
+  - "B1_GDP_ext!E30:X30"
+  - "B3_Exports_ext!E30:X30"
+  - "'B4_other flows_ext'!E30:X30"
+  - "B5_depreciation_ext!E30:X30"
+  - "B6_Combo_mkt_ext!E30:X30"
+  - "'B6_Combo_non-mkt_ext'!E30:X30"
+  - "'C3_Commodity prices_ext'!E30:X30"
+  - "'Baseline - external'!O30:AH30"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "Residual 3/"
+  notes: "Residual 3/ (A1_historical_ext), keyed by scenario and years from row 8."
+- id: dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!D35:X35"
+  - "B1_GDP_ext!D35:X35"
+  - "B3_Exports_ext!D35:X35"
+  - "'B4_other flows_ext'!D35:X35"
+  - "B5_depreciation_ext!D35:X35"
+  - "B6_Combo_mkt_ext!D35:X35"
+  - "'B6_Combo_non-mkt_ext'!D35:X35"
+  - "'C3_Commodity prices_ext'!D35:X35"
+  - "'Baseline - external'!N35:AH35"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "PV of PPG external debt-to-GDP ratio"
+  notes: "PV of PPG external debt-to-GDP ratio (A1_historical_ext), keyed by scenario and\
+    \ years from row 8."
+- id: dsa_ext_pv_of_ppg_external_debt_to_exports_ratio
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!D36:X36"
+  - "B1_GDP_ext!D36:X36"
+  - "B3_Exports_ext!D36:X36"
+  - "'B4_other flows_ext'!D36:X36"
+  - "B5_depreciation_ext!D36:X36"
+  - "B6_Combo_mkt_ext!D36:X36"
+  - "'B6_Combo_non-mkt_ext'!D36:X36"
+  - "'C3_Commodity prices_ext'!D36:X36"
+  - "'Baseline - external'!N36:AH36"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "PV of PPG external debt-to-exports ratio"
+  notes: "PV of PPG external debt-to-exports ratio (A1_historical_ext), keyed by scenario\
+    \ and years from row 8."
+- id: dsa_ext_ppg_debt_service_to_exports_ratio
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!D39:X39"
+  - "B1_GDP_ext!D39:X39"
+  - "B3_Exports_ext!D39:X39"
+  - "'B4_other flows_ext'!D39:X39"
+  - "B5_depreciation_ext!D39:X39"
+  - "B6_Combo_mkt_ext!D39:X39"
+  - "'B6_Combo_non-mkt_ext'!D39:X39"
+  - "'C3_Commodity prices_ext'!D39:X39"
+  - "'Baseline - external'!N39:AH39"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "PPG debt service-to-exports ratio"
+  notes: "PPG debt service-to-exports ratio (A1_historical_ext), keyed by scenario and years\
+    \ from row 8."
+- id: dsa_ext_ppg_debt_service_to_revenue_ratio
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!D40:X40"
+  - "B1_GDP_ext!D40:X40"
+  - "B3_Exports_ext!D40:X40"
+  - "'B4_other flows_ext'!D40:X40"
+  - "B5_depreciation_ext!D40:X40"
+  - "B6_Combo_mkt_ext!D40:X40"
+  - "'B6_Combo_non-mkt_ext'!D40:X40"
+  - "'C3_Commodity prices_ext'!D40:X40"
+  - "'Baseline - external'!N40:AH40"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "PPG debt service-to-revenue ratio"
+  notes: "PPG debt service-to-revenue ratio (A1_historical_ext), keyed by scenario and years\
+    \ from row 8."
+- id: dsa_ext_nominal_gdp_million_of_us_dollars
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!C46:X46"
+  - "B1_GDP_ext!C46:X46"
+  - "B3_Exports_ext!C46:X46"
+  - "'B4_other flows_ext'!C46:X46"
+  - "B5_depreciation_ext!C46:X46"
+  - "B6_Combo_mkt_ext!C46:X46"
+  - "'B6_Combo_non-mkt_ext'!C46:X46"
+  - "'C3_Commodity prices_ext'!C46:X46"
+  - "'Baseline - external'!D48:AH48"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: macro_assumptions
+    INDICATOR: "Nominal GDP (Million of US dollars)"
+  notes: "Nominal GDP (Million of US dollars) (A1_historical_ext), keyed by scenario and years\
+    \ from row 8."
+- id: dsa_ext_real_gdp_growth_in_percent
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!E50:X50"
+  - "B1_GDP_ext!E50:X50"
+  - "B3_Exports_ext!E50:X50"
+  - "'B4_other flows_ext'!E50:X50"
+  - "B5_depreciation_ext!E50:X50"
+  - "B6_Combo_mkt_ext!E50:X50"
+  - "'B6_Combo_non-mkt_ext'!E50:X50"
+  - "'C3_Commodity prices_ext'!E50:X50"
+  - "'Baseline - external'!C52:AH52"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: macro_assumptions
+    INDICATOR: "Real GDP growth (in percent)"
+  notes: "Real GDP growth (in percent) (A1_historical_ext), keyed by scenario and years from\
+    \ row 8."
+- id: dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!E51:X51"
+  - "B1_GDP_ext!E51:X51"
+  - "B3_Exports_ext!E51:X51"
+  - "'B4_other flows_ext'!E51:X51"
+  - "B5_depreciation_ext!E51:X51"
+  - "B6_Combo_mkt_ext!E51:X51"
+  - "'B6_Combo_non-mkt_ext'!E51:X51"
+  - "'C3_Commodity prices_ext'!E51:X51"
+  - "'Baseline - external'!D53:AH53"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: macro_assumptions
+    INDICATOR: "GDP deflator in US dollar terms (change in percent)"
+  notes: "GDP deflator in US dollar terms (change in percent) (A1_historical_ext), keyed by\
+    \ scenario and years from row 8."
+- id: dsa_ext_effective_interest_rate_percent_4
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!E52:X52"
+  - "B1_GDP_ext!E52:X52"
+  - "B3_Exports_ext!E52:X52"
+  - "'B4_other flows_ext'!E52:X52"
+  - "B5_depreciation_ext!E52:X52"
+  - "B6_Combo_mkt_ext!E52:X52"
+  - "'B6_Combo_non-mkt_ext'!E52:X52"
+  - "'C3_Commodity prices_ext'!E52:X52"
+  - "'Baseline - external'!O54:AH54"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: macro_assumptions
+    INDICATOR: "Effective interest rate (percent) 4/"
+  notes: "Effective interest rate (percent) 4/ (A1_historical_ext), keyed by scenario and\
+    \ years from row 8."
+- id: dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  data_range:
+  - "A1_historical_ext!D56:W56"
+  - "B1_GDP_ext!D56:W56"
+  - "B3_Exports_ext!D56:W56"
+  - "'B4_other flows_ext'!D56:W56"
+  - "B5_depreciation_ext!D56:W56"
+  - "B6_Combo_mkt_ext!D56:W56"
+  - "'B6_Combo_non-mkt_ext'!D56:W56"
+  - "'C3_Commodity prices_ext'!D56:W56"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: macro_assumptions
+    INDICATOR: "Share of local-currency denominated external debt to total external debt"
+  notes: "Share of local-currency denominated external debt to total external debt (A1_historical_ext),\
+    \ keyed by scenario and years from row 8."
+- id: dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt_baseline
+  sheet: "Baseline - external"
+  data_range: "'Baseline - external'!N43:AG43"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "Share of local-currency denominated external debt to total external debt"
+  notes: "Share of local-currency denominated external debt to total external debt (Baseline\
+    \ - external), keyed by scenario and years from row 8."
+- id: dsa_ext_depreciation_of_nc_depreciation
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "A1_historical_ext!E58:X58"
+  - "B1_GDP_ext!E58:X58"
+  - "B3_Exports_ext!E58:X58"
+  - "'B4_other flows_ext'!E58:X58"
+  - "B5_depreciation_ext!E58:X58"
+  - "B6_Combo_mkt_ext!E58:X58"
+  - "'B6_Combo_non-mkt_ext'!E58:X58"
+  - "'C3_Commodity prices_ext'!E58:X58"
+  - "'Baseline - external'!O59:AH59"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: macro_assumptions
+    INDICATOR: "Depreciation of NC (+: depreciation)"
+  notes: "Depreciation of NC (+: depreciation) (A1_historical_ext), keyed by scenario and\
+    \ years from row 8."
+- id: dsa_ext_nominal_debt_baseline
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  data_range:
+  - "A1_historical_ext!C82:X82"
+  - "B1_GDP_ext!C82:X82"
+  - "B3_Exports_ext!C82:X82"
+  - "'B4_other flows_ext'!C82:X82"
+  - "B5_depreciation_ext!C83:X83"
+  - "B6_Combo_mkt_ext!C82:X82"
+  - "'B6_Combo_non-mkt_ext'!C82:X82"
+  - "'C3_Commodity prices_ext'!C88:X88"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    INDICATOR: "Nominal debt baseline"
+  notes: "Nominal debt baseline (A1_historical_ext), keyed by scenario and years from row\
+    \ 8."
+- id: dsa_ext_increase_baseline
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  data_range:
+  - "A1_historical_ext!D83:X83"
+  - "B1_GDP_ext!D83:X83"
+  - "B3_Exports_ext!D83:X83"
+  - "'B4_other flows_ext'!D83:X83"
+  - "B5_depreciation_ext!D84:X84"
+  - "B6_Combo_mkt_ext!D83:X83"
+  - "'B6_Combo_non-mkt_ext'!D83:X83"
+  - "'C3_Commodity prices_ext'!D89:X89"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    VARIANT: baseline
+    INDICATOR: Increase
+  notes: "Increase (A1_historical_ext), keyed by scenario and years from row 8."
+- id: dsa_ext_nominal_debt_stress
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  data_range:
+  - "A1_historical_ext!C84:X84"
+  - "B1_GDP_ext!C84:X84"
+  - "B3_Exports_ext!C84:X84"
+  - "'B4_other flows_ext'!C84:X84"
+  - "B5_depreciation_ext!C85:X85"
+  - "B6_Combo_mkt_ext!C84:X84"
+  - "'B6_Combo_non-mkt_ext'!C84:X84"
+  - "'C3_Commodity prices_ext'!C90:X90"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    INDICATOR: "Nominal debt stress"
+  notes: "Nominal debt stress (A1_historical_ext), keyed by scenario and years from row 8."
+- id: dsa_ext_increase_stress
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  data_range:
+  - "A1_historical_ext!D85:X85"
+  - "B1_GDP_ext!D85:X85"
+  - "B3_Exports_ext!D85:X85"
+  - "'B4_other flows_ext'!D85:X85"
+  - "B5_depreciation_ext!D86:X86"
+  - "B6_Combo_mkt_ext!D85:X85"
+  - "'B6_Combo_non-mkt_ext'!D85:X85"
+  - "'C3_Commodity prices_ext'!D91:X91"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    VARIANT: stress
+    INDICATOR: Increase
+  notes: "Increase (A1_historical_ext), keyed by scenario and years from row 8."
+- id: dsa_ext_residual_gross_borrowing
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  data_range:
+  - "A1_historical_ext!D86:X86"
+  - "B1_GDP_ext!D86:X86"
+  - "B3_Exports_ext!D86:X86"
+  - "'B4_other flows_ext'!D86:X86"
+  - "B5_depreciation_ext!D87:X87"
+  - "B6_Combo_mkt_ext!D86:X86"
+  - "'B6_Combo_non-mkt_ext'!D86:X86"
+  - "'C3_Commodity prices_ext'!D92:X92"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    INDICATOR: "Residual gross borrowing"
+  notes: "Residual gross borrowing (A1_historical_ext), keyed by scenario and years from row\
+    \ 8."
+- id: dsa_ext_pv_ppg_baseline
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  data_range:
+  - "A1_historical_ext!E88:X88"
+  - "B1_GDP_ext!E88:X88"
+  - "B3_Exports_ext!E88:X88"
+  - "'B4_other flows_ext'!E88:X88"
+  - "B5_depreciation_ext!E89:X89"
+  - "B6_Combo_mkt_ext!E88:X88"
+  - "'B6_Combo_non-mkt_ext'!E88:X88"
+  - "'C3_Commodity prices_ext'!E94:X94"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    INDICATOR: "PV PPG baseline"
+  notes: "PV PPG baseline (A1_historical_ext), keyed by scenario and years from row 8."
+- id: dsa_ext_pv_of_additional_borrowing
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  data_range:
+  - "A1_historical_ext!E89:X89"
+  - "B1_GDP_ext!E89:X89"
+  - "B3_Exports_ext!D89:X89"
+  - "'B4_other flows_ext'!D89:X89"
+  - "B5_depreciation_ext!E90:X90"
+  - "B6_Combo_mkt_ext!E89:X89"
+  - "'B6_Combo_non-mkt_ext'!E89:X89"
+  - "'C3_Commodity prices_ext'!E95:X95"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    INDICATOR: "PV of additional borrowing"
+  notes: "PV of additional borrowing (A1_historical_ext), keyed by scenario and years from\
+    \ row 8."
+- id: dsa_ext_pv_ppg_stress
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  data_range:
+  - "A1_historical_ext!E90:X90"
+  - "B1_GDP_ext!E90:X90"
+  - "B3_Exports_ext!E90:X90"
+  - "'B4_other flows_ext'!E90:X90"
+  - "B5_depreciation_ext!E91:X91"
+  - "B6_Combo_mkt_ext!E90:X90"
+  - "'B6_Combo_non-mkt_ext'!E90:X90"
+  - "'C3_Commodity prices_ext'!E96:X96"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    INDICATOR: "PV PPG stress"
+  notes: "PV PPG stress (A1_historical_ext), keyed by scenario and years from row 8."
+- id: dsa_ext_o_w_interest_baseline
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  data_range:
+  - "A1_historical_ext!E95:X95"
+  - "B1_GDP_ext!E95:X95"
+  - "B3_Exports_ext!E95:X95"
+  - "'B4_other flows_ext'!E95:X95"
+  - "B5_depreciation_ext!E96:X96"
+  - "B6_Combo_mkt_ext!E95:X95"
+  - "'B6_Combo_non-mkt_ext'!E95:X95"
+  - "'C3_Commodity prices_ext'!E101:X101"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    VARIANT: baseline
+    INDICATOR: "o/w interest"
+  notes: "o/w interest (A1_historical_ext), keyed by scenario and years from row 8."
+- id: dsa_ext_debt_service_ppg_baseline
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  data_range:
+  - "A1_historical_ext!E96:X96"
+  - "B1_GDP_ext!E96:X96"
+  - "B3_Exports_ext!E96:X96"
+  - "'B4_other flows_ext'!E96:X96"
+  - "B5_depreciation_ext!E97:X97"
+  - "B6_Combo_mkt_ext!E96:X96"
+  - "'B6_Combo_non-mkt_ext'!E96:X96"
+  - "'C3_Commodity prices_ext'!E102:X102"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    INDICATOR: "Debt service PPG baseline"
+  notes: "Debt service PPG baseline (A1_historical_ext), keyed by scenario and years from\
+    \ row 8."
+- id: dsa_ext_additional_debt_service_stress
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  data_range:
+  - "A1_historical_ext!E98:X98"
+  - "B1_GDP_ext!E98:X98"
+  - "B3_Exports_ext!D98:X98"
+  - "'B4_other flows_ext'!E98:X98"
+  - "B5_depreciation_ext!E99:X99"
+  - "B6_Combo_mkt_ext!E98:X98"
+  - "'B6_Combo_non-mkt_ext'!E98:X98"
+  - "'C3_Commodity prices_ext'!E104:X104"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    INDICATOR: "Additional debt service stress"
+  notes: "Additional debt service stress (A1_historical_ext), keyed by scenario and years\
+    \ from row 8."
+- id: dsa_ext_o_w_interest_stress
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  data_range:
+  - "A1_historical_ext!E99:X99"
+  - "B1_GDP_ext!E99:X99"
+  - "B3_Exports_ext!E99:X99"
+  - "'B4_other flows_ext'!E99:X99"
+  - "B5_depreciation_ext!E100:X100"
+  - "B6_Combo_mkt_ext!E99:X99"
+  - "'B6_Combo_non-mkt_ext'!E99:X99"
+  - "'C3_Commodity prices_ext'!E105:X105"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    VARIANT: stress
+    INDICATOR: "o/w interest"
+  notes: "o/w interest (A1_historical_ext), keyed by scenario and years from row 8."
+- id: dsa_ext_ppg_debt_service_stress
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  data_range:
+  - "A1_historical_ext!E101:X101"
+  - "B1_GDP_ext!E101:X101"
+  - "B3_Exports_ext!E101:X101"
+  - "'B4_other flows_ext'!E101:X101"
+  - "B5_depreciation_ext!E102:X102"
+  - "B6_Combo_mkt_ext!E101:X101"
+  - "'B6_Combo_non-mkt_ext'!E101:X101"
+  - "'C3_Commodity prices_ext'!E107:X107"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    INDICATOR: "PPG debt service stress"
+  notes: "PPG debt service stress (A1_historical_ext), keyed by scenario and years from row\
+    \ 8."
+- id: dsa_ext_new_interest_payments
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  data_range:
+  - "A1_historical_ext!E103:X103"
+  - "B1_GDP_ext!E103:X103"
+  - "B3_Exports_ext!E103:X103"
+  - "'B4_other flows_ext'!E103:X103"
+  - "B5_depreciation_ext!E104:X104"
+  - "B6_Combo_mkt_ext!E103:X103"
+  - "'B6_Combo_non-mkt_ext'!E103:X103"
+  - "'C3_Commodity prices_ext'!E109:X109"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    INDICATOR: "New interest payments"
+  notes: "New interest payments (A1_historical_ext), keyed by scenario and years from row\
+    \ 8."
+- id: dsa_ext_effective_rate
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  data_range:
+  - "A1_historical_ext!E104:X104"
+  - "B1_GDP_ext!E104:X104"
+  - "B3_Exports_ext!E104:X104"
+  - "'B4_other flows_ext'!E104:X104"
+  - "B5_depreciation_ext!E105:X105"
+  - "B6_Combo_mkt_ext!E104:X104"
+  - "'B6_Combo_non-mkt_ext'!E104:X104"
+  - "'C3_Commodity prices_ext'!E110:X110"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    INDICATOR: "Effective rate"
+  notes: "Effective rate (A1_historical_ext), keyed by scenario and years from row 8."
+- id: dsa_ext_exports_usd_millions
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  data_range:
+  - "A1_historical_ext!E105:X105"
+  - "B1_GDP_ext!E105:X105"
+  - "B3_Exports_ext!D105:X105"
+  - "'B4_other flows_ext'!E105:X105"
+  - "B5_depreciation_ext!E106:X106"
+  - "B6_Combo_mkt_ext!D105:X105"
+  - "'B6_Combo_non-mkt_ext'!D105:X105"
+  - "'C3_Commodity prices_ext'!E111:X111"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    INDICATOR: Exports
+  notes: "Exports (A1_historical_ext), keyed by scenario and years from row 8."
+- id: dsa_ext_revenue
+  sheet:
+  - A1_historical_ext
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  data_range:
+  - "A1_historical_ext!E106:X106"
+  - "B1_GDP_ext!E106:X106"
+  - "B3_Exports_ext!E106:X106"
+  - "'B4_other flows_ext'!E106:X106"
+  - "B5_depreciation_ext!E107:X107"
+  - "B6_Combo_mkt_ext!E106:X106"
+  - "'B6_Combo_non-mkt_ext'!E106:X106"
+  - "'C3_Commodity prices_ext'!E112:X112"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    INDICATOR: Revenue
+  notes: "Revenue (A1_historical_ext), keyed by scenario and years from row 8."
+- id: dsa_ext_historical_statistics_a1
+  sheet: A1_historical_ext
+  data_range: "A1_historical_ext!D64:K69"
+  layout: matrix
+  internal: {}
+  exclude_columns:
+  - E
+  - G
+  - H
+  - J
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          A1_historical_ext: A1
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          "Historical average": D
+          "Standard deviation": F
+          "Average 2024-2029": I
+          "Average 2030-2044": K
+  key:
+  - SCENARIO
+  - INDICATOR
+  - VARIANT
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: historical_statistics
+  notes: "Historical average and standard deviation of key variables (A1_historical_ext)."
+- id: dsa_ext_historical_statistics
+  sheet:
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  data_range:
+  - "B1_GDP_ext!D64:M69"
+  - "B3_Exports_ext!D64:M69"
+  - "'B4_other flows_ext'!D64:M69"
+  - "B6_Combo_mkt_ext!D64:M69"
+  - "'B6_Combo_non-mkt_ext'!D64:M69"
+  layout: matrix
+  internal: {}
+  exclude_columns:
+  - E
+  - G
+  - H
+  - J
+  - L
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          "Historical average": D
+          "Standard deviation": F
+          "Average 2024-2029": I
+          "Average 2030-2044": K
+          "Average 2024-2044": M
+  key:
+  - SCENARIO
+  - INDICATOR
+  - VARIANT
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: historical_statistics
+  notes: "Historical average and standard deviation of key variables (B1_GDP_ext)."
+- id: dsa_ext_historical_statistics_baseline
+  sheet: "Baseline - external"
+  data_range: "'Baseline - external'!N70:Y75"
+  layout: matrix
+  internal: {}
+  exclude_columns:
+  - O
+  - Q
+  - R
+  - T
+  - V
+  - X
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          "Baseline - external": Baseline
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          "Historical average": N
+          "Standard deviation": P
+          "Average 2024-2029": S
+          "Average 2030-2044": U
+          "Average 2024-2044": W
+          "SD 2024-2044": Y
+  key:
+  - SCENARIO
+  - INDICATOR
+  - VARIANT
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: historical_statistics
+  notes: "Historical average and standard deviation of key variables (Baseline - external)."
+- id: dsa_ext_deficit_in_balance_of_goods_and_services
+  sheet:
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "B1_GDP_ext!E18:X18"
+  - "B3_Exports_ext!E18:X18"
+  - "'B4_other flows_ext'!E18:X18"
+  - "B5_depreciation_ext!E18:X18"
+  - "B6_Combo_mkt_ext!E18:X18"
+  - "'B6_Combo_non-mkt_ext'!E18:X18"
+  - "'C3_Commodity prices_ext'!E18:X18"
+  - "'Baseline - external'!O18:AH18"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "Deficit in balance of goods and services"
+  notes: "Deficit in balance of goods and services (B1_GDP_ext), keyed by scenario and years\
+    \ from row 8."
+- id: dsa_ext_imports
+  sheet:
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "B1_GDP_ext!E20:X20"
+  - "B3_Exports_ext!E20:F20"
+  - "'B4_other flows_ext'!E20:X20"
+  - "B5_depreciation_ext!C20:X20"
+  - "B6_Combo_mkt_ext!E20:E20"
+  - "'B6_Combo_non-mkt_ext'!E20:E20"
+  - "'C3_Commodity prices_ext'!E20:F20"
+  - "'Baseline - external'!O20:AH20"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: Imports
+  notes: "Imports (B1_GDP_ext), keyed by scenario and years from row 8."
+- id: dsa_ext_net_current_transfers_negative_inflow
+  sheet:
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "B1_GDP_ext!E21:X21"
+  - "B3_Exports_ext!E21:X21"
+  - "'B4_other flows_ext'!E21:X21"
+  - "B5_depreciation_ext!E21:X21"
+  - "B6_Combo_mkt_ext!E21:X21"
+  - "'B6_Combo_non-mkt_ext'!E21:X21"
+  - "'C3_Commodity prices_ext'!E21:X21"
+  - "'Baseline - external'!C21:AH21"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "Net current transfers (negative = inflow)"
+  notes: "Net current transfers (negative = inflow) (B1_GDP_ext), keyed by scenario and years\
+    \ from row 8."
+- id: dsa_ext_other_current_account_flows_negative_net_inflow
+  sheet:
+  - B1_GDP_ext
+  - B3_Exports_ext
+  - "B4_other flows_ext"
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "B1_GDP_ext!E23:X23"
+  - "B3_Exports_ext!E23:X23"
+  - "'B4_other flows_ext'!E23:X23"
+  - "B5_depreciation_ext!E23:X23"
+  - "B6_Combo_mkt_ext!E23:X23"
+  - "'B6_Combo_non-mkt_ext'!E23:X23"
+  - "'C3_Commodity prices_ext'!E23:X23"
+  - "'Baseline - external'!O23:AH23"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_ext: B1
+          B3_Exports_ext: B3
+          "B4_other flows_ext": B4
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "Other current account flows (negative = net inflow)"
+  notes: "Other current account flows (negative = net inflow) (B1_GDP_ext), keyed by scenario\
+    \ and years from row 8."
+- id: dsa_ext_standard_test_parameter_b1
+  sheet: B1_GDP_ext
+  data_range: "B1_GDP_ext!AA64"
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_ext: B1
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: "Non-interest current account in percent of GDP"
+  notes: "New-vs-old standard-test GDP growth rule (B1_GDP_ext!AA64)."
+- id: dsa_ext_standard_test_parameter_b3
+  sheet: B3_Exports_ext
+  data_range: "B3_Exports_ext!AA63"
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B3_Exports_ext: B3
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: "Historical average, baseline projection, whichever is lower"
+  notes: "New-vs-old standard-test export-growth rule (B3_Exports_ext!AA63)."
+- id: dsa_ext_growth_of_exports_of_g_s_us_dollar_terms_in_percent
+  sheet:
+  - B3_Exports_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  - "C3_Commodity prices_ext"
+  - "Baseline - external"
+  data_range:
+  - "B3_Exports_ext!E53:X53"
+  - "B6_Combo_mkt_ext!E53:X53"
+  - "'B6_Combo_non-mkt_ext'!E53:X53"
+  - "'C3_Commodity prices_ext'!K53:X53"
+  - "'Baseline - external'!C55:AH55"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B3_Exports_ext: B3
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+          "C3_Commodity prices_ext": C3
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: macro_assumptions
+    INDICATOR: "Growth of exports of G&S (US dollar terms, in percent)"
+  notes: "Growth of exports of G&S (US dollar terms, in percent) (B3_Exports_ext), keyed by\
+    \ scenario and years from row 8."
+- id: dsa_ext_export_shock_sign_flags
+  sheet: B3_Exports_ext
+  data_range: "B3_Exports_ext!AA68:AB68"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B3_Exports_ext: B3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2025: AA
+          2026: AB
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: standard_test
+    INDICATOR: "Is exports shock (exports growth) > 0?"
+    VARIANT: export_shock_sign_flag
+  notes: "Export-shock sign flags for the first two projection years (B3_Exports_ext!AA68:AB68)."
+- id: dsa_ext_standard_test_current_transfers_rule_b4
+  sheet: "B4_other flows_ext"
+  data_range: "'B4_other flows_ext'!AA64"
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          "B4_other flows_ext": B4
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: "Non-interest current account in percent of GDP"
+  notes: "New-vs-old standard-test current-transfers rule (B4_other flows_ext!AA64)."
+- id: dsa_ext_standard_test_current_transfers_rule_b6_mkt
+  sheet: B6_Combo_mkt_ext
+  data_range: "B6_Combo_mkt_ext!AA83"
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B6_Combo_mkt_ext: B6_mkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: "Historical average, baseline projection, whichever is lower (other flows current\
+      \ transfers)"
+  notes: "New-vs-old standard-test current-transfers rule (B6_Combo_mkt_ext!AA83)."
+- id: dsa_ext_standard_test_current_transfers_rule_b6_nonmkt
+  sheet: B6_Combo_non-mkt_ext
+  data_range: "'B6_Combo_non-mkt_ext'!AA82"
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B6_Combo_non-mkt_ext: B6_nonmkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: "Nominal debt baseline"
+  notes: "New-vs-old standard-test current-transfers rule (B6_Combo_non-mkt_ext!AA82)."
+- id: dsa_ext_standard_test_fdi_rule_b4
+  sheet: "B4_other flows_ext"
+  data_range: "'B4_other flows_ext'!AA67"
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          "B4_other flows_ext": B4
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: "Growth of exports of G&S (US dollar terms, in percent)"
+  notes: "New-vs-old standard-test FDI rule (B4_other flows_ext!AA67)."
+- id: dsa_ext_standard_test_fdi_rule_b6_mkt
+  sheet: B6_Combo_mkt_ext
+  data_range: "B6_Combo_mkt_ext!AA85"
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B6_Combo_mkt_ext: B6_mkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: "Historical average, baseline projection, whichever is lower (other flows FDI)"
+  notes: "New-vs-old standard-test FDI rule (B6_Combo_mkt_ext!AA85)."
+- id: dsa_ext_standard_test_fdi_rule_b6_nonmkt
+  sheet: B6_Combo_non-mkt_ext
+  data_range: "'B6_Combo_non-mkt_ext'!AA84"
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B6_Combo_non-mkt_ext: B6_nonmkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: "Nominal debt stress"
+  notes: "New-vs-old standard-test FDI rule (B6_Combo_non-mkt_ext!AA84)."
+- id: dsa_ext_real_depreciation_identity
+  sheet:
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  data_range:
+  - "B5_depreciation_ext!E43"
+  - "B6_Combo_mkt_ext!E43"
+  - "'B6_Combo_non-mkt_ext'!E43"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: macro_assumptions
+    VARIANT: identity
+    INDICATOR: "Real depreciation"
+  notes: "Year-1 real depreciation identity (B5_depreciation_ext!E43)."
+- id: dsa_ext_standard_test_fx_depreciation
+  sheet:
+  - B5_depreciation_ext
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  data_range:
+  - "B5_depreciation_ext!AA64"
+  - "B6_Combo_mkt_ext!AA90"
+  - "'B6_Combo_non-mkt_ext'!AA89"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B5_depreciation_ext: B5
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: "Size of FX depreciation shock"
+  notes: "New-vs-old standard-test FX depreciation size (B5_depreciation_ext!AA64)."
+- id: dsa_ext_debt_services_associated_with_new_external_borrowing
+  sheet: B6_Combo_mkt_ext
+  data_range: "B6_Combo_mkt_ext!E111:X111"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B6_Combo_mkt_ext: B6_mkt
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    INDICATOR: "Debt services associated with new external borrowing"
+  notes: "Debt services associated with new external borrowing (B6_Combo_mkt_ext), keyed by\
+    \ scenario and years from row 8."
+- id: dsa_ext_o_w_interest_additional_borrowing
+  sheet: B6_Combo_mkt_ext
+  data_range: "B6_Combo_mkt_ext!E112:X112"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B6_Combo_mkt_ext: B6_mkt
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    VARIANT: additional_borrowing
+    INDICATOR: "o/w: interest"
+  notes: "o/w: interest (B6_Combo_mkt_ext), keyed by scenario and years from row 8."
+- id: dsa_ext_standard_test_gdp_growth_rule
+  sheet:
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  data_range:
+  - "B6_Combo_mkt_ext!AA64"
+  - "'B6_Combo_non-mkt_ext'!AA64"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: "Non-interest current account in percent of GDP"
+  notes: "New-vs-old standard-test GDP growth rule (B6_Combo_mkt_ext!AA64)."
+- id: dsa_ext_standard_test_exports_rule
+  sheet:
+  - B6_Combo_mkt_ext
+  - B6_Combo_non-mkt_ext
+  data_range:
+  - "B6_Combo_mkt_ext!AA70"
+  - "'B6_Combo_non-mkt_ext'!AA70"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B6_Combo_mkt_ext: B6_mkt
+          B6_Combo_non-mkt_ext: B6_nonmkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: "Historical average, baseline projection, whichever is lower"
+  notes: "New-vs-old standard-test export-growth rule (B6_Combo_mkt_ext!AA70)."
+- id: dsa_ext_revenue_gdp_stress_stress
+  sheet: "C3_Commodity prices_ext"
+  data_range: "'C3_Commodity prices_ext'!E118:J118"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          "C3_Commodity prices_ext": C3
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: usd_millions
+    VARIANT: stress
+    INDICATOR: "Revenue/GDP (stress)"
+  notes: "Revenue/GDP (stress) (C3_Commodity prices_ext), keyed by scenario and years from\
+    \ row 8."
+- id: dsa_ext_of_which_public_and_publicly_guaranteed_ppg
+  sheet: "Baseline - external"
+  data_range: "'Baseline - external'!M13:AH13"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "of which: public and publicly guaranteed (PPG)"
+  notes: "of which: public and publicly guaranteed (PPG) (Baseline - external), keyed by scenario\
+    \ and years from row 8."
+- id: dsa_ext_of_which_private
+  sheet: "Baseline - external"
+  data_range: "'Baseline - external'!M14:AH14"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "of which: Private"
+  notes: "of which: Private (Baseline - external), keyed by scenario and years from row 8."
+- id: dsa_ext_total_external_debt_service_to_exports_ratio
+  sheet: "Baseline - external"
+  data_range: "'Baseline - external'!N38:AH38"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: baseline_projections
+    INDICATOR: "Total external debt service-to-exports ratio"
+  notes: "Total external debt service-to-exports ratio (Baseline - external), keyed by scenario\
+    \ and years from row 8."
+- id: dsa_ext_government_revenues_excluding_grants_in_percent_of_gdp
+  sheet: "Baseline - external"
+  data_range: "'Baseline - external'!N60:AH60"
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          "Baseline - external": Baseline
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.external
+    DSA_SECTION: macro_assumptions
+    INDICATOR: "Government revenues (excluding grants, in percent of GDP)"
+  notes: "Government revenues (excluding grants, in percent of GDP) (Baseline - external),\
+    \ keyed by scenario and years from row 8."

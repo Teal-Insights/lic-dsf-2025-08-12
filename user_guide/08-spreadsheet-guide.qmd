@@ -1,0 +1,78 @@
+---
+title: "Using the spreadsheet"
+guide-section: "Spreadsheet Guide"
+---
+
+Use this guide when you want to run the official LIC-DSF spreadsheet directly,
+without using the Python package. The workbook remains the economist-facing
+tool: enter country assumptions on Inputs 1–8, review its checks, and interpret
+the resulting debt paths and risk signals.
+
+## Download the workbook
+
+[Download the official macro-enabled LIC-DSF template](https://thedocs.worldbank.org/en/doc/f0ade6bcf85b6f98dbeb2c39a2b7770c-0360012025/original/LIC-DSF-IDA21-Template-08-12-2025-vf.xlsm){.btn .btn-primary}
+
+This guide covers the **August 12, 2025 IDA21 vintage**. Keep the file as
+`.xlsm`, open it in a desktop version of Microsoft Excel, and enable its
+content only after confirming that it came from the official World Bank link
+above. Other spreadsheet applications may not reproduce its formulas, charts,
+or VBA behavior.
+
+The expected SHA-256 checksum is:
+
+```text
+3a0a0b80c7cbc95ac953f25ecae0b437129d669ceb8aeefb54ab86dc8727ea86
+```
+
+The workbook is a joint IMF/World Bank work and is not covered by this
+package's software license. Follow the terms of the official source when
+redistributing it.
+
+## Recommended workflow
+
+1. Save a country-specific copy; do not work in your clean template.
+2. Read `Input-INSTRUCTIONS` and complete the yellow cells on Inputs 1–8.
+3. Preserve sheet names, formulas, named ranges, and workbook structure.
+4. Resolve the workbook's validation messages before interpreting results.
+5. Review baseline debt dynamics before stress tests and ratings.
+6. Use Realism and Probability outputs as evidence for economist judgement;
+   they do not automatically replace the mechanical rating.
+7. Record data vintages, coverage choices, overrides, and judgement separately.
+
+## Input reference
+
+The [spreadsheet input guide](09-spreadsheet-inputs.qmd) maps the
+published calculation inputs to their workbook cells and ranges. It is
+generated from `inputs.bindings.yaml`, including:
+
+- country, vintage, discount-rate, and debt-coverage settings;
+- macroeconomic and debt history/projections;
+- external and domestic financing assumptions;
+- standardized and tailored stress settings;
+- residual financing, SDR, and customized-scenario inputs.
+
+The binding reference is a cell map, not economic guidance. Units, sign
+conventions, required vintages, and applicability still follow the workbook's
+instructions and the IMF/World Bank LIC-DSF guidance.
+
+## Output reference
+
+The [spreadsheet output guide](10-spreadsheet-outputs.qmd) maps the
+published `Chart Data` results to their workbook cells and ranges. It covers:
+
+- external, fiscal, and overall mechanical risk signals;
+- baseline and stress breach flags;
+- most-extreme-shock labels;
+- tailored-stress applicability;
+- moderate-risk fiscal-space text;
+- scenario-by-year paths used by the standard debt-stress figures.
+
+The output bindings do not represent every formatted cell on Outputs 1–7.
+Realism diagnostics, probability results, judgement, chart chrome, and VBA are
+separate workbook surfaces.
+
+## Official guidance
+
+- [World Bank Debt Sustainability Framework](https://www.worldbank.org/en/programs/debt-toolkit/dsf)
+- [IMF LIC-DSF resources](https://www.imf.org/dsalic)
+

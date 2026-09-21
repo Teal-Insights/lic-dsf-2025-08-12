@@ -1,0 +1,1309 @@
+schema_version: 1.19.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+  - id: DSA_SECTION
+    name: DSA statement section
+    dtype: string
+  - id: HOLDER
+    name: Debt holder residency
+    dtype: string
+  - id: ISSUANCE_YEAR
+    name: Issuance year
+    dtype: int
+  - id: ROW
+    name: Workbook row
+    dtype: int
+  - id: COL
+    name: Workbook column
+    dtype: string
+series:
+- id: in4_extfin_stock_pin
+  sheet: Input 4 - External Financing
+  data_range:
+  - '''Input 4 - External Financing''!D10'
+  - '''Input 4 - External Financing''!AN10:BP10'
+  - '''Input 4 - External Financing''!AY11:BP11'
+  - '''Input 4 - External Financing''!BK12:BP12'
+  - '''Input 4 - External Financing''!AN13:BP13'
+  - '''Input 4 - External Financing''!BA14:BP14'
+  - '''Input 4 - External Financing''!AU15:BP15'
+  - '''Input 4 - External Financing''!AL16:BP16'
+  - '''Input 4 - External Financing''!BF17:BP17'
+  - '''Input 4 - External Financing''!D18:D64'
+  - '''Input 4 - External Financing''!AN18:BP64'
+  - '''Input 4 - External Financing''!C65'
+  - '''Input 4 - External Financing''!AN65:BP65'
+  - '''Input 4 - External Financing''!C66:D66'
+  - '''Input 4 - External Financing''!BI69:BP70'
+  - '''Input 4 - External Financing''!B76:D82'
+  - '''Input 4 - External Financing''!B86:D87'
+  - '''Input 4 - External Financing''!B88:C90'
+  - '''Input 4 - External Financing''!B91:B95'
+  layout: matrix
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: ROW
+      concept: ROW
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          10: 10
+          11: 11
+          12: 12
+          13: 13
+          14: 14
+          15: 15
+          16: 16
+          17: 17
+          18: 18
+          19: 19
+          20: 20
+          21: 21
+          22: 22
+          23: 23
+          24: 24
+          25: 25
+          26: 26
+          27: 27
+          28: 28
+          29: 29
+          30: 30
+          31: 31
+          32: 32
+          33: 33
+          34: 34
+          35: 35
+          36: 36
+          37: 37
+          38: 38
+          39: 39
+          40: 40
+          41: 41
+          42: 42
+          43: 43
+          44: 44
+          45: 45
+          46: 46
+          47: 47
+          48: 48
+          49: 49
+          50: 50
+          51: 51
+          52: 52
+          53: 53
+          54: 54
+          55: 55
+          56: 56
+          57: 57
+          58: 58
+          59: 59
+          60: 60
+          61: 61
+          62: 62
+          63: 63
+          64: 64
+          65: 65
+          66: 66
+          69: 69
+          70: 70
+          76: 76
+          77: 77
+          78: 78
+          79: 79
+          80: 80
+          81: 81
+          82: 82
+          86: 86
+          87: 87
+          88: 88
+          89: 89
+          90: 90
+          91: 91
+          92: 92
+          93: 93
+          94: 94
+          95: 95
+        read: int
+    - id: COL
+      concept: COL
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          B: B
+          C: C
+          D: D
+          AL: AL
+          AM: AM
+          AN: AN
+          AO: AO
+          AP: AP
+          AQ: AQ
+          AR: AR
+          AS: AS
+          AT: AT
+          AU: AU
+          AV: AV
+          AW: AW
+          AX: AX
+          AY: AY
+          AZ: AZ
+          BA: BA
+          BB: BB
+          BC: BC
+          BD: BD
+          BE: BE
+          BF: BF
+          BG: BG
+          BH: BH
+          BI: BI
+          BJ: BJ
+          BK: BK
+          BL: BL
+          BM: BM
+          BN: BN
+          BO: BO
+          BP: BP
+        read: string
+  key:
+  - ROW
+  - COL
+  series_context:
+    TABLE: input_4.external_financing
+    INDICATOR: stock
+  notes: Extract-time dynamic-ref pin; domain compiled from series bindings for OFFSET/INDEX/INDIRECT.
+- id: in3_macro_signed_stock_pin
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range:
+  - '''Input 3 - Macro-Debt data(DMX)''!X71:AR71'
+  - '''Input 3 - Macro-Debt data(DMX)''!X75:AR76'
+  - '''Input 3 - Macro-Debt data(DMX)''!BP75:BP76'
+  - '''Input 3 - Macro-Debt data(DMX)''!X82:AR82'
+  - '''Input 3 - Macro-Debt data(DMX)''!BP82'
+  - '''Input 3 - Macro-Debt data(DMX)''!X88:AR88'
+  - '''Input 3 - Macro-Debt data(DMX)''!BP88'
+  - '''Input 3 - Macro-Debt data(DMX)''!X94:AR94'
+  - '''Input 3 - Macro-Debt data(DMX)''!BP94'
+  - '''Input 3 - Macro-Debt data(DMX)''!X98:AR98'
+  - '''Input 3 - Macro-Debt data(DMX)''!X100:Z100'
+  - '''Input 3 - Macro-Debt data(DMX)''!Y101'
+  - '''Input 3 - Macro-Debt data(DMX)''!Z104:Z105'
+  - '''Input 3 - Macro-Debt data(DMX)''!Y106:AA107'
+  - '''Input 3 - Macro-Debt data(DMX)''!X108:AC108'
+  - '''Input 3 - Macro-Debt data(DMX)''!X114:AR115'
+  - '''Input 3 - Macro-Debt data(DMX)''!X133:AR139'
+  layout: matrix
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: ROW
+      concept: ROW
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          71: 71
+          75: 75
+          76: 76
+          82: 82
+          88: 88
+          94: 94
+          98: 98
+          100: 100
+          101: 101
+          104: 104
+          105: 105
+          106: 106
+          107: 107
+          108: 108
+          114: 114
+          115: 115
+          133: 133
+          134: 134
+          135: 135
+          136: 136
+          137: 137
+          138: 138
+          139: 139
+        read: int
+    - id: COL
+      concept: COL
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          X: X
+          Y: Y
+          Z: Z
+          AA: AA
+          AB: AB
+          AC: AC
+          AD: AD
+          AE: AE
+          AF: AF
+          AG: AG
+          AH: AH
+          AI: AI
+          AJ: AJ
+          AK: AK
+          AL: AL
+          AM: AM
+          AN: AN
+          AO: AO
+          AP: AP
+          AQ: AQ
+          AR: AR
+          BP: BP
+        read: string
+  key:
+  - ROW
+  - COL
+  series_context:
+    TABLE: input_3.macro
+    INDICATOR: signed_stock
+  notes: Extract-time dynamic-ref pin; domain compiled from series bindings for OFFSET/INDEX/INDIRECT.
+- id: in5_lcfin_stock_pin
+  sheet: Input 5 - Local-debt Financing
+  data_range:
+  - '''Input 5 - Local-debt Financing''!AE100:AF101'
+  - '''Input 5 - Local-debt Financing''!AE104:AF106'
+  - '''Input 5 - Local-debt Financing''!AE227:AF229'
+  - '''Input 5 - Local-debt Financing''!AE251:AF253'
+  - '''Input 5 - Local-debt Financing''!AE275:AF277'
+  - '''Input 5 - Local-debt Financing''!AE299:AF301'
+  - '''Input 5 - Local-debt Financing''!AE323:AF326'
+  - '''Input 5 - Local-debt Financing''!AE393:AF396'
+  - '''Input 5 - Local-debt Financing''!AE462:AF463'
+  - '''Input 5 - Local-debt Financing''!M465:M467'
+  - '''Input 5 - Local-debt Financing''!AE465:AF467'
+  - '''Input 5 - Local-debt Financing''!M489:M491'
+  - '''Input 5 - Local-debt Financing''!AE489:AF491'
+  - '''Input 5 - Local-debt Financing''!M512'
+  - '''Input 5 - Local-debt Financing''!M513:M516'
+  - '''Input 5 - Local-debt Financing''!AE513:AF516'
+  - '''Input 5 - Local-debt Financing''!AE536:AF538'
+  - '''Input 5 - Local-debt Financing''!AE558:AF560'
+  - '''Input 5 - Local-debt Financing''!AE580:AF581'
+  - '''Input 5 - Local-debt Financing''!M582:M586'
+  - '''Input 5 - Local-debt Financing''!AE582:AF586'
+  - '''Input 5 - Local-debt Financing''!AE588'
+  - '''Input 5 - Local-debt Financing''!AE589:AF591'
+  - '''Input 5 - Local-debt Financing''!M592:M608'
+  - '''Input 5 - Local-debt Financing''!AE592:AF608'
+  - '''Input 5 - Local-debt Financing''!AE610'
+  - '''Input 5 - Local-debt Financing''!AE611:AF613'
+  - '''Input 5 - Local-debt Financing''!M614:M630'
+  - '''Input 5 - Local-debt Financing''!AE614:AF630'
+  - '''Input 5 - Local-debt Financing''!AE632'
+  - '''Input 5 - Local-debt Financing''!AE633:AF635'
+  - '''Input 5 - Local-debt Financing''!M636:M651'
+  - '''Input 5 - Local-debt Financing''!AE636:AF651'
+  layout: matrix
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: ROW
+      concept: ROW
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          100: 100
+          101: 101
+          104: 104
+          105: 105
+          106: 106
+          227: 227
+          228: 228
+          229: 229
+          251: 251
+          252: 252
+          253: 253
+          275: 275
+          276: 276
+          277: 277
+          299: 299
+          300: 300
+          301: 301
+          323: 323
+          324: 324
+          325: 325
+          326: 326
+          393: 393
+          394: 394
+          395: 395
+          396: 396
+          462: 462
+          463: 463
+          465: 465
+          466: 466
+          467: 467
+          489: 489
+          490: 490
+          491: 491
+          512: 512
+          513: 513
+          514: 514
+          515: 515
+          516: 516
+          536: 536
+          537: 537
+          538: 538
+          558: 558
+          559: 559
+          560: 560
+          580: 580
+          581: 581
+          582: 582
+          583: 583
+          584: 584
+          585: 585
+          586: 586
+          588: 588
+          589: 589
+          590: 590
+          591: 591
+          592: 592
+          593: 593
+          594: 594
+          595: 595
+          596: 596
+          597: 597
+          598: 598
+          599: 599
+          600: 600
+          601: 601
+          602: 602
+          603: 603
+          604: 604
+          605: 605
+          606: 606
+          607: 607
+          608: 608
+          610: 610
+          611: 611
+          612: 612
+          613: 613
+          614: 614
+          615: 615
+          616: 616
+          617: 617
+          618: 618
+          619: 619
+          620: 620
+          621: 621
+          622: 622
+          623: 623
+          624: 624
+          625: 625
+          626: 626
+          627: 627
+          628: 628
+          629: 629
+          630: 630
+          632: 632
+          633: 633
+          634: 634
+          635: 635
+          636: 636
+          637: 637
+          638: 638
+          639: 639
+          640: 640
+          641: 641
+          642: 642
+          643: 643
+          644: 644
+          645: 645
+          646: 646
+          647: 647
+          648: 648
+          649: 649
+          650: 650
+          651: 651
+        read: int
+    - id: COL
+      concept: COL
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          M: M
+          AE: AE
+          AF: AF
+        read: string
+  key:
+  - ROW
+  - COL
+  series_context:
+    TABLE: input5.flows
+    INDICATOR: stock
+  notes: Extract-time dynamic-ref pin; domain compiled from series bindings for OFFSET/INDEX/INDIRECT.
+- id: pv_base_stock_pin
+  sheet: PV_Base
+  data_range:
+  - PV_Base!BA65:BD65
+  - PV_Base!D71:D72
+  - PV_Base!BC85:BP90
+  - PV_Base!BM91:BP91
+  - PV_Base!BC92:BP99
+  - PV_Base!D122
+  - PV_Base!D146
+  - PV_Base!BE158:BE163
+  - PV_Base!BE165:BE171
+  - PV_Base!BE173:BE174
+  - PV_Base!BM188:BX188
+  - PV_Base!D194
+  - PV_Base!CA212:CC212
+  - PV_Base!D218
+  - PV_Base!D252
+  layout: matrix
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: ROW
+      concept: ROW
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          65: 65
+          71: 71
+          72: 72
+          85: 85
+          86: 86
+          87: 87
+          88: 88
+          89: 89
+          90: 90
+          91: 91
+          92: 92
+          93: 93
+          94: 94
+          95: 95
+          96: 96
+          97: 97
+          98: 98
+          99: 99
+          122: 122
+          146: 146
+          158: 158
+          159: 159
+          160: 160
+          161: 161
+          162: 162
+          163: 163
+          165: 165
+          166: 166
+          167: 167
+          168: 168
+          169: 169
+          170: 170
+          171: 171
+          173: 173
+          174: 174
+          188: 188
+          194: 194
+          212: 212
+          218: 218
+          252: 252
+        read: int
+    - id: COL
+      concept: COL
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          D: D
+          BA: BA
+          BB: BB
+          BC: BC
+          BD: BD
+          BE: BE
+          BF: BF
+          BG: BG
+          BH: BH
+          BI: BI
+          BJ: BJ
+          BK: BK
+          BL: BL
+          BM: BM
+          BN: BN
+          BO: BO
+          BP: BP
+          BQ: BQ
+          BR: BR
+          BS: BS
+          BT: BT
+          BU: BU
+          BV: BV
+          BW: BW
+          BX: BX
+          CA: CA
+          CB: CB
+          CC: CC
+        read: string
+  key:
+  - ROW
+  - COL
+  series_context:
+    TABLE: pv_base.dynamic_ref
+    INDICATOR: stock
+  notes: Extract-time dynamic-ref pin; domain compiled from series bindings for OFFSET/INDEX/INDIRECT.
+- id: pv_baseline_com_stock_pin
+  sheet: PV_baseline_com
+  data_range:
+  - PV_baseline_com!BE23:BP23
+  - PV_baseline_com!AR32:BP32
+  - PV_baseline_com!BE49:BP49
+  - PV_baseline_com!AR58:BP58
+  - PV_baseline_com!BE75:BP75
+  - PV_baseline_com!AR84:BP84
+  - PV_baseline_com!BE101:BP101
+  - PV_baseline_com!AR110:BP110
+  - PV_baseline_com!BE127:BP127
+  - PV_baseline_com!AR136:BP136
+  layout: matrix
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: ROW
+      concept: ROW
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          23: 23
+          32: 32
+          49: 49
+          58: 58
+          75: 75
+          84: 84
+          101: 101
+          110: 110
+          127: 127
+          136: 136
+        read: int
+    - id: COL
+      concept: COL
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          AR: AR
+          AS: AS
+          AT: AT
+          AU: AU
+          AV: AV
+          AW: AW
+          AX: AX
+          AY: AY
+          AZ: AZ
+          BA: BA
+          BB: BB
+          BC: BC
+          BD: BD
+          BE: BE
+          BF: BF
+          BG: BG
+          BH: BH
+          BI: BI
+          BJ: BJ
+          BK: BK
+          BL: BL
+          BM: BM
+          BN: BN
+          BO: BO
+          BP: BP
+        read: string
+  key:
+  - ROW
+  - COL
+  series_context:
+    TABLE: pv_baseline_com.dynamic_ref
+    INDICATOR: stock
+  notes: Extract-time dynamic-ref pin; domain compiled from series bindings for OFFSET/INDEX/INDIRECT.
+- id: translation_snapshot_pin
+  sheet: translation
+  data_range:
+  - translation!C452:F452
+  - translation!C898:F898
+  - translation!C973:F973
+  - translation!C979:F979
+  - translation!C983:F996
+  - translation!C1764
+  - translation!E1764:F1764
+  - translation!D1765
+  - translation!C1770:F1771
+  - translation!C1789
+  - translation!C1818:F1818
+  layout: matrix
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: ROW
+      concept: ROW
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          452: 452
+          898: 898
+          973: 973
+          979: 979
+          983: 983
+          984: 984
+          985: 985
+          986: 986
+          987: 987
+          988: 988
+          989: 989
+          990: 990
+          991: 991
+          992: 992
+          993: 993
+          994: 994
+          995: 995
+          996: 996
+          1764: 1764
+          1765: 1765
+          1770: 1770
+          1771: 1771
+          1789: 1789
+          1818: 1818
+        read: int
+    - id: COL
+      concept: COL
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          C: C
+          D: D
+          E: E
+          F: F
+        read: string
+  key:
+  - ROW
+  - COL
+  series_context:
+    TABLE: translation.labels
+    INDICATOR: snapshot
+  notes: Extract-time dynamic-ref pin; domain compiled from series bindings for OFFSET/INDEX/INDIRECT.
+- id: pv_base_snapshot_pin
+  sheet: PV_Base
+  data_range:
+  - PV_Base!A917:A938
+  - PV_Base!A941:A962
+  - PV_Base!A966:A986
+  layout: matrix
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: ROW
+      concept: ROW
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          917: 917
+          918: 918
+          919: 919
+          920: 920
+          921: 921
+          922: 922
+          923: 923
+          924: 924
+          925: 925
+          926: 926
+          927: 927
+          928: 928
+          929: 929
+          930: 930
+          931: 931
+          932: 932
+          933: 933
+          934: 934
+          935: 935
+          936: 936
+          937: 937
+          938: 938
+          941: 941
+          942: 942
+          943: 943
+          944: 944
+          945: 945
+          946: 946
+          947: 947
+          948: 948
+          949: 949
+          950: 950
+          951: 951
+          952: 952
+          953: 953
+          954: 954
+          955: 955
+          956: 956
+          957: 957
+          958: 958
+          959: 959
+          960: 960
+          961: 961
+          962: 962
+          966: 966
+          967: 967
+          968: 968
+          969: 969
+          970: 970
+          971: 971
+          972: 972
+          973: 973
+          974: 974
+          975: 975
+          976: 976
+          977: 977
+          978: 978
+          979: 979
+          980: 980
+          981: 981
+          982: 982
+          983: 983
+          984: 984
+          985: 985
+          986: 986
+        read: int
+    - id: COL
+      concept: COL
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          A: A
+        read: string
+  key:
+  - ROW
+  - COL
+  series_context:
+    TABLE: pv_base.dynamic_ref
+    INDICATOR: snapshot
+  notes: Extract-time dynamic-ref pin; domain compiled from series bindings for OFFSET/INDEX/INDIRECT.
+- id: pv_base_unit_rate_pin
+  sheet: PV_Base
+  data_range:
+  - PV_Base!D80
+  - PV_Base!D88
+  - PV_Base!D97:D99
+  - PV_Base!D105
+  layout: matrix
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: ROW
+      concept: ROW
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          80: 80
+          88: 88
+          97: 97
+          98: 98
+          99: 99
+          105: 105
+        read: int
+    - id: COL
+      concept: COL
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          D: D
+        read: string
+  key:
+  - ROW
+  - COL
+  series_context:
+    TABLE: pv_base.dynamic_ref
+    INDICATOR: unit_rate
+  notes: Extract-time dynamic-ref pin; domain compiled from series bindings for OFFSET/INDEX/INDIRECT.
+- id: ext_debt_stock_pin
+  sheet: Ext_Debt_Data
+  data_range:
+  - Ext_Debt_Data!CD79:CF79
+  - Ext_Debt_Data!E279
+  - Ext_Debt_Data!E382
+  layout: matrix
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: ROW
+      concept: ROW
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          79: 79
+          279: 279
+          382: 382
+        read: int
+    - id: COL
+      concept: COL
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          E: E
+          CD: CD
+          CE: CE
+          CF: CF
+        read: string
+  key:
+  - ROW
+  - COL
+  series_context:
+    TABLE: ext_debt.dynamic_ref
+    INDICATOR: stock
+  notes: Extract-time dynamic-ref pin; domain compiled from series bindings for OFFSET/INDEX/INDIRECT.
+- id: in4_extfin_unit_rate_pin
+  sheet: Input 4 - External Financing
+  data_range:
+  - '''Input 4 - External Financing''!F20'
+  - '''Input 4 - External Financing''!F24:F25'
+  - '''Input 4 - External Financing''!F31'
+  layout: matrix
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: ROW
+      concept: ROW
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          20: 20
+          24: 24
+          25: 25
+          31: 31
+        read: int
+    - id: COL
+      concept: COL
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          F: F
+        read: string
+  key:
+  - ROW
+  - COL
+  series_context:
+    TABLE: input_4.external_financing
+    INDICATOR: unit_rate
+  notes: Extract-time dynamic-ref pin; domain compiled from series bindings for OFFSET/INDEX/INDIRECT.
+- id: in4_extfin_snapshot_pin
+  sheet: Input 4 - External Financing
+  data_range: '''Input 4 - External Financing''!G57:H58'
+  layout: matrix
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: ROW
+      concept: ROW
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          57: 57
+          58: 58
+        read: int
+    - id: COL
+      concept: COL
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          G: G
+          H: H
+        read: string
+  key:
+  - ROW
+  - COL
+  series_context:
+    TABLE: input_4.external_financing
+    INDICATOR: snapshot
+  notes: Extract-time dynamic-ref pin; domain compiled from series bindings for OFFSET/INDEX/INDIRECT.
+- id: blend_float_wb_stock_pin
+  sheet: BLEND floating calculations WB
+  data_range:
+  - '''BLEND floating calculations WB''!E5:F5'
+  - '''BLEND floating calculations WB''!E6'
+  layout: matrix
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: ROW
+      concept: ROW
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          5: 5
+          6: 6
+        read: int
+    - id: COL
+      concept: COL
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          E: E
+          F: F
+        read: string
+  key:
+  - ROW
+  - COL
+  series_context:
+    TABLE: blend.terms
+    INDICATOR: stock
+  notes: Extract-time dynamic-ref pin; domain compiled from series bindings for OFFSET/INDEX/INDIRECT.
+- id: in6opt_standard_snapshot_pin
+  sheet: Input 6(optional)-Standard Test
+  data_range:
+  - '''Input 6(optional)-Standard Test''!I3:I4'
+  - '''Input 6(optional)-Standard Test''!I22'
+  layout: matrix
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: ROW
+      concept: ROW
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          3: 3
+          4: 4
+          22: 22
+        read: int
+    - id: COL
+      concept: COL
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          I: I
+        read: string
+  key:
+  - ROW
+  - COL
+  series_context:
+    TABLE: input_6.standard_test
+    INDICATOR: snapshot
+  notes: Extract-time dynamic-ref pin; domain compiled from series bindings for OFFSET/INDEX/INDIRECT.
+- id: in1_basics_snapshot_pin
+  sheet: Input 1 - Basics
+  data_range: '''Input 1 - Basics''!C10:C11'
+  layout: matrix
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: ROW
+      concept: ROW
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          10: 10
+          11: 11
+        read: int
+    - id: COL
+      concept: COL
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          C: C
+        read: string
+  key:
+  - ROW
+  - COL
+  series_context:
+    TABLE: input_1.basics
+    INDICATOR: snapshot
+  notes: Extract-time dynamic-ref pin; domain compiled from series bindings for OFFSET/INDEX/INDIRECT.
+- id: in6opt_standard_bound_magnitude_pin
+  sheet: Input 6(optional)-Standard Test
+  data_range: '''Input 6(optional)-Standard Test''!I20:I21'
+  layout: matrix
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: ROW
+      concept: ROW
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          20: 20
+          21: 21
+        read: int
+    - id: COL
+      concept: COL
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          I: I
+        read: string
+  key:
+  - ROW
+  - COL
+  series_context:
+    TABLE: input_6.standard_test
+    INDICATOR: bound_magnitude
+  notes: Extract-time dynamic-ref pin; domain compiled from series bindings for OFFSET/INDEX/INDIRECT.
+- id: blend_float_wb_snapshot_pin
+  sheet: BLEND floating calculations WB
+  data_range: '''BLEND floating calculations WB''!M8'
+  layout: scalar
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: blend.terms
+    INDICATOR: snapshot
+  notes: Extract-time dynamic-ref pin; domain compiled from series bindings for OFFSET/INDEX/INDIRECT.
+- id: baseline_pub_snapshot_pin
+  sheet: Baseline - public
+  data_range: '''Baseline - public''!O6'
+  layout: scalar
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: baseline.public
+    INDICATOR: snapshot
+  notes: Extract-time dynamic-ref pin; domain compiled from series bindings for OFFSET/INDEX/INDIRECT.
+- id: pv_base_non_negative_pin
+  sheet: PV_Base
+  data_range: PV_Base!A965
+  layout: scalar
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: pv_base.dynamic_ref
+    INDICATOR: non_negative
+  notes: Extract-time dynamic-ref pin; domain compiled from series bindings for OFFSET/INDEX/INDIRECT.

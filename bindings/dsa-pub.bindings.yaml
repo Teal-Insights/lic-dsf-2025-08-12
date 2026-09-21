@@ -1,0 +1,4451 @@
+schema_version: 1.19.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+  - id: DSA_SECTION
+    name: DSA statement section
+    dtype: string
+series:
+- id: dsa_pub_public_sector_debt_1
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E11:Y11
+  - B2_PB_mkt_pub!E11:Y11
+  - B6_combo_mkt_pub!E11:Y11
+  - '''C1_Combined CL''!E11:Y11'
+  - B2_PB_non_mkt_pub!E11:Y11
+  - B5_depreciation_pub!E11:Y11
+  - '''B6_combo_non-mkt_pub''!E11:Y11'
+  - '''C2_Natural disaster''!E11:Y11'
+  - C3_commodity_prices_pub!E11:Y11
+  - A1_Historical_pub!E11:Y11
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: Public sector debt 1/
+  notes: Public sector debt 1/ (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_of_which_external_debt
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E12:X12
+  - B2_PB_mkt_pub!E12:X12
+  - B6_combo_mkt_pub!E12:X12
+  - '''C1_Combined CL''!E12:X12'
+  - B2_PB_non_mkt_pub!E12:X12
+  - B5_depreciation_pub!E12:X12
+  - '''B6_combo_non-mkt_pub''!E12:X12'
+  - '''C2_Natural disaster''!E12:X12'
+  - C3_commodity_prices_pub!E12:X12
+  - A1_Historical_pub!E12:X12
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: 'of which: external debt'
+  notes: 'of which: external debt (B1_GDP_pub), keyed by scenario and years from row 7.'
+- id: dsa_pub_pv_of_total_public_debt
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E13:Y13
+  - B2_PB_mkt_pub!E13:Y13
+  - B6_combo_mkt_pub!E13:Y13
+  - '''C1_Combined CL''!E13:Y13'
+  - B2_PB_non_mkt_pub!E13:Y13
+  - B5_depreciation_pub!E13:Y13
+  - '''B6_combo_non-mkt_pub''!E13:Y13'
+  - '''C2_Natural disaster''!E13:Y13'
+  - C3_commodity_prices_pub!E13:Y13
+  - A1_Historical_pub!E13:Y13
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: PV of total public debt
+  notes: PV of total public debt (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_change_in_public_sector_debt
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F15:Y15
+  - B2_PB_mkt_pub!F15:Y15
+  - B6_combo_mkt_pub!F15:Y15
+  - '''C1_Combined CL''!F15:Y15'
+  - B2_PB_non_mkt_pub!F15:Y15
+  - B5_depreciation_pub!F15:Y15
+  - '''B6_combo_non-mkt_pub''!F15:Y15'
+  - '''C2_Natural disaster''!F15:Y15'
+  - C3_commodity_prices_pub!F15:Y15
+  - A1_Historical_pub!F15:Y15
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: Change in public sector debt
+  notes: Change in public sector debt (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_identified_debt_creating_flows
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F16:Y16
+  - B2_PB_mkt_pub!F16:Y16
+  - B6_combo_mkt_pub!F16:Y16
+  - '''C1_Combined CL''!F16:Y16'
+  - B2_PB_non_mkt_pub!F16:Y16
+  - B5_depreciation_pub!F16:Y16
+  - '''B6_combo_non-mkt_pub''!F16:Y16'
+  - '''C2_Natural disaster''!F16:Y16'
+  - C3_commodity_prices_pub!F16:Y16
+  - A1_Historical_pub!F16:Y16
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: Identified debt-creating flows
+  notes: Identified debt-creating flows (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_primary_deficit
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E17:Y17
+  - B2_PB_mkt_pub!E17:Y17
+  - B6_combo_mkt_pub!E17:Y17
+  - '''C1_Combined CL''!E17:Y17'
+  - B2_PB_non_mkt_pub!E17:Y17
+  - B5_depreciation_pub!E17:Y17
+  - '''B6_combo_non-mkt_pub''!E17:Y17'
+  - '''C2_Natural disaster''!E17:Y17'
+  - C3_commodity_prices_pub!E17:Y17
+  - A1_Historical_pub!E17:Y17
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: Primary deficit
+  notes: Primary deficit (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_revenue_and_grants
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E18:Y18
+  - B2_PB_mkt_pub!E18:Y18
+  - B6_combo_mkt_pub!E18:Y18
+  - '''C1_Combined CL''!E18:Y18'
+  - B2_PB_non_mkt_pub!E18:Y18
+  - B5_depreciation_pub!E18:Y18
+  - '''B6_combo_non-mkt_pub''!E18:Y18'
+  - '''C2_Natural disaster''!E18:Y18'
+  - C3_commodity_prices_pub!E18:Y18
+  - A1_Historical_pub!E18:Y18
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: Revenue and grants
+  notes: Revenue and grants (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_of_which_grants
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F19:Y19
+  - B2_PB_mkt_pub!F19:Y19
+  - B6_combo_mkt_pub!F19:Y19
+  - '''C1_Combined CL''!E19:Y19'
+  - B2_PB_non_mkt_pub!E19:Y19
+  - B5_depreciation_pub!F19:Y19
+  - '''B6_combo_non-mkt_pub''!F19:Y19'
+  - '''C2_Natural disaster''!E19:Y19'
+  - C3_commodity_prices_pub!F19:Y19
+  - A1_Historical_pub!F19:Y19
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: 'of which: grants'
+  notes: 'of which: grants (B1_GDP_pub), keyed by scenario and years from row 7.'
+- id: dsa_pub_primary_noninterest_expenditure
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E20:Y20
+  - B2_PB_mkt_pub!C20:Y20
+  - B6_combo_mkt_pub!C20:Y20
+  - '''C1_Combined CL''!E20:Y20'
+  - B2_PB_non_mkt_pub!C20:Y20
+  - B5_depreciation_pub!E20:Y20
+  - '''B6_combo_non-mkt_pub''!C20:Y20'
+  - '''C2_Natural disaster''!E20:Y20'
+  - C3_commodity_prices_pub!E20:Y20
+  - A1_Historical_pub!E20:E20
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: Primary (noninterest) expenditure
+  notes: Primary (noninterest) expenditure (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_automatic_debt_dynamics
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F21:Y21
+  - B2_PB_mkt_pub!F21:Y21
+  - B6_combo_mkt_pub!F21:Y21
+  - '''C1_Combined CL''!F21:Y21'
+  - B2_PB_non_mkt_pub!F21:Y21
+  - B5_depreciation_pub!F21:Y21
+  - '''B6_combo_non-mkt_pub''!F21:Y21'
+  - '''C2_Natural disaster''!F21:Y21'
+  - C3_commodity_prices_pub!F21:Y21
+  - A1_Historical_pub!F21:Y21
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: Automatic debt dynamics
+  notes: Automatic debt dynamics (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_contribution_from_interest_rate_growth_differential
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F22:Y22
+  - B2_PB_mkt_pub!F22:Y22
+  - B6_combo_mkt_pub!F22:Y22
+  - '''C1_Combined CL''!F22:Y22'
+  - B2_PB_non_mkt_pub!F22:Y22
+  - B5_depreciation_pub!F22:Y22
+  - '''B6_combo_non-mkt_pub''!F22:Y22'
+  - '''C2_Natural disaster''!F22:Y22'
+  - C3_commodity_prices_pub!F22:Y22
+  - A1_Historical_pub!F22:Y22
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: Contribution from interest rate/growth differential
+  notes: Contribution from interest rate/growth differential (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_of_which_contribution_from_average_real_interest_rate
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F23:Y23
+  - B2_PB_mkt_pub!F23:Y23
+  - B6_combo_mkt_pub!F23:Y23
+  - '''C1_Combined CL''!F23:Y23'
+  - B2_PB_non_mkt_pub!F23:Y23
+  - B5_depreciation_pub!F23:Y23
+  - '''B6_combo_non-mkt_pub''!F23:Y23'
+  - '''C2_Natural disaster''!F23:Y23'
+  - C3_commodity_prices_pub!F23:Y23
+  - A1_Historical_pub!F23:Y23
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: 'of which: contribution from average real interest rate'
+  notes: 'of which: contribution from average real interest rate (B1_GDP_pub), keyed by scenario and years from row 7.'
+- id: dsa_pub_of_which_contribution_from_real_gdp_growth
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F24:Y24
+  - B2_PB_mkt_pub!F24:Y24
+  - B6_combo_mkt_pub!F24:Y24
+  - '''C1_Combined CL''!F24:Y24'
+  - B2_PB_non_mkt_pub!F24:Y24
+  - B5_depreciation_pub!F24:Y24
+  - '''B6_combo_non-mkt_pub''!F24:Y24'
+  - '''C2_Natural disaster''!F24:Y24'
+  - C3_commodity_prices_pub!F24:Y24
+  - A1_Historical_pub!F24:Y24
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: 'of which: contribution from real GDP growth'
+  notes: 'of which: contribution from real GDP growth (B1_GDP_pub), keyed by scenario and years from row 7.'
+- id: dsa_pub_contribution_from_real_exchange_rate_depreciation
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F25:Y25
+  - B2_PB_mkt_pub!F25:Y25
+  - B6_combo_mkt_pub!F25:Y25
+  - '''C1_Combined CL''!F25:Y25'
+  - B2_PB_non_mkt_pub!F25:Y25
+  - B5_depreciation_pub!F25:Y25
+  - '''B6_combo_non-mkt_pub''!F25:Y25'
+  - '''C2_Natural disaster''!F25:Y25'
+  - C3_commodity_prices_pub!F25:Y25
+  - A1_Historical_pub!F25:Y25
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: Contribution from real exchange rate depreciation
+  notes: Contribution from real exchange rate depreciation (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_denominator_1_g
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F26:Y26
+  - B2_PB_mkt_pub!F26:Y26
+  - B6_combo_mkt_pub!F26:Y26
+  - '''C1_Combined CL''!F26:Y26'
+  - B2_PB_non_mkt_pub!F26:Y26
+  - B5_depreciation_pub!F26:Y26
+  - '''B6_combo_non-mkt_pub''!F26:Y26'
+  - '''C2_Natural disaster''!F26:Y26'
+  - C3_commodity_prices_pub!F26:Y26
+  - A1_Historical_pub!F26:Y26
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: Denominator = 1+g
+  notes: Denominator = 1+g (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_other_identified_debt_creating_flows
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F27:Y27
+  - B2_PB_mkt_pub!F27:Y27
+  - B6_combo_mkt_pub!F27:Y27
+  - '''C1_Combined CL''!F27:Y27'
+  - B2_PB_non_mkt_pub!F27:Y27
+  - B5_depreciation_pub!F27:Y27
+  - '''B6_combo_non-mkt_pub''!F27:Y27'
+  - '''C2_Natural disaster''!F27:Y27'
+  - C3_commodity_prices_pub!F27:Y27
+  - A1_Historical_pub!F27:Y27
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: Other identified debt-creating flows
+  notes: Other identified debt-creating flows (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_privatization_receipts_negative
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F28:Y28
+  - B2_PB_mkt_pub!F28:Y28
+  - B6_combo_mkt_pub!F28:Y28
+  - '''C1_Combined CL''!F28:Y28'
+  - B2_PB_non_mkt_pub!F28:Y28
+  - B5_depreciation_pub!F28:Y28
+  - '''B6_combo_non-mkt_pub''!F28:Y28'
+  - '''C2_Natural disaster''!F28:Y28'
+  - C3_commodity_prices_pub!F28:Y28
+  - A1_Historical_pub!F28:Y28
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: Privatization receipts (negative)
+  notes: Privatization receipts (negative) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_recognition_of_contingent_liabilities_e_g_bank_recapitalization
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F29:Y29
+  - B2_PB_mkt_pub!F29:Y29
+  - B6_combo_mkt_pub!F29:Y29
+  - '''C1_Combined CL''!F29:Y29'
+  - B2_PB_non_mkt_pub!F29:Y29
+  - B5_depreciation_pub!F29:Y29
+  - '''B6_combo_non-mkt_pub''!F29:Y29'
+  - '''C2_Natural disaster''!F29:Y29'
+  - C3_commodity_prices_pub!F29:Y29
+  - A1_Historical_pub!F29:Y29
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: Recognition of contingent liabilities (e.g., bank recapitalization)
+  notes: Recognition of contingent liabilities (e.g., bank recapitalization) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_debt_relief_hipc_and_other
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F30:Y30
+  - B2_PB_mkt_pub!F30:Y30
+  - B6_combo_mkt_pub!F30:Y30
+  - '''C1_Combined CL''!F30:Y30'
+  - B2_PB_non_mkt_pub!F30:Y30
+  - B5_depreciation_pub!F30:Y30
+  - '''B6_combo_non-mkt_pub''!F30:Y30'
+  - '''C2_Natural disaster''!F30:Y30'
+  - C3_commodity_prices_pub!F30:Y30
+  - A1_Historical_pub!F30:Y30
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: Debt relief (HIPC and other)
+  notes: Debt relief (HIPC and other) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_other_debt_creating_or_reducing_flow_please_specify
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F31:Y31
+  - B2_PB_mkt_pub!F31:Y31
+  - B6_combo_mkt_pub!F31:Y31
+  - '''C1_Combined CL''!F31:Y31'
+  - B2_PB_non_mkt_pub!F31:Y31
+  - B5_depreciation_pub!F31:Y31
+  - '''B6_combo_non-mkt_pub''!F31:Y31'
+  - '''C2_Natural disaster''!F31:Y31'
+  - C3_commodity_prices_pub!F31:Y31
+  - A1_Historical_pub!F31:Y31
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: Other debt creating or reducing flow (please specify)
+  notes: Other debt creating or reducing flow (please specify) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_residual
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F32:Y32
+  - B2_PB_mkt_pub!F32:Y32
+  - B6_combo_mkt_pub!F32:Y32
+  - '''C1_Combined CL''!F32:Y32'
+  - B2_PB_non_mkt_pub!F32:Y32
+  - B5_depreciation_pub!F32:Y32
+  - '''B6_combo_non-mkt_pub''!F32:Y32'
+  - '''C2_Natural disaster''!F32:Y32'
+  - C3_commodity_prices_pub!F32:Y32
+  - A1_Historical_pub!F32:Y32
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: baseline_projections
+    INDICATOR: Residual
+  notes: Residual (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_nominal_gdp_local_currency
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E41:Y41
+  - B2_PB_mkt_pub!E41:Y41
+  - B6_combo_mkt_pub!E41:Y41
+  - '''C1_Combined CL''!E41:Y41'
+  - B2_PB_non_mkt_pub!E41:Y41
+  - B5_depreciation_pub!E41:Y41
+  - '''B6_combo_non-mkt_pub''!E41:Y41'
+  - '''C2_Natural disaster''!E41:Y41'
+  - C3_commodity_prices_pub!E41:Y41
+  - A1_Historical_pub!E41:Y41
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: macro_assumptions
+    INDICATOR: Nominal GDP (local currency)
+  notes: Nominal GDP (local currency) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_real_gdp_growth_in_percent
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F42:Y42
+  - B2_PB_mkt_pub!F42:Y42
+  - B6_combo_mkt_pub!F42:Y42
+  - '''C1_Combined CL''!F42:Y42'
+  - B2_PB_non_mkt_pub!F42:Y42
+  - B5_depreciation_pub!F42:Y42
+  - '''B6_combo_non-mkt_pub''!F42:Y42'
+  - '''C2_Natural disaster''!F42:Y42'
+  - C3_commodity_prices_pub!F42:Y42
+  - A1_Historical_pub!F42:Y42
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: macro_assumptions
+    INDICATOR: Real GDP growth (in percent)
+  notes: Real GDP growth (in percent) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_average_nominal_interest_rate_on_external_debt_in_percent
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F44:Y44
+  - B2_PB_mkt_pub!F44:Y44
+  - B6_combo_mkt_pub!F44:Y44
+  - '''C1_Combined CL''!F44:Y44'
+  - B2_PB_non_mkt_pub!F44:Y44
+  - B5_depreciation_pub!F44:Y44
+  - '''B6_combo_non-mkt_pub''!F44:Y44'
+  - '''C2_Natural disaster''!F44:Y44'
+  - C3_commodity_prices_pub!F44:Y44
+  - A1_Historical_pub!F44:Y44
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: macro_assumptions
+    INDICATOR: Average nominal interest rate on external debt (in percent)
+  notes: Average nominal interest rate on external debt (in percent) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_average_nominal_interest_rate_on_domestic_debt_in_percent
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F45:Y45
+  - B2_PB_mkt_pub!F45:Y45
+  - B6_combo_mkt_pub!F45:Y45
+  - '''C1_Combined CL''!F45:Y45'
+  - B2_PB_non_mkt_pub!F45:Y45
+  - B5_depreciation_pub!F45:Y45
+  - '''B6_combo_non-mkt_pub''!F45:Y45'
+  - '''C2_Natural disaster''!F45:Y45'
+  - C3_commodity_prices_pub!F45:Y45
+  - A1_Historical_pub!F45:Y45
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: macro_assumptions
+    INDICATOR: Average nominal interest rate on domestic debt (in percent)
+  notes: Average nominal interest rate on domestic debt (in percent) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_average_real_interest_rate_in_percent
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F46:Y46
+  - B2_PB_mkt_pub!F46:Y46
+  - B6_combo_mkt_pub!F46:Y46
+  - '''C1_Combined CL''!F46:Y46'
+  - B2_PB_non_mkt_pub!F46:Y46
+  - B5_depreciation_pub!F46:Y46
+  - '''B6_combo_non-mkt_pub''!F46:Y46'
+  - '''C2_Natural disaster''!F46:Y46'
+  - C3_commodity_prices_pub!F46:Y46
+  - A1_Historical_pub!F46:Y46
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: macro_assumptions
+    INDICATOR: Average real interest rate (in percent)
+  notes: Average real interest rate (in percent) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_average_real_interest_rate_on_domestic_debt_in_percent
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F47:Y47
+  - B2_PB_mkt_pub!F47:Y47
+  - B6_combo_mkt_pub!F47:Y47
+  - '''C1_Combined CL''!F47:Y47'
+  - B2_PB_non_mkt_pub!F47:Y47
+  - B5_depreciation_pub!F47:Y47
+  - '''B6_combo_non-mkt_pub''!F47:Y47'
+  - '''C2_Natural disaster''!F47:Y47'
+  - C3_commodity_prices_pub!F47:Y47
+  - A1_Historical_pub!F47:Y47
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: macro_assumptions
+    INDICATOR: Average real interest rate on domestic debt (in percent)
+  notes: Average real interest rate on domestic debt (in percent) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_average_real_interest_rate_on_external_debt_in_percent
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F48:Y48
+  - B2_PB_mkt_pub!F48:Y48
+  - B6_combo_mkt_pub!F48:Y48
+  - '''C1_Combined CL''!F48:Y48'
+  - B2_PB_non_mkt_pub!F48:Y48
+  - B5_depreciation_pub!F48:Y48
+  - '''B6_combo_non-mkt_pub''!F48:Y48'
+  - '''C2_Natural disaster''!F48:Y48'
+  - C3_commodity_prices_pub!F48:Y48
+  - A1_Historical_pub!F48:Y48
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: macro_assumptions
+    INDICATOR: Average real interest rate on external debt (in percent)
+  notes: Average real interest rate on external debt (in percent) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_exchange_rate_lc_per_us_dollar
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E49:Y49
+  - B2_PB_mkt_pub!E49:Y49
+  - B6_combo_mkt_pub!E49:Y49
+  - '''C1_Combined CL''!E49:Y49'
+  - B2_PB_non_mkt_pub!E49:Y49
+  - B5_depreciation_pub!E49:Y49
+  - '''B6_combo_non-mkt_pub''!E49:Y49'
+  - '''C2_Natural disaster''!E49:Y49'
+  - C3_commodity_prices_pub!E49:Y49
+  - A1_Historical_pub!E49:Y49
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: macro_assumptions
+    INDICATOR: Exchange rate (LC per US dollar)
+  notes: Exchange rate (LC per US dollar) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_nominal_depreciation_of_local_currency_percentage_change_in_lc_per_dollar
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F50:Y50
+  - B2_PB_mkt_pub!F50:Y50
+  - B6_combo_mkt_pub!F50:Y50
+  - '''C1_Combined CL''!F50:Y50'
+  - B2_PB_non_mkt_pub!F50:Y50
+  - B5_depreciation_pub!F50:Y50
+  - '''B6_combo_non-mkt_pub''!F50:Y50'
+  - '''C2_Natural disaster''!F50:Y50'
+  - C3_commodity_prices_pub!F50:Y50
+  - A1_Historical_pub!F50:Y50
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: macro_assumptions
+    INDICATOR: Nominal depreciation of local currency (percentage change in LC per dollar)
+  notes: Nominal depreciation of local currency (percentage change in LC per dollar) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_real_exchange_rate_depreciation_in_percent_indicates_depreciation
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F53:Y53
+  - B2_PB_mkt_pub!F53:Y53
+  - B6_combo_mkt_pub!F53:Y53
+  - '''C1_Combined CL''!F53:Y53'
+  - B2_PB_non_mkt_pub!F53:Y53
+  - B5_depreciation_pub!F53:Y53
+  - '''B6_combo_non-mkt_pub''!F53:Y53'
+  - '''C2_Natural disaster''!F53:Y53'
+  - C3_commodity_prices_pub!F53:Y53
+  - A1_Historical_pub!F53:Y53
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: macro_assumptions
+    INDICATOR: Real exchange rate depreciation (in percent, + indicates depreciation)
+  notes: Real exchange rate depreciation (in percent, + indicates depreciation) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_inflation_rate_gdp_deflator_in_percent
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F54:Y54
+  - B2_PB_mkt_pub!F54:Y54
+  - B6_combo_mkt_pub!F54:Y54
+  - '''C1_Combined CL''!F54:Y54'
+  - B2_PB_non_mkt_pub!F54:Y54
+  - B5_depreciation_pub!F54:Y54
+  - '''B6_combo_non-mkt_pub''!F54:Y54'
+  - '''C2_Natural disaster''!F54:Y54'
+  - C3_commodity_prices_pub!F54:Y54
+  - A1_Historical_pub!F54:Y54
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: macro_assumptions
+    INDICATOR: Inflation rate (GDP deflator, in percent)
+  notes: Inflation rate (GDP deflator, in percent) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_us_inflation_rate_gdp_deflator_in_percent
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!F55:Y55
+  - B2_PB_mkt_pub!F55:Y55
+  - B6_combo_mkt_pub!F55:Y55
+  - '''C1_Combined CL''!F55:Y55'
+  - B2_PB_non_mkt_pub!F55:Y55
+  - B5_depreciation_pub!F55:Y55
+  - '''B6_combo_non-mkt_pub''!F55:Y55'
+  - '''C2_Natural disaster''!F55:Y55'
+  - C3_commodity_prices_pub!F55:Y55
+  - A1_Historical_pub!F55:Y55
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: macro_assumptions
+    INDICATOR: US Inflation rate (GDP deflator, in percent)
+  notes: US Inflation rate (GDP deflator, in percent) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_nominal_debt
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E79:Y79
+  - B2_PB_mkt_pub!E79:Y79
+  - B6_combo_mkt_pub!E79:Y79
+  - '''C1_Combined CL''!E79:Y79'
+  - B2_PB_non_mkt_pub!E79:Y79
+  - B5_depreciation_pub!E79:Y79
+  - '''B6_combo_non-mkt_pub''!E79:Y79'
+  - '''C2_Natural disaster''!E79:Y79'
+  - C3_commodity_prices_pub!E79:Y79
+  - A1_Historical_pub!E79:Y79
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: local_currency
+    INDICATOR: Nominal debt
+  notes: Nominal debt (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_total_public_domestic_debt
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E80:Y80
+  - B2_PB_mkt_pub!E80:Y80
+  - B6_combo_mkt_pub!E80:Y80
+  - '''C1_Combined CL''!E80:Y80'
+  - B2_PB_non_mkt_pub!E80:Y80
+  - B5_depreciation_pub!E80:Y80
+  - '''B6_combo_non-mkt_pub''!E80:Y80'
+  - '''C2_Natural disaster''!E81:Y81'
+  - C3_commodity_prices_pub!E80:Y80
+  - A1_Historical_pub!E80:Y80
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: local_currency
+    INDICATOR: Total public domestic debt
+  notes: Total public domestic debt (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_of_which_short_term
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!D81:X81
+  - B2_PB_mkt_pub!D81:X81
+  - B6_combo_mkt_pub!D81:X81
+  - '''C1_Combined CL''!D81:X81'
+  - B2_PB_non_mkt_pub!D81:X81
+  - B5_depreciation_pub!D81:X81
+  - '''B6_combo_non-mkt_pub''!D81:X81'
+  - '''C2_Natural disaster''!C82:X82'
+  - C3_commodity_prices_pub!D81:X81
+  - A1_Historical_pub!D81:X81
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: local_currency
+    INDICATOR: 'of which: Short term'
+  notes: 'of which: Short term (B1_GDP_pub), keyed by scenario and years from row 7.'
+- id: dsa_pub_total_public_external_debt
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E82:Y82
+  - B2_PB_mkt_pub!E82:Y82
+  - B6_combo_mkt_pub!E82:Y82
+  - '''C1_Combined CL''!E82:Y82'
+  - B2_PB_non_mkt_pub!E82:Y82
+  - B5_depreciation_pub!E82:Y82
+  - '''B6_combo_non-mkt_pub''!E82:Y82'
+  - '''C2_Natural disaster''!E83:Y83'
+  - C3_commodity_prices_pub!E82:Y82
+  - A1_Historical_pub!E82:Y82
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: local_currency
+    INDICATOR: Total public external debt
+  notes: Total public external debt (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_amortization_excluding_st_domestic_debt
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E84:Y84
+  - B2_PB_mkt_pub!E84:Y84
+  - B6_combo_mkt_pub!E84:Y84
+  - '''C1_Combined CL''!E84:Y84'
+  - B2_PB_non_mkt_pub!E84:Y84
+  - B5_depreciation_pub!E84:Y84
+  - '''B6_combo_non-mkt_pub''!E84:Y84'
+  - '''C2_Natural disaster''!E85:Y85'
+  - C3_commodity_prices_pub!E84:Y84
+  - A1_Historical_pub!E84:Y84
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: local_currency
+    INDICATOR: Amortization (excluding ST domestic debt)
+  notes: Amortization (excluding ST domestic debt) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_interest_expenditure
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E85:Y85
+  - B2_PB_mkt_pub!E85:Y85
+  - B6_combo_mkt_pub!E85:Y85
+  - '''C1_Combined CL''!E85:Y85'
+  - B2_PB_non_mkt_pub!E85:Y85
+  - B5_depreciation_pub!E85:Y85
+  - '''B6_combo_non-mkt_pub''!E85:Y85'
+  - '''C2_Natural disaster''!E86:Y86'
+  - C3_commodity_prices_pub!E85:Y85
+  - A1_Historical_pub!E85:Y85
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: local_currency
+    INDICATOR: Interest Expenditure
+  notes: Interest Expenditure (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_domestic_debt
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E86:Y86
+  - B2_PB_mkt_pub!E86:Y86
+  - B6_combo_mkt_pub!E86:Y86
+  - '''C1_Combined CL''!E86:Y86'
+  - B2_PB_non_mkt_pub!E86:Y86
+  - B5_depreciation_pub!E86:Y86
+  - '''B6_combo_non-mkt_pub''!E86:Y86'
+  - '''C2_Natural disaster''!E87:Y87'
+  - C3_commodity_prices_pub!E86:Y86
+  - A1_Historical_pub!E86:Y86
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: local_currency
+    INDICATOR: Domestic debt
+  notes: Domestic debt (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_external_debt
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E87:Y87
+  - B2_PB_mkt_pub!E87:Y87
+  - B6_combo_mkt_pub!E87:Y87
+  - '''C1_Combined CL''!E87:Y87'
+  - B2_PB_non_mkt_pub!E87:Y87
+  - B5_depreciation_pub!E87:Y87
+  - '''B6_combo_non-mkt_pub''!E87:Y87'
+  - '''C2_Natural disaster''!E88:Y88'
+  - C3_commodity_prices_pub!E87:Y87
+  - A1_Historical_pub!E87:Y87
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: local_currency
+    INDICATOR: External debt
+  notes: External debt (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_primary_deficit_local_currency
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E88:Y88
+  - B2_PB_mkt_pub!E88:Y88
+  - B6_combo_mkt_pub!E88:Y88
+  - '''C1_Combined CL''!E88:Y88'
+  - B2_PB_non_mkt_pub!E88:Y88
+  - B5_depreciation_pub!E88:Y88
+  - '''B6_combo_non-mkt_pub''!E88:Y88'
+  - '''C2_Natural disaster''!E89:Y89'
+  - C3_commodity_prices_pub!E88:Y88
+  - A1_Historical_pub!E88:Y88
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: local_currency
+    INDICATOR: Primary deficit
+  notes: Primary deficit (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_other_debt_creating_flows
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E89:Y89
+  - B2_PB_mkt_pub!E89:Y89
+  - B6_combo_mkt_pub!E89:Y89
+  - '''C1_Combined CL''!E89:Y89'
+  - B2_PB_non_mkt_pub!E89:Y89
+  - B5_depreciation_pub!E89:Y89
+  - '''B6_combo_non-mkt_pub''!E89:Y89'
+  - '''C2_Natural disaster''!E90:Y90'
+  - C3_commodity_prices_pub!E89:Y89
+  - A1_Historical_pub!E89:Y89
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: local_currency
+    INDICATOR: Other debt creating flows
+  notes: Other debt creating flows (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_gross_financing_need_in_local_currency
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E90:Y90
+  - B2_PB_mkt_pub!E90:Y90
+  - B6_combo_mkt_pub!E90:Y90
+  - '''C1_Combined CL''!E90:Y90'
+  - B2_PB_non_mkt_pub!E90:Y90
+  - B5_depreciation_pub!E90:Y90
+  - '''B6_combo_non-mkt_pub''!E90:Y90'
+  - '''C2_Natural disaster''!E91:Y91'
+  - C3_commodity_prices_pub!E90:Y90
+  - A1_Historical_pub!E90:Y90
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: local_currency
+    INDICATOR: Gross financing need (in local currency)
+  notes: Gross financing need (in local currency) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_pv_of_public_sector_external_debt_end_of_period
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E91:Y91
+  - B2_PB_mkt_pub!E91:Y91
+  - B6_combo_mkt_pub!E91:Y91
+  - '''C1_Combined CL''!E91:Y91'
+  - B2_PB_non_mkt_pub!E91:Y91
+  - B5_depreciation_pub!E91:Y91
+  - '''B6_combo_non-mkt_pub''!E91:Y91'
+  - '''C2_Natural disaster''!E92:Y92'
+  - C3_commodity_prices_pub!E91:Y91
+  - A1_Historical_pub!E91:Y91
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: local_currency
+    INDICATOR: PV of public sector external debt (end of period)
+  notes: PV of public sector external debt (end of period) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_debt_service_to_revenue_and_grants_ratio_in_percent
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E93:Y93
+  - B2_PB_mkt_pub!E93:Y93
+  - B6_combo_mkt_pub!E93:Y93
+  - '''C1_Combined CL''!E93:Y93'
+  - B2_PB_non_mkt_pub!E93:Y93
+  - B5_depreciation_pub!E93:Y93
+  - '''B6_combo_non-mkt_pub''!E93:Y93'
+  - '''C2_Natural disaster''!E94:Y94'
+  - C3_commodity_prices_pub!E95:Y95
+  - A1_Historical_pub!E93:Y93
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: Debt service-to-revenue-and-grants ratio (in percent)
+  notes: Debt service-to-revenue-and-grants ratio (in percent) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_debt_service_to_gdp_ratio_in_percent
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E94:Y94
+  - B2_PB_mkt_pub!E94:Y94
+  - B6_combo_mkt_pub!E94:Y94
+  - '''C1_Combined CL''!E94:Y94'
+  - B2_PB_non_mkt_pub!E94:Y94
+  - B5_depreciation_pub!E94:Y94
+  - '''B6_combo_non-mkt_pub''!E94:Y94'
+  - '''C2_Natural disaster''!E95:Y95'
+  - C3_commodity_prices_pub!E96:Y96
+  - A1_Historical_pub!E94:Y94
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: Debt service-to-GDP ratio (in percent)
+  notes: Debt service-to-GDP ratio (in percent) (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  - B6_combo_mkt_pub
+  - C1_Combined CL
+  - B2_PB_non_mkt_pub
+  - B5_depreciation_pub
+  - B6_combo_non-mkt_pub
+  - C2_Natural disaster
+  - C3_commodity_prices_pub
+  - A1_Historical_pub
+  data_range:
+  - B1_GDP_pub!E95:Y95
+  - B2_PB_mkt_pub!E95:Y95
+  - B6_combo_mkt_pub!E95:Y95
+  - '''C1_Combined CL''!E95:Y95'
+  - B2_PB_non_mkt_pub!E95:Y95
+  - B5_depreciation_pub!E95:Y95
+  - '''B6_combo_non-mkt_pub''!E95:Y95'
+  - '''C2_Natural disaster''!E96:Y96'
+  - C3_commodity_prices_pub!E97:Y97
+  - A1_Historical_pub!E95:Y95
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+          B6_combo_mkt_pub: B6_mkt
+          C1_Combined CL: C1
+          B2_PB_non_mkt_pub: B2_nonmkt
+          B5_depreciation_pub: B5
+          B6_combo_non-mkt_pub: B6_nonmkt
+          C2_Natural disaster: C2
+          C3_commodity_prices_pub: C3
+          A1_Historical_pub: A1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: PV of public debt-to-revenue and grants ratio
+  notes: PV of public debt-to-revenue and grants ratio (B1_GDP_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_standard_test_parameter
+  sheet:
+  - B1_GDP_pub
+  - B2_PB_mkt_pub
+  data_range:
+  - B1_GDP_pub!AA63
+  - B2_PB_mkt_pub!AA63
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B1_GDP_pub: B1
+          B2_PB_mkt_pub: B2_mkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: Historical average, baseline projection, whichever is lower
+  notes: New-vs-old standard-test GDP growth rule (B1_GDP_pub!AA63).
+- id: dsa_pub_pv_of_debt_gdp
+  sheet:
+  - B2_PB_mkt_pub
+  - C1_Combined CL
+  data_range:
+  - B2_PB_mkt_pub!E101:Y101
+  - '''C1_Combined CL''!E101:Y101'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B2_PB_mkt_pub: B2_mkt
+          C1_Combined CL: C1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: PV of Debt/GDP
+  notes: PV of Debt/GDP (B2_PB_mkt_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_pv_of_debt_exports
+  sheet:
+  - B2_PB_mkt_pub
+  - C1_Combined CL
+  data_range:
+  - B2_PB_mkt_pub!E102:Y102
+  - '''C1_Combined CL''!E102:Y102'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B2_PB_mkt_pub: B2_mkt
+          C1_Combined CL: C1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: PV of Debt/exports
+  notes: PV of Debt/exports (B2_PB_mkt_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_debt_service_exports
+  sheet:
+  - B2_PB_mkt_pub
+  - C1_Combined CL
+  data_range:
+  - B2_PB_mkt_pub!E103:Y103
+  - '''C1_Combined CL''!E103:Y103'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B2_PB_mkt_pub: B2_mkt
+          C1_Combined CL: C1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: Debt service/exports
+  notes: Debt service/exports (B2_PB_mkt_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_debt_service_revenue_excl_grants
+  sheet:
+  - B2_PB_mkt_pub
+  - C1_Combined CL
+  data_range:
+  - B2_PB_mkt_pub!E104:Y104
+  - '''C1_Combined CL''!E104:Y104'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B2_PB_mkt_pub: B2_mkt
+          C1_Combined CL: C1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: Debt service/revenue (excl. grants)
+  notes: Debt service/revenue (excl. grants) (B2_PB_mkt_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_exports_us_baseline
+  sheet:
+  - B2_PB_mkt_pub
+  - C1_Combined CL
+  data_range:
+  - B2_PB_mkt_pub!E108:Y108
+  - '''C1_Combined CL''!E108:Y108'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B2_PB_mkt_pub: B2_mkt
+          C1_Combined CL: C1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: Exports (US$) - baseline
+  notes: Exports (US$) - baseline (B2_PB_mkt_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_revenue
+  sheet:
+  - B2_PB_mkt_pub
+  - C1_Combined CL
+  data_range:
+  - B2_PB_mkt_pub!F109:Y109
+  - '''C1_Combined CL''!E109:Y109'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B2_PB_mkt_pub: B2_mkt
+          C1_Combined CL: C1
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: Revenue
+  notes: Revenue (B2_PB_mkt_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_gdp
+  sheet: B2_PB_non_mkt_pub
+  data_range: B2_PB_non_mkt_pub!E101:Y101
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B2_PB_non_mkt_pub: B2_nonmkt
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: PV of Debt/GDP
+  notes: PV of Debt/GDP (B2_PB_non_mkt_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_exports
+  sheet: B2_PB_non_mkt_pub
+  data_range: B2_PB_non_mkt_pub!E102:Y102
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B2_PB_non_mkt_pub: B2_nonmkt
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: PV of Debt/exports
+  notes: PV of Debt/exports (B2_PB_non_mkt_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_b2_pb_non_mkt_pub_debt_service_exports
+  sheet: B2_PB_non_mkt_pub
+  data_range: B2_PB_non_mkt_pub!E103:Y103
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B2_PB_non_mkt_pub: B2_nonmkt
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: Debt service/exports
+  notes: Debt service/exports (B2_PB_non_mkt_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_b2_pb_non_mkt_pub_debt_service_revenue_excl_grants
+  sheet: B2_PB_non_mkt_pub
+  data_range: B2_PB_non_mkt_pub!E104:Y104
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B2_PB_non_mkt_pub: B2_nonmkt
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: Debt service/revenue (excl. grants)
+  notes: Debt service/revenue (excl. grants) (B2_PB_non_mkt_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_b2_pb_non_mkt_pub_exports_us_baseline
+  sheet: B2_PB_non_mkt_pub
+  data_range: B2_PB_non_mkt_pub!E108:Y108
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B2_PB_non_mkt_pub: B2_nonmkt
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: Exports (US$) - baseline
+  notes: Exports (US$) - baseline (B2_PB_non_mkt_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_b2_pb_non_mkt_pub_revenue
+  sheet: B2_PB_non_mkt_pub
+  data_range: B2_PB_non_mkt_pub!E109:Y109
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B2_PB_non_mkt_pub: B2_nonmkt
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: Revenue
+  notes: Revenue (B2_PB_non_mkt_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_b2_pb_non_mkt_pub_standard_test_parameter
+  sheet: B2_PB_non_mkt_pub
+  data_range: B2_PB_non_mkt_pub!AA63
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B2_PB_non_mkt_pub: B2_nonmkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: Historical average, baseline projection, whichever is lower
+  notes: New-vs-old standard-test primary-balance rule (B2_PB_non_mkt_pub!AA63).
+- id: dsa_pub_b5_depreciation_pub_exchange_rate_us_dollar_per_lc
+  sheet: B5_depreciation_pub
+  data_range: B5_depreciation_pub!E51:Y51
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B5_depreciation_pub: B5
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: macro_assumptions
+    INDICATOR: Exchange rate (US dollar per LC)
+  notes: Exchange rate (US dollar per LC) (B5_depreciation_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_b5_depreciation_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent
+  sheet: B5_depreciation_pub
+  data_range: B5_depreciation_pub!F52:Y52
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B5_depreciation_pub: B5
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: macro_assumptions
+    INDICATOR: Nominal appreciation (increase in US dollar value of local currency, in percent)
+  notes: Nominal appreciation (increase in US dollar value of local currency, in percent) (B5_depreciation_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_b5_depreciation_pub_standard_test_fx_depreciation
+  sheet: B5_depreciation_pub
+  data_range: B5_depreciation_pub!AA62
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B5_depreciation_pub: B5
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: Size of FX depreciation shock
+  notes: New-vs-old standard-test FX depreciation size (B5_depreciation_pub!AA62).
+- id: dsa_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent
+  sheet: B6_combo_mkt_pub
+  data_range: B6_combo_mkt_pub!F52:F52
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B6_combo_mkt_pub: B6_mkt
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: macro_assumptions
+    INDICATOR: Nominal appreciation (increase in US dollar value of local currency, in percent)
+  notes: Nominal appreciation (increase in US dollar value of local currency, in percent) (B6_combo_mkt_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_standard_test_gdp_growth_rule
+  sheet: B6_combo_mkt_pub
+  data_range: B6_combo_mkt_pub!AB63
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B6_combo_mkt_pub: B6_mkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: Historical average, baseline projection, whichever is lower (real GDP growth)
+  notes: New-vs-old standard-test GDP growth rule (B6_combo_mkt_pub!AB63).
+- id: dsa_pub_standard_test_pb_rule
+  sheet: B6_combo_mkt_pub
+  data_range: B6_combo_mkt_pub!AB69
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B6_combo_mkt_pub: B6_mkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: Historical average, baseline projection, whichever is lower (PB shock)
+  notes: New-vs-old standard-test primary-balance rule (B6_combo_mkt_pub!AB69).
+- id: dsa_pub_standard_test_fx_depreciation
+  sheet: B6_combo_mkt_pub
+  data_range: B6_combo_mkt_pub!AB77
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B6_combo_mkt_pub: B6_mkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: Size of FX depreciation shock
+  notes: New-vs-old standard-test FX depreciation size (B6_combo_mkt_pub!AB77).
+- id: dsa_pub_b6_combo_non_mkt_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent
+  sheet: B6_combo_non-mkt_pub
+  data_range: '''B6_combo_non-mkt_pub''!F52:F52'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B6_combo_non-mkt_pub: B6_nonmkt
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: macro_assumptions
+    INDICATOR: Nominal appreciation (increase in US dollar value of local currency, in percent)
+  notes: Nominal appreciation (increase in US dollar value of local currency, in percent) (B6_combo_non-mkt_pub), keyed by scenario and years from row 7.
+- id: dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule
+  sheet: B6_combo_non-mkt_pub
+  data_range: '''B6_combo_non-mkt_pub''!AB63'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B6_combo_non-mkt_pub: B6_nonmkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: Historical average, baseline projection, whichever is lower (real GDP growth)
+  notes: New-vs-old standard-test GDP growth rule (B6_combo_non-mkt_pub!AB63).
+- id: dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule
+  sheet: B6_combo_non-mkt_pub
+  data_range: '''B6_combo_non-mkt_pub''!AB69'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B6_combo_non-mkt_pub: B6_nonmkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: Historical average, baseline projection, whichever is lower (PB shock)
+  notes: New-vs-old standard-test primary-balance rule (B6_combo_non-mkt_pub!AB69).
+- id: dsa_pub_b6_combo_non_mkt_pub_standard_test_fx_depreciation
+  sheet: B6_combo_non-mkt_pub
+  data_range: '''B6_combo_non-mkt_pub''!AB76'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          B6_combo_non-mkt_pub: B6_nonmkt
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: standard_test
+    VARIANT: standard_test_parameter
+    INDICATOR: Size of FX depreciation shock
+  notes: New-vs-old standard-test FX depreciation size (B6_combo_non-mkt_pub!AB76).
+- id: dsa_pub_old_new_scenario_total
+  sheet: C1_Combined CL
+  data_range: '''C1_Combined CL''!AA60'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          C1_Combined CL: C1
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    VARIANT: old_new_scenario_total
+    INDICATOR: Total shock
+  notes: Old/new-scenario contingent-liability coverage total (C1_Combined CL!AA60).
+- id: dsa_pub_input2_coverage
+  sheet: C1_Combined CL
+  data_range: '''C1_Combined CL''!AA62:AA65'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          C1_Combined CL: C1
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: Z
+        read: string
+        normalize: strip
+  key:
+  - SCENARIO
+  - INDICATOR
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    VARIANT: input2_coverage
+  notes: Input 2 contingent-liability coverage components (C1_Combined CL!AA62:AA65), keyed by column Z labels.
+- id: dsa_pub_c2_natural_disaster_pv_of_debt_gdp
+  sheet: C2_Natural disaster
+  data_range: '''C2_Natural disaster''!E101:Y101'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          C2_Natural disaster: C2
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: PV of Debt/GDP
+  notes: PV of Debt/GDP (C2_Natural disaster), keyed by scenario and years from row 7.
+- id: dsa_pub_c2_natural_disaster_pv_of_debt_exports
+  sheet: C2_Natural disaster
+  data_range: '''C2_Natural disaster''!E102:Y102'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          C2_Natural disaster: C2
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: PV of Debt/exports
+  notes: PV of Debt/exports (C2_Natural disaster), keyed by scenario and years from row 7.
+- id: dsa_pub_c2_natural_disaster_debt_service_exports
+  sheet: C2_Natural disaster
+  data_range: '''C2_Natural disaster''!E103:Y103'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          C2_Natural disaster: C2
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: Debt service/exports
+  notes: Debt service/exports (C2_Natural disaster), keyed by scenario and years from row 7.
+- id: dsa_pub_c2_natural_disaster_debt_service_revenue_excl_grants
+  sheet: C2_Natural disaster
+  data_range: '''C2_Natural disaster''!E104:Y104'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          C2_Natural disaster: C2
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: Debt service/revenue (excl. grants)
+  notes: Debt service/revenue (excl. grants) (C2_Natural disaster), keyed by scenario and years from row 7.
+- id: dsa_pub_c2_natural_disaster_exports_us_baseline
+  sheet: C2_Natural disaster
+  data_range: '''C2_Natural disaster''!E108:Y108'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          C2_Natural disaster: C2
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: Exports (US$) - baseline
+  notes: Exports (US$) - baseline (C2_Natural disaster), keyed by scenario and years from row 7.
+- id: dsa_pub_c2_natural_disaster_exports_growth_rate
+  sheet: C2_Natural disaster
+  data_range: '''C2_Natural disaster''!F109:Y109'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          C2_Natural disaster: C2
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: Exports growth rate
+  notes: Exports growth rate (C2_Natural disaster), keyed by scenario and years from row 7.
+- id: dsa_pub_c2_natural_disaster_revenue
+  sheet: C2_Natural disaster
+  data_range: '''C2_Natural disaster''!E110:Y110'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          C2_Natural disaster: C2
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: coverage_ratios
+    INDICATOR: Revenue
+  notes: Revenue (C2_Natural disaster), keyed by scenario and years from row 7.
+- id: dsa_pub_c3_commodity_prices_pub_decline_in_gdp_deflator
+  sheet: C3_commodity_prices_pub
+  data_range: C3_commodity_prices_pub!AA69
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          C3_commodity_prices_pub: C3
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: dsa.public
+    DSA_SECTION: standard_test
+    VARIANT: tailored_test_parameter
+    INDICATOR: Decline in GDP deflator
+  notes: Commodity-price GDP-deflator decline, product of AA70 and AA71 (C3_commodity_prices_pub!AA69).

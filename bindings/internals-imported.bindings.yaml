@@ -1,0 +1,565 @@
+schema_version: 1.19.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+  - id: DSA_SECTION
+    name: DSA statement section
+    dtype: string
+series:
+- id: imported_country_code
+  sheet: Imported data
+  data_range: '''Imported data''!D3'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: imported_data.country_code
+    INDICATOR: Country code
+  notes: IMF country code copied from Input 1.
+- id: imported_classification_years
+  sheet: Imported data
+  data_range: '''Imported data''!L68:U68'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 37
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: imported_data.classification
+    INDICATOR: Components
+  notes: Classification-window years aligned to the projection vintage on row 37.
+- id: imported_classification_values
+  sheet: Imported data
+  data_range: '''Imported data''!L69:U76'
+  layout: matrix
+  internal: {}
+  exclude_rows:
+  - 72
+  - 73
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 37
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: imported_data.classification
+  notes: CI components, remittances, and GDP pulled from the classification tables
+    by projection year.
+- id: imported_classification_ids
+  sheet: Imported data
+  data_range: '''Imported data''!AG69:AP74'
+  layout: matrix
+  internal: {}
+  exclude_rows:
+  - 72
+  - 73
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 68
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: imported_data.classification_ids
+  notes: Constructed classification lookup keys (prefix plus year) used by INDEX/MATCH.
+- id: imported_cpia_rating
+  sheet: Imported data
+  data_range: '''Imported data''!Q78:R78'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 59
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: imported_data.classification
+    INDICATOR: CPIA Rating
+  notes: Letter CPIA rating (W/M/S) at t-1 and t-2.
+- id: imported_composite_indicator
+  sheet: Imported data
+  data_range: '''Imported data''!Q79:R79'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 59
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: imported_data.classification
+    INDICATOR: Composite indicator
+  notes: Weak/Medium/Strong label looked up from the CPIA rating.
+- id: imported_commodity_ids
+  sheet: Imported data
+  data_range: '''Imported data''!C92:C96'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: COMMODITY
+      concept: COMMODITY
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: D
+        read: string
+        normalize: strip
+  key:
+  - COMMODITY
+  series_context:
+    TABLE: imported_data.commodity_prices
+    INDICATOR: ID
+  notes: Concatenated as-of serial plus commodity name used to look up RES prices.
+- id: imported_commodity_prices
+  sheet: Imported data
+  data_range: '''Imported data''!E92:H96'
+  layout: matrix
+  internal: {}
+  exclude_columns:
+  - G
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: COMMODITY
+      concept: COMMODITY
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: D
+        read: string
+        normalize: strip
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 91
+        read: string
+        normalize: strip
+  key:
+  - COMMODITY
+  - INDICATOR
+  series_context:
+    TABLE: imported_data.commodity_prices
+  notes: Latest actual, percentile forecasts, and percent change by commodity.
+- id: imported_eurobond_header
+  sheet: Imported data
+  data_range: '''Imported data''!C105'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: imported_data.country_information
+    INDICATOR: Eurobond column header
+  notes: Dynamic Eurobond column title copied from Trigger.
+- id: imported_country_imf_codes
+  sheet: Imported data
+  data_range: '''Imported data''!A106:A175'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: imported_data.country_information
+    INDICATOR: IMF country code
+  notes: IMF numeric country codes for the LIC-DSF country list.
+- id: imported_country_names
+  sheet: Imported data
+  data_range: '''Imported data''!B106:B175'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: imported_data.country_information
+    INDICATOR: Country name
+  notes: Country names aligned to the LIC-DSF country list.
+- id: imported_country_market_access
+  sheet: Imported data
+  data_range: '''Imported data''!C106:D175'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Eurobond: C
+          PRGT market access: D
+  key:
+  - REF_AREA
+  - INDICATOR
+  series_context:
+    TABLE: imported_data.country_information
+  notes: Eurobond issuance and PRGT market-access flags by country.
+- id: imported_country_imf_codes_overflow
+  sheet: Imported data
+  data_range: '''Imported data''!A176:A200'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          country_list_position_71: 176
+          country_list_position_72: 177
+          country_list_position_73: 178
+          country_list_position_74: 179
+          country_list_position_75: 180
+          country_list_position_76: 181
+          country_list_position_77: 182
+          country_list_position_78: 183
+          country_list_position_79: 184
+          country_list_position_80: 185
+          country_list_position_81: 186
+          country_list_position_82: 187
+          country_list_position_83: 188
+          country_list_position_84: 189
+          country_list_position_85: 190
+          country_list_position_86: 191
+          country_list_position_87: 192
+          country_list_position_88: 193
+          country_list_position_89: 194
+          country_list_position_90: 195
+          country_list_position_91: 196
+          country_list_position_92: 197
+          country_list_position_93: 198
+          country_list_position_94: 199
+          country_list_position_95: 200
+  key:
+  - PARAMETER
+  series_context:
+    TABLE: imported_data.country_information
+    INDICATOR: IMF country code
+    VARIANT: unoccupied
+  notes: Spare Country_list slots past the current 70-name PRGT-eligible set. Not keyed
+    as REF_AREA because these rows currently resolve to blanks; PARAMETER is the named-range
+    position.
+- id: imported_country_names_overflow
+  sheet: Imported data
+  data_range: '''Imported data''!B176:B200'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          country_list_position_71: 176
+          country_list_position_72: 177
+          country_list_position_73: 178
+          country_list_position_74: 179
+          country_list_position_75: 180
+          country_list_position_76: 181
+          country_list_position_77: 182
+          country_list_position_78: 183
+          country_list_position_79: 184
+          country_list_position_80: 185
+          country_list_position_81: 186
+          country_list_position_82: 187
+          country_list_position_83: 188
+          country_list_position_84: 189
+          country_list_position_85: 190
+          country_list_position_86: 191
+          country_list_position_87: 192
+          country_list_position_88: 193
+          country_list_position_89: 194
+          country_list_position_90: 195
+          country_list_position_91: 196
+          country_list_position_92: 197
+          country_list_position_93: 198
+          country_list_position_94: 199
+          country_list_position_95: 200
+  key:
+  - PARAMETER
+  series_context:
+    TABLE: imported_data.country_information
+    INDICATOR: Country name
+    VARIANT: unoccupied
+  notes: Spare Country_list name slots past the current 70-name PRGT-eligible set. Not
+    keyed as REF_AREA because these rows currently resolve to blanks.
+- id: imported_country_market_access_overflow
+  sheet: Imported data
+  data_range: '''Imported data''!C176:D200'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          country_list_position_71: 176
+          country_list_position_72: 177
+          country_list_position_73: 178
+          country_list_position_74: 179
+          country_list_position_75: 180
+          country_list_position_76: 181
+          country_list_position_77: 182
+          country_list_position_78: 183
+          country_list_position_79: 184
+          country_list_position_80: 185
+          country_list_position_81: 186
+          country_list_position_82: 187
+          country_list_position_83: 188
+          country_list_position_84: 189
+          country_list_position_85: 190
+          country_list_position_86: 191
+          country_list_position_87: 192
+          country_list_position_88: 193
+          country_list_position_89: 194
+          country_list_position_90: 195
+          country_list_position_91: 196
+          country_list_position_92: 197
+          country_list_position_93: 198
+          country_list_position_94: 199
+          country_list_position_95: 200
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Eurobond: C
+          PRGT market access: D
+  key:
+  - PARAMETER
+  - INDICATOR
+  series_context:
+    TABLE: imported_data.country_information
+    VARIANT: unoccupied
+  notes: Spare Eurobond and PRGT market-access flags past the current 70-name PRGT-eligible
+    set. Not keyed as REF_AREA because these rows currently resolve to blanks.
