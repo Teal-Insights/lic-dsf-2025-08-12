@@ -9,24 +9,32 @@ Chart Data publishes three rating blocks: **external DSA**, **fiscal (total publ
 `Model.from_defaults()` binds every Input 1–8 leaf from the shipped Ghana snapshot and evaluates Chart Data cells on demand. That is the Excel action “open the template and read the rating block,” without opening Excel.
 
 ```{python}
+import pandas as pd
+
 from lic_dsf_2025_08_12 import Model, api
 
 case = Model.from_defaults()
-{
-    "external": case.external_dsa_risk_rating_signal,
-    "fiscal": case.fiscal_risk_rating_signal,
-    "overall": case.overall_risk_rating_signal,
-}
+pd.DataFrame(
+    [
+        ["External", case.external_dsa_risk_rating_signal],
+        ["Fiscal", case.fiscal_risk_rating_signal],
+        ["Overall", case.overall_risk_rating_signal],
+    ],
+    columns=["Rating", "Signal"],
+).style.hide(axis="index")
 ```
 
 On this vintage the template snapshot is **High** on all three signals. The numeric companions (Chart Data `D11`, `I11`, `L11`) use the same ordering the workbook does — `3.0` for High:
 
 ```{python}
-{
-    "external": case.external_dsa_risk_rating_numeric,
-    "fiscal": case.fiscal_risk_rating_numeric,
-    "overall": case.overall_risk_rating_numeric,
-}
+pd.DataFrame(
+    [
+        ["External", case.external_dsa_risk_rating_numeric],
+        ["Fiscal", case.fiscal_risk_rating_numeric],
+        ["Overall", case.overall_risk_rating_numeric],
+    ],
+    columns=["Rating", "Numeric"],
+).style.hide(axis="index")
 ```
 
 Each published cell also has a `compute_*` function. The function takes one input bundle — the leaves of that cell — built with `from_defaults()`:
@@ -44,21 +52,27 @@ Use `Model` when you want several Chart Data cells from the same case. Use `comp
 A rating of High is not a black box. Chart Data also stores whether the **baseline** or a **shock** path breaches a threshold (`1` = breach, `0` = no breach), and which standardized or tailored shock is the most extreme (the MX label).
 
 ```{python}
-{
-    "external_baseline_breach": case.external_baseline_breach,
-    "external_shock_breach": case.external_shock_breach,
-    "fiscal_baseline_breach": case.fiscal_baseline_breach,
-    "fiscal_shock_breach": case.fiscal_shock_breach,
-}
+pd.DataFrame(
+    [
+        ["External baseline", case.external_baseline_breach],
+        ["External shock", case.external_shock_breach],
+        ["Fiscal baseline", case.fiscal_baseline_breach],
+        ["Fiscal shock", case.fiscal_shock_breach],
+    ],
+    columns=["Path", "Breach"],
+).style.hide(axis="index")
 ```
 
 ```{python}
-{
-    "external_pv_debt_to_gdp_mx": case.external_pv_debt_to_gdp_mx_shock,
-    "external_pv_debt_to_exports_mx": case.external_pv_debt_to_exports_mx_shock,
-    "external_debt_service_to_exports_mx": case.external_debt_service_to_exports_mx_shock,
-    "fiscal_pv_debt_to_gdp_mx": case.fiscal_pv_debt_to_gdp_mx_shock,
-}
+pd.DataFrame(
+    [
+        ["External PV of debt to GDP", case.external_pv_debt_to_gdp_mx_shock],
+        ["External PV of debt to exports", case.external_pv_debt_to_exports_mx_shock],
+        ["External debt service to exports", case.external_debt_service_to_exports_mx_shock],
+        ["Fiscal PV of debt to GDP", case.fiscal_pv_debt_to_gdp_mx_shock],
+    ],
+    columns=["Ratio", "Most extreme shock"],
+).style.hide(axis="index")
 ```
 
 In this snapshot the external MX shock on the stock and flow ratios is **Exports**; the fiscal MX shock on PV of debt-to-GDP is **Primary Balance**. Those labels are the same strings the workbook writes next to the rating block.

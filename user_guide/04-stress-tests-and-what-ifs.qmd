@@ -7,6 +7,8 @@ bread-crumbs: false
 The LIC-DSF rating is a statement about the baseline **and** the stress envelope. This page covers the Input 6 switches, the tailored-test applicability flags on Chart Data, and the one-cell shocks that correspond to the starter scenario matrix for this vintage.
 
 ```{python}
+import pandas as pd
+
 from lic_dsf_2025_08_12 import api, data
 ```
 
@@ -15,27 +17,42 @@ from lic_dsf_2025_08_12 import api, data
 Chart Data `I17:I19` stores 0/1 flags for natural disaster, commodity price, and market financing. Those flags are cheap to evaluate and depend on country lists plus (for commodities) Input 3 trade shares and Input 6 relevance ticks.
 
 ```{python}
-{
-    "natural_disaster": api.compute_tailored_stress_natural_disaster_applicable(
-        api.TailoredStressNaturalDisasterApplicableInputs.from_defaults()
-    ),
-    "commodity_price": api.compute_tailored_stress_commodity_price_applicable(
-        api.TailoredStressCommodityPriceApplicableInputs.from_defaults()
-    ),
-    "market_financing": api.compute_tailored_stress_market_financing_applicable(
-        api.TailoredStressMarketFinancingApplicableInputs.from_defaults()
-    ),
-}
+pd.DataFrame(
+    [
+        [
+            "Natural disaster",
+            api.compute_tailored_stress_natural_disaster_applicable(
+                api.TailoredStressNaturalDisasterApplicableInputs.from_defaults()
+            ),
+        ],
+        [
+            "Commodity price",
+            api.compute_tailored_stress_commodity_price_applicable(
+                api.TailoredStressCommodityPriceApplicableInputs.from_defaults()
+            ),
+        ],
+        [
+            "Market financing",
+            api.compute_tailored_stress_market_financing_applicable(
+                api.TailoredStressMarketFinancingApplicableInputs.from_defaults()
+            ),
+        ],
+    ],
+    columns=["Tailored test", "Applies"],
+).style.hide(axis="index")
 ```
 
 For the shipped Ghana case, natural disaster is **off** (`0`) and both commodity-price and market-financing tests are **on** (`1`). Input 6 commodity-group ticks in the snapshot mark precious metals and other agricultural commodities as relevant:
 
 ```{python}
 relevant = data.INPUT6_COMMODITY_GROUP_RELEVANT_DEFAULT
-{
-    group: relevant.sel(COMMODITY=group)
-    for group in relevant.domain.axes[0].keys
-}
+pd.DataFrame(
+    [
+        [group, relevant.sel(COMMODITY=group)]
+        for group in relevant.domain.axes[0].keys
+    ],
+    columns=["Commodity group", "Relevant"],
+).style.hide(axis="index")
 ```
 
 The master switch is `input6_tailored_tests_enabled`. Setting it to `"Off"` is the Excel action on Input 6 `C6`:
@@ -61,17 +78,21 @@ def external_rating(**overrides):
     )
 
 
-{
-    "template snapshot": external_rating(),
-    "discount rate 4%": external_rating(discount_rate=0.04),
-    "discount rate 6%": external_rating(discount_rate=0.06),
-    "currency-based debt": external_rating(
-        external_domestic_debt_definition="Currency-based"
-    ),
-    "tailored tests off": external_rating(input6_tailored_tests_enabled="Off"),
-    "REER overvaluation 0": external_rating(input_1_rer_overvaluation=0),
-    "REER overvaluation 40": external_rating(input_1_rer_overvaluation=40),
-}
+pd.DataFrame(
+    [
+        ["Template snapshot", external_rating()],
+        ["Discount rate 4%", external_rating(discount_rate=0.04)],
+        ["Discount rate 6%", external_rating(discount_rate=0.06)],
+        [
+            "Currency-based debt",
+            external_rating(external_domestic_debt_definition="Currency-based"),
+        ],
+        ["Tailored tests off", external_rating(input6_tailored_tests_enabled="Off")],
+        ["REER overvaluation 0", external_rating(input_1_rer_overvaluation=0)],
+        ["REER overvaluation 40", external_rating(input_1_rer_overvaluation=40)],
+    ],
+    columns=["Assumption", "External rating"],
+).style.hide(axis="index")
 ```
 
 Use the same overrides with `FiscalRiskRatingSignalInputs` or `OverallRiskRatingSignalInputs` when the question is the public-debt or combined rating. For path-level questions, pass the same keywords into a Chart Data series function and compare `sel(SCENARIO=..., TIME_PERIOD=...)`.
@@ -84,7 +105,7 @@ The public customized sheet is included in the snapshot (`customized_public_incl
 
 ```{python}
 delta = data.CUSTOMIZED_PUBLIC_DELTA_DEFAULT
-print(list(delta.domain.axes[0].keys))
+pd.DataFrame({"Indicator": list(delta.domain.axes[0].keys)}).style.hide(axis="index")
 
 growth = "Real GDP growth (in percent)"
 shocked = delta.with_records(

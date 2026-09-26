@@ -22,14 +22,17 @@ case = Model.from_defaults()
 
 ```{python}
 pv_gdp = case.chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp
-list(pv_gdp.domain.axes[0].keys)
+pd.DataFrame({"Scenario": list(pv_gdp.domain.axes[0].keys)}).style.hide(axis="index")
 ```
 
 ```{python}
-{
-    "2024": pv_gdp.sel(SCENARIO="Baseline", TIME_PERIOD=2024),
-    "2034": pv_gdp.sel(SCENARIO="Baseline", TIME_PERIOD=2034),
-}
+pd.DataFrame(
+    [
+        ["2024", round(pv_gdp.sel(SCENARIO="Baseline", TIME_PERIOD=2024), 1)],
+        ["2034", round(pv_gdp.sel(SCENARIO="Baseline", TIME_PERIOD=2034), 1)],
+    ],
+    columns=["Year", "Baseline PV of debt to GDP"],
+).style.hide(axis="index")
 ```
 
 On the shipped snapshot, public PV of debt-to-GDP starts near 67 percent of GDP and declines to about 45 percent by 2034 under the baseline.
@@ -47,7 +50,7 @@ wide = (
     .pivot(index="TIME_PERIOD", columns="SCENARIO", values="OBS_VALUE")
     .loc[:, ["Baseline", "B1. Real GDP growth", "B2. Primary balance", "B3. Exports"]]
 )
-wide
+wide.round(1)
 ```
 
 The same pattern applies to the other three public-debt blocks:
@@ -67,7 +70,7 @@ The stress-chart functions use a shorter scenario list — the rows the workbook
 
 ```{python}
 figure = case.chart_output_pv_debt_gdp_ratio
-list(figure.domain.axes[0].keys)
+pd.DataFrame({"Scenario": list(figure.domain.axes[0].keys)}).style.hide(axis="index")
 ```
 
 ```{python}
@@ -104,9 +107,11 @@ When you only need the customized-enter path, use the dedicated A2 function. It 
 
 ```{python}
 a2 = case.chart_pv_debt_gdp_ratio_custom_alternative_scenario
-pd.DataFrame(
+a2_frame = pd.DataFrame(
     as_records(api.compute_chart_pv_debt_gdp_ratio_custom_alternative_scenario, a2)
-).head()
+)
+a2_frame["OBS_VALUE"] = a2_frame["OBS_VALUE"].round(1)
+a2_frame.head().style.hide(axis="index")
 ```
 
 On the snapshot the A2 path matches the baseline until you fill `customized_public_delta` — see [Stress tests and what-ifs](stress-tests-and-what-ifs.qmd).
@@ -118,20 +123,29 @@ Chart Data is not the only published surface. Realism 1–4 and the Probability 
 The three-year fiscal-adjustment placement on Realism 4 is a scalar:
 
 ```{python}
-{
-    "label": case.realism4_projected_3yr_adjustment_label,
-    "adjustment": case.realism4_projected_3yr_adjustment,
-}
+adjustment = case.realism4_projected_3yr_adjustment
+if isinstance(adjustment, float):
+    adjustment = round(adjustment, 1)
+pd.DataFrame(
+    [
+        ["Label", case.realism4_projected_3yr_adjustment_label],
+        ["Adjustment", adjustment],
+    ],
+    columns=["Field", "Value"],
+).style.hide(axis="index")
 ```
 
 Probability-approach PV of debt-to-GDP is a `SCENARIO` × `TIME_PERIOD` series over the same 2024–2044 grid as Chart Data:
 
 ```{python}
 prob = case.probability_pv_debt_to_gdp
-{
-    "baseline_2024": prob.sel(SCENARIO="Baseline", TIME_PERIOD=2024),
-    "threshold_2024": prob.sel(SCENARIO="Threshold", TIME_PERIOD=2024),
-}
+pd.DataFrame(
+    [
+        ["Baseline", round(prob.sel(SCENARIO="Baseline", TIME_PERIOD=2024), 1)],
+        ["Threshold", round(prob.sel(SCENARIO="Threshold", TIME_PERIOD=2024), 1)],
+    ],
+    columns=["Scenario", "2024 PV of debt to GDP"],
+).style.hide(axis="index")
 ```
 
 ::: {.callout-note}

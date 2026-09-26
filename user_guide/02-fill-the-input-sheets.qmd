@@ -7,6 +7,8 @@ bread-crumbs: false
 An economist does not type seventy fields by hand. You start from the shipped template snapshot and replace the cells you would have edited in yellow on Input 1–8.
 
 ```{python}
+import pandas as pd
+
 from lic_dsf_2025_08_12 import api, data
 
 inputs = api.ExternalDsaRiskRatingSignalInputs.from_defaults()
@@ -22,27 +24,33 @@ len(inputs.__dataclass_fields__)
 These are the Input 1 / Input 2 / Input 6 switches that usually move first in a new vintage:
 
 ```{python}
-{
-    "country": data.COUNTRY_DEFAULT,
-    "first_projection_year": data.FIRST_PROJECTION_YEAR_DEFAULT,
-    "discount_rate": data.DISCOUNT_RATE_DEFAULT,
-    "external_domestic_debt_definition": data.EXTERNAL_DOMESTIC_DEBT_DEFINITION_DEFAULT,
-    "input_1_rer_overvaluation": data.INPUT_1_RER_OVERVALUATION_DEFAULT,
-    "input6_tailored_tests_enabled": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT,
-    "contingent_liability_soe_debt_pct_gdp": data.CONTINGENT_LIABILITY_SOE_DEBT_PCT_GDP_DEFAULT,
-    "contingent_liability_financial_market_pct_gdp": data.CONTINGENT_LIABILITY_FINANCIAL_MARKET_PCT_GDP_DEFAULT,
-    "ppp_capital_stock_shock_pct": data.PPP_CAPITAL_STOCK_SHOCK_PCT_DEFAULT,
-}
+pd.DataFrame(
+    [
+        ["country", data.COUNTRY_DEFAULT],
+        ["first_projection_year", data.FIRST_PROJECTION_YEAR_DEFAULT],
+        ["discount_rate", data.DISCOUNT_RATE_DEFAULT],
+        ["external_domestic_debt_definition", data.EXTERNAL_DOMESTIC_DEBT_DEFINITION_DEFAULT],
+        ["input_1_rer_overvaluation", data.INPUT_1_RER_OVERVALUATION_DEFAULT],
+        ["input6_tailored_tests_enabled", data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT],
+        ["contingent_liability_soe_debt_pct_gdp", data.CONTINGENT_LIABILITY_SOE_DEBT_PCT_GDP_DEFAULT],
+        [
+            "contingent_liability_financial_market_pct_gdp",
+            data.CONTINGENT_LIABILITY_FINANCIAL_MARKET_PCT_GDP_DEFAULT,
+        ],
+        ["ppp_capital_stock_shock_pct", data.PPP_CAPITAL_STOCK_SHOCK_PCT_DEFAULT],
+    ],
+    columns=["Field", "Snapshot"],
+).style.hide(axis="index")
 ```
 
-| Workbook cell | Field | Snapshot | Allowed values |
-| --- | --- | --- | --- |
-| Input 1 `C7` | `country` | `Ghana` | LIC-DSF country names as spelled in the template (`Gambia, The`, `Congo, DR`, …) |
-| Input 1 `C18` | `first_projection_year` | `2024` | Integer year |
-| Input 1 `C25` | `discount_rate` | `0.05` | Decimal in `[0, 1]` — `0.05` is 5 percent, not `5` |
-| Input 1 `C31` | `input_1_rer_overvaluation` | `20.0` | Percent overvaluation |
-| Input 1 `C33` | `external_domestic_debt_definition` | `Residency-based` | `Residency-based` or `Currency-based` |
-| Input 6 `C6` | `input6_tailored_tests_enabled` | `On` | `On` or `Off` |
+| Workbook cell | Field | Allowed values |
+| --- | --- | --- |
+| Input 1 `C7` | `country` | LIC-DSF country names as spelled in the template (`Gambia, The`, `Congo, DR`, …) |
+| Input 1 `C18` | `first_projection_year` | Integer year |
+| Input 1 `C25` | `discount_rate` | Decimal in `[0, 1]` — `0.05` is 5 percent, not `5` |
+| Input 1 `C31` | `input_1_rer_overvaluation` | Percent overvaluation |
+| Input 1 `C33` | `external_domestic_debt_definition` | `Residency-based` or `Currency-based` |
+| Input 6 `C6` | `input6_tailored_tests_enabled` | `On` or `Off` |
 
 The package validates those domains before the formulas run. A misspelled country name or a discount rate of `5` (instead of `0.05`) fails closed:
 
@@ -70,10 +78,13 @@ Input 4 interest rates are keyed by `INSTRUMENT` — the same creditor rows as t
 
 ```{python}
 rates = data.INPUT4_INTEREST_RATE_DEFAULT
-{
-    instrument: rates.sel(INSTRUMENT=instrument)
-    for instrument in ("IMF", "Eurobond", "PPG ST external debt")
-}
+pd.DataFrame(
+    [
+        [instrument, rates.sel(INSTRUMENT=instrument)]
+        for instrument in ("IMF", "Eurobond", "PPG ST external debt")
+    ],
+    columns=["Instrument", "Interest rate"],
+).style.hide(axis="index")
 ```
 
 Exports of goods and services (Input 3) use the same year axis as GDP:
@@ -101,7 +112,14 @@ gdp_revised = gdp.with_records(
     (coord, 50_000.0 if coord == (2024,) else value)
     for coord, value in gdp.items()
 )
-(gdp.sel(TIME_PERIOD=2024), gdp_revised.sel(TIME_PERIOD=2024), gdp_revised.sel(TIME_PERIOD=2025))
+pd.DataFrame(
+    [
+        ["2024 template", gdp.sel(TIME_PERIOD=2024)],
+        ["2024 revised", gdp_revised.sel(TIME_PERIOD=2024)],
+        ["2025 unchanged", gdp_revised.sel(TIME_PERIOD=2025)],
+    ],
+    columns=["Year", "Nominal GDP"],
+).style.hide(axis="index")
 ```
 
 Pass `gdp_revised` as `input3_input_3_macro_gross_domestic_product_us_dollars` in `from_defaults`.
