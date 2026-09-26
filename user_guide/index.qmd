@@ -7,6 +7,7 @@ resources:
   - ../assets/graph/**
 include-in-header:
   - text: |
+      <style>
       /* Keep title + lead clear of the Great Docs meta sidebar (Links / AI / Meta).
          Avoid column-page-* on this page: it adds page-full and collapses the
          margin track that .gd-meta-sidebar is meant to sit in. */
@@ -66,6 +67,7 @@ include-in-header:
         opacity: 0.9;
         font-size: 0.8rem;
       }
+      </style>
 ---
 
 This package is a Python implementation of the IMF–World Bank **Low-Income Country Debt Sustainability Framework** (LIC-DSF) IDA21 template, vintage **2025-08-12**. It evaluates the same Chart Data surface an economist reads in the Excel workbook: external and public-debt risk ratings, breach flags, tailored-stress applicability, fiscal-space language, and the indicator paths that feed the standard DSA charts.
