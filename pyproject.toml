@@ -23,10 +23,6 @@ dev = [
     "polars",
     "matplotlib",
 ]
-graph = [
-    "excel-grapher>=15.0.0",
-    "pytest>=8.0.0",
-]
 validation = [
     "excel-grapher>=23.9.1",
 ]

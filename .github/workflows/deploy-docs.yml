@@ -39,6 +39,12 @@ jobs:
       - name: Build documentation site
         run: uv run --with great-docs great-docs build --project-path .
 
+      - name: Publish the statement graph
+        run: |
+          test -f assets/graph/index.html
+          mkdir -p great-docs/_site/assets
+          cp -a assets/graph great-docs/_site/assets/
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:

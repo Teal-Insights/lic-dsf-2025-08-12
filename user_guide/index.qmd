@@ -127,8 +127,8 @@ Yellow cells on the Input sheets are the economist-facing surface. Green interme
     aria-hidden="true"
   ></iframe>
   <div class="series-graph-cta">
-    <span>Open interactive graph</span>
-    <span class="hint">Edit inputs · pan · zoom</span>
+    <span>Open statement graph</span>
+    <span class="hint">Pan · zoom · inspect statements</span>
   </div>
 </a>
 <script>
