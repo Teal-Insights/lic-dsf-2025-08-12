@@ -1,0 +1,86 @@
+---
+title: Compute a risk rating
+guide-section: Start here
+bread-crumbs: false
+---
+
+Chart Data publishes three rating blocks: **external DSA**, **fiscal (total public debt)**, and the **overall** combination. Each block has a text signal, a numeric companion, and (for external and fiscal) baseline/shock breach flags.
+
+`Model.from_defaults()` binds every Input 1–8 leaf from the shipped Ghana snapshot and evaluates Chart Data cells on demand. That is the Excel action “open the template and read the rating block,” without opening Excel.
+
+```{python}
+from lic_dsf_2025_08_12 import Model, api
+
+case = Model.from_defaults()
+{
+    "external": case.external_dsa_risk_rating_signal,
+    "fiscal": case.fiscal_risk_rating_signal,
+    "overall": case.overall_risk_rating_signal,
+}
+```
+
+On this vintage the template snapshot is **High** on all three signals. The numeric companions (Chart Data `D11`, `I11`, `L11`) use the same ordering the workbook does — `3.0` for High:
+
+```{python}
+{
+    "external": case.external_dsa_risk_rating_numeric,
+    "fiscal": case.fiscal_risk_rating_numeric,
+    "overall": case.overall_risk_rating_numeric,
+}
+```
+
+Each published cell also has a `compute_*` function. The function takes one input bundle — the leaves of that cell — built with `from_defaults()`:
+
+```{python}
+api.compute_external_dsa_risk_rating_signal(
+    api.ExternalDsaRiskRatingSignalInputs.from_defaults()
+)
+```
+
+Use `Model` when you want several Chart Data cells from the same case. Use `compute_*` when you want a single published output and its exact argument list.
+
+## Breaches and the most-extreme shock
+
+A rating of High is not a black box. Chart Data also stores whether the **baseline** or a **shock** path breaches a threshold (`1` = breach, `0` = no breach), and which standardized or tailored shock is the most extreme (the MX label).
+
+```{python}
+{
+    "external_baseline_breach": case.external_baseline_breach,
+    "external_shock_breach": case.external_shock_breach,
+    "fiscal_baseline_breach": case.fiscal_baseline_breach,
+    "fiscal_shock_breach": case.fiscal_shock_breach,
+}
+```
+
+```{python}
+{
+    "external_pv_debt_to_gdp_mx": case.external_pv_debt_to_gdp_mx_shock,
+    "external_pv_debt_to_exports_mx": case.external_pv_debt_to_exports_mx_shock,
+    "external_debt_service_to_exports_mx": case.external_debt_service_to_exports_mx_shock,
+    "fiscal_pv_debt_to_gdp_mx": case.fiscal_pv_debt_to_gdp_mx_shock,
+}
+```
+
+In this snapshot the external MX shock on the stock and flow ratios is **Exports**; the fiscal MX shock on PV of debt-to-GDP is **Primary Balance**. Those labels are the same strings the workbook writes next to the rating block.
+
+## Fiscal space (moderate risk)
+
+When the mechanical rating is moderate, Chart Data also carries a fiscal-space phrase (`D23`). The function still evaluates on this High case:
+
+```{python}
+case.fiscal_space_moderate_risk_signal
+```
+
+## Chart Data map
+
+| What you want | Function | Workbook cell |
+| --- | --- | --- |
+| External rating text | `compute_external_dsa_risk_rating_signal` | `Chart Data!D10` |
+| External rating number | `compute_external_dsa_risk_rating_numeric` | `Chart Data!D11` |
+| External baseline / shock breach | `compute_external_baseline_breach`, `compute_external_shock_breach` | `D12`, `D13` |
+| Fiscal rating text / number | `compute_fiscal_risk_rating_signal`, `compute_fiscal_risk_rating_numeric` | `I10`, `I11` |
+| Fiscal baseline / shock breach | `compute_fiscal_baseline_breach`, `compute_fiscal_shock_breach` | `I12`, `I13` |
+| Overall rating | `compute_overall_risk_rating_signal`, `compute_overall_risk_rating_numeric` | `L10`, `L11` |
+| Fiscal space phrase | `compute_fiscal_space_moderate_risk_signal` | `D23` |
+
+The indicator *paths* behind those scalars — baseline, historical, B1–B6, C1–C4, A2 — are the subject of [Read the Chart Data](read-the-chart-data.qmd).

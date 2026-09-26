@@ -1,4 +1,4 @@
-schema_version: 1.16.0
+schema_version: 1.21.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -2510,7 +2510,7 @@ series:
     DSA_SECTION: usd_millions
     INDICATOR: Revenue
   notes: "Revenue (A1_historical_ext), keyed by scenario and years from row 8."
-- id: dsa_ext_historical_statistics_a1
+- id: dsa_ext_reference_historical_statistics
   sheet: A1_historical_ext
   data_range: "A1_historical_ext!D64:K69"
   layout: matrix
@@ -2935,7 +2935,7 @@ series:
     INDICATOR: "Other current account flows (negative = net inflow)"
   notes: "Other current account flows (negative = net inflow) (B1_GDP_ext), keyed by scenario\
     \ and years from row 8."
-- id: dsa_ext_standard_test_parameter_b1
+- id: dsa_ext_standard_test_gdp_growth_rule_primary
   sheet: B1_GDP_ext
   data_range: "B1_GDP_ext!AA64"
   layout: scalar
@@ -2964,7 +2964,7 @@ series:
     VARIANT: standard_test_parameter
     INDICATOR: "Non-interest current account in percent of GDP"
   notes: "New-vs-old standard-test GDP growth rule (B1_GDP_ext!AA64)."
-- id: dsa_ext_standard_test_parameter_b3
+- id: dsa_ext_standard_test_export_growth_rule
   sheet: B3_Exports_ext
   data_range: "B3_Exports_ext!AA63"
   layout: scalar
@@ -3084,7 +3084,7 @@ series:
     INDICATOR: "Is exports shock (exports growth) > 0?"
     VARIANT: export_shock_sign_flag
   notes: "Export-shock sign flags for the first two projection years (B3_Exports_ext!AA68:AB68)."
-- id: dsa_ext_standard_test_current_transfers_rule_b4
+- id: dsa_ext_standard_test_current_transfers_rule
   sheet: "B4_other flows_ext"
   data_range: "'B4_other flows_ext'!AA64"
   layout: scalar
@@ -3172,7 +3172,7 @@ series:
     VARIANT: standard_test_parameter
     INDICATOR: "Nominal debt baseline"
   notes: "New-vs-old standard-test current-transfers rule (B6_Combo_non-mkt_ext!AA82)."
-- id: dsa_ext_standard_test_fdi_rule_b4
+- id: dsa_ext_standard_test_fdi_rule
   sheet: "B4_other flows_ext"
   data_range: "'B4_other flows_ext'!AA67"
   layout: scalar

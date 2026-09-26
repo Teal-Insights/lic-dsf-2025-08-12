@@ -1,0 +1,1514 @@
+schema_version: 1.21.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+series:
+- id: realism1_external_debt_flow_components
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!AD19:AD25'
+  layout: series
+  output:
+    compute:
+      name: compute_realism1_external_debt_flow_components
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: realism1.external_debt_creating_flows
+  notes: Translated component labels for the external debt-creating-flow decomposition.
+- id: realism1_external_debt_creating_flows
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!AE19:AF25'
+  layout: matrix
+  output:
+    compute:
+      name: compute_realism1_external_debt_creating_flows
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: AD
+        read: string
+        normalize: strip
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 13
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  - VARIANT
+  series_context:
+    TABLE: realism1.external_debt_creating_flows
+  notes: External PPG debt-creating-flow decomposition, 5-year historical vs projected.
+- id: realism1_external_forecast_error_component_labels
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!AE70:AE75'
+  layout: series
+  output:
+    compute:
+      name: compute_realism1_external_forecast_error_component_labels
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: realism1.external_forecast_error
+  notes: Chart-legend component names for the external forecast-error pack.
+- id: realism1_external_forecast_error_components
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!AF70:AF75'
+  layout: series
+  output:
+    compute:
+      name: compute_realism1_external_forecast_error_components
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: AE
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: realism1.external_forecast_error
+  notes: External forecast-error stacked-bar values by debt-creating-flow component.
+- id: realism1_external_forecast_error_distribution_labels
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!AE78:AE79'
+  layout: series
+  output:
+    compute:
+      name: compute_realism1_external_forecast_error_distribution_labels
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Median: 78
+          Change in PPG debt 3/: 79
+        read: string
+  key:
+  - VARIANT
+  series_context:
+    TABLE: realism1.external_forecast_error
+  notes: Labels for the external forecast-error median and PPG-debt-change overlay.
+- id: realism1_external_forecast_error_distribution
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!AG78:AG79'
+  layout: series
+  output:
+    compute:
+      name: compute_realism1_external_forecast_error_distribution
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Median: 78
+          Change in PPG debt 3/: 79
+        read: string
+  key:
+  - VARIANT
+  series_context:
+    TABLE: realism1.external_forecast_error
+  notes: External forecast-error median and country PPG-debt-change overlay.
+- id: realism1_external_vintage_years
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!H81:Y81'
+  layout: series
+  output:
+    compute:
+      name: compute_realism1_external_vintage_years
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.external_vintage_paths
+  notes: Year axis copied into the external vintage debt-path chart block.
+- id: realism1_external_vintage_debt_paths
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!H82:Y84'
+  layout: matrix
+  output:
+    compute:
+      name: compute_realism1_external_vintage_debt_paths
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: G
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 81
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.external_vintage_paths
+    INDICATOR: PPG external debt
+  notes: Current, previous, and five-year-ago DSA paths of PPG external debt.
+- id: realism1_public_debt_flow_components
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!AD105:AD111'
+  layout: series
+  output:
+    compute:
+      name: compute_realism1_public_debt_flow_components
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: realism1.public_debt_creating_flows
+  notes: Translated component labels for the public debt-creating-flow decomposition.
+- id: realism1_public_debt_creating_flows
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!AE105:AF111'
+  layout: matrix
+  output:
+    compute:
+      name: compute_realism1_public_debt_creating_flows
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: AD
+        read: string
+        normalize: strip
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 100
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  - VARIANT
+  series_context:
+    TABLE: realism1.public_debt_creating_flows
+  notes: Public debt-creating-flow decomposition, 5-year historical vs projected.
+- id: realism1_public_forecast_error_component_labels
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!AE149:AE155'
+  layout: series
+  output:
+    compute:
+      name: compute_realism1_public_forecast_error_component_labels
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: realism1.public_forecast_error
+  notes: Chart-legend component names for the public forecast-error pack.
+- id: realism1_public_forecast_error_components
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!AF149:AF155'
+  layout: series
+  output:
+    compute:
+      name: compute_realism1_public_forecast_error_components
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: AE
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: realism1.public_forecast_error
+  notes: Public forecast-error stacked-bar values by debt-creating-flow component.
+- id: realism1_public_forecast_error_lower_quartile
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!AG156'
+  layout: scalar
+  output:
+    compute:
+      name: compute_realism1_public_forecast_error_lower_quartile
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism1.public_forecast_error
+    PARAMETER: lower_quartile
+  notes: Public forecast-error lower-quartile marker.
+- id: realism1_public_forecast_error_distribution_labels
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!AE158:AE159'
+  layout: series
+  output:
+    compute:
+      name: compute_realism1_public_forecast_error_distribution_labels
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Median: 158
+          Change in debt: 159
+        read: string
+  key:
+  - VARIANT
+  series_context:
+    TABLE: realism1.public_forecast_error
+  notes: Labels for the public forecast-error median and change-in-debt overlay.
+- id: realism1_public_forecast_error_distribution
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!AG158:AG159'
+  layout: series
+  output:
+    compute:
+      name: compute_realism1_public_forecast_error_distribution
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Median: 158
+          Change in debt: 159
+        read: string
+  key:
+  - VARIANT
+  series_context:
+    TABLE: realism1.public_forecast_error
+  notes: Public forecast-error median and country change-in-debt overlay.
+- id: realism1_public_vintage_years
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!H155:Y155'
+  layout: series
+  output:
+    compute:
+      name: compute_realism1_public_vintage_years
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.public_vintage_paths
+  notes: Year axis copied into the public vintage debt-path chart block.
+- id: realism1_public_vintage_debt_paths
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!H156:Y158'
+  layout: matrix
+  output:
+    compute:
+      name: compute_realism1_public_vintage_debt_paths
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: G
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 155
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.public_vintage_paths
+    INDICATOR: public debt
+  notes: Current, previous, and five-year-ago DSA paths of total public debt.
+- id: realism2_fiscal_adjustment_multiplier_labels
+  sheet: Realism 2 - Fiscal multiplier
+  data_range: '''Realism 2 - Fiscal multiplier''!D44:H44'
+  layout: series
+  output:
+    compute:
+      name: compute_realism2_fiscal_adjustment_multiplier_labels
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 44
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: realism2.fiscal_adjustment_growth_impact
+  notes: Multiplier-column legends for the fiscal-adjustment-on-growth panel.
+- id: realism2_underlying_growth_multiplier_labels
+  sheet: Realism 2 - Fiscal multiplier
+  data_range: '''Realism 2 - Fiscal multiplier''!L44:P44'
+  layout: series
+  output:
+    compute:
+      name: compute_realism2_underlying_growth_multiplier_labels
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 44
+        read: string
+        normalize: strip
+  key:
+  - VARIANT
+  series_context:
+    TABLE: realism2.underlying_growth
+  notes: Multiplier-column legends for the underlying-growth panel.
+- id: realism2_fiscal_adjustment_years
+  sheet: Realism 2 - Fiscal multiplier
+  data_range: '''Realism 2 - Fiscal multiplier''!A45:A52'
+  layout: series
+  output:
+    compute:
+      name: compute_realism2_fiscal_adjustment_years
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.fiscal_adjustment_growth_impact
+  notes: Year axis for the fiscal-adjustment-on-growth panel.
+- id: realism2_underlying_growth_years
+  sheet: Realism 2 - Fiscal multiplier
+  data_range: '''Realism 2 - Fiscal multiplier''!J45:J52'
+  layout: series
+  output:
+    compute:
+      name: compute_realism2_underlying_growth_years
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.underlying_growth
+  notes: Year axis copied into the underlying-growth panel.
+- id: realism2_baseline_growth
+  sheet: Realism 2 - Fiscal multiplier
+  data_range: '''Realism 2 - Fiscal multiplier''!B45:B52'
+  layout: series
+  output:
+    compute:
+      name: compute_realism2_baseline_growth
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    INDICATOR: baseline real GDP growth
+  notes: Baseline real GDP growth path shown on the fiscal-multiplier chart.
+- id: realism2_growth_t_minus_1
+  sheet: Realism 2 - Fiscal multiplier
+  data_range: '''Realism 2 - Fiscal multiplier''!K50:K52'
+  layout: series
+  output:
+    compute:
+      name: compute_realism2_growth_t_minus_1
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.underlying_growth
+    INDICATOR: growth t-1
+  notes: Pre-projection growth carried into the underlying-growth panel.
+- id: realism2_fiscal_adjustment_growth_impact
+  sheet: Realism 2 - Fiscal multiplier
+  data_range: '''Realism 2 - Fiscal multiplier''!D51:H52'
+  layout: matrix
+  output:
+    compute:
+      name: compute_realism2_fiscal_adjustment_growth_impact
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: int
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 44
+        read: string
+        normalize: strip
+  key:
+  - TIME_PERIOD
+  - VARIANT
+  series_context:
+    TABLE: realism2.fiscal_adjustment_growth_impact
+  notes: Growth impact of the planned fiscal adjustment under alternative multipliers.
+- id: realism2_underlying_growth
+  sheet: Realism 2 - Fiscal multiplier
+  data_range: '''Realism 2 - Fiscal multiplier''!L50:P52'
+  layout: matrix
+  output:
+    compute:
+      name: compute_realism2_underlying_growth
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: int
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 44
+        read: string
+        normalize: strip
+  key:
+  - TIME_PERIOD
+  - VARIANT
+  series_context:
+    TABLE: realism2.underlying_growth
+  notes: Underlying growth paths under alternative fiscal-multiplier assumptions.
+- id: realism3_investment_years
+  sheet: Realism 3 - Invest-Growth
+  data_range: '''Realism 3 - Invest-Growth''!C19:N19'
+  layout: series
+  output:
+    compute:
+      name: compute_realism3_investment_years
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism3.investment_paths
+  notes: Year axis for the public/private investment vintage-comparison chart.
+- id: realism3_investment_path_labels
+  sheet: Realism 3 - Invest-Growth
+  data_range:
+  - '''Realism 3 - Invest-Growth''!B20:B21'
+  - '''Realism 3 - Invest-Growth''!B23:B24'
+  layout: series
+  output:
+    compute:
+      name: compute_realism3_investment_path_labels
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: realism3.investment_paths
+  notes: Row legends for previous vs current DSA public and private investment paths.
+- id: realism3_public_private_investment_paths
+  sheet: Realism 3 - Invest-Growth
+  data_range:
+  - '''Realism 3 - Invest-Growth''!C20:N21'
+  - '''Realism 3 - Invest-Growth''!C23:N24'
+  layout: matrix
+  output:
+    compute:
+      name: compute_realism3_public_private_investment_paths
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 19
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism3.investment_paths
+  notes: Public and private investment (% of GDP), current vs previous DSA vintage.
+- id: realism3_growth_accounting_vintages
+  sheet: Realism 3 - Invest-Growth
+  data_range:
+  - '''Realism 3 - Invest-Growth''!C39'
+  - '''Realism 3 - Invest-Growth''!E39'
+  - '''Realism 3 - Invest-Growth''!G39'
+  layout: series
+  output:
+    compute:
+      name: compute_realism3_growth_accounting_vintages
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Historical: C
+          Projected (Prev. DSA): E
+          Projected (Curr. DSA): G
+        read: string
+  key:
+  - VARIANT
+  series_context:
+    TABLE: realism3.growth_accounting
+  notes: Vintage headers for the investment-growth accounting summary.
+- id: realism3_growth_accounting_contributions
+  sheet: Realism 3 - Invest-Growth
+  data_range:
+  - '''Realism 3 - Invest-Growth''!C41:G41'
+  - '''Realism 3 - Invest-Growth''!C42:G42'
+  layout: matrix
+  output:
+    compute:
+      name: compute_realism3_growth_accounting_contributions
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Historical: C
+          Projected (Prev. DSA): E
+          Projected (Curr. DSA): G
+        read: string
+  key:
+  - INDICATOR
+  - VARIANT
+  series_context:
+    TABLE: realism3.growth_accounting
+  notes: Five-year-average contribution of government capital and other factors to growth.
+  exclude_columns:
+  - D
+  - F
+- id: realism4_projected_3yr_adjustment_label
+  sheet: Realism 4 - Fiscal adjustment
+  data_range: '''Realism 4 - Fiscal adjustment''!C14'
+  layout: scalar
+  output:
+    compute:
+      name: compute_realism4_projected_3yr_adjustment_label
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism4.fiscal_adjustment_placement
+    PARAMETER: projected_3yr_adjustment_label
+  notes: Label for the country's projected 3-year fiscal-adjustment marker.
+- id: realism4_projected_3yr_adjustment
+  sheet: Realism 4 - Fiscal adjustment
+  data_range: '''Realism 4 - Fiscal adjustment''!D14'
+  layout: scalar
+  output:
+    compute:
+      name: compute_realism4_projected_3yr_adjustment
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism4.fiscal_adjustment_placement
+    PARAMETER: projected_3yr_adjustment
+  notes: Projected 3-year fiscal adjustment (ppt of GDP).
+- id: realism4_projected_3yr_adjustment_bin
+  sheet: Realism 4 - Fiscal adjustment
+  data_range: '''Realism 4 - Fiscal adjustment''!E14'
+  layout: scalar
+  output:
+    compute:
+      name: compute_realism4_projected_3yr_adjustment_bin
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism4.fiscal_adjustment_placement
+    PARAMETER: projected_3yr_adjustment_bin
+  notes: Projected 3-year adjustment rounded to the histogram bin edge.
+- id: realism4_projected_3yr_adjustment_category
+  sheet: Realism 4 - Fiscal adjustment
+  data_range: '''Realism 4 - Fiscal adjustment''!F14'
+  layout: scalar
+  output:
+    compute:
+      name: compute_realism4_projected_3yr_adjustment_category
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism4.fiscal_adjustment_placement
+    PARAMETER: projected_3yr_adjustment_category
+  notes: Histogram category index (X) for the country's projected adjustment.
+- id: realism4_projected_3yr_adjustment_sample_share
+  sheet: Realism 4 - Fiscal adjustment
+  data_range: '''Realism 4 - Fiscal adjustment''!G14'
+  layout: scalar
+  output:
+    compute:
+      name: compute_realism4_projected_3yr_adjustment_sample_share
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism4.fiscal_adjustment_placement
+    PARAMETER: projected_3yr_adjustment_sample_share
+  notes: Percent-of-sample (Y) at the country's projected-adjustment bin.
+- id: realism4_fiscal_adjustment_top_bin_label
+  sheet: Realism 4 - Fiscal adjustment
+  data_range: '''Realism 4 - Fiscal adjustment''!A50'
+  layout: scalar
+  output:
+    compute:
+      name: compute_realism4_fiscal_adjustment_top_bin_label
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism4.fiscal_adjustment_distribution
+    PARAMETER: top_bin_label
+  notes: Open-ended top-bin label for the fiscal-adjustment histogram.
+- id: realism4_fiscal_adjustment_sample_share
+  sheet: Realism 4 - Fiscal adjustment
+  data_range: '''Realism 4 - Fiscal adjustment''!D23:D50'
+  layout: series
+  output:
+    compute:
+      name: compute_realism4_fiscal_adjustment_sample_share
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: int
+      dtype: int
+  key:
+  - VARIANT
+  series_context:
+    TABLE: realism4.fiscal_adjustment_distribution
+  notes: Percent of the LIC sample in each 3-year fiscal-adjustment bin.
+- id: realism4_fiscal_adjustment_cumulative_share
+  sheet: Realism 4 - Fiscal adjustment
+  data_range: '''Realism 4 - Fiscal adjustment''!E24:E50'
+  layout: series
+  output:
+    compute:
+      name: compute_realism4_fiscal_adjustment_cumulative_share
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: int
+      dtype: int
+  key:
+  - VARIANT
+  series_context:
+    TABLE: realism4.fiscal_adjustment_distribution
+  notes: Cumulative percent of the LIC sample up to each fiscal-adjustment bin.
+- id: probability_pv_debt_to_gdp
+  sheet: Probability approach
+  data_range: '''Probability approach''!H27:AB32'
+  layout: matrix
+  output:
+    compute:
+      name: compute_probability_pv_debt_to_gdp
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: probability.indicator_paths
+    INDICATOR: PV of debt-to GDP ratio
+  notes: 'PV of PPG external debt to GDP: baseline, historical, MX shock, threshold, and bands.'
+- id: probability_pv_debt_to_exports
+  sheet: Probability approach
+  data_range: '''Probability approach''!H35:AB40'
+  layout: matrix
+  output:
+    compute:
+      name: compute_probability_pv_debt_to_exports
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: probability.indicator_paths
+    INDICATOR: PV of debt-to-exports ratio
+  notes: 'PV of PPG external debt to exports: baseline, historical, MX shock, threshold, and bands.'
+- id: probability_debt_service_to_exports
+  sheet: Probability approach
+  data_range: '''Probability approach''!H43:AB48'
+  layout: matrix
+  output:
+    compute:
+      name: compute_probability_debt_service_to_exports
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: probability.indicator_paths
+    INDICATOR: Debt service-to-exports ratio
+  notes: 'PPG external debt service to exports: baseline, historical, MX shock, threshold, and bands.'
+- id: probability_debt_service_to_revenue
+  sheet: Probability approach
+  data_range: '''Probability approach''!H51:AB56'
+  layout: matrix
+  output:
+    compute:
+      name: compute_probability_debt_service_to_revenue
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: probability.indicator_paths
+    INDICATOR: Debt service-to-revenue ratio
+  notes: 'PPG external debt service to revenue: baseline, historical, MX shock, threshold, and bands.'
+- id: probability_pv_debt_to_gdp_distress
+  sheet: Probability approach
+  data_range: '''Probability approach''!H84:AB87'
+  layout: matrix
+  output:
+    compute:
+      name: compute_probability_pv_debt_to_gdp_distress
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: probability.indicator_paths
+    INDICATOR: PV of debt-to GDP ratio distress probability
+  notes: Probability of external-debt distress for PV debt/GDP under baseline, historical, MX, and threshold.
+- id: probability_pv_debt_to_exports_distress
+  sheet: Probability approach
+  data_range: '''Probability approach''!H90:AB93'
+  layout: matrix
+  output:
+    compute:
+      name: compute_probability_pv_debt_to_exports_distress
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: probability.indicator_paths
+    INDICATOR: PV of debt-to-exports ratio distress probability
+  notes: Probability of external-debt distress for PV debt/exports under baseline, historical, MX, and
+    threshold.
+- id: probability_debt_service_to_exports_distress
+  sheet: Probability approach
+  data_range: '''Probability approach''!H96:AB99'
+  layout: matrix
+  output:
+    compute:
+      name: compute_probability_debt_service_to_exports_distress
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: probability.indicator_paths
+    INDICATOR: Debt service-to-exports ratio distress probability
+  notes: Probability of external-debt distress for debt service/exports under baseline, historical, MX,
+    and threshold.
+- id: probability_debt_service_to_revenue_distress
+  sheet: Probability approach
+  data_range: '''Probability approach''!H102:AB105'
+  layout: matrix
+  output:
+    compute:
+      name: compute_probability_debt_service_to_revenue_distress
+      record_contract: records
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - SCENARIO
+  - TIME_PERIOD
+  series_context:
+    TABLE: probability.indicator_paths
+    INDICATOR: Debt service-to-revenue ratio distress probability
+  notes: Probability of external-debt distress for debt service/revenue under baseline, historical, MX,
+    and threshold.

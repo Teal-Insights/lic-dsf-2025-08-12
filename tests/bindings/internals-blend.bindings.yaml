@@ -1,4 +1,4 @@
-schema_version: 1.16.0
+schema_version: 1.21.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -119,6 +119,9 @@ series:
   data_range: '''BLEND floating calculations WB''!N9'
   layout: scalar
   internal: {}
+  domain:
+    enum:
+    - SOFR Swap rate
   structure:
     measure:
       concept: OBS_VALUE
@@ -165,6 +168,10 @@ series:
   data_range: '''BLEND floating calculations WB''!N10:N39'
   layout: series
   internal: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1
   structure:
     measure:
       concept: OBS_VALUE
@@ -200,6 +207,10 @@ series:
   data_range: '''BLEND floating calculations WB''!O10:O39'
   layout: series
   internal: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1
   structure:
     measure:
       concept: OBS_VALUE

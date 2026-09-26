@@ -1,0 +1,318 @@
+schema_version: 1.21.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+series:
+- id: probability_debt_carrying_capacity_paths
+  sheet: Probability approach
+  data_range: '''Probability approach''!H77:AB81'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 76
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: probability.carrying_capacity
+  notes: Averaged CPIA, growth, reserves, remittances, and world growth over the probability horizon.
+- id: probability_background_macro
+  sheet: Probability approach
+  data_range: '''Probability approach''!C109:R117'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 108
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: probability.background_macro
+  notes: 'Background macro variables behind the probability approach: CPIA, growth, reserves, imports,
+    remittances, GDP, and world growth.'
+- id: probability_scenario_years
+  sheet: Probability approach
+  data_range: '''Probability approach''!H24:R24'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: probability.scenarios
+  notes: Year headers on the external-debt scenario strip.
+- id: probability_carrying_capacity_years
+  sheet: Probability approach
+  data_range: '''Probability approach''!C76:R76'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: probability.carrying_capacity
+  notes: Year headers for the averaged carrying-capacity paths.
+- id: probability_background_years
+  sheet: Probability approach
+  data_range: '''Probability approach''!C108:R108'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: probability.background_macro
+  notes: Year headers for the background macro block.
+- id: probability_borderline_bandwidth
+  sheet: 'Probability approach'
+  data_range: '''Probability approach''!I8'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: probability.regression
+    PARAMETER: borderline_bandwidth
+  notes: 'Bandwidth around the probability threshold that flags a borderline rating.'
+
+- id: probability_regression_diagonal
+  sheet: 'Probability approach'
+  data_range:
+  - '''Probability approach''!I64'
+  - '''Probability approach''!J65'
+  - '''Probability approach''!K66'
+  - '''Probability approach''!L67'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 63
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: probability.regression
+  notes: 'Diagonal coefficients of the debt-distress probability model.'
+
+- id: probability_distress_thresholds
+  sheet: 'Probability approach'
+  data_range: '''Probability approach''!O64:O67'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: H
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: probability.regression
+  notes: 'Probability thresholds for each debt-burden indicator.'
+
+- id: probability_regression_coefficients
+  sheet: 'Probability approach'
+  data_range: '''Probability approach''!I68:L74'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: H
+        read: string
+        normalize: strip
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 63
+        read: string
+  key:
+  - INDICATOR
+  - VARIANT
+  series_context:
+    TABLE: probability.regression
+  notes: 'Coefficients on CPIA, growth, reserves, remittances, and world growth.'
+
+- id: probability_background_cpia_label
+  sheet: 'Probability approach'
+  data_range: '''Probability approach''!A109'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: probability.background_macro
+    PARAMETER: cpia_label
+  notes: 'Row label for the CPIA path in the background macro block.'

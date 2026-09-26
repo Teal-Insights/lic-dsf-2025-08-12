@@ -1,0 +1,2427 @@
+schema_version: 1.21.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+series:
+- id: realism1_external_current_vintage_projection
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!H15:Y30'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: E
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 11
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.external_debt
+  notes: Current-vintage external debt projection by WEO indicator and year. Row labels are the descriptions
+    in column E; years are the header on row 11.
+- id: realism1_external_five_years_ago_projection
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!H32:Y47'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: E
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 11
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.external_debt
+  notes: External debt projection from the DSA vintage five years ago, by indicator and year.
+- id: realism1_external_five_years_ago_rebased_projection
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!H52:Y66'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: E
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 11
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.external_debt
+  notes: Five-years-ago external debt projection after rebasing to the current GDP path.
+- id: realism1_external_last_vintage_projection
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!H69:Y71'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: E
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 11
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.external_debt
+  notes: Latest-vintage PPG external debt and nominal GDP, before rebasing.
+- id: realism1_external_last_vintage_rebased_projection
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!H77:Y79'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: E
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 11
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.external_debt
+  notes: Latest-vintage PPG external debt and nominal GDP after rebasing to the current GDP path.
+- id: realism1_external_usd_rebase_factors
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!H48:Y49'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 11
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.external_debt
+  notes: Old-to-new GDP ratio and nominal US-dollar GDP growth used to rebase the external debt projection.
+- id: realism1_external_last_vintage_usd_rebase_factors
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!H73:Y74'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 11
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.external_debt
+  notes: Old-to-new GDP ratio and nominal US-dollar GDP growth for the latest external-debt vintage.
+- id: realism1_public_current_vintage_projection
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!H103:Y112'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: E
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 99
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.public_debt
+  notes: Current-vintage public debt projection in local currency, by indicator and year.
+- id: realism1_public_five_years_ago_projection
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!H115:Y124'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: E
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 99
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.public_debt
+  notes: Public debt projection from the DSA vintage five years ago, in local currency.
+- id: realism1_public_five_years_ago_rebased_projection
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!H130:Y139'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: E
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 99
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.public_debt
+  notes: Five-years-ago public debt projection after rebasing to the current GDP path.
+- id: realism1_public_last_vintage_projection
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!H143:Y145'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: E
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 99
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.public_debt
+  notes: Latest-vintage public debt and nominal GDP paths in local currency.
+- id: realism1_public_lc_rebase_factors
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!H126:Y127'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 99
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.public_debt
+  notes: Old-to-new GDP ratio and nominal local-currency GDP growth used to rebase the public debt projection.
+- id: realism1_public_last_vintage_lc_rebase_factors
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!H147:Y148'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 99
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.public_debt
+  notes: Old-to-new GDP ratio and nominal local-currency GDP growth for the latest public-debt vintage.
+- id: realism3_real_growth_by_vintage
+  sheet: Realism 3 - Invest-Growth
+  data_range: '''Realism 3 - Invest-Growth''!D53:Q54'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 49
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism3.investment_growth
+  notes: Real GDP growth under the previous and current DSA vintages.
+- id: realism3_public_investment_ratio_by_vintage
+  sheet: Realism 3 - Invest-Growth
+  data_range: '''Realism 3 - Invest-Growth''!C57:R58'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 49
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism3.investment_growth
+  notes: Real public investment to GDP under the previous and current DSA vintages.
+- id: realism3_private_investment_ratio_by_vintage
+  sheet: Realism 3 - Invest-Growth
+  data_range: '''Realism 3 - Invest-Growth''!G61:R62'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 49
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism3.investment_growth
+  notes: Real private investment to GDP under the previous and current DSA vintages.
+- id: realism3_baseline_real_gdp_index_by_vintage
+  sheet: Realism 3 - Invest-Growth
+  data_range: '''Realism 3 - Invest-Growth''!C65:Q66'
+  layout: matrix
+  internal: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 49
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism3.investment_growth
+  notes: Baseline real GDP index, prior tenth year set to 100, for both DSA vintages.
+- id: realism3_government_capital_actual
+  sheet: Realism 3 - Invest-Growth
+  data_range: '''Realism 3 - Invest-Growth''!C70:Q71'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 49
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism3.investment_growth
+  notes: Actual government capital stock as a share of GDP and in level.
+- id: realism3_government_capital_projected_by_vintage
+  sheet: Realism 3 - Invest-Growth
+  data_range: '''Realism 3 - Invest-Growth''!C74:Q75'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 49
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism3.investment_growth
+  notes: Projected government capital stock under the previous and current investment paths.
+- id: baseline_pub_historical_indicators
+  sheet: Baseline - public
+  data_range:
+  - '''Baseline - public''!H12:M12'
+  - '''Baseline - public''!H14:M14'
+  - '''Baseline - public''!H21:M22'
+  - '''Baseline - public''!H27:M38'
+  - '''Baseline - public''!H54:M61'
+  - '''Baseline - public''!H64:M64'
+  - '''Baseline - public''!H66:M66'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: baseline.public
+  notes: Public DSA historical indicators for 2017-2022. The 2023 column is already bound on the projection series.
+- id: baseline_ext_historical_indicators
+  sheet: Baseline - external
+  data_range:
+  - '''Baseline - external''!G12:L14'
+  - '''Baseline - external''!G15:M16'
+  - '''Baseline - external''!H18:L18'
+  - '''Baseline - external''!M18'
+  - '''Baseline - external''!H19:L19'
+  - '''Baseline - external''!H20:M20'
+  - '''Baseline - external''!H23:M23'
+  - '''Baseline - external''!H25:M30'
+  - '''Baseline - external''!H43:M43'
+  - '''Baseline - external''!H54:M54'
+  - '''Baseline - external''!H59:M59'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: baseline.external
+  notes: External DSA historical indicators through 2023. Projection series already own 2023 on the debt-stock and exports rows.
+- id: baseline_pub_year_before_projection
+  sheet: Baseline - public
+  data_range:
+  - '''Baseline - public''!N21:N22'
+  - '''Baseline - public''!N27:N38'
+  - '''Baseline - public''!N54:N59'
+  - '''Baseline - public''!N61:N61'
+  - '''Baseline - public''!N64:N64'
+  - '''Baseline - public''!N66:N66'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: baseline.public
+  notes: Public DSA indicators for 2023, the year just before the bound projection columns.
+- id: baseline_ext_year_before_projection
+  sheet: Baseline - external
+  data_range:
+  - '''Baseline - external''!N15:N16'
+  - '''Baseline - external''!N18:N18'
+  - '''Baseline - external''!N20:N20'
+  - '''Baseline - external''!N23:N23'
+  - '''Baseline - external''!N25:N30'
+  - '''Baseline - external''!N54:N54'
+  - '''Baseline - external''!N59:N59'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: baseline.external
+  notes: External DSA indicators for the last historical year before the bound projection columns.
+- id: realism1_current_vintage_year
+  sheet: 'Realism 1 - Forecast Error'
+  data_range: '''Realism 1 - Forecast Error''!D5'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism1.vintage
+    PARAMETER: current_vintage_year
+  notes: 'Current vintage year on the forecast-error sheet.'
+
+- id: realism1_latest_vintage_year
+  sheet: 'Realism 1 - Forecast Error'
+  data_range: '''Realism 1 - Forecast Error''!D6'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism1.vintage
+    PARAMETER: latest_vintage_year
+  notes: 'Issuance year parsed from the latest-vintage date.'
+
+- id: realism1_latest_vintage_date
+  sheet: 'Realism 1 - Forecast Error'
+  data_range: '''Realism 1 - Forecast Error''!E6'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism1.vintage
+    PARAMETER: latest_vintage_date
+  notes: 'Issuance date of the latest forecast-error vintage.'
+
+- id: realism1_external_year_headers
+  sheet: 'Realism 1 - Forecast Error'
+  data_range: '''Realism 1 - Forecast Error''!H11:Y11'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.external_forecast_error
+  notes: 'External forecast-error year headers.'
+
+- id: realism1_public_year_headers
+  sheet: 'Realism 1 - Forecast Error'
+  data_range: '''Realism 1 - Forecast Error''!H99:Y99'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.public_forecast_error
+  notes: 'Public forecast-error year headers.'
+
+- id: realism1_public_current_vintage_weo_codes
+  sheet: 'Realism 1 - Forecast Error'
+  data_range:
+  - '''Realism 1 - Forecast Error''!C103'
+  - '''Realism 1 - Forecast Error''!C105:C109'
+  - '''Realism 1 - Forecast Error''!C111'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: E
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: realism1.public_forecast_error
+  notes: 'WEO indicator codes for the current public-debt vintage.'
+
+- id: realism1_public_rebased_weo_codes
+  sheet: 'Realism 1 - Forecast Error'
+  data_range:
+  - '''Realism 1 - Forecast Error''!C115'
+  - '''Realism 1 - Forecast Error''!C117:C121'
+  - '''Realism 1 - Forecast Error''!C123'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: E
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: realism1.public_forecast_error
+    VARIANT: 'rebased'
+  notes: 'WEO indicator codes copied onto the rebased public-debt vintage.'
+
+- id: realism1_external_forecast_error_component_names
+  sheet: 'Realism 1 - Forecast Error'
+  data_range: '''Realism 1 - Forecast Error''!AD54:AD59'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: realism1.external_forecast_error
+  notes: 'Names of the external-debt forecast-error components.'
+
+- id: realism1_external_five_year_flow_changes
+  sheet: 'Realism 1 - Forecast Error'
+  data_range: '''Realism 1 - Forecast Error''!AE54:AG59'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: AD
+        read: string
+        normalize: strip
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          '5-year historical change': AE
+          '5-year projected change': AF
+          'Forecast error': AG
+  key:
+  - INDICATOR
+  - VARIANT
+  series_context:
+    TABLE: realism1.external_forecast_error
+  notes: 'Five-year historical change, projected change, and their difference for external debt.'
+
+- id: realism1_public_forecast_error_component_names
+  sheet: 'Realism 1 - Forecast Error'
+  data_range: '''Realism 1 - Forecast Error''!AD135:AD141'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: realism1.public_forecast_error
+  notes: 'Names of the public-debt forecast-error components.'
+
+- id: realism1_public_five_year_flow_changes
+  sheet: 'Realism 1 - Forecast Error'
+  data_range: '''Realism 1 - Forecast Error''!AE135:AG141'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: AD
+        read: string
+        normalize: strip
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          '2018-2023': AE
+          '2023-2028': AF
+          'Forecast error': AG
+  key:
+  - INDICATOR
+  - VARIANT
+  series_context:
+    TABLE: realism1.public_forecast_error
+  notes: 'Historical window, projection window, and their difference for public debt.'
+
+- id: realism1_external_median_label
+  sheet: 'Realism 1 - Forecast Error'
+  data_range: '''Realism 1 - Forecast Error''!AD65'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism1.external_forecast_error
+    PARAMETER: median_label
+  notes: 'Median marker on the external forecast-error chart.'
+
+- id: realism1_external_projected_change_callouts
+  sheet: 'Realism 1 - Forecast Error'
+  data_range: '''Realism 1 - Forecast Error''!AF65:AF66'
+  layout: series
+  internal: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: AD
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: realism1.external_forecast_error
+  notes: 'Projected-change callouts beside the external forecast-error chart.'
+
+- id: realism1_public_last_vintage_projected_change
+  sheet: 'Realism 1 - Forecast Error'
+  data_range: '''Realism 1 - Forecast Error''!AF143'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism1.public_forecast_error
+    PARAMETER: last_vintage_projected_change
+  notes: 'Projected change for the last public-debt vintage.'
+
+- id: realism1_public_projected_change_callouts
+  sheet: 'Realism 1 - Forecast Error'
+  data_range: '''Realism 1 - Forecast Error''!AF145:AF146'
+  layout: series
+  internal: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: AD
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: realism1.public_forecast_error
+  notes: 'Projected-change callouts for the rebased public-debt vintage.'
+
+- id: realism1_public_projected_change_callout_labels
+  sheet: 'Realism 1 - Forecast Error'
+  data_range: '''Realism 1 - Forecast Error''!AD145:AD146'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: realism1.public_forecast_error
+  notes: 'Labels for the rebased public-debt projected-change callouts.'
+
+- id: realism1_external_private_debt_rebased_change
+  sheet: 'Realism 1 - Forecast Error'
+  data_range: '''Realism 1 - Forecast Error''!J67:N67'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 11
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.external_forecast_error
+    INDICATOR: 'Private external debt, rebased change'
+  notes: 'Rebased change in private external debt.'
+
+- id: realism1_public_last_vintage_stock_copies
+  sheet: 'Realism 1 - Forecast Error'
+  data_range:
+  - '''Realism 1 - Forecast Error''!H151:Y151'
+  - '''Realism 1 - Forecast Error''!H153:Y153'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: E
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 99
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism1.public_last_vintage_copy
+  notes: 'Last-vintage nominal GDP and public-debt ratio copied under the rebased block.'
+
+- id: realism2_history_years
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range: '''Realism 2 - Fiscal multiplier''!F4:S4'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+  notes: 'Year headers for the fiscal-multiplier history block.'
+
+- id: realism2_primary_balance
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range: '''Realism 2 - Fiscal multiplier''!F5:S5'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 4
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    INDICATOR: 'Primary balance'
+  notes: 'Primary balance in percent of GDP.'
+
+- id: realism2_fiscal_adjustment
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range: '''Realism 2 - Fiscal multiplier''!L6:S6'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 4
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    INDICATOR: 'Fiscal adjustment'
+  notes: 'Fiscal adjustment in percentage points of GDP.'
+
+- id: realism2_real_gdp_growth
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range: '''Realism 2 - Fiscal multiplier''!F7:S7'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 4
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    INDICATOR: 'Real GDP growth'
+  notes: 'Real GDP growth rate used by the fiscal multiplier.'
+
+- id: realism2_multiplier_values
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range: '''Realism 2 - Fiscal multiplier''!D15:H15'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 44
+        read: string
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    INDICATOR: 'Multiplier (m)'
+  notes: 'Fiscal multipliers m.'
+
+- id: realism2_persistence_values
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range: '''Realism 2 - Fiscal multiplier''!D16:H16'
+  layout: series
+  internal: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 44
+        read: string
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    INDICATOR: 'Persistence (p)'
+  notes: 'Shock persistence p for each multiplier.'
+
+- id: realism2_shock_year_index
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range: '''Realism 2 - Fiscal multiplier''!B21:B22'
+  layout: series
+  internal: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: int
+        normalize: strip
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    INDICATOR: 'Shock year index'
+  notes: 'Years since the first projection year for the multiplier shock.'
+
+- id: realism2_growth_shock
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range: '''Realism 2 - Fiscal multiplier''!D21:H22'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: int
+        normalize: strip
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 44
+        read: string
+  key:
+  - TIME_PERIOD
+  - SCENARIO
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+  notes: 'Growth shock by multiplier and projection year.'
+
+- id: realism2_adjustment_size
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range:
+  - '''Realism 2 - Fiscal multiplier''!D77:E77'
+  - '''Realism 2 - Fiscal multiplier''!D105:E105'
+  - '''Realism 2 - Fiscal multiplier''!D133:E133'
+  - '''Realism 2 - Fiscal multiplier''!D161:E161'
+  - '''Realism 2 - Fiscal multiplier''!D189:E189'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 76
+        read: int
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          'Multiplier = 0.2': 77
+          'Multiplier = 0.4': 105
+          'Multiplier = 0.6': 133
+          'Multiplier = 0.8': 161
+          'Multiplier = 1': 189
+  key:
+  - TIME_PERIOD
+  - SCENARIO
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+  notes: 'Fiscal-adjustment size applied under each multiplier.'
+
+- id: realism2_growth_impact_multiplier_0_2
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range:
+  - '''Realism 2 - Fiscal multiplier''!D79'
+  - '''Realism 2 - Fiscal multiplier''!D80:E80'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: REFERENCE_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: int
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 76
+        read: int
+  key:
+  - REFERENCE_PERIOD
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    SCENARIO: 'Multiplier = 0.2'
+  notes: 'Growth impact of the Multiplier = 0.2 adjustment.'
+
+- id: realism2_growth_impact_multiplier_0_2_cumulative
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range:
+  - '''Realism 2 - Fiscal multiplier''!S79'
+  - '''Realism 2 - Fiscal multiplier''!S80'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: int
+        normalize: strip
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    SCENARIO: 'Multiplier = 0.2'
+    VARIANT: 'cumulative'
+  notes: 'Cumulative growth impact of the Multiplier = 0.2 adjustment.'
+
+- id: realism2_growth_impact_multiplier_0_4
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range:
+  - '''Realism 2 - Fiscal multiplier''!D107'
+  - '''Realism 2 - Fiscal multiplier''!D108:E108'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: REFERENCE_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: int
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 76
+        read: int
+  key:
+  - REFERENCE_PERIOD
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    SCENARIO: 'Multiplier = 0.4'
+  notes: 'Growth impact of the Multiplier = 0.4 adjustment.'
+
+- id: realism2_growth_impact_multiplier_0_4_cumulative
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range:
+  - '''Realism 2 - Fiscal multiplier''!S107'
+  - '''Realism 2 - Fiscal multiplier''!S108'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: int
+        normalize: strip
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    SCENARIO: 'Multiplier = 0.4'
+    VARIANT: 'cumulative'
+  notes: 'Cumulative growth impact of the Multiplier = 0.4 adjustment.'
+
+- id: realism2_growth_impact_multiplier_0_6
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range:
+  - '''Realism 2 - Fiscal multiplier''!D135'
+  - '''Realism 2 - Fiscal multiplier''!D136:E136'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: REFERENCE_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: int
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 76
+        read: int
+  key:
+  - REFERENCE_PERIOD
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    SCENARIO: 'Multiplier = 0.6'
+  notes: 'Growth impact of the Multiplier = 0.6 adjustment.'
+
+- id: realism2_growth_impact_multiplier_0_6_cumulative
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range:
+  - '''Realism 2 - Fiscal multiplier''!S135'
+  - '''Realism 2 - Fiscal multiplier''!S136'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: int
+        normalize: strip
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    SCENARIO: 'Multiplier = 0.6'
+    VARIANT: 'cumulative'
+  notes: 'Cumulative growth impact of the Multiplier = 0.6 adjustment.'
+
+- id: realism2_growth_impact_multiplier_0_8
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range:
+  - '''Realism 2 - Fiscal multiplier''!D163'
+  - '''Realism 2 - Fiscal multiplier''!D164:E164'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: REFERENCE_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: int
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 76
+        read: int
+  key:
+  - REFERENCE_PERIOD
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    SCENARIO: 'Multiplier = 0.8'
+  notes: 'Growth impact of the Multiplier = 0.8 adjustment.'
+
+- id: realism2_growth_impact_multiplier_0_8_cumulative
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range:
+  - '''Realism 2 - Fiscal multiplier''!S163'
+  - '''Realism 2 - Fiscal multiplier''!S164'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: int
+        normalize: strip
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    SCENARIO: 'Multiplier = 0.8'
+    VARIANT: 'cumulative'
+  notes: 'Cumulative growth impact of the Multiplier = 0.8 adjustment.'
+
+- id: realism2_growth_impact_multiplier_1_0
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range:
+  - '''Realism 2 - Fiscal multiplier''!D191'
+  - '''Realism 2 - Fiscal multiplier''!D192:E192'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: REFERENCE_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: int
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 76
+        read: int
+  key:
+  - REFERENCE_PERIOD
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    SCENARIO: 'Multiplier = 1'
+  notes: 'Growth impact of the Multiplier = 1 adjustment.'
+
+- id: realism2_growth_impact_multiplier_1_0_cumulative
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range:
+  - '''Realism 2 - Fiscal multiplier''!S191'
+  - '''Realism 2 - Fiscal multiplier''!S192'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: int
+        normalize: strip
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    SCENARIO: 'Multiplier = 1'
+    VARIANT: 'cumulative'
+  notes: 'Cumulative growth impact of the Multiplier = 1 adjustment.'
+
+- id: realism3_current_vintage_year
+  sheet: 'Realism 3 - Invest-Growth'
+  data_range: '''Realism 3 - Invest-Growth''!D5'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism3.investment_growth
+    PARAMETER: current_vintage_year
+  notes: 'Current vintage year on the investment-growth sheet.'
+
+- id: realism3_latest_vintage_year
+  sheet: 'Realism 3 - Invest-Growth'
+  data_range: '''Realism 3 - Invest-Growth''!D6'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism3.investment_growth
+    PARAMETER: latest_vintage_year
+  notes: 'Latest vintage year on the investment-growth sheet.'
+
+- id: realism3_depreciation_rate
+  sheet: 'Realism 3 - Invest-Growth'
+  data_range: '''Realism 3 - Invest-Growth''!C10'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism3.investment_growth
+    PARAMETER: depreciation_rate
+  notes: 'Depreciation rate of government capital.'
+
+- id: realism3_efficiency_public
+  sheet: 'Realism 3 - Invest-Growth'
+  data_range: '''Realism 3 - Invest-Growth''!C12'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism3.investment_growth
+    PARAMETER: efficiency_public
+  notes: 'Efficiency of public investment.'
+
+- id: realism3_efficiency_private
+  sheet: 'Realism 3 - Invest-Growth'
+  data_range: '''Realism 3 - Invest-Growth''!C13'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism3.investment_growth
+    PARAMETER: efficiency_private
+  notes: 'Efficiency of private investment.'
+
+- id: realism3_output_elasticity
+  sheet: 'Realism 3 - Invest-Growth'
+  data_range: '''Realism 3 - Invest-Growth''!C14'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism3.investment_growth
+    PARAMETER: output_elasticity
+  notes: 'Output elasticity of government capital.'
+
+- id: realism3_first_projection_year
+  sheet: 'Realism 3 - Invest-Growth'
+  data_range: '''Realism 3 - Invest-Growth''!C16'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism3.investment_growth
+    PARAMETER: first_projection_year
+  notes: 'First projection year used by the investment-growth tool.'
+
+- id: realism3_contribution_years
+  sheet: 'Realism 3 - Invest-Growth'
+  data_range: '''Realism 3 - Invest-Growth''!C49:R49'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism3.investment_growth
+  notes: 'Year headers for the government-capital contribution block.'
+
+- id: realism3_growth_contributions
+  sheet: 'Realism 3 - Invest-Growth'
+  data_range:
+  - '''Realism 3 - Invest-Growth''!I29:M29'
+  - '''Realism 3 - Invest-Growth''!D30:M30'
+  - '''Realism 3 - Invest-Growth''!I32:M32'
+  - '''Realism 3 - Invest-Growth''!D33:M33'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 19
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism3.investment_growth
+  notes: 'Contributions of government capital and other factors to real GDP growth.'
+
+- id: realism3_government_capital_actual_label
+  sheet: 'Realism 3 - Invest-Growth'
+  data_range: '''Realism 3 - Invest-Growth''!A70'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism3.investment_growth
+    PARAMETER: government_capital_actual_label
+  notes: 'Label for the historical government-capital share.'
+
+- id: realism3_government_capital_growth
+  sheet: 'Realism 3 - Invest-Growth'
+  data_range:
+  - '''Realism 3 - Invest-Growth''!M78:Q78'
+  - '''Realism 3 - Invest-Growth''!H79:Q79'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 49
+        read: int
+  key:
+  - VARIANT
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism3.investment_growth
+    INDICATOR: 'Government capital growth'
+  notes: 'Growth of the government capital stock under the previous and current paths.'
+
+- id: realism3_capital_growth_contribution
+  sheet: 'Realism 3 - Invest-Growth'
+  data_range:
+  - '''Realism 3 - Invest-Growth''!M82:Q82'
+  - '''Realism 3 - Invest-Growth''!H83:Q83'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 49
+        read: int
+  key:
+  - VARIANT
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism3.investment_growth
+    INDICATOR: 'Capital growth contribution'
+  notes: 'Contribution of government-capital growth scaled by the output elasticity.'
+
+- id: realism3_growth_residual
+  sheet: 'Realism 3 - Invest-Growth'
+  data_range:
+  - '''Realism 3 - Invest-Growth''!M86:Q86'
+  - '''Realism 3 - Invest-Growth''!H87:Q87'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 49
+        read: int
+  key:
+  - VARIANT
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism3.investment_growth
+    INDICATOR: 'Growth residual'
+  notes: 'Residual between observed growth and the government-capital contribution.'
+
+- id: realism4_primary_deficit
+  sheet: 'Realism 4 - Fiscal adjustment'
+  data_range: '''Realism 4 - Fiscal adjustment''!F9:K9'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism4.fiscal_adjustment
+    INDICATOR: 'Primary deficit'
+  notes: 'Primary deficit in percent of GDP.'
+
+- id: realism4_three_year_adjustment
+  sheet: 'Realism 4 - Fiscal adjustment'
+  data_range: '''Realism 4 - Fiscal adjustment''!I10:K10'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 8
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism4.fiscal_adjustment
+    INDICATOR: '3-year fiscal adjustment'
+  notes: 'Three-year fiscal adjustment in percentage points of GDP.'

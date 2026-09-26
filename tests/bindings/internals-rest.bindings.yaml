@@ -1,4 +1,4 @@
-schema_version: 1.16.0
+schema_version: 1.21.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -3228,7 +3228,7 @@ series:
     TABLE: baseline_public.dsa
     INDICATOR: PV of public debt-to-GDP ratio (C4 - Mkt Fin)
   notes: PV of public debt-to-GDP ratio (C4 - Mkt Fin) (Baseline - public), keyed by projection years from row 7.
-- id: baseline_pub_pv_of_public_debt_revenue_grants_ratio_b3
+- id: baseline_pub_pv_of_public_debt_revenue_grants_ratio_exports_shock
   sheet: Baseline - public
   data_range: '''Baseline - public''!O96:AI96'
   layout: series
@@ -8718,7 +8718,7 @@ series:
   notes: Further Details (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_us_dollars
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!U6:AN6'
+  data_range: '''Macro-Debt_Data''!O6:AN6'
   layout: series
   internal: {}
   structure:
@@ -8745,7 +8745,7 @@ series:
   notes: US Dollars (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_us_dollars_by_year
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!T8:AO8'
+  data_range: '''Macro-Debt_Data''!N8:AO8'
   layout: series
   internal: {}
   structure:
@@ -8772,7 +8772,7 @@ series:
   notes: US Dollars (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_main_assumptions_us_dollars
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!T9:AO9'
+  data_range: '''Macro-Debt_Data''!N9:AO9'
   layout: series
   internal: {}
   structure:
@@ -8799,7 +8799,7 @@ series:
   notes: US Dollars (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_short_term
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!T10:AO10'
+  data_range: '''Macro-Debt_Data''!N10:AO10'
   layout: series
   internal: {}
   structure:
@@ -8826,7 +8826,7 @@ series:
   notes: US Dollars (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_private_sector_ext_debt
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!T11:AO11'
+  data_range: '''Macro-Debt_Data''!O11:AO11'
   layout: series
   internal: {}
   structure:
@@ -8853,7 +8853,7 @@ series:
   notes: US Dollars (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_private_sector_mlt_external
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!T12:AO12'
+  data_range: '''Macro-Debt_Data''!O12:AO12'
   layout: series
   internal: {}
   structure:
@@ -8880,7 +8880,7 @@ series:
   notes: US Dollars (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_private_sector_short_term
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!T13:AO13'
+  data_range: '''Macro-Debt_Data''!O13:AO13'
   layout: series
   internal: {}
   structure:
@@ -8907,7 +8907,7 @@ series:
   notes: US Dollars (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_national_currency
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!T14:AO14'
+  data_range: '''Macro-Debt_Data''!N14:AO14'
   layout: series
   internal: {}
   structure:
@@ -8934,7 +8934,7 @@ series:
   notes: National Currency (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_public_domestic_mlt
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!T15:AO15'
+  data_range: '''Macro-Debt_Data''!N15:AO15'
   layout: series
   internal: {}
   structure:
@@ -8961,7 +8961,7 @@ series:
   notes: Public domestic MLT debt copied from Input 3 when numeric, otherwise zero.
 - id: macro_debt_public_domestic_st
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!S16:AO16'
+  data_range: '''Macro-Debt_Data''!N16:AO16'
   layout: series
   internal: {}
   structure:
@@ -9069,7 +9069,7 @@ series:
   notes: US Dollars (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_total_public_domestic_debt_interest_due
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!U21:AO21'
+  data_range: '''Macro-Debt_Data''!P21:AO21'
   layout: series
   internal: {}
   structure:
@@ -9177,7 +9177,7 @@ series:
   notes: US Dollars (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_us_dollars_k
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!K28:T28'
+  data_range: '''Macro-Debt_Data''!K28:U28'
   layout: series
   internal: {}
   structure:
@@ -9258,7 +9258,7 @@ series:
   notes: US Dollars (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_imports_of_goods_services_use_positive_values
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!V30:AO30'
+  data_range: '''Macro-Debt_Data''!P30:AO30'
   layout: series
   internal: {}
   structure:
@@ -9285,7 +9285,7 @@ series:
   notes: US Dollars (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_us_dollars_by_year_k
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!K31:T31'
+  data_range: '''Macro-Debt_Data''!K31:U31'
   layout: series
   internal: {}
   structure:
@@ -9339,7 +9339,7 @@ series:
   notes: US Dollars (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_main_assumptions_us_dollars_k
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!K34:T34'
+  data_range: '''Macro-Debt_Data''!K34:U34'
   layout: series
   internal: {}
   structure:
@@ -9555,7 +9555,7 @@ series:
   notes: National Currency (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_privatization_receipts
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!U47:AO47'
+  data_range: '''Macro-Debt_Data''!P47:AO47'
   layout: series
   internal: {}
   structure:
@@ -9609,7 +9609,7 @@ series:
   notes: National Currency (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_public_sector_interest_expenditure
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!U49:AO49'
+  data_range: '''Macro-Debt_Data''!P49:AO49'
   layout: series
   internal: {}
   structure:
@@ -9663,7 +9663,7 @@ series:
   notes: National Currency (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_recognition_of_contingent_liab_e_g_bank
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!U51:AO51'
+  data_range: '''Macro-Debt_Data''!P51:AO51'
   layout: series
   internal: {}
   structure:
@@ -9690,7 +9690,7 @@ series:
   notes: National Currency (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_other_debt_creating_reducing_flow_please_specify
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!U52:AO52'
+  data_range: '''Macro-Debt_Data''!P52:AO52'
   layout: series
   internal: {}
   structure:
@@ -9717,7 +9717,7 @@ series:
   notes: National Currency (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_debt_relief
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!U53:AO53'
+  data_range: '''Macro-Debt_Data''!P53:AO53'
   layout: series
   internal: {}
   structure:
@@ -9798,7 +9798,7 @@ series:
   notes: National Currency (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_none
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!T58:AO58'
+  data_range: '''Macro-Debt_Data''!O58:AO58'
   layout: series
   internal: {}
   structure:
@@ -9879,7 +9879,7 @@ series:
   notes: National Currency (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_private_debt_pct_gdp
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!T70:AO70'
+  data_range: '''Macro-Debt_Data''!O70:AO70'
   layout: series
   internal: {}
   structure:
@@ -9933,7 +9933,7 @@ series:
   notes: Private debt service in percent of exports (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_total_public_debt_outstanding_year_end
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!T80:AO80'
+  data_range: '''Macro-Debt_Data''!N80:AO80'
   layout: series
   internal: {}
   structure:
@@ -9960,7 +9960,7 @@ series:
   notes: National Currency (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_total_public_ext_debt
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!T81:AO81'
+  data_range: '''Macro-Debt_Data''!N81:AO81'
   layout: series
   internal: {}
   structure:
@@ -9987,7 +9987,7 @@ series:
   notes: National Currency (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_total_public_domestic_debt
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!T82:AO82'
+  data_range: '''Macro-Debt_Data''!N82:AO82'
   layout: series
   internal: {}
   structure:
@@ -10014,7 +10014,7 @@ series:
   notes: National Currency (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_fx_denominated_public_debt_end_of_period
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!T83:AN83'
+  data_range: '''Macro-Debt_Data''!O83:AN83'
   layout: series
   internal: {}
   structure:
@@ -10041,7 +10041,7 @@ series:
   notes: National Currency (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_share_of_local_currency_denominated_external
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!U85:AN85'
+  data_range: '''Macro-Debt_Data''!O85:AN85'
   layout: series
   internal: {}
   structure:
@@ -10068,7 +10068,7 @@ series:
   notes: Share of local-currency denominated external public debt in total external debt (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_interest_rate_ext_debt
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!U86:AO86'
+  data_range: '''Macro-Debt_Data''!P86:AO86'
   layout: series
   internal: {}
   structure:
@@ -10095,7 +10095,7 @@ series:
   notes: Interest rate on external debt (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_interest_rate_domestic_debt
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!U87:AO87'
+  data_range: '''Macro-Debt_Data''!P87:AO87'
   layout: series
   internal: {}
   structure:
@@ -10340,7 +10340,7 @@ series:
   notes: Change in GDP Deflator factor (percent) (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_us_gdp_deflator_percent_change
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!U112:AO112'
+  data_range: '''Macro-Debt_Data''!P112:AO112'
   layout: series
   internal: {}
   structure:
@@ -10367,7 +10367,7 @@ series:
   notes: US GDP Deflator (percent change) (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_exchange_rate_dollar_nc
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!U113:AO113'
+  data_range: '''Macro-Debt_Data''!O113:AO113'
   layout: series
   internal: {}
   structure:
@@ -10394,7 +10394,7 @@ series:
   notes: Exchange rate dollar/NC (Macro-Debt_Data), keyed by projection years from row 1.
 - id: macro_debt_depreciation_of_nc_depreciation
   sheet: Macro-Debt_Data
-  data_range: '''Macro-Debt_Data''!V114:AO114'
+  data_range: '''Macro-Debt_Data''!P114:AO114'
   layout: series
   internal: {}
   structure:
@@ -10563,3 +10563,191 @@ series:
     INDICATOR: Short-term debt
     TABLE: translation.labels
   notes: Short-term debt (translation), keyed by column labels from row 494.
+- id: macro_debt_previous_vintage_investment
+  sheet: 'Macro-Debt_Data'
+  data_range:
+  - '''Macro-Debt_Data''!K61:Z61'
+  - '''Macro-Debt_Data''!O62:Z62'
+  - '''Macro-Debt_Data''!K63:Z63'
+  - '''Macro-Debt_Data''!O64:Z64'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: E
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: macro_debt_data.investment
+  notes: 'Public and private investment, in constant prices and in percent of GDP, from the previous DSA vintage.'
+
+- id: input3_projection_year_header
+  sheet: 'Input 3 - Macro-Debt data(DMX)'
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!X7'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input3.macro_debt
+    PARAMETER: projection_year_header
+  notes: 'Projection-year header on the macro-debt input sheet.'
+
+- id: input3_local_currency_domestic_debt
+  sheet: 'Input 3 - Macro-Debt data(DMX)'
+  data_range:
+  - '''Input 3 - Macro-Debt data(DMX)''!Q190:V191'
+  - '''Input 3 - Macro-Debt data(DMX)''!Q192:U192'
+  - '''Input 3 - Macro-Debt data(DMX)''!S193:W193'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: G
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: input3.macro_debt
+    INSTRUMENT: 'Locally-issued domestic debt'
+  notes: 'Local-currency domestic debt stock and interest.'
+
+- id: input3_local_currency_external_debt
+  sheet: 'Input 3 - Macro-Debt data(DMX)'
+  data_range:
+  - '''Input 3 - Macro-Debt data(DMX)''!Q208:V208'
+  - '''Input 3 - Macro-Debt data(DMX)''!Q210:V210'
+  - '''Input 3 - Macro-Debt data(DMX)''!R214:V214'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: G
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: input3.macro_debt
+    INSTRUMENT: 'Locally-issued external debt'
+  notes: 'Local-currency external debt and foreign-currency public debt.'
+
+- id: output_submit_first_projection_year
+  sheet: 'Output - Submit'
+  data_range: '''Output - Submit''!C9'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: output_submit.meta
+    PARAMETER: first_projection_year
+  notes: 'First projection year copied onto the submit sheet.'
+
+- id: lookup_country_scale_phrase
+  sheet: 'lookup'
+  data_range: lookup!J12:J13
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: REF_AREA
+      concept: REF_AREA
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+  key:
+  - REF_AREA
+  series_context:
+    TABLE: lookup.countries
+  notes: 'Translated scale phrase for countries whose lookup row carries that formula.'

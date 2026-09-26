@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Python implementation of the IMF-World Bank Low-Income Country Debt Sustainability Framework (LIC-DSF) IDA21 template, 2025-08-12 vintage."
 requires-python = ">=3.13"
 dependencies = [
-    "fastpyxl",
+    "fastpyxl>=1.1.0",
     "numpy",
 ]
 
@@ -23,6 +23,10 @@ dev = [
     "polars",
     "matplotlib",
 ]
+graph = [
+    "excel-grapher>=15.0.0",
+    "pytest>=8.0.0",
+]
 validation = [
-    "excel-grapher>=20.3.6",
+    "excel-grapher>=23.9.1",
 ]

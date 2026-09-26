@@ -1,4 +1,4 @@
-schema_version: 1.16.0
+schema_version: 1.21.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12

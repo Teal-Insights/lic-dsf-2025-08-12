@@ -5,7 +5,7 @@ Python implementation of the IMF-World Bank Low-Income Country Debt Sustainabili
 ## Installation
 
 ```bash
-uv add lic-dsf-2025-08-12
+uv add "lic-dsf-2025-08-12 @ git+https://github.com/Teal-Insights/lic-dsf-2025-08-12"
 ```
 
 ## Documentation

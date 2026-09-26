@@ -1,21 +1,13 @@
 ---
 title: Stress tests and what-ifs
 guide-section: Working with a case
+bread-crumbs: false
 ---
 
 The LIC-DSF rating is a statement about the baseline **and** the stress envelope. This page covers the Input 6 switches, the tailored-test applicability flags on Chart Data, and the one-cell shocks that correspond to the starter scenario matrix for this vintage.
 
 ```{python}
-import inspect
-
 from lic_dsf_2025_08_12 import api, data
-
-
-def workbook_defaults(compute):
-    return {
-        name: getattr(data, f"{name.upper()}_DEFAULT")
-        for name in inspect.signature(compute).parameters
-    }
 ```
 
 ## Which tailored tests apply?
@@ -25,14 +17,13 @@ Chart Data `I17:I19` stores 0/1 flags for natural disaster, commodity price, and
 ```{python}
 {
     "natural_disaster": api.compute_tailored_stress_natural_disaster_applicable(
-        country=data.COUNTRY_DEFAULT
+        api.TailoredStressNaturalDisasterApplicableInputs.from_defaults()
     ),
     "commodity_price": api.compute_tailored_stress_commodity_price_applicable(
-        **workbook_defaults(api.compute_tailored_stress_commodity_price_applicable)
+        api.TailoredStressCommodityPriceApplicableInputs.from_defaults()
     ),
     "market_financing": api.compute_tailored_stress_market_financing_applicable(
-        country=data.COUNTRY_DEFAULT,
-        input6_tailored_tests_enabled=data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT,
+        api.TailoredStressMarketFinancingApplicableInputs.from_defaults()
     ),
 }
 ```
@@ -51,8 +42,9 @@ The master switch is `input6_tailored_tests_enabled`. Setting it to `"Off"` is t
 
 ```{python}
 api.compute_tailored_stress_market_financing_applicable(
-    country=data.COUNTRY_DEFAULT,
-    input6_tailored_tests_enabled="Off",
+    api.TailoredStressMarketFinancingApplicableInputs.from_defaults(
+        input6_tailored_tests_enabled="Off",
+    )
 )
 ```
 
@@ -64,9 +56,9 @@ The functions below each change a single Input 1 / Input 6 scalar and recompute 
 
 ```{python}
 def external_rating(**overrides):
-    case = workbook_defaults(api.compute_external_dsa_risk_rating_signal)
-    case.update(overrides)
-    return api.compute_external_dsa_risk_rating_signal(**case)
+    return api.compute_external_dsa_risk_rating_signal(
+        api.ExternalDsaRiskRatingSignalInputs.from_defaults(**overrides)
+    )
 
 
 {
@@ -82,7 +74,7 @@ def external_rating(**overrides):
 }
 ```
 
-Use the same `overrides` dict with `compute_fiscal_risk_rating_signal` or `compute_overall_risk_rating_signal` when the question is the public-debt or combined rating. For path-level questions, pass the same dict into a Chart Data series function and compare `sel(SCENARIO=..., TIME_PERIOD=...)`.
+Use the same overrides with `FiscalRiskRatingSignalInputs` or `OverallRiskRatingSignalInputs` when the question is the public-debt or combined rating. For path-level questions, pass the same keywords into a Chart Data series function and compare `sel(SCENARIO=..., TIME_PERIOD=...)`.
 
 ## Customized scenario (A2)
 
@@ -102,11 +94,11 @@ shocked = delta.with_records(
 shocked.sel(INDICATOR=growth, TIME_PERIOD=2025)
 ```
 
-Pass `shocked` as `customized_public_delta` (and keep `customized_public_include_scenario="Yes"`) into `compute_chart_pv_debt_gdp_ratio_a2_alternative_scenario_customize_enter` or any rating function that accepts the customized-public arguments.
+Pass `shocked` as `customized_public_delta` (and keep `customized_public_include_scenario="Yes"`) into `ChartPvDebtGdpRatioCustomAlternativeScenarioInputs.from_defaults` or any rating bundle that accepts the customized-public fields.
 
 ## A working sequence
 
-1. Load `workbook_defaults` for the function you need.
+1. Load `from_defaults()` for the function you need (or `Model.from_defaults()` when you want several cells).
 2. Confirm tailored-test flags for the country.
 3. Replace Input 3–5 series that differ from the template.
 4. Compute the three ratings and the breach / MX scalars.

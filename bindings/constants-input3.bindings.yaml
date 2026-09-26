@@ -1,0 +1,509 @@
+schema_version: 1.21.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+series:
+- id: input3_investment
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!N14:AH17'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: input3.macro_debt
+  notes: Public and private investment, in constant prices and in percent of GDP.
+- id: input3_us_deflator
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!R18:V18'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: input3.macro_debt
+  notes: US GDP deflator.
+- id: input3_other_debt_flows
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!S27:W30'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: input3.macro_debt
+  notes: Privatization, contingent liabilities, debt relief, and other debt-creating flows.
+- id: input3_imports
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!S38:X38'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: input3.macro_debt
+  notes: Imports of goods and services.
+- id: input3_remittances
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!S45:AH45'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: input3.macro_debt
+  notes: Workers' remittances.
+- id: input3_ppg_external_debt_stock
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!Q51:V52'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: input3.macro_debt
+  notes: PPG external debt outstanding, medium-term and short-term.
+- id: input3_private_external_debt_stock
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!R57:V58'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: input3.macro_debt
+  notes: Private external debt outstanding, medium-term and short-term.
+- id: input3_domestic_local_currency_stock
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range:
+  - '''Input 3 - Macro-Debt data(DMX)''!Q136:V136'
+  - '''Input 3 - Macro-Debt data(DMX)''!Q137:U137'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: input3.macro_debt
+  notes: Existing local-currency domestic debt, and the short-term part of it. Column V of the short-term row is the editable input.
+- id: input3_domestic_foreign_currency_stock
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range:
+  - '''Input 3 - Macro-Debt data(DMX)''!Q138:V138'
+  - '''Input 3 - Macro-Debt data(DMX)''!Q139:U139'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: input3.macro_debt
+  notes: Existing foreign-currency domestic debt, and the short-term part of it. Column V of the short-term row is the editable input.
+- id: input3_domestic_local_currency_interest
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!S141:W141'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: input3.macro_debt
+  notes: Interest on existing local-currency domestic debt.
+- id: input3_nonresident_local_currency_stock
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!Q161:V162'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: input3.macro_debt
+  notes: Nonresident local-currency domestic debt, and the short-term part of it.
+- id: input3_nonresident_foreign_currency_stock
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!Q163:V164'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: input3.macro_debt
+  notes: Nonresident foreign-currency domestic debt, and the short-term part of it.
+- id: input3_world_growth_and_reserves
+  sheet: Input 3 - Macro-Debt data(DMX)
+  data_range: '''Input 3 - Macro-Debt data(DMX)''!S183:AH184'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 7
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: input3.macro_debt
+  notes: World real growth and the stock of reserves.

@@ -1,24 +1,21 @@
 ---
 title: Fill the input sheets
 guide-section: Working with a case
+bread-crumbs: false
 ---
 
-An economist does not type 70 keyword arguments by hand. You start from the shipped template snapshot and replace the cells you would have edited in yellow on Input 1–8.
+An economist does not type seventy fields by hand. You start from the shipped template snapshot and replace the cells you would have edited in yellow on Input 1–8.
 
 ```{python}
-import inspect
-
 from lic_dsf_2025_08_12 import api, data
 
-
-def workbook_defaults(compute):
-    return {
-        name: getattr(data, f"{name.upper()}_DEFAULT")
-        for name in inspect.signature(compute).parameters
-    }
+inputs = api.ExternalDsaRiskRatingSignalInputs.from_defaults()
+len(inputs.__dataclass_fields__)
 ```
 
-`compute_external_dsa_risk_rating_signal` needs 69 inputs; the overall rating needs 81. Each name is the snake_case form of an Input-sheet series. The matching default lives on `data` as `{NAME}_DEFAULT`.
+`compute_external_dsa_risk_rating_signal` needs 74 leaves; the overall rating needs 86. Each name is the snake_case form of an Input-sheet series. The matching default lives on `data` as `{NAME}_DEFAULT`. Unknown override names fail closed.
+
+`from_workbook(path)` binds the same leaves from a populated workbook of this vintage, then accepts the same overrides.
 
 ## Scalars you change first
 
@@ -38,7 +35,7 @@ These are the Input 1 / Input 2 / Input 6 switches that usually move first in a 
 }
 ```
 
-| Workbook cell | Argument | Snapshot | Allowed values |
+| Workbook cell | Field | Snapshot | Allowed values |
 | --- | --- | --- | --- |
 | Input 1 `C7` | `country` | `Ghana` | LIC-DSF country names as spelled in the template (`Gambia, The`, `Congo, DR`, …) |
 | Input 1 `C18` | `first_projection_year` | `2024` | Integer year |
@@ -47,7 +44,14 @@ These are the Input 1 / Input 2 / Input 6 switches that usually move first in a 
 | Input 1 `C33` | `external_domestic_debt_definition` | `Residency-based` | `Residency-based` or `Currency-based` |
 | Input 6 `C6` | `input6_tailored_tests_enabled` | `On` | `On` or `Off` |
 
-The package validates those domains before the formulas run. A misspelled country name or a discount rate of `5` (instead of `0.05`) fails closed.
+The package validates those domains before the formulas run. A misspelled country name or a discount rate of `5` (instead of `0.05`) fails closed:
+
+```{python}
+try:
+    api.ExternalDsaRiskRatingSignalInputs.from_defaults(discount_rate=5)
+except ValueError as error:
+    str(error)
+```
 
 ## Macro and financing series
 
@@ -81,12 +85,12 @@ exports.sel(TIME_PERIOD=2024)
 
 ## Override one cell, keep the rest
 
-Copy the defaults, replace a scalar, and recompute. The call below is the Excel action “type 4 percent in Input 1 `C25`”:
+Pass keyword overrides into `from_defaults`. The call below is the Excel action “type 4 percent in Input 1 `C25`”:
 
 ```{python}
-case = workbook_defaults(api.compute_external_dsa_risk_rating_signal)
-case["discount_rate"] = 0.04
-api.compute_external_dsa_risk_rating_signal(**case)
+api.compute_external_dsa_risk_rating_signal(
+    api.ExternalDsaRiskRatingSignalInputs.from_defaults(discount_rate=0.04)
+)
 ```
 
 To edit a time series, rebuild it with `with_records` so the schema and cell provenance stay attached. The example raises 2024 nominal GDP and leaves every other year untouched:
@@ -100,13 +104,13 @@ gdp_revised = gdp.with_records(
 (gdp.sel(TIME_PERIOD=2024), gdp_revised.sel(TIME_PERIOD=2024), gdp_revised.sel(TIME_PERIOD=2025))
 ```
 
-Pass `gdp_revised` as `input3_input_3_macro_gross_domestic_product_us_dollars` in the keyword arguments.
+Pass `gdp_revised` as `input3_input_3_macro_gross_domestic_product_us_dollars` in `from_defaults`.
 
 Two-axis series (Input 4 disbursements are `INSTRUMENT` × `TIME_PERIOD`; customized public deltas are `INDICATOR` × `TIME_PERIOD`) use the same pattern: iterate `items()`, change the coordinates you care about, and call `with_records`.
 
-## Sheet → argument groups
+## Sheet → field groups
 
-| Workbook sheet | Typical arguments |
+| Workbook sheet | Typical fields |
 | --- | --- |
 | Input 1 – Basics | `country`, `first_projection_year`, `discount_rate`, `external_domestic_debt_definition`, `input_1_rer_overvaluation` |
 | Input 2 – Debt coverage | `contingent_liability_*_pct_gdp`, `ppp_capital_stock_shock_pct` |
@@ -118,5 +122,5 @@ Two-axis series (Input 4 disbursements are `INSTRUMENT` × `TIME_PERIOD`; custom
 | Customized scenario – public | `customized_public_include_scenario`, `customized_public_delta`, overflow and initial-stock scalars |
 
 ::: {.callout-tip}
-Keep the helper and a single `case` dict in your notebook. Change one key, re-run the rating functions, and you have a one-assumption sensitivity — the same discipline as shocking a single yellow cell and pressing F9.
+Keep one `from_defaults(...)` call in your notebook. Change one keyword, re-run the rating functions, and you have a one-assumption sensitivity — the same discipline as shocking a single yellow cell and pressing F9.
 :::

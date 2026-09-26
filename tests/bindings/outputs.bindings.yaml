@@ -1,4 +1,4 @@
-schema_version: 1.16.0
+schema_version: 1.21.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -694,13 +694,13 @@ series:
     TABLE: chart_data.debt_service_to_gdp_ratio
     INDICATOR: Debt Service-to-GDP Ratio
   notes: Debt Service-to-GDP Ratio on Chart Data, keyed by scenario.
-- id: chart_pv_debt_gdp_ratio_a2_alternative_scenario_customize_enter
+- id: chart_pv_debt_gdp_ratio_custom_alternative_scenario
   sheet: Chart Data
   data_range: '''Chart Data''!D51:X51'
   layout: series
   output:
     compute:
-      name: compute_chart_pv_debt_gdp_ratio_a2_alternative_scenario_customize_enter
+      name: compute_chart_pv_debt_gdp_ratio_custom_alternative_scenario
       record_contract: records
   structure:
     measure:
@@ -721,10 +721,10 @@ series:
   key:
   - TIME_PERIOD
   series_context:
-    TABLE: chart_data.figure_r51
+    TABLE: chart_data.pv_debt_gdp_ratio
     INDICATOR: PV of debt-to GDP ratio — A2. Alternative Scenario :[Customize, enter title]
   notes: Chart Data row 51 (PV of debt-to GDP ratio — A2. Alternative Scenario :[Customize, enter title]), years from row 35.
-- id: chart_output_chart_data_figure_r61_pv_debt_gdp_ratio
+- id: chart_output_pv_debt_gdp_ratio
   sheet: Chart Data
   data_range:
   - '''Chart Data''!D61:X61'
@@ -735,7 +735,7 @@ series:
   layout: series
   output:
     compute:
-      name: compute_chart_output_chart_data_figure_r61_pv_debt_gdp_ratio
+      name: compute_chart_output_pv_debt_gdp_ratio
       record_contract: records
   structure:
     measure:
@@ -770,16 +770,16 @@ series:
   - SCENARIO
   - TIME_PERIOD
   series_context:
-    TABLE: chart_data.figure_r61
+    TABLE: chart_data.pv_debt_gdp_ratio
     INDICATOR: PV of debt-to GDP ratio
   notes: PV of debt-to GDP ratio on Chart Data, keyed by scenario.
-- id: chart_pv_debt_to_exports_a2_alternative_scenario_customize_enter
+- id: chart_pv_debt_to_exports_custom_alternative_scenario
   sheet: Chart Data
   data_range: '''Chart Data''!D93:X93'
   layout: series
   output:
     compute:
-      name: compute_chart_pv_debt_to_exports_a2_alternative_scenario_customize_enter
+      name: compute_chart_pv_debt_to_exports_custom_alternative_scenario
       record_contract: records
   structure:
     measure:
@@ -800,10 +800,10 @@ series:
   key:
   - TIME_PERIOD
   series_context:
-    TABLE: chart_data.figure_r93
+    TABLE: chart_data.pv_debt_to_exports
     INDICATOR: PV of debt-to-exports ratio — A2. Alternative Scenario :[Customize, enter title]
   notes: Chart Data row 93 (PV of debt-to-exports ratio — A2. Alternative Scenario :[Customize, enter title]), years from row 35.
-- id: chart_output_chart_data_figure_r103_pv_debt_to_exports
+- id: chart_output_pv_debt_to_exports
   sheet: Chart Data
   data_range:
   - '''Chart Data''!D103:X103'
@@ -814,7 +814,7 @@ series:
   layout: series
   output:
     compute:
-      name: compute_chart_output_chart_data_figure_r103_pv_debt_to_exports
+      name: compute_chart_output_pv_debt_to_exports
       record_contract: records
   structure:
     measure:
@@ -849,16 +849,16 @@ series:
   - SCENARIO
   - TIME_PERIOD
   series_context:
-    TABLE: chart_data.figure_r103
+    TABLE: chart_data.pv_debt_to_exports
     INDICATOR: PV of debt-to-exports ratio
   notes: PV of debt-to-exports ratio on Chart Data, keyed by scenario.
-- id: chart_debt_service_to_exports_a2_alternative_scenario_customize_enter
+- id: chart_debt_service_to_exports_custom_alternative_scenario
   sheet: Chart Data
   data_range: '''Chart Data''!D135:X135'
   layout: series
   output:
     compute:
-      name: compute_chart_debt_service_to_exports_a2_alternative_scenario_customize_enter
+      name: compute_chart_debt_service_to_exports_custom_alternative_scenario
       record_contract: records
   structure:
     measure:
@@ -879,10 +879,10 @@ series:
   key:
   - TIME_PERIOD
   series_context:
-    TABLE: chart_data.figure_r135
+    TABLE: chart_data.debt_service_to_exports
     INDICATOR: Debt service-to-exports ratio — A2. Alternative Scenario :[Customize, enter title]
   notes: Chart Data row 135 (Debt service-to-exports ratio — A2. Alternative Scenario :[Customize, enter title]), years from row 35.
-- id: chart_output_chart_data_figure_r145_debt_service_to_exports
+- id: chart_output_debt_service_to_exports
   sheet: Chart Data
   data_range:
   - '''Chart Data''!D145:X145'
@@ -893,7 +893,7 @@ series:
   layout: series
   output:
     compute:
-      name: compute_chart_output_chart_data_figure_r145_debt_service_to_exports
+      name: compute_chart_output_debt_service_to_exports
       record_contract: records
   structure:
     measure:
@@ -928,16 +928,16 @@ series:
   - SCENARIO
   - TIME_PERIOD
   series_context:
-    TABLE: chart_data.figure_r145
+    TABLE: chart_data.debt_service_to_exports
     INDICATOR: Debt service-to-exports ratio
   notes: Debt service-to-exports ratio on Chart Data, keyed by scenario.
-- id: chart_debt_service_to_revenue_a2_alternative_scenario_customize_enter
+- id: chart_debt_service_to_revenue_custom_alternative_scenario
   sheet: Chart Data
   data_range: '''Chart Data''!D177:X177'
   layout: series
   output:
     compute:
-      name: compute_chart_debt_service_to_revenue_a2_alternative_scenario_customize_enter
+      name: compute_chart_debt_service_to_revenue_custom_alternative_scenario
       record_contract: records
   structure:
     measure:
@@ -958,10 +958,10 @@ series:
   key:
   - TIME_PERIOD
   series_context:
-    TABLE: chart_data.figure_r177
+    TABLE: chart_data.debt_service_to_revenue
     INDICATOR: Debt service-to-revenue ratio — A2. Alternative Scenario :[Customize, enter title]
   notes: Chart Data row 177 (Debt service-to-revenue ratio — A2. Alternative Scenario :[Customize, enter title]), years from row 35.
-- id: chart_output_chart_data_figure_r187_debt_service_to_revenue
+- id: chart_output_debt_service_to_revenue
   sheet: Chart Data
   data_range:
   - '''Chart Data''!D187:X187'
@@ -972,7 +972,7 @@ series:
   layout: series
   output:
     compute:
-      name: compute_chart_output_chart_data_figure_r187_debt_service_to_revenue
+      name: compute_chart_output_debt_service_to_revenue
       record_contract: records
   structure:
     measure:
@@ -1007,10 +1007,10 @@ series:
   - SCENARIO
   - TIME_PERIOD
   series_context:
-    TABLE: chart_data.figure_r187
+    TABLE: chart_data.debt_service_to_revenue
     INDICATOR: Debt service-to-revenue ratio
   notes: Debt service-to-revenue ratio on Chart Data, keyed by scenario.
-- id: chart_output_chart_data_figure_r263_pv_debt_to_gdp
+- id: chart_output_pv_debt_to_gdp
   sheet: Chart Data
   data_range:
   - '''Chart Data''!D263:X263'
@@ -1020,7 +1020,7 @@ series:
   layout: series
   output:
     compute:
-      name: compute_chart_output_chart_data_figure_r263_pv_debt_to_gdp
+      name: compute_chart_output_pv_debt_to_gdp
       record_contract: records
   structure:
     measure:
@@ -1054,7 +1054,7 @@ series:
   - SCENARIO
   - TIME_PERIOD
   series_context:
-    TABLE: chart_data.figure_r263
+    TABLE: chart_data.pv_debt_to_gdp
     INDICATOR: PV of Debt-to-GDP Ratio
   notes: PV of Debt-to-GDP Ratio on Chart Data, keyed by scenario.
 - id: chart_pv_debt_to_revenue_mx_shock_standard_tailored
@@ -1084,10 +1084,10 @@ series:
   key:
   - TIME_PERIOD
   series_context:
-    TABLE: chart_data.figure_r306
+    TABLE: chart_data.pv_debt_to_revenue
     INDICATOR: PV of Debt-to-Revenue Ratio — MX shock Standard&Tailored
   notes: Chart Data row 306 (PV of Debt-to-Revenue Ratio — MX shock Standard&Tailored), years from row 35.
-- id: chart_output_chart_data_figure_r341_debt_service_to_revenue
+- id: chart_output_debt_service_to_revenue_fiscal
   sheet: Chart Data
   data_range:
   - '''Chart Data''!D341:X341'
@@ -1096,7 +1096,7 @@ series:
   layout: series
   output:
     compute:
-      name: compute_chart_output_chart_data_figure_r341_debt_service_to_revenue
+      name: compute_chart_output_debt_service_to_revenue_fiscal
       record_contract: records
   structure:
     measure:
@@ -1129,6 +1129,6 @@ series:
   - SCENARIO
   - TIME_PERIOD
   series_context:
-    TABLE: chart_data.figure_r341
+    TABLE: chart_data.debt_service_to_revenue_fiscal
     INDICATOR: Debt Service-to-Revenue Ratio
   notes: Debt Service-to-Revenue Ratio on Chart Data, keyed by scenario.

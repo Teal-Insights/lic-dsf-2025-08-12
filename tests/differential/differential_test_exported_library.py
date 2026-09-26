@@ -566,9 +566,10 @@ class FormulaEvaluatorGraphOracle:
             raise RuntimeError(
                 "DifferentialConfig.targets is empty; cannot build the graph oracle."
             )
-        if not config.constraints:
+        if not config.constraints and config.bindings_path is None:
             raise RuntimeError(
-                "DifferentialConfig.constraints is empty; cannot build the graph oracle."
+                "DifferentialConfig needs bindings_path or constraints to build "
+                "the graph oracle."
             )
         if config.layout == "exported":
             from .formula_evaluator_driver import FormulaEvaluatorDriver
@@ -579,6 +580,7 @@ class FormulaEvaluatorGraphOracle:
                 constraints=config.constraints,
                 blank_ranges=config.blank_ranges,
                 cache_dir=config.graph_cache_dir,
+                bindings_path=config.bindings_path,
             )
         else:
             from tests.differential.differential_test_graph import MvpGraphDriver
@@ -888,6 +890,7 @@ def _derived_series_from_exported_bundle(
         constraints=snapshot.constraints,
         blank_ranges=snapshot.blank_ranges,
         cache_dir=tests_root / ".cache" / "dependency-graph",
+        bindings_path=tests_root / "bindings",
     )
     bindings = load_series_bindings(tests_root / "bindings")
     return (
@@ -899,9 +902,9 @@ def _derived_series_from_exported_bundle(
 def _derived_series_from_extraction_repo(
     module_path: Path,
 ) -> tuple[Sequence[Mapping[str, Any]], Sequence[Mapping[str, Any]]]:
-    from excel_grapher.grapher import DynamicRefConfig
     from excel_grapher.series_bindings import load_series_bindings
 
+    from src.binding_domains import pipeline_dynamic_ref_config
     from src.graph_cache import (
         COMMITTED_GRAPH_CACHE_DIR,
         get_or_build_dependency_graph,
@@ -929,7 +932,7 @@ def _derived_series_from_extraction_repo(
             workbook_path=pipeline.workbook_path,
             targets=pipeline.targets,
             constraints=pipeline.constraints,
-            dynamic_refs=DynamicRefConfig.from_constraints(pipeline.constraints, {}),
+            dynamic_refs=pipeline_dynamic_ref_config(pipeline),
             load_values=True,
             capture_dependency_provenance=True,
             blank_ranges=pipeline.blank_ranges,
@@ -966,7 +969,7 @@ from .output_specs import specs_covering_addresses
 
 
 def mvp_outputs_for_scenario(api: ModuleType, scenario: Scenario) -> dict[str, Any]:
-    """Call keyword-only ``compute_*`` helpers and return ``{label: value}``."""
+    """Call keyword-only ``compute_*`` helpers via ``from_defaults`` and return ``{label: value}``."""
     input_series, output_series = _derived_input_output_series()
     specs = specs_covering_addresses(
         output_series,

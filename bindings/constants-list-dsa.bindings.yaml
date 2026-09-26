@@ -1,0 +1,119 @@
+schema_version: 1.21.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+series:
+- id: list_dsa_vintage_id
+  sheet: LIST_DSA
+  data_range: '''LIST_DSA''!A6:A20'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      dtype: string
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: L
+        read: string
+        normalize: strip
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: list_dsa.vintages
+  notes: Vintage identifiers, keyed by the unique issuance date in column L.
+- id: list_dsa_vintage_date
+  sheet: LIST_DSA
+  data_range: '''LIST_DSA''!L6:L20'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      dtype: string
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: list_dsa.vintages
+    INDICATOR: Vintage date
+  notes: Issuance date of each DSA vintage. Each date occurs once.
+- id: list_dsa_field_headers
+  sheet: 'LIST_DSA'
+  data_range:
+  - LIST_DSA!A5:E5
+  - LIST_DSA!G5:L5
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: list_dsa.vintages
+  notes: 'Field names for the DSA vintage list.'

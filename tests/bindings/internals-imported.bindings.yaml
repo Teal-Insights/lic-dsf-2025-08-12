@@ -1,4 +1,4 @@
-schema_version: 1.16.0
+schema_version: 1.21.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -43,6 +43,8 @@ series:
   data_range: '''Imported data''!D3'
   layout: scalar
   internal: {}
+  domain:
+    from_workbook: true
   structure:
     measure:
       concept: OBS_VALUE
@@ -328,35 +330,8 @@ series:
   series_context:
     TABLE: imported_data.country_information
     INDICATOR: IMF country code
-  notes: IMF numeric country codes for the LIC-DSF country list.
-- id: imported_country_names
-  sheet: Imported data
-  data_range: '''Imported data''!B106:B175'
-  layout: series
-  internal: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions:
-    - id: REF_AREA
-      concept: REF_AREA
-      role: key
-      scope: cell
-      bind:
-        kind: row_label
-        label_column: B
-        read: string
-        normalize: strip
-  key:
-  - REF_AREA
-  series_context:
-    TABLE: imported_data.country_information
-    INDICATOR: Country name
-  notes: Country names aligned to the LIC-DSF country list.
+  notes: IMF numeric country codes for the LIC-DSF country list. Country names in column B
+    are the REF_AREA labels; those formulas are outside the extracted graph.
 - id: imported_country_market_access
   sheet: Imported data
   data_range: '''Imported data''!C106:D175'
@@ -448,59 +423,6 @@ series:
   notes: Spare Country_list slots past the current 70-name PRGT-eligible set. Not keyed
     as REF_AREA because these rows currently resolve to blanks; PARAMETER is the named-range
     position.
-- id: imported_country_names_overflow
-  sheet: Imported data
-  data_range: '''Imported data''!B176:B200'
-  layout: series
-  internal: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions:
-    - id: PARAMETER
-      concept: PARAMETER
-      role: key
-      scope: cell
-      bind:
-        kind: value_map
-        values:
-          country_list_position_71: 176
-          country_list_position_72: 177
-          country_list_position_73: 178
-          country_list_position_74: 179
-          country_list_position_75: 180
-          country_list_position_76: 181
-          country_list_position_77: 182
-          country_list_position_78: 183
-          country_list_position_79: 184
-          country_list_position_80: 185
-          country_list_position_81: 186
-          country_list_position_82: 187
-          country_list_position_83: 188
-          country_list_position_84: 189
-          country_list_position_85: 190
-          country_list_position_86: 191
-          country_list_position_87: 192
-          country_list_position_88: 193
-          country_list_position_89: 194
-          country_list_position_90: 195
-          country_list_position_91: 196
-          country_list_position_92: 197
-          country_list_position_93: 198
-          country_list_position_94: 199
-          country_list_position_95: 200
-  key:
-  - PARAMETER
-  series_context:
-    TABLE: imported_data.country_information
-    INDICATOR: Country name
-    VARIANT: unoccupied
-  notes: Spare Country_list name slots past the current 70-name PRGT-eligible set. Not
-    keyed as REF_AREA because these rows currently resolve to blanks.
 - id: imported_country_market_access_overflow
   sheet: Imported data
   data_range: '''Imported data''!C176:D200'
@@ -563,3 +485,443 @@ series:
     VARIANT: unoccupied
   notes: Spare Eurobond and PRGT market-access flags past the current 70-name PRGT-eligible
     set. Not keyed as REF_AREA because these rows currently resolve to blanks.
+- id: imported_prev_dsa_weo_codes
+  sheet: Imported data
+  data_range:
+  - '''Imported data''!C14:C16'
+  - '''Imported data''!C18:C21'
+  - '''Imported data''!C23:C26'
+  - '''Imported data''!C30'
+  - '''Imported data''!C32'
+  - '''Imported data''!C40'
+  - '''Imported data''!C42:C48'
+  - '''Imported data''!C51'
+  - '''Imported data''!C53'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2019.NGDPD: 14
+          2019.D_GDP: 15
+          2019.D_PPG_GDP: 16
+          2019.BGS_GDP: 18
+          2019.NCTN_GDP: 19
+          2019.NCTN_OTH_GDP: 20
+          2019.BFDIN_GDP: 21
+          2019.DCIR_GDP: 23
+          2019.DCGDPR_GDP: 24
+          2019.DCPECH_GDP: 25
+          2019.D_LCH_GDP: 26
+          2024.NGDPD: 30
+          2024.D_PPG_GDP: 32
+          2019.NGDP: 40
+          2019.DU_GDP: 42
+          2019.PB_GDP: 43
+          2019.DUCIR_GDP: 44
+          2019.DUCGDPR_GDP: 45
+          2019.DUCER_GDP: 46
+          2019.DU_LCH_GDP: 47
+          2019.DU_OF_GDP: 48
+          2024.NGDP: 51
+          2024.DU_GDP: 53
+        read: string
+  key:
+  - PARAMETER
+  series_context:
+    TABLE: imported.prev_dsa_lookups
+  notes: WEO indicator codes copied onto the previous-DSA lookup rows. Column D concatenates each code into the INDEX/MATCH key. The investment-growth codes on rows 60-63 are a separate constant series.
+- id: imported_prev_dsa_external_2019
+  sheet: Imported data
+  data_range:
+  - '''Imported data''!J14:AA16'
+  - '''Imported data''!J18:AA21'
+  - '''Imported data''!J23:AA26'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: E
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 10
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: imported.prev_dsa
+  notes: 2019 previous-DSA external debt indicators by year, looked up from the data-all vintage grid.
+- id: imported_prev_dsa_external_2024
+  sheet: Imported data
+  data_range:
+  - '''Imported data''!J30:AA30'
+  - '''Imported data''!J32:AA32'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: E
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 10
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: imported.prev_dsa
+  notes: 2024 previous-DSA external debt indicators by year.
+- id: imported_prev_dsa_public_2019
+  sheet: Imported data
+  data_range:
+  - '''Imported data''!J40:AA40'
+  - '''Imported data''!J42:AA49'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: E
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 37
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: imported.prev_dsa
+  notes: 2019 previous-DSA public debt indicators by year, including the residual.
+- id: imported_prev_dsa_public_2024
+  sheet: Imported data
+  data_range:
+  - '''Imported data''!J51:AA51'
+  - '''Imported data''!J53:AA53'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: E
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 37
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: imported.prev_dsa
+  notes: 2024 previous-DSA nominal GDP and public debt by year.
+- id: imported_investment_growth
+  sheet: Imported data
+  data_range: '''Imported data''!G60:V63'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 59
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: imported.investment_growth
+  notes: Real growth, public and private investment ratios, and the FAD capital-stock share, by year.
+- id: imported_cpia_by_year
+  sheet: Imported data
+  data_range: '''Imported data''!K82:V82'
+  layout: matrix
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 81
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: imported.probability
+  notes: CPIA scores by year used by the probability approach.
+- id: imported_vintage_date_header
+  sheet: 'Imported data'
+  data_range: '''Imported data''!E4'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: imported.vintages
+    PARAMETER: vintage_date_header
+  notes: 'Column title for the selected vintage date.'
+
+- id: imported_selected_vintage_keys
+  sheet: 'Imported data'
+  data_range: '''Imported data''!C6:C7'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: imported.vintages
+  notes: 'Match keys for the latest vintage and the vintage five years earlier.'
+
+- id: imported_selected_vintage_dates
+  sheet: 'Imported data'
+  data_range: '''Imported data''!E6:E7'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: imported.vintages
+  notes: 'Issuance dates for the latest vintage and the vintage five years earlier.'
+
+- id: imported_fad_capital_stock_year
+  sheet: 'Imported data'
+  data_range: '''Imported data''!B61'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: imported.investment
+    PARAMETER: fad_capital_stock_year
+  notes: 'Last historical year of the FAD government-capital stock.'
+
+- id: imported_fad_capital_stock_note
+  sheet: 'Imported data'
+  data_range: '''Imported data''!D61'
+  layout: scalar
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: imported.investment
+    PARAMETER: fad_capital_stock_note
+  notes: 'Description of the FAD government-capital stock series.'
+
+- id: imported_cpia_year_headers
+  sheet: 'Imported data'
+  data_range: '''Imported data''!K81:V81'
+  layout: series
+  internal: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: imported.probability
+  notes: 'Year headers for the CPIA row used by the probability approach.'
+
+- id: imported_cpia_row_label
+  sheet: 'Imported data'
+  data_range: '''Imported data''!B82'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: imported.probability
+    PARAMETER: cpia_label
+  notes: 'Row label for the imported CPIA scores.'

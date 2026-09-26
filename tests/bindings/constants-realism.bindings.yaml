@@ -1,0 +1,976 @@
+schema_version: 1.21.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+series:
+- id: realism1_prev_dsa_weo_codes
+  sheet: Realism 1 - Forecast Error
+  data_range:
+  - '''Realism 1 - Forecast Error''!C15:C17'
+  - '''Realism 1 - Forecast Error''!C19:C22'
+  - '''Realism 1 - Forecast Error''!C24:C26'
+  layout: series
+  constant: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          NGDPD: 15
+          D_GDP: 16
+          D_PPG_GDP: 17
+          BGS_GDP: 19
+          NCTN_GDP: 20
+          NCTN_OTH_GDP: 21
+          BFDIN_GDP: 22
+          DCIR_GDP: 24
+          DCGDPR_GDP: 25
+          DCPECH_GDP: 26
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: realism1.prev_dsa_lookups
+  notes: WEO series codes copied into Imported data INDEX/MATCH keys.
+- id: realism1_external_forecast_error_quartile_labels
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!AE76:AE77'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Lower quartile: 76
+          Upper quartile: 77
+        read: string
+  key:
+  - VARIANT
+  series_context:
+    TABLE: realism1.external_forecast_error
+  notes: Template labels for the external forecast-error quartile markers.
+- id: realism1_external_forecast_error_quartiles
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!AG76:AG77'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          Lower quartile: 76
+          Upper quartile: 77
+        read: string
+  key:
+  - VARIANT
+  series_context:
+    TABLE: realism1.external_forecast_error
+  notes: LIC sample lower/upper quartile of external PPG debt forecast errors.
+- id: realism1_public_forecast_error_upper_quartile_label
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!AE157'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism1.public_forecast_error
+    PARAMETER: upper_quartile_label
+  notes: Template label for the public forecast-error upper-quartile marker.
+- id: realism1_public_forecast_error_upper_quartile
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!AG157'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism1.public_forecast_error
+    PARAMETER: upper_quartile
+  notes: LIC sample upper quartile of public-debt forecast errors.
+- id: realism1_public_forecast_error_lower_quartile_label
+  sheet: Realism 1 - Forecast Error
+  data_range: '''Realism 1 - Forecast Error''!AE156'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism1.public_forecast_error
+    PARAMETER: lower_quartile_label
+  notes: Template label for the public forecast-error lower-quartile marker.
+- id: realism2_baseline_growth_legend
+  sheet: Realism 2 - Fiscal multiplier
+  data_range: '''Realism 2 - Fiscal multiplier''!B44'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    PARAMETER: baseline_legend
+  notes: Legend text for the baseline growth path on the fiscal-multiplier chart.
+- id: realism2_growth_t_minus_1_legend
+  sheet: Realism 2 - Fiscal multiplier
+  data_range: '''Realism 2 - Fiscal multiplier''!K44'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    PARAMETER: growth_t_minus_1_legend
+  notes: Legend text for the t-1 growth marker on the underlying-growth chart.
+- id: realism4_fiscal_adjustment_bin_edges
+  sheet: Realism 4 - Fiscal adjustment
+  data_range: '''Realism 4 - Fiscal adjustment''!A24:A49'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: int
+      dtype: int
+  key:
+  - VARIANT
+  series_context:
+    TABLE: realism4.fiscal_adjustment_distribution
+  notes: Histogram bin edges for the LIC fiscal-adjustment sample (interior bins).
+- id: realism4_fiscal_adjustment_bin_frequencies
+  sheet: Realism 4 - Fiscal adjustment
+  data_range: '''Realism 4 - Fiscal adjustment''!B23:B50'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: int
+      dtype: int
+  key:
+  - VARIANT
+  series_context:
+    TABLE: realism4.fiscal_adjustment_distribution
+  notes: LIC-sample frequencies of 3-year fiscal adjustments by histogram bin.
+- id: realism4_fiscal_adjustment_bin_categories
+  sheet: Realism 4 - Fiscal adjustment
+  data_range: '''Realism 4 - Fiscal adjustment''!C23:C50'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: VARIANT
+      concept: VARIANT
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: int
+      dtype: int
+  key:
+  - VARIANT
+  series_context:
+    TABLE: realism4.fiscal_adjustment_distribution
+  notes: Histogram category numbers for the fiscal-adjustment distribution.
+- id: imported_prev_dsa_investment_weo_codes
+  sheet: Imported data
+  data_range:
+  - '''Imported data''!C60'
+  - '''Imported data''!C62'
+  - '''Imported data''!C63'
+  layout: series
+  constant: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          NGDP_R_PCH: 60
+          NFIG_R_GDP: 62
+          NFIP_R_GDP: 63
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: imported.investment_growth
+  notes: Previous-DSA WEO series codes for real growth and public/private investment used by Realism 3
+    INDEX/MATCH lookups.
+- id: imported_fad_capital_stock_indicator
+  sheet: Imported data
+  data_range: '''Imported data''!C61'
+  layout: scalar
+  constant: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: imported.investment_growth
+  notes: FAD capital-stock / GDP column label used as the INDEX/MATCH header needle on Imported data row
+    61.
+- id: imported_prev_dsa_match_keys
+  sheet: Imported data
+  data_range:
+  - '''Imported data''!D14:D16'
+  - '''Imported data''!D18:D21'
+  - '''Imported data''!D23:D26'
+  - '''Imported data''!D30'
+  - '''Imported data''!D32'
+  - '''Imported data''!D40'
+  - '''Imported data''!D42:D48'
+  - '''Imported data''!D51'
+  - '''Imported data''!D53'
+  - '''Imported data''!D60'
+  - '''Imported data''!D62:D63'
+  layout: series
+  internal: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2019.NGDPD: 14
+          2019.D_GDP: 15
+          2019.D_PPG_GDP: 16
+          2019.BGS_GDP: 18
+          2019.NCTN_GDP: 19
+          2019.NCTN_OTH_GDP: 20
+          2019.BFDIN_GDP: 21
+          2019.DCIR_GDP: 23
+          2019.DCGDPR_GDP: 24
+          2019.DCPECH_GDP: 25
+          2019.D_LCH_GDP: 26
+          2024.NGDPD: 30
+          2024.D_PPG_GDP: 32
+          2019.NGDP: 40
+          2019.DU_GDP: 42
+          2019.PB_GDP: 43
+          2019.DUCIR_GDP: 44
+          2019.DUCGDPR_GDP: 45
+          2019.DUCER_GDP: 46
+          2019.DU_LCH_GDP: 47
+          2019.DU_OF_GDP: 48
+          2024.NGDP: 51
+          2024.DU_GDP: 53
+          2024.NGDP_R_PCH: 60
+          2024.NFIG_R_GDP: 62
+          2024.NFIP_R_GDP: 63
+        read: string
+  key:
+  - PARAMETER
+  series_context:
+    TABLE: imported.prev_dsa_lookups
+  notes: Concatenated PREV_DSA INDEX/MATCH row keys (country.WEO.vintage.A). Formula needles pinned with
+    from_workbook Literals so alias chains cannot leave MATCH unbounded.
+- id: imported_prev_dsa_history_year_headers
+  sheet: Imported data
+  data_range: '''Imported data''!J10:AA10'
+  layout: series
+  internal: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: imported.prev_dsa_lookups
+  notes: Year axis for historical PREV_DSA INDEX/MATCH columns on Imported data.
+- id: imported_prev_dsa_investment_year_headers
+  sheet: Imported data
+  data_range: '''Imported data''!G59:V59'
+  layout: series
+  internal: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: imported.investment_growth
+  notes: Year axis for Realism 3 investment-growth PREV_DSA INDEX/MATCH (aliases of Realism 3 header years).
+    Empty overflow W59:AA59 is BLANK_RANGES.
+- id: imported_prev_dsa_unit_scales
+  sheet: Imported data
+  data_range:
+  - '''Imported data''!AC14:AC16'
+  - '''Imported data''!AC18:AC21'
+  - '''Imported data''!AC23:AC26'
+  - '''Imported data''!AC30'
+  - '''Imported data''!AC32'
+  - '''Imported data''!AC40'
+  - '''Imported data''!AC42:AC48'
+  - '''Imported data''!AC51'
+  - '''Imported data''!AC53'
+  - '''Imported data''!AC60'
+  - '''Imported data''!AC62:AC63'
+  layout: series
+  constant: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2019.NGDPD: 14
+          2019.D_GDP: 15
+          2019.D_PPG_GDP: 16
+          2019.BGS_GDP: 18
+          2019.NCTN_GDP: 19
+          2019.NCTN_OTH_GDP: 20
+          2019.BFDIN_GDP: 21
+          2019.DCIR_GDP: 23
+          2019.DCGDPR_GDP: 24
+          2019.DCPECH_GDP: 25
+          2019.D_LCH_GDP: 26
+          2024.NGDPD: 30
+          2024.D_PPG_GDP: 32
+          2019.NGDP: 40
+          2019.DU_GDP: 42
+          2019.PB_GDP: 43
+          2019.DUCIR_GDP: 44
+          2019.DUCGDPR_GDP: 45
+          2019.DUCER_GDP: 46
+          2019.DU_LCH_GDP: 47
+          2019.DU_OF_GDP: 48
+          2024.NGDP: 51
+          2024.DU_GDP: 53
+          2024.NGDP_R_PCH: 60
+          2024.NFIG_R_GDP: 62
+          2024.NFIP_R_GDP: 63
+        read: string
+  key:
+  - PARAMETER
+  series_context:
+    TABLE: imported.prev_dsa_lookups
+  notes: Unit-scale divisors applied after PREV_DSA INDEX lookups on Imported data.
+- id: data_all_prev_dsa_field_headers
+  sheet: data all
+  data_range: '''data all''!A2:P2'
+  layout: series
+  constant: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - PARAMETER
+  series_context:
+    TABLE: data_all.prev_dsa
+  notes: Column titles of the previous-DSA vintage dump (INDEX header row).
+- id: data_all_prev_dsa_year_headers
+  sheet: data all
+  data_range: '''data all''!Q2:BH2'
+  layout: series
+  constant: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: data_all.prev_dsa
+  notes: Year axis of the previous-DSA vintage dump.
+- id: data_all_prev_dsa_series_codes
+  sheet: data all
+  data_range: '''data all''!B3:B239'
+  layout: series
+  constant: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: data_all.prev_dsa
+  notes: Previous-DSA series codes used as the INDEX/MATCH lookup column.
+- id: data_all_prev_dsa_text_attributes
+  sheet: data all
+  data_range:
+  - '''data all''!A3:A239'
+  - '''data all''!C3:D239'
+  - '''data all''!F3:L239'
+  - '''data all''!O3:O239'
+  layout: matrix
+  constant: {}
+  domain:
+    from_workbook: true
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 2
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  - PARAMETER
+  series_context:
+    TABLE: data_all.prev_dsa
+  notes: Text attributes of each previous-DSA series (database, country, descriptor).
+- id: data_all_prev_dsa_imf_country_codes
+  sheet: data all
+  data_range: '''data all''!E3:E239'
+  layout: series
+  constant: {}
+  domain:
+    from_workbook: true
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: data_all.prev_dsa
+  notes: IMF country codes for previous-DSA dump rows.
+- id: data_all_prev_dsa_issuance_dates
+  sheet: data all
+  data_range: '''data all''!M3:M239'
+  layout: series
+  constant: {}
+  domain:
+    from_workbook: true
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: data_all.prev_dsa
+  notes: Issuance dates (or integer sentinels) on previous-DSA dump rows.
+- id: data_all_prev_dsa_first_projection_years
+  sheet: data all
+  data_range: '''data all''!N3:N239'
+  layout: series
+  constant: {}
+  domain:
+    from_workbook: true
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: data_all.prev_dsa
+  notes: First projection year of each previous-DSA series.
+- id: data_all_prev_dsa_observations
+  sheet: data all
+  data_range: '''data all''!Q3:BG239'
+  layout: matrix
+  constant: {}
+  domain:
+    real_between:
+      min: -1000000000000000.0
+      max: 1000000000000000.0
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: B
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 2
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: data_all.prev_dsa
+  notes: Previous-DSA vintage observations by series code and year.
+- id: fad_column_headers
+  sheet: Data
+  data_range:
+  - '''Data''!A1:D1'
+  - '''Data''!F1:R1'
+  - '''Data''!T1:U1'
+  - '''Data''!X1:Y1'
+  layout: series
+  constant: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - PARAMETER
+  series_context:
+    TABLE: fad.capital_stock
+  notes: Column titles of the FAD capital-stock dump (INDEX header row).
+- id: fad_years
+  sheet: Data
+  data_range: '''Data''!D2:D61'
+  layout: series
+  constant: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: fad.capital_stock
+  notes: Year axis of the FAD capital-stock dump.
+- id: fad_text_attributes
+  sheet: Data
+  data_range:
+  - '''Data''!B2:C61'
+  - '''Data''!Q2:Q61'
+  layout: matrix
+  constant: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: D
+        read: int
+    - id: PARAMETER
+      concept: PARAMETER
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - TIME_PERIOD
+  - PARAMETER
+  series_context:
+    TABLE: fad.capital_stock
+  notes: ISO code, country name, and income label by FAD year.
+- id: fad_dsa_template_ids
+  sheet: Data
+  data_range: '''Data''!T2:T61'
+  layout: series
+  constant: {}
+  domain:
+    from_workbook: true
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: D
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: fad.capital_stock
+  notes: DSA Template ID keys (country code digits + year) used by Imported-data FAD INDEX/MATCH.
+- id: fad_numeric_attributes
+  sheet: Data
+  data_range:
+  - '''Data''!A2:A61'
+  - '''Data''!F2:P61'
+  - '''Data''!R2:R61'
+  - '''Data''!U2:U61'
+  - '''Data''!X2:Y61'
+  layout: matrix
+  constant: {}
+  domain:
+    real_between:
+      min: -1000000000000000.0
+      max: 1000000000000000.0
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: D
+        read: int
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        fill: true
+        normalize: strip
+  key:
+  - TIME_PERIOD
+  - INDICATOR
+  series_context:
+    TABLE: fad.capital_stock
+  notes: FAD capital-stock measures and identifier codes by year.

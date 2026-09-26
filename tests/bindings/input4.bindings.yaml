@@ -1,4 +1,4 @@
-schema_version: 1.16.0
+schema_version: 1.21.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -53,6 +53,10 @@ series:
   - "'Input 4 - External Financing'!F45"
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1
   structure:
     measure:
       concept: OBS_VALUE
@@ -168,6 +172,8 @@ series:
       between:
         min: 0
         max: 80
+  relations:
+  - greater_than: input4_grace_period
   structure:
     measure:
       concept: OBS_VALUE
@@ -220,6 +226,10 @@ series:
   - "'Input 4 - External Financing'!L18:Q18"
   layout: matrix
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -262,6 +272,8 @@ series:
   data_range: "'Input 4 - External Financing'!B11:B17"
   layout: series
   input: {}
+  domain:
+    from_workbook: true
   structure:
     measure:
       concept: OBS_VALUE
@@ -295,6 +307,9 @@ series:
   data_range: "'Input 4 - External Financing'!D16"
   layout: scalar
   input: {}
+  domain:
+    enum:
+    - IDA NEW Blend floating
   structure:
     measure:
       concept: OBS_VALUE
@@ -315,6 +330,17 @@ series:
   - "'Input 4 - External Financing'!D17"
   layout: series
   input: {}
+  domain:
+    enum:
+    - "IDA - small economy"
+    - "IDA - regular"
+    - "IDA - blend"
+    - "IDA - SML"
+    - "IDA - 50Y loans"
+    - "IDA NEW 40-year credits"
+    - "IDA NEW Regular"
+    - "IDA NEW Blend (also enter) -->"
+    - "IDA NEW 60-year credits"
   structure:
     measure:
       concept: OBS_VALUE
@@ -486,6 +512,7 @@ series:
   sheet: "Input 4 - External Financing"
   data_range:
   - "'Input 4 - External Financing'!S67:AV67"
+  - "'Input 4 - External Financing'!BI67:BP67"
   - "'Input 4 - External Financing'!O68"
   - "'Input 4 - External Financing'!N69"
   - "'Input 4 - External Financing'!AH69"
@@ -941,9 +968,12 @@ series:
   - "'Input 4 - External Financing'!P70:BF70"
   - "'Input 4 - External Financing'!O71:R71"
   - "'Input 4 - External Financing'!V71:BF71"
-  - "'Input 4 - External Financing'!O72:BF72"
+  - "'Input 4 - External Financing'!O72:S72"
+  - "'Input 4 - External Financing'!AW72:BF72"
   layout: matrix
   internal: {}
+  domain:
+    from_workbook: true
   structure:
     measure:
       concept: OBS_VALUE
@@ -979,6 +1009,46 @@ series:
     TABLE: input_4.ida_scale
     INDICATOR: "Principal repayment"
   notes: "Formula IDA principal-repayment shares by year of loan life."
+- id: input4_ida_scale_principal_share_internal
+  sheet: "Input 4 - External Financing"
+  data_range: "'Input 4 - External Financing'!T72:AV72"
+  layout: series
+  internal: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          "IDA NEW 40-year credits": 72
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 66
+        read: int
+  key:
+  - INSTRUMENT
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_4.ida_scale
+    INDICATOR: Principal repayment share
+  notes: Unit-interval IDA NEW 40-year principal-repayment shares by year of loan life.
 - id: input4_disbursement_totals
   sheet: "Input 4 - External Financing"
   data_range: "'Input 4 - External Financing'!L8:AF8"

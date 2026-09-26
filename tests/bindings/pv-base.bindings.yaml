@@ -1,4 +1,4 @@
-schema_version: 1.16.0
+schema_version: 1.21.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -548,6 +548,8 @@ series:
   - "650:674"
   - "676:700"
   - "702:726"
+  domain:
+    from_workbook: true
   structure:
     measure:
       concept: OBS_VALUE
@@ -647,6 +649,8 @@ series:
   - "651:675"
   - "677:701"
   - "703:727"
+  domain:
+    from_workbook: true
   structure:
     measure:
       concept: OBS_VALUE
@@ -746,6 +750,8 @@ series:
   - "652:676"
   - "678:702"
   - "704:728"
+  domain:
+    from_workbook: true
   structure:
     measure:
       concept: OBS_VALUE
@@ -845,6 +851,8 @@ series:
   - "653:677"
   - "679:703"
   - "705:729"
+  domain:
+    from_workbook: true
   structure:
     measure:
       concept: OBS_VALUE
@@ -1897,105 +1905,6 @@ series:
     \ TIME_PERIOD header_row unified [21, 63, 89, 114, 138, 162, 186, 210, 244, 270, 296,\
     \ 322, 348, 374, 400, 426, 452, 478, 504, 530, 556, 582, 608, 634, 660, 686, 712, 738]\
     \ → 21."
-- id: pv_base_constant_output_interest
-  sheet: PV_Base
-  data_range:
-  - "PV_Base!D27"
-  - "PV_Base!D69"
-  - "PV_Base!D95"
-  - "PV_Base!D120"
-  - "PV_Base!D144"
-  - "PV_Base!D168"
-  - "PV_Base!D192"
-  - "PV_Base!D216"
-  - "PV_Base!D250"
-  - "PV_Base!D276"
-  - "PV_Base!D302"
-  - "PV_Base!D328"
-  - "PV_Base!D354"
-  - "PV_Base!D380"
-  - "PV_Base!D406"
-  - "PV_Base!D432"
-  - "PV_Base!D458"
-  - "PV_Base!D484"
-  - "PV_Base!D510"
-  - "PV_Base!D536"
-  - "PV_Base!D562"
-  - "PV_Base!D588"
-  - "PV_Base!D614"
-  - "PV_Base!D640"
-  - "PV_Base!D666"
-  - "PV_Base!D692"
-  - "PV_Base!D718"
-  - "PV_Base!D744"
-  layout: series
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: float
-      bind:
-        kind: data_cell
-        read: float
-    dimensions:
-    - id: INSTRUMENT
-      concept: INSTRUMENT
-      role: key
-      scope: cell
-      bind:
-        kind: value_map
-        values:
-          IMF: 27
-          "IDA - regular": 69
-          "IDA - 50Y loans": 95
-          "IDA - SML": 120
-          "IDA NEW 40-year credits": 144
-          "IDA NEW Regular": 168
-          "IDA NEW Blend floating": 192
-          "IDA NEW 60-year credits": 216
-          MULTI1: 250
-          MULTI2: 276
-          OTH_MULTI1: 302
-          OTH_MULTI2: 328
-          OTH_MULTI3: 354
-          "Export Credit Agencies": 380
-          PC2: 406
-          PC3: 432
-          PC4: 458
-          PC5: 484
-          "Export Import Bank of NPC": 510
-          NPC2: 536
-          NPC3: 562
-          NPC4: 588
-          NPC5: 614
-          Eurobond: 640
-          "Commecial Bank": 666
-          COM3: 692
-          COM4: 718
-          COM5: 744
-        read: string
-    - id: TIME_PERIOD
-      concept: TIME_PERIOD
-      role: key
-      scope: cell
-      bind:
-        kind: column_header
-        header_row: 21
-        read: int
-  key:
-  - INSTRUMENT
-  - TIME_PERIOD
-  series_context:
-    TABLE: pv_base.new_loan_output
-    INDICATOR: Interest
-    VARIANT: output
-  notes: "Lifted from 28 constant series on pv_base.new_loan_output: Interest. Instruments\
-    \ (28): COM3, COM4, COM5, Commecial Bank, Eurobond, Export Credit Agencies, Export Import\
-    \ Bank of NPC, IDA - 50Y loans, IDA - SML, IDA - regular, IDA NEW 40-year credits, IDA\
-    \ NEW 60-year credits, IDA NEW Blend floating, IDA NEW Regular, IMF, MULTI1, MULTI2, NPC2,\
-    \ NPC3, NPC4, NPC5, OTH_MULTI1, OTH_MULTI2, OTH_MULTI3, PC2, PC3, PC4, PC5. TIME_PERIOD\
-    \ header_row unified [21, 63, 89, 114, 138, 162, 186, 210, 244, 270, 296, 322, 348, 374,\
-    \ 400, 426, 452, 478, 504, 530, 556, 582, 608, 634, 660, 686, 712, 738] → 21."
 - id: pv_base_output_interest
   sheet: PV_Base
   data_range: "'PV_Base'!E27:X744"
@@ -2274,6 +2183,8 @@ series:
   internal: {}
   exclude_rows:
   - 40
+  domain:
+    from_workbook: true
   structure:
     measure:
       concept: OBS_VALUE
@@ -2373,6 +2284,8 @@ series:
   - "75:122"
   - "124:146"
   - "148:194"
+  domain:
+    from_workbook: true
   structure:
     measure:
       concept: OBS_VALUE
@@ -2650,6 +2563,8 @@ series:
   - "647:671"
   - "673:697"
   - "699:723"
+  domain:
+    from_workbook: true
   structure:
     measure:
       concept: OBS_VALUE
@@ -2717,6 +2632,10 @@ series:
   data_range: "'PV_Base'!BC91:BK91"
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -4120,78 +4039,6 @@ series:
     \ USD). Instruments (3): Bonds (1 to 3 years)-FX, Bonds (4 to 7 years)-FX, Bonds (beyond\
     \ 7 years)-FX. Holders: non-residents, residents. TIME_PERIOD header_row unified [764,\
     \ 790, 816, 842, 868, 894] → 21."
-- id: pv_base_constant_output_interest_fx
-  sheet: PV_Base
-  data_range:
-  - "PV_Base!D770"
-  - "PV_Base!D796"
-  - "PV_Base!D822"
-  - "PV_Base!D848"
-  - "PV_Base!D874"
-  - "PV_Base!D900"
-  layout: series
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: float
-      bind:
-        kind: data_cell
-        read: float
-    dimensions:
-    - id: INSTRUMENT
-      concept: INSTRUMENT
-      role: key
-      scope: cell
-      bind:
-        kind: value_map
-        values:
-          "Bonds (1 to 3 years)-FX":
-          - 770
-          - 848
-          "Bonds (4 to 7 years)-FX":
-          - 796
-          - 874
-          "Bonds (beyond 7 years)-FX":
-          - 822
-          - 900
-        read: string
-    - id: HOLDER
-      concept: HOLDER
-      role: key
-      scope: cell
-      bind:
-        kind: value_map
-        values:
-          non-residents:
-          - 770
-          - 796
-          - 822
-          residents:
-          - 848
-          - 874
-          - 900
-        read: string
-    - id: TIME_PERIOD
-      concept: TIME_PERIOD
-      role: key
-      scope: cell
-      bind:
-        kind: column_header
-        header_row: 21
-        read: int
-  key:
-  - INSTRUMENT
-  - HOLDER
-  - TIME_PERIOD
-  series_context:
-    TABLE: pv_base.new_loan_output
-    INDICATOR: Interest
-    VARIANT: output
-  notes: "Lifted from 6 constant series on pv_base.new_loan_output: Interest. Instruments\
-    \ (3): Bonds (1 to 3 years)-FX, Bonds (4 to 7 years)-FX, Bonds (beyond 7 years)-FX. Holders:\
-    \ non-residents, residents. TIME_PERIOD header_row unified [764, 790, 816, 842, 868, 894]\
-    \ → 21."
 - id: pv_base_output_interest_fx
   sheet: PV_Base
   data_range: "'PV_Base'!E770:X900"

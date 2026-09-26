@@ -6,10 +6,24 @@ operators live in `excel.py`.
 
 from __future__ import annotations
 
+import types
 from collections.abc import Callable, Iterable, Iterator, Mapping, Sequence
+from dataclasses import dataclass
 from itertools import product
 from types import MappingProxyType
-from typing import TYPE_CHECKING, Any, Generic, Protocol, TypeVar, cast
+from typing import (
+    TYPE_CHECKING,
+    Annotated,
+    Any,
+    Generic,
+    Literal,
+    Protocol,
+    TypeVar,
+    Union,
+    cast,
+    get_args,
+    get_origin,
+)
 
 from .excel import Range
 from .excel import FormulaValue
@@ -24,6 +38,124 @@ F = TypeVar("F", bound=Callable[..., object])
 K = TypeVar("K", bound=tuple[object, ...])
 
 TablePart = Callable[[], object] | Range
+
+
+@dataclass(frozen=True, slots=True)
+class Between:
+    """Closed integer interval carried on a generated input annotation."""
+
+    min: int | None = None
+    max: int | None = None
+
+
+@dataclass(frozen=True, slots=True)
+class RealBetween:
+    """Closed real interval carried on a generated input annotation."""
+
+    min: float | None = None
+    max: float | None = None
+
+
+def require_annotated_domain(value: object, annotation: Any, *, series_id: str) -> None:
+    """Reject `value` when it falls outside a generated input annotation.
+
+    `None` is not a domain failure. `Literal` membership uses `get_args` and
+    requires the same runtime type as the declared member so `1` is not
+    accepted for `Literal[True, False]`. Interval checks read `Between` and
+    `RealBetween` metadata on `Annotated`. A union matches when any arm
+    matches.
+
+    Args:
+        value: One coerced measure.
+        annotation: The `Literal` or `Annotated` type emitted for this input.
+        series_id: Series id, with a coordinate suffix when the measure is one
+            member of a tensor.
+
+    Raises:
+        ValueError: `value` is outside `annotation`, or `annotation` is not a
+            generated domain type.
+    """
+    if value is None:
+        return
+    origin = get_origin(annotation)
+    if origin is Union or origin is types.UnionType:
+        if any(_annotated_domain_accepts(value, arm) for arm in get_args(annotation)):
+            return
+        rendered = " | ".join(_describe_domain_arm(arm) for arm in get_args(annotation))
+        raise ValueError(f"{series_id} out of domain: {value!r} not in {rendered}")
+    if origin is Literal:
+        allowed = get_args(annotation)
+        if not _literal_contains(value, allowed):
+            rendered = ", ".join(repr(item) for item in allowed)
+            raise ValueError(f"{series_id} out of domain: {value!r} not in {{{rendered}}}")
+        return
+    if origin is Annotated:
+        for meta in get_args(annotation)[1:]:
+            if isinstance(meta, Between):
+                _require_between(value, meta, series_id=series_id)
+                return
+            if isinstance(meta, RealBetween):
+                _require_real_between(value, meta, series_id=series_id)
+                return
+    raise ValueError(f"{series_id} has no enforceable domain annotation: {annotation!r}")
+
+
+def _annotated_domain_accepts(value: object, annotation: Any) -> bool:
+    """Return whether `value` matches one generated domain arm."""
+    try:
+        require_annotated_domain(value, annotation, series_id="_")
+    except ValueError:
+        return False
+    return True
+
+
+def _describe_domain_arm(annotation: Any) -> str:
+    """Render one union arm for an out-of-domain message."""
+    origin = get_origin(annotation)
+    if origin is Literal:
+        return "{" + ", ".join(repr(item) for item in get_args(annotation)) + "}"
+    if origin is Annotated:
+        for meta in get_args(annotation)[1:]:
+            if isinstance(meta, Between):
+                return f"between(min={meta.min!r}, max={meta.max!r})"
+            if isinstance(meta, RealBetween):
+                return f"real_between(min={meta.min!r}, max={meta.max!r})"
+    return repr(annotation)
+
+
+def _literal_contains(value: object, allowed: tuple[object, ...]) -> bool:
+    """Return whether `value` matches a `Literal` member without bool/int confusion."""
+    return any(type(value) is type(item) and value == item for item in allowed)
+
+
+def _require_between(value: object, meta: Between, *, series_id: str) -> None:
+    if isinstance(value, bool) or not isinstance(value, int):
+        raise ValueError(f"{series_id} has type {type(value).__name__}; between requires int")
+    if not _in_closed_interval(value, meta.min, meta.max):
+        raise ValueError(
+            f"{series_id} out of domain: {value!r} not in "
+            f"between(min={meta.min!r}, max={meta.max!r})"
+        )
+
+
+def _require_real_between(value: object, meta: RealBetween, *, series_id: str) -> None:
+    if isinstance(value, bool) or not isinstance(value, int | float):
+        raise ValueError(
+            f"{series_id} has type {type(value).__name__}; real_between requires int or float"
+        )
+    if not _in_closed_interval(value, meta.min, meta.max):
+        raise ValueError(
+            f"{series_id} out of domain: {value!r} not in "
+            f"real_between(min={meta.min!r}, max={meta.max!r})"
+        )
+
+
+def _in_closed_interval(
+    value: int | float,
+    low: int | float | None,
+    high: int | float | None,
+) -> bool:
+    return (low is None or value >= low) and (high is None or value <= high)
 
 
 def lazy_table(rows: tuple[tuple[TablePart, ...], ...]) -> Range:

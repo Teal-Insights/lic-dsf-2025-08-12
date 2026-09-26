@@ -1,0 +1,315 @@
+schema_version: 1.21.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+series:
+- id: translation_scale_phrase
+  sheet: translation
+  data_range: '''translation''!C81:F82'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  - LANGUAGE
+  series_context:
+    TABLE: translation.phrases
+  notes: Million and billion scale phrases in every working language.
+- id: translation_external_flow_phrases
+  sheet: translation
+  data_range: '''translation''!C1216:F1222'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  - LANGUAGE
+  series_context:
+    TABLE: translation.phrases
+  notes: External forecast-error flow labels in every working language. Portuguese and Spanish are blank except on the PPG-debt-change row.
+- id: translation_public_flow_phrases
+  sheet: translation
+  data_range: '''translation''!C1224:F1230'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  - LANGUAGE
+  series_context:
+    TABLE: translation.phrases
+  notes: Public forecast-error flow labels in every working language. Portuguese and Spanish cells are blank.
+- id: translation_investment_phrases
+  sheet: translation
+  data_range: '''translation''!C1267:F1270'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  - LANGUAGE
+  series_context:
+    TABLE: translation.phrases
+  notes: Government and private investment path labels in every working language.
+- id: translation_debt_change_phrases
+  sheet: translation
+  data_range: '''translation''!C2019:F2020'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  - LANGUAGE
+  series_context:
+    TABLE: translation.phrases
+  notes: English, French, Portuguese, and Spanish renderings of the external debt-change phrases. Portuguese and Spanish cells on these rows are blank.
+- id: translation_adjustment_phrase
+  sheet: translation
+  data_range: '''translation''!C2024:F2024'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.phrases
+    INDICATOR: Projected 3-yr adjustment
+  notes: Projected three-year adjustment label in every working language. Portuguese and Spanish cells are blank.
+- id: translation_more_phrase
+  sheet: translation
+  data_range: '''translation''!C2026:F2026'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - LANGUAGE
+  series_context:
+    TABLE: translation.phrases
+    INDICATOR: more
+  notes: The word more in every working language. Portuguese and Spanish cells are blank.
+- id: translation_projection_phrases
+  sheet: translation
+  data_range: '''translation''!C2029:F2031'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+    - id: LANGUAGE
+      concept: LANGUAGE
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  - LANGUAGE
+  series_context:
+    TABLE: translation.phrases
+  notes: Historical and projected vintage labels in every working language. Portuguese and Spanish cells are blank.

@@ -1,4 +1,4 @@
-schema_version: 1.16.0
+schema_version: 1.21.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -264,7 +264,7 @@ series:
     SCENARIO: B2.1 Primary balance Market
     VARIANT: stress_path
   notes: Applicability flag for PV of debt-to GDP ratio — B2.1 Primary balance Market (Chart Data!A53).
-- id: chart_pv_debt_to_gdp_applicable_flag_b6_1_combination_of_b1_b5_market
+- id: chart_pv_debt_to_gdp_applicable_flag_combined_market_financing_stress
   sheet: Chart Data
   data_range: '''Chart Data''!A55'
   layout: scalar
@@ -418,7 +418,7 @@ series:
     SCENARIO: B2.1 Primary balance Market
     VARIANT: stress_path
   notes: Applicability flag for PV of debt-to-exports ratio — B2.1 Primary balance Market (Chart Data!A95).
-- id: chart_pv_debt_to_exports_applicable_flag_b6_1_combination_of_b1_b5_market
+- id: chart_pv_debt_to_exports_applicable_flag_combined_market_financing_stress
   sheet: Chart Data
   data_range: '''Chart Data''!A97'
   layout: scalar
@@ -572,7 +572,7 @@ series:
     SCENARIO: B2.1 Primary balance Market
     VARIANT: stress_path
   notes: Applicability flag for Debt service-to-exports ratio — B2.1 Primary balance Market (Chart Data!A137).
-- id: chart_debt_service_to_exports_applicable_flag_b6_1_combination_of_b1_b5_market
+- id: chart_debt_service_to_exports_applicable_flag_combined_market_financing_stress
   sheet: Chart Data
   data_range: '''Chart Data''!A139'
   layout: scalar
@@ -726,7 +726,7 @@ series:
     SCENARIO: B2.1 Primary balance Market
     VARIANT: stress_path
   notes: Applicability flag for Debt service-to-revenue ratio — B2.1 Primary balance Market (Chart Data!A179).
-- id: chart_debt_service_to_revenue_applicable_flag_b6_1_combination_of_b1_b5_market
+- id: chart_debt_service_to_revenue_applicable_flag_combined_market_financing_stress
   sheet: Chart Data
   data_range: '''Chart Data''!A181'
   layout: scalar
@@ -880,7 +880,7 @@ series:
     SCENARIO: B2.1 Primary balance Market
     VARIANT: stress_path
   notes: Applicability flag for PV of Debt-to-GDP Ratio — B2.1 Primary balance Market (Chart Data!A254).
-- id: chart_pv_of_debt_to_gdp_ratio_applicable_flag_b6_1_combination_of_b1_b5_market
+- id: chart_pv_of_debt_to_gdp_ratio_applicable_flag_combined_market_financing_stress
   sheet: Chart Data
   data_range: '''Chart Data''!A256'
   layout: scalar
@@ -1034,7 +1034,7 @@ series:
     SCENARIO: B2.1 Primary balance Market
     VARIANT: stress_path
   notes: Applicability flag for PV of Debt-to-Revenue Ratio — B2.1 Primary balance Market (Chart Data!A296).
-- id: chart_pv_of_debt_to_revenue_ratio_applicable_flag_b6_1_combination_of_b1_b5_market
+- id: chart_pv_of_debt_to_revenue_ratio_applicable_flag_combined_market_financing_stress
   sheet: Chart Data
   data_range: '''Chart Data''!A298'
   layout: scalar
@@ -1134,7 +1134,7 @@ series:
     SCENARIO: B2.1 Primary balance Market
     VARIANT: stress_path
   notes: Applicability flag for Debt Service-to-Revenue Ratio — B2.1 Primary balance Market (Chart Data!A333).
-- id: chart_applicable_flag_b6_1_combination_of_b1_b5_market
+- id: chart_applicable_flag_combined_market_financing_stress
   sheet: Chart Data
   data_range: '''Chart Data''!A335'
   layout: scalar
@@ -1234,7 +1234,7 @@ series:
     SCENARIO: B2.1 Primary balance Market
     VARIANT: stress_path
   notes: Applicability flag for Debt Service-to-GDP Ratio — B2.1 Primary balance Market (Chart Data!A366).
-- id: chart_debt_service_to_gdp_ratio_applicable_flag_b6_1_combination_of_b1_b5_market
+- id: chart_debt_service_to_gdp_ratio_applicable_flag_combined_market_financing_stress
   sheet: Chart Data
   data_range: '''Chart Data''!A368'
   layout: scalar
@@ -1445,6 +1445,8 @@ series:
   - '''Chart Data''!AF54:AF54'
   layout: series
   internal: {}
+  domain:
+    from_workbook: true
   structure:
     measure:
       concept: OBS_VALUE
@@ -1622,6 +1624,8 @@ series:
   - '''Chart Data''!AF96:AF96'
   layout: series
   internal: {}
+  domain:
+    from_workbook: true
   structure:
     measure:
       concept: OBS_VALUE
@@ -1799,6 +1803,8 @@ series:
   - '''Chart Data''!AF138:AF138'
   layout: series
   internal: {}
+  domain:
+    from_workbook: true
   structure:
     measure:
       concept: OBS_VALUE
@@ -1976,6 +1982,8 @@ series:
   - '''Chart Data''!AF180:AF180'
   layout: series
   internal: {}
+  domain:
+    from_workbook: true
   structure:
     measure:
       concept: OBS_VALUE
@@ -2084,6 +2092,8 @@ series:
   - '''Chart Data''!AF255:AF255'
   layout: series
   internal: {}
+  domain:
+    from_workbook: true
   structure:
     measure:
       concept: OBS_VALUE

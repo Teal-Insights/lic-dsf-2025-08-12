@@ -1,0 +1,119 @@
+schema_version: 1.21.0
+workbook: workbook.xlsm
+concept_scheme:
+  id: lic_dsf_2025_08_12
+  concepts:
+  - id: OBS_VALUE
+    name: Observation value
+    dtype: number
+  - id: TIME_PERIOD
+    name: Time period
+    dtype: int
+  - id: INDICATOR
+    name: Indicator
+    dtype: string
+  - id: PARAMETER
+    name: Parameter
+    dtype: string
+  - id: TABLE
+    name: Table
+    dtype: string
+  - id: REF_AREA
+    name: Reference area
+    dtype: string
+    sdmx_concept: REF_AREA
+  - id: SCENARIO
+    name: Scenario
+    dtype: string
+  - id: INSTRUMENT
+    name: Financing instrument
+    dtype: string
+  - id: COMMODITY
+    name: Commodity
+    dtype: string
+  - id: VARIANT
+    name: Variant
+    dtype: string
+series:
+- id: cpia_column_headers
+  sheet: 'CPIA'
+  data_range:
+  - CPIA!A1:U1
+  - CPIA!W1
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: data_cell
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: cpia.database
+  notes: 'Column titles of the CPIA database extract.'
+
+- id: cpia_record_fields
+  sheet: 'CPIA'
+  data_range: CPIA!A2:H2
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: string
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: cpia.database
+  notes: 'Database, country, and indicator fields of the CPIA record.'
+
+- id: cpia_score_by_year
+  sheet: 'CPIA'
+  data_range: CPIA!I2:U2
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 1
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: cpia.database
+    INDICATOR: 'CPIA'
+  notes: 'CPIA score by year.'

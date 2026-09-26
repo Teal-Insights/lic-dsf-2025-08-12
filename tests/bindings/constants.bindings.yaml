@@ -1,4 +1,4 @@
-schema_version: 1.16.0
+schema_version: 1.21.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -52,6 +52,8 @@ series:
   data_range: COM!A4:A8
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -77,7 +79,7 @@ series:
   notes: Price-table as-of date (Excel serial) for each commodity on COM.
 - id: com_prices
   sheet: COM
-  data_range: COM!D4:G8
+  data_range: COM!D4:F8
   layout: matrix
   constant: {}
   structure:
@@ -111,7 +113,37 @@ series:
   - INDICATOR
   series_context:
     TABLE: com.prices
-  notes: 'COM commodity price grid: latest actual, percentile forecasts, and percent change.'
+  notes: 'COM commodity price grid: latest actual and percentile forecasts.'
+- id: com_price_percent_change
+  sheet: COM
+  data_range: COM!G4:G8
+  layout: series
+  constant: {}
+  validation:
+    intersect_graph_leaves: false
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: COMMODITY
+      concept: COMMODITY
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: C
+        read: string
+        normalize: strip
+  key:
+  - COMMODITY
+  series_context:
+    TABLE: com.prices
+    INDICATOR: "% change"
+  notes: COM percent-change column for each commodity.
 - id: lookup_imf_country_code
   sheet: lookup
   data_range: lookup!B4:B73
@@ -469,7 +501,7 @@ series:
     TABLE: chart_data.fiscal_space_thresholds
     PARAMETER: fiscal_space_substantial_threshold
   notes: Fiscal-space 'Substantial' threshold marker (Chart Data!E27; Substantial).
-- id: ext_debt_st_principal_y1
+- id: ext_debt_st_principal_first_year
   sheet: Ext_Debt_Data
   data_range: Ext_Debt_Data!F383
   layout: series
@@ -496,7 +528,7 @@ series:
     TABLE: ext_debt.st_locally_issued
     INDICATOR: Principal
   notes: Year-1 principal on locally-issued short-term external debt.
-- id: ext_debt_st_interest_y1
+- id: ext_debt_st_interest_first_year
   sheet: Ext_Debt_Data
   data_range: Ext_Debt_Data!F384
   layout: series
@@ -523,33 +555,6 @@ series:
     TABLE: ext_debt.st_locally_issued
     INDICATOR: Interest
   notes: Year-1 interest on locally-issued short-term external debt.
-- id: ext_debt_fx_period_average_tail
-  sheet: Ext_Debt_Data
-  data_range: Ext_Debt_Data!AA403:AG403
-  layout: series
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: float
-      bind:
-        kind: data_cell
-        read: float
-    dimensions:
-    - id: TIME_PERIOD
-      concept: TIME_PERIOD
-      role: key
-      scope: cell
-      bind:
-        kind: column_header
-        header_row: 1
-        read: int
-  key:
-  - TIME_PERIOD
-  series_context:
-    TABLE: ext_debt.memorandum
-    INDICATOR: Exchange rate (period average)
-  notes: Unfilled 2045-2051 period-average FX cells on the Ext_Debt memorandum row.
 - id: lookup_country_table_headers
   sheet: lookup
   data_range: "lookup!A3:E3"
@@ -578,7 +583,7 @@ series:
     TABLE: lookup.countries
     INDICATOR: column_header
   notes: Column headers for the lookup country table.
-- id: lookup_iso3
+- id: lookup_iso_alpha3
   sheet: lookup
   data_range: "lookup!A4:A73"
   layout: series
@@ -1704,6 +1709,8 @@ series:
   data_range: "translation!C1980:F1980"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -1762,6 +1769,8 @@ series:
   data_range: "translation!C1983:F1983"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -1791,6 +1800,8 @@ series:
   data_range: "translation!C1985:F1985"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -1849,6 +1860,8 @@ series:
   data_range: "translation!C1991:F1991"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -2376,6 +2389,8 @@ series:
   data_range: "'Chart Data'!B47"
   layout: scalar
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -2561,6 +2576,8 @@ series:
   data_range: "COM!C4:C8"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -2864,6 +2881,10 @@ series:
   data_range: "Country_Information!C2:C80"
   layout: series
   constant: {}
+  domain:
+    enum:
+    - "Yes"
+    - "No"
   structure:
     measure:
       concept: OBS_VALUE
@@ -2887,26 +2908,15 @@ series:
     TABLE: country_information.roster
     INDICATOR: Eurobond
   notes: Eurobond market-access flag by country.
-  exclude_rows:
-  - 2
-  - 3
-  - 4
-  - 5
-  - 6
-  - 8
-  - 9
-  - 26
-  - 31
-  - 48
-  - 54
-  - 64
-  - 77
-  - 80
 - id: country_information_prgt
   sheet: Country_Information
   data_range: "Country_Information!D2:D80"
   layout: series
   constant: {}
+  domain:
+    enum:
+    - "Yes"
+    - "No"
   structure:
     measure:
       concept: OBS_VALUE
@@ -2930,76 +2940,6 @@ series:
     TABLE: country_information.roster
     INDICATOR: PRGT market access
   notes: PRGT market-access flag by country.
-  exclude_rows:
-  - 2
-  - 3
-  - 4
-  - 5
-  - 6
-  - 7
-  - 9
-  - 10
-  - 11
-  - 12
-  - 14
-  - 15
-  - 16
-  - 17
-  - 18
-  - 21
-  - 22
-  - 23
-  - 24
-  - 25
-  - 26
-  - 28
-  - 29
-  - 30
-  - 31
-  - 32
-  - 35
-  - 36
-  - 38
-  - 39
-  - 40
-  - 41
-  - 43
-  - 44
-  - 45
-  - 46
-  - 47
-  - 48
-  - 49
-  - 50
-  - 51
-  - 52
-  - 53
-  - 54
-  - 55
-  - 56
-  - 57
-  - 58
-  - 59
-  - 60
-  - 61
-  - 62
-  - 63
-  - 64
-  - 65
-  - 66
-  - 67
-  - 68
-  - 69
-  - 70
-  - 71
-  - 72
-  - 73
-  - 74
-  - 75
-  - 76
-  - 77
-  - 78
-  - 80
 - id: trigger_left_headers
   sheet: Trigger
   data_range: "Trigger!A4:J4"
@@ -3312,7 +3252,7 @@ series:
     INDICATOR: CI class label
     VARIANT: Strong
   notes: Strong CI class label.
-- id: imported_classification_t1
+- id: imported_classification_prior_vintage
   sheet: Imported data
   data_range: "'Imported data'!AF78"
   layout: scalar
@@ -3331,7 +3271,7 @@ series:
     TABLE: imported.classification_stubs
     INDICATOR: Classification t-1
   notes: Prior-vintage classification header.
-- id: imported_classification_t2
+- id: imported_classification_two_vintages_ago
   sheet: Imported data
   data_range: "'Imported data'!AG78"
   layout: scalar
@@ -3499,6 +3439,8 @@ series:
   data_range: "'Imported data'!C216:C270"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -3555,6 +3497,8 @@ series:
   data_range: "'Imported data'!E216:E270"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -3583,6 +3527,8 @@ series:
   data_range: "'Imported data'!F216:F270"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -3611,6 +3557,8 @@ series:
   data_range: "'Imported data'!G216:G270"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -3639,6 +3587,8 @@ series:
   data_range: "'Imported data'!H216:H270"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -3667,6 +3617,8 @@ series:
   data_range: "'Imported data'!I216:I270"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -3811,6 +3763,8 @@ series:
   data_range: "Classification!AF17:AP17"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -3898,6 +3852,8 @@ series:
   data_range: "Classification!AQ17:BA17"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -3985,6 +3941,8 @@ series:
   data_range: "Classification!BD17:BN17"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -4072,6 +4030,8 @@ series:
   data_range: "Classification!BO17:BY17"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -4159,6 +4119,8 @@ series:
   data_range: "Classification!CB17:CL17"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -4246,6 +4208,8 @@ series:
   data_range: "Classification!CM17:CW17"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -4333,6 +4297,8 @@ series:
   data_range: "Classification!CY17:DI17"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -4407,7 +4373,7 @@ series:
     INDICATOR: hide (Year ID for lookup)
     VARIANT: header
   notes: Classification identifier/header cell A16.
-- id: classification_classification_t1_header
+- id: classification_classification_prior_vintage_header
   sheet: Classification
   data_range: "Classification!G16"
   layout: scalar
@@ -4428,7 +4394,7 @@ series:
     INDICATOR: Classification t-1
     VARIANT: header
   notes: Classification identifier/header cell G16.
-- id: classification_classification_t2_header
+- id: classification_classification_two_vintages_ago_header
   sheet: Classification
   data_range: "Classification!H16"
   layout: scalar
@@ -4449,7 +4415,7 @@ series:
     INDICATOR: Classification t-2
     VARIANT: header
   notes: Classification identifier/header cell H16.
-- id: classification_ci_score_t1_header
+- id: classification_ci_score_prior_vintage_header
   sheet: Classification
   data_range: "Classification!J16"
   layout: scalar
@@ -4470,7 +4436,7 @@ series:
     INDICATOR: CI Score t-1
     VARIANT: header
   notes: Classification identifier/header cell J16.
-- id: classification_ci_score_t2_header
+- id: classification_ci_score_two_vintages_ago_column_header
   sheet: Classification
   data_range: "Classification!K16"
   layout: scalar
@@ -4491,11 +4457,13 @@ series:
     INDICATOR: CI Score t-2
     VARIANT: header
   notes: Classification identifier/header cell K16.
-- id: classification_ifs_code_header
+- id: classification_column_headers
   sheet: Classification
-  data_range: "Classification!A17"
-  layout: scalar
+  data_range: "Classification!A17:P17"
+  layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -4503,330 +4471,23 @@ series:
       bind:
         kind: data_cell
         read: string
-    dimensions: []
-  key:
-    []
-  series_context:
-    TABLE: classification.vintage
-    REF_AREA: GHA
-    INDICATOR: IFS Code
-    VARIANT: header
-  notes: Classification identifier/header cell A17.
-- id: classification_iso_code_header
-  sheet: Classification
-  data_range: "Classification!B17"
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
       bind:
-        kind: data_cell
+        kind: column_header
+        header_row: 17
         read: string
-    dimensions: []
+        normalize: strip
   key:
-    []
+  - INDICATOR
   series_context:
     TABLE: classification.vintage
     REF_AREA: GHA
-    INDICATOR: ISO Code
     VARIANT: header
-  notes: Classification identifier/header cell B17.
-- id: classification_country_header
-  sheet: Classification
-  data_range: "Classification!C17"
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions: []
-  key:
-    []
-  series_context:
-    TABLE: classification.vintage
-    REF_AREA: GHA
-    INDICATOR: Country
-    VARIANT: header
-  notes: Classification identifier/header cell C17.
-- id: classification_incomplete_header
-  sheet: Classification
-  data_range: "Classification!D17"
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions: []
-  key:
-    []
-  series_context:
-    TABLE: classification.vintage
-    REF_AREA: GHA
-    INDICATOR: Incomplete
-    VARIANT: header
-  notes: Classification identifier/header cell D17.
-- id: classification_classification_final_header
-  sheet: Classification
-  data_range: "Classification!E17"
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions: []
-  key:
-    []
-  series_context:
-    TABLE: classification.vintage
-    REF_AREA: GHA
-    INDICATOR: Classification - FINAL
-    VARIANT: header
-  notes: Classification identifier/header cell E17.
-- id: classification_classification_current_header
-  sheet: Classification
-  data_range: "Classification!F17"
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions: []
-  key:
-    []
-  series_context:
-    TABLE: classification.vintage
-    REF_AREA: GHA
-    INDICATOR: Classification - Current Vintage
-    VARIANT: header
-  notes: Classification identifier/header cell F17.
-- id: classification_classification_prev_header
-  sheet: Classification
-  data_range: "Classification!G17"
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions: []
-  key:
-    []
-  series_context:
-    TABLE: classification.vintage
-    REF_AREA: GHA
-    INDICATOR: Classification - Previous vintage
-    VARIANT: header
-  notes: Classification identifier/header cell G17.
-- id: classification_classification_final_prev_header
-  sheet: Classification
-  data_range: "Classification!H17"
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions: []
-  key:
-    []
-  series_context:
-    TABLE: classification.vintage
-    REF_AREA: GHA
-    INDICATOR: Classification - Final previous
-    VARIANT: header
-  notes: Classification identifier/header cell H17.
-- id: classification_ci_score_current_header
-  sheet: Classification
-  data_range: "Classification!I17"
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions: []
-  key:
-    []
-  series_context:
-    TABLE: classification.vintage
-    REF_AREA: GHA
-    INDICATOR: CI Score Current vintage
-    VARIANT: header
-  notes: Classification identifier/header cell I17.
-- id: classification_ci_score_prev_header
-  sheet: Classification
-  data_range: "Classification!J17"
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions: []
-  key:
-    []
-  series_context:
-    TABLE: classification.vintage
-    REF_AREA: GHA
-    INDICATOR: CI Score Previous vintage
-    VARIANT: header
-  notes: Classification identifier/header cell J17.
-- id: classification_ci_score_t2_header_r17
-  sheet: Classification
-  data_range: "Classification!K17"
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions: []
-  key:
-    []
-  series_context:
-    TABLE: classification.vintage
-    REF_AREA: GHA
-    INDICATOR: CI Score 2 vintages ago
-    VARIANT: header
-  notes: Classification identifier/header cell K17.
-- id: classification_cpia_current_header
-  sheet: Classification
-  data_range: "Classification!L17"
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions: []
-  key:
-    []
-  series_context:
-    TABLE: classification.vintage
-    REF_AREA: GHA
-    INDICATOR: CPIA
-    VARIANT: header
-  notes: Classification identifier/header cell L17.
-- id: classification_growth_current_header
-  sheet: Classification
-  data_range: "Classification!M17"
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions: []
-  key:
-    []
-  series_context:
-    TABLE: classification.vintage
-    REF_AREA: GHA
-    INDICATOR: Growth
-    VARIANT: header
-  notes: Classification identifier/header cell M17.
-- id: classification_reserves_current_header
-  sheet: Classification
-  data_range: "Classification!N17"
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions: []
-  key:
-    []
-  series_context:
-    TABLE: classification.vintage
-    REF_AREA: GHA
-    INDICATOR: Resverves
-    VARIANT: header
-  notes: Classification identifier/header cell N17.
-- id: classification_rem_current_header
-  sheet: Classification
-  data_range: "Classification!O17"
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions: []
-  key:
-    []
-  series_context:
-    TABLE: classification.vintage
-    REF_AREA: GHA
-    INDICATOR: REM
-    VARIANT: header
-  notes: Classification identifier/header cell O17.
-- id: classification_wgrowth_current_header
-  sheet: Classification
-  data_range: "Classification!P17"
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions: []
-  key:
-    []
-  series_context:
-    TABLE: classification.vintage
-    REF_AREA: GHA
-    INDICATOR: W_GROWTH
-    VARIANT: header
-  notes: Classification identifier/header cell P17.
+  notes: Column titles for the classification vintage table.
 - id: classification_ifs_code
   sheet: Classification
   data_range: "Classification!A18"
@@ -4848,7 +4509,7 @@ series:
     INDICATOR: IFS country code
     VARIANT: identifier
   notes: Classification identifier/header cell A18.
-- id: classification_iso3
+- id: classification_iso_alpha3
   sheet: Classification
   data_range: "Classification!B18"
   layout: scalar
@@ -5138,7 +4799,7 @@ series:
     INDICATOR: World growth
     VARIANT: current_vintage
   notes: Ghana current-vintage World growth on Classification.
-- id: classification_memo_ad18
+- id: classification_growth_memo_primary
   sheet: Classification
   data_range: "Classification!AD18"
   layout: scalar
@@ -5159,7 +4820,7 @@ series:
     INDICATOR: Growth
     VARIANT: left_of_reported
   notes: Memo statistic left of the Growth block (AD18).
-- id: classification_memo_ae18
+- id: classification_growth_memo_secondary
   sheet: Classification
   data_range: "Classification!AE18"
   layout: scalar
@@ -5180,7 +4841,7 @@ series:
     INDICATOR: Growth
     VARIANT: left_of_reported_2
   notes: Memo statistic left of the Growth block (AE18).
-- id: classification_memo_bc18
+- id: classification_reserves_memo
   sheet: Classification
   data_range: "Classification!BC18"
   layout: scalar
@@ -5201,7 +4862,7 @@ series:
     INDICATOR: Reserves
     VARIANT: left_of_reported
   notes: Memo statistic left of the Reserves block (BC18).
-- id: classification_memo_ca18
+- id: classification_remittances_memo
   sheet: Classification
   data_range: "Classification!CA18"
   layout: scalar
@@ -5269,6 +4930,8 @@ series:
   data_range: "Classification!DK17"
   layout: scalar
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -5290,6 +4953,8 @@ series:
   data_range: "Classification!DL17"
   layout: scalar
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -5351,6 +5016,8 @@ series:
   data_range: "Classification!DN17:DS17"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -5409,6 +5076,8 @@ series:
   data_range: "Classification!DT17:DY17"
   layout: series
   constant: {}
+  validation:
+    intersect_graph_leaves: false
   structure:
     measure:
       concept: OBS_VALUE
@@ -5789,3 +5458,21 @@ series:
     INDICATOR: "Size & Threshold"
     VARIANT: "Whichever is lower"
   notes: "Listed Size & Threshold option 'Whichever is lower'."
+- id: display_scale
+  sheet: 'Input 1 - Basics'
+  data_range: '''Input 1 - Basics''!C19'
+  layout: scalar
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: string
+      bind:
+        kind: data_cell
+        read: string
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_1.basics
+    PARAMETER: display_scale
+  notes: 'Display scale for monetary amounts, such as Million.'

@@ -360,6 +360,10 @@ reference:
       - name: Tensor
         members: false  # 9 methods listed below
       - TensorSchema  # 2 method(s)
+      - name: Series
+        members: false
+      - name: Model
+        members: false
 
   - title: Domain Methods
     desc: Methods for the Domain class
@@ -391,20 +395,20 @@ reference:
     desc: Utility functions
     contents:
       - as_records
-      - compute_chart_debt_service_to_exports_a2_alternative_scenario_customize_enter
-      - compute_chart_debt_service_to_revenue_a2_alternative_scenario_customize_enter
+      - compute_chart_debt_service_to_exports_custom_alternative_scenario
+      - compute_chart_debt_service_to_revenue_custom_alternative_scenario
       - compute_chart_output_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio
       - compute_chart_output_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue
-      - compute_chart_output_chart_data_figure_r103_pv_debt_to_exports
-      - compute_chart_output_chart_data_figure_r145_debt_service_to_exports
-      - compute_chart_output_chart_data_figure_r187_debt_service_to_revenue
-      - compute_chart_output_chart_data_figure_r263_pv_debt_to_gdp
-      - compute_chart_output_chart_data_figure_r341_debt_service_to_revenue
-      - compute_chart_output_chart_data_figure_r61_pv_debt_gdp_ratio
       - compute_chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp
       - compute_chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue
-      - compute_chart_pv_debt_gdp_ratio_a2_alternative_scenario_customize_enter
-      - compute_chart_pv_debt_to_exports_a2_alternative_scenario_customize_enter
+      - compute_chart_output_debt_service_to_exports
+      - compute_chart_output_debt_service_to_revenue
+      - compute_chart_output_debt_service_to_revenue_fiscal
+      - compute_chart_output_pv_debt_gdp_ratio
+      - compute_chart_output_pv_debt_to_exports
+      - compute_chart_output_pv_debt_to_gdp
+      - compute_chart_pv_debt_gdp_ratio_custom_alternative_scenario
+      - compute_chart_pv_debt_to_exports_custom_alternative_scenario
       - compute_chart_pv_debt_to_revenue_mx_shock_standard_tailored
       - compute_external_baseline_breach
       - compute_external_debt_service_to_exports_mx_shock
@@ -422,6 +426,52 @@ reference:
       - compute_fiscal_space_moderate_risk_signal
       - compute_overall_risk_rating_numeric
       - compute_overall_risk_rating_signal
+      - compute_probability_debt_service_to_exports
+      - compute_probability_debt_service_to_exports_distress
+      - compute_probability_debt_service_to_revenue
+      - compute_probability_debt_service_to_revenue_distress
+      - compute_probability_pv_debt_to_exports
+      - compute_probability_pv_debt_to_exports_distress
+      - compute_probability_pv_debt_to_gdp
+      - compute_probability_pv_debt_to_gdp_distress
+      - compute_realism1_external_debt_creating_flows
+      - compute_realism1_external_debt_flow_components
+      - compute_realism1_external_forecast_error_component_labels
+      - compute_realism1_external_forecast_error_components
+      - compute_realism1_external_forecast_error_distribution
+      - compute_realism1_external_forecast_error_distribution_labels
+      - compute_realism1_external_vintage_debt_paths
+      - compute_realism1_external_vintage_years
+      - compute_realism1_public_debt_creating_flows
+      - compute_realism1_public_debt_flow_components
+      - compute_realism1_public_forecast_error_component_labels
+      - compute_realism1_public_forecast_error_components
+      - compute_realism1_public_forecast_error_distribution
+      - compute_realism1_public_forecast_error_distribution_labels
+      - compute_realism1_public_forecast_error_lower_quartile
+      - compute_realism1_public_vintage_debt_paths
+      - compute_realism1_public_vintage_years
+      - compute_realism2_baseline_growth
+      - compute_realism2_fiscal_adjustment_growth_impact
+      - compute_realism2_fiscal_adjustment_multiplier_labels
+      - compute_realism2_fiscal_adjustment_years
+      - compute_realism2_growth_t_minus_1
+      - compute_realism2_underlying_growth
+      - compute_realism2_underlying_growth_multiplier_labels
+      - compute_realism2_underlying_growth_years
+      - compute_realism3_growth_accounting_contributions
+      - compute_realism3_growth_accounting_vintages
+      - compute_realism3_investment_path_labels
+      - compute_realism3_investment_years
+      - compute_realism3_public_private_investment_paths
+      - compute_realism4_fiscal_adjustment_cumulative_share
+      - compute_realism4_fiscal_adjustment_sample_share
+      - compute_realism4_fiscal_adjustment_top_bin_label
+      - compute_realism4_projected_3yr_adjustment
+      - compute_realism4_projected_3yr_adjustment_bin
+      - compute_realism4_projected_3yr_adjustment_category
+      - compute_realism4_projected_3yr_adjustment_label
+      - compute_realism4_projected_3yr_adjustment_sample_share
       - compute_tailored_stress_commodity_price_applicable
       - compute_tailored_stress_market_financing_applicable
       - compute_tailored_stress_natural_disaster_applicable
@@ -795,3 +845,4 @@ freeze: false
 display_name: LIC-DSF 2025-08-12
 homepage: user_guide
 site_url: "https://teal-insights.github.io/lic-dsf-2025-08-12/"
+repo: https://github.com/Teal-Insights/lic-dsf-2025-08-12

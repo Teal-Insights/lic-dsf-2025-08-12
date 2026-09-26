@@ -52,11 +52,14 @@ def load_graph_build(*, tests_root: Path) -> GraphBuildSnapshot:
             f"Exported graph-build snapshot missing: {meta_path}. "
             "Re-run extraction export to seed dist/tests, or use --layout repo."
         )
-    if not constraints_path.is_file():
-        raise FileNotFoundError(
-            f"Exported graph-build constraints missing: {constraints_path}. "
-            "Re-run extraction export to seed dist/tests, or use --layout repo."
-        )
+    constraints: dict[str, object] = {}
+    if constraints_path.is_file():
+        loaded = pickle.loads(constraints_path.read_bytes())
+        if not isinstance(loaded, dict):
+            raise TypeError(
+                f"graph-build constraints must be a dict: {constraints_path}"
+            )
+        constraints = loaded
     payload = json.loads(meta_path.read_text(encoding="utf-8"))
     if not isinstance(payload, dict):
         raise TypeError(f"invalid graph-build meta: {meta_path}")
@@ -86,9 +89,6 @@ def load_graph_build(*, tests_root: Path) -> GraphBuildSnapshot:
         raise TypeError(
             f"graph-build meta blank_ranges must be a list of strings: {meta_path}"
         )
-    constraints = pickle.loads(constraints_path.read_bytes())
-    if not isinstance(constraints, dict):
-        raise TypeError(f"graph-build constraints must be a dict: {constraints_path}")
     return GraphBuildSnapshot(
         package_name=package_name,
         library_name=library_name,
@@ -106,19 +106,44 @@ def _graph_cache_key(
     targets: tuple[str, ...],
     constraints: dict[str, object],
     blank_ranges: tuple[str, ...],
+    bindings_path: Path | None,
 ) -> str:
     digest = hashlib.sha256()
     digest.update(workbook_path.read_bytes())
     digest.update(b"\0")
     digest.update(json.dumps(list(targets)).encode())
     digest.update(b"\0")
-    digest.update(pickle.dumps(dict(constraints), protocol=4))
+    if bindings_path is not None and bindings_path.exists():
+        for binding_file in sorted(bindings_path.glob("*.bindings.yaml")):
+            digest.update(binding_file.name.encode())
+            digest.update(b"\0")
+            digest.update(binding_file.read_bytes())
+            digest.update(b"\0")
+    else:
+        digest.update(pickle.dumps(dict(constraints), protocol=4))
     digest.update(b"\0")
     digest.update(json.dumps(list(blank_ranges)).encode())
     digest.update(b"\0")
     digest.update(version("excel-grapher").encode())
     digest.update(b"\0load_values=1,provenance=1")
     return digest.hexdigest()
+
+
+def _dynamic_refs(
+    *,
+    workbook_path: Path,
+    constraints: dict[str, object],
+    bindings_path: Path | None,
+) -> DynamicRefConfig:
+    if bindings_path is not None:
+        from excel_grapher.series_bindings import load_series_bindings
+
+        return DynamicRefConfig.from_bindings(
+            load_series_bindings(bindings_path),
+            workbook_path,
+            bindings_path=bindings_path,
+        )
+    return DynamicRefConfig.from_constraints(constraints)
 
 
 def _load_or_build_graph(
@@ -128,8 +153,13 @@ def _load_or_build_graph(
     constraints: dict[str, object],
     blank_ranges: tuple[str, ...],
     cache_dir: Path | None,
+    bindings_path: Path | None = None,
 ) -> DependencyGraph:
-    dynamic_refs = DynamicRefConfig.from_constraints(constraints, {})
+    dynamic_refs = _dynamic_refs(
+        workbook_path=workbook_path,
+        constraints=constraints,
+        bindings_path=bindings_path,
+    )
 
     def _build() -> DependencyGraph:
         return create_dependency_graph(
@@ -153,6 +183,7 @@ def _load_or_build_graph(
                 targets=targets,
                 constraints=constraints,
                 blank_ranges=blank_ranges,
+                bindings_path=bindings_path,
             )
         }.pkl.gz"
     )
@@ -174,20 +205,25 @@ class FormulaEvaluatorDriver:
         workbook_path: Path,
         *,
         targets: tuple[str, ...],
-        constraints: dict[str, object],
+        constraints: dict[str, object] | None = None,
         blank_ranges: tuple[str, ...] = (),
         cache_dir: Path | None = None,
+        bindings_path: Path | None = None,
     ) -> None:
         if not targets:
             raise RuntimeError("targets is empty; cannot build the graph oracle.")
-        if not constraints:
-            raise RuntimeError("constraints is empty; cannot build the graph oracle.")
+        resolved_constraints = dict(constraints or {})
+        if not resolved_constraints and bindings_path is None:
+            raise RuntimeError(
+                "bindings_path or constraints is required to build the graph oracle."
+            )
         self._graph = _load_or_build_graph(
             workbook_path=workbook_path,
             targets=targets,
-            constraints=constraints,
+            constraints=resolved_constraints,
             blank_ranges=blank_ranges,
             cache_dir=cache_dir,
+            bindings_path=bindings_path,
         )
         self._evaluator = FormulaEvaluator(self._graph, blank_ranges=blank_ranges)
         self._known_keys = frozenset(self._graph.leaf_keys()) | frozenset(

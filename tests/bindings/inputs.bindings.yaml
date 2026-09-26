@@ -1,4 +1,4 @@
-schema_version: 1.16.0
+schema_version: 1.21.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -315,6 +315,10 @@ series:
   data_range: '''Input 2 - Debt Coverage''!D21'
   layout: scalar
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -333,6 +337,10 @@ series:
   data_range: '''Input 2 - Debt Coverage''!D22'
   layout: scalar
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -351,6 +359,10 @@ series:
   data_range: '''Input 2 - Debt Coverage''!F24'
   layout: scalar
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -369,6 +381,10 @@ series:
   data_range: '''Input 2 - Debt Coverage''!E33'
   layout: scalar
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -396,6 +412,10 @@ series:
   - '''Customized Scenario - public''!E38:Y38'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -538,11 +558,15 @@ series:
     TABLE: input_6.tailored_tests
     INDICATOR: Commodity group relevance
   notes: Yes/No flags for which non-fuel commodity groups enter the tailored commodity-price test.
-- id: input8_sdr_interest_rate
+- id: input8_sdr_interest_historical
   sheet: Input 8 - SDR
-  data_range: '''Input 8 - SDR''!C14:W14'
+  data_range: '''Input 8 - SDR''!C14:H14'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -563,8 +587,62 @@ series:
   - TIME_PERIOD
   series_context:
     TABLE: input_8.sdr
+    INDICATOR: SDR interest
+    VARIANT: historical
+  notes: Signed historical SDR interest amounts by year.
+- id: input8_sdr_interest
+  sheet: Input 8 - SDR
+  data_range: '''Input 8 - SDR''!I14:V14'
+  layout: series
+  input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 9
+        read: int
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: input_8.sdr
+    INDICATOR: SDR interest
+  notes: Non-negative projected SDR interest amounts by year.
+- id: input8_sdr_interest_rate
+  sheet: Input 8 - SDR
+  data_range: '''Input 8 - SDR''!W14'
+  layout: scalar
+  input:
+    domain:
+      real_between:
+        min: 0
+        max: 1
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_8.sdr
     INDICATOR: SDR interest rate
-  notes: SDR interest rate by projection year.
+  notes: Terminal SDR interest rate (unit interval).
 - id: input6_tailored_tests_enabled
   sheet: Input 6 - Tailored Tests
   data_range: '''Input 6 - Tailored Tests''!C6'
@@ -593,6 +671,10 @@ series:
   data_range: '''Input 6(optional)-Standard Test''!C4'
   layout: scalar
   input: {}
+  domain:
+    enum:
+    - New
+    - Old
   structure:
     measure:
       concept: OBS_VALUE
@@ -724,6 +806,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!M12:AR12'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -751,6 +837,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!M13:AR13'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -778,6 +868,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!W18:AR18'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -805,6 +899,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!N19:AR19'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -832,6 +930,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!M20:AR20'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -859,6 +961,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!N22:AR22'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -886,6 +992,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!X23:AR23'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -913,6 +1023,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!N24:AR24'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -940,13 +1054,19 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!W25:AR25'
   layout: series
   input: {}
+  domain:
+    enum:
+    - 'n.a.'
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: string
+      dtype: float
       bind:
         kind: data_cell
-        read: string
+        read: auto
     dimensions:
     - id: TIME_PERIOD
       concept: TIME_PERIOD
@@ -961,12 +1081,16 @@ series:
   series_context:
     TABLE: input_3.macro
     INDICATOR: Public sector liquid assets, stock (e.g. cash, deposits, and marketable securities)
-  notes: Public sector liquid assets, stock (e.g. cash, deposits, and marketable securities) on Input 3.
+  notes: Public sector liquid assets, stock (e.g. cash, deposits, and marketable securities) on Input 3. The final projection year stores the text sentinel n.a.; earlier years store amounts. Consumers guard with ISNUMBER.
 - id: in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g
   sheet: Input 3 - Macro-Debt data(DMX)
   data_range: '''Input 3 - Macro-Debt data(DMX)''!X26:AR26'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -994,6 +1118,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!X27:AR27'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1021,6 +1149,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!X28:AR28'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1048,6 +1180,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!X29:AR29'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1075,6 +1211,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!X30:AR30'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1102,6 +1242,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!K34:AR34'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1129,6 +1273,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!M35:AR35'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1156,6 +1304,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!U36:W36'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1183,6 +1335,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!U37:W37'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1210,6 +1366,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!Y38:AR38'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1237,6 +1397,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!U39:W39'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1264,6 +1428,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!U40:W40'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1291,6 +1459,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!K41:AR41'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1318,6 +1490,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!K43:AR43'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1345,6 +1521,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!W51:W51'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1372,6 +1552,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!W52:AR52'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1399,6 +1583,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!N53:W53'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1426,13 +1614,19 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!W55:AR55'
   layout: series
   input: {}
+  domain:
+    enum:
+    - 'n.a.'
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: string
+      dtype: float
       bind:
         kind: data_cell
-        read: string
+        read: auto
     dimensions:
     - id: TIME_PERIOD
       concept: TIME_PERIOD
@@ -1447,12 +1641,16 @@ series:
   series_context:
     TABLE: input_3.external_debt
     INDICATOR: PPG External arrears
-  notes: PPG External arrears on Input 3.
+  notes: PPG External arrears on Input 3. Cells store the text sentinel n.a. or a real amount; consumers guard with ISNUMBER.
 - id: input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding
   sheet: Input 3 - Macro-Debt data(DMX)
   data_range: '''Input 3 - Macro-Debt data(DMX)''!W57:AR57'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1480,6 +1678,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!W58:AR58'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1507,6 +1709,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!N59:AR59'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1534,6 +1740,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!X60:AR60'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1561,6 +1771,10 @@ series:
   data_range: '''Input 3 - Macro-Debt data(DMX)''!X95:AR95'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1588,6 +1802,10 @@ series:
   data_range: '''Customized Scenario - public''!E1'
   layout: scalar
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1606,6 +1824,10 @@ series:
   data_range: '''Customized Scenario - public''!C42'
   layout: scalar
   input: {}
+  domain:
+    between:
+      min: 0
+      max: 50
   structure:
     measure:
       concept: OBS_VALUE
@@ -1624,6 +1846,10 @@ series:
   data_range: '''Customized Scenario - public''!E61'
   layout: scalar
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1643,6 +1869,10 @@ series:
   data_range: '''Customized Scenario - public''!Z83:AF83'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1671,6 +1901,10 @@ series:
   data_range: '''Customized Scenario - public''!Z96:AF96'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1699,6 +1933,10 @@ series:
   data_range: '''Customized Scenario - public''!AD142:AF142'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1726,6 +1964,10 @@ series:
   data_range: '''Customized Scenario - public''!D84'
   layout: scalar
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1745,6 +1987,10 @@ series:
   data_range: '''Customized Scenario - public''!E100'
   layout: scalar
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1764,6 +2010,10 @@ series:
   data_range: '''Customized Scenario - public''!E109'
   layout: scalar
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1783,6 +2033,10 @@ series:
   data_range: '''Customized Scenario-External''!D26'
   layout: scalar
   input: {}
+  domain:
+    between:
+      min: 0
+      max: 50
   structure:
     measure:
       concept: OBS_VALUE
@@ -1801,6 +2055,10 @@ series:
   data_range: '''Customized Scenario-External''!D28'
   layout: scalar
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1819,6 +2077,10 @@ series:
   data_range: '''Customized Scenario-External''!Y37:AF37'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1847,6 +2109,10 @@ series:
   data_range: '''Input 8 - SDR''!B6:B7'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1898,6 +2164,10 @@ series:
   - '''Input 3 - Macro-Debt data(DMX)''!X93:BP93'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -1986,6 +2256,10 @@ series:
   - '''Input 3 - Macro-Debt data(DMX)''!X132:AR132'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -2053,6 +2327,10 @@ series:
   - '''Input 3 - Macro-Debt data(DMX)''!W163'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -2114,6 +2392,10 @@ series:
   - '''Input 3 - Macro-Debt data(DMX)''!W164'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -2175,6 +2457,10 @@ series:
   - '''Input 3 - Macro-Debt data(DMX)''!N167:AR167'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -2234,6 +2520,10 @@ series:
   - '''Input 3 - Macro-Debt data(DMX)''!X168:AR169'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -2296,6 +2586,10 @@ series:
   - '''Input 3 - Macro-Debt data(DMX)''!X175:AR180'
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -2371,3 +2665,25 @@ series:
     INDICATOR: New gross disbursement
   notes: Input 3 new gross disbursements of locally issued debt, keyed by instrument
     and holder residency.
+- id: current_year
+  sheet: 'Input 1 - Basics'
+  data_range: '''Input 1 - Basics''!C17'
+  layout: scalar
+  input:
+    domain:
+      between:
+        min: 1990
+        max: 2100
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_1.basics
+    PARAMETER: current_year
+  notes: 'Current year (Input 1!C17).'

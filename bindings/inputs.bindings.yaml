@@ -1,4 +1,4 @@
-schema_version: 1.19.0
+schema_version: 1.21.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -1055,6 +1055,8 @@ series:
   layout: series
   input: {}
   domain:
+    enum:
+    - 'n.a.'
     real_between:
       min: -1.0e+15
       max: 1.0e+15
@@ -1079,7 +1081,7 @@ series:
   series_context:
     TABLE: input_3.macro
     INDICATOR: Public sector liquid assets, stock (e.g. cash, deposits, and marketable securities)
-  notes: Public sector liquid assets, stock (e.g. cash, deposits, and marketable securities) on Input 3.
+  notes: Public sector liquid assets, stock (e.g. cash, deposits, and marketable securities) on Input 3. The final projection year stores the text sentinel n.a.; earlier years store amounts. Consumers guard with ISNUMBER.
 - id: in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g
   sheet: Input 3 - Macro-Debt data(DMX)
   data_range: '''Input 3 - Macro-Debt data(DMX)''!X26:AR26'
@@ -1613,6 +1615,8 @@ series:
   layout: series
   input: {}
   domain:
+    enum:
+    - 'n.a.'
     real_between:
       min: -1.0e+15
       max: 1.0e+15
@@ -1637,7 +1641,7 @@ series:
   series_context:
     TABLE: input_3.external_debt
     INDICATOR: PPG External arrears
-  notes: PPG External arrears on Input 3.
+  notes: PPG External arrears on Input 3. Cells store the text sentinel n.a. or a real amount; consumers guard with ISNUMBER.
 - id: input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding
   sheet: Input 3 - Macro-Debt data(DMX)
   data_range: '''Input 3 - Macro-Debt data(DMX)''!W57:AR57'
@@ -2661,3 +2665,25 @@ series:
     INDICATOR: New gross disbursement
   notes: Input 3 new gross disbursements of locally issued debt, keyed by instrument
     and holder residency.
+- id: current_year
+  sheet: 'Input 1 - Basics'
+  data_range: '''Input 1 - Basics''!C17'
+  layout: scalar
+  input:
+    domain:
+      between:
+        min: 1990
+        max: 2100
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_1.basics
+    PARAMETER: current_year
+  notes: 'Current year (Input 1!C17).'

@@ -1,4 +1,4 @@
-schema_version: 1.16.0
+schema_version: 1.21.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -269,9 +269,13 @@ series:
   - "'Input 5 - Local-debt Financing'!I10:N10"
   - "'Input 5 - Local-debt Financing'!I12:N13"
   - "'Input 5 - Local-debt Financing'!I16:N18"
-  - "'Input 5 - Local-debt Financing'!I20:N22"
+  - "'Input 5 - Local-debt Financing'!I20:N20"
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -294,8 +298,6 @@ series:
           "Bonds (4 to 7 years)-LC": 17
           "Bonds (beyond 7 years)-LC": 18
           "Bonds (1 to 3 years)-FX": 20
-          "Bonds (4 to 7 years)-FX": 21
-          "Bonds (beyond 7 years)-FX": 22
         read: string
     - id: HOLDER
       concept: HOLDER
@@ -308,7 +310,7 @@ series:
           - 10
           - "12:13"
           - "16:18"
-          - "20:22"
+          - 20
         read: string
     - id: TIME_PERIOD
       concept: TIME_PERIOD
@@ -325,11 +327,63 @@ series:
   series_context:
     TABLE: input5.instrument_terms
     INDICATOR: "Interest rate on domestic debt"
-  notes: "Lifted from 9 input series on input5.instrument_terms: Interest rate on domestic\
-    \ debt. Instruments (9): Bonds (1 to 3 years)-FX, Bonds (1 to 3 years)-LC, Bonds (4 to\
-    \ 7 years)-FX, Bonds (4 to 7 years)-LC, Bonds (beyond 7 years)-FX, Bonds (beyond 7 years)-LC,\
-    \ Central bank financing, T-bills (denominated in foreign currency), T-bills (denominated\
-    \ in local currency). Holders: residents."
+  notes: "Interest rates on shorter domestic instruments (central bank, T-bills, LC bonds,\
+    \ and 1-to-3-year FX bonds), keyed by instrument and projection year."
+- id: input5_interest_rate_on_domestic_debt_fx_long
+  sheet: "Input 5 - Local-debt Financing"
+  data_range:
+  - "'Input 5 - Local-debt Financing'!I21:N22"
+  layout: series
+  input: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          "Bonds (4 to 7 years)-FX": 21
+          "Bonds (beyond 7 years)-FX": 22
+        read: string
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          residents:
+          - "21:22"
+        read: string
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 5
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - TIME_PERIOD
+  series_context:
+    TABLE: input5.instrument_terms
+    INDICATOR: "Interest rate on domestic debt"
+  notes: "Unit-interval interest rates on longer FX domestic bonds (4-to-7-year and beyond-7-year),\
+    \ keyed by instrument and projection year."
 - id: input5_internal_interest_rate_on_domestic_debt
   sheet: "Input 5 - Local-debt Financing"
   data_range:
@@ -425,11 +479,14 @@ series:
 - id: input5_maturity
   sheet: "Input 5 - Local-debt Financing"
   data_range:
-  - "'Input 5 - Local-debt Financing'!D10"
   - "'Input 5 - Local-debt Financing'!D16:D18"
   - "'Input 5 - Local-debt Financing'!D20:D22"
   layout: series
-  input: {}
+  input:
+    domain:
+      between:
+        min: 1
+        max: 100
   structure:
     measure:
       concept: OBS_VALUE
@@ -445,7 +502,6 @@ series:
       bind:
         kind: value_map
         values:
-          "Central bank financing": 10
           "Bonds (1 to 3 years)-LC": 16
           "Bonds (4 to 7 years)-LC": 17
           "Bonds (beyond 7 years)-LC": 18
@@ -461,7 +517,6 @@ series:
         kind: value_map
         values:
           residents:
-          - 10
           - "16:18"
           - "20:22"
         read: string
@@ -471,10 +526,31 @@ series:
   series_context:
     TABLE: input5.instrument_terms
     INDICATOR: Maturity
-  notes: "Lifted from 7 input series on input5.instrument_terms: Maturity. Instruments (7):\
-    \ Bonds (1 to 3 years)-FX, Bonds (1 to 3 years)-LC, Bonds (4 to 7 years)-FX, Bonds (4\
-    \ to 7 years)-LC, Bonds (beyond 7 years)-FX, Bonds (beyond 7 years)-LC, Central bank financing.\
-    \ Holders: residents."
+  notes: "Bond maturities in years on domestic financing instruments held by residents."
+- id: input5_maturity_central_bank
+  sheet: "Input 5 - Local-debt Financing"
+  data_range: "'Input 5 - Local-debt Financing'!D10"
+  layout: scalar
+  input:
+    domain:
+      between:
+        min: 1
+        max: 5
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input5.instrument_terms
+    INDICATOR: Maturity
+    INSTRUMENT: Central bank financing
+    HOLDER: residents
+  notes: "Short-tenor maturity on central-bank financing (residents)."
 - id: input5_constant_grace_period
   sheet: "Input 5 - Local-debt Financing"
   data_range:
@@ -1142,6 +1218,10 @@ series:
   data_range: "'Input 5 - Local-debt Financing'!I63:AC63"
   layout: series
   input: {}
+  domain:
+    real_between:
+      min: -1.0e+15
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -3510,6 +3590,10 @@ series:
   - 440
   - "462:467"
   - "489:491"
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   structure:
     measure:
       concept: OBS_VALUE
@@ -3699,6 +3783,10 @@ series:
   data_range: "'Input 5 - Local-debt Financing'!AE230:AY579"
   layout: series
   internal: {}
+  domain:
+    real_between:
+      min: 0
+      max: 1.0e+15
   exclude_rows:
   - "251:253"
   - "275:277"
