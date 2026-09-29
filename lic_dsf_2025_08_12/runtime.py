@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import types
 from collections.abc import Callable, Iterable, Iterator, Mapping, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, fields
 from itertools import product
 from types import MappingProxyType
 from typing import (
@@ -23,6 +23,7 @@ from typing import (
     cast,
     get_args,
     get_origin,
+    get_type_hints,
 )
 
 from .excel import Range
@@ -31,6 +32,8 @@ from .tensor import Axis, Domain, DomainTemplate, SchemaTemplate, Tensor, Tensor
 from .excel import XlError, _as_number
 
 if TYPE_CHECKING:
+    from _typeshed import DataclassInstance
+
     from .provenance import ProvenanceTemplate
 
 T = TypeVar("T")
@@ -428,6 +431,76 @@ def take(values: Sequence[T], indices: Sequence[int] | slice) -> tuple[T, ...]:
     return tuple(result)
 
 
+@dataclass(frozen=True)
+class InputField:
+    """Public description of one field of a generated `*Inputs` record.
+
+    Attributes:
+        name: Field name, which is also the input series id.
+        values: Annotation of one value, including `Literal` choices or
+            `Annotated` bounds.
+        domain: Coordinate domain (axes and keys) of a series input, or `None`
+            for a scalar. This is not the binding's value `domain`; value
+            bounds and choices live on `values`.
+        default: Workbook default bound by `from_defaults`.
+        cells: Authored worksheet cells keyed by coordinate.
+    """
+
+    name: str
+    values: object
+    domain: Domain | None
+    default: object
+    cells: object
+
+    @property
+    def is_series(self) -> bool:
+        """Whether the field is a tensor over named axes."""
+        return self.domain is not None
+
+    @property
+    def axes(self) -> tuple[Axis, ...]:
+        """Named axes in declaration order; empty for a scalar."""
+        return () if self.domain is None else self.domain.axes
+
+    @property
+    def size(self) -> int:
+        """Number of values the field holds."""
+        return 1 if self.domain is None else len(self.domain)
+
+
+def describe_inputs(record: type[DataclassInstance]) -> dict[str, InputField]:
+    """Describe each field of a generated `*Inputs` record in declaration order."""
+    hints = get_type_hints(record, include_extras=True)
+    described: dict[str, InputField] = {}
+    for spec in fields(record):
+        default = spec.metadata["default"]
+        domain = default.domain if isinstance(default, Tensor) else None
+        hint = hints[spec.name]
+        values = hint
+        if domain is not None:
+            args = get_args(hint)
+            if not args:
+                raise TypeError(f"{spec.name}: series annotation {hint!r} is not parameterized")
+            values = args[0]
+        described[spec.name] = InputField(
+            name=spec.name,
+            values=values,
+            domain=domain,
+            default=default,
+            cells=spec.metadata["cells"],
+        )
+    return described
+
+
+def _tensor_records(
+    keys: Sequence[str], result: Tensor[T], measure: str
+) -> list[dict[str, object]]:
+    """Zip each tensor coordinate with `keys` and add its value under `measure`."""
+    return [
+        {**dict(zip(keys, coord, strict=True)), measure: value} for coord, value in result.items()
+    ]
+
+
 def as_records(
     compute: KeyedCompute,
     result: object,
@@ -444,17 +517,11 @@ def as_records(
     if isinstance(domain, DomainTemplate):
         if not isinstance(result, Tensor):
             raise ValueError("result must be a Tensor over the declared result domain")
-        return [
-            dict(zip(keys, coord, strict=True)) | {measure: value}
-            for coord, value in result.items()
-        ]
+        return _tensor_records(keys, result, measure)
     if isinstance(domain, Domain):
         if not isinstance(result, Tensor) or result.domain != domain:
             raise ValueError("result must be a Tensor over the declared result domain")
-        return [
-            dict(zip(keys, coord, strict=True)) | {measure: value}
-            for coord, value in result.items()
-        ]
+        return _tensor_records(keys, result, measure)
     if domain is None:
         return [{measure: result}]
     if not isinstance(result, Sequence):

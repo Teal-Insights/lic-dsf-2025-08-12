@@ -336,5 +336,6 @@ __all__ = [
     "compute_chart_output_debt_service_to_revenue_fiscal",
 ]
 
+from .runtime import InputField
 from .tensor import Axis, Domain, Series, Tensor, TensorSchema
-__all__ += ['Axis', 'Domain', 'Series', 'Tensor', 'TensorSchema']
+__all__ += ['Axis', 'Domain', 'InputField', 'Series', 'Tensor', 'TensorSchema']

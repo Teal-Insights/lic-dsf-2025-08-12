@@ -19,6 +19,59 @@ len(inputs.__dataclass_fields__)
 
 `from_workbook(path)` binds the same leaves from a populated workbook of this vintage, then accepts the same overrides.
 
+## Discover fields with `describe()`
+
+You do not need to guess field names. Every `*Inputs` bundle has a `describe()` class method. It returns a dictionary from field name to an `InputField` with four things on it: whether the field is a scalar or a series (and over which axes), the allowed values, the template default, and the worksheet cell behind each value. Call it before you write any overrides:
+
+```{python}
+fields = api.ExternalDsaRiskRatingSignalInputs.describe()
+
+pd.DataFrame(
+    [
+        [
+            name,
+            ", ".join(axis.name for axis in field.axes) or "scalar",
+            field.size,
+            next(iter(field.cells.values())),
+        ]
+        for name, field in fields.items()
+    ],
+    columns=["Field", "Axes", "Values", "First cell"],
+).head(12).style.hide(axis="index")
+```
+
+Drop `.head(12)` to see all 74 fields. For a single field, read the attributes directly:
+
+```{python}
+tailored = fields["input6_tailored_tests_enabled"]
+print("allowed values:", tailored.values)
+print("default:", tailored.default)
+print("cell:", tailored.cells[()])
+```
+
+`values` is the type annotation of one value. A `Literal[...]` lists the only choices the model accepts. A plain `str` (for example `country`) is checked against the template's own lists when the bundle is built, not by the annotation. Scalar fields have one cell, keyed by the empty coordinate `()`.
+
+For a series, `axes` gives the axis names and their keys, and `cells` maps each coordinate to its worksheet cell. This is how you find the cell to edit in Excel for one creditor or one year:
+
+```{python}
+rates = fields["input4_interest_rate"]
+gdp = fields["input3_input_3_macro_gross_domestic_product_us_dollars"]
+pd.DataFrame(
+    [
+        ["input4_interest_rate", "INSTRUMENT", rates.axes[0].keys[:4], rates.cells[("IMF",)]],
+        [
+            "input3_input_3_macro_gross_domestic_product_us_dollars",
+            "TIME_PERIOD",
+            gdp.axes[0].keys[:4],
+            gdp.cells[(2024,)],
+        ],
+    ],
+    columns=["Field", "Axis", "First keys", "Cell for IMF / 2024"],
+).style.hide(axis="index")
+```
+
+Each bundle describes only the fields its function reads. To find out whether an assumption affects a given output, check whether its name is in that bundle's `describe()`.
+
 ## Scalars you change first
 
 These are the Input 1 / Input 2 / Input 6 switches that usually move first in a new vintage:

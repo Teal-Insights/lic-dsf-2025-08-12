@@ -1,5 +1,5 @@
 Parity report: exported LIC-DSF 2025-08-12 standalone library vs FormulaEvaluator
-Generated: 2026-09-26T00:12:13+00:00
+Generated: 2026-09-29T16:23:13+00:00
 Workbook:  C:\Users\chris\Software\lic-dsf-extraction-pipeline\data\workbook.xlsm
 Package:   C:\Users\chris\Software\lic-dsf-extraction-pipeline\dist\lic_dsf_2025_08_12 (imported as dist.lic_dsf_2025_08_12.api)
 Oracles:   excel-grapher graph + FormulaEvaluator [golden] vs exported package compute_* [mvp]
@@ -10,7 +10,7 @@ Workbook SHA-256: 3a0a0b80c7cbc95ac953f25ecae0b437129d669ceb8aeefb54ab86dc8727ea
 ENVIRONMENT
   Python:  3.13.5
   OS:      Windows-11-10.0.26200-SP0
-  excel-grapher: 23.9.1
+  excel-grapher: 23.11.1
 
 Total comparisons: 11030
 Passed:            11030

@@ -505,7 +505,7 @@ wheels = [
 
 [[package]]
 name = "excel-grapher"
-version = "23.9.1"
+version = "23.11.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "fastpyxl" },
@@ -513,9 +513,9 @@ dependencies = [
     { name = "pyyaml" },
     { name = "ruamel-yaml" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/2e/a2/dd692d1b4942d67c97cda55689ecc6135df38f08a603d216aed1350f2ae0/excel_grapher-23.9.1.tar.gz", hash = "sha256:e9038c09e870079e500b4bc7b6fdac9158ac0c44352a26585c08292a05acd3c7", size = 6359374, upload-time = "2026-09-25T18:29:51.321Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ec/59/65b3315f52191aafb10630f3c23dd1016aae1ac60842519cb8a4f87cd3e7/excel_grapher-23.11.1.tar.gz", hash = "sha256:20c0564b5bd2ee46bcb8e022accffde771529d0ce6919e797a5f303cc16510cd", size = 6381531, upload-time = "2026-09-29T13:12:24.996Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/fb/ca/f8c4567a3432fc06835fe72ad6593353b6be067e3e9632649485124d2727/excel_grapher-23.9.1-py3-none-any.whl", hash = "sha256:c15d4e9fd9db6c3b0ec363672c73348fc0ac5cde263baf68e0a4d1f093263568", size = 658288, upload-time = "2026-09-25T18:29:49.415Z" },
+    { url = "https://files.pythonhosted.org/packages/9a/63/a7b7333410fd200602faa2c2d583d33f08adcae00c47740bc29d8e51a38f/excel_grapher-23.11.1-py3-none-any.whl", hash = "sha256:869c05611b23d51093109c8b4501a0cfac46b34b739a18eff3ccb4e9b0b3b902", size = 670067, upload-time = "2026-09-29T13:12:22.945Z" },
 ]
 
 [[package]]
@@ -1222,7 +1222,7 @@ dev = [
     { name = "polars" },
     { name = "quarto", specifier = ">=0.1.0" },
 ]
-validation = [{ name = "excel-grapher", specifier = ">=23.9.1" }]
+validation = [{ name = "excel-grapher", specifier = ">=23.11.0" }]
 
 [[package]]
 name = "markupsafe"

@@ -82,7 +82,7 @@ uv add lic-dsf-2025-08-12
 from lic_dsf_2025_08_12 import api, data
 ```
 
-The shipped defaults reproduce the template snapshot (country **Ghana**, first projection year **2024**). Each `compute_*` function takes one typed input bundle. `from_defaults()` fills that bundle from the snapshot; override only the fields you would have edited in yellow.
+The shipped defaults reproduce the template snapshot (country **Ghana**, first projection year **2024**). Each `compute_*` function takes one typed input bundle. `from_defaults()` fills that bundle from the snapshot; override only the fields you would have edited in yellow. `describe()` on any bundle lists its fields, allowed values, defaults, and source cells.
 
 A one-field bundle is enough to ask whether the natural-disaster tailored test applies:
 

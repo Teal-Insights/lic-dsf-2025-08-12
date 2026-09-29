@@ -1,11 +1,14 @@
 # Series bindings
 
-Author `inputs.bindings.yaml`, `outputs.bindings.yaml`, `internals.bindings.yaml`,
-and (when needed) `constants.bindings.yaml` here.
+Author series binding shards here. Every `*.bindings.yaml` file in this
+directory merges into one manifest: `inputs.bindings.yaml`,
+`outputs.bindings.yaml`, and `constants.bindings.yaml` plus topic shards such
+as `internals-*.bindings.yaml` (internal formula series),
+`constants-*.bindings.yaml`, `dsa-*.bindings.yaml`, and `pv-*.bindings.yaml`.
 
-Bootstrap extract (`--extract-graph` / `--stop-after-stage extract`) is graph-first: empty `series: []` placeholder shards are fine so you can review `artifacts/dependency-graph/` before bindings exist. excel-grapher 5.1.4+ also loads and merges those placeholders (including divergent `concept_scheme` blocks). Author real series before export so the public API and leaf coverage are complete.
+Bootstrap extract (`--extract-graph` / `--stop-after-stage extract`) is graph-first: empty `series: []` placeholder shards are fine so the graph builds before bindings exist. excel-grapher 5.1.4+ also loads and merges those placeholders (including divergent `concept_scheme` blocks). Author real series before export so the public API and leaf coverage are complete.
 
-Use schema version `1.19.0` and the vendored skill in [.agents/skills/author-bindings](../.agents/skills/author-bindings/SKILL.md). Prefer authoring from an extracted graph rather than guessing sheet geometry up front.
+Use schema version `1.21.0` and the vendored skill in [.agents/skills/author-bindings](../.agents/skills/author-bindings/SKILL.md). Prefer authoring from an extracted graph rather than guessing sheet geometry up front.
 
 ## Constant bindings (reader-only leaves)
 
@@ -15,12 +18,12 @@ keyword-only `compute_*` arguments or published outputs. Without a constant
 binding, those leaves stay as unnamed cell reads in generated formula bodies even
 when the domain model already names them.
 
-Put constant series in `constants.bindings.yaml` (or any mergeable
-`*.bindings.yaml` shard). Same YAML shape as public bindings; declare
+Put constant series in `constants.bindings.yaml` or a `constants-*.bindings.yaml`
+shard (any mergeable `*.bindings.yaml` shard works). Same YAML shape as public bindings; declare
 `constant: {}` instead of `input` / `output` / `internal`:
 
 ```yaml
-schema_version: 1.19.0
+schema_version: 1.21.0
 series:
   - id: shock_year_anchor
     sheet: Engine
@@ -44,18 +47,21 @@ series:
 | Mutability | Values still live in `data.py` and as Inputs defaults; there is no public write surface. |
 | Validate | `validate_series_bindings(...)`, then `derive_constant_series(...)`. Include `constant` when running `scripts.binding_resolution_audit`. |
 
-**Leaf classification vs constant bindings.** `CONSTRAINTS` with a single-value
-`Literal[...]` classifies a leaf as `constant` for codegen `CONSTANTS` vs
-`DEFAULT_INPUTS`. Fail closed: every `constant` leaf must appear in
-`constants.bindings.yaml`, and every mutable `input` leaf in
-`inputs.bindings.yaml`. The configure tests assert an empty unbound list even
-when a workbook has no constant leaves (do not skip-if-empty). A `constant: {}`
-series also emits a semantic `read_*` so formulas do not keep bare `xl_cell`.
+**Leaf classification vs constant bindings.** Binding direction classifies
+every graph leaf: a leaf inside an `input: {}` series is an `input`, and a leaf
+inside a `constant: {}` series is a `constant`. Series `domain` / `relations`
+type the inputs and drive dynamic-ref resolution; they do not decide
+classification. There is no Python `CONSTRAINTS` table. Fail closed: a leaf in
+neither kind of series raises `missing bindings for leaf cells`
+(`classify_leaves_from_series_cells` in `src/binding_domains.py`). A
+`constant: {}` series also emits a semantic `read_*` so formulas do not keep
+bare `xl_cell`.
 
 **Structural blanks are not constants.** Padding inside `INDEX`/`MATCH` arrays,
 far-right `NPV`/`SUM` overflow, unused ladder copies, and separator rows belong
-in `workbook_config.BLANK_RANGES`, not `CONSTRAINTS` + `constants.bindings.yaml`.
-`Literal[None]` classifies a still-present leaf; it does not omit the node.
+in `workbook_config.BLANK_RANGES`, not in a `constant: {}` series. A singleton
+`domain` enum freezes a still-present leaf for dynamic-ref resolution; it does
+not omit the node.
 
 **Do not confuse** the `constant` **direction** with `bind.kind: constant` (a
 fixed dimension / attribute scalar in `structure`). The direction binds a
