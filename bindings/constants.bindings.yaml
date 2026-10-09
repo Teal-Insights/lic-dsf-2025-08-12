@@ -1,4 +1,4 @@
-schema_version: 1.21.0
+schema_version: 1.22.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -200,43 +200,6 @@ series:
     TABLE: lookup.countries
     INDICATOR: IMF country code (reverse index)
   notes: Reverse-index copy of the IMF country code, keyed by ISO3 in column H.
-- id: trigger_country_flags
-  sheet: Trigger
-  data_range: Trigger!E5:F58
-  layout: matrix
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: int
-      bind:
-        kind: data_cell
-        read: int
-    dimensions:
-    - id: REF_AREA
-      concept: REF_AREA
-      role: key
-      scope: cell
-      bind:
-        kind: row_label
-        label_column: B
-        read: string
-        normalize: strip
-    - id: INDICATOR
-      concept: INDICATOR
-      role: key
-      scope: cell
-      bind:
-        kind: column_header
-        header_row: 4
-        read: string
-        normalize: strip
-  key:
-  - REF_AREA
-  - INDICATOR
-  series_context:
-    TABLE: trigger.country_flags
-  notes: Trigger incgr and licdsf flags by ISO3.
 - id: blend_ida_new_fixed_interest_rate
   sheet: BLEND floating calculations WB
   data_range: '''BLEND floating calculations WB''!D5'
@@ -555,62 +518,6 @@ series:
     TABLE: ext_debt.st_locally_issued
     INDICATOR: Interest
   notes: Year-1 interest on locally-issued short-term external debt.
-- id: lookup_country_table_headers
-  sheet: lookup
-  data_range: "lookup!A3:E3"
-  layout: series
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions:
-    - id: VARIANT
-      concept: VARIANT
-      role: key
-      scope: cell
-      bind:
-        kind: column_header
-        header_row: 3
-        read: string
-        normalize: strip
-  key:
-  - VARIANT
-  series_context:
-    TABLE: lookup.countries
-    INDICATOR: column_header
-  notes: Column headers for the lookup country table.
-- id: lookup_iso_alpha3
-  sheet: lookup
-  data_range: "lookup!A4:A73"
-  layout: series
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions:
-    - id: REF_AREA
-      concept: REF_AREA
-      role: key
-      scope: cell
-      bind:
-        kind: row_label
-        label_column: A
-        read: string
-        normalize: strip
-  key:
-  - REF_AREA
-  series_context:
-    TABLE: lookup.countries
-    INDICATOR: ISO3
-  notes: "ISO3 country codes on lookup, keyed by themselves."
 - id: lookup_country_name
   sheet: lookup
   data_range: "lookup!C4:C73"
@@ -639,62 +546,6 @@ series:
     TABLE: lookup.countries
     INDICATOR: Country name
   notes: LIC country names keyed by ISO3 on lookup.
-- id: lookup_hipc_status
-  sheet: lookup
-  data_range: "lookup!D4:D73"
-  layout: series
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions:
-    - id: REF_AREA
-      concept: REF_AREA
-      role: key
-      scope: cell
-      bind:
-        kind: row_label
-        label_column: A
-        read: string
-        normalize: strip
-  key:
-  - REF_AREA
-  series_context:
-    TABLE: lookup.countries
-    INDICATOR: HIPC status
-  notes: HIPC completion / non-HIPC status keyed by ISO3.
-- id: lookup_mdri
-  sheet: lookup
-  data_range: "lookup!E4:E73"
-  layout: series
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions:
-    - id: REF_AREA
-      concept: REF_AREA
-      role: key
-      scope: cell
-      bind:
-        kind: row_label
-        label_column: A
-        read: string
-        normalize: strip
-  key:
-  - REF_AREA
-  series_context:
-    TABLE: lookup.countries
-    INDICATOR: MDRI
-  notes: MDRI eligibility flag keyed by ISO3.
 - id: lookup_ida_terms_new
   sheet: lookup
   data_range: "lookup!AF4"
@@ -3464,34 +3315,6 @@ series:
     TABLE: imported.ppp
     INDICATOR: Country name
   notes: Country names in the 2017 PPP reference table.
-- id: imported_ppp_year
-  sheet: Imported data
-  data_range: "'Imported data'!D216:D270"
-  layout: series
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: int
-      bind:
-        kind: data_cell
-        read: int
-    dimensions:
-    - id: REF_AREA
-      concept: REF_AREA
-      role: key
-      scope: cell
-      bind:
-        kind: row_label
-        label_column: C
-        read: string
-        normalize: strip
-  key:
-  - REF_AREA
-  series_context:
-    TABLE: imported.ppp
-    INDICATOR: year
-  notes: Reference year (2017) in the PPP table.
 - id: imported_ppp_incgr
   sheet: Imported data
   data_range: "'Imported data'!E216:E270"
@@ -5325,63 +5148,6 @@ series:
     INDICATOR: Size of real GDP growth shock
     VARIANT: caption
   notes: Caption for the real GDP growth shock size on the non-market combo sheet.
-- id: input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations
-  sheet: "Input 6(optional)-Standard Test"
-  data_range: "'Input 6(optional)-Standard Test'!C17"
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: float
-      bind:
-        kind: data_cell
-        read: float
-    dimensions: []
-  key: []
-  series_context:
-    TABLE: "input_6.standard_test"
-    SCENARIO: "B1. Real GDP growth"
-    INDICATOR: "Size of real GDP growth shock, # of standard deviations"
-  notes: "Default Size of real GDP growth shock, # of standard deviations for B1. Real GDP growth."
-- id: input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations
-  sheet: "Input 6(optional)-Standard Test"
-  data_range: "'Input 6(optional)-Standard Test'!C21"
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: float
-      bind:
-        kind: data_cell
-        read: float
-    dimensions: []
-  key: []
-  series_context:
-    TABLE: "input_6.standard_test"
-    SCENARIO: "B2. Primary balance"
-    INDICATOR: "Size of PB/GDP shock, # of standard deviations"
-  notes: "Default Size of PB/GDP shock, # of standard deviations for B2. Primary balance."
-- id: input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations
-  sheet: "Input 6(optional)-Standard Test"
-  data_range: "'Input 6(optional)-Standard Test'!C25"
-  layout: scalar
-  constant: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: float
-      bind:
-        kind: data_cell
-        read: float
-    dimensions: []
-  key: []
-  series_context:
-    TABLE: "input_6.standard_test"
-    SCENARIO: "B3. Exports"
-    INDICATOR: "Size of exports growth shock, # of standard deviations"
-  notes: "Default Size of exports growth shock, # of standard deviations for B3. Exports."
 - id: input6_standard_b4_other_non_debt_creating_flows_other_flows_current_transfers_shock_of_standard_deviations
   sheet: "Input 6(optional)-Standard Test"
   data_range: "'Input 6(optional)-Standard Test'!C29"

@@ -86,10 +86,11 @@
     <label><input type="checkbox" data-dir="input" checked /> Inputs</label>
     <label><input type="checkbox" data-dir="internal" checked /> Internals</label>
     <label><input type="checkbox" data-dir="output" checked /> Outputs</label>
-    <label>Layout
-      <select id="layoutMode">
-        <option value="rank" selected>Rank</option>
-        <option value="clustered">Clustered</option>
+    <label>Vertical pull
+      <select id="rankPull">
+        <option value="none">None</option>
+        <option value="between">Between clusters</option>
+        <option value="everywhere">Everywhere</option>
       </select>
     </label>
     <label>Color by
@@ -109,6 +110,7 @@
     </label>
     <input id="search" type="search" placeholder="Highlight series…" />
     <button id="reset" type="button">Reset</button>
+    <button id="relayout" type="button" disabled title="Click a node first">Relayout cluster</button>
     <span id="banner"></span>
     <span id="stats"></span>
   </div>
@@ -133,7 +135,7 @@
         <li><span class="box series"></span><span>fill is a per-series hue (hash of <code>series_id</code>), not direction</span></li>
         <li><span class="box"></span><span>unbound remainder</span></li>
       </ul>
-      <p class="note">Direction uses the Constants / Inputs / Internals / Outputs checkboxes. Rank layout is schedule residual. Clustered is a canvas-side clustered force (one hull per Cluster-by group); large dots views stay on rank. Click a node or edge to inspect sampled cells and canonical instance edges.</p>
+      <p class="note">Direction uses the Constants / Inputs / Internals / Outputs checkboxes. Layout is a clustered force layout (clusters are series, inputs pulled towards the top). Small graphs relayout when Cluster by or Vertical pull changes; larger graphs relayout the selected cluster with Relayout cluster. Large graphs open on a cluster overview: click a cluster or zoom in to see its statements. Click a node or edge to inspect sampled cells and canonical instance edges.</p>
     </details>
     <aside id="inspect" aria-label="Statement drilldown">
       <header>
@@ -149,30 +151,383 @@
     window.__VIZ_DATA_URL__ = "index.viz.json.gz";
   </script>
   <script>
-    // Canvas-side clustered force for statement graphs.
-// Graphviz compound clusters are not used: the standalone HTML must relayout
-// when Cluster by changes, and the system Graphviz binary is optional.
+    window.VIZ_LAYOUT_CONFIG = {"tier_small_max":2000,"tier_medium_max":20000,"camera_max_width":2800,"medium_max_drawn_edges":500000,"large_max_drawn_edges":200000,"link_distance":40.0,"link_strength":0.06,"charge":1920.0,"cluster_attract":0.02,"center_strength":0.01,"inter_cluster_link_scale":0.1,"rank_pull":0.05,"rank_pull_within":0.02,"align_clusters":true,"ticks":80,"max_step":40.0,"disc_spacing":20.0};
+// Shared in-browser relayout for the cell and statement viewers.
+// Mirrors excel_grapher/grapher/viz_layout.py (levels 1 and 2, exact
+// repulsion). Settings come from viz_layout_js_config(), injected by the
+// Python writer, so both viewers and the precomputed layout stay in step.
+// Browser relayout is limited to small graphs or one cluster, so there is no
+// grid repulsion here.
 (function (root, factory) {
   var api = factory();
-  if (typeof module === "object" && module.exports) {
-    module.exports = api;
-  } else {
-    root.SemanticVizLayout = api;
+  if (typeof module === "object" && module.exports) module.exports = api;
+  if (root) root.VizForce = api;
+})(typeof globalThis !== "undefined" ? globalThis : this, function () {
+  "use strict";
+
+  var GOLDEN_ANGLE = Math.PI * (3 - Math.sqrt(5));
+
+  function tier(size, cfg) {
+    if (size <= cfg.tier_small_max) return "small";
+    if (size <= cfg.tier_medium_max) return "medium";
+    return "large";
   }
+
+  function spiral(count, spacing) {
+    var xs = new Float64Array(count);
+    var ys = new Float64Array(count);
+    for (var k = 0; k < count; k++) {
+      var r = spacing * Math.sqrt(k + 0.5);
+      xs[k] = r * Math.cos(k * GOLDEN_ANGLE);
+      ys[k] = r * Math.sin(k * GOLDEN_ANGLE);
+    }
+    return { x: xs, y: ys };
+  }
+
+  // One force run over all pairs. `o` fields: x, y, edges ([u, v, restLen, k]),
+  // charge weights w, anchors ax/ay + anchorK, centerK, targetY + pullK, ticks.
+  function simulate(o, cfg) {
+    var x = o.x;
+    var y = o.y;
+    var n = x.length;
+    var ticks = o.ticks || cfg.ticks;
+    var fx = new Float64Array(n);
+    var fy = new Float64Array(n);
+    for (var t = 0; t < ticks; t++) {
+      var alpha = Math.pow(1 - t / ticks, 0.5);
+      fx.fill(0);
+      fy.fill(0);
+      var i, j, dx, dy;
+      for (var e = 0; e < o.edges.length; e++) {
+        var ed = o.edges[e];
+        dx = x[ed[1]] - x[ed[0]];
+        dy = y[ed[1]] - y[ed[0]];
+        var dist = Math.max(Math.sqrt(dx * dx + dy * dy), 1e-9);
+        var mag = (ed[3] * (dist - ed[2])) / dist;
+        fx[ed[0]] += dx * mag;
+        fy[ed[0]] += dy * mag;
+        fx[ed[1]] -= dx * mag;
+        fy[ed[1]] -= dy * mag;
+      }
+      for (i = 0; i < n; i++) {
+        for (j = i + 1; j < n; j++) {
+          dx = x[j] - x[i];
+          dy = y[j] - y[i];
+          var d2 = dx * dx + dy * dy + 0.01;
+          var rep = cfg.charge / (d2 * Math.sqrt(d2));
+          if (o.w) rep *= o.w[i] * o.w[j];
+          fx[i] -= rep * dx;
+          fy[i] -= rep * dy;
+          fx[j] += rep * dx;
+          fy[j] += rep * dy;
+        }
+      }
+      var mx = 0;
+      var my = 0;
+      if (o.centerK) {
+        for (i = 0; i < n; i++) {
+          mx += x[i];
+          my += y[i];
+        }
+        mx /= n;
+        my /= n;
+      }
+      for (i = 0; i < n; i++) {
+        if (o.ax && o.anchorK) {
+          fx[i] += o.anchorK * (o.ax[i] - x[i]);
+          fy[i] += o.anchorK * (o.ay[i] - y[i]);
+        }
+        if (o.centerK) {
+          fx[i] -= o.centerK * (x[i] - mx);
+          fy[i] -= o.centerK * (y[i] - my);
+        }
+        if (o.targetY && o.pullK) fy[i] += o.pullK * (o.targetY[i] - y[i]);
+        var sx = fx[i] * alpha;
+        var sy = fy[i] * alpha;
+        var norm = Math.sqrt(sx * sx + sy * sy);
+        if (norm > cfg.max_step) {
+          sx *= cfg.max_step / norm;
+          sy *= cfg.max_step / norm;
+        }
+        x[i] += sx;
+        y[i] += sy;
+      }
+    }
+  }
+
+  function separateDiscs(cx, cy, radii, gap) {
+    var k = cx.length;
+    for (var iter = 0; iter < 40; iter++) {
+      var moved = false;
+      for (var a = 0; a < k; a++) {
+        for (var b = a + 1; b < k; b++) {
+          var dx = cx[b] - cx[a];
+          var dy = cy[b] - cy[a];
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          var overlap = radii[a] + radii[b] + gap - dist;
+          if (overlap <= 0) continue;
+          moved = true;
+          var px = dist < 1e-9 ? 0.5 * gap : (dx * 0.5 * overlap) / dist;
+          var py = dist < 1e-9 ? 0 : (dy * 0.5 * overlap) / dist;
+          cx[a] -= px;
+          cy[a] -= py;
+          cx[b] += px;
+          cy[b] += py;
+        }
+      }
+      if (!moved) return;
+    }
+  }
+
+  // Move cluster discs onto x = 0, separated along y only (keeps y order and mean).
+  function stackDiscs(cx, cy, radii, gap) {
+    var k = cx.length;
+    var order = [];
+    var mean = 0;
+    for (var c = 0; c < k; c++) {
+      order.push(c);
+      mean += cy[c] / k;
+    }
+    order.sort(function (a, b) {
+      return cy[a] - cy[b] || a - b;
+    });
+    var ys = order.map(function (c) {
+      return cy[c];
+    });
+    for (var i = 1; i < k; i++) {
+      var prev = order[i - 1];
+      ys[i] = Math.max(ys[i], ys[i - 1] + radii[prev] + radii[order[i]] + gap);
+    }
+    var shift = 0;
+    for (i = 0; i < k; i++) shift += ys[i] / k;
+    for (i = 0; i < k; i++) {
+      cy[order[i]] = ys[i] - shift + mean;
+      cx[order[i]] = 0;
+    }
+  }
+
+  // Multilevel clustered force. `o`: n, edges ([u, v] pairs), clusters (one
+  // label per node), depths (input depth per node), rankPull
+  // ("none" | "between" | "everywhere"), alignClusters (defaults to
+  // cfg.align_clusters with a pull; puts every cluster centroid on x = 0).
+  // Returns {x, y} centered on 0.
+  function clusteredLayout(o, cfg) {
+    var n = o.n;
+    var x = new Float64Array(n);
+    var y = new Float64Array(n);
+    if (!n) return { x: x, y: y };
+    var pull = o.rankPull || "none";
+    var depths = pull === "none" ? null : o.depths;
+    var align =
+      pull !== "none" && (o.alignClusters == null ? !!cfg.align_clusters : !!o.alignClusters);
+    var ids = {};
+    var cid = new Int32Array(n);
+    var k = 0;
+    for (var i = 0; i < n; i++) {
+      var key = String(o.clusters[i]);
+      if (!(key in ids)) ids[key] = k++;
+      cid[i] = ids[key];
+    }
+    var sizes = new Float64Array(k);
+    for (i = 0; i < n; i++) sizes[cid[i]] += 1;
+    var radii = new Float64Array(k);
+    var meanR = 0;
+    for (var c = 0; c < k; c++) {
+      radii[c] = cfg.disc_spacing * Math.sqrt(sizes[c]);
+      meanR += radii[c] / k;
+    }
+    var edges = [];
+    for (var e = 0; e < o.edges.length; e++) {
+      if (o.edges[e][0] !== o.edges[e][1]) edges.push(o.edges[e]);
+    }
+
+    // Level 1: one node per cluster.
+    var centers = spiral(k, 2 * meanR + cfg.link_distance);
+    if (k > 1) {
+      var seen = {};
+      var cedges = [];
+      edges.forEach(function (ed) {
+        var a = cid[ed[0]];
+        var b = cid[ed[1]];
+        if (a === b) return;
+        var lo = Math.min(a, b);
+        var hi = Math.max(a, b);
+        var pk = lo + ":" + hi;
+        if (seen[pk]) return;
+        seen[pk] = true;
+        cedges.push([lo, hi, radii[lo] + radii[hi] + cfg.link_distance, cfg.link_strength]);
+      });
+      var w = new Float64Array(k);
+      for (c = 0; c < k; c++) w[c] = Math.sqrt(sizes[c]);
+      var target = null;
+      if (depths) {
+        var md = new Float64Array(k);
+        for (i = 0; i < n; i++) md[cid[i]] += depths[i] / sizes[cid[i]];
+        var lo = Infinity;
+        var hi = -Infinity;
+        var mean = 0;
+        var area = 0;
+        for (c = 0; c < k; c++) {
+          lo = Math.min(lo, md[c]);
+          hi = Math.max(hi, md[c]);
+          mean += md[c] / k;
+          area += radii[c] * radii[c];
+        }
+        if (hi > lo) {
+          var extent = 3 * Math.sqrt(area);
+          target = new Float64Array(k);
+          for (c = 0; c < k; c++) target[c] = ((md[c] - mean) / (hi - lo)) * extent;
+        }
+      }
+      simulate(
+        {
+          x: centers.x,
+          y: centers.y,
+          edges: cedges,
+          w: w,
+          centerK: cfg.center_strength,
+          targetY: target,
+          pullK: cfg.rank_pull,
+        },
+        cfg
+      );
+      if (align) stackDiscs(centers.x, centers.y, radii, cfg.link_distance);
+      else separateDiscs(centers.x, centers.y, radii, cfg.link_distance);
+    }
+
+    // Level 2: every node, anchored to its cluster.
+    var maxSize = 0;
+    for (c = 0; c < k; c++) maxSize = Math.max(maxSize, sizes[c]);
+    var disc = spiral(maxSize, cfg.disc_spacing);
+    var slot = new Int32Array(k);
+    var ax = new Float64Array(n);
+    var ay = new Float64Array(n);
+    for (i = 0; i < n; i++) {
+      var s = slot[cid[i]]++;
+      ax[i] = centers.x[cid[i]];
+      ay[i] = centers.y[cid[i]];
+      var jitter = (((i * 2654435761) >>> 0) % 1000) / 1000 - 0.5;
+      x[i] = ax[i] + disc.x[s] + jitter * 1e-3 * cfg.link_distance;
+      y[i] = ay[i] + disc.y[s] - jitter * 1e-3 * cfg.link_distance;
+    }
+    var nodeEdges = edges.map(function (ed) {
+      var same = cid[ed[0]] === cid[ed[1]];
+      var kk = same ? cfg.link_strength : cfg.link_strength * cfg.inter_cluster_link_scale;
+      return [ed[0], ed[1], cfg.link_distance, kk];
+    });
+    var targetY = null;
+    if (depths && pull === "everywhere") {
+      var sum = new Float64Array(k);
+      var dlo = new Float64Array(k).fill(Infinity);
+      var dhi = new Float64Array(k).fill(-Infinity);
+      for (i = 0; i < n; i++) {
+        sum[cid[i]] += depths[i];
+        dlo[cid[i]] = Math.min(dlo[cid[i]], depths[i]);
+        dhi[cid[i]] = Math.max(dhi[cid[i]], depths[i]);
+      }
+      targetY = new Float64Array(n);
+      for (i = 0; i < n; i++) {
+        c = cid[i];
+        var span = Math.max(dhi[c] - dlo[c], 1);
+        targetY[i] = ay[i] + ((depths[i] - sum[c] / sizes[c]) / span) * 2 * radii[c];
+      }
+    }
+    simulate(
+      {
+        x: x,
+        y: y,
+        edges: nodeEdges,
+        ax: ax,
+        ay: ay,
+        anchorK: cfg.cluster_attract,
+        targetY: targetY,
+        pullK: cfg.rank_pull_within,
+      },
+      cfg
+    );
+    if (align) {
+      // Inter-cluster links drift clusters off the axis; recentre each one.
+      var sx = new Float64Array(k);
+      for (i = 0; i < n; i++) sx[cid[i]] += x[i] / sizes[cid[i]];
+      for (i = 0; i < n; i++) x[i] -= sx[cid[i]];
+    }
+    var cxm = 0;
+    var cym = 0;
+    for (i = 0; i < n; i++) {
+      cxm += x[i] / n;
+      cym += y[i] / n;
+    }
+    for (i = 0; i < n; i++) {
+      x[i] -= cxm;
+      y[i] -= cym;
+    }
+    return { x: x, y: y };
+  }
+
+  // Relayout the nodes in `ids` in place, as one cluster around their current
+  // centroid. `o`: ids, edges ([u, v] over global ids), x, y (global arrays,
+  // updated in place), depths, rankPull ("none" keeps no pull).
+  function relayoutGroup(o, cfg) {
+    var ids = o.ids;
+    var local = {};
+    ids.forEach(function (id, i) {
+      local[id] = i;
+    });
+    var edges = [];
+    o.edges.forEach(function (ed) {
+      var a = local[ed[0]];
+      var b = local[ed[1]];
+      if (a === undefined || b === undefined) return;
+      edges.push([a, b]);
+    });
+    var pull = o.rankPull && o.rankPull !== "none" ? "everywhere" : "none";
+    var out = clusteredLayout(
+      {
+        n: ids.length,
+        edges: edges,
+        clusters: ids.map(function () {
+          return 0;
+        }),
+        depths: o.depths
+          ? ids.map(function (id) {
+              return o.depths[id];
+            })
+          : null,
+        rankPull: o.depths ? pull : "none",
+      },
+      cfg
+    );
+    var cx = 0;
+    var cy = 0;
+    ids.forEach(function (id) {
+      cx += o.x[id] / ids.length;
+      cy += o.y[id] / ids.length;
+    });
+    ids.forEach(function (id, i) {
+      o.x[id] = cx + out.x[i];
+      o.y[id] = cy + out.y[i];
+    });
+  }
+
+  return {
+    tier: tier,
+    clusteredLayout: clusteredLayout,
+    relayoutGroup: relayoutGroup,
+  };
+});
+
+  </script>
+  <script>
+    // Statement-viewer helpers: cluster keys, hulls, and box sizing / overlap
+// removal. Force layout itself is shared with the cell viewer (viz_force.js).
+(function (root, factory) {
+  var api = factory();
+  if (typeof module === "object" && module.exports) module.exports = api;
+  if (root) root.SemanticVizLayout = api;
 })(typeof globalThis !== "undefined" ? globalThis : this, function () {
   "use strict";
 
   var MIXED_SHEET = "mixed";
-  var TICKS = 55;
-  var CLUSTER_ATTRACT = 0.16;
-  var PLAIN_CENTER = 0.03;
-  var LINK_STRENGTH = 0.06;
-  var CHARGE = 160;
-  var PAD = 48;
-
-  function clusteredLayoutAllowed(primitiveCount, boxMaxPrimitives) {
-    return primitiveCount <= boxMaxPrimitives;
-  }
 
   function clusterKey(n, mode) {
     if (mode === "role") {
@@ -183,23 +538,6 @@
     return "";
   }
 
-  function hashKey(key) {
-    var h = 0;
-    var s = String(key);
-    for (var i = 0; i < s.length; i++) {
-      h = (Math.imul(h, 31) + s.charCodeAt(i)) | 0;
-    }
-    return h;
-  }
-
-  function visibleNodes(nodes) {
-    var out = [];
-    for (var i = 0; i < nodes.length; i++) {
-      if (!nodes[i]._hidden) out.push(nodes[i]);
-    }
-    return out;
-  }
-
   function sizeNodes(nodes, compact) {
     nodes.forEach(function (n) {
       n._w = compact ? 6 : Math.max(72, String(n._label || n.id || "").length * 7 + 16);
@@ -207,63 +545,48 @@
     });
   }
 
-  function groupMembers(nodes, splitByRank) {
+  function clusterHulls(nodes, options) {
+    var pad = options && options.pad != null ? options.pad : 10;
     var groups = {};
-    visibleNodes(nodes).forEach(function (n) {
-      var key = n._cluster;
-      if (!key) return;
-      var slot = splitByRank ? key + "\0" + (n.rank || 0) : key;
-      var g = groups[slot] || (groups[slot] = { key: key, rank: n.rank || 0, members: [] });
-      g.members.push(n);
+    nodes.forEach(function (n) {
+      if (n._hidden || !n._cluster) return;
+      (groups[n._cluster] || (groups[n._cluster] = [])).push(n);
     });
     return Object.keys(groups)
       .sort()
-      .map(function (slot) {
-        return groups[slot];
+      .map(function (key) {
+        var members = groups[key];
+        var x0 = Infinity;
+        var y0 = Infinity;
+        var x1 = -Infinity;
+        var y1 = -Infinity;
+        members.forEach(function (n) {
+          var hw = (n._w || 6) / 2;
+          var hh = (n._h || 6) / 2;
+          x0 = Math.min(x0, n._x - hw);
+          y0 = Math.min(y0, n._y - hh);
+          x1 = Math.max(x1, n._x + hw);
+          y1 = Math.max(y1, n._y + hh);
+        });
+        return {
+          key: key,
+          members: members,
+          x0: x0 - pad,
+          y0: y0 - pad,
+          x1: x1 + pad,
+          y1: y1 + pad,
+        };
       });
   }
 
-  function clusterHulls(nodes, options) {
-    var splitByRank = !!(options && options.splitByRank);
-    var pad = options && options.pad != null ? options.pad : 10;
-    return groupMembers(nodes, splitByRank).map(function (g) {
-      var x0 = Infinity;
-      var y0 = Infinity;
-      var x1 = -Infinity;
-      var y1 = -Infinity;
-      g.members.forEach(function (n) {
-        var hw = (n._w || 6) / 2;
-        var hh = (n._h || 6) / 2;
-        x0 = Math.min(x0, n._x - hw);
-        y0 = Math.min(y0, n._y - hh);
-        x1 = Math.max(x1, n._x + hw);
-        y1 = Math.max(y1, n._y + hh);
-      });
-      return {
-        key: g.key,
-        rank: splitByRank ? g.rank : null,
-        members: g.members,
-        x0: x0 - pad,
-        y0: y0 - pad,
-        x1: x1 + pad,
-        y1: y1 + pad,
-      };
+  // Push overlapping boxes apart along the axis of least overlap.
+  function separateBoxes(nodes) {
+    var vis = nodes.filter(function (n) {
+      return !n._hidden;
     });
-  }
-
-  function uniqueKeys(nodes) {
-    var keys = [];
-    visibleNodes(nodes).forEach(function (n) {
-      var key = n._cluster || "";
-      if (keys.indexOf(key) < 0) keys.push(key);
-    });
-    keys.sort();
-    return keys;
-  }
-
-  function separateBoxes(vis) {
     var nVis = vis.length;
     for (var iter = 0; iter < 10; iter++) {
+      var moved = false;
       for (var i = 0; i < nVis; i++) {
         var a = vis[i];
         for (var j = i + 1; j < nVis; j++) {
@@ -273,6 +596,7 @@
           var ox = (a._w + b._w) / 2 + 10 - Math.abs(dx);
           var oy = (a._h + b._h) / 2 + 8 - Math.abs(dy);
           if (ox <= 0 || oy <= 0) continue;
+          moved = true;
           if (ox < oy) {
             var sx = dx < 0 ? -0.5 : 0.5;
             a._x -= ox * sx;
@@ -284,151 +608,16 @@
           }
         }
       }
+      if (!moved) return;
     }
-  }
-
-  function layoutClustered(nodes, bundles, compact) {
-    sizeNodes(nodes, compact);
-    var vis = visibleNodes(nodes);
-    if (!vis.length) return { width: 920, height: 640 };
-
-    var keys = uniqueKeys(vis);
-    var grouped = keys.length > 1 || (keys.length === 1 && keys[0] !== "");
-    var counts = {};
-    vis.forEach(function (n) {
-      var k = n._cluster || "";
-      counts[k] = (counts[k] || 0) + 1;
-    });
-    var maxN = 1;
-    keys.forEach(function (k) {
-      if (counts[k] > maxN) maxN = counts[k];
-    });
-    var cell = Math.max(
-      compact ? 140 : 240,
-      (compact ? 48 : 86) * Math.sqrt(maxN) + (compact ? 40 : 80)
-    );
-    var cols = Math.max(1, Math.ceil(Math.sqrt(keys.length)));
-    var centroids = {};
-    keys.forEach(function (k, i) {
-      var col = i % cols;
-      var row = Math.floor(i / cols);
-      var jitter = hashKey(k);
-      centroids[k] = {
-        x: PAD + (col + 0.5) * cell + ((jitter % 17) - 8) * 6,
-        y: PAD + (row + 0.5) * cell + (((jitter >> 4) % 13) - 6) * 6,
-      };
-    });
-
-    vis.forEach(function (n) {
-      var k = n._cluster || "";
-      var c = centroids[k];
-      var members = counts[k];
-      var local = 0;
-      for (var j = 0; j < vis.length; j++) {
-        if (vis[j] === n) break;
-        if ((vis[j]._cluster || "") === k) local += 1;
-      }
-      var ang = (2 * Math.PI * local) / Math.max(members, 1);
-      var rad = 12 + 10 * Math.sqrt(members);
-      n._x = c.x + Math.cos(ang) * rad;
-      n._y = c.y + Math.sin(ang) * rad;
-    });
-
-    var byId = {};
-    var indexOf = {};
-    vis.forEach(function (n, i) {
-      byId[n.id] = n;
-      indexOf[n.id] = i;
-    });
-    var links = [];
-    (bundles || []).forEach(function (b) {
-      var a = byId[b.consumer_id];
-      var c = byId[b.producer_id];
-      if (!a || !c || a === c) return;
-      links.push([indexOf[a.id], indexOf[c.id]]);
-    });
-
-    var linkDist = compact ? 28 : 96;
-    var charge = compact ? 48 : CHARGE;
-    var attract = grouped ? CLUSTER_ATTRACT : PLAIN_CENTER;
-    var nVis = vis.length;
-    for (var tick = 0; tick < TICKS; tick++) {
-      var tnorm = TICKS > 1 ? tick / (TICKS - 1) : 1;
-      var alpha = Math.pow(1 - tnorm, 0.5);
-      var fx = new Array(nVis);
-      var fy = new Array(nVis);
-      var i;
-      for (i = 0; i < nVis; i++) {
-        fx[i] = 0;
-        fy[i] = 0;
-      }
-      for (i = 0; i < links.length; i++) {
-        var ui = links[i][0];
-        var vi = links[i][1];
-        var dx = vis[vi]._x - vis[ui]._x;
-        var dy = vis[vi]._y - vis[ui]._y;
-        var dist = Math.hypot(dx, dy) || 1e-9;
-        var fmag = LINK_STRENGTH * (dist - linkDist);
-        var ux = (fmag * dx) / dist;
-        var uy = (fmag * dy) / dist;
-        fx[ui] += ux;
-        fy[ui] += uy;
-        fx[vi] -= ux;
-        fy[vi] -= uy;
-      }
-      for (i = 0; i < nVis; i++) {
-        for (var j = i + 1; j < nVis; j++) {
-          dx = vis[j]._x - vis[i]._x;
-          dy = vis[j]._y - vis[i]._y;
-          var dist2 = dx * dx + dy * dy + 0.01;
-          dist = Math.sqrt(dist2);
-          var inv = charge / (dist2 * dist);
-          fx[i] -= inv * dx;
-          fy[i] -= inv * dy;
-          fx[j] += inv * dx;
-          fy[j] += inv * dy;
-        }
-      }
-      for (i = 0; i < nVis; i++) {
-        var n = vis[i];
-        var c = centroids[n._cluster || ""];
-        fx[i] += attract * (c.x - n._x);
-        fy[i] += attract * (c.y - n._y);
-        n._x += fx[i] * alpha;
-        n._y += fy[i] * alpha;
-      }
-    }
-
-    separateBoxes(vis);
-
-    var minX = Infinity;
-    var minY = Infinity;
-    var maxX = -Infinity;
-    var maxY = -Infinity;
-    vis.forEach(function (n) {
-      minX = Math.min(minX, n._x - n._w / 2);
-      minY = Math.min(minY, n._y - n._h / 2);
-      maxX = Math.max(maxX, n._x + n._w / 2);
-      maxY = Math.max(maxY, n._y + n._h / 2);
-    });
-    var dx0 = PAD - minX;
-    var dy0 = PAD - minY;
-    vis.forEach(function (n) {
-      n._x += dx0;
-      n._y += dy0;
-    });
-    return {
-      width: Math.max(920, maxX - minX + 2 * PAD),
-      height: Math.max(640, maxY - minY + 2 * PAD),
-    };
   }
 
   return {
     MIXED_SHEET: MIXED_SHEET,
     clusterKey: clusterKey,
-    clusteredLayoutAllowed: clusteredLayoutAllowed,
     clusterHulls: clusterHulls,
-    layoutClustered: layoutClustered,
+    separateBoxes: separateBoxes,
+    sizeNodes: sizeNodes,
   };
 });
 
@@ -437,8 +626,9 @@
 (function () {
   'use strict';
 
-  // Rank is the default. Clustered is a canvas-side clustered force so Cluster by
-  // can move nodes in the browser; Graphviz is not required and is not used.
+  // Positions come precomputed from the shared clustered force layout
+  // (excel_grapher/grapher/viz_layout.py). Relayout in the browser uses the
+  // shared VizForce module with the same injected settings.
 
   var MIXED_SHEET = 'mixed';
   var ROLE_COLORS = {
@@ -505,134 +695,11 @@
     return {x: node._x - dx * t, y: node._y - dy * t};
   }
 
-  var DIR_ORDER = {output: 0, internal: 1, input: 2, constant: 3, remainder: 4};
-
-  function dirRank(n) {
-    if (n.is_remainder) return 4;
-    return DIR_ORDER[n.direction] == null ? 1 : DIR_ORDER[n.direction];
-  }
-
-  var CAMERA_MAX_W = 2800;
-  var BOX_MAX_PRIMITIVES = 20000;
-
-  function spreadRank(widths, pad, minGap, minRowWidth, graphWidth) {
-    var n = widths.length;
-    if (!n) return [];
-    var innerNodes = 0;
-    widths.forEach(function (w) { innerNodes += w; });
-    var packedInner = n > 1 ? innerNodes + minGap * (n - 1) : innerNodes;
-    var packedWidth = pad + packedInner + pad;
-    var target = Math.max(packedWidth, Math.min(minRowWidth, graphWidth));
-    var inner = target - 2 * pad;
-    if (n === 1) return [pad + inner / 2];
-    var gap = (inner - innerNodes) / (n - 1);
-    if (gap < minGap) gap = minGap;
-    var x = pad;
-    var centers = [];
-    widths.forEach(function (w) {
-      centers.push(x + w / 2);
-      x += w + gap;
-    });
-    return centers;
-  }
-
-  function layoutByRank(nodes, compact, clusterBy) {
-    var pad = compact ? 24 : (clusterBy && clusterBy !== 'none' ? 64 : 48);
-    var rankGap = compact ? 16 : (clusterBy && clusterBy !== 'none' ? 84 : 72);
-    var nodeGap = compact ? 4 : 16;
-    var byRank = {};
-    nodes.forEach(function (n) {
-      if (n._hidden) return;
-      var rank = n.rank || 0;
-      (byRank[rank] || (byRank[rank] = [])).push(n);
-    });
-    var ranks = Object.keys(byRank).map(Number).sort(function (a, b) { return a - b; });
-    ranks.forEach(function (rank) {
-      var rowNodes = byRank[rank];
-      rowNodes.sort(function (a, b) {
-        if (clusterBy && clusterBy !== 'none') {
-          var ka = a._cluster;
-          var kb = b._cluster;
-          if (ka < kb) return -1;
-          if (ka > kb) return 1;
-        }
-        var da = dirRank(a) - dirRank(b);
-        if (da !== 0) return da;
-        if (a.series_id < b.series_id) return -1;
-        if (a.series_id > b.series_id) return 1;
-        return a.start - b.start;
-      });
-      rowNodes.forEach(function (n) {
-        n._w = compact ? 6 : Math.max(72, n._label.length * 7 + 16);
-        n._h = compact ? 6 : 28;
-      });
-    });
-    var extraClusterGap = (!compact && clusterBy && clusterBy !== 'none') ? 28 : 0;
-    var packedW = 0;
-    ranks.forEach(function (rank) {
-      var rowNodes = byRank[rank];
-      var inner = 0;
-      rowNodes.forEach(function (n, i) {
-        inner += n._w;
-        if (i < rowNodes.length - 1) {
-          inner += nodeGap;
-          if (extraClusterGap && rowNodes[i]._cluster !== rowNodes[i + 1]._cluster) {
-            inner += extraClusterGap;
-          }
-        }
-      });
-      packedW = Math.max(packedW, pad + inner + pad);
-    });
-    var maxW = Math.max(920, packedW);
-    ranks.forEach(function (rank, row) {
-      var rowNodes = byRank[rank];
-      var y = pad + row * rankGap;
-      if (!extraClusterGap) {
-        var centers = spreadRank(
-          rowNodes.map(function (n) { return n._w; }),
-          pad, nodeGap, CAMERA_MAX_W, packedW || maxW
-        );
-        rowNodes.forEach(function (n, i) {
-          n._x = centers[i];
-          n._y = y;
-        });
-        return;
-      }
-      var n = rowNodes.length;
-      if (!n) return;
-      var innerNodes = 0;
-      var clusterBreaks = 0;
-      rowNodes.forEach(function (node, i) {
-        innerNodes += node._w;
-        if (i < n - 1 && rowNodes[i]._cluster !== rowNodes[i + 1]._cluster) clusterBreaks += 1;
-      });
-      var minPacked = innerNodes + nodeGap * Math.max(n - 1, 0) + extraClusterGap * clusterBreaks;
-      var inner = Math.max(minPacked, Math.min(CAMERA_MAX_W, packedW || maxW) - 2 * pad);
-      var stretch = n > 1 ? (inner - minPacked) / (n - 1) : 0;
-      if (stretch < 0) stretch = 0;
-      var x = pad;
-      rowNodes.forEach(function (node, i) {
-        node._x = x + node._w / 2;
-        node._y = y;
-        x += node._w;
-        if (i < n - 1) {
-          x += nodeGap + stretch;
-          if (rowNodes[i]._cluster !== rowNodes[i + 1]._cluster) x += extraClusterGap;
-        }
-      });
-    });
-    var height = Math.max(640, pad + Math.max(ranks.length, 1) * rankGap + pad);
-    return {width: maxW, height: height};
-  }
-
-  function cameraFor(size) {
-    return {
-      x: 0,
-      y: 0,
-      w: Math.min(size.width, CAMERA_MAX_W),
-      h: size.height
-    };
-  }
+  var CFG = window.VIZ_LAYOUT_CONFIG;
+  // Layout units -> canvas units for labeled boxes (spring rest length 40 -> 120).
+  var BOX_SCALE = 3;
+  // Canvas 2-D draws at most this many bundles per frame in dots mode.
+  var DOTS_EDGE_CAP = 8000;
 
   loadData().then(function (data) {
     var stats = data.stats || {};
@@ -658,19 +725,35 @@
       n._label = nodeLabel(n);
     });
     sheetIds.sort();
-    var markStyle = (nodes.length + 2 * bundles.length) > BOX_MAX_PRIMITIVES ? 'dots' : 'boxes';
-    var layoutSelect = document.getElementById('layoutMode');
-    var clusteredOpt = layoutSelect && layoutSelect.querySelector('option[value="clustered"]');
-    if (markStyle === 'dots') {
-      if (clusteredOpt) clusteredOpt.disabled = true;
-      if (layoutSelect) {
-        layoutSelect.value = 'rank';
-        layoutSelect.title = 'Clustered layout is unavailable for large graphs (dots view)';
-      }
-      if (!document.getElementById('banner').textContent) {
-        document.getElementById('banner').textContent = 'Dots view (large graph)';
-      }
+    var layoutMeta = data.layout || {};
+    var tier = layoutMeta.tier || window.VizForce.tier(nodes.length + 2 * bundles.length, CFG);
+    var markStyle = tier === 'large' ? 'dots' : 'boxes';
+    var scale = markStyle === 'dots' ? 1 : BOX_SCALE;
+    var defaultPull = layoutMeta.rank_pull || 'none';
+    var defaultCluster = layoutMeta.cluster_by || 'series';
+    if (markStyle === 'dots' && !document.getElementById('banner').textContent) {
+      document.getElementById('banner').textContent = 'Cluster overview (large graph): zoom in or click a cluster';
     }
+    var pullSelect = document.getElementById('rankPull');
+    pullSelect.value = defaultPull;
+    if (tier !== 'small') {
+      pullSelect.disabled = true;
+      pullSelect.title = 'Precomputed; re-export with --rank-pull to change it for graphs this size';
+    }
+    var nodeIndex = {};
+    nodes.forEach(function (n, i) { nodeIndex[n.id] = i; });
+    var layoutEdges = [];
+    var seenEdge = {};
+    bundles.forEach(function (b) {
+      var c = nodeIndex[b.consumer_id];
+      var p = nodeIndex[b.producer_id];
+      if (c === undefined || p === undefined || c === p) return;
+      var key = c + ':' + p;
+      if (seenEdge[key]) return;
+      seenEdge[key] = true;
+      layoutEdges.push([c, p]);
+    });
+    var depths = nodes.map(function (n) { return n.depth || 0; });
     var constantCount = nodes.filter(function (n) { return n.direction === 'constant'; }).length;
     if (constantCount >= 24) {
       var constBox = document.querySelector('#toolbar input[data-dir="constant"]');
@@ -702,15 +785,8 @@
       return (el && el.value) || 'none';
     }
 
-    function requestedLayout() {
-      var el = document.getElementById('layoutMode');
-      return (el && el.value) || 'rank';
-    }
-
-    function layoutMode() {
-      var requested = requestedLayout();
-      if (requested === 'clustered' && markStyle === 'dots') return 'rank';
-      return requested;
+    function pullMode() {
+      return pullSelect.value || 'none';
     }
 
     function roleKey(n) {
@@ -855,7 +931,7 @@
     }
 
     function hitNode(wx, wy) {
-      var hitR = markStyle === 'dots' ? 6 : null;
+      var hitR = markStyle === 'dots' ? 6 * pixelSize() : null;
       for (var i = nodes.length - 1; i >= 0; i--) {
         var n = nodes[i];
         if (n._hidden) continue;
@@ -921,9 +997,7 @@
 
     function paintClusters(ctx) {
       if (clusterMode() === 'none') return;
-      var splitByRank = layoutMode() !== 'clustered';
       var hulls = window.SemanticVizLayout.clusterHulls(nodes, {
-        splitByRank: splitByRank,
         pad: markStyle === 'dots' ? 8 : 10
       });
       var labeled = {};
@@ -1006,6 +1080,7 @@
         }
         ctx.globalAlpha = 1;
       });
+      ctx.setLineDash([]);
       var showLabels = 12 * (frame.cssW / Math.max(vb.w, 1)) >= 7;
       nodes.forEach(function (n) {
         if (n._hidden) return;
@@ -1039,9 +1114,10 @@
       var ctx = frame.ctx;
       paintClusters(ctx);
       var q = query();
-      var edgeCap = 8000;
+      var edgeCap = DOTS_EDGE_CAP;
       var painted = 0;
-      ctx.lineWidth = 0.7;
+      var px = pixelSize();
+      ctx.lineWidth = 0.7 * px;
       ctx.lineCap = 'round';
       bundles.forEach(function (b) {
         if (painted >= edgeCap) return;
@@ -1060,19 +1136,124 @@
       ctx.globalAlpha = 1;
       nodes.forEach(function (n) {
         if (n._hidden) return;
-        if (!inView(n._x - 4, n._y - 4, n._x + 4, n._y + 4)) return;
+        if (!inView(n._x - 4 * px, n._y - 4 * px, n._x + 4 * px, n._y + 4 * px)) return;
         ctx.globalAlpha = (q && !n._match) ? 0.18 : 0.95;
         ctx.fillStyle = nodeFill(n);
         ctx.beginPath();
-        ctx.arc(n._x, n._y, q && n._match ? 3.4 : 2.4, 0, Math.PI * 2);
+        ctx.arc(n._x, n._y, (q && n._match ? 3.4 : 2.4) * px, 0, Math.PI * 2);
         ctx.fill();
       });
       ctx.restore();
     }
 
+    function pixelSize() {
+      var rect = raster.getBoundingClientRect();
+      return vb.w / Math.max(rect.width || 1, 1);
+    }
+
+    // Large graphs: one disc per cluster until statements are 16 px apart.
+    function overviewActive() {
+      return markStyle === 'dots' && CFG.link_distance * scale / pixelSize() < 16;
+    }
+
+    function overviewKey(n) {
+      return clusterMode() === 'none' ? String(n.series_id) : n._cluster;
+    }
+
+    function overviewClusters() {
+      var groups = {};
+      var order = [];
+      nodes.forEach(function (n) {
+        if (n._hidden) return;
+        var key = overviewKey(n);
+        var g = groups[key];
+        if (!g) {
+          g = groups[key] = {key: key, count: 0, sx: 0, sy: 0, match: false, first: n,
+            x0: Infinity, y0: Infinity, x1: -Infinity, y1: -Infinity};
+          order.push(g);
+        }
+        g.count += 1;
+        g.sx += n._x;
+        g.sy += n._y;
+        g.match = g.match || n._match;
+        g.x0 = Math.min(g.x0, n._x);
+        g.y0 = Math.min(g.y0, n._y);
+        g.x1 = Math.max(g.x1, n._x);
+        g.y1 = Math.max(g.y1, n._y);
+      });
+      order.forEach(function (g) {
+        g.x = g.sx / g.count;
+        g.y = g.sy / g.count;
+        g.r = CFG.disc_spacing * scale * Math.sqrt(g.count);
+      });
+      return {groups: groups, order: order};
+    }
+
+    function hitCluster(wx, wy) {
+      var best = null;
+      overviewClusters().order.forEach(function (g) {
+        if (Math.hypot(wx - g.x, wy - g.y) <= g.r && (!best || g.count > best.count)) best = g;
+      });
+      return best;
+    }
+
+    function paintOverview() {
+      var frame = beginFrame();
+      var ctx = frame.ctx;
+      var q = query();
+      var px = pixelSize();
+      var agg = overviewClusters();
+      var links = {};
+      bundles.forEach(function (b) {
+        var a = byId[b.consumer_id];
+        var c = byId[b.producer_id];
+        if (!a || !c || a._hidden || c._hidden) return;
+        var ka = overviewKey(a);
+        var kc = overviewKey(c);
+        if (ka === kc) return;
+        var key = ka < kc ? ka + '\u0000' + kc : kc + '\u0000' + ka;
+        var l = links[key] || (links[key] = {a: agg.groups[ka], c: agg.groups[kc], count: 0});
+        l.count += 1;
+      });
+      var linkList = Object.keys(links).map(function (k) { return links[k]; });
+      linkList.sort(function (l, m) { return m.count - l.count; });
+      ctx.strokeStyle = '#57606a';
+      ctx.lineCap = 'round';
+      linkList.slice(0, DOTS_EDGE_CAP).forEach(function (l) {
+        ctx.globalAlpha = 0.25;
+        ctx.lineWidth = Math.min(1 + Math.log(l.count), 6) * px;
+        ctx.beginPath();
+        ctx.moveTo(l.a.x, l.a.y);
+        ctx.lineTo(l.c.x, l.c.y);
+        ctx.stroke();
+      });
+      agg.order.forEach(function (g) {
+        if (!inView(g.x - g.r, g.y - g.r, g.x + g.r, g.y + g.r)) return;
+        ctx.globalAlpha = (q && !g.match) ? 0.18 : 0.75;
+        ctx.fillStyle = nodeFill(g.first);
+        ctx.strokeStyle = '#1f2328';
+        ctx.lineWidth = px;
+        ctx.beginPath();
+        ctx.arc(g.x, g.y, Math.max(g.r, 3 * px), 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        if (g.r / px >= 18) {
+          ctx.globalAlpha = 1;
+          ctx.fillStyle = '#1f2328';
+          ctx.font = (11 * px) + 'px system-ui, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(g.key + ' (' + g.count + ')', g.x, g.y);
+        }
+      });
+      ctx.globalAlpha = 1;
+      ctx.restore();
+    }
+
     function paintCanvas() {
       try {
-        if (markStyle === 'dots') paintDots();
+        if (overviewActive()) paintOverview();
+        else if (markStyle === 'dots') paintDots();
         else paintBoxes();
       } catch (err) {
         document.getElementById('stats').textContent = String(err);
@@ -1109,12 +1290,57 @@
     }
 
     var lastLayoutKey = null;
-    var lastSize = {width: 920, height: 640};
+    var selected = null;
+    var relayoutBtn = document.getElementById('relayout');
 
-    function hiddenSignature() {
-      var s = '';
-      nodes.forEach(function (n) { s += n._hidden ? '1' : '0'; });
-      return s;
+    function applyPositions(xs, ys) {
+      nodes.forEach(function (n, i) {
+        n._x = xs[i] * scale;
+        n._y = ys[i] * scale;
+      });
+      window.SemanticVizLayout.sizeNodes(nodes, markStyle === 'dots');
+      if (markStyle === 'boxes' && tier === 'small') window.SemanticVizLayout.separateBoxes(nodes);
+    }
+
+    // Precomputed positions, or (small graphs only) a browser relayout when
+    // Cluster by or Vertical pull differs from what was precomputed.
+    function computeLayout() {
+      var clustering = clusterMode();
+      var pull = pullMode();
+      if (tier === 'small' && (clustering !== defaultCluster || pull !== defaultPull)) {
+        var out = window.VizForce.clusteredLayout({
+          n: nodes.length,
+          edges: layoutEdges,
+          clusters: nodes.map(function (n) { return n._cluster; }),
+          depths: depths,
+          rankPull: pull
+        }, CFG);
+        applyPositions(out.x, out.y);
+      } else {
+        applyPositions(nodes.map(function (n) { return n.x || 0; }), nodes.map(function (n) { return n.y || 0; }));
+      }
+    }
+
+    function fitCamera() {
+      var x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+      nodes.forEach(function (n) {
+        if (n._hidden) return;
+        x0 = Math.min(x0, n._x - n._w / 2);
+        y0 = Math.min(y0, n._y - n._h / 2);
+        x1 = Math.max(x1, n._x + n._w / 2);
+        y1 = Math.max(y1, n._y + n._h / 2);
+      });
+      if (!isFinite(x0)) { x0 = 0; y0 = 0; x1 = 920; y1 = 640; }
+      var pad = 48 * (markStyle === 'dots' ? 4 : 1);
+      var w = Math.max(x1 - x0 + 2 * pad, markStyle === 'dots' ? 0 : 920);
+      var h = y1 - y0 + 2 * pad;
+      var rect = raster.getBoundingClientRect();
+      var aspect = (rect.width || 920) / Math.max(rect.height || 640, 1);
+      if (w / h < aspect) w = h * aspect;
+      else h = w / aspect;
+      var cx = (x0 + x1) / 2;
+      var cy = (y0 + y1) / 2;
+      return {x: cx - w / 2, y: cy - h / 2, w: w, h: h};
     }
 
     function draw(resetView) {
@@ -1131,21 +1357,85 @@
           || String((n.labels && n.labels.measure_name) || '').toLowerCase().indexOf(q) >= 0;
         n._cluster = clustering === 'none' ? '' : clusterKey(n);
       });
-      var mode = layoutMode();
-      var layoutKey = mode + '|' + clustering + '|' + hiddenSignature();
-      var size = lastSize;
+      var layoutKey = clustering + '|' + pullMode();
+      if (tier !== 'small') layoutKey = 'precomputed';
       if (layoutKey !== lastLayoutKey) {
-        if (mode === 'clustered') {
-          size = window.SemanticVizLayout.layoutClustered(nodes, bundles, markStyle === 'dots');
-        } else {
-          size = layoutByRank(nodes, markStyle === 'dots', clustering);
-        }
+        computeLayout();
         lastLayoutKey = layoutKey;
-        lastSize = size;
       }
-      if (resetView !== false) vb = cameraFor(size);
+      if (resetView !== false) vb = fitCamera();
       byId = {};
       nodes.forEach(function (n) { byId[n.id] = n; });
+      updateRelayoutButton();
+      paintCanvas();
+    }
+
+    // Members moved by Relayout cluster: the selected node's cluster, or its
+    // two-hop neighborhood when Cluster by is None (large graphs: its series).
+    function relayoutMembers(n) {
+      var clustering = clusterMode();
+      if (clustering !== 'none') {
+        return nodes.filter(function (m) { return !m._hidden && m._cluster === n._cluster; });
+      }
+      if (tier === 'large') {
+        return nodes.filter(function (m) { return !m._hidden && m.series_id === n.series_id; });
+      }
+      var start = nodeIndex[n.id];
+      var near = {};
+      near[start] = true;
+      var frontier = [start];
+      for (var hop = 0; hop < 2; hop++) {
+        var next = [];
+        layoutEdges.forEach(function (e) {
+          [[e[0], e[1]], [e[1], e[0]]].forEach(function (pair) {
+            if (frontier.indexOf(pair[0]) >= 0 && !near[pair[1]] && !nodes[pair[1]]._hidden) {
+              near[pair[1]] = true;
+              next.push(pair[1]);
+            }
+          });
+        });
+        frontier = next;
+      }
+      return Object.keys(near).map(function (i) { return nodes[Number(i)]; });
+    }
+
+    function updateRelayoutButton() {
+      if (!selected || selected._hidden) {
+        relayoutBtn.disabled = true;
+        relayoutBtn.textContent = 'Relayout cluster';
+        return;
+      }
+      var clustering = clusterMode();
+      var what = clustering !== 'none' ? selected._cluster
+        : (tier === 'large' ? String(selected.series_id) : 'neighborhood');
+      relayoutBtn.disabled = false;
+      relayoutBtn.textContent = 'Relayout ' + what;
+    }
+
+    function relayoutSelected() {
+      if (!selected) return;
+      var members = relayoutMembers(selected);
+      if (members.length > CFG.tier_small_max) {
+        document.getElementById('banner').textContent =
+          'Cluster too large to relayout in the browser (' + members.length + ' statements)';
+        return;
+      }
+      var xs = nodes.map(function (n) { return n._x / scale; });
+      var ys = nodes.map(function (n) { return n._y / scale; });
+      window.VizForce.relayoutGroup({
+        ids: members.map(function (m) { return nodeIndex[m.id]; }),
+        edges: layoutEdges,
+        x: xs,
+        y: ys,
+        depths: depths,
+        rankPull: pullMode()
+      }, CFG);
+      members.forEach(function (m) {
+        var i = nodeIndex[m.id];
+        m._x = xs[i] * scale;
+        m._y = ys[i] * scale;
+      });
+      if (markStyle === 'boxes') window.SemanticVizLayout.separateBoxes(members);
       paintCanvas();
     }
 
@@ -1156,15 +1446,19 @@
       el.addEventListener('change', function () { draw(true); });
     });
     document.getElementById('search').addEventListener('input', function () { draw(false); });
-    document.getElementById('reset').addEventListener('click', function () { draw(true); });
+    document.getElementById('reset').addEventListener('click', function () {
+      lastLayoutKey = null;
+      draw(true);
+    });
+    relayoutBtn.addEventListener('click', relayoutSelected);
     document.getElementById('colorBy').addEventListener('change', function () {
       updateLegend();
       paintCanvas();
     });
     document.getElementById('clusterBy').addEventListener('change', function () {
-      draw(layoutMode() === 'clustered');
+      draw(tier === 'small');
     });
-    document.getElementById('layoutMode').addEventListener('change', function () {
+    pullSelect.addEventListener('change', function () {
       draw(true);
     });
 
@@ -1188,14 +1482,32 @@
       if (!start) return;
       if (Math.hypot(ev.clientX - start.x, ev.clientY - start.y) > 4) return;
       var world = worldPoint(ev);
+      if (overviewActive()) {
+        var cluster = hitCluster(world.x, world.y);
+        if (cluster) zoomTo(cluster);
+        return;
+      }
       var node = hitNode(world.x, world.y);
       if (node) {
+        selected = node;
+        updateRelayoutButton();
         showNodeInspect(node);
         return;
       }
       var bundle = hitBundle(world.x, world.y, world.pixel);
       if (bundle) showBundleInspect(bundle);
     });
+    function zoomTo(g) {
+      var rect = raster.getBoundingClientRect();
+      var aspect = (rect.width || 920) / Math.max(rect.height || 640, 1);
+      var pad = 12 * CFG.link_distance * scale;
+      var w = Math.max(g.x1 - g.x0 + pad, 16 * CFG.link_distance * scale);
+      var h = Math.max(g.y1 - g.y0 + pad, w / aspect);
+      w = Math.max(w, h * aspect);
+      vb = {x: g.x - w / 2, y: g.y - h / 2, w: w, h: h};
+      paintCanvas();
+    }
+
     document.getElementById('inspectClose').addEventListener('click', hideInspect);
     raster.addEventListener('pointermove', function (ev) {
       if (!dragging || !last) return;
@@ -1227,8 +1539,13 @@
       var wx = vb.x + (ev.clientX - rect.left) * (vb.w / rect.width);
       var wy = vb.y + (ev.clientY - rect.top) * (vb.h / rect.height);
       var hit = null;
-      var node = hitNode(wx, wy);
-      if (node) hit = nodeTip(node);
+      if (overviewActive()) {
+        var cluster = hitCluster(wx, wy);
+        if (cluster) hit = cluster.key + '\n' + cluster.count + ' statements · click to zoom in';
+      } else {
+        var node = hitNode(wx, wy);
+        if (node) hit = nodeTip(node);
+      }
       if (!hit) { tip.style.display = 'none'; return; }
       tip.style.display = 'block';
       tip.style.left = (ev.clientX + 12) + 'px';

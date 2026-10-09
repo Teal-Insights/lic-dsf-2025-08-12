@@ -1,4 +1,4 @@
-schema_version: 1.21.0
+schema_version: 1.22.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -184,6 +184,226 @@ series:
   exclude_rows:
   - 247
   notes: Translated scenario labels for the PV of Debt-to-GDP Ratio stress-figure block (Chart Data!B241:B251; blank separator omitted).
+- id: chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!AJ40:AJ45'
+  - '''Chart Data''!AJ47:AJ50'
+  layout: series
+  internal: {}
+  domain:
+    between:
+      min: 1
+      max: 10
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          B1. Real GDP growth: 40
+          B2. Primary balance: 41
+          B3. Exports: 42
+          B4. Other flows 3/: 43
+          B5. Depreciation: 44
+          B6. Combination of B1-B5: 45
+          C1. Combined contingent liabilities: 47
+          C2. Natural disaster: 48
+          C3. Commodity price: 49
+          C4. Market Financing: 50
+        read: string
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: chart_data.pv_debt_to_gdp
+    INDICATOR: most extreme shock rank
+    VARIANT: "Most extreme shock: rank of non-one off"
+  notes: Rank of each PV of debt-to GDP ratio stress test (Chart Data!AJ40:AJ50; blank separator omitted). Every rank may be 1, so the most-extreme-shock label can resolve to any stress test.
+- id: chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!AJ82:AJ87'
+  - '''Chart Data''!AJ89:AJ92'
+  layout: series
+  internal: {}
+  domain:
+    between:
+      min: 1
+      max: 10
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          B1. Real GDP growth: 82
+          B2. Primary balance: 83
+          B3. Exports: 84
+          B4. Other flows 3/: 85
+          B5. Depreciation: 86
+          B6. Combination of B1-B5: 87
+          C1. Combined contingent liabilities: 89
+          C2. Natural disaster: 90
+          C3. Commodity price: 91
+          C4. Market Financing: 92
+        read: string
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: chart_data.pv_debt_to_exports
+    INDICATOR: most extreme shock rank
+    VARIANT: "Most extreme shock: rank of non-one off"
+  notes: Rank of each PV of debt-to-exports ratio stress test (Chart Data!AJ82:AJ92; blank separator omitted). Every rank may be 1, so the most-extreme-shock label can resolve to any stress test.
+- id: chart_chart_data_debt_service_to_exports_most_extreme_shock_rank
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!AJ124:AJ129'
+  - '''Chart Data''!AJ131:AJ134'
+  layout: series
+  internal: {}
+  domain:
+    between:
+      min: 1
+      max: 10
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          B1. Real GDP growth: 124
+          B2. Primary balance: 125
+          B3. Exports: 126
+          B4. Other flows 3/: 127
+          B5. Depreciation: 128
+          B6. Combination of B1-B5: 129
+          C1. Combined contingent liabilities: 131
+          C2. Natural disaster: 132
+          C3. Commodity price: 133
+          C4. Market Financing: 134
+        read: string
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: chart_data.debt_service_to_exports
+    INDICATOR: most extreme shock rank
+    VARIANT: "Most extreme shock: rank of non-one off"
+  notes: Rank of each debt service-to-exports ratio stress test (Chart Data!AJ124:AJ134; blank separator omitted). Every rank may be 1, so the most-extreme-shock label can resolve to any stress test.
+- id: chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!AJ166:AJ171'
+  - '''Chart Data''!AJ173:AJ176'
+  layout: series
+  internal: {}
+  domain:
+    between:
+      min: 1
+      max: 10
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          B1. Real GDP growth: 166
+          B2. Primary balance: 167
+          B3. Exports: 168
+          B4. Other flows 3/: 169
+          B5. Depreciation: 170
+          B6. Combination of B1-B5: 171
+          C1. Combined contingent liabilities: 173
+          C2. Natural disaster: 174
+          C3. Commodity price: 175
+          C4. Market Financing: 176
+        read: string
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: chart_data.debt_service_to_revenue
+    INDICATOR: most extreme shock rank
+    VARIANT: "Most extreme shock: rank of non-one off"
+  notes: Rank of each debt service-to-revenue ratio stress test (Chart Data!AJ166:AJ176; blank separator omitted). Every rank may be 1, so the most-extreme-shock label can resolve to any stress test.
+- id: chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank
+  sheet: Chart Data
+  data_range:
+  - '''Chart Data''!AJ241:AJ246'
+  - '''Chart Data''!AJ248:AJ251'
+  layout: series
+  internal: {}
+  domain:
+    between:
+      min: 1
+      max: 10
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          B1. Real GDP growth: 241
+          B2. Primary balance: 242
+          B3. Exports: 243
+          B4. Other flows 3/: 244
+          B5. Depreciation: 245
+          B6. Combination of B1-B5: 246
+          C1. Combined contingent liabilities: 248
+          C2. Natural disaster: 249
+          C3. Commodity price: 250
+          C4. Market Financing: 251
+        read: string
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: chart_data.pv_of_debt_to_gdp_ratio
+    INDICATOR: most extreme shock rank
+    VARIANT: "Most extreme shock: rank of non-one off"
+  notes: Rank of each PV of Debt-to-GDP Ratio stress test (Chart Data!AJ241:AJ251; blank separator omitted). Every rank may be 1, so the most-extreme-shock label can resolve to any stress test.
 - id: chart_chart_data_pv_debt_to_gdp_c2_natural_disaster_stress_path_applic
   sheet: Chart Data
   data_range: '''Chart Data''!A48'
@@ -1431,16 +1651,10 @@ series:
 - id: chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio
   sheet: Chart Data
   data_range:
-  - '''Chart Data''!Z40:AK40'
-  - '''Chart Data''!Z41:AK41'
-  - '''Chart Data''!Z42:AK42'
-  - '''Chart Data''!Z43:AK43'
-  - '''Chart Data''!Z44:AK44'
-  - '''Chart Data''!Z45:AK45'
-  - '''Chart Data''!Z47:AK47'
-  - '''Chart Data''!Z48:AK48'
-  - '''Chart Data''!Z49:AK49'
-  - '''Chart Data''!Z50:AK50'
+  - '''Chart Data''!Z40:AI45'
+  - '''Chart Data''!AK40:AK45'
+  - '''Chart Data''!Z47:AI50'
+  - '''Chart Data''!AK47:AK50'
   - '''Chart Data''!AC51:AK51'
   - '''Chart Data''!AF54:AF54'
   layout: series
@@ -1610,16 +1824,10 @@ series:
 - id: chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports
   sheet: Chart Data
   data_range:
-  - '''Chart Data''!Z82:AK82'
-  - '''Chart Data''!Z83:AK83'
-  - '''Chart Data''!Z84:AK84'
-  - '''Chart Data''!Z85:AK85'
-  - '''Chart Data''!Z86:AK86'
-  - '''Chart Data''!Z87:AK87'
-  - '''Chart Data''!Z89:AK89'
-  - '''Chart Data''!Z90:AK90'
-  - '''Chart Data''!Z91:AK91'
-  - '''Chart Data''!Z92:AK92'
+  - '''Chart Data''!Z82:AI87'
+  - '''Chart Data''!AK82:AK87'
+  - '''Chart Data''!Z89:AI92'
+  - '''Chart Data''!AK89:AK92'
   - '''Chart Data''!AC93:AK93'
   - '''Chart Data''!AF96:AF96'
   layout: series
@@ -1789,16 +1997,10 @@ series:
 - id: chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports
   sheet: Chart Data
   data_range:
-  - '''Chart Data''!Z124:AK124'
-  - '''Chart Data''!Z125:AK125'
-  - '''Chart Data''!Z126:AK126'
-  - '''Chart Data''!Z127:AK127'
-  - '''Chart Data''!Z128:AK128'
-  - '''Chart Data''!Z129:AK129'
-  - '''Chart Data''!Z131:AK131'
-  - '''Chart Data''!Z132:AK132'
-  - '''Chart Data''!Z133:AK133'
-  - '''Chart Data''!Z134:AK134'
+  - '''Chart Data''!Z124:AI129'
+  - '''Chart Data''!AK124:AK129'
+  - '''Chart Data''!Z131:AI134'
+  - '''Chart Data''!AK131:AK134'
   - '''Chart Data''!AC135:AK135'
   - '''Chart Data''!AF138:AF138'
   layout: series
@@ -1968,16 +2170,10 @@ series:
 - id: chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue
   sheet: Chart Data
   data_range:
-  - '''Chart Data''!Z166:AK166'
-  - '''Chart Data''!Z167:AK167'
-  - '''Chart Data''!Z168:AK168'
-  - '''Chart Data''!Z169:AK169'
-  - '''Chart Data''!Z170:AK170'
-  - '''Chart Data''!Z171:AK171'
-  - '''Chart Data''!Z173:AK173'
-  - '''Chart Data''!Z174:AK174'
-  - '''Chart Data''!Z175:AK175'
-  - '''Chart Data''!Z176:AK176'
+  - '''Chart Data''!Z166:AI171'
+  - '''Chart Data''!AK166:AK171'
+  - '''Chart Data''!Z173:AI176'
+  - '''Chart Data''!AK173:AK176'
   - '''Chart Data''!AC177:AK177'
   - '''Chart Data''!AF180:AF180'
   layout: series
@@ -2078,16 +2274,10 @@ series:
 - id: chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp
   sheet: Chart Data
   data_range:
-  - '''Chart Data''!Z241:AK241'
-  - '''Chart Data''!Z242:AK242'
-  - '''Chart Data''!Z243:AK243'
-  - '''Chart Data''!Z244:AK244'
-  - '''Chart Data''!Z245:AK245'
-  - '''Chart Data''!Z246:AK246'
-  - '''Chart Data''!Z248:AK248'
-  - '''Chart Data''!Z249:AK249'
-  - '''Chart Data''!Z250:AK250'
-  - '''Chart Data''!Z251:AK251'
+  - '''Chart Data''!Z241:AI246'
+  - '''Chart Data''!AK241:AK246'
+  - '''Chart Data''!Z248:AI251'
+  - '''Chart Data''!AK248:AK251'
   - '''Chart Data''!AC252:AK252'
   - '''Chart Data''!AF255:AF255'
   layout: series

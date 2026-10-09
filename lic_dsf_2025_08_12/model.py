@@ -6,7 +6,7 @@ from dataclasses import Field, dataclass, fields
 from dataclasses import field as _field
 from functools import cached_property
 from pathlib import Path
-from typing import Any, ClassVar, Literal, Self
+from typing import Any, ClassVar, Self
 
 from . import data, internals, validation
 from .runtime import InputField, describe_inputs
@@ -103,7 +103,7 @@ class Model(_BoundInputs):
     input5_public_gfns_other_adjustment: data.Input5PublicGfnsOtherAdjustment
     input5_domestic_financing_source: int | str
     input5_gfn_share: data.Input5GfnShare
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"]
+    start_working_language: str
     country: str
     first_projection_year: int | str
     discount_rate: float | str
@@ -123,8 +123,8 @@ class Model(_BoundInputs):
     input8_sdr_interest_historical: data.Input8SdrInterestHistorical
     input8_sdr_interest: data.Input8SdrInterest
     input8_sdr_interest_rate: float | str
-    input6_tailored_tests_enabled: Literal["Off", "On"]
-    input6_standard_size_threshold_mode: Literal["New", "Old"]
+    input6_tailored_tests_enabled: str
+    input6_standard_size_threshold_mode: str
     input6_standard_interactions: str
     input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold
     input3_input_3_macro_gross_domestic_product_us_dollars: data.Input3Input3MacroGrossDomesticProductUsDollars
@@ -180,8 +180,11 @@ class Model(_BoundInputs):
     input3_domestic_principal_payment_from_existing_debt: data.Input3DomesticPrincipalPaymentFromExistingDebt
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement
     current_year: int | str
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative
-    _INPUT_IDS: tuple[str, ...] = ("input4_interest_rate", "input4_grace_period", "input4_loan_maturity", "input4_disbursements", "input4_instrument_names", "input4_blend_variant", "input4_blend_scale_key", "input5_grace_period", "input5_interest_rate_on_domestic_debt", "input5_interest_rate_on_domestic_debt_fx_long", "input5_maturity", "input5_maturity_central_bank", "input5_public_gfns_other_adjustment", "input5_domestic_financing_source", "input5_gfn_share", "start_working_language", "country", "first_projection_year", "discount_rate", "external_domestic_debt_definition", "fiscal_space_moderate_assessment_flag", "fiscal_space_stock_band", "fiscal_space_flow_band", "contingent_liability_other_elements_pct_gdp", "contingent_liability_soe_debt_pct_gdp", "contingent_liability_financial_market_pct_gdp", "ppp_capital_stock_shock_pct", "customized_public_delta", "blend_ida_new_floating_currency", "input_1_rer_overvaluation", "customized_public_include_scenario", "input6_commodity_group_relevant", "input8_sdr_interest_historical", "input8_sdr_interest", "input8_sdr_interest_rate", "input6_tailored_tests_enabled", "input6_standard_size_threshold_mode", "input6_standard_interactions", "input6_standard_user_defined_threshold", "input3_input_3_macro_gross_domestic_product_us_dollars", "input3_input_3_macro_real_gross_domestic_product", "input3_input_3_macro_u_s_deflator", "input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p", "input3_input_3_macro_national_currency_per_u_s_dollar_p_a", "input3_input_3_macro_government_revenue_and_grants", "input3_input_3_macro_government_grants", "in3_macro_government_primary_expenditures_this_used_be", "in3_macro_public_sector_liquid_assets_stock_e_g_cash", "in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g", "input3_input_3_macro_privatization_proceeds", "in3_macro_recognition_of_contingent_liab_e_g_bank", "input3_input_3_macro_debt_relief_non_multilateral_hipc", "input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify", "input3_input_3_macro_current_account", "input3_input_3_macro_exports_of_goods_and_services", "input3_input_3_macro_exports_commodity_fuel", "input3_input_3_macro_exports_commodity_non_fuel", "input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number", "input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number", "input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number", "input3_input_3_macro_current_transfers_net", "input3_input_3_macro_foreign_direct_investment", "input3_input_3_external_debt_ppg_mlt_external_debt_outstanding", "input3_input_3_external_debt_ppg_st_external_debt_outstanding", "input3_input_3_external_debt_ppg_external_debt_interest_due", "input3_input_3_external_debt_ppg_external_arrears", "input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding", "input3_input_3_external_debt_private_sector_st_external_debt_outstanding", "input3_input_3_external_debt_private_external_debt_interest_due", "input3_input_3_external_debt_private_mlt_external_debt_amortization_due", "input3_input_3_old_debt_service_total_principal_payment", "customized_public_template_anchor", "customized_public_natural_disaster_year", "customized_public_external_mlt_disbursement_profile", "customized_public_new_forex_borrowing_cumulative_overflow", "customized_public_new_domestic_mlt_cumulative_overflow", "customized_public_residual_overflow", "customized_public_new_forex_debt_stock_initial", "customized_public_domestic_mlt_interest_initial", "customized_public_domestic_st_interest_initial", "customized_external_debt_profile_period", "customized_external_debt_profile_disbursement", "customized_external_new_forex_borrowing_cumulative_overflow", "input8_sdr_stock", "input3_old_debt_service", "input3_new_disbursements", "input3_domestic_outstanding_of_existing_debt", "input3_domestic_o_w_st", "input3_domestic_interest_payment_from_existing_debt", "input3_domestic_principal_payment_from_existing_debt", "input3_domestic_new_gross_disbursement", "current_year", "pv_base_input_output_cumulative")
+    _INPUT_IDS: tuple[str, ...] = ("input4_interest_rate", "input4_grace_period", "input4_loan_maturity", "input4_disbursements", "input4_instrument_names", "input4_blend_variant", "input4_blend_scale_key", "input5_grace_period", "input5_interest_rate_on_domestic_debt", "input5_interest_rate_on_domestic_debt_fx_long", "input5_maturity", "input5_maturity_central_bank", "input5_public_gfns_other_adjustment", "input5_domestic_financing_source", "input5_gfn_share", "start_working_language", "country", "first_projection_year", "discount_rate", "external_domestic_debt_definition", "fiscal_space_moderate_assessment_flag", "fiscal_space_stock_band", "fiscal_space_flow_band", "contingent_liability_other_elements_pct_gdp", "contingent_liability_soe_debt_pct_gdp", "contingent_liability_financial_market_pct_gdp", "ppp_capital_stock_shock_pct", "customized_public_delta", "blend_ida_new_floating_currency", "input_1_rer_overvaluation", "customized_public_include_scenario", "input6_commodity_group_relevant", "input8_sdr_interest_historical", "input8_sdr_interest", "input8_sdr_interest_rate", "input6_tailored_tests_enabled", "input6_standard_size_threshold_mode", "input6_standard_interactions", "input6_standard_user_defined_threshold", "input3_input_3_macro_gross_domestic_product_us_dollars", "input3_input_3_macro_real_gross_domestic_product", "input3_input_3_macro_u_s_deflator", "input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p", "input3_input_3_macro_national_currency_per_u_s_dollar_p_a", "input3_input_3_macro_government_revenue_and_grants", "input3_input_3_macro_government_grants", "in3_macro_government_primary_expenditures_this_used_be", "in3_macro_public_sector_liquid_assets_stock_e_g_cash", "in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g", "input3_input_3_macro_privatization_proceeds", "in3_macro_recognition_of_contingent_liab_e_g_bank", "input3_input_3_macro_debt_relief_non_multilateral_hipc", "input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify", "input3_input_3_macro_current_account", "input3_input_3_macro_exports_of_goods_and_services", "input3_input_3_macro_exports_commodity_fuel", "input3_input_3_macro_exports_commodity_non_fuel", "input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number", "input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number", "input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number", "input3_input_3_macro_current_transfers_net", "input3_input_3_macro_foreign_direct_investment", "input3_input_3_external_debt_ppg_mlt_external_debt_outstanding", "input3_input_3_external_debt_ppg_st_external_debt_outstanding", "input3_input_3_external_debt_ppg_external_debt_interest_due", "input3_input_3_external_debt_ppg_external_arrears", "input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding", "input3_input_3_external_debt_private_sector_st_external_debt_outstanding", "input3_input_3_external_debt_private_external_debt_interest_due", "input3_input_3_external_debt_private_mlt_external_debt_amortization_due", "input3_input_3_old_debt_service_total_principal_payment", "customized_public_template_anchor", "customized_public_natural_disaster_year", "customized_public_external_mlt_disbursement_profile", "customized_public_new_forex_borrowing_cumulative_overflow", "customized_public_new_domestic_mlt_cumulative_overflow", "customized_public_residual_overflow", "customized_public_new_forex_debt_stock_initial", "customized_public_domestic_mlt_interest_initial", "customized_public_domestic_st_interest_initial", "customized_external_debt_profile_period", "customized_external_debt_profile_disbursement", "customized_external_new_forex_borrowing_cumulative_overflow", "input8_sdr_stock", "input3_old_debt_service", "input3_new_disbursements", "input3_domestic_outstanding_of_existing_debt", "input3_domestic_o_w_st", "input3_domestic_interest_payment_from_existing_debt", "input3_domestic_principal_payment_from_existing_debt", "input3_domestic_new_gross_disbursement", "current_year", "input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations", "input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations", "input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations", "pv_base_input_output_cumulative")
 
     def __init__(self, bundle: _BoundInputs | None = None, /, **inputs: Any) -> None:
         if bundle is not None:
@@ -194,7 +197,7 @@ class Model(_BoundInputs):
             values = {field.name: getattr(bundle, field.name) for field in fields(bundle)}
             _bind_inputs(self, values, validate=False)
             return
-        unknown = inputs.keys() - {"input4_interest_rate", "input4_grace_period", "input4_loan_maturity", "input4_disbursements", "input4_instrument_names", "input4_blend_variant", "input4_blend_scale_key", "input5_grace_period", "input5_interest_rate_on_domestic_debt", "input5_interest_rate_on_domestic_debt_fx_long", "input5_maturity", "input5_maturity_central_bank", "input5_public_gfns_other_adjustment", "input5_domestic_financing_source", "input5_gfn_share", "start_working_language", "country", "first_projection_year", "discount_rate", "external_domestic_debt_definition", "fiscal_space_moderate_assessment_flag", "fiscal_space_stock_band", "fiscal_space_flow_band", "contingent_liability_other_elements_pct_gdp", "contingent_liability_soe_debt_pct_gdp", "contingent_liability_financial_market_pct_gdp", "ppp_capital_stock_shock_pct", "customized_public_delta", "blend_ida_new_floating_currency", "input_1_rer_overvaluation", "customized_public_include_scenario", "input6_commodity_group_relevant", "input8_sdr_interest_historical", "input8_sdr_interest", "input8_sdr_interest_rate", "input6_tailored_tests_enabled", "input6_standard_size_threshold_mode", "input6_standard_interactions", "input6_standard_user_defined_threshold", "input3_input_3_macro_gross_domestic_product_us_dollars", "input3_input_3_macro_real_gross_domestic_product", "input3_input_3_macro_u_s_deflator", "input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p", "input3_input_3_macro_national_currency_per_u_s_dollar_p_a", "input3_input_3_macro_government_revenue_and_grants", "input3_input_3_macro_government_grants", "in3_macro_government_primary_expenditures_this_used_be", "in3_macro_public_sector_liquid_assets_stock_e_g_cash", "in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g", "input3_input_3_macro_privatization_proceeds", "in3_macro_recognition_of_contingent_liab_e_g_bank", "input3_input_3_macro_debt_relief_non_multilateral_hipc", "input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify", "input3_input_3_macro_current_account", "input3_input_3_macro_exports_of_goods_and_services", "input3_input_3_macro_exports_commodity_fuel", "input3_input_3_macro_exports_commodity_non_fuel", "input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number", "input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number", "input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number", "input3_input_3_macro_current_transfers_net", "input3_input_3_macro_foreign_direct_investment", "input3_input_3_external_debt_ppg_mlt_external_debt_outstanding", "input3_input_3_external_debt_ppg_st_external_debt_outstanding", "input3_input_3_external_debt_ppg_external_debt_interest_due", "input3_input_3_external_debt_ppg_external_arrears", "input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding", "input3_input_3_external_debt_private_sector_st_external_debt_outstanding", "input3_input_3_external_debt_private_external_debt_interest_due", "input3_input_3_external_debt_private_mlt_external_debt_amortization_due", "input3_input_3_old_debt_service_total_principal_payment", "customized_public_template_anchor", "customized_public_natural_disaster_year", "customized_public_external_mlt_disbursement_profile", "customized_public_new_forex_borrowing_cumulative_overflow", "customized_public_new_domestic_mlt_cumulative_overflow", "customized_public_residual_overflow", "customized_public_new_forex_debt_stock_initial", "customized_public_domestic_mlt_interest_initial", "customized_public_domestic_st_interest_initial", "customized_external_debt_profile_period", "customized_external_debt_profile_disbursement", "customized_external_new_forex_borrowing_cumulative_overflow", "input8_sdr_stock", "input3_old_debt_service", "input3_new_disbursements", "input3_domestic_outstanding_of_existing_debt", "input3_domestic_o_w_st", "input3_domestic_interest_payment_from_existing_debt", "input3_domestic_principal_payment_from_existing_debt", "input3_domestic_new_gross_disbursement", "current_year", "pv_base_input_output_cumulative"}
+        unknown = inputs.keys() - {"input4_interest_rate", "input4_grace_period", "input4_loan_maturity", "input4_disbursements", "input4_instrument_names", "input4_blend_variant", "input4_blend_scale_key", "input5_grace_period", "input5_interest_rate_on_domestic_debt", "input5_interest_rate_on_domestic_debt_fx_long", "input5_maturity", "input5_maturity_central_bank", "input5_public_gfns_other_adjustment", "input5_domestic_financing_source", "input5_gfn_share", "start_working_language", "country", "first_projection_year", "discount_rate", "external_domestic_debt_definition", "fiscal_space_moderate_assessment_flag", "fiscal_space_stock_band", "fiscal_space_flow_band", "contingent_liability_other_elements_pct_gdp", "contingent_liability_soe_debt_pct_gdp", "contingent_liability_financial_market_pct_gdp", "ppp_capital_stock_shock_pct", "customized_public_delta", "blend_ida_new_floating_currency", "input_1_rer_overvaluation", "customized_public_include_scenario", "input6_commodity_group_relevant", "input8_sdr_interest_historical", "input8_sdr_interest", "input8_sdr_interest_rate", "input6_tailored_tests_enabled", "input6_standard_size_threshold_mode", "input6_standard_interactions", "input6_standard_user_defined_threshold", "input3_input_3_macro_gross_domestic_product_us_dollars", "input3_input_3_macro_real_gross_domestic_product", "input3_input_3_macro_u_s_deflator", "input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p", "input3_input_3_macro_national_currency_per_u_s_dollar_p_a", "input3_input_3_macro_government_revenue_and_grants", "input3_input_3_macro_government_grants", "in3_macro_government_primary_expenditures_this_used_be", "in3_macro_public_sector_liquid_assets_stock_e_g_cash", "in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g", "input3_input_3_macro_privatization_proceeds", "in3_macro_recognition_of_contingent_liab_e_g_bank", "input3_input_3_macro_debt_relief_non_multilateral_hipc", "input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify", "input3_input_3_macro_current_account", "input3_input_3_macro_exports_of_goods_and_services", "input3_input_3_macro_exports_commodity_fuel", "input3_input_3_macro_exports_commodity_non_fuel", "input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number", "input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number", "input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number", "input3_input_3_macro_current_transfers_net", "input3_input_3_macro_foreign_direct_investment", "input3_input_3_external_debt_ppg_mlt_external_debt_outstanding", "input3_input_3_external_debt_ppg_st_external_debt_outstanding", "input3_input_3_external_debt_ppg_external_debt_interest_due", "input3_input_3_external_debt_ppg_external_arrears", "input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding", "input3_input_3_external_debt_private_sector_st_external_debt_outstanding", "input3_input_3_external_debt_private_external_debt_interest_due", "input3_input_3_external_debt_private_mlt_external_debt_amortization_due", "input3_input_3_old_debt_service_total_principal_payment", "customized_public_template_anchor", "customized_public_natural_disaster_year", "customized_public_external_mlt_disbursement_profile", "customized_public_new_forex_borrowing_cumulative_overflow", "customized_public_new_domestic_mlt_cumulative_overflow", "customized_public_residual_overflow", "customized_public_new_forex_debt_stock_initial", "customized_public_domestic_mlt_interest_initial", "customized_public_domestic_st_interest_initial", "customized_external_debt_profile_period", "customized_external_debt_profile_disbursement", "customized_external_new_forex_borrowing_cumulative_overflow", "input8_sdr_stock", "input3_old_debt_service", "input3_new_disbursements", "input3_domestic_outstanding_of_existing_debt", "input3_domestic_o_w_st", "input3_domestic_interest_payment_from_existing_debt", "input3_domestic_principal_payment_from_existing_debt", "input3_domestic_new_gross_disbursement", "current_year", "input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations", "input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations", "input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations", "pv_base_input_output_cumulative"}
         if unknown:
             raise TypeError(f"unknown inputs: {sorted(unknown)}")
         _bind_inputs(self, inputs)
@@ -218,7 +221,7 @@ class Model(_BoundInputs):
         input5_public_gfns_other_adjustment: data.Input5PublicGfnsOtherAdjustment = data.INPUT5_PUBLIC_GFNS_OTHER_ADJUSTMENT_DEFAULT,
         input5_domestic_financing_source: int | str = data.INPUT5_DOMESTIC_FINANCING_SOURCE_DEFAULT,
         input5_gfn_share: data.Input5GfnShare = data.INPUT5_GFN_SHARE_DEFAULT,
-        start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = data.START_WORKING_LANGUAGE_DEFAULT,
+        start_working_language: str = data.START_WORKING_LANGUAGE_DEFAULT,
         country: str = data.COUNTRY_DEFAULT,
         first_projection_year: int | str = data.FIRST_PROJECTION_YEAR_DEFAULT,
         discount_rate: float | str = data.DISCOUNT_RATE_DEFAULT,
@@ -238,8 +241,8 @@ class Model(_BoundInputs):
         input8_sdr_interest_historical: data.Input8SdrInterestHistorical = data.INPUT8_SDR_INTEREST_HISTORICAL_DEFAULT,
         input8_sdr_interest: data.Input8SdrInterest = data.INPUT8_SDR_INTEREST_DEFAULT,
         input8_sdr_interest_rate: float | str = data.INPUT8_SDR_INTEREST_RATE_DEFAULT,
-        input6_tailored_tests_enabled: Literal["Off", "On"] = data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT,
-        input6_standard_size_threshold_mode: Literal["New", "Old"] = data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT,
+        input6_tailored_tests_enabled: str = data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT,
+        input6_standard_size_threshold_mode: str = data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT,
         input6_standard_interactions: str = data.INPUT6_STANDARD_INTERACTIONS_DEFAULT,
         input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold = data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD_DEFAULT,
         input3_input_3_macro_gross_domestic_product_us_dollars: data.Input3Input3MacroGrossDomesticProductUsDollars = data.INPUT3_INPUT_3_MACRO_GROSS_DOMESTIC_PRODUCT_US_DOLLARS_DEFAULT,
@@ -295,6 +298,9 @@ class Model(_BoundInputs):
         input3_domestic_principal_payment_from_existing_debt: data.Input3DomesticPrincipalPaymentFromExistingDebt = data.INPUT3_DOMESTIC_PRINCIPAL_PAYMENT_FROM_EXISTING_DEBT_DEFAULT,
         input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT,
         current_year: int | str = data.CURRENT_YEAR_DEFAULT,
+        input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT,
+        input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT,
+        input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT,
         pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT,
     ) -> Model:
         """Bind every input from `data.*_DEFAULT`, then apply overrides."""
@@ -391,6 +397,9 @@ class Model(_BoundInputs):
             input3_domestic_principal_payment_from_existing_debt=input3_domestic_principal_payment_from_existing_debt,
             input3_domestic_new_gross_disbursement=input3_domestic_new_gross_disbursement,
             current_year=current_year,
+            input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations=input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations,
+            input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations=input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations,
+            input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations=input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations,
             pv_base_input_output_cumulative=pv_base_input_output_cumulative,
         )
 
@@ -1800,23 +1809,143 @@ class Model(_BoundInputs):
 
     @cached_property
     def chart_chart_data_scenario_labels_pv_debt_to_gdp(self) -> data.Series[str | int | float | bool | None]:
-        return internals.chart_chart_data_scenario_labels_pv_debt_to_gdp(translation_chart_data_exports=data.TRANSLATION_CHART_DATA_EXPORTS, translation_chart_data_primary_balance=data.TRANSLATION_CHART_DATA_PRIMARY_BALANCE, chart_tailored_test_names=data.CHART_TAILORED_TEST_NAMES, start_debt_sustainability_analysis=self.start_debt_sustainability_analysis)
+        return internals.chart_chart_data_scenario_labels_pv_debt_to_gdp(start_debt_sustainability_analysis=self.start_debt_sustainability_analysis, translation_chart_data_growth=data.TRANSLATION_CHART_DATA_GROWTH, translation_chart_data_exports=data.TRANSLATION_CHART_DATA_EXPORTS, translation_chart_data_non_debt_flows=data.TRANSLATION_CHART_DATA_NON_DEBT_FLOWS, translation_chart_data_one_time_depreciation=data.TRANSLATION_CHART_DATA_ONE_TIME_DEPRECIATION, translation_chart_data_primary_balance=data.TRANSLATION_CHART_DATA_PRIMARY_BALANCE, translation_chart_data_combination=data.TRANSLATION_CHART_DATA_COMBINATION, chart_tailored_test_names=data.CHART_TAILORED_TEST_NAMES)
 
     @cached_property
     def chart_chart_data_scenario_labels_pv_debt_to_exports(self) -> data.Series[str | int | float | bool | None]:
-        return internals.chart_chart_data_scenario_labels_pv_debt_to_exports(chart_chart_data_scenario_labels_pv_debt_to_gdp=self.chart_chart_data_scenario_labels_pv_debt_to_gdp)
+        return internals.chart_chart_data_scenario_labels_pv_debt_to_exports(chart_combined_contingent_liabilities_label=data.CHART_COMBINED_CONTINGENT_LIABILITIES_LABEL, chart_chart_data_scenario_labels_pv_debt_to_gdp=self.chart_chart_data_scenario_labels_pv_debt_to_gdp)
 
     @cached_property
     def chart_chart_data_scenario_labels_debt_service_to_exports(self) -> data.Series[str | int | float | bool | None]:
-        return internals.chart_chart_data_scenario_labels_debt_service_to_exports(chart_chart_data_scenario_labels_pv_debt_to_gdp=self.chart_chart_data_scenario_labels_pv_debt_to_gdp)
+        return internals.chart_chart_data_scenario_labels_debt_service_to_exports(chart_combined_contingent_liabilities_label=data.CHART_COMBINED_CONTINGENT_LIABILITIES_LABEL, chart_chart_data_scenario_labels_pv_debt_to_gdp=self.chart_chart_data_scenario_labels_pv_debt_to_gdp)
 
     @cached_property
     def chart_chart_data_scenario_labels_debt_service_to_revenue(self) -> data.Series[str | int | float | bool | None]:
-        return internals.chart_chart_data_scenario_labels_debt_service_to_revenue(chart_chart_data_scenario_labels_pv_debt_to_gdp=self.chart_chart_data_scenario_labels_pv_debt_to_gdp)
+        return internals.chart_chart_data_scenario_labels_debt_service_to_revenue(chart_combined_contingent_liabilities_label=data.CHART_COMBINED_CONTINGENT_LIABILITIES_LABEL, chart_chart_data_scenario_labels_pv_debt_to_gdp=self.chart_chart_data_scenario_labels_pv_debt_to_gdp)
 
     @cached_property
     def chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio(self) -> data.Series[str | int | float | bool | None]:
-        return internals.chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio(chart_chart_data_scenario_labels_pv_debt_to_gdp=self.chart_chart_data_scenario_labels_pv_debt_to_gdp)
+        return internals.chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio(chart_combined_contingent_liabilities_label=data.CHART_COMBINED_CONTINGENT_LIABILITIES_LABEL, chart_chart_data_scenario_labels_pv_debt_to_gdp=self.chart_chart_data_scenario_labels_pv_debt_to_gdp)
+
+    @cached_property
+    def _scan_chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank(self) -> internals.ScanChartChartDataPvDebtToGdpMostExtremeShockRankResult:
+        return internals.scan_chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio=self.dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio, dsa_pub_pv_of_debt_gdp=self.dsa_pub_pv_of_debt_gdp, dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_gdp=self.dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_gdp, dsa_pub_c2_natural_disaster_pv_of_debt_gdp=self.dsa_pub_c2_natural_disaster_pv_of_debt_gdp, chart_chart_data_pv_debt_to_gdp_c2_natural_disaster_stress_path_applic=self.chart_chart_data_pv_debt_to_gdp_c2_natural_disaster_stress_path_applic, chart_chart_data_pv_debt_to_gdp_c3_commodity_price_stress_path_applica=self.chart_chart_data_pv_debt_to_gdp_c3_commodity_price_stress_path_applica, chart_chart_data_pv_debt_to_gdp_c4_market_financing_stress_path_applic=self.chart_chart_data_pv_debt_to_gdp_c4_market_financing_stress_path_applic, chart_pv_debt_to_gdp_applicable_flag_b2_1_primary_balance_market=self.chart_pv_debt_to_gdp_applicable_flag_b2_1_primary_balance_market, chart_pv_debt_to_gdp_applicable_flag_combined_market_financing_stress=self.chart_pv_debt_to_gdp_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, c4_mkt_fin_revised_pv_debt_pct_gdp=self.c4_mkt_fin_revised_pv_debt_pct_gdp, ci_summary_pv_gdp_applicable=self.ci_summary_pv_gdp_applicable, in6opt_standard_scenario=self.in6opt_standard_scenario)
+
+    @cached_property
+    def chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank(self) -> data.Series[int | str | None]:
+        return self._scan_chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank.chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank
+
+    @cached_property
+    def chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path(self) -> data.Series[float | str | None]:
+        return self._scan_chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank.chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path
+
+    @cached_property
+    def chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio(self) -> data.Series[float | str | None]:
+        return self._scan_chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank.chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio
+
+    @cached_property
+    def chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure(self) -> data.Series[float | str | None]:
+        return self._scan_chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank.chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure
+
+    @cached_property
+    def chart_output_pv_debt_gdp_ratio(self) -> data.ChartOutputPvDebtGdpRatio:
+        return self._scan_chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank.chart_output_pv_debt_gdp_ratio
+
+    @cached_property
+    def _scan_chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank(self) -> internals.ScanChartChartDataPvDebtToExportsMostExtremeShockRankResult:
+        return internals.scan_chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_ext_pv_of_ppg_external_debt_to_exports_ratio=self.dsa_ext_pv_of_ppg_external_debt_to_exports_ratio, dsa_pub_pv_of_debt_exports=self.dsa_pub_pv_of_debt_exports, dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_exports=self.dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_exports, dsa_pub_c2_natural_disaster_pv_of_debt_exports=self.dsa_pub_c2_natural_disaster_pv_of_debt_exports, chart_chart_data_pv_debt_to_exports_c2_natural_disaster_stress_path_ap=self.chart_chart_data_pv_debt_to_exports_c2_natural_disaster_stress_path_ap, chart_chart_data_pv_debt_to_exports_c3_commodity_price_stress_path_app=self.chart_chart_data_pv_debt_to_exports_c3_commodity_price_stress_path_app, chart_chart_data_pv_debt_to_exports_c4_market_financing_stress_path_ap=self.chart_chart_data_pv_debt_to_exports_c4_market_financing_stress_path_ap, chart_pv_debt_to_exports_applicable_flag_b2_1_primary_balance_market=self.chart_pv_debt_to_exports_applicable_flag_b2_1_primary_balance_market, chart_pv_debt_to_exports_applicable_flag_combined_market_financing_stress=self.chart_pv_debt_to_exports_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, c4_mkt_fin_revised_pv_debt_to_exports=self.c4_mkt_fin_revised_pv_debt_to_exports, ci_summary_pv_exports_applicable=self.ci_summary_pv_exports_applicable, in6opt_standard_scenario=self.in6opt_standard_scenario, c4_market_path_revised_pv_debt_exports=self.c4_market_path_revised_pv_debt_exports)
+
+    @cached_property
+    def chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank(self) -> data.Series[int | str | None]:
+        return self._scan_chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank.chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank
+
+    @cached_property
+    def chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path(self) -> data.Series[float | str | None]:
+        return self._scan_chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank.chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path
+
+    @cached_property
+    def chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports(self) -> data.Series[float | str | None]:
+        return self._scan_chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank.chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports
+
+    @cached_property
+    def chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure(self) -> data.Series[float | str | None]:
+        return self._scan_chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank.chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure
+
+    @cached_property
+    def chart_output_pv_debt_to_exports(self) -> data.ChartOutputPvDebtToExports:
+        return self._scan_chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank.chart_output_pv_debt_to_exports
+
+    @cached_property
+    def _scan_chart_chart_data_debt_service_to_exports_most_extreme_shock_rank(self) -> internals.ScanChartChartDataDebtServiceToExportsMostExtremeShockRankResult:
+        return internals.scan_chart_chart_data_debt_service_to_exports_most_extreme_shock_rank(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_ext_ppg_debt_service_to_exports_ratio=self.dsa_ext_ppg_debt_service_to_exports_ratio, dsa_pub_debt_service_exports=self.dsa_pub_debt_service_exports, dsa_pub_b2_pb_non_mkt_pub_debt_service_exports=self.dsa_pub_b2_pb_non_mkt_pub_debt_service_exports, dsa_pub_c2_natural_disaster_debt_service_exports=self.dsa_pub_c2_natural_disaster_debt_service_exports, chart_debt_service_to_exports_applicable_flag_c2_natdisaster=self.chart_debt_service_to_exports_applicable_flag_c2_natdisaster, chart_debt_service_to_exports_applicable_flag_c3_commodity_price=self.chart_debt_service_to_exports_applicable_flag_c3_commodity_price, chart_debt_service_to_exports_applicable_flag_c4_mkt_financing=self.chart_debt_service_to_exports_applicable_flag_c4_mkt_financing, chart_debt_service_to_exports_applicable_flag_b2_1_primary_balance_market=self.chart_debt_service_to_exports_applicable_flag_b2_1_primary_balance_market, chart_debt_service_to_exports_applicable_flag_combined_market_financing_stress=self.chart_debt_service_to_exports_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, c4_mkt_fin_dsr_exports_stress=self.c4_mkt_fin_dsr_exports_stress, ci_summary_ds_exports_applicable=self.ci_summary_ds_exports_applicable, in6opt_standard_scenario=self.in6opt_standard_scenario)
+
+    @cached_property
+    def chart_chart_data_debt_service_to_exports_most_extreme_shock_rank(self) -> data.Series[int | str | None]:
+        return self._scan_chart_chart_data_debt_service_to_exports_most_extreme_shock_rank.chart_chart_data_debt_service_to_exports_most_extreme_shock_rank
+
+    @cached_property
+    def chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path(self) -> data.Series[float | str | None]:
+        return self._scan_chart_chart_data_debt_service_to_exports_most_extreme_shock_rank.chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path
+
+    @cached_property
+    def chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports(self) -> data.Series[float | str | None]:
+        return self._scan_chart_chart_data_debt_service_to_exports_most_extreme_shock_rank.chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports
+
+    @cached_property
+    def chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure(self) -> data.Series[float | str | None]:
+        return self._scan_chart_chart_data_debt_service_to_exports_most_extreme_shock_rank.chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure
+
+    @cached_property
+    def chart_output_debt_service_to_exports(self) -> data.ChartOutputDebtServiceToExports:
+        return self._scan_chart_chart_data_debt_service_to_exports_most_extreme_shock_rank.chart_output_debt_service_to_exports
+
+    @cached_property
+    def _scan_chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank(self) -> internals.ScanChartChartDataDebtServiceToRevenueMostExtremeShockRankResult:
+        return internals.scan_chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_ext_ppg_debt_service_to_revenue_ratio=self.dsa_ext_ppg_debt_service_to_revenue_ratio, dsa_pub_debt_service_revenue_excl_grants=self.dsa_pub_debt_service_revenue_excl_grants, dsa_pub_b2_pb_non_mkt_pub_debt_service_revenue_excl_grants=self.dsa_pub_b2_pb_non_mkt_pub_debt_service_revenue_excl_grants, dsa_pub_c2_natural_disaster_debt_service_revenue_excl_grants=self.dsa_pub_c2_natural_disaster_debt_service_revenue_excl_grants, chart_debt_service_to_revenue_applicable_flag_c2_natdisaster=self.chart_debt_service_to_revenue_applicable_flag_c2_natdisaster, chart_debt_service_to_revenue_applicable_flag_c3_commodity_price=self.chart_debt_service_to_revenue_applicable_flag_c3_commodity_price, chart_debt_service_to_revenue_applicable_flag_c4_mkt_financing=self.chart_debt_service_to_revenue_applicable_flag_c4_mkt_financing, chart_debt_service_to_revenue_applicable_flag_b2_1_primary_balance_market=self.chart_debt_service_to_revenue_applicable_flag_b2_1_primary_balance_market, chart_debt_service_to_revenue_applicable_flag_combined_market_financing_stress=self.chart_debt_service_to_revenue_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, c4_mkt_fin_dsr_revenue_stress=self.c4_mkt_fin_dsr_revenue_stress, ci_summary_ds_revenue_applicable=self.ci_summary_ds_revenue_applicable, in6opt_standard_scenario=self.in6opt_standard_scenario)
+
+    @cached_property
+    def chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank(self) -> data.Series[int | str | None]:
+        return self._scan_chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank.chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank
+
+    @cached_property
+    def chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path(self) -> data.Series[float | str | None]:
+        return self._scan_chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank.chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path
+
+    @cached_property
+    def chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue(self) -> data.Series[float | str | None]:
+        return self._scan_chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank.chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue
+
+    @cached_property
+    def chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure(self) -> data.Series[float | str | None]:
+        return self._scan_chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank.chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure
+
+    @cached_property
+    def chart_output_debt_service_to_revenue(self) -> data.ChartOutputDebtServiceToRevenue:
+        return self._scan_chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank.chart_output_debt_service_to_revenue
+
+    @cached_property
+    def _scan_chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank(self) -> internals.ScanChartChartDataPvOfDebtToGdpRatioMostExtremeShockRankResult:
+        return internals.scan_chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_pub_pv_of_total_public_debt=self.dsa_pub_pv_of_total_public_debt, customized_public_include_scenario=self.customized_public_include_scenario, chart_chart_data_pv_of_debt_to_gdp_ratio_c2_natural_disaster_stress_pa=self.chart_chart_data_pv_of_debt_to_gdp_ratio_c2_natural_disaster_stress_pa, chart_chart_data_pv_of_debt_to_gdp_ratio_c3_commodity_price_stress_pat=self.chart_chart_data_pv_of_debt_to_gdp_ratio_c3_commodity_price_stress_pat, chart_chart_data_pv_of_debt_to_gdp_ratio_c4_market_financing_stress_pa=self.chart_chart_data_pv_of_debt_to_gdp_ratio_c4_market_financing_stress_pa, chart_pv_of_debt_to_gdp_ratio_applicable_flag_b2_1_primary_balance_market=self.chart_pv_of_debt_to_gdp_ratio_applicable_flag_b2_1_primary_balance_market, chart_pv_of_debt_to_gdp_ratio_applicable_flag_combined_market_financing_stress=self.chart_pv_of_debt_to_gdp_ratio_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path=self.chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path, ci_summary_public_pv_medium_cutoff=self.ci_summary_public_pv_medium_cutoff, baseline_pub_pv_of_public_debt_gdp_ratio=self.baseline_pub_pv_of_public_debt_gdp_ratio, baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports=self.baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports, baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows=self.baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows, baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin=self.baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin, custom_pub_pv_of_public_debt_gdp_ratio=self.custom_pub_pv_of_public_debt_gdp_ratio, in6opt_standard_scenario=self.in6opt_standard_scenario)
+
+    @cached_property
+    def chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank(self) -> data.Series[int | str | None]:
+        return self._scan_chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank.chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank
+
+    @cached_property
+    def chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp(self) -> data.Series[float | str | None]:
+        return self._scan_chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank.chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp
+
+    @cached_property
+    def chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure(self) -> data.Series[float | str | None]:
+        return self._scan_chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank.chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure
+
+    @cached_property
+    def chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp(self) -> data.ChartOutputChartDataPvOfDebtToGdpRatioPvDebtToGdp:
+        return self._scan_chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank.chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp
+
+    @cached_property
+    def chart_output_pv_debt_to_gdp(self) -> data.ChartOutputPvDebtToGdp:
+        return self._scan_chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank.chart_output_pv_debt_to_gdp
 
     @cached_property
     def chart_chart_data_pv_debt_to_gdp_c2_natural_disaster_stress_path_applic(self) -> int | str:
@@ -1840,7 +1969,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def chart_chart_data_pv_debt_to_gdp_most_extreme_shock(self) -> str | int | float | bool:
-        return internals.chart_chart_data_pv_debt_to_gdp_most_extreme_shock(chart_combined_contingent_liabilities_label=data.CHART_COMBINED_CONTINGENT_LIABILITIES_LABEL, chart_chart_data_scenario_labels_pv_debt_to_gdp=self.chart_chart_data_scenario_labels_pv_debt_to_gdp, chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio=self.chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio)
+        return internals.chart_chart_data_pv_debt_to_gdp_most_extreme_shock(chart_combined_contingent_liabilities_label=data.CHART_COMBINED_CONTINGENT_LIABILITIES_LABEL, chart_chart_data_scenario_labels_pv_debt_to_gdp=self.chart_chart_data_scenario_labels_pv_debt_to_gdp, chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank=self.chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank)
 
     @cached_property
     def chart_chart_data_pv_debt_to_gdp_baseline_breach_count(self) -> int | str:
@@ -1872,7 +2001,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def chart_chart_data_pv_debt_to_exports_most_extreme_shock(self) -> str | int | float | bool:
-        return internals.chart_chart_data_pv_debt_to_exports_most_extreme_shock(chart_chart_data_scenario_labels_pv_debt_to_exports=self.chart_chart_data_scenario_labels_pv_debt_to_exports, chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports=self.chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports)
+        return internals.chart_chart_data_pv_debt_to_exports_most_extreme_shock(chart_chart_data_scenario_labels_pv_debt_to_exports=self.chart_chart_data_scenario_labels_pv_debt_to_exports, chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank=self.chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank)
 
     @cached_property
     def chart_chart_data_pv_debt_to_exports_baseline_breach_count(self) -> int | str:
@@ -1904,7 +2033,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def chart_chart_data_debt_service_to_exports_most_extreme_shock(self) -> str | int | float | bool:
-        return internals.chart_chart_data_debt_service_to_exports_most_extreme_shock(chart_chart_data_scenario_labels_debt_service_to_exports=self.chart_chart_data_scenario_labels_debt_service_to_exports, chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports=self.chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports)
+        return internals.chart_chart_data_debt_service_to_exports_most_extreme_shock(chart_chart_data_scenario_labels_debt_service_to_exports=self.chart_chart_data_scenario_labels_debt_service_to_exports, chart_chart_data_debt_service_to_exports_most_extreme_shock_rank=self.chart_chart_data_debt_service_to_exports_most_extreme_shock_rank)
 
     @cached_property
     def chart_chart_data_debt_service_to_exports_baseline_breach_count(self) -> int | str:
@@ -1936,7 +2065,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def chart_chart_data_debt_service_to_revenue_most_extreme_shock(self) -> str | int | float | bool:
-        return internals.chart_chart_data_debt_service_to_revenue_most_extreme_shock(chart_chart_data_scenario_labels_debt_service_to_revenue=self.chart_chart_data_scenario_labels_debt_service_to_revenue, chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue=self.chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue)
+        return internals.chart_chart_data_debt_service_to_revenue_most_extreme_shock(chart_chart_data_scenario_labels_debt_service_to_revenue=self.chart_chart_data_scenario_labels_debt_service_to_revenue, chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank=self.chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank)
 
     @cached_property
     def chart_chart_data_debt_service_to_revenue_baseline_breach_count(self) -> int | str:
@@ -1968,7 +2097,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock(self) -> str | int | float | bool:
-        return internals.chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock(chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio=self.chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio, chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp=self.chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp)
+        return internals.chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock(chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio=self.chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio, chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank=self.chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank)
 
     @cached_property
     def chart_chart_data_pv_of_debt_to_gdp_ratio_baseline_breach_count(self) -> int | str:
@@ -2057,106 +2186,6 @@ class Model(_BoundInputs):
     @cached_property
     def chart_projection_years(self) -> data.Series[int | str | None]:
         return internals.chart_projection_years(macro_debt_main_assumptions_further_details=self.macro_debt_main_assumptions_further_details, macro_debt_further_details=self.macro_debt_further_details)
-
-    @cached_property
-    def _scan_chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path(self) -> internals.ScanChartInternalChartDataPvDebtToGdpPvDebtGdpRatioStressPathResult:
-        return internals.scan_chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio=self.dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio, dsa_pub_pv_of_debt_gdp=self.dsa_pub_pv_of_debt_gdp, dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_gdp=self.dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_gdp, dsa_pub_c2_natural_disaster_pv_of_debt_gdp=self.dsa_pub_c2_natural_disaster_pv_of_debt_gdp, chart_chart_data_pv_debt_to_gdp_c2_natural_disaster_stress_path_applic=self.chart_chart_data_pv_debt_to_gdp_c2_natural_disaster_stress_path_applic, chart_chart_data_pv_debt_to_gdp_c3_commodity_price_stress_path_applica=self.chart_chart_data_pv_debt_to_gdp_c3_commodity_price_stress_path_applica, chart_chart_data_pv_debt_to_gdp_c4_market_financing_stress_path_applic=self.chart_chart_data_pv_debt_to_gdp_c4_market_financing_stress_path_applic, chart_pv_debt_to_gdp_applicable_flag_b2_1_primary_balance_market=self.chart_pv_debt_to_gdp_applicable_flag_b2_1_primary_balance_market, chart_pv_debt_to_gdp_applicable_flag_combined_market_financing_stress=self.chart_pv_debt_to_gdp_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, c4_mkt_fin_revised_pv_debt_pct_gdp=self.c4_mkt_fin_revised_pv_debt_pct_gdp, ci_summary_pv_gdp_applicable=self.ci_summary_pv_gdp_applicable, in6opt_standard_scenario=self.in6opt_standard_scenario)
-
-    @cached_property
-    def chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path(self) -> data.Series[float | str | None]:
-        return self._scan_chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path.chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path
-
-    @cached_property
-    def chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio(self) -> data.Series[float | str | None]:
-        return self._scan_chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path.chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio
-
-    @cached_property
-    def chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure(self) -> data.Series[float | str | None]:
-        return self._scan_chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path.chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure
-
-    @cached_property
-    def chart_output_pv_debt_gdp_ratio(self) -> data.ChartOutputPvDebtGdpRatio:
-        return self._scan_chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path.chart_output_pv_debt_gdp_ratio
-
-    @cached_property
-    def _scan_chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path(self) -> internals.ScanChartInternalChartDataPvDebtToExportsPvDebtToExportsStressPathResult:
-        return internals.scan_chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_ext_pv_of_ppg_external_debt_to_exports_ratio=self.dsa_ext_pv_of_ppg_external_debt_to_exports_ratio, dsa_pub_pv_of_debt_exports=self.dsa_pub_pv_of_debt_exports, dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_exports=self.dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_exports, dsa_pub_c2_natural_disaster_pv_of_debt_exports=self.dsa_pub_c2_natural_disaster_pv_of_debt_exports, chart_chart_data_pv_debt_to_exports_c2_natural_disaster_stress_path_ap=self.chart_chart_data_pv_debt_to_exports_c2_natural_disaster_stress_path_ap, chart_chart_data_pv_debt_to_exports_c3_commodity_price_stress_path_app=self.chart_chart_data_pv_debt_to_exports_c3_commodity_price_stress_path_app, chart_chart_data_pv_debt_to_exports_c4_market_financing_stress_path_ap=self.chart_chart_data_pv_debt_to_exports_c4_market_financing_stress_path_ap, chart_pv_debt_to_exports_applicable_flag_b2_1_primary_balance_market=self.chart_pv_debt_to_exports_applicable_flag_b2_1_primary_balance_market, chart_pv_debt_to_exports_applicable_flag_combined_market_financing_stress=self.chart_pv_debt_to_exports_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, c4_mkt_fin_revised_pv_debt_to_exports=self.c4_mkt_fin_revised_pv_debt_to_exports, ci_summary_pv_exports_applicable=self.ci_summary_pv_exports_applicable, in6opt_standard_scenario=self.in6opt_standard_scenario, c4_market_path_revised_pv_debt_exports=self.c4_market_path_revised_pv_debt_exports)
-
-    @cached_property
-    def chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path(self) -> data.Series[float | str | None]:
-        return self._scan_chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path.chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path
-
-    @cached_property
-    def chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports(self) -> data.Series[float | str | None]:
-        return self._scan_chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path.chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports
-
-    @cached_property
-    def chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure(self) -> data.Series[float | str | None]:
-        return self._scan_chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path.chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure
-
-    @cached_property
-    def chart_output_pv_debt_to_exports(self) -> data.ChartOutputPvDebtToExports:
-        return self._scan_chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path.chart_output_pv_debt_to_exports
-
-    @cached_property
-    def _scan_chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path(self) -> internals.ScanChartInternalChartDataDebtServiceToExportsDebtServiceToExportsStressPathResult:
-        return internals.scan_chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_ext_ppg_debt_service_to_exports_ratio=self.dsa_ext_ppg_debt_service_to_exports_ratio, dsa_pub_debt_service_exports=self.dsa_pub_debt_service_exports, dsa_pub_b2_pb_non_mkt_pub_debt_service_exports=self.dsa_pub_b2_pb_non_mkt_pub_debt_service_exports, dsa_pub_c2_natural_disaster_debt_service_exports=self.dsa_pub_c2_natural_disaster_debt_service_exports, chart_debt_service_to_exports_applicable_flag_c2_natdisaster=self.chart_debt_service_to_exports_applicable_flag_c2_natdisaster, chart_debt_service_to_exports_applicable_flag_c3_commodity_price=self.chart_debt_service_to_exports_applicable_flag_c3_commodity_price, chart_debt_service_to_exports_applicable_flag_c4_mkt_financing=self.chart_debt_service_to_exports_applicable_flag_c4_mkt_financing, chart_debt_service_to_exports_applicable_flag_b2_1_primary_balance_market=self.chart_debt_service_to_exports_applicable_flag_b2_1_primary_balance_market, chart_debt_service_to_exports_applicable_flag_combined_market_financing_stress=self.chart_debt_service_to_exports_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, c4_mkt_fin_dsr_exports_stress=self.c4_mkt_fin_dsr_exports_stress, ci_summary_ds_exports_applicable=self.ci_summary_ds_exports_applicable, in6opt_standard_scenario=self.in6opt_standard_scenario)
-
-    @cached_property
-    def chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path(self) -> data.Series[float | str | None]:
-        return self._scan_chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path.chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path
-
-    @cached_property
-    def chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports(self) -> data.Series[float | str | None]:
-        return self._scan_chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path.chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports
-
-    @cached_property
-    def chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure(self) -> data.Series[float | str | None]:
-        return self._scan_chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path.chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure
-
-    @cached_property
-    def chart_output_debt_service_to_exports(self) -> data.ChartOutputDebtServiceToExports:
-        return self._scan_chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path.chart_output_debt_service_to_exports
-
-    @cached_property
-    def _scan_chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path(self) -> internals.ScanChartInternalChartDataDebtServiceToRevenueDebtServiceToRevenueStressPathResult:
-        return internals.scan_chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_ext_ppg_debt_service_to_revenue_ratio=self.dsa_ext_ppg_debt_service_to_revenue_ratio, dsa_pub_debt_service_revenue_excl_grants=self.dsa_pub_debt_service_revenue_excl_grants, dsa_pub_b2_pb_non_mkt_pub_debt_service_revenue_excl_grants=self.dsa_pub_b2_pb_non_mkt_pub_debt_service_revenue_excl_grants, dsa_pub_c2_natural_disaster_debt_service_revenue_excl_grants=self.dsa_pub_c2_natural_disaster_debt_service_revenue_excl_grants, chart_debt_service_to_revenue_applicable_flag_c2_natdisaster=self.chart_debt_service_to_revenue_applicable_flag_c2_natdisaster, chart_debt_service_to_revenue_applicable_flag_c3_commodity_price=self.chart_debt_service_to_revenue_applicable_flag_c3_commodity_price, chart_debt_service_to_revenue_applicable_flag_c4_mkt_financing=self.chart_debt_service_to_revenue_applicable_flag_c4_mkt_financing, chart_debt_service_to_revenue_applicable_flag_b2_1_primary_balance_market=self.chart_debt_service_to_revenue_applicable_flag_b2_1_primary_balance_market, chart_debt_service_to_revenue_applicable_flag_combined_market_financing_stress=self.chart_debt_service_to_revenue_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, c4_mkt_fin_dsr_revenue_stress=self.c4_mkt_fin_dsr_revenue_stress, ci_summary_ds_revenue_applicable=self.ci_summary_ds_revenue_applicable, in6opt_standard_scenario=self.in6opt_standard_scenario)
-
-    @cached_property
-    def chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path(self) -> data.Series[float | str | None]:
-        return self._scan_chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path.chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path
-
-    @cached_property
-    def chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue(self) -> data.Series[float | str | None]:
-        return self._scan_chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path.chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue
-
-    @cached_property
-    def chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure(self) -> data.Series[float | str | None]:
-        return self._scan_chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path.chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure
-
-    @cached_property
-    def chart_output_debt_service_to_revenue(self) -> data.ChartOutputDebtServiceToRevenue:
-        return self._scan_chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path.chart_output_debt_service_to_revenue
-
-    @cached_property
-    def _scan_chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp(self) -> internals.ScanChartInternalChartDataPvOfDebtToGdpRatioPvDebtToGdpResult:
-        return internals.scan_chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_pub_pv_of_total_public_debt=self.dsa_pub_pv_of_total_public_debt, customized_public_include_scenario=self.customized_public_include_scenario, chart_chart_data_pv_of_debt_to_gdp_ratio_c2_natural_disaster_stress_pa=self.chart_chart_data_pv_of_debt_to_gdp_ratio_c2_natural_disaster_stress_pa, chart_chart_data_pv_of_debt_to_gdp_ratio_c3_commodity_price_stress_pat=self.chart_chart_data_pv_of_debt_to_gdp_ratio_c3_commodity_price_stress_pat, chart_chart_data_pv_of_debt_to_gdp_ratio_c4_market_financing_stress_pa=self.chart_chart_data_pv_of_debt_to_gdp_ratio_c4_market_financing_stress_pa, chart_pv_of_debt_to_gdp_ratio_applicable_flag_b2_1_primary_balance_market=self.chart_pv_of_debt_to_gdp_ratio_applicable_flag_b2_1_primary_balance_market, chart_pv_of_debt_to_gdp_ratio_applicable_flag_combined_market_financing_stress=self.chart_pv_of_debt_to_gdp_ratio_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path=self.chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path, ci_summary_public_pv_medium_cutoff=self.ci_summary_public_pv_medium_cutoff, baseline_pub_pv_of_public_debt_gdp_ratio=self.baseline_pub_pv_of_public_debt_gdp_ratio, baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports=self.baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports, baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows=self.baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows, baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin=self.baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin, custom_pub_pv_of_public_debt_gdp_ratio=self.custom_pub_pv_of_public_debt_gdp_ratio, in6opt_standard_scenario=self.in6opt_standard_scenario)
-
-    @cached_property
-    def chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp(self) -> data.Series[float | str | None]:
-        return self._scan_chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp.chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp
-
-    @cached_property
-    def chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure(self) -> data.Series[float | str | None]:
-        return self._scan_chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp.chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure
-
-    @cached_property
-    def chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp(self) -> data.ChartOutputChartDataPvOfDebtToGdpRatioPvDebtToGdp:
-        return self._scan_chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp.chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp
-
-    @cached_property
-    def chart_output_pv_debt_to_gdp(self) -> data.ChartOutputPvDebtToGdp:
-        return self._scan_chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp.chart_output_pv_debt_to_gdp
 
     @cached_property
     def chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path(self) -> data.Series[float | str | None]:
@@ -3167,36 +3196,16 @@ class Model(_BoundInputs):
         return internals.ci_summary_old_ds_revenue_grid_heading(ci_summary_ds_revenue_grid_heading=self.ci_summary_ds_revenue_grid_heading)
 
     @cached_property
-    def trigger_ifscode_header(self) -> str | int | float | bool:
-        return internals.trigger_ifscode_header(lookup_country_table_headers=data.LOOKUP_COUNTRY_TABLE_HEADERS)
-
-    @cached_property
-    def trigger_country_header(self) -> str | int | float | bool:
-        return internals.trigger_country_header(lookup_country_table_headers=data.LOOKUP_COUNTRY_TABLE_HEADERS)
-
-    @cached_property
     def trigger_ifscode(self) -> data.Series[int | str | None]:
         return internals.trigger_ifscode(imported_ppp_ifs_code=data.IMPORTED_PPP_IFS_CODE)
 
     @cached_property
-    def trigger_isocode(self) -> data.Series[str | int | float | bool | None]:
-        return internals.trigger_isocode(lookup_imf_country_code=data.LOOKUP_IMF_COUNTRY_CODE, lookup_country_table_headers=data.LOOKUP_COUNTRY_TABLE_HEADERS, lookup_iso_alpha3=data.LOOKUP_ISO_ALPHA3, lookup_country_name=data.LOOKUP_COUNTRY_NAME, lookup_hipc_status=data.LOOKUP_HIPC_STATUS, trigger_ifscode_header=self.trigger_ifscode_header, trigger_ifscode=self.trigger_ifscode)
-
-    @cached_property
-    def trigger_country_name(self) -> data.Series[str | int | float | bool | None]:
-        return internals.trigger_country_name(lookup_imf_country_code=data.LOOKUP_IMF_COUNTRY_CODE, lookup_country_table_headers=data.LOOKUP_COUNTRY_TABLE_HEADERS, lookup_iso_alpha3=data.LOOKUP_ISO_ALPHA3, lookup_country_name=data.LOOKUP_COUNTRY_NAME, lookup_hipc_status=data.LOOKUP_HIPC_STATUS, trigger_country_header=self.trigger_country_header, trigger_ifscode=self.trigger_ifscode)
-
-    @cached_property
-    def trigger_ppp_year(self) -> data.Series[int | str | None]:
-        return internals.trigger_ppp_year(trigger_left_headers=data.TRIGGER_LEFT_HEADERS, imported_ppp_headers=data.IMPORTED_PPP_HEADERS, imported_ppp_ifs_code=data.IMPORTED_PPP_IFS_CODE, imported_ppp_country_name=data.IMPORTED_PPP_COUNTRY_NAME, imported_ppp_year=data.IMPORTED_PPP_YEAR, imported_ppp_incgr=data.IMPORTED_PPP_INCGR, imported_ppp_licdsf=data.IMPORTED_PPP_LICDSF, imported_ppp_kppp=data.IMPORTED_PPP_KPPP, imported_ppp_gdp=data.IMPORTED_PPP_GDP, imported_ppp_ratio=data.IMPORTED_PPP_RATIO)
-
-    @cached_property
     def trigger_ppp_stocks(self) -> data.Series[float | str | None]:
-        return internals.trigger_ppp_stocks(trigger_left_headers=data.TRIGGER_LEFT_HEADERS, imported_ppp_headers=data.IMPORTED_PPP_HEADERS, imported_ppp_ifs_code=data.IMPORTED_PPP_IFS_CODE, imported_ppp_country_name=data.IMPORTED_PPP_COUNTRY_NAME, imported_ppp_year=data.IMPORTED_PPP_YEAR, imported_ppp_incgr=data.IMPORTED_PPP_INCGR, imported_ppp_licdsf=data.IMPORTED_PPP_LICDSF, imported_ppp_kppp=data.IMPORTED_PPP_KPPP, imported_ppp_gdp=data.IMPORTED_PPP_GDP, imported_ppp_ratio=data.IMPORTED_PPP_RATIO)
+        return internals.trigger_ppp_stocks(trigger_left_headers=data.TRIGGER_LEFT_HEADERS, imported_ppp_headers=data.IMPORTED_PPP_HEADERS, imported_ppp_ifs_code=data.IMPORTED_PPP_IFS_CODE, imported_ppp_country_name=data.IMPORTED_PPP_COUNTRY_NAME, imported_ppp_incgr=data.IMPORTED_PPP_INCGR, imported_ppp_licdsf=data.IMPORTED_PPP_LICDSF, imported_ppp_kppp=data.IMPORTED_PPP_KPPP, imported_ppp_gdp=data.IMPORTED_PPP_GDP, imported_ppp_ratio=data.IMPORTED_PPP_RATIO)
 
     @cached_property
     def trigger_market_access_country_code(self) -> data.Series[int | str | None]:
-        return internals.trigger_market_access_country_code(lookup_imf_country_code_index=data.LOOKUP_IMF_COUNTRY_CODE_INDEX, lookup_country_name=data.LOOKUP_COUNTRY_NAME, lookup_hipc_status=data.LOOKUP_HIPC_STATUS, lookup_mdri=data.LOOKUP_MDRI, trigger_country_names=data.TRIGGER_COUNTRY_NAMES)
+        return internals.trigger_market_access_country_code(lookup_imf_country_code_index=data.LOOKUP_IMF_COUNTRY_CODE_INDEX, lookup_country_name=data.LOOKUP_COUNTRY_NAME, trigger_country_names=data.TRIGGER_COUNTRY_NAMES)
 
     @cached_property
     def trigger_market_access(self) -> data.Series[str | int | float | bool | None]:
@@ -3972,7 +3981,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def in1_basics_country_code(self) -> int | str:
-        return internals.in1_basics_country_code(country=self.country, lookup_imf_country_code_index=data.LOOKUP_IMF_COUNTRY_CODE_INDEX, lookup_country_name=data.LOOKUP_COUNTRY_NAME, lookup_hipc_status=data.LOOKUP_HIPC_STATUS, lookup_mdri=data.LOOKUP_MDRI)
+        return internals.in1_basics_country_code(country=self.country, lookup_imf_country_code_index=data.LOOKUP_IMF_COUNTRY_CODE_INDEX, lookup_country_name=data.LOOKUP_COUNTRY_NAME)
 
     @cached_property
     def in2_coverage_ppp(self) -> float | str:
@@ -3980,7 +3989,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def in2_coverage_y1_ppp_capital_stock_from_world_bank_s_ppp(self) -> float | str:
-        return internals.in2_coverage_y1_ppp_capital_stock_from_world_bank_s_ppp(trigger_country_flags=data.TRIGGER_COUNTRY_FLAGS, trigger_left_headers=data.TRIGGER_LEFT_HEADERS, trigger_ifscode=self.trigger_ifscode, trigger_isocode=self.trigger_isocode, trigger_country_name=self.trigger_country_name, trigger_ppp_year=self.trigger_ppp_year, trigger_ppp_stocks=self.trigger_ppp_stocks, in1_basics_country_code=self.in1_basics_country_code)
+        return internals.in2_coverage_y1_ppp_capital_stock_from_world_bank_s_ppp(trigger_left_headers=data.TRIGGER_LEFT_HEADERS, trigger_ifscode=self.trigger_ifscode, trigger_ppp_stocks=self.trigger_ppp_stocks, in1_basics_country_code=self.in1_basics_country_code)
 
     @cached_property
     def in2_coverage_y3_size_of_ppp_shock_pct_gdp_1_2(self) -> float | str:
@@ -4715,8 +4724,8 @@ class Model(_BoundInputs):
         return internals.c4_market_instruments_k(pv_stress_com_discount_interest_rate=self.pv_stress_com_discount_interest_rate)
 
     @cached_property
-    def input6_standard_params(self) -> data.Series[int | str | None]:
-        return internals.input6_standard_params(input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations=data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS, input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations=data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS, input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations=data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS, input6_standard_b4_other_non_debt_creating_flows_other_flows_current_transfers_shock_of_standard_deviations=data.INPUT6_STANDARD_B4_OTHER_NON_DEBT_CREATING_FLOWS_OTHER_FLOWS_CURRENT_TRANSFERS_SHOCK_OF_STANDARD_DEVIATIONS, input6_standard_b4_other_non_debt_creating_flows_other_flows_fdi_shock_of_standard_deviations=data.INPUT6_STANDARD_B4_OTHER_NON_DEBT_CREATING_FLOWS_OTHER_FLOWS_FDI_SHOCK_OF_STANDARD_DEVIATIONS)
+    def input6_standard_params(self) -> data.Series[float | str | None]:
+        return internals.input6_standard_params(input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations=self.input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations, input6_standard_b4_other_non_debt_creating_flows_other_flows_current_transfers_shock_of_standard_deviations=data.INPUT6_STANDARD_B4_OTHER_NON_DEBT_CREATING_FLOWS_OTHER_FLOWS_CURRENT_TRANSFERS_SHOCK_OF_STANDARD_DEVIATIONS, input6_standard_b4_other_non_debt_creating_flows_other_flows_fdi_shock_of_standard_deviations=data.INPUT6_STANDARD_B4_OTHER_NON_DEBT_CREATING_FLOWS_OTHER_FLOWS_FDI_SHOCK_OF_STANDARD_DEVIATIONS, input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations=self.input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations, input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations=self.input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations)
 
     @cached_property
     def input6_tailored_params_3(self) -> data.Series[float | str | None]:
@@ -4759,23 +4768,23 @@ class Model(_BoundInputs):
         return internals.leftover_revenue_gdp(in6opt_standard_size_of_pb_gdp_shock_of_standard_deviations=self.in6opt_standard_size_of_pb_gdp_shock_of_standard_deviations)
 
     @cached_property
-    def b1_gdp_ext_ii_key_macroeconomic_assumptions(self) -> int | str:
+    def b1_gdp_ext_ii_key_macroeconomic_assumptions(self) -> float | str:
         return internals.b1_gdp_ext_ii_key_macroeconomic_assumptions(input6_standard_params=self.input6_standard_params)
 
     @cached_property
-    def b1_gdp_pub_key_macroeconomic_fiscal_assumptions(self) -> int | str:
+    def b1_gdp_pub_key_macroeconomic_fiscal_assumptions(self) -> float | str:
         return internals.b1_gdp_pub_key_macroeconomic_fiscal_assumptions(input6_standard_params=self.input6_standard_params)
 
     @cached_property
-    def b2_pb_mkt_pub_i_baseline_medium_term_projections(self) -> int | str:
+    def b2_pb_mkt_pub_i_baseline_medium_term_projections(self) -> float | str:
         return internals.b2_pb_mkt_pub_i_baseline_medium_term_projections(input6_standard_params=self.input6_standard_params)
 
     @cached_property
-    def b2_pb_nonmkt_pub_i_baseline_medium_term_projections(self) -> int | str:
+    def b2_pb_nonmkt_pub_i_baseline_medium_term_projections(self) -> float | str:
         return internals.b2_pb_nonmkt_pub_i_baseline_medium_term_projections(input6_standard_params=self.input6_standard_params)
 
     @cached_property
-    def b3_exports_ext_iii_averages_standard_deviations(self) -> int | str:
+    def b3_exports_ext_iii_averages_standard_deviations(self) -> float | str:
         return internals.b3_exports_ext_iii_averages_standard_deviations(input6_standard_params=self.input6_standard_params)
 
     @cached_property
@@ -5612,7 +5621,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_lc_nr1_terms_fx_eop(self) -> data.Series[float | str | None]:
-        return internals.pv_lc_nr1_terms_fx_eop(macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, pv_lc_nr1_terms_fx_pa_growth_avg=self.pv_lc_nr1_terms_fx_pa_growth_avg)
+        return internals.pv_lc_nr1_terms_fx_eop(macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar)
 
     @cached_property
     def pv_lc_terms_interest_rate_local_currency(self) -> data.Series[float | str | None]:
@@ -5644,7 +5653,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_lc_output_period_index(self) -> data.Series[int | str | None]:
-        return internals.pv_lc_output_period_index()
+        return internals.pv_lc_output_period_index(pv_lc_constant_output_period_index=data.PV_LC_CONSTANT_OUTPUT_PERIOD_INDEX)
 
     @cached_property
     def pv_lc_output_projection_year(self) -> data.Series[int | str | None]:
@@ -5676,11 +5685,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_lc_output_t_g_0(self) -> data.Series[int | str | None]:
-        return internals.pv_lc_output_t_g_0(pv_lc_output_period_index=self.pv_lc_output_period_index, pv_lc_output_grace=self.pv_lc_output_grace)
+        return internals.pv_lc_output_t_g_0(pv_lc_constant_output_period_index=data.PV_LC_CONSTANT_OUTPUT_PERIOD_INDEX, pv_lc_output_period_index=self.pv_lc_output_period_index, pv_lc_output_grace=self.pv_lc_output_grace)
 
     @cached_property
     def pv_lc_output_t_m_condition(self) -> data.Series[int | str | None]:
-        return internals.pv_lc_output_t_m_condition(pv_lc_output_period_index=self.pv_lc_output_period_index, pv_lc_output_maturity=self.pv_lc_output_maturity)
+        return internals.pv_lc_output_t_m_condition(pv_lc_constant_output_period_index=data.PV_LC_CONSTANT_OUTPUT_PERIOD_INDEX, pv_lc_output_period_index=self.pv_lc_output_period_index, pv_lc_output_maturity=self.pv_lc_output_maturity)
 
     @cached_property
     def pv_lc_terms_projection_year(self) -> data.Series[int | str | None]:
@@ -6143,7 +6152,7 @@ class Model(_BoundInputs):
 class Realism1ExternalDebtFlowComponentsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_external_debt_flow_components`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -6197,7 +6206,7 @@ class Realism1ExternalDebtCreatingFlowsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     first_projection_year: int | str = _field(
@@ -6227,10 +6236,10 @@ class Realism1ExternalDebtCreatingFlowsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -6353,6 +6362,15 @@ class Realism1ExternalDebtCreatingFlowsInputs(_SnapshotInputs):
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
     )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -6362,7 +6380,7 @@ class Realism1ExternalDebtCreatingFlowsInputs(_SnapshotInputs):
 class Realism1ExternalForecastErrorComponentLabelsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_external_forecast_error_component_labels`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -6416,7 +6434,7 @@ class Realism1ExternalForecastErrorComponentsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -6449,10 +6467,10 @@ class Realism1ExternalForecastErrorComponentsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -6575,6 +6593,15 @@ class Realism1ExternalForecastErrorComponentsInputs(_SnapshotInputs):
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
     )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -6584,7 +6611,7 @@ class Realism1ExternalForecastErrorComponentsInputs(_SnapshotInputs):
 class Realism1ExternalForecastErrorDistributionLabelsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_external_forecast_error_distribution_labels`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -6638,7 +6665,7 @@ class Realism1ExternalForecastErrorDistributionInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -6671,10 +6698,10 @@ class Realism1ExternalForecastErrorDistributionInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -6796,6 +6823,15 @@ class Realism1ExternalForecastErrorDistributionInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -6860,7 +6896,7 @@ class Realism1ExternalVintageDebtPathsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -6893,10 +6929,10 @@ class Realism1ExternalVintageDebtPathsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -7019,6 +7055,15 @@ class Realism1ExternalVintageDebtPathsInputs(_SnapshotInputs):
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
     )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -7028,7 +7073,7 @@ class Realism1ExternalVintageDebtPathsInputs(_SnapshotInputs):
 class Realism1PublicDebtFlowComponentsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_public_debt_flow_components`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -7082,7 +7127,7 @@ class Realism1PublicDebtCreatingFlowsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     first_projection_year: int | str = _field(
@@ -7187,7 +7232,7 @@ class Realism1PublicDebtCreatingFlowsInputs(_SnapshotInputs):
 class Realism1PublicForecastErrorComponentLabelsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_public_forecast_error_component_labels`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -7241,7 +7286,7 @@ class Realism1PublicForecastErrorComponentsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -7355,7 +7400,7 @@ class Realism1PublicForecastErrorLowerQuartileInputs(_SnapshotInputs):
 class Realism1PublicForecastErrorDistributionLabelsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_public_forecast_error_distribution_labels`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -7409,7 +7454,7 @@ class Realism1PublicForecastErrorDistributionInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -7571,7 +7616,7 @@ class Realism1PublicVintageDebtPathsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -7775,7 +7820,7 @@ class Realism3InvestmentYearsInputs(_SnapshotInputs):
 class Realism3InvestmentPathLabelsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism3_investment_path_labels`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -7799,7 +7844,7 @@ class Realism3PublicPrivateInvestmentPathsInputs(_SnapshotInputs):
 class Realism3GrowthAccountingVintagesInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism3_growth_accounting_vintages`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -7853,7 +7898,7 @@ class Realism3GrowthAccountingContributionsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -7883,10 +7928,10 @@ class Realism3GrowthAccountingContributionsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -7991,6 +8036,15 @@ class Realism3GrowthAccountingContributionsInputs(_SnapshotInputs):
     current_year: int | str = _field(
         metadata={"default": data.CURRENT_YEAR_DEFAULT, "cells": data.CURRENT_YEAR_CELLS},
     )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -8000,7 +8054,7 @@ class Realism3GrowthAccountingContributionsInputs(_SnapshotInputs):
 class Realism4Projected3yrAdjustmentLabelInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism4_projected_3yr_adjustment_label`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -8093,7 +8147,7 @@ class Realism4Projected3yrAdjustmentSampleShareInputs(_SnapshotInputs):
 class Realism4FiscalAdjustmentTopBinLabelInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism4_fiscal_adjustment_top_bin_label`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -8159,7 +8213,7 @@ class ProbabilityPvDebtToGdpInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -8204,10 +8258,10 @@ class ProbabilityPvDebtToGdpInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -8329,6 +8383,15 @@ class ProbabilityPvDebtToGdpInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -8384,7 +8447,7 @@ class ProbabilityPvDebtToExportsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -8429,10 +8492,10 @@ class ProbabilityPvDebtToExportsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -8554,6 +8617,15 @@ class ProbabilityPvDebtToExportsInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -8609,7 +8681,7 @@ class ProbabilityDebtServiceToExportsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -8654,10 +8726,10 @@ class ProbabilityDebtServiceToExportsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -8782,6 +8854,15 @@ class ProbabilityDebtServiceToExportsInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -8837,7 +8918,7 @@ class ProbabilityDebtServiceToRevenueInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -8882,10 +8963,10 @@ class ProbabilityDebtServiceToRevenueInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -9010,6 +9091,15 @@ class ProbabilityDebtServiceToRevenueInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -9065,7 +9155,7 @@ class ProbabilityPvDebtToGdpDistressInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -9110,10 +9200,10 @@ class ProbabilityPvDebtToGdpDistressInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -9235,6 +9325,15 @@ class ProbabilityPvDebtToGdpDistressInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -9290,7 +9389,7 @@ class ProbabilityPvDebtToExportsDistressInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -9335,10 +9434,10 @@ class ProbabilityPvDebtToExportsDistressInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -9460,6 +9559,15 @@ class ProbabilityPvDebtToExportsDistressInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -9515,7 +9623,7 @@ class ProbabilityDebtServiceToExportsDistressInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -9560,10 +9668,10 @@ class ProbabilityDebtServiceToExportsDistressInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -9688,6 +9796,15 @@ class ProbabilityDebtServiceToExportsDistressInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -9743,7 +9860,7 @@ class ProbabilityDebtServiceToRevenueDistressInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -9788,10 +9905,10 @@ class ProbabilityDebtServiceToRevenueDistressInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -9916,6 +10033,15 @@ class ProbabilityDebtServiceToRevenueDistressInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -9971,7 +10097,7 @@ class ExternalDsaRiskRatingSignalInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -10016,10 +10142,10 @@ class ExternalDsaRiskRatingSignalInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -10144,6 +10270,15 @@ class ExternalDsaRiskRatingSignalInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -10199,7 +10334,7 @@ class ExternalDsaRiskRatingNumericInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -10244,10 +10379,10 @@ class ExternalDsaRiskRatingNumericInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -10372,6 +10507,15 @@ class ExternalDsaRiskRatingNumericInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -10427,7 +10571,7 @@ class ExternalBaselineBreachInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -10472,10 +10616,10 @@ class ExternalBaselineBreachInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -10600,6 +10744,15 @@ class ExternalBaselineBreachInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -10655,7 +10808,7 @@ class ExternalShockBreachInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -10700,10 +10853,10 @@ class ExternalShockBreachInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -10828,6 +10981,15 @@ class ExternalShockBreachInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -10883,7 +11045,7 @@ class ExternalPvDebtToGdpMxShockInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -10928,10 +11090,10 @@ class ExternalPvDebtToGdpMxShockInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -11053,6 +11215,15 @@ class ExternalPvDebtToGdpMxShockInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -11108,7 +11279,7 @@ class ExternalPvDebtToExportsMxShockInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -11153,10 +11324,10 @@ class ExternalPvDebtToExportsMxShockInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -11278,6 +11449,15 @@ class ExternalPvDebtToExportsMxShockInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -11333,7 +11513,7 @@ class ExternalDebtServiceToExportsMxShockInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -11378,10 +11558,10 @@ class ExternalDebtServiceToExportsMxShockInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -11506,6 +11686,15 @@ class ExternalDebtServiceToExportsMxShockInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -11561,7 +11750,7 @@ class ExternalDebtServiceToRevenueMxShockInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -11606,10 +11795,10 @@ class ExternalDebtServiceToRevenueMxShockInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -11734,6 +11923,15 @@ class ExternalDebtServiceToRevenueMxShockInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -11789,7 +11987,7 @@ class FiscalRiskRatingSignalInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -11840,10 +12038,10 @@ class FiscalRiskRatingSignalInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -11995,6 +12193,15 @@ class FiscalRiskRatingSignalInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -12050,7 +12257,7 @@ class FiscalRiskRatingNumericInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -12101,10 +12308,10 @@ class FiscalRiskRatingNumericInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -12256,6 +12463,15 @@ class FiscalRiskRatingNumericInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -12311,7 +12527,7 @@ class FiscalBaselineBreachInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -12362,10 +12578,10 @@ class FiscalBaselineBreachInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -12517,6 +12733,15 @@ class FiscalBaselineBreachInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -12572,7 +12797,7 @@ class FiscalShockBreachInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -12623,10 +12848,10 @@ class FiscalShockBreachInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -12778,6 +13003,15 @@ class FiscalShockBreachInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -12833,7 +13067,7 @@ class FiscalPvDebtToGdpMxShockInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -12884,10 +13118,10 @@ class FiscalPvDebtToGdpMxShockInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -13040,6 +13274,15 @@ class FiscalPvDebtToGdpMxShockInputs(_SnapshotInputs):
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
     )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -13061,7 +13304,7 @@ class TailoredStressCommodityPriceApplicableInputs(_SnapshotInputs):
     input6_commodity_group_relevant: data.Input6CommodityGroupRelevant = _field(
         metadata={"default": data.INPUT6_COMMODITY_GROUP_RELEVANT_DEFAULT, "cells": data.INPUT6_COMMODITY_GROUP_RELEVANT.cells},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
     input3_input_3_macro_exports_of_goods_and_services: data.Input3Input3MacroExportsOfGoodsAndServices = _field(
@@ -13088,7 +13331,7 @@ class TailoredStressMarketFinancingApplicableInputs(_SnapshotInputs):
     country: str = _field(
         metadata={"default": data.COUNTRY_DEFAULT, "cells": data.COUNTRY_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
 
@@ -13142,7 +13385,7 @@ class FiscalSpaceModerateRiskSignalInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -13196,10 +13439,10 @@ class FiscalSpaceModerateRiskSignalInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -13324,6 +13567,15 @@ class FiscalSpaceModerateRiskSignalInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -13379,7 +13631,7 @@ class OverallRiskRatingSignalInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -13430,10 +13682,10 @@ class OverallRiskRatingSignalInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -13588,6 +13840,15 @@ class OverallRiskRatingSignalInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -13643,7 +13904,7 @@ class OverallRiskRatingNumericInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -13694,10 +13955,10 @@ class OverallRiskRatingNumericInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -13852,6 +14113,15 @@ class OverallRiskRatingNumericInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -13907,7 +14177,7 @@ class ChartOutputChartDataPvOfDebtToGdpRatioPvDebtToGdpInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -13958,10 +14228,10 @@ class ChartOutputChartDataPvOfDebtToGdpRatioPvDebtToGdpInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -14113,6 +14383,15 @@ class ChartOutputChartDataPvOfDebtToGdpRatioPvDebtToGdpInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -14168,7 +14447,7 @@ class ChartOutputChartDataPvOfDebtToRevenueRatioPvDebtToRevenueInputs(_SnapshotI
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -14219,10 +14498,10 @@ class ChartOutputChartDataPvOfDebtToRevenueRatioPvDebtToRevenueInputs(_SnapshotI
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -14374,6 +14653,15 @@ class ChartOutputChartDataPvOfDebtToRevenueRatioPvDebtToRevenueInputs(_SnapshotI
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -14429,7 +14717,7 @@ class ChartOutputChartDataDebtServiceToRevenueRatioDebtServiceToRevenueInputs(_S
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -14480,10 +14768,10 @@ class ChartOutputChartDataDebtServiceToRevenueRatioDebtServiceToRevenueInputs(_S
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -14629,6 +14917,15 @@ class ChartOutputChartDataDebtServiceToRevenueRatioDebtServiceToRevenueInputs(_S
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -14684,7 +14981,7 @@ class ChartOutputChartDataDebtServiceToGdpRatioDebtServiceGdpRatioInputs(_Snapsh
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -14735,10 +15032,10 @@ class ChartOutputChartDataDebtServiceToGdpRatioDebtServiceGdpRatioInputs(_Snapsh
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -14884,6 +15181,15 @@ class ChartOutputChartDataDebtServiceToGdpRatioDebtServiceGdpRatioInputs(_Snapsh
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -14939,7 +15245,7 @@ class ChartPvDebtGdpRatioCustomAlternativeScenarioInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     first_projection_year: int | str = _field(
@@ -14975,10 +15281,10 @@ class ChartPvDebtGdpRatioCustomAlternativeScenarioInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -15127,6 +15433,15 @@ class ChartPvDebtGdpRatioCustomAlternativeScenarioInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -15182,7 +15497,7 @@ class ChartOutputPvDebtGdpRatioInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -15227,10 +15542,10 @@ class ChartOutputPvDebtGdpRatioInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -15353,6 +15668,15 @@ class ChartOutputPvDebtGdpRatioInputs(_SnapshotInputs):
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
     )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -15407,7 +15731,7 @@ class ChartPvDebtToExportsCustomAlternativeScenarioInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     first_projection_year: int | str = _field(
@@ -15443,10 +15767,10 @@ class ChartPvDebtToExportsCustomAlternativeScenarioInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -15596,6 +15920,15 @@ class ChartPvDebtToExportsCustomAlternativeScenarioInputs(_SnapshotInputs):
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
     )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -15650,7 +15983,7 @@ class ChartOutputPvDebtToExportsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -15695,10 +16028,10 @@ class ChartOutputPvDebtToExportsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -15820,6 +16153,15 @@ class ChartOutputPvDebtToExportsInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -15875,7 +16217,7 @@ class ChartDebtServiceToExportsCustomAlternativeScenarioInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     first_projection_year: int | str = _field(
@@ -15911,10 +16253,10 @@ class ChartDebtServiceToExportsCustomAlternativeScenarioInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -16060,6 +16402,15 @@ class ChartDebtServiceToExportsCustomAlternativeScenarioInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -16115,7 +16466,7 @@ class ChartOutputDebtServiceToExportsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -16160,10 +16511,10 @@ class ChartOutputDebtServiceToExportsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -16289,6 +16640,15 @@ class ChartOutputDebtServiceToExportsInputs(_SnapshotInputs):
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
     )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -16343,7 +16703,7 @@ class ChartDebtServiceToRevenueCustomAlternativeScenarioInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     first_projection_year: int | str = _field(
@@ -16379,10 +16739,10 @@ class ChartDebtServiceToRevenueCustomAlternativeScenarioInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -16529,6 +16889,15 @@ class ChartDebtServiceToRevenueCustomAlternativeScenarioInputs(_SnapshotInputs):
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
     )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -16583,7 +16952,7 @@ class ChartOutputDebtServiceToRevenueInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -16628,10 +16997,10 @@ class ChartOutputDebtServiceToRevenueInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -16757,6 +17126,15 @@ class ChartOutputDebtServiceToRevenueInputs(_SnapshotInputs):
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
     )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -16811,7 +17189,7 @@ class ChartOutputPvDebtToGdpInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -16862,10 +17240,10 @@ class ChartOutputPvDebtToGdpInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -17017,6 +17395,15 @@ class ChartOutputPvDebtToGdpInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -17072,7 +17459,7 @@ class ChartPvDebtToRevenueMxShockStandardTailoredInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -17123,10 +17510,10 @@ class ChartPvDebtToRevenueMxShockStandardTailoredInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -17279,6 +17666,15 @@ class ChartPvDebtToRevenueMxShockStandardTailoredInputs(_SnapshotInputs):
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
     )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -17333,7 +17729,7 @@ class ChartOutputDebtServiceToRevenueFiscalInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -17384,10 +17780,10 @@ class ChartOutputDebtServiceToRevenueFiscalInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -17533,6 +17929,15 @@ class ChartOutputDebtServiceToRevenueFiscalInputs(_SnapshotInputs):
     )
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement = _field(
         metadata={"default": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT_DEFAULT, "cells": data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.cells},
+    )
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
+        metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},

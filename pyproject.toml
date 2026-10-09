@@ -15,14 +15,18 @@ dependencies = [
 [tool.setuptools]
 packages = ["lic_dsf_2025_08_12"]
 
+[tool.uv]
+default-groups = ["dev"]
+
 [dependency-groups]
 dev = [
     "quarto>=0.1.0",
     "great-docs>=0.12.0",
+    "ipykernel<7",
     "pandas",
     "polars",
     "matplotlib",
 ]
 validation = [
-    "excel-grapher>=23.11.0",
+    "excel-grapher[fast]>=24.1.3",
 ]

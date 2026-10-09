@@ -16,13 +16,7 @@ import yaml
 from excel_grapher.series_bindings.ranges import series_data_ranges
 from fastpyxl.utils.cell import column_index_from_string, coordinate_from_string
 
-from src.workbook_constraints import (
-    expand_sheet_qualified_range,
-    parse_sheet_qualified_spec,
-)
-
 from .differential_types import Axis, AxisPoint, Scenario
-from .lic_dsf_filled_scenario import INPUT_FIRST_PROJECTION_YEAR, filled_lic_writes
 
 _BINDINGS = Path(__file__).resolve().parents[2] / "bindings"
 _CHART_HEADER_YEAR0 = 2024
@@ -34,6 +28,9 @@ INPUT_DEBT_DEFINITION = "'Input 1 - Basics'!C33"
 INPUT_REER_OVERVALUATION = "'Input 1 - Basics'!C31"
 INPUT_TAILORED_TESTS_ENABLED = "'Input 6 - Tailored Tests'!C6"
 INPUT_WORKING_LANGUAGE = "START!K10"
+INPUT_GROWTH_SHOCK_SD = "'Input 6(optional)-Standard Test'!C17"
+INPUT_PRIMARY_BALANCE_SHOCK_SD = "'Input 6(optional)-Standard Test'!C21"
+INPUT_EXPORTS_SHOCK_SD = "'Input 6(optional)-Standard Test'!C25"
 
 # Rating scalars still collapse to the most-extreme shock; the SCENARIO×year
 # tables below are the per-path points that those ratings hide.
@@ -51,6 +48,16 @@ RATING_OUTPUT_CELLS: tuple[tuple[str, str], ...] = (
     ("fiscal_space_moderate_risk_signal", "'Chart Data'!D23"),
 )
 
+# Most-extreme-shock labels. The rank column can select any stress test, so
+# these scalars are part of the Excel comparison, not only the default case.
+MX_SHOCK_OUTPUT_CELLS: tuple[tuple[str, str], ...] = (
+    ("external_pv_debt_to_gdp_mx_shock", "'Chart Data'!D14"),
+    ("external_pv_debt_to_exports_mx_shock", "'Chart Data'!D15"),
+    ("external_debt_service_to_exports_mx_shock", "'Chart Data'!D16"),
+    ("external_debt_service_to_revenue_mx_shock", "'Chart Data'!D17"),
+    ("fiscal_pv_debt_to_gdp_mx_shock", "'Chart Data'!I14"),
+)
+
 SHOCK_TABLE_SERIES_IDS: tuple[str, ...] = (
     "chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp",
     "chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue",
@@ -61,6 +68,8 @@ SHOCK_TABLE_SERIES_IDS: tuple[str, ...] = (
 
 def build_axes() -> tuple[Axis, ...]:
     """Axis-organized starter sweep for graph-oracle parity."""
+    from .lic_dsf_filled_scenario import INPUT_FIRST_PROJECTION_YEAR, filled_lic_writes
+
     return (
         Axis(
             name="baseline",
@@ -169,6 +178,38 @@ def build_axes() -> tuple[Axis, ...]:
                 ),
             ),
         ),
+        # Eight standard deviations of real GDP growth makes Growth the
+        # rank-1 stress test on the PV debt-to-GDP and debt-service-to-revenue
+        # labels. Eight standard deviations of the primary balance and an
+        # export shock of 0 standard deviations makes Primary Balance rank-1
+        # on every most-extreme-shock label.
+        Axis(
+            name="growth_shock",
+            points=(
+                AxisPoint(
+                    label="growth_8sd",
+                    scenario=Scenario(
+                        id="growth_shock_8sd",
+                        inputs={INPUT_GROWTH_SHOCK_SD: 8},
+                    ),
+                ),
+            ),
+        ),
+        Axis(
+            name="primary_balance_shock",
+            points=(
+                AxisPoint(
+                    label="primary_balance_8sd",
+                    scenario=Scenario(
+                        id="primary_balance_shock_8sd",
+                        inputs={
+                            INPUT_PRIMARY_BALANCE_SHOCK_SD: 8,
+                            INPUT_EXPORTS_SHOCK_SD: 0,
+                        },
+                    ),
+                ),
+            ),
+        ),
     )
 
 
@@ -188,6 +229,11 @@ def _scenario_by_row(series: dict[str, Any]) -> dict[int, str]:
 
 @cache
 def _shock_table_cell_labels() -> tuple[tuple[str, str], ...]:
+    from src.workbook_constraints import (
+        expand_sheet_qualified_range,
+        parse_sheet_qualified_spec,
+    )
+
     document = yaml.safe_load(
         (_BINDINGS / "outputs.bindings.yaml").read_text(encoding="utf-8")
     )
@@ -221,7 +267,7 @@ def _shock_table_cell_labels() -> tuple[tuple[str, str], ...]:
 
 def output_cell_labels() -> tuple[tuple[str, str], ...]:
     """``(label, address)`` pairs compared in the graph-oracle sweep."""
-    return RATING_OUTPUT_CELLS + _shock_table_cell_labels()
+    return RATING_OUTPUT_CELLS + MX_SHOCK_OUTPUT_CELLS + _shock_table_cell_labels()
 
 
 def inputs_for_excel(scenario: Scenario) -> dict[str, Any]:

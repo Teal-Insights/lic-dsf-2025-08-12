@@ -1,4 +1,4 @@
-schema_version: 1.21.0
+schema_version: 1.22.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -1269,10 +1269,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions:
     - id: PARAMETER
       concept: PARAMETER
@@ -1620,10 +1620,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions: []
   key: []
   series_context:
@@ -1637,10 +1637,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions: []
   key: []
   series_context:
@@ -1654,10 +1654,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions: []
   key: []
   series_context:
@@ -1671,10 +1671,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions: []
   key: []
   series_context:
@@ -1688,10 +1688,10 @@ series:
   structure:
     measure:
       concept: OBS_VALUE
-      dtype: int
+      dtype: float
       bind:
         kind: data_cell
-        read: int
+        read: float
     dimensions: []
   key: []
   series_context:

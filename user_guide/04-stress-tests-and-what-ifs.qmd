@@ -65,7 +65,7 @@ api.compute_tailored_stress_market_financing_applicable(
 )
 ```
 
-Standardized tests (B1 real GDP, B2 primary balance, B3 exports, B4 other flows, B5 depreciation, B6 combination) stay available. Their size mode and interaction switch are `input6_standard_size_threshold_mode` (`New` in the snapshot) and `input6_standard_interactions` (`On`).
+Standardized tests (B1 real GDP, B2 primary balance, B3 exports, B4 other flows, B5 depreciation, B6 combination) stay available. Their size mode and interaction switch are `input6_standard_size_threshold_mode` (`New` in the snapshot) and `input6_standard_interactions` (`On`). The optional B1–B3 sizes on `Input 6(optional)-Standard Test` default to **1.0** standard deviation (`input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations` and its B2/B3 siblings).
 
 ## One-assumption shocks
 
@@ -101,10 +101,12 @@ Use the same overrides with `FiscalRiskRatingSignalInputs` or `OverallRiskRating
 
 The public customized sheet is included in the snapshot (`customized_public_include_scenario` is `"Yes"`) but the delta grid is zeros, so A2 coincides with the baseline until you fill it.
 
-`customized_public_delta` is `INDICATOR` × `TIME_PERIOD`. Indicators include revenue and grants, primary expenditure, real GDP growth, inflation, the exchange rate, and exports. To enter a one-year growth shock in 2025:
+`customized_public_delta` is `INDICATOR` × `TIME_PERIOD`. Build the override from the described field's `default` so the axes and cell provenance stay attached. Indicators include revenue and grants, primary expenditure, real GDP growth, inflation, the exchange rate, and exports. To enter a one-year growth shock in 2025:
 
 ```{python}
-delta = data.CUSTOMIZED_PUBLIC_DELTA_DEFAULT
+delta = api.ChartPvDebtGdpRatioCustomAlternativeScenarioInputs.describe()[
+    "customized_public_delta"
+].default
 pd.DataFrame({"Indicator": list(delta.domain.axes[0].keys)}).style.hide(axis="index")
 
 growth = "Real GDP growth (in percent)"

@@ -2,11 +2,8 @@
 
 from __future__ import annotations
 
-from typing import Literal
-
 from . import data
 from .excel import coerce_input_measure, require_input_domain
-from .runtime import require_annotated_domain
 
 
 def _check_input4_interest_rate(
@@ -158,16 +155,10 @@ def _check_input5_gfn_share(input5_gfn_share: data.Input5GfnShare) -> data.Input
     return input5_gfn_share
 
 
-def _check_start_working_language(
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"],
-) -> Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"]:
+def _check_start_working_language(start_working_language: str) -> str:
     """Validate `start_working_language` before the model reads it."""
     start_working_language = coerce_input_measure(start_working_language, dtype="string", series_id="start_working_language")
-    require_annotated_domain(
-        start_working_language,
-        Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"],
-        series_id="start_working_language",
-    )
+    require_input_domain(start_working_language, {"enum": frozenset({"English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"})}, series_id="start_working_language")
     return start_working_language
 
 
@@ -336,29 +327,17 @@ def _check_input8_sdr_interest_rate(input8_sdr_interest_rate: float | str) -> fl
     return input8_sdr_interest_rate
 
 
-def _check_input6_tailored_tests_enabled(
-    input6_tailored_tests_enabled: Literal["Off", "On"],
-) -> Literal["Off", "On"]:
+def _check_input6_tailored_tests_enabled(input6_tailored_tests_enabled: str) -> str:
     """Validate `input6_tailored_tests_enabled` before the model reads it."""
     input6_tailored_tests_enabled = coerce_input_measure(input6_tailored_tests_enabled, dtype="string", series_id="input6_tailored_tests_enabled")
-    require_annotated_domain(
-        input6_tailored_tests_enabled,
-        Literal["Off", "On"],
-        series_id="input6_tailored_tests_enabled",
-    )
+    require_input_domain(input6_tailored_tests_enabled, {"enum": frozenset({"Off", "On"})}, series_id="input6_tailored_tests_enabled")
     return input6_tailored_tests_enabled
 
 
-def _check_input6_standard_size_threshold_mode(
-    input6_standard_size_threshold_mode: Literal["New", "Old"],
-) -> Literal["New", "Old"]:
+def _check_input6_standard_size_threshold_mode(input6_standard_size_threshold_mode: str) -> str:
     """Validate `input6_standard_size_threshold_mode` before the model reads it."""
     input6_standard_size_threshold_mode = coerce_input_measure(input6_standard_size_threshold_mode, dtype="string", series_id="input6_standard_size_threshold_mode")
-    require_annotated_domain(
-        input6_standard_size_threshold_mode,
-        Literal["New", "Old"],
-        series_id="input6_standard_size_threshold_mode",
-    )
+    require_input_domain(input6_standard_size_threshold_mode, {"enum": frozenset({"New", "Old"})}, series_id="input6_standard_size_threshold_mode")
     return input6_standard_size_threshold_mode
 
 
@@ -951,6 +930,33 @@ def _check_current_year(current_year: int | str) -> int | str:
     return current_year
 
 
+def _check_input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations(
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str,
+) -> float | str:
+    """Validate `input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations` before the model reads it."""
+    input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations = coerce_input_measure(input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations, dtype="float", series_id="input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations")
+    require_input_domain(input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations, {"real_between": {"min": 0}}, series_id="input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations")
+    return input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations
+
+
+def _check_input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations(
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str,
+) -> float | str:
+    """Validate `input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations` before the model reads it."""
+    input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations = coerce_input_measure(input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations, dtype="float", series_id="input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations")
+    require_input_domain(input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations, {"real_between": {"min": 0}}, series_id="input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations")
+    return input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations
+
+
+def _check_input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations(
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str,
+) -> float | str:
+    """Validate `input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations` before the model reads it."""
+    input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations = coerce_input_measure(input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations, dtype="float", series_id="input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations")
+    require_input_domain(input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations, {"real_between": {"min": 0}}, series_id="input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations")
+    return input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations
+
+
 def _check_pv_base_input_output_cumulative(
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative,
 ) -> data.PvBaseInputOutputCumulative:
@@ -1055,5 +1061,8 @@ CHECKS = {
     "input3_domestic_principal_payment_from_existing_debt": _check_input3_domestic_principal_payment_from_existing_debt,
     "input3_domestic_new_gross_disbursement": _check_input3_domestic_new_gross_disbursement,
     "current_year": _check_current_year,
+    "input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations": _check_input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations,
+    "input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations": _check_input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations,
+    "input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations": _check_input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations,
     "pv_base_input_output_cumulative": _check_pv_base_input_output_cumulative,
 }

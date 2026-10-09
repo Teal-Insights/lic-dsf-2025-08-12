@@ -51,6 +51,10 @@ from .data import (
     _CONSTANTS_44,
     _CONSTANTS_45,
     _CONSTANTS_46,
+    _CONSTANTS_47,
+    _CONSTANTS_48,
+    _CONSTANTS_49,
+    _CONSTANTS_50,
 )
 from .model import (
     Realism1ExternalDebtFlowComponentsInputs,
@@ -1242,7 +1246,7 @@ def compute_overall_risk_rating_numeric(inputs: OverallRiskRatingNumericInputs) 
     return model.Model(inputs).overall_risk_rating_numeric
 
 
-@publish(data.CHART_OUTPUT_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP.schema, constants=_CONSTANTS_35, cells=data.CHART_OUTPUT_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP.cells)
+@publish(data.CHART_OUTPUT_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP.schema, constants=_CONSTANTS_42, cells=data.CHART_OUTPUT_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP.cells)
 def compute_chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp(inputs: ChartOutputChartDataPvOfDebtToGdpRatioPvDebtToGdpInputs) -> data.ChartOutputChartDataPvOfDebtToGdpRatioPvDebtToGdp:
     """Compute the Chart Data PV of Debt-to-GDP Ratio series using authored coordinate identities.
 
@@ -1259,7 +1263,7 @@ def compute_chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp(input
     return model.Model(inputs).chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp
 
 
-@publish(data.CHART_OUTPUT_CHART_DATA_PV_OF_DEBT_TO_REVENUE_RATIO_PV_DEBT_TO_REVENUE.schema, constants=_CONSTANTS_42, cells=data.CHART_OUTPUT_CHART_DATA_PV_OF_DEBT_TO_REVENUE_RATIO_PV_DEBT_TO_REVENUE.cells)
+@publish(data.CHART_OUTPUT_CHART_DATA_PV_OF_DEBT_TO_REVENUE_RATIO_PV_DEBT_TO_REVENUE.schema, constants=_CONSTANTS_43, cells=data.CHART_OUTPUT_CHART_DATA_PV_OF_DEBT_TO_REVENUE_RATIO_PV_DEBT_TO_REVENUE.cells)
 def compute_chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue(inputs: ChartOutputChartDataPvOfDebtToRevenueRatioPvDebtToRevenueInputs) -> data.ChartOutputChartDataPvOfDebtToRevenueRatioPvDebtToRevenue:
     """Compute the Chart Data PV of debt-to-revenue ratio series keyed by scenario.
 
@@ -1276,7 +1280,7 @@ def compute_chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_reven
     return model.Model(inputs).chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue
 
 
-@publish(data.CHART_OUTPUT_CHART_DATA_DEBT_SERVICE_TO_REVENUE_RATIO_DEBT_SERVICE_TO_REVENUE.schema, constants=_CONSTANTS_43, cells=data.CHART_OUTPUT_CHART_DATA_DEBT_SERVICE_TO_REVENUE_RATIO_DEBT_SERVICE_TO_REVENUE.cells)
+@publish(data.CHART_OUTPUT_CHART_DATA_DEBT_SERVICE_TO_REVENUE_RATIO_DEBT_SERVICE_TO_REVENUE.schema, constants=_CONSTANTS_44, cells=data.CHART_OUTPUT_CHART_DATA_DEBT_SERVICE_TO_REVENUE_RATIO_DEBT_SERVICE_TO_REVENUE.cells)
 def compute_chart_output_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue(inputs: ChartOutputChartDataDebtServiceToRevenueRatioDebtServiceToRevenueInputs) -> data.ChartOutputChartDataDebtServiceToRevenueRatioDebtServiceToRevenue:
     """Compute the Chart Data Debt Service-to-Revenue Ratio series using authored coordinate identities.
 
@@ -1293,7 +1297,7 @@ def compute_chart_output_chart_data_debt_service_to_revenue_ratio_debt_service_t
     return model.Model(inputs).chart_output_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue
 
 
-@publish(data.CHART_OUTPUT_CHART_DATA_DEBT_SERVICE_TO_GDP_RATIO_DEBT_SERVICE_GDP_RATIO.schema, constants=_CONSTANTS_43, cells=data.CHART_OUTPUT_CHART_DATA_DEBT_SERVICE_TO_GDP_RATIO_DEBT_SERVICE_GDP_RATIO.cells)
+@publish(data.CHART_OUTPUT_CHART_DATA_DEBT_SERVICE_TO_GDP_RATIO_DEBT_SERVICE_GDP_RATIO.schema, constants=_CONSTANTS_44, cells=data.CHART_OUTPUT_CHART_DATA_DEBT_SERVICE_TO_GDP_RATIO_DEBT_SERVICE_GDP_RATIO.cells)
 def compute_chart_output_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio(inputs: ChartOutputChartDataDebtServiceToGdpRatioDebtServiceGdpRatioInputs) -> data.ChartOutputChartDataDebtServiceToGdpRatioDebtServiceGdpRatio:
     """Compute the Chart Data Debt Service-to-GDP Ratio series keyed by scenario.
 
@@ -1310,7 +1314,7 @@ def compute_chart_output_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_r
     return model.Model(inputs).chart_output_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio
 
 
-@publish(data.CHART_PV_DEBT_GDP_RATIO_CUSTOM_ALTERNATIVE_SCENARIO.schema, constants=_CONSTANTS_44, cells=data.CHART_PV_DEBT_GDP_RATIO_CUSTOM_ALTERNATIVE_SCENARIO.cells)
+@publish(data.CHART_PV_DEBT_GDP_RATIO_CUSTOM_ALTERNATIVE_SCENARIO.schema, constants=_CONSTANTS_45, cells=data.CHART_PV_DEBT_GDP_RATIO_CUSTOM_ALTERNATIVE_SCENARIO.cells)
 def compute_chart_pv_debt_gdp_ratio_custom_alternative_scenario(inputs: ChartPvDebtGdpRatioCustomAlternativeScenarioInputs) -> data.ChartPvDebtGdpRatioCustomAlternativeScenario:
     """Compute the customized A2 alternative-scenario PV of debt-to-GDP ratio series from Chart Data.
 
@@ -1327,7 +1331,7 @@ def compute_chart_pv_debt_gdp_ratio_custom_alternative_scenario(inputs: ChartPvD
     return model.Model(inputs).chart_pv_debt_gdp_ratio_custom_alternative_scenario
 
 
-@publish(data.CHART_OUTPUT_PV_DEBT_GDP_RATIO.schema, constants=_CONSTANTS_45, cells=data.CHART_OUTPUT_PV_DEBT_GDP_RATIO.cells)
+@publish(data.CHART_OUTPUT_PV_DEBT_GDP_RATIO.schema, constants=_CONSTANTS_46, cells=data.CHART_OUTPUT_PV_DEBT_GDP_RATIO.cells)
 def compute_chart_output_pv_debt_gdp_ratio(inputs: ChartOutputPvDebtGdpRatioInputs) -> data.ChartOutputPvDebtGdpRatio:
     """Compute the Chart Data PV of debt-to-GDP ratio series by scenario.
 
@@ -1344,7 +1348,7 @@ def compute_chart_output_pv_debt_gdp_ratio(inputs: ChartOutputPvDebtGdpRatioInpu
     return model.Model(inputs).chart_output_pv_debt_gdp_ratio
 
 
-@publish(data.CHART_PV_DEBT_TO_EXPORTS_CUSTOM_ALTERNATIVE_SCENARIO.schema, constants=_CONSTANTS_44, cells=data.CHART_PV_DEBT_TO_EXPORTS_CUSTOM_ALTERNATIVE_SCENARIO.cells)
+@publish(data.CHART_PV_DEBT_TO_EXPORTS_CUSTOM_ALTERNATIVE_SCENARIO.schema, constants=_CONSTANTS_45, cells=data.CHART_PV_DEBT_TO_EXPORTS_CUSTOM_ALTERNATIVE_SCENARIO.cells)
 def compute_chart_pv_debt_to_exports_custom_alternative_scenario(inputs: ChartPvDebtToExportsCustomAlternativeScenarioInputs) -> data.ChartPvDebtToExportsCustomAlternativeScenario:
     """Compute the customized alternative scenario (A2) PV of debt-to-exports ratio chart series.
 
@@ -1361,7 +1365,7 @@ def compute_chart_pv_debt_to_exports_custom_alternative_scenario(inputs: ChartPv
     return model.Model(inputs).chart_pv_debt_to_exports_custom_alternative_scenario
 
 
-@publish(data.CHART_OUTPUT_PV_DEBT_TO_EXPORTS.schema, constants=_CONSTANTS_30, cells=data.CHART_OUTPUT_PV_DEBT_TO_EXPORTS.cells)
+@publish(data.CHART_OUTPUT_PV_DEBT_TO_EXPORTS.schema, constants=_CONSTANTS_47, cells=data.CHART_OUTPUT_PV_DEBT_TO_EXPORTS.cells)
 def compute_chart_output_pv_debt_to_exports(inputs: ChartOutputPvDebtToExportsInputs) -> data.ChartOutputPvDebtToExports:
     """Computes the Chart Data series for the present value of the debt-to-exports ratio.
 
@@ -1378,7 +1382,7 @@ def compute_chart_output_pv_debt_to_exports(inputs: ChartOutputPvDebtToExportsIn
     return model.Model(inputs).chart_output_pv_debt_to_exports
 
 
-@publish(data.CHART_DEBT_SERVICE_TO_EXPORTS_CUSTOM_ALTERNATIVE_SCENARIO.schema, constants=_CONSTANTS_46, cells=data.CHART_DEBT_SERVICE_TO_EXPORTS_CUSTOM_ALTERNATIVE_SCENARIO.cells)
+@publish(data.CHART_DEBT_SERVICE_TO_EXPORTS_CUSTOM_ALTERNATIVE_SCENARIO.schema, constants=_CONSTANTS_48, cells=data.CHART_DEBT_SERVICE_TO_EXPORTS_CUSTOM_ALTERNATIVE_SCENARIO.cells)
 def compute_chart_debt_service_to_exports_custom_alternative_scenario(inputs: ChartDebtServiceToExportsCustomAlternativeScenarioInputs) -> data.ChartDebtServiceToExportsCustomAlternativeScenario:
     """Compute the Debt service-to-exports ratio series for the A2 alternative (customized) scenario from Chart Data row 135.
 
@@ -1395,7 +1399,7 @@ def compute_chart_debt_service_to_exports_custom_alternative_scenario(inputs: Ch
     return model.Model(inputs).chart_debt_service_to_exports_custom_alternative_scenario
 
 
-@publish(data.CHART_OUTPUT_DEBT_SERVICE_TO_EXPORTS.schema, constants=_CONSTANTS_31, cells=data.CHART_OUTPUT_DEBT_SERVICE_TO_EXPORTS.cells)
+@publish(data.CHART_OUTPUT_DEBT_SERVICE_TO_EXPORTS.schema, constants=_CONSTANTS_49, cells=data.CHART_OUTPUT_DEBT_SERVICE_TO_EXPORTS.cells)
 def compute_chart_output_debt_service_to_exports(inputs: ChartOutputDebtServiceToExportsInputs) -> data.ChartOutputDebtServiceToExports:
     """Compute the debt service-to-exports ratio chart output from the supplied chart input bundle.
 
@@ -1412,7 +1416,7 @@ def compute_chart_output_debt_service_to_exports(inputs: ChartOutputDebtServiceT
     return model.Model(inputs).chart_output_debt_service_to_exports
 
 
-@publish(data.CHART_DEBT_SERVICE_TO_REVENUE_CUSTOM_ALTERNATIVE_SCENARIO.schema, constants=_CONSTANTS_46, cells=data.CHART_DEBT_SERVICE_TO_REVENUE_CUSTOM_ALTERNATIVE_SCENARIO.cells)
+@publish(data.CHART_DEBT_SERVICE_TO_REVENUE_CUSTOM_ALTERNATIVE_SCENARIO.schema, constants=_CONSTANTS_48, cells=data.CHART_DEBT_SERVICE_TO_REVENUE_CUSTOM_ALTERNATIVE_SCENARIO.cells)
 def compute_chart_debt_service_to_revenue_custom_alternative_scenario(inputs: ChartDebtServiceToRevenueCustomAlternativeScenarioInputs) -> data.ChartDebtServiceToRevenueCustomAlternativeScenario:
     """Compute the customized alternative-scenario debt service-to-revenue ratio chart series.
 
@@ -1429,7 +1433,7 @@ def compute_chart_debt_service_to_revenue_custom_alternative_scenario(inputs: Ch
     return model.Model(inputs).chart_debt_service_to_revenue_custom_alternative_scenario
 
 
-@publish(data.CHART_OUTPUT_DEBT_SERVICE_TO_REVENUE.schema, constants=_CONSTANTS_32, cells=data.CHART_OUTPUT_DEBT_SERVICE_TO_REVENUE.cells)
+@publish(data.CHART_OUTPUT_DEBT_SERVICE_TO_REVENUE.schema, constants=_CONSTANTS_50, cells=data.CHART_OUTPUT_DEBT_SERVICE_TO_REVENUE.cells)
 def compute_chart_output_debt_service_to_revenue(inputs: ChartOutputDebtServiceToRevenueInputs) -> data.ChartOutputDebtServiceToRevenue:
     """Compute the Chart Data debt service-to-revenue ratio output.
 
@@ -1446,7 +1450,7 @@ def compute_chart_output_debt_service_to_revenue(inputs: ChartOutputDebtServiceT
     return model.Model(inputs).chart_output_debt_service_to_revenue
 
 
-@publish(data.CHART_OUTPUT_PV_DEBT_TO_GDP.schema, constants=_CONSTANTS_35, cells=data.CHART_OUTPUT_PV_DEBT_TO_GDP.cells)
+@publish(data.CHART_OUTPUT_PV_DEBT_TO_GDP.schema, constants=_CONSTANTS_42, cells=data.CHART_OUTPUT_PV_DEBT_TO_GDP.cells)
 def compute_chart_output_pv_debt_to_gdp(inputs: ChartOutputPvDebtToGdpInputs) -> data.ChartOutputPvDebtToGdp:
     """Compute the Chart Data PV of Debt-to-GDP ratio series, keyed by scenario.
 
@@ -1463,7 +1467,7 @@ def compute_chart_output_pv_debt_to_gdp(inputs: ChartOutputPvDebtToGdpInputs) ->
     return model.Model(inputs).chart_output_pv_debt_to_gdp
 
 
-@publish(data.CHART_PV_DEBT_TO_REVENUE_MX_SHOCK_STANDARD_TAILORED.schema, constants=_CONSTANTS_42, cells=data.CHART_PV_DEBT_TO_REVENUE_MX_SHOCK_STANDARD_TAILORED.cells)
+@publish(data.CHART_PV_DEBT_TO_REVENUE_MX_SHOCK_STANDARD_TAILORED.schema, constants=_CONSTANTS_43, cells=data.CHART_PV_DEBT_TO_REVENUE_MX_SHOCK_STANDARD_TAILORED.cells)
 def compute_chart_pv_debt_to_revenue_mx_shock_standard_tailored(inputs: ChartPvDebtToRevenueMxShockStandardTailoredInputs) -> data.ChartPvDebtToRevenueMxShockStandardTailored:
     """Compute the Chart Data series for the PV of the Debt-to-Revenue Ratio under the MX shock Standard & Tailored treatment.
 
@@ -1480,7 +1484,7 @@ def compute_chart_pv_debt_to_revenue_mx_shock_standard_tailored(inputs: ChartPvD
     return model.Model(inputs).chart_pv_debt_to_revenue_mx_shock_standard_tailored
 
 
-@publish(data.CHART_OUTPUT_DEBT_SERVICE_TO_REVENUE_FISCAL.schema, constants=_CONSTANTS_43, cells=data.CHART_OUTPUT_DEBT_SERVICE_TO_REVENUE_FISCAL.cells)
+@publish(data.CHART_OUTPUT_DEBT_SERVICE_TO_REVENUE_FISCAL.schema, constants=_CONSTANTS_44, cells=data.CHART_OUTPUT_DEBT_SERVICE_TO_REVENUE_FISCAL.cells)
 def compute_chart_output_debt_service_to_revenue_fiscal(inputs: ChartOutputDebtServiceToRevenueFiscalInputs) -> data.ChartOutputDebtServiceToRevenueFiscal:
     """Compute the fiscal debt service-to-revenue ratio chart output series from authored coordinate identities.
 

@@ -2,7 +2,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Literal, cast
+from typing import cast
 from . import data
 from .tensor import Domain, Series
 from .excel import XlError, as_measure, xl_add, xl_and, xl_average, xl_bool, xl_choose_lazy, xl_choose_range, xl_concat, xl_count, xl_countif, xl_div, xl_eq, xl_ge, xl_gt, xl_hlookup, xl_iferror, xl_ifna, xl_index, xl_isblank, xl_iserror, xl_isna, xl_isnumber, xl_large, xl_le, xl_left, xl_lookup, xl_lookup_cell, xl_lt, xl_match, xl_max, xl_min, xl_mul, xl_ne, xl_neg, xl_normdist, xl_npv, xl_numbervalue, xl_or, xl_pow, xl_raise, xl_rank, xl_round, xl_rounddown, xl_stdev, xl_sub, xl_sum, xl_sumproduct, xl_typed_range, xl_value, xl_vlookup, xl_xlookup
@@ -491,7 +491,7 @@ class ScanDsaExtNonInterestCurrentAccountDeficitResult:
     dsa_ext_export_shock_sign_flags: data.Series[float | str | None]
     dsa_ext_real_depreciation_identity: data.Series[float | str | None]
 
-def scan_dsa_ext_non_interest_current_account_deficit(*, lookup_ida_terms_old: str, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, dsa_ext_depreciation_of_nc_depreciation: data.Series[float | str | None], dsa_ext_standard_test_gdp_growth_rule_primary: str | int | float | bool, dsa_ext_standard_test_export_growth_rule: str | int | float | bool, dsa_ext_standard_test_current_transfers_rule: str | int | float | bool, dsa_ext_standard_test_current_transfers_rule_b6_mkt: str | int | float | bool, dsa_ext_standard_test_current_transfers_rule_b6_nonmkt: str | int | float | bool, dsa_ext_standard_test_fdi_rule: str | int | float | bool, dsa_ext_standard_test_fdi_rule_b6_mkt: str | int | float | bool, dsa_ext_standard_test_fdi_rule_b6_nonmkt: str | int | float | bool, dsa_ext_standard_test_gdp_growth_rule: data.Series[str | int | float | bool | None], dsa_ext_standard_test_exports_rule: data.Series[str | int | float | bool | None], input6_standard_size_threshold_mode: Literal["New", "Old"], macro_debt_total_ext_debt_interest_due_include_interest: data.Series[float | str | None], macro_debt_us_dollars_k: data.Series[float | str | None], macro_debt_us_dollars_v: data.Series[float | str | None], macro_debt_exports_of_goods_services: data.Series[float | str | None], macro_debt_imports_of_goods_services_use_positive_values: data.Series[float | str | None], macro_debt_us_dollars_by_year_k: data.Series[float | str | None], macro_debt_us_dollars_by_year_v: data.Series[float | str | None], macro_debt_main_assumptions_us_dollars_k: data.Series[float | str | None], macro_debt_main_assumptions_us_dollars_v: data.Series[float | str | None], macro_debt_gdp_current_prices_u_s_dollars: data.Series[float | str | None], macro_debt_gdp_constant_prices: data.Series[float | str | None], macro_debt_change_in_gdp_deflator_factor: data.Series[float | str | None], macro_debt_change_in_gdp_deflator_factor_by_year: data.Series[float | str | None], macro_debt_us_gdp_deflator_percent_change: data.Series[float | str | None], leftover_us_gdp_deflator: data.Series[float | str | None], leftover_export_growth_usd: data.Series[float | str | None], leftover_fdi_gdp: data.Series[float | str | None], b1_gdp_ext_ii_key_macroeconomic_assumptions: int | str, b3_exports_ext_iii_averages_standard_deviations: int | str, b4_otherflows_ext_ii_key_macroeconomic_assumptions: int | str, b6_combo_mkt_ext_ii_key_macroeconomic_assumptions: float | str, b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_baseline: float | str, b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_stress: float | str, b6_combo_mkt_ext_y1_includes_both_public_private_sector_ext_debt: float | str, b6_combo_mkt_ext_y1_includes_both_public_pv_total: float | str, b6_combo_nonmkt_ext_ii_key_macroeconomic_assumptions: float | str, b6_combo_nonmkt_ext_increase: float | str, b6_combo_nonmkt_ext_y7_long_run_constant_balance_that_stabilizes: float | str, b6_combo_nonmkt_ext_y7_long_run_constant_private_debt_pv: float | str, b6_combo_nonmkt_ext_y7_long_run_constant_pv_total: float | str, c3_commodity_ext_ii_key_macroeconomic_assumptions: int | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_2: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_3: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_4: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_5: float | str, leftover_official_transfers_gdp: float | str, leftover_real_gdp_growth_2: float | str, leftover_us_gdp_deflator_2: int | str) -> ScanDsaExtNonInterestCurrentAccountDeficitResult:
+def scan_dsa_ext_non_interest_current_account_deficit(*, lookup_ida_terms_old: str, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, dsa_ext_depreciation_of_nc_depreciation: data.Series[float | str | None], dsa_ext_standard_test_gdp_growth_rule_primary: str | int | float | bool, dsa_ext_standard_test_export_growth_rule: str | int | float | bool, dsa_ext_standard_test_current_transfers_rule: str | int | float | bool, dsa_ext_standard_test_current_transfers_rule_b6_mkt: str | int | float | bool, dsa_ext_standard_test_current_transfers_rule_b6_nonmkt: str | int | float | bool, dsa_ext_standard_test_fdi_rule: str | int | float | bool, dsa_ext_standard_test_fdi_rule_b6_mkt: str | int | float | bool, dsa_ext_standard_test_fdi_rule_b6_nonmkt: str | int | float | bool, dsa_ext_standard_test_gdp_growth_rule: data.Series[str | int | float | bool | None], dsa_ext_standard_test_exports_rule: data.Series[str | int | float | bool | None], input6_standard_size_threshold_mode: str, macro_debt_total_ext_debt_interest_due_include_interest: data.Series[float | str | None], macro_debt_us_dollars_k: data.Series[float | str | None], macro_debt_us_dollars_v: data.Series[float | str | None], macro_debt_exports_of_goods_services: data.Series[float | str | None], macro_debt_imports_of_goods_services_use_positive_values: data.Series[float | str | None], macro_debt_us_dollars_by_year_k: data.Series[float | str | None], macro_debt_us_dollars_by_year_v: data.Series[float | str | None], macro_debt_main_assumptions_us_dollars_k: data.Series[float | str | None], macro_debt_main_assumptions_us_dollars_v: data.Series[float | str | None], macro_debt_gdp_current_prices_u_s_dollars: data.Series[float | str | None], macro_debt_gdp_constant_prices: data.Series[float | str | None], macro_debt_change_in_gdp_deflator_factor: data.Series[float | str | None], macro_debt_change_in_gdp_deflator_factor_by_year: data.Series[float | str | None], macro_debt_us_gdp_deflator_percent_change: data.Series[float | str | None], leftover_us_gdp_deflator: data.Series[float | str | None], leftover_export_growth_usd: data.Series[float | str | None], leftover_fdi_gdp: data.Series[float | str | None], b1_gdp_ext_ii_key_macroeconomic_assumptions: float | str, b3_exports_ext_iii_averages_standard_deviations: float | str, b4_otherflows_ext_ii_key_macroeconomic_assumptions: int | str, b6_combo_mkt_ext_ii_key_macroeconomic_assumptions: float | str, b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_baseline: float | str, b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_stress: float | str, b6_combo_mkt_ext_y1_includes_both_public_private_sector_ext_debt: float | str, b6_combo_mkt_ext_y1_includes_both_public_pv_total: float | str, b6_combo_nonmkt_ext_ii_key_macroeconomic_assumptions: float | str, b6_combo_nonmkt_ext_increase: float | str, b6_combo_nonmkt_ext_y7_long_run_constant_balance_that_stabilizes: float | str, b6_combo_nonmkt_ext_y7_long_run_constant_private_debt_pv: float | str, b6_combo_nonmkt_ext_y7_long_run_constant_pv_total: float | str, c3_commodity_ext_ii_key_macroeconomic_assumptions: int | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_2: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_3: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_4: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_5: float | str, leftover_official_transfers_gdp: float | str, leftover_real_gdp_growth_2: float | str, leftover_us_gdp_deflator_2: int | str) -> ScanDsaExtNonInterestCurrentAccountDeficitResult:
     """Evaluate the recurrence group `dsa_ext_non_interest_current_account_deficit`, `dsa_ext_exports`, `dsa_ext_net_fdi_negative_inflow`, `dsa_ext_nominal_gdp_million_of_us_dollars`, `dsa_ext_real_gdp_growth_in_percent`, `dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent`, `dsa_ext_exports_usd_millions`, `dsa_ext_reference_historical_statistics`, `dsa_ext_historical_statistics`, `dsa_ext_historical_statistics_baseline`, `dsa_ext_deficit_in_balance_of_goods_and_services`, `dsa_ext_imports`, `dsa_ext_net_current_transfers_negative_inflow`, `dsa_ext_other_current_account_flows_negative_net_inflow`, `dsa_ext_growth_of_exports_of_g_s_us_dollar_terms_in_percent`, `dsa_ext_export_shock_sign_flags`, `dsa_ext_real_depreciation_identity` and publish complete tensors."""
     def dsa_ext_non_interest_current_account_deficit_formula(scenario: str, time_period: int) -> float | str | None:
         if scenario == 'A1' and time_period == 2025:
@@ -937,7 +937,7 @@ class ScanDsaExtDepreciationOfNcDepreciationResult:
     in6opt_standard_size_of_fx_depreciation_shock: data.Series[float | str | None]
     in6opt_standard_b6_combination_size_of_fx_depreciation_shock: data.Series[float | str | None]
 
-def scan_dsa_ext_depreciation_of_nc_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], in6opt_standard_nominal_depreciation_close_real_overvaluation: data.Series[float | str | None], macro_debt_depreciation_of_nc_depreciation: data.Series[float | str | None]) -> ScanDsaExtDepreciationOfNcDepreciationResult:
+def scan_dsa_ext_depreciation_of_nc_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, in6opt_standard_nominal_depreciation_close_real_overvaluation: data.Series[float | str | None], macro_debt_depreciation_of_nc_depreciation: data.Series[float | str | None]) -> ScanDsaExtDepreciationOfNcDepreciationResult:
     """Evaluate the recurrence group `dsa_ext_depreciation_of_nc_depreciation`, `dsa_ext_standard_test_fx_depreciation`, `in6opt_standard_size_of_fx_depreciation_shock`, `in6opt_standard_b6_combination_size_of_fx_depreciation_shock` and publish complete tensors."""
     def dsa_ext_depreciation_of_nc_depreciation_formula(scenario: str, time_period: int) -> float | str | None:
         if scenario in ('B5', 'B6_mkt', 'B6_nonmkt') and time_period == 2025:
@@ -1146,19 +1146,19 @@ def dsa_ext_revenue(*, dsa_ext_nominal_gdp_million_of_us_dollars: data.Series[fl
     return data.DSA_EXT_REVENUE.collect(evaluate(formula, data.DSA_EXT_REVENUE.required))
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_GDP_GROWTH_RULE_PRIMARY_CELLS)
-def dsa_ext_standard_test_gdp_growth_rule_primary(*, in6opt_standard_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Return the primary standard-test GDP growth-rule value for the external LIC-DSF DSA.
+def dsa_ext_standard_test_gdp_growth_rule_primary(*, in6opt_standard_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Resolve the standard-test GDP growth shock size rule from the applicable threshold mode.
 
-    Selects the standard-test size threshold from either the user-defined threshold series or the historical-average baseline-projection option based on the IDA-terms mode.
+    Select either the user-defined real GDP growth shock size or the historical-average/baseline projection depending on whether the standard size threshold mode matches the new IDA-terms lookup value.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection: Scalar (str | int | float | bool) option for using the historical-average baseline projection when the standard-test size threshold mode does not match the IDA-terms-new lookup.
-        lookup_ida_terms_new: Scalar lookup string representing the IDA-terms-new mode label compared against the standard-test size-threshold mode.
-        input6_standard_size_threshold_mode: Scalar literal mode ('New' or 'Old') controlling whether the user-defined threshold series or the historical-average baseline-projection option is selected.
-        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series containing the standard-test user-defined thresholds; its real GDP growth shock-size entry is used when the mode is 'New'.
+        in6opt_standard_historical_average_baseline_projection: Scalar option or value for the standard historical-average baseline projection, used when the size threshold mode does not match the new IDA-terms lookup value.
+        lookup_ida_terms_new: Scalar string lookup key representing the new IDA terms, compared against the standardized size threshold mode.
+        input6_standard_size_threshold_mode: Scalar string mode controlling which standardized real GDP growth shock size threshold rule applies.
+        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series value containing the user-defined real GDP growth shock size under the B1 scenario, indexed by scenario, metric, and measure coordinates.
 
     Returns:
-        Scalar (str | int | float | bool): the selected standard-test GDP growth-rule value, or an XlError code string if evaluation fails.
+        Scalar str, int, float, or bool: the selected user-defined size measure when the threshold mode matches the new IDA-terms lookup value, otherwise the standard historical-average baseline projection scalar; an Excel error code string is returned if selection raises an XlError.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1167,19 +1167,19 @@ def dsa_ext_standard_test_gdp_growth_rule_primary(*, in6opt_standard_historical_
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_EXPORT_GROWTH_RULE_CELLS)
-def dsa_ext_standard_test_export_growth_rule(*, in6opt_standard_b3_exports_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Resolve the B3 exports standard-test growth rule from the Input 6 threshold mode and user-defined threshold series.
+def dsa_ext_standard_test_export_growth_rule(*, in6opt_standard_b3_exports_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Resolve the standard-test export-growth rule for B3 exports.
 
-    Selects the B3 exports historical-average baseline projection or the user-defined standard export-growth shock size for the new-vs-old standard-test rule (B3_Exports_ext!AA63).
+    Selects the B3 exports growth-shock rule by comparing the size-threshold mode with the IDA terms lookup, falling back to the historical-average baseline projection.
 
     Args:
-        in6opt_standard_b3_exports_historical_average_baseline_projection: Scalar fallback value (`str`, `int`, `float`, or `bool`) giving the B3 exports historical-average baseline projection when the standard size threshold mode does not select the user-defined threshold.
-        lookup_ida_terms_new: Scalar string used as the IDA terms sentinel in the threshold-mode comparison that determines whether the user-defined standard export-growth shock size applies.
-        input6_standard_size_threshold_mode: Scalar literal (`'New'` or `'Old'`) selecting the standard export-growth shock-size threshold convention; matching the IDA terms lookup routes evaluation to the user-defined threshold series.
-        input6_standard_user_defined_threshold: Typed `data.Input6StandardUserDefinedThreshold` series: named-axis tensors over catalog coordinates holding Input 6 standard user-defined threshold values, with the B3 exports growth-shock size coordinate used when selected.
+        in6opt_standard_b3_exports_historical_average_baseline_projection: Scalar option or projection value for the standard B3 exports historical-average baseline case.
+        lookup_ida_terms_new: Scalar string lookup value used to compare against the standard B3 exports size-threshold mode.
+        input6_standard_size_threshold_mode: Scalar string selector for the standard B3 exports size-threshold mode.
+        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold named-axis series containing user-defined threshold coordinates for B3 exports size.
 
     Returns:
-        Scalar result (`str`, `int`, `float`, or `bool`) containing the selected B3 exports growth rule value, or the Excel error code string if evaluation raises `XlError`.
+        Scalar export-growth rule value as str, int, float, or bool; returns an Excel error code string when evaluation fails.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1188,19 +1188,19 @@ def dsa_ext_standard_test_export_growth_rule(*, in6opt_standard_b3_exports_histo
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_CURRENT_TRANSFERS_RULE_CELLS)
-def dsa_ext_standard_test_current_transfers_rule(*, in6opt_standard_historical_average_baseline_projection_current_transfers_b4_other_non_debt_creating_flows: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Evaluate the new-vs-old standard-test current-transfers rule for B4 other non-debt-creating flows.
+def dsa_ext_standard_test_current_transfers_rule(*, in6opt_standard_historical_average_baseline_projection_current_transfers_b4_other_non_debt_creating_flows: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Return the standard-test current-transfers value for B4 other non-debt-creating flows by choosing between the user-defined threshold size and the baseline projection scalar.
 
-    Select the current-transfers shock size using the standard size-threshold mode, falling back to the historical-average baseline projection value when the mode does not match the new IDA-terms lookup.
+    Evaluate the LIC-DSF IDA21 new-vs-old standard-test current-transfers rule (B4_other flows_ext!AA64).
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_current_transfers_b4_other_non_debt_creating_flows: Scalar fallback value for the B4 other non-debt-creating current-transfers shock under the historical-average baseline projection.
-        lookup_ida_terms_new: Scalar lookup string for the new IDA terms, compared against the size-threshold mode.
-        input6_standard_size_threshold_mode: Scalar literal selecting whether the new or old standard size-threshold mode is used.
-        input6_standard_user_defined_threshold: Typed data series of user-defined standard-test thresholds indexed by catalog coordinates; supplies the B4 other flows current-transfers shock size when the mode matches.
+        in6opt_standard_historical_average_baseline_projection_current_transfers_b4_other_non_debt_creating_flows: Scalar B4 other non-debt-creating-flows value used for the current-transfers row when the size-threshold mode does not match the IDA-terms lookup label.
+        lookup_ida_terms_new: Scalar lookup label compared against the size-threshold mode to decide whether the user-defined threshold series supplies the standard-deviation size.
+        input6_standard_size_threshold_mode: Scalar mode selector string that, when equal to the IDA-terms lookup label, switches the rule to the user-defined threshold size.
+        input6_standard_user_defined_threshold: Typed `data.Input6StandardUserDefinedThreshold` series (named-axis tensor over catalog coordinates) supplying the B4 other non-debt-creating-flows shock size under its size coordinate; schema-validated before indexing the 'Other flows (current transfers) shock, # of standard deviations' size entry.
 
     Returns:
-        Scalar result of the rule: the selected shock size coerced to a string, integer, float, or boolean, or an Excel error code string if evaluation fails.
+        Scalar `str | int | float | bool` value selected by the rule, or the Excel error code string when evaluation raises `XlError`.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1209,19 +1209,19 @@ def dsa_ext_standard_test_current_transfers_rule(*, in6opt_standard_historical_a
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_CURRENT_TRANSFERS_RULE_B6_MKT_CELLS)
-def dsa_ext_standard_test_current_transfers_rule_b6_mkt(*, in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Resolve the B6 market current-transfers rule for the standard external DSA test.
+def dsa_ext_standard_test_current_transfers_rule_b6_mkt(*, in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Select the B6 market current-transfers standard-test value for the external DSA.
 
-    Choose between the standardized user-defined threshold and the baseline/combination option used by the B6 current-transfers market rule.
+    Resolve the current-transfers B6 combination from either the user-defined threshold series or the historical-average baseline projection option.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: Standard historical-average baseline-projection current-transfers B6 combination value; a scalar fallback used when the size-threshold mode does not match the IDA terms key.
-        lookup_ida_terms_new: IDA terms lookup key compared against the size-threshold mode to decide whether the user-defined threshold applies.
-        input6_standard_size_threshold_mode: Size-threshold mode selecting whether the new or old IDA terms definition governs the standardized shock size.
-        input6_standard_user_defined_threshold: Typed Input6 standard user-defined threshold catalog series containing threshold sizes over named axes, including the B6 combination and current-transfers shock coordinates.
+        in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: Scalar option or flag for the standard historical-average baseline projection current-transfers B6 combination, used when the size-threshold mode does not match the IDA terms lookup value.
+        lookup_ida_terms_new: Scalar string lookup identifier for the new IDA terms entry, compared against the size-threshold mode to choose the user-defined threshold branch.
+        input6_standard_size_threshold_mode: Scalar string standard-test size threshold mode; a match with the IDA terms lookup value selects the user-defined threshold branch.
+        input6_standard_user_defined_threshold: Typed input6 standard user-defined threshold series over B6 combination, current-transfers shock standard-deviation size, and related coordinates; supplies the threshold size when the mode comparison succeeds.
 
     Returns:
-        Selected scalar B6 current-transfers shock size or combination value; returns the matching Excel error code string if evaluation raises XlError.
+        Scalar selected B6 market current-transfers value as a string measure, or the corresponding Excel error code string when evaluation fails.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1230,19 +1230,19 @@ def dsa_ext_standard_test_current_transfers_rule_b6_mkt(*, in6opt_standard_histo
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_CURRENT_TRANSFERS_RULE_B6_NONMKT_CELLS)
-def dsa_ext_standard_test_current_transfers_rule_b6_nonmkt(*, in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Compute the B6 non-market current-transfers standard-test size rule from authored coordinate identities.
+def dsa_ext_standard_test_current_transfers_rule_b6_nonmkt(*, in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Return the B6 non-market current-transfers standard-test rule value.
 
-    Select the B6 current-transfers shock size using the active Input 6 threshold mode or the fallback historical-average/baseline-projection option.
+    Selects the current-transfers B6 combination or its user-defined shock size threshold according to the size-threshold mode.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: Scalar historical-average versus baseline-projection option for the B6 non-market current-transfers combination; used when the size-threshold mode does not match the IDA-terms lookup.
-        lookup_ida_terms_new: Scalar string lookup value identifying the applicable new IDA-terms case for the threshold-mode comparison.
-        input6_standard_size_threshold_mode: Scalar literal `'New'` or `'Old'` selecting the active standard size-threshold mode for the B6 current-transfers rule.
-        input6_standard_user_defined_threshold: Named-axis `data.Input6StandardUserDefinedThreshold` series over catalog coordinates; its `'B6. Combination'`, `'Other flows (current transfers) shock, # of standard deviations'`, `'Size'` coordinate provides the user-defined threshold when the mode matches the new IDA terms.
+        in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: A scalar fallback selection for the historical-average/baseline projection current-transfers B6 combination.
+        lookup_ida_terms_new: A scalar string lookup label identifying the new IDA terms case used when testing the size-threshold mode.
+        input6_standard_size_threshold_mode: A scalar string giving the standard size-threshold mode being compared against the IDA terms lookup.
+        input6_standard_user_defined_threshold: A typed data.Input6StandardUserDefinedThreshold series of user-defined threshold settings indexed by combination, shock metric, and size.
 
     Returns:
-        Scalar `str | int | float | bool` containing the selected B6 non-market current-transfers size threshold, or an Excel error code string if the underlying lookup raises `XlError`.
+        A scalar str|int|float|bool result: the selected B6 non-market current-transfers combination, or the user-defined other-flows current-transfers shock size when the size-threshold mode equals the new IDA terms lookup; an Excel error code string is returned on XlError.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1251,19 +1251,19 @@ def dsa_ext_standard_test_current_transfers_rule_b6_nonmkt(*, in6opt_standard_hi
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_FDI_RULE_CELLS)
-def dsa_ext_standard_test_fdi_rule(*, in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt_creating_flows: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Select the standard-test FDI rule for B4 other non-debt-creating flows.
+def dsa_ext_standard_test_fdi_rule(*, in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt_creating_flows: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Compute the standard-test FDI rule value for B4 other non-debt-creating flows.
 
-    Resolve the external standard-test FDI rule from the IDA terms lookup, size-threshold mode, and the user-defined threshold series.
+    Resolve the new-vs-old standard-test FDI rule by conditionally selecting either the historical-average baseline projection or the user-defined standard threshold shock size.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt_creating_flows: Historical-average baseline projection for FDI B4 other non-debt-creating flows, supplied as a scalar str, int, float, or bool.
-        lookup_ida_terms_new: IDA terms lookup value as a string, compared with the size-threshold mode to choose the rule branch.
-        input6_standard_size_threshold_mode: Size-threshold mode literal, either 'New' or 'Old'.
-        input6_standard_user_defined_threshold: Typed data series for the standard user-defined threshold, indexed over B4 other non-debt-creating flows and shock-size coordinates.
+        in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt_creating_flows: Scalar override or historical-average baseline projection value for B4 other (non-debt-creating) flows, used when the size-threshold mode does not match the IDA terms lookup.
+        lookup_ida_terms_new: String lookup from the IDA terms table, compared with the standard size-threshold mode to choose the FDI rule branch.
+        input6_standard_size_threshold_mode: String mode for the standard size threshold; when it equals the IDA terms lookup, the user-defined B4 other flows FDI shock size is selected instead of the baseline projection scalar.
+        input6_standard_user_defined_threshold: Typed data series of Input 6 standard user-defined threshold entries over catalog coordinates; its B4 other (non-debt-creating) flows FDI shock size at Size is read when the threshold branch applies.
 
     Returns:
-        Scalar str, int, float, or bool; the selected FDI rule value, or an Excel error code as a string if evaluation fails.
+        The evaluated standard-test FDI rule result as a str | int | float | bool scalar, or the corresponding Excel error code string when evaluation fails.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1272,19 +1272,19 @@ def dsa_ext_standard_test_fdi_rule(*, in6opt_standard_historical_average_baselin
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_FDI_RULE_B6_MKT_CELLS)
-def dsa_ext_standard_test_fdi_rule_b6_mkt(*, in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Apply the new-vs-old standard-test FDI rule for the B6 market combination.
+def dsa_ext_standard_test_fdi_rule_b6_mkt(*, in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Evaluate the B6 market FDI rule for the external standard test.
 
-    Resolve the B6 market FDI shock size under either the New or Old IDA standard size-threshold regime.
+    Select the applicable B6 FDI shock combination from the user-defined threshold or the historical/baseline projection option and return its scalar value.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: Scalar combination value for the historical-average baseline projection FDI B6 combination, returned when the size-threshold mode does not match the IDA terms lookup.
-        lookup_ida_terms_new: IDA terms lookup string (the New terms identifier) compared against the size-threshold mode to decide whether the user-defined threshold applies.
-        input6_standard_size_threshold_mode: Literal mode flag, 'New' or 'Old', selecting the standard size-threshold regime in effect.
-        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series over catalog coordinates 'B6. Combination', 'Other flows (FDI) shock, # of standard deviations', and 'Size'.
+        in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: Scalar option selecting the B6 combination treatment when the user-defined size-threshold branch is not active; may be a string, integer, float, or boolean workbook value.
+        lookup_ida_terms_new: IDA terms lookup string compared with the size-threshold mode to decide whether the user-defined threshold branch applies.
+        input6_standard_size_threshold_mode: Scalar string mode indicating whether the user-defined size threshold is used for the B6 FDI shock.
+        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series holding user-defined Input 6 standardized-threshold values, including the B6 combination FDI shock size coordinate.
 
     Returns:
-        Scalar (str | int | float | bool) giving the B6 market FDI size: the user-defined threshold 'Size' when the mode equals the IDA terms lookup, otherwise the baseline projection combination scalar; an Excel error code string on XlError.
+        Selected scalar result for the B6 market FDI rule as a string, integer, float, or boolean; if the underlying expression raises an Excel error, the error-code string is returned.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1293,19 +1293,19 @@ def dsa_ext_standard_test_fdi_rule_b6_mkt(*, in6opt_standard_historical_average_
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_FDI_RULE_B6_NONMKT_CELLS)
-def dsa_ext_standard_test_fdi_rule_b6_nonmkt(*, in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Resolves the standardized-test FDI rule value for the B6 non-market combination, selecting the user-defined size threshold when the standard-size threshold mode matches the IDA terms lookup and otherwise falling back to the supplied B6 combination scalar.
+def dsa_ext_standard_test_fdi_rule_b6_nonmkt(*, in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Selects the B6 non-market FDI standard-test rule value from either a scalar standard option or the user-defined threshold series.
 
-    Implements the new-versus-old standard-test FDI rule (B6_Combo_non-mkt_ext!AA84) by dispatching between the Input 6 user-defined threshold series and a caller-supplied combination value.
+    Resolves the standard-test FDI B6 non-market threshold, honoring a size-threshold mode override from IDA terms metadata.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: Scalar option value for the standard historical-average baseline projection B6 combination, used as the fallback result when the size-threshold mode does not select the user-defined threshold branch.
-        lookup_ida_terms_new: Scalar lookup label for the IDA terms classification, compared against the standard-size threshold mode to decide whether the new-terms branch is taken.
-        input6_standard_size_threshold_mode: Keyword-only scalar literal naming the standard-size threshold mode, one of 'New' or 'Old', which gates whether the user-defined threshold series is read.
-        input6_standard_user_defined_threshold: Typed Input6StandardUserDefinedThreshold series indexed by the standard-test option, the 'Other flows (FDI) shock, # of standard deviations' metric, and the 'Size' coordinate, supplying the threshold value when the new-terms branch is selected.
+        in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: Scalar standard-test FDI B6 non-market combination option value (string, integer, float, or boolean) used when the size-threshold mode does not match the lookup token.
+        lookup_ida_terms_new: String lookup token identifying the IDA terms or size-threshold mode that triggers the user-defined threshold override.
+        input6_standard_size_threshold_mode: Scalar string mode selecting the standard size-threshold treatment for the B6 FDI rule.
+        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series of user-defined B6 FDI shock thresholds, indexed over combination and standard-deviation size coordinates.
 
     Returns:
-        The B6 non-market FDI rule value materialized as a string-encoded measure (or scalar when the underlying coordinate is numeric), or the Excel error code string if evaluation raises an XlError.
+        Scalar str | int | float | bool representing the selected B6 non-market FDI rule value, or the Excel error code string when evaluation fails.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1348,19 +1348,19 @@ def dsa_ext_o_w_interest_additional_borrowing(*, pv_base_add_cost_mkt_shock_addi
     return data.DSA_EXT_O_W_INTEREST_ADDITIONAL_BORROWING.collect(evaluate(formula, data.DSA_EXT_O_W_INTEREST_ADDITIONAL_BORROWING.required))
 
 @publish(data.DSA_EXT_STANDARD_TEST_GDP_GROWTH_RULE.schema, cells=data.DSA_EXT_STANDARD_TEST_GDP_GROWTH_RULE.cells)
-def dsa_ext_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> data.Series[str | int | float | bool | None]:
-    """Select the B6 standard-test real GDP growth shock size for every scenario coordinate.
+def dsa_ext_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> data.Series[str | int | float | bool | None]:
+    """Select the external DSA standard-test GDP growth rule for the B6 combination under new versus old IDA terms.
 
-    Resolve the new-vs-old standard-test GDP growth rule that backs B6_Combo_mkt_ext cell AA64.
+    Implements the B6_Combo_mkt_ext rule that switches between the historical-average or baseline-projection combination and a user-defined real GDP growth shock size.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: Scalar B6 combination value (historical-average or baseline-projection size of the real GDP growth shock) used when the standard size-threshold mode does not match the new IDA-terms lookup.
-        lookup_ida_terms_new: Scalar lookup value compared against the size-threshold mode to decide whether the user-defined threshold branch applies.
-        input6_standard_size_threshold_mode: Scalar literal selecting the 'New' or 'Old' standard size-threshold rule; equality with the IDA-terms lookup selects the user-defined threshold.
-        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series supplying the 'B6. Combination' real GDP growth shock size when the new threshold branch is active.
+        in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: Scalar option or label for the standard historical-average versus baseline-projection real GDP growth B6 combination value.
+        lookup_ida_terms_new: String identifier for the new IDA terms vintage used when comparing the standardized size-threshold mode.
+        input6_standard_size_threshold_mode: String mode selecting how the standard real GDP growth shock size threshold is determined against the IDA terms lookup.
+        input6_standard_user_defined_threshold: Typed Input6 standard user-defined threshold series over catalog coordinates, providing the B6 combination and real GDP growth shock standard-deviation size values when the user-defined threshold applies.
 
     Returns:
-        A data.Series of the resolved B6 standard-test GDP growth rule values, one per scenario coordinate.
+        A data.Series over catalog coordinates containing the selected standard-test real GDP growth rule values as str | int | float | bool | None, corresponding to B6_Combo_mkt_ext!AA64.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     def formula(scenario: str) -> str | int | float | bool | None:
@@ -1369,19 +1369,19 @@ def dsa_ext_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_
     return data.DSA_EXT_STANDARD_TEST_GDP_GROWTH_RULE.collect(evaluate(formula, data.DSA_EXT_STANDARD_TEST_GDP_GROWTH_RULE.required))
 
 @publish(data.DSA_EXT_STANDARD_TEST_EXPORTS_RULE.schema, cells=data.DSA_EXT_STANDARD_TEST_EXPORTS_RULE.cells)
-def dsa_ext_standard_test_exports_rule(*, in6opt_standard_historical_average_baseline_projection_exports_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> data.Series[str | int | float | bool | None]:
-    """Compute the new-vs-old standard-test export-growth rule (B6_Combo_mkt_ext!AA70).
+def dsa_ext_standard_test_exports_rule(*, in6opt_standard_historical_average_baseline_projection_exports_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> data.Series[str | int | float | bool | None]:
+    """Resolve the standardized-test exports-growth shock rule value for each scenario.
 
-    Selects between the user-defined standard-deviation exports shock size and the baseline-projection B6 combination based on the size-threshold mode comparison.
+    Selects either the user-defined size-of-shock threshold or the authored historical-average/baseline/projection combination depending on the threshold mode.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_exports_b6_combination: Scalar baseline-projection exports B6 combination option from Input 6; used when the size-threshold mode does not match the IDA terms lookup.
-        lookup_ida_terms_new: Scalar string IDA terms lookup key (new terms) compared against the size-threshold mode to decide whether the user-defined threshold applies.
-        input6_standard_size_threshold_mode: Literal scalar selecting the size-threshold mode ('New' or 'Old'); matched against the IDA terms lookup.
-        input6_standard_user_defined_threshold: Typed Input6StandardUserDefinedThreshold series over catalog coordinates (combination, shock-size measure, size) supplying the user-defined standard-deviation shock size.
+        in6opt_standard_historical_average_baseline_projection_exports_b6_combination: Scalar export-growth shock combination selector applied when the threshold mode does not match the IDA terms lookup, such as historical average, baseline, or projection.
+        lookup_ida_terms_new: Scalar IDA terms lookup string compared against the threshold mode to determine whether the user-defined threshold value overrides the combination selector.
+        input6_standard_size_threshold_mode: Scalar mode string naming the size-of-shock threshold source, where a match against the IDA terms lookup selects the user-defined standardized-deviation count.
+        input6_standard_user_defined_threshold: Typed Input 6 user-defined threshold series over catalog coordinates, from which the B6 combination size-of-exports-growth-shock standard-deviation count is read when the mode matches.
 
     Returns:
-        A data.Series of scalar str/int/float/bool or None values for the export-growth rule, indexed over the rule's required coordinates.
+        A typed series over scenario coordinates holding the resolved export-growth shock rule value as a scalar or None per scenario.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     def formula(scenario: str) -> str | int | float | bool | None:
@@ -1610,30 +1610,30 @@ def dsa_pub_pv_of_total_public_debt(*, dsa_pub_nominal_gdp_local_currency: data.
     return data.DSA_PUB_PV_OF_TOTAL_PUBLIC_DEBT.collect(evaluate(formula, data.DSA_PUB_PV_OF_TOTAL_PUBLIC_DEBT.required))
 
 @publish(data.DSA_PUB_PRIMARY_DEFICIT.schema, cells=data.DSA_PUB_PRIMARY_DEFICIT.cells)
-def dsa_pub_primary_deficit(*, b6_combo_non_mkt_pub_gdp_shock_label: str, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, dsa_pub_revenue_and_grants: data.Series[float | str | None], dsa_pub_primary_noninterest_expenditure: data.Series[float | str | None], dsa_pub_standard_test_parameter: data.Series[str | int | float | bool | None], dsa_pub_b2_pb_non_mkt_pub_standard_test_parameter: str | int | float | bool, dsa_pub_standard_test_pb_rule: str | int | float | bool, dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule: str | int | float | bool, a1_hist_pub_historical_statistics: data.Series[float | str | None], baseline_pub_primary_deficit: data.Series[float | str | None], leftover_primary_deficit: data.Series[float | str | None], leftover_revenue_gdp: data.Series[float | str | None], b2_pb_mkt_pub_i_baseline_medium_term_projections: int | str, b2_pb_nonmkt_pub_i_baseline_medium_term_projections: int | str) -> data.Series[float | str | None]:
-    """Compute the public-sector primary deficit (B1_GDP_pub) across scenarios and projection years.
+def dsa_pub_primary_deficit(*, b6_combo_non_mkt_pub_gdp_shock_label: str, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, dsa_pub_revenue_and_grants: data.Series[float | str | None], dsa_pub_primary_noninterest_expenditure: data.Series[float | str | None], dsa_pub_standard_test_parameter: data.Series[str | int | float | bool | None], dsa_pub_b2_pb_non_mkt_pub_standard_test_parameter: str | int | float | bool, dsa_pub_standard_test_pb_rule: str | int | float | bool, dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule: str | int | float | bool, a1_hist_pub_historical_statistics: data.Series[float | str | None], baseline_pub_primary_deficit: data.Series[float | str | None], leftover_primary_deficit: data.Series[float | str | None], leftover_revenue_gdp: data.Series[float | str | None], b2_pb_mkt_pub_i_baseline_medium_term_projections: float | str, b2_pb_nonmkt_pub_i_baseline_medium_term_projections: float | str) -> data.Series[float | str | None]:
+    """Compute the public DSA primary deficit (B1_GDP_pub) across baseline, standard-test, and historical scenarios.
 
-    Evaluate the LIC-DSF public DSA primary-deficit identity for baseline, historical, and standardized-shock scenarios used in risk-rating and stress-test charts.
+    Produce the scenario-year primary deficit series used by the LIC-DSF public debt sustainability analysis.
 
     Args:
-        b6_combo_non_mkt_pub_gdp_shock_label: Scalar label for the B6 combined non-market public GDP shock.
-        input6_standard_size_threshold_option_historical_average_only: Scalar flag selecting the historical-average-only standard-size threshold option from Input 6.
-        input6_standard_size_threshold_option_whichever_is_lower: Scalar flag selecting the whichever-is-lower standard-size threshold option from Input 6.
-        dsa_pub_revenue_and_grants: Public revenue and grants by scenario and projection year.
-        dsa_pub_primary_noninterest_expenditure: Public primary (non-interest) expenditure by scenario and projection year.
-        dsa_pub_standard_test_parameter: Standard-test parameter controlling the applicable size threshold by scenario.
-        dsa_pub_b2_pb_non_mkt_pub_standard_test_parameter: Standard-test parameter for the B2 non-market public scenario.
-        dsa_pub_standard_test_pb_rule: Standard-test rule flag for public primary-balance standard tests.
-        dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule: Standard-test rule flag for the B6 combined non-market public scenario.
-        a1_hist_pub_historical_statistics: Historical public-sector statistics by metric and historical summary label.
-        baseline_pub_primary_deficit: Baseline public primary deficit by scenario and year.
-        leftover_primary_deficit: Leftover (residual) primary deficit by scenario and year.
-        leftover_revenue_gdp: Leftover revenue-to-GDP ratio by scenario and year.
-        b2_pb_mkt_pub_i_baseline_medium_term_projections: Baseline medium-term projection multiplier for the B2 market public scenario.
-        b2_pb_nonmkt_pub_i_baseline_medium_term_projections: Baseline medium-term projection multiplier for the B2 non-market public scenario.
+        b6_combo_non_mkt_pub_gdp_shock_label: Scalar label identifying the B6 combined non-market public GDP shock used in the B6_nonmkt 2025 branch.
+        input6_standard_size_threshold_option_historical_average_only: Scalar option string selecting the historical-average-only standard-size threshold behavior.
+        input6_standard_size_threshold_option_whichever_is_lower: Scalar option string selecting the whichever-is-lower standard-size threshold behavior.
+        dsa_pub_revenue_and_grants: Named-axis tensor series of public revenue and grants keyed by scenario and projection year.
+        dsa_pub_primary_noninterest_expenditure: Named-axis tensor series of public primary non-interest expenditure keyed by scenario and projection year.
+        dsa_pub_standard_test_parameter: Named-axis tensor series of public standard-test parameter selectors keyed by scenario.
+        dsa_pub_b2_pb_non_mkt_pub_standard_test_parameter: Scalar selector for the B2 non-market public standard-test parameter.
+        dsa_pub_standard_test_pb_rule: Scalar standard-test PB rule selector for public scenarios.
+        dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule: Scalar standard-test PB rule selector for the B6 combined non-market public scenario.
+        a1_hist_pub_historical_statistics: Named-axis tensor series of A1 historical public statistics keyed by metric and statistic; supplies the primary deficit historical average.
+        baseline_pub_primary_deficit: Named-axis tensor series of baseline public primary deficit values keyed by projection year.
+        leftover_primary_deficit: Named-axis tensor series of leftover public primary deficit values keyed by scenario and projection year.
+        leftover_revenue_gdp: Named-axis tensor series of leftover revenue-to-GDP ratios keyed by scenario.
+        b2_pb_mkt_pub_i_baseline_medium_term_projections: Scalar term for B2 market public medium-term baseline projections.
+        b2_pb_nonmkt_pub_i_baseline_medium_term_projections: Scalar term for B2 non-market public medium-term baseline projections.
 
     Returns:
-        The public primary deficit (B1_GDP_pub) as a data.Series[float | str | None] keyed by scenario and projection years from row 7 of the public DSA template.
+        A named-axis data.Series[float | str | None] of primary deficit (B1_GDP_pub) values keyed by scenario and projection year from row 7.
     """
     def formula(scenario: str, time_period: int) -> float | str | None:
         if scenario == 'B2_mkt' and time_period == 2025:
@@ -1919,28 +1919,28 @@ def dsa_pub_nominal_gdp_local_currency(*, dsa_pub_real_gdp_growth_in_percent: da
     return data.DSA_PUB_NOMINAL_GDP_LOCAL_CURRENCY.collect((coord, dsa_pub_nominal_gdp_local_currency[coord]) for coord in data.DSA_PUB_NOMINAL_GDP_LOCAL_CURRENCY.required)
 
 @publish(data.DSA_PUB_REAL_GDP_GROWTH_IN_PERCENT.schema, cells=data.DSA_PUB_REAL_GDP_GROWTH_IN_PERCENT.cells)
-def dsa_pub_real_gdp_growth_in_percent(*, a1_hist_pub_historical_statistics: data.Series[float | str | None], input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, dsa_ext_real_gdp_growth_in_percent: data.Series[float | str | None], dsa_pub_standard_test_parameter: data.Series[str | int | float | bool | None], dsa_pub_standard_test_gdp_growth_rule: str | int | float | bool, dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule: str | int | float | bool, baseline_pub_real_gdp_growth: data.Series[float | str | None], leftover_real_gdp_growth: data.Series[float | str | None], b1_gdp_pub_key_macroeconomic_fiscal_assumptions: int | str, b6_combo_mkt_pub_i_baseline_medium_term_projections: float | str, b6_combo_nonmkt_pub_i_baseline_medium_term_projections: float | str, leftover_nominal_interest_rate: float | str) -> data.Series[float | str | None]:
-    """Compute public DSA real GDP growth in percent by scenario and projection year.
+def dsa_pub_real_gdp_growth_in_percent(*, a1_hist_pub_historical_statistics: data.Series[float | str | None], input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, dsa_ext_real_gdp_growth_in_percent: data.Series[float | str | None], dsa_pub_standard_test_parameter: data.Series[str | int | float | bool | None], dsa_pub_standard_test_gdp_growth_rule: str | int | float | bool, dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule: str | int | float | bool, baseline_pub_real_gdp_growth: data.Series[float | str | None], leftover_real_gdp_growth: data.Series[float | str | None], b1_gdp_pub_key_macroeconomic_fiscal_assumptions: float | str, b6_combo_mkt_pub_i_baseline_medium_term_projections: float | str, b6_combo_nonmkt_pub_i_baseline_medium_term_projections: float | str, leftover_nominal_interest_rate: float | str) -> data.Series[float | str | None]:
+    """Computes the public DSA real GDP growth rate (in percent) for each scenario and projection year.
 
-    Derive the public-sector real GDP growth path used in debt sustainability analysis, applying scenario-specific rules and threshold options.
+    Derives the public-sector real GDP growth path from baseline projections, historical averages, and B1/B6 combo scenario rules for the LIC-DSF public DSA.
 
     Args:
-        a1_hist_pub_historical_statistics: Historical public statistics series keyed by indicator and statistic type; supplies the historical average real GDP growth for scenario A1 in 2025.
-        input6_standard_size_threshold_option_historical_average_only: String option selecting the historical-average-only standard size threshold from Input 6.
-        input6_standard_size_threshold_option_whichever_is_lower: String option selecting the whichever-is-lower standard size threshold from Input 6.
-        dsa_ext_real_gdp_growth_in_percent: External DSA real GDP growth series keyed by scenario and projection year; used for scenario C3 through 2030.
-        dsa_pub_standard_test_parameter: Public standard test parameter series keyed by scenario; selects the applicable threshold option for B1 real GDP growth.
-        dsa_pub_standard_test_gdp_growth_rule: Scalar rule value for the public GDP growth rule in the B6 market scenario standard test.
-        dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule: Scalar rule value for the public GDP growth rule in the B6 non-market scenario standard test.
-        baseline_pub_real_gdp_growth: Baseline public real GDP growth series keyed by projection year; used as the default and fallback path.
-        leftover_real_gdp_growth: Leftover real GDP growth series keyed by scenario and year; used in B1 and B6 combination formulas.
-        b1_gdp_pub_key_macroeconomic_fiscal_assumptions: Scalar key macroeconomic and fiscal assumption for B1, applied as a multiplier to leftover real GDP growth.
-        b6_combo_mkt_pub_i_baseline_medium_term_projections: Scalar baseline medium-term projection for the B6 market combination, applied as a multiplier to leftover real GDP growth.
-        b6_combo_nonmkt_pub_i_baseline_medium_term_projections: Scalar baseline medium-term projection for the B6 non-market combination, applied as a multiplier to leftover real GDP growth.
-        leftover_nominal_interest_rate: Scalar leftover nominal interest rate used to adjust baseline real GDP growth for scenario C2 in 2025.
+        a1_hist_pub_historical_statistics: Historical statistics series keyed by metric label and statistic name, supplying the A1 historical-average real GDP growth rate.
+        input6_standard_size_threshold_option_historical_average_only: Scalar option label selecting the historical-average-only standard size threshold rule.
+        input6_standard_size_threshold_option_whichever_is_lower: Scalar option label selecting the lower-of-baseline-and-historical standard size threshold rule.
+        dsa_ext_real_gdp_growth_in_percent: External DSA real GDP growth series keyed by scenario and year, reused for the C3 scenario path through 2030.
+        dsa_pub_standard_test_parameter: Series of standard test parameter flags keyed by scenario, compared against the threshold options to pick the growth rule branch.
+        dsa_pub_standard_test_gdp_growth_rule: Scalar rule selector for the public standard test GDP growth rule.
+        dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule: Scalar rule selector for the B6 non-market combination public standard test GDP growth rule.
+        baseline_pub_real_gdp_growth: Baseline public real GDP growth series keyed by year, providing the default and conditional fallback path.
+        leftover_real_gdp_growth: Leftover (residual) real GDP growth series keyed by scenario and year, used to rescale scenario paths.
+        b1_gdp_pub_key_macroeconomic_fiscal_assumptions: Scalar key macroeconomic and fiscal assumption scaling the B1 residual growth path.
+        b6_combo_mkt_pub_i_baseline_medium_term_projections: Scalar baseline medium-term projection for the B6 market combination scenario.
+        b6_combo_nonmkt_pub_i_baseline_medium_term_projections: Scalar baseline medium-term projection for the B6 non-market combination scenario.
+        leftover_nominal_interest_rate: Scalar nominal interest rate subtracted from baseline growth for the C2 scenario in 2025.
 
     Returns:
-        A data.Series of float, str, or None containing public real GDP growth in percent, keyed by scenario and the projection years from row 7.
+        Real GDP growth in percent (B1_GDP_pub) as a typed data series keyed by scenario and years from row 7, with values either numeric, string, or None.
     """
     def formula(scenario: str, time_period: int) -> float | str | None:
         if scenario == 'B1' and time_period == 2025:
@@ -3351,20 +3351,20 @@ def dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio(*, dsa_pub_pv_of_total
     return data.DSA_PUB_PV_OF_PUBLIC_DEBT_TO_REVENUE_AND_GRANTS_RATIO.collect(evaluate(formula, data.DSA_PUB_PV_OF_PUBLIC_DEBT_TO_REVENUE_AND_GRANTS_RATIO.required))
 
 @publish(data.DSA_PUB_STANDARD_TEST_PARAMETER.schema, cells=data.DSA_PUB_STANDARD_TEST_PARAMETER.cells)
-def dsa_pub_standard_test_parameter(*, in6opt_standard_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold, in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: str | int | float | bool) -> data.Series[str | int | float | bool | None]:
-    """Compute public standard-test DSA parameters from Input 6 threshold settings.
+def dsa_pub_standard_test_parameter(*, in6opt_standard_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold, in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: str | int | float | bool) -> data.Series[str | int | float | bool | None]:
+    """Compute the B1 real GDP growth standard-test parameter under old or new IDA terms.
 
-    Selects each scenario's standard-test threshold value from user-defined Input 6 settings or scalar fallbacks according to the IDA terms mode.
+    Selects the size of the B1 real GDP growth shock for the public DSA standard test, using user-defined thresholds when the new IDA terms threshold mode is active and historical-average baseline projections otherwise.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection: Scalar fallback value for the B1 real GDP growth standard-test threshold when the size-threshold mode does not match the IDA terms lookup.
-        lookup_ida_terms_new: Scalar IDA terms label compared against the size-threshold mode to choose new versus old threshold handling.
-        input6_standard_size_threshold_mode: Scalar literal mode selecting the new or old IDA terms basis for standard-test size thresholds.
-        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series of user-defined threshold sizes over scenario, indicator, and threshold-component coordinates.
-        in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: Scalar fallback value for non-B1 standard-test thresholds when the size-threshold mode does not match the IDA terms lookup.
+        in6opt_standard_historical_average_baseline_projection: Scalar fallback value for the historical-average baseline projection when the new IDA threshold mode is not selected.
+        lookup_ida_terms_new: Scalar string identifying the new IDA terms threshold-mode sentinel used to switch between user-defined and historical-average parameter sources.
+        input6_standard_size_threshold_mode: Scalar string naming the active Input 6 standardized size-threshold mode.
+        input6_standard_user_defined_threshold: Typed data series of user-defined standardized-test threshold sizes, indexed by scenario, indicator, and measurement coordinate.
+        in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: Scalar fallback value for the B1 real GDP growth historical-average baseline projection when the new IDA threshold mode is not selected.
 
     Returns:
-        Typed data.Series[str | int | float | bool | None] of selected standard-test parameter values over the required scenario coordinates.
+        A typed data series of scenario-indexed standard-test parameter values (str, int, float, bool, or None) for the B1 real GDP growth rule.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     def formula(scenario: str) -> str | int | float | bool | None:
@@ -3626,19 +3626,19 @@ def dsa_pub_b2_pb_non_mkt_pub_revenue(*, dsa_pub_revenue_and_grants: data.Series
     return data.DSA_PUB_B2_PB_NON_MKT_PUB_REVENUE.collect(evaluate(formula, data.DSA_PUB_B2_PB_NON_MKT_PUB_REVENUE.required))
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_B2_PB_NON_MKT_PUB_STANDARD_TEST_PARAMETER_CELLS)
-def dsa_pub_b2_pb_non_mkt_pub_standard_test_parameter(*, in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Select the Input 6 standard-test primary-balance shock size or the B1 baseline growth fallback according to the standard size threshold mode.
+def dsa_pub_b2_pb_non_mkt_pub_standard_test_parameter(*, in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Resolve the B2 primary-balance standard-test parameter for non-market public debt under the B2_PB_non_mkt_pub!AA63 rule.
 
-    Implements the new-vs-old standard-test primary-balance rule for the `B2_PB_non_mkt_pub` threshold parameter (workbook `B2_PB_non_mkt_pub!AA63`).
+    Select the standardized Primary-balance-to-GDP shock size used by the non-market public-debt standard test, switching between the user-defined threshold entry and the B1 historical-average/baseline growth fallback.
 
     Args:
-        in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: Scalar fallback value for the B1 real GDP growth historical-average baseline projection, returned when the size threshold mode does not match the IDA-terms-new lookup value.
-        lookup_ida_terms_new: Scalar string identifier holding the IDA-terms-new lookup value compared against the standard size threshold mode.
-        input6_standard_size_threshold_mode: Scalar literal selector indicating whether the standard size threshold rule uses `New` or `Old` IDA terms.
-        input6_standard_user_defined_threshold: `data.Input6StandardUserDefinedThreshold` series over catalog coordinates, carrying the Input 6 standard user-defined threshold values keyed by primary-balance measure, shock dimension, and size coordinate; validated before indexing.
+        in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: Scalar historical-average or baseline real GDP growth projection value for the B1 option, used as the fallback parameter when the standard size-threshold mode is not active.
+        lookup_ida_terms_new: Scalar IDA-terms lookup value compared against the size-threshold mode to decide whether the user-defined standard shock size applies.
+        input6_standard_size_threshold_mode: Scalar size-threshold mode compared against the IDA-terms lookup to enable the user-defined standard deviation size.
+        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series over Input 6 catalog coordinates whose 'B2. Primary balance' / shock-size coordinates supply the standard deviation size.
 
     Returns:
-        Scalar `str | int | float | bool`; the selected Input 6 standard user-defined threshold size, the B1 baseline growth fallback value, or an `XlError` code string on failure.
+        Scalar str | int | float | bool: the selected standard-test primary-balance shock-size parameter, or the XlError code string when the underlying workbook expression fails.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -3667,18 +3667,18 @@ def dsa_pub_b5_depreciation_pub_nominal_appreciation_increase_in_us_dollar_value
     return data.DSA_PUB_B5_DEPRECIATION_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.collect(evaluate(formula, data.DSA_PUB_B5_DEPRECIATION_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.required))
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_B5_DEPRECIATION_PUB_STANDARD_TEST_FX_DEPRECIATION_CELLS)
-def dsa_pub_b5_depreciation_pub_standard_test_fx_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], in6opt_standard_size_of_fx_depreciation_shock: data.Series[float | str | None]) -> float | str:
-    """Select the public standard-test FX depreciation size for the B5 depreciation block.
+def dsa_pub_b5_depreciation_pub_standard_test_fx_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, in6opt_standard_size_of_fx_depreciation_shock: data.Series[float | str | None]) -> float | str:
+    """Select the standard-test FX depreciation shock size for the public DSA B5 depreciation block.
 
-    Chooses either the user-defined or default FX depreciation shock size according to the IDA terms threshold mode and returns the resulting scalar or error code.
+    Resolve the applicable Input 6 standard-size option using the IDA terms comparison mode and return it as a scalar measure.
 
     Args:
-        lookup_ida_terms_new: Scalar string identifying the new IDA terms label used to test whether the selected threshold mode is the new standard-size variant.
-        input6_standard_size_threshold_mode: Scalar mode indicating whether the new or old standard-size threshold applies; compared against the IDA terms label to choose the series entry.
-        in6opt_standard_size_of_fx_depreciation_shock: Named-axis Input 6 series of new-vs-old standard-test FX depreciation sizes from B5_depreciation_pub!AA62, with entries such as 'User defined' and 'Default' and values that may be numeric, text, or empty.
+        lookup_ida_terms_new: IDA terms lookup string used as the comparison value for the standard-size threshold mode.
+        input6_standard_size_threshold_mode: Input 6 standard-size threshold mode string that selects between the user-defined and default FX depreciation shock sizes.
+        in6opt_standard_size_of_fx_depreciation_shock: Named-axis series of standard-size FX depreciation shock options over catalog coordinates, keyed by 'User defined' and 'Default'.
 
     Returns:
-        The chosen standard-test FX depreciation size as a float or text value, or a string Excel error code when evaluation fails.
+        The selected standard-test FX depreciation shock size as a scalar float, or a string Excel error code if evaluation fails.
     """
     try:
         return as_measure((in6opt_standard_size_of_fx_depreciation_shock['User defined'] if xl_bool(xl_eq(input6_standard_size_threshold_mode, lookup_ida_terms_new)) else in6opt_standard_size_of_fx_depreciation_shock['Default']))
@@ -3703,19 +3703,19 @@ def dsa_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_i
     return data.DSA_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.collect(evaluate(formula, data.DSA_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.required))
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_STANDARD_TEST_GDP_GROWTH_RULE_CELLS)
-def dsa_pub_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Resolve the standard-test real GDP growth B6 combination according to the size-threshold mode.
+def dsa_pub_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Return the standard-test GDP growth rule value for the B6 market-public combination.
 
-    Choose the B6 combination value from either the user-defined threshold series or the historical-average baseline projection based on whether the mode matches the IDA terms lookup string.
+    Applies the new-vs-old standard-test rule from `B6_combo_mkt_pub!AB63` by selecting between the user-defined threshold shock size and the standard historical-average baseline B6 combination.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: Scalar B6 combination value (str | int | float | bool) for the historical-average baseline real GDP projection, used when the size-threshold mode does not match the IDA terms lookup string.
-        lookup_ida_terms_new: Scalar lookup string compared with the size-threshold mode to determine whether the user-defined threshold series should drive the result.
-        input6_standard_size_threshold_mode: Scalar literal mode, either 'New' or 'Old', selecting between the user-defined threshold series and the standard historical-average B6 combination.
-        input6_standard_user_defined_threshold: Typed data series (data.Input6StandardUserDefinedThreshold) over named catalog coordinates for the Input 6 standard user-defined threshold; supplies the B6 combination and real GDP growth shock size when the mode matches the lookup.
+        in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: Scalar `str | int | float | bool` option selecting the B6 combination for the standard historical-average baseline projection real GDP growth fallback.
+        lookup_ida_terms_new: Scalar `str` lookup label for IDA terms-new used in the threshold-mode equality test.
+        input6_standard_size_threshold_mode: Scalar `str` standard size-threshold mode that, when equal to the IDA terms-new lookup label, selects the user-defined threshold size.
+        input6_standard_user_defined_threshold: Typed `data.Input6StandardUserDefinedThreshold` series over catalog coordinates holding Input 6 standard user-defined threshold assumptions, including the B6 combination and real GDP growth shock size coordinates consumed by the rule.
 
     Returns:
-        Scalar or string return (str | int | float | bool): the selected B6 combination measure, or the XlError code string if evaluation fails.
+        Scalar `str | int | float | bool` result of the standard-test GDP growth rule: the selected measured value cast to string, or an Excel error code string when the underlying calculation raises `XlError`.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -3724,19 +3724,19 @@ def dsa_pub_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_STANDARD_TEST_PB_RULE_CELLS)
-def dsa_pub_standard_test_pb_rule(*, in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Selects the B6 combination primary-balance shock size for the public standard-test rule using authored coordinate identities.
+def dsa_pub_standard_test_pb_rule(*, in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Select the standardized primary-balance shock for the public DSA standard-test B6 combination.
 
-    Resolves the New-versus-Old IDA terms threshold mode and returns the applicable B6 combination PB/GDP shock measure from the Input 6 user-defined threshold series or the supplied scalar fallback.
+    Resolve whether the user-defined PB/GDP shock-size threshold series or the Input 6 standard combination controls the primary-balance rule.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: Scalar fallback holding the historical-average/baseline-projection B6 combination primary-balance measure, used when the threshold-mode comparison does not match the IDA terms lookup.
-        lookup_ida_terms_new: Textual IDA terms lookup key compared against the threshold mode to determine which threshold source governs the B6 combination.
-        input6_standard_size_threshold_mode: Input 6 selector giving the standard size threshold mode as the literal 'New' or 'Old'.
-        input6_standard_user_defined_threshold: Typed Input6StandardUserDefinedThreshold series holding the user-defined threshold cells keyed on the B6 combination, the PB/GDP shock size in standard deviations, and the size coordinate.
+        in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: Scalar Input 6 option naming the standard historical-average baseline projection primary-balance B6 combination used when the size-threshold mode does not match the lookup term.
+        lookup_ida_terms_new: Scalar lookup IDA terms indicator compared with the size-threshold mode to choose the active rule branch.
+        input6_standard_size_threshold_mode: Scalar size-threshold mode that determines whether the user-defined threshold series or the Input 6 standard combination supplies the PB/GDP shock size.
+        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series over catalog coordinates carrying the B6 combination and user-defined PB/GDP shock-size threshold values; document as the series, not as expanded component cells.
 
     Returns:
-        Scalar B6 combination primary-balance shock size as declared by the str | int | float | bool annotation (the measure is string-coerced), or the Excel error code string when evaluation raises.
+        Scalar primary-balance shock measure returned as str, int, float, or bool, or the originating Excel error code string when the rule cannot be evaluated.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -3745,18 +3745,18 @@ def dsa_pub_standard_test_pb_rule(*, in6opt_standard_historical_average_baseline
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_STANDARD_TEST_FX_DEPRECIATION_CELLS)
-def dsa_pub_standard_test_fx_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], in6opt_standard_b6_combination_size_of_fx_depreciation_shock: data.Series[float | str | None]) -> float | str:
-    """Resolve the standardized-test FX depreciation shock size from user-defined or default values.
+def dsa_pub_standard_test_fx_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, in6opt_standard_b6_combination_size_of_fx_depreciation_shock: data.Series[float | str | None]) -> float | str:
+    """Selects the public standard-test FX depreciation shock size from the IDA terms comparison.
 
-    Select the B6 combination FX depreciation shock magnitude for the public DSA standard test based on the IDA terms lookup and threshold mode.
+    Returns the B6 FX depreciation shock magnitude for the public standard test, or the Excel error code when evaluation fails.
 
     Args:
-        lookup_ida_terms_new: Scalar IDA terms lookup string compared against the standard-size threshold mode to choose the active branch.
-        input6_standard_size_threshold_mode: Scalar standard-test size threshold mode selector, either 'New' or 'Old'.
-        in6opt_standard_b6_combination_size_of_fx_depreciation_shock: Typed data.Series[float | str | None] over catalog coordinates for the B6 combination standard-test FX depreciation shock size, indexed by 'User defined' and 'Default'.
+        lookup_ida_terms_new: Lookup label identifying the current IDA terms regime used for comparison against the standard-size threshold mode.
+        input6_standard_size_threshold_mode: Input 6 standard-size threshold mode string compared with the IDA terms label to choose between user-defined and default shock coordinates.
+        in6opt_standard_b6_combination_size_of_fx_depreciation_shock: Named-axis series of standard-test B6 FX depreciation shock sizes over catalog coordinates, containing `User defined` and `Default` entries.
 
     Returns:
-        Selected FX depreciation shock size as a float, or an Excel error code string if the series lookup raises an XlError.
+        Scalar standard-test FX depreciation shock size as a float when resolved, or the Excel error code as a string when evaluation fails.
     """
     try:
         return as_measure((in6opt_standard_b6_combination_size_of_fx_depreciation_shock['User defined'] if xl_bool(xl_eq(input6_standard_size_threshold_mode, lookup_ida_terms_new)) else in6opt_standard_b6_combination_size_of_fx_depreciation_shock['Default']))
@@ -3781,19 +3781,19 @@ def dsa_pub_b6_combo_non_mkt_pub_nominal_appreciation_increase_in_us_dollar_valu
     return data.DSA_PUB_B6_COMBO_NON_MKT_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.collect(evaluate(formula, data.DSA_PUB_B6_COMBO_NON_MKT_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.required))
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_B6_COMBO_NON_MKT_PUB_STANDARD_TEST_GDP_GROWTH_RULE_CELLS)
-def dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Resolve the B6-combination standard-test real GDP growth shock size.
+def dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Compute the B6 combination non-market public standard-test real GDP growth rule.
 
-    Selects the standardized GDP growth shock size used by the B6 non-market public-debt test, choosing between the user-defined new-threshold value and the historical-average baseline projection according to the active IDA threshold regime.
+    Selects the B6 combination real GDP growth shock size for the standard test based on the standard size-threshold mode and the user-defined threshold setting.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: Scalar option carried on Input 6 holding the historical-average baseline projected real GDP growth for the B6 combination, used when the legacy threshold regime applies.
-        lookup_ida_terms_new: Scalar IDA terms lookup value compared against the threshold mode to determine whether the new IDA terms definition is in force.
-        input6_standard_size_threshold_mode: Scalar literal selecting which standard size threshold definition governs the lookup, either 'New' or 'Old'.
-        input6_standard_user_defined_threshold: Named-axis Input6StandardUserDefinedThreshold series over the B6 combination, real GDP growth shock size, and size coordinates, supplying the user-defined shock magnitude when the new threshold rule is selected.
+        in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: Scalar option for the Input 6 standard test: whether the B6 combination real GDP growth rule uses the historical average or the baseline projection, applied when the size-threshold mode does not select the user-defined threshold.
+        lookup_ida_terms_new: Scalar lookup string for the IDA terms (new) mode, compared with the standard size-threshold mode to decide whether to use the user-defined threshold.
+        input6_standard_size_threshold_mode: Scalar string mode controlling the Input 6 standard-test size threshold, such as default versus user-defined sizing; when it matches the IDA terms lookup, the user-defined threshold series is consulted instead of the historical-average or baseline-projection option.
+        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series over Input 6 threshold coordinates, validated against its schema; when user-defined thresholding is selected it supplies the B6 combination real GDP growth shock size in number of standard deviations.
 
     Returns:
-        Scalar str | int | float | bool giving the resolved standard-test real GDP growth shock size for the B6 combination, or the Excel error code string when evaluation raises an XlError.
+        Scalar (str | int | float | bool): the selected B6 combination non-market public standard-test real GDP growth rule value, cast to a measure string; if evaluation raises XlError, its error code string is returned.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -3802,19 +3802,19 @@ def dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule(*, in6opt_standar
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_B6_COMBO_NON_MKT_PUB_STANDARD_TEST_PB_RULE_CELLS)
-def dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule(*, in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Compute the B6 combination non-market public standard test primary balance rule.
+def dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule(*, in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Resolve the B6 combined primary-balance rule for the non-market public standard test.
 
-    Selects the primary balance shock size for the B6 combination based on the standard size threshold mode and IDA terms lookup.
+    Selects the effective B6 primary-balance input (user-defined shock size versus the supplied combination option) for the LIC-DSF public debt standard-test calculation at B6_combo_non-mkt_pub!AB69.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: The fallback scalar value for the primary balance shock size when the standard size threshold mode does not match the IDA terms new lookup.
-        lookup_ida_terms_new: The IDA terms lookup key (e.g., 'New') used to compare against the standard size threshold mode.
-        input6_standard_size_threshold_mode: The standard size threshold mode ('New' or 'Old') that determines whether to use the user-defined threshold.
-        input6_standard_user_defined_threshold: A typed data series (named-axis tensor over catalog coordinates) containing user-defined threshold values for the B6 combination size of PB/GDP shock in standard deviations.
+        in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: Scalar B6 combination option taken from Input 6, supplying the historical-average or baseline-projection primary-balance treatment used when the user-defined threshold mode is not in effect.
+        lookup_ida_terms_new: Lookup term for IDA terms (new) used as the comparison key that determines whether the user-defined threshold branch is active for the standard test.
+        input6_standard_size_threshold_mode: Scalar mode selector identifying which size-of-PB/GDP-shock threshold option applies to the standard test.
+        input6_standard_user_defined_threshold: Typed Input 6 series of standard user-defined threshold values over the B6 combination and shock-size coordinates; schema-validated before its B6 combination size cell is read.
 
     Returns:
-        The selected primary balance shock size as a scalar (str, int, float, or bool), or an Excel error code string if computation fails.
+        The effective B6 primary-balance rule as a scalar: the user-defined size-of-shock measure when the threshold mode matches the IDA-terms lookup key, otherwise the supplied B6 combination option; an Excel error code string is returned if the lookup raises an XlError.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -3823,18 +3823,18 @@ def dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule(*, in6opt_standard_histor
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_B6_COMBO_NON_MKT_PUB_STANDARD_TEST_FX_DEPRECIATION_CELLS)
-def dsa_pub_b6_combo_non_mkt_pub_standard_test_fx_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], in6opt_standard_b6_combination_size_of_fx_depreciation_shock: data.Series[float | str | None]) -> float | str:
-    """Select the standard-test B6 combination FX depreciation shock size under the active IDA-terms regime.
+def dsa_pub_b6_combo_non_mkt_pub_standard_test_fx_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, in6opt_standard_b6_combination_size_of_fx_depreciation_shock: data.Series[float | str | None]) -> float | str:
+    """Return the standard test FX depreciation shock size for the B6 combination.
 
-    Resolve the B6 non-market public standard-test FX depreciation shock to either its user-defined or default variant.
+    Selects the FX depreciation shock size from the provided series based on the IDA terms lookup and standard size threshold mode.
 
     Args:
-        lookup_ida_terms_new: IDA terms label identifying the active standard-test regime ('New' or 'Old') against which the configured threshold mode is compared.
-        input6_standard_size_threshold_mode: Standard-size threshold mode flag ('New' or 'Old') that decides whether the user-defined or default shock magnitude is taken.
-        in6opt_standard_b6_combination_size_of_fx_depreciation_shock: Typed data series over catalog coordinates holding the B6 combination standard-test FX depreciation shock size, indexed by the 'Default' and 'User defined' leaves.
+        lookup_ida_terms_new: IDA terms lookup string used as the reference for comparing the standard size threshold mode.
+        input6_standard_size_threshold_mode: Standard size threshold mode string from Input 6, compared against the IDA terms lookup.
+        in6opt_standard_b6_combination_size_of_fx_depreciation_shock: data.Series[float | str | None] over catalog coordinates containing the FX depreciation shock size, with 'User defined' and 'Default' keys.
 
     Returns:
-        The selected FX depreciation shock size as a float, or the Excel error code string when the underlying coordinate lookup raises an XlError.
+        The selected FX depreciation shock size as a float, or an error code string if an XlError occurs.
     """
     try:
         return as_measure((in6opt_standard_b6_combination_size_of_fx_depreciation_shock['User defined'] if xl_bool(xl_eq(input6_standard_size_threshold_mode, lookup_ida_terms_new)) else in6opt_standard_b6_combination_size_of_fx_depreciation_shock['Default']))
@@ -6040,23 +6040,23 @@ def scan_input5_public_gfns_3_debt_services_from_new_debt(*, ext_debt_st_princip
 
     pv_lc_output_amortization_in_usd = CoordinateReader('pv_lc_output_amortization_in_usd', data.PV_LC_OUTPUT_AMORTIZATION_IN_USD.required, pv_lc_output_amortization_in_usd_formula)
     _pv_lc_output_interest_rate_local_currency_table_0 = view(pv_lc_nr1_terms_projection_year, cols={'INSTRUMENT': ('Bonds (1 to 3 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2074)})
-    _pv_lc_output_interest_rate_local_currency_table_1 = view(pv_lc_nr1_terms_fx_pa, cols={'INSTRUMENT': ('Bonds (1 to 3 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2074)})
-    _pv_lc_output_interest_rate_local_currency_table_2 = view(pv_lc_nr1_terms_fx_eop, cols={'INSTRUMENT': ('Bonds (1 to 3 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2074)})
+    _pv_lc_output_interest_rate_local_currency_table_1 = view(pv_lc_nr1_terms_fx_pa, cols={'INSTRUMENT': ('Bonds (1 to 3 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2051)})
+    _pv_lc_output_interest_rate_local_currency_table_2 = view(pv_lc_nr1_terms_fx_eop, cols={'INSTRUMENT': ('Bonds (1 to 3 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2044)})
     _pv_lc_output_interest_rate_local_currency_table_3 = view(pv_lc_terms_interest_rate_local_currency, cols={'INSTRUMENT': ('Bonds (1 to 3 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2044)})
     _pv_lc_output_interest_rate_local_currency_table_4 = view(pv_lc_terms_projection_year, cols={'INSTRUMENT': ('Bonds (4 to 7 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2076)})
-    _pv_lc_output_interest_rate_local_currency_table_5 = view(pv_lc_terms_fx_pa, cols={'INSTRUMENT': ('Bonds (4 to 7 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2076)})
-    _pv_lc_output_interest_rate_local_currency_table_6 = view(pv_lc_terms_fx_eop, cols={'INSTRUMENT': ('Bonds (4 to 7 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2076)})
+    _pv_lc_output_interest_rate_local_currency_table_5 = view(pv_lc_terms_fx_pa, cols={'INSTRUMENT': ('Bonds (4 to 7 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2051)})
+    _pv_lc_output_interest_rate_local_currency_table_6 = view(pv_lc_terms_fx_eop, cols={'INSTRUMENT': ('Bonds (4 to 7 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2044)})
     _pv_lc_output_interest_rate_local_currency_table_7 = view(pv_lc_terms_interest_rate_local_currency, cols={'INSTRUMENT': ('Bonds (4 to 7 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2044)})
     _pv_lc_output_interest_rate_local_currency_table_8 = view(pv_lc_terms_projection_year, cols={'INSTRUMENT': ('Bonds (beyond 7 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2076)})
-    _pv_lc_output_interest_rate_local_currency_table_9 = view(pv_lc_terms_fx_pa, cols={'INSTRUMENT': ('Bonds (beyond 7 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2076)})
-    _pv_lc_output_interest_rate_local_currency_table_10 = view(pv_lc_terms_fx_eop, cols={'INSTRUMENT': ('Bonds (beyond 7 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2076)})
+    _pv_lc_output_interest_rate_local_currency_table_9 = view(pv_lc_terms_fx_pa, cols={'INSTRUMENT': ('Bonds (beyond 7 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2051)})
+    _pv_lc_output_interest_rate_local_currency_table_10 = view(pv_lc_terms_fx_eop, cols={'INSTRUMENT': ('Bonds (beyond 7 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2044)})
     _pv_lc_output_interest_rate_local_currency_table_11 = view(pv_lc_terms_interest_rate_local_currency, cols={'INSTRUMENT': ('Bonds (beyond 7 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2044)})
     def pv_lc_output_interest_rate_local_currency_formula(instrument: str, holder: str, issuance_year: int) -> float | str | None:
         if instrument == 'Bonds (1 to 3 years)-LC':
-            return as_measure(xl_hlookup(pv_lc_output_issuance_year[instrument, holder, issuance_year], lazy_table(((_pv_lc_output_interest_rate_local_currency_table_0, lambda: None, lambda: None), (_pv_lc_output_interest_rate_local_currency_table_1, lambda: None, lambda: None), (_pv_lc_output_interest_rate_local_currency_table_2, lambda: None, lambda: None), (view(pv_lc_terms_gross_financing_in_lc, cols={'INSTRUMENT': ('Bonds (1 to 3 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2044)}), lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (_pv_lc_output_interest_rate_local_currency_table_3, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None))), 5, False))
+            return as_measure(xl_hlookup(pv_lc_output_issuance_year[instrument, holder, issuance_year], lazy_table(((_pv_lc_output_interest_rate_local_currency_table_0, lambda: None, lambda: None), (_pv_lc_output_interest_rate_local_currency_table_1, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (_pv_lc_output_interest_rate_local_currency_table_2, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(pv_lc_terms_gross_financing_in_lc, cols={'INSTRUMENT': ('Bonds (1 to 3 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2044)}), lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (_pv_lc_output_interest_rate_local_currency_table_3, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None))), 5, False))
         elif instrument == 'Bonds (4 to 7 years)-LC':
-            return as_measure(xl_hlookup(pv_lc_output_issuance_year[instrument, holder, issuance_year], lazy_table(((_pv_lc_output_interest_rate_local_currency_table_4,), (_pv_lc_output_interest_rate_local_currency_table_5,), (_pv_lc_output_interest_rate_local_currency_table_6,), (view(pv_lc_terms_gross_financing_in_lc, cols={'INSTRUMENT': ('Bonds (4 to 7 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2044)}), lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (_pv_lc_output_interest_rate_local_currency_table_7, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None))), 5, False))
-        return as_measure(xl_hlookup(pv_lc_output_issuance_year[instrument, holder, issuance_year], lazy_table(((_pv_lc_output_interest_rate_local_currency_table_8,), (_pv_lc_output_interest_rate_local_currency_table_9,), (_pv_lc_output_interest_rate_local_currency_table_10,), (view(pv_lc_terms_gross_financing_in_lc, cols={'INSTRUMENT': ('Bonds (beyond 7 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2044)}), lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (_pv_lc_output_interest_rate_local_currency_table_11, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None))), 5, False))
+            return as_measure(xl_hlookup(pv_lc_output_issuance_year[instrument, holder, issuance_year], lazy_table(((_pv_lc_output_interest_rate_local_currency_table_4,), (_pv_lc_output_interest_rate_local_currency_table_5, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (_pv_lc_output_interest_rate_local_currency_table_6, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(pv_lc_terms_gross_financing_in_lc, cols={'INSTRUMENT': ('Bonds (4 to 7 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2044)}), lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (_pv_lc_output_interest_rate_local_currency_table_7, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None))), 5, False))
+        return as_measure(xl_hlookup(pv_lc_output_issuance_year[instrument, holder, issuance_year], lazy_table(((_pv_lc_output_interest_rate_local_currency_table_8,), (_pv_lc_output_interest_rate_local_currency_table_9, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (_pv_lc_output_interest_rate_local_currency_table_10, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(pv_lc_terms_gross_financing_in_lc, cols={'INSTRUMENT': ('Bonds (beyond 7 years)-LC',), 'HOLDER': ('non-residents',), 'TIME_PERIOD': span(data.TIME_PERIOD_AXIS, 2024, 2044)}), lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (_pv_lc_output_interest_rate_local_currency_table_11, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None))), 5, False))
 
     pv_lc_output_interest_rate_local_currency = CoordinateReader('pv_lc_output_interest_rate_local_currency', data.PV_LC_OUTPUT_INTEREST_RATE_LOCAL_CURRENCY.required, pv_lc_output_interest_rate_local_currency_formula)
     def pv_lc_output_amortization_in_lc_formula(instrument: str, holder: str, issuance_year: int, time_period: int) -> float | str | None:
@@ -7757,28 +7757,44 @@ def blend_sofr_interpolated_rate(*, blend_linear_interpolation_header: str, blen
     return data.BLEND_SOFR_INTERPOLATED_RATE.collect((coord, blend_sofr_interpolated_rate[coord]) for coord in data.BLEND_SOFR_INTERPOLATED_RATE.required)
 
 @publish(data.CHART_CHART_DATA_SCENARIO_LABELS_PV_DEBT_TO_GDP.schema, cells=data.CHART_CHART_DATA_SCENARIO_LABELS_PV_DEBT_TO_GDP.cells)
-def chart_chart_data_scenario_labels_pv_debt_to_gdp(*, translation_chart_data_exports: data.Series[str | None], translation_chart_data_primary_balance: data.Series[str | None], chart_tailored_test_names: data.Series[str | None], start_debt_sustainability_analysis: str | int | float | bool) -> data.Series[str | int | float | bool | None]:
-    """Resolve translated and tailored scenario labels for the PV of debt-to-GDP stress-figure block.
+def chart_chart_data_scenario_labels_pv_debt_to_gdp(*, start_debt_sustainability_analysis: str | int | float | bool, translation_chart_data_growth: data.Series[str | None], translation_chart_data_exports: data.Series[str | None], translation_chart_data_non_debt_flows: data.Series[str | None], translation_chart_data_one_time_depreciation: data.Series[str | None], translation_chart_data_primary_balance: data.Series[str | None], translation_chart_data_combination: data.Series[str | None], chart_tailored_test_names: data.Series[str | None]) -> data.Series[str | int | float | bool | None]:
+    """Resolve localized scenario labels for the PV of debt-to-GDP stress-figure block.
 
-    Builds the Chart Data scenario-label series by applying coordinate-based language and tailored-test lookups.
+    Builds the Chart Data PV debt-to-GDP scenario-label series by selecting language-specific translations and tailored-test names.
 
     Args:
-        translation_chart_data_exports: Translated scenario labels for exports, typed as a named-axis series over catalog language coordinates and allowing None values for blanks.
-        translation_chart_data_primary_balance: Translated scenario labels for primary balance, typed as a named-axis series over catalog language coordinates and allowing None values for blanks.
-        chart_tailored_test_names: Tailored stress-test display names, typed as a named-axis series over catalog tailored-test coordinates and allowing None values for blanks.
-        start_debt_sustainability_analysis: Scalar selector for the DSA analysis language, used as a str, int, float, or bool coordinate value.
+        start_debt_sustainability_analysis: Scalar language selector, usually a workbook cell, choosing English, French, Portuguese, or Spanish; unmatched values fall back to Spanish.
+        translation_chart_data_growth: Named-axis series of translated Growth scenario labels over catalog language coordinates; the active-language entry supplies the Growth label.
+        translation_chart_data_exports: Named-axis series of translated Exports scenario labels over catalog language coordinates; the active-language entry supplies the Exports label.
+        translation_chart_data_non_debt_flows: Named-axis series of translated Non-debt flows scenario labels over catalog language coordinates; the active-language entry supplies the Non-debt flows label.
+        translation_chart_data_one_time_depreciation: Named-axis series of translated One-time depreciation scenario labels over catalog language coordinates; the active-language entry supplies the One-time depreciation label.
+        translation_chart_data_primary_balance: Named-axis series of translated Primary Balance scenario labels over catalog language coordinates; the active-language entry supplies the Primary Balance label.
+        translation_chart_data_combination: Named-axis series of translated Combination scenario labels over catalog language coordinates; the active-language entry supplies the Combination label.
+        chart_tailored_test_names: Named-axis series of tailored-test display names over tailored-test category coordinates, supplying Natural disaster, Commodity price, and Market financing labels.
 
     Returns:
-        A typed series of scenario-label values for the PV of debt-to-GDP stress block, indexed by Chart Data scenario-label coordinates and containing str, int, float, bool, or None entries.
+        Named-axis data.Series[str | int | float | bool | None] of localized labels for the PV debt-to-GDP stress-figure block; blank separator and hardcoded C1 label are omitted.
     """
+    data.TRANSLATION_CHART_DATA_GROWTH.schema.validate(translation_chart_data_growth)
     data.TRANSLATION_CHART_DATA_EXPORTS.schema.validate(translation_chart_data_exports)
+    data.TRANSLATION_CHART_DATA_NON_DEBT_FLOWS.schema.validate(translation_chart_data_non_debt_flows)
+    data.TRANSLATION_CHART_DATA_ONE_TIME_DEPRECIATION.schema.validate(translation_chart_data_one_time_depreciation)
     data.TRANSLATION_CHART_DATA_PRIMARY_BALANCE.schema.validate(translation_chart_data_primary_balance)
+    data.TRANSLATION_CHART_DATA_COMBINATION.schema.validate(translation_chart_data_combination)
     data.CHART_TAILORED_TEST_NAMES.schema.validate(chart_tailored_test_names)
     def formula(scenario: str) -> str | int | float | bool | None:
-        if scenario == 'Primary Balance':
+        if scenario == 'Growth':
+            return as_measure((translation_chart_data_growth['English'] if xl_bool(xl_eq(start_debt_sustainability_analysis, 'English')) else (translation_chart_data_growth['French'] if xl_bool(xl_eq(start_debt_sustainability_analysis, 'French')) else (translation_chart_data_growth['Portuguese'] if xl_bool(xl_eq(start_debt_sustainability_analysis, 'Portuguese')) else translation_chart_data_growth['Spanish']))), 'str')
+        elif scenario == 'Primary Balance':
             return as_measure((translation_chart_data_primary_balance['English'] if xl_bool(xl_eq(start_debt_sustainability_analysis, 'English')) else (translation_chart_data_primary_balance['French'] if xl_bool(xl_eq(start_debt_sustainability_analysis, 'French')) else (translation_chart_data_primary_balance['Portuguese'] if xl_bool(xl_eq(start_debt_sustainability_analysis, 'Portuguese')) else translation_chart_data_primary_balance['Spanish']))), 'str')
         elif scenario == 'Exports':
             return as_measure((translation_chart_data_exports['English'] if xl_bool(xl_eq(start_debt_sustainability_analysis, 'English')) else (translation_chart_data_exports['French'] if xl_bool(xl_eq(start_debt_sustainability_analysis, 'French')) else (translation_chart_data_exports['Portuguese'] if xl_bool(xl_eq(start_debt_sustainability_analysis, 'Portuguese')) else translation_chart_data_exports['Spanish']))), 'str')
+        elif scenario == 'Non-debt flows':
+            return as_measure((translation_chart_data_non_debt_flows['English'] if xl_bool(xl_eq(start_debt_sustainability_analysis, 'English')) else (translation_chart_data_non_debt_flows['French'] if xl_bool(xl_eq(start_debt_sustainability_analysis, 'French')) else (translation_chart_data_non_debt_flows['Portuguese'] if xl_bool(xl_eq(start_debt_sustainability_analysis, 'Portuguese')) else translation_chart_data_non_debt_flows['Spanish']))), 'str')
+        elif scenario == 'One-time depreciation':
+            return as_measure((translation_chart_data_one_time_depreciation['English'] if xl_bool(xl_eq(start_debt_sustainability_analysis, 'English')) else (translation_chart_data_one_time_depreciation['French'] if xl_bool(xl_eq(start_debt_sustainability_analysis, 'French')) else (translation_chart_data_one_time_depreciation['Portuguese'] if xl_bool(xl_eq(start_debt_sustainability_analysis, 'Portuguese')) else translation_chart_data_one_time_depreciation['Spanish']))), 'str')
+        elif scenario == 'Combination':
+            return as_measure((translation_chart_data_combination['English'] if xl_bool(xl_eq(start_debt_sustainability_analysis, 'English')) else (translation_chart_data_combination['French'] if xl_bool(xl_eq(start_debt_sustainability_analysis, 'French')) else (translation_chart_data_combination['Portuguese'] if xl_bool(xl_eq(start_debt_sustainability_analysis, 'Portuguese')) else translation_chart_data_combination['Spanish']))), 'str')
         elif scenario == 'Natural disaster':
             return as_measure(chart_tailored_test_names['Natural disaster'], 'str')
         elif scenario == 'Commodity price':
@@ -7788,72 +7804,679 @@ def chart_chart_data_scenario_labels_pv_debt_to_gdp(*, translation_chart_data_ex
     return data.CHART_CHART_DATA_SCENARIO_LABELS_PV_DEBT_TO_GDP.collect(evaluate(formula, data.CHART_CHART_DATA_SCENARIO_LABELS_PV_DEBT_TO_GDP.required))
 
 @publish(data.CHART_CHART_DATA_SCENARIO_LABELS_PV_DEBT_TO_EXPORTS.schema, cells=data.CHART_CHART_DATA_SCENARIO_LABELS_PV_DEBT_TO_EXPORTS.cells)
-def chart_chart_data_scenario_labels_pv_debt_to_exports(*, chart_chart_data_scenario_labels_pv_debt_to_gdp: data.Series[str | int | float | bool | None]) -> data.Series[str | int | float | bool | None]:
-    """Return translated scenario labels for the PV of debt-to-exports ratio stress-figure block.
+def chart_chart_data_scenario_labels_pv_debt_to_exports(*, chart_combined_contingent_liabilities_label: str, chart_chart_data_scenario_labels_pv_debt_to_gdp: data.Series[str | int | float | bool | None]) -> data.Series[str | int | float | bool | None]:
+    """Builds translated PV debt-to-exports scenario labels from the PV debt-to-GDP scenario-label series.
 
-    Map PV of debt-to-GDP scenario labels onto the corresponding PV of debt-to-exports scenario-label coordinate identities.
+    Produces the Chart Data label series for the PV of debt-to-exports stress block, substituting the dedicated combined contingent liabilities label where applicable.
 
     Args:
-        chart_chart_data_scenario_labels_pv_debt_to_gdp: Keyword-only data.Series of translated scenario labels for the PV of debt-to-GDP stress-figure block, indexed by scenario coordinate and carrying str, int, float, bool, or None values.
+        chart_combined_contingent_liabilities_label: Scalar string label to use for the combined contingent liabilities scenario.
+        chart_chart_data_scenario_labels_pv_debt_to_gdp: Typed data series of translated PV debt-to-GDP scenario labels, keyed by scenario and providing the default label for all other scenarios.
 
     Returns:
-        data.Series[str | int | float | bool | None] of translated scenario labels for the PV of debt-to-exports ratio stress-figure block (Chart Data!B82:B92; blank separator omitted).
+        Typed data series of translated PV debt-to-exports scenario labels for the stress-figure block (Chart Data!B82:B92), excluding the blank separator.
     """
     def formula(scenario: str) -> str | int | float | bool | None:
+        if scenario == 'Combined contingent liabilities':
+            return as_measure(chart_combined_contingent_liabilities_label, 'str')
         return as_measure(chart_chart_data_scenario_labels_pv_debt_to_gdp[scenario], 'str')
 
     return data.CHART_CHART_DATA_SCENARIO_LABELS_PV_DEBT_TO_EXPORTS.collect(evaluate(formula, data.CHART_CHART_DATA_SCENARIO_LABELS_PV_DEBT_TO_EXPORTS.required))
 
 @publish(data.CHART_CHART_DATA_SCENARIO_LABELS_DEBT_SERVICE_TO_EXPORTS.schema, cells=data.CHART_CHART_DATA_SCENARIO_LABELS_DEBT_SERVICE_TO_EXPORTS.cells)
-def chart_chart_data_scenario_labels_debt_service_to_exports(*, chart_chart_data_scenario_labels_pv_debt_to_gdp: data.Series[str | int | float | bool | None]) -> data.Series[str | int | float | bool | None]:
-    """Compute scenario labels for the Debt service-to-exports stress-figure block.
+def chart_chart_data_scenario_labels_debt_service_to_exports(*, chart_combined_contingent_liabilities_label: str, chart_chart_data_scenario_labels_pv_debt_to_gdp: data.Series[str | int | float | bool | None]) -> data.Series[str | int | float | bool | None]:
+    """Builds the translated scenario-label series for the debt service-to-exports stress-figure block (Chart Data!B124:B134).
 
-    Translate scenario keys to labels for the Debt service-to-exports ratio stress chart.
+    Produces per-scenario labels for the debt service-to-exports block, reusing the PV debt-to-GDP labels and overriding the combined contingent-liabilities entry.
 
     Args:
-        chart_chart_data_scenario_labels_pv_debt_to_gdp: data.Series[str | int | float | bool | None]: A named-axis series of scenario labels for the PV of debt-to-GDP stress-figure block, indexed by scenario name.
+        chart_combined_contingent_liabilities_label: Scalar string label substituted for the combined contingent-liabilities scenario.
+        chart_chart_data_scenario_labels_pv_debt_to_gdp: Typed scenario-label series for the PV of debt-to-GDP stress-figure block, indexed by scenario name.
 
     Returns:
-        data.Series[str | int | float | bool | None]: A named-axis series of scenario labels for the Debt service-to-exports stress-figure block (Chart Data!B124:B134), indexed by scenario name.
+        Typed scenario-label series for the debt service-to-exports block over the required scenarios, copied from the PV debt-to-GDP labels with the combined contingent-liabilities entry replaced by the scalar label.
     """
     def formula(scenario: str) -> str | int | float | bool | None:
+        if scenario == 'Combined contingent liabilities':
+            return as_measure(chart_combined_contingent_liabilities_label, 'str')
         return as_measure(chart_chart_data_scenario_labels_pv_debt_to_gdp[scenario], 'str')
 
     return data.CHART_CHART_DATA_SCENARIO_LABELS_DEBT_SERVICE_TO_EXPORTS.collect(evaluate(formula, data.CHART_CHART_DATA_SCENARIO_LABELS_DEBT_SERVICE_TO_EXPORTS.required))
 
 @publish(data.CHART_CHART_DATA_SCENARIO_LABELS_DEBT_SERVICE_TO_REVENUE.schema, cells=data.CHART_CHART_DATA_SCENARIO_LABELS_DEBT_SERVICE_TO_REVENUE.cells)
-def chart_chart_data_scenario_labels_debt_service_to_revenue(*, chart_chart_data_scenario_labels_pv_debt_to_gdp: data.Series[str | int | float | bool | None]) -> data.Series[str | int | float | bool | None]:
-    """Return translated scenario labels for the debt service-to-revenue stress-figure block.
+def chart_chart_data_scenario_labels_debt_service_to_revenue(*, chart_combined_contingent_liabilities_label: str, chart_chart_data_scenario_labels_pv_debt_to_gdp: data.Series[str | int | float | bool | None]) -> data.Series[str | int | float | bool | None]:
+    """Return translated scenario labels for the Debt service-to-revenue ratio stress-figure block.
 
-    Maps the PV debt-to-GDP scenario-label series into the debt service-to-revenue scenario coordinate using authored identities.
+    Build the Debt service-to-revenue ratio scenario-label series from the PV debt-to-GDP labels while overriding the combined-contingent-liabilities entry.
 
     Args:
-        chart_chart_data_scenario_labels_pv_debt_to_gdp: A keyword-only `data.Series[str | int | float | bool | None]` of translated scenario labels for the PV of debt-to-GDP stress-figure block, indexed by scenario coordinate.
+        chart_combined_contingent_liabilities_label: Scalar string label for the combined contingent liabilities scenario, used as the translated value for that scenario in the returned label series.
+        chart_chart_data_scenario_labels_pv_debt_to_gdp: Typed named-axis data.Series of translated scenario labels for the PV of Debt-to-GDP stress-figure block, keyed by scenario coordinate and used for every scenario except the combined contingent liabilities override.
 
     Returns:
-        A `data.Series[str | int | float | bool | None]` of translated scenario labels for the Debt service-to-revenue ratio stress-figure block (Chart Data!B166:B176; blank separator omitted).
+        Typed named-axis data.Series of translated scenario labels for the Debt service-to-revenue ratio stress-figure block (Chart Data!B166:B176, blank separator omitted), aligned to the scenario coordinate.
     """
     def formula(scenario: str) -> str | int | float | bool | None:
+        if scenario == 'Combined contingent liabilities':
+            return as_measure(chart_combined_contingent_liabilities_label, 'str')
         return as_measure(chart_chart_data_scenario_labels_pv_debt_to_gdp[scenario], 'str')
 
     return data.CHART_CHART_DATA_SCENARIO_LABELS_DEBT_SERVICE_TO_REVENUE.collect(evaluate(formula, data.CHART_CHART_DATA_SCENARIO_LABELS_DEBT_SERVICE_TO_REVENUE.required))
 
 @publish(data.CHART_CHART_DATA_SCENARIO_LABELS_PV_OF_DEBT_TO_GDP_RATIO.schema, cells=data.CHART_CHART_DATA_SCENARIO_LABELS_PV_OF_DEBT_TO_GDP_RATIO.cells)
-def chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio(*, chart_chart_data_scenario_labels_pv_debt_to_gdp: data.Series[str | int | float | bool | None]) -> data.Series[str | int | float | bool | None]:
-    """Return translated scenario labels for the PV of Debt-to-GDP Ratio stress-figure block.
+def chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio(*, chart_combined_contingent_liabilities_label: str, chart_chart_data_scenario_labels_pv_debt_to_gdp: data.Series[str | int | float | bool | None]) -> data.Series[str | int | float | bool | None]:
+    """Compute the scenario-label series for the PV of Debt-to-GDP Ratio chart, overriding the combined contingent liabilities scenario with the supplied string label.
 
-    Aligns source scenario labels from Chart Data!B241:B251 into authored catalog coordinates, omitting the blank separator.
+    Assemble translated scenario labels for the PV of Debt-to-GDP Ratio stress-figure block on Chart Data.
 
     Args:
-        chart_chart_data_scenario_labels_pv_debt_to_gdp: Scenario-indexed series of source labels for the PV of Debt-to-GDP Ratio stress-figure block, with the blank separator omitted.
+        chart_combined_contingent_liabilities_label: Scalar string label used for the combined contingent liabilities scenario when substituting into the scenario-label output.
+        chart_chart_data_scenario_labels_pv_debt_to_gdp: Typed data series of source scenario labels for the PV of Debt-to-GDP stress-figure block, keyed by scenario coordinate and holding strings, numbers, booleans, or None.
 
     Returns:
-        Scenario-indexed series of translated labels for the PV of Debt-to-GDP Ratio stress-figure block.
+        Typed data series of translated scenario labels for the PV of Debt-to-GDP Ratio stress-figure block, where the combined contingent liabilities entry is replaced by the supplied label; values are strings, numbers, booleans, or None, and the blank separator is omitted.
     """
     def formula(scenario: str) -> str | int | float | bool | None:
+        if scenario == 'Combined contingent liabilities':
+            return as_measure(chart_combined_contingent_liabilities_label, 'str')
         return as_measure(chart_chart_data_scenario_labels_pv_debt_to_gdp[scenario], 'str')
 
     return data.CHART_CHART_DATA_SCENARIO_LABELS_PV_OF_DEBT_TO_GDP_RATIO.collect(evaluate(formula, data.CHART_CHART_DATA_SCENARIO_LABELS_PV_OF_DEBT_TO_GDP_RATIO.required))
+
+@dataclass(frozen=True, slots=True)
+class ScanChartChartDataPvDebtToGdpMostExtremeShockRankResult:
+    """Complete named results of one recurrence group evaluation."""
+    chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank: data.Series[int | str | None]
+    chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path: data.Series[float | str | None]
+    chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio: data.Series[float | str | None]
+    chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure: data.Series[float | str | None]
+    chart_output_pv_debt_gdp_ratio: data.ChartOutputPvDebtGdpRatio
+
+def scan_chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank(*, chart_tailored_test_marker: int | str, dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio: data.Series[float | str | None], dsa_pub_pv_of_debt_gdp: data.Series[float | str | None], dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_gdp: data.Series[float | str | None], dsa_pub_c2_natural_disaster_pv_of_debt_gdp: data.Series[float | str | None], chart_chart_data_pv_debt_to_gdp_c2_natural_disaster_stress_path_applic: int | str, chart_chart_data_pv_debt_to_gdp_c3_commodity_price_stress_path_applica: int | str, chart_chart_data_pv_debt_to_gdp_c4_market_financing_stress_path_applic: int | str, chart_pv_debt_to_gdp_applicable_flag_b2_1_primary_balance_market: int | str, chart_pv_debt_to_gdp_applicable_flag_combined_market_financing_stress: int | str, chart_projection_years: data.Series[int | str | None], c4_mkt_fin_revised_pv_debt_pct_gdp: data.Series[float | str | None], ci_summary_pv_gdp_applicable: float | str, in6opt_standard_scenario: int | str) -> ScanChartChartDataPvDebtToGdpMostExtremeShockRankResult:
+    """Evaluate the recurrence group `chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank`, `chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path`, `chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio`, `chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure`, `chart_output_pv_debt_gdp_ratio` and publish complete tensors."""
+    def chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank_formula(scenario: str) -> int | str | None:
+        return as_measure((xl_rank(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max excl. 1st yr and largest in one-off',)), 0)), 'int')
+
+    chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank = CoordinateReader('chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank', data.CHART_CHART_DATA_PV_DEBT_TO_GDP_MOST_EXTREME_SHOCK_RANK.required, chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank_formula)
+    def chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path_formula(scenario: str, time_period: int) -> float | str | None:
+        if scenario == 'Baseline':
+            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio[scenario, time_period])
+        elif scenario == 'A1. Key variables at their historical averages in 2024-2034 2/':
+            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio['A1', time_period])
+        elif scenario == 'B1. Real GDP growth':
+            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio['B1', time_period])
+        elif scenario == 'B2. Primary balance':
+            return as_measure((0 if xl_bool(xl_eq(in6opt_standard_scenario, 0)) else (chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path['B2.1 Primary balance Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_pv_debt_to_gdp_applicable_flag_b2_1_primary_balance_market)) else chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path['B2.2 Primary balance Non-Market', time_period])))
+        elif scenario == 'B3. Exports':
+            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio['B3', time_period])
+        elif scenario == 'B4. Other flows 3/':
+            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio['B4', time_period])
+        elif scenario == 'B5. Depreciation':
+            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio['B5', time_period])
+        elif scenario == 'B6. Combination of B1-B5':
+            return as_measure((chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path['B6.1 Combination of B1-B5 Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_pv_debt_to_gdp_applicable_flag_combined_market_financing_stress)) else chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path['B6.2 Combination of B1-B5 Non-Market', time_period]))
+        elif scenario == 'C1. Combined contingent liabilities':
+            return as_measure(dsa_pub_pv_of_debt_gdp['C1', time_period])
+        elif scenario == 'C2. Natural disaster':
+            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_chart_data_pv_debt_to_gdp_c2_natural_disaster_stress_path_applic)) else ' '), lambda: ' '))
+        elif scenario == 'C3. Commodity price':
+            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_chart_data_pv_debt_to_gdp_c3_commodity_price_stress_path_applica)) else ' '), lambda: ' '))
+        elif scenario == 'C4. Market Financing':
+            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_chart_data_pv_debt_to_gdp_c4_market_financing_stress_path_applic)) else ' '), lambda: ' '))
+        elif scenario == 'B2.1 Primary balance Market':
+            return as_measure(dsa_pub_pv_of_debt_gdp['B2_mkt', time_period])
+        elif scenario == 'B2.2 Primary balance Non-Market':
+            return as_measure(dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_gdp['B2_nonmkt', time_period])
+        elif scenario == 'B6.1 Combination of B1-B5 Market':
+            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio['B6_mkt', time_period])
+        return as_measure(dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio['B6_nonmkt', time_period])
+
+    chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path = CoordinateReader('chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path', data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO_STRESS_PATH.required, chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path_formula)
+    def chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_formula(scenario: str, variant: str) -> float | str | None:
+        if scenario == 'B1. Real GDP growth' and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure(((chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        elif scenario == 'B1. Real GDP growth' and variant == 'Max of non-one-off':
+            return as_measure(((chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
+        elif scenario == 'C4. Market Financing' and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure(((chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        elif scenario == 'C4. Market Financing' and variant == 'Max of non-one-off':
+            return as_measure(((chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
+        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant == 'If one-off breach and MX are the same stress test':
+            return as_measure(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
+        elif scenario == 'B2.2 Primary balance Non-Market' and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure((1 if xl_bool(xl_gt(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio['A2. Alternative Scenario :[Customize, enter title]', variant], chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio['A2. Alternative Scenario :[Customize, enter title]', 'Max of non-one-off'])) else 0))
+        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant in ('Max of one-off (exc. 1st yr)', 'Max of non-one-off'):
+            return as_measure(xl_max(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
+        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure(((chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of non-one-off':
+            return as_measure(((chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Number of breaches exc. 1st year - 2024':
+            return as_measure(xl_countif(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), xl_concat('>', chart_output_pv_debt_gdp_ratio['Threshold', 2025])))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == '1st year breach - 2024':
+            return as_measure(((1 if xl_bool(xl_gt(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path[scenario, 2024], chart_output_pv_debt_gdp_ratio['Threshold', 2024])) else 0) if xl_bool(xl_isnumber(lambda: chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path[scenario, 2024])) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, exc. 1st year - 2024':
+            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Number of breaches exc. 1st year - 2024'], 1)) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, inc. 1st year':
+            return as_measure(((0 if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, '1st year breach - 2024'], 1)) else 1) if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'One-off breach, exc. 1st year - 2024'], 1)) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Non-one-off breach, incl. 1st year':
+            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'One-off breach, inc. 1st year'], 0)) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max, exc. 1st year':
+            return as_measure(xl_max(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034))))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max excl. 1st yr and largest in one-off':
+            return as_measure(((xl_large(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), 2) if xl_bool(xl_gt(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max of one-off (exc. 1st yr)'], 0)) else chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max, exc. 1st year']) if xl_bool(xl_isnumber(lambda: chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path[scenario, 2025])) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Maximum value of one-off breaches: rank of one-off':
+            return as_measure((xl_rank(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        return as_measure((1 if xl_bool(xl_and(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Maximum value of one-off breaches: rank of one-off'], 1), xl_eq(chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank[scenario], 1))) else 0))
+
+    chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio = CoordinateReader('chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio', data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO.required, chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_formula)
+    def chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure_formula(scenario: str, time_period: int) -> float | str | None:
+        if scenario == 'Baseline breach' and time_period <= 2034:
+            return as_measure((1 if xl_bool(xl_gt(chart_output_pv_debt_gdp_ratio['Baseline', time_period], chart_output_pv_debt_gdp_ratio['Threshold', time_period])) else 0))
+        elif scenario == 'Shock breach' and time_period <= 2034:
+            return as_measure((1 if xl_bool(xl_gt(chart_output_pv_debt_gdp_ratio['MX shock Standard&Tailored', time_period], chart_output_pv_debt_gdp_ratio['Threshold', time_period])) else 0))
+        elif scenario == 'C2. Natural disaster':
+            return as_measure(dsa_pub_c2_natural_disaster_pv_of_debt_gdp['C2', time_period])
+        elif scenario == 'C3. Commodity price':
+            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio['C3', time_period])
+        return as_measure(c4_mkt_fin_revised_pv_debt_pct_gdp[time_period])
+
+    chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure = CoordinateReader('chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure', data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO_FIGURE.required, chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure_formula)
+    _chart_output_pv_debt_gdp_ratio_table_0 = lazy_table(((view(chart_projection_years, cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None),))
+    def chart_output_pv_debt_gdp_ratio_formula(scenario: str, time_period: int) -> float | str | None:
+        SCENARIO_TO_CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO_STRESS_PATH = {'Baseline': 'Baseline', 'Historical scenario': 'A1. Key variables at their historical averages in 2024-2034 2/'}
+        if scenario == 'MX shock Standard&Tailored':
+            return as_measure(xl_index(lazy_table(((view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank['B1. Real GDP growth']), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank['B2. Primary balance']), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank['B3. Exports']), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank['B4. Other flows 3/']), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank['B5. Depreciation']), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank['B6. Combination of B1-B5']), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank['C1. Combined contingent liabilities']), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank['C2. Natural disaster']), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank['C3. Commodity price']), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank['C4. Market Financing']))), xl_match(1, lazy_table(((view(chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank, rows=('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5')),), (lambda: None,), (view(chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank, rows=span(data.SCENARIO_AXIS, 'C1. Combined contingent liabilities', 'C4. Market Financing')),))), 0), xl_match(chart_projection_years[time_period], _chart_output_pv_debt_gdp_ratio_table_0, 0)))
+        elif scenario == 'MX value, 1 yr only shock Standard&Tailored - for chart':
+            return as_measure((xl_raise('#N/A') if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio['A2. Alternative Scenario :[Customize, enter title]', 'If one-off breach and MX are the same stress test'], 1)) else (xl_index(lazy_table(((view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))))), xl_match(1, lazy_table(((view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Maximum value of one-off breaches: rank of one-off',)),), (lambda: None,), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Maximum value of one-off breaches: rank of one-off',)),))), 0), xl_match(chart_projection_years[time_period], _chart_output_pv_debt_gdp_ratio_table_0, 0)) if xl_bool(xl_and(xl_gt(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio['A2. Alternative Scenario :[Customize, enter title]', 'Max of one-off (exc. 1st yr)'], 0), xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio['B2.2 Primary balance Non-Market', 'Max of one-off (exc. 1st yr)'], 1))) else xl_raise('#N/A'))))
+        elif scenario == 'Threshold':
+            return as_measure(ci_summary_pv_gdp_applicable)
+        return as_measure(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path[SCENARIO_TO_CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO_STRESS_PATH[scenario], time_period])
+
+    chart_output_pv_debt_gdp_ratio = CoordinateReader('chart_output_pv_debt_gdp_ratio', data.CHART_OUTPUT_PV_DEBT_GDP_RATIO.required, chart_output_pv_debt_gdp_ratio_formula)
+    return ScanChartChartDataPvDebtToGdpMostExtremeShockRankResult(
+        chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank=data.CHART_CHART_DATA_PV_DEBT_TO_GDP_MOST_EXTREME_SHOCK_RANK.collect((coord, chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank[coord]) for coord in data.CHART_CHART_DATA_PV_DEBT_TO_GDP_MOST_EXTREME_SHOCK_RANK.required),
+        chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path=data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO_STRESS_PATH.collect((coord, chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO_STRESS_PATH.required),
+        chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio=data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO.collect((coord, chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO.required),
+        chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure=data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO_FIGURE.collect((coord, chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO_FIGURE.required),
+        chart_output_pv_debt_gdp_ratio=data.CHART_OUTPUT_PV_DEBT_GDP_RATIO.collect((coord, chart_output_pv_debt_gdp_ratio[coord]) for coord in data.CHART_OUTPUT_PV_DEBT_GDP_RATIO.required),
+    )
+
+@dataclass(frozen=True, slots=True)
+class ScanChartChartDataPvDebtToExportsMostExtremeShockRankResult:
+    """Complete named results of one recurrence group evaluation."""
+    chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank: data.Series[int | str | None]
+    chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path: data.Series[float | str | None]
+    chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports: data.Series[float | str | None]
+    chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure: data.Series[float | str | None]
+    chart_output_pv_debt_to_exports: data.ChartOutputPvDebtToExports
+
+def scan_chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank(*, chart_tailored_test_marker: int | str, dsa_ext_pv_of_ppg_external_debt_to_exports_ratio: data.Series[float | str | None], dsa_pub_pv_of_debt_exports: data.Series[float | str | None], dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_exports: data.Series[float | str | None], dsa_pub_c2_natural_disaster_pv_of_debt_exports: data.Series[float | str | None], chart_chart_data_pv_debt_to_exports_c2_natural_disaster_stress_path_ap: int | str, chart_chart_data_pv_debt_to_exports_c3_commodity_price_stress_path_app: int | str, chart_chart_data_pv_debt_to_exports_c4_market_financing_stress_path_ap: int | str, chart_pv_debt_to_exports_applicable_flag_b2_1_primary_balance_market: int | str, chart_pv_debt_to_exports_applicable_flag_combined_market_financing_stress: int | str, chart_projection_years: data.Series[int | str | None], c4_mkt_fin_revised_pv_debt_to_exports: data.Series[float | str | None], ci_summary_pv_exports_applicable: float | str, in6opt_standard_scenario: int | str, c4_market_path_revised_pv_debt_exports: float | str) -> ScanChartChartDataPvDebtToExportsMostExtremeShockRankResult:
+    """Evaluate the recurrence group `chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank`, `chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path`, `chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports`, `chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure`, `chart_output_pv_debt_to_exports` and publish complete tensors."""
+    def chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank_formula(scenario: str) -> int | str | None:
+        return as_measure((xl_rank(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max excl. 1st yr and largest in one-off',)), 0)), 'int')
+
+    chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank = CoordinateReader('chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank', data.CHART_CHART_DATA_PV_DEBT_TO_EXPORTS_MOST_EXTREME_SHOCK_RANK.required, chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank_formula)
+    def chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path_formula(scenario: str, time_period: int) -> float | str | None:
+        if scenario == 'Baseline':
+            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio[scenario, time_period])
+        elif scenario == 'A1. Key variables at their historical averages in 2024-2034 2/':
+            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio['A1', time_period])
+        elif scenario == 'B1. Real GDP growth':
+            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio['B1', time_period])
+        elif scenario == 'B2. Primary balance':
+            return as_measure((0 if xl_bool(xl_eq(in6opt_standard_scenario, 0)) else (chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path['B2.1 Primary balance Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_pv_debt_to_exports_applicable_flag_b2_1_primary_balance_market)) else chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path['B2.2 Primary balance Non-Market', time_period])))
+        elif scenario == 'B3. Exports':
+            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio['B3', time_period])
+        elif scenario == 'B4. Other flows 3/':
+            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio['B4', time_period])
+        elif scenario == 'B5. Depreciation':
+            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio['B5', time_period])
+        elif scenario == 'B6. Combination of B1-B5':
+            return as_measure((chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path['B6.1 Combination of B1-B5 Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_pv_debt_to_exports_applicable_flag_combined_market_financing_stress)) else chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path['B6.2 Combination of B1-B5 Non-Market', time_period]))
+        elif scenario == 'C1. Combined contingent liabilities':
+            return as_measure(dsa_pub_pv_of_debt_exports['C1', time_period])
+        elif scenario == 'C2. Natural disaster':
+            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_chart_data_pv_debt_to_exports_c2_natural_disaster_stress_path_ap)) else ' '), lambda: ' '))
+        elif scenario == 'C3. Commodity price':
+            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_chart_data_pv_debt_to_exports_c3_commodity_price_stress_path_app)) else ' '), lambda: ' '))
+        elif scenario == 'C4. Market Financing':
+            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_chart_data_pv_debt_to_exports_c4_market_financing_stress_path_ap)) else ' '), lambda: ' '))
+        elif scenario == 'B2.1 Primary balance Market':
+            return as_measure(dsa_pub_pv_of_debt_exports['B2_mkt', time_period])
+        elif scenario == 'B2.2 Primary balance Non-Market':
+            return as_measure(dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_exports['B2_nonmkt', time_period])
+        elif scenario == 'B6.1 Combination of B1-B5 Market':
+            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio['B6_mkt', time_period])
+        return as_measure(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio['B6_nonmkt', time_period])
+
+    chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path = CoordinateReader('chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path', data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS_STRESS_PATH.required, chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path_formula)
+    def chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_formula(scenario: str, variant: str) -> float | str | None:
+        if scenario == 'B1. Real GDP growth' and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure(((chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        elif scenario == 'B1. Real GDP growth' and variant == 'Max of non-one-off':
+            return as_measure(((chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
+        elif scenario == 'C4. Market Financing' and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure(((chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        elif scenario == 'C4. Market Financing' and variant == 'Max of non-one-off':
+            return as_measure(((chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
+        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant == 'If one-off breach and MX are the same stress test':
+            return as_measure(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
+        elif scenario == 'B2.2 Primary balance Non-Market' and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure((1 if xl_bool(xl_gt(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports['A2. Alternative Scenario :[Customize, enter title]', variant], chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports['A2. Alternative Scenario :[Customize, enter title]', 'Max of non-one-off'])) else 0))
+        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant in ('Max of one-off (exc. 1st yr)', 'Max of non-one-off'):
+            return as_measure(xl_max(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
+        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure(((chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of non-one-off':
+            return as_measure(((chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Number of breaches exc. 1st year - 2024':
+            return as_measure(xl_countif(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), xl_concat('>', chart_output_pv_debt_to_exports['Threshold', 2025])))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == '1st year breach - 2024':
+            return as_measure(((1 if xl_bool(xl_gt(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path[scenario, 2024], chart_output_pv_debt_to_exports['Threshold', 2024])) else 0) if xl_bool(xl_isnumber(lambda: chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path[scenario, 2024])) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, exc. 1st year - 2024':
+            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Number of breaches exc. 1st year - 2024'], 1)) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, inc. 1st year':
+            return as_measure(((0 if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, '1st year breach - 2024'], 1)) else 1) if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'One-off breach, exc. 1st year - 2024'], 1)) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Non-one-off breach, incl. 1st year':
+            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'One-off breach, inc. 1st year'], 0)) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max, exc. 1st year':
+            return as_measure(xl_max(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034))))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max excl. 1st yr and largest in one-off':
+            return as_measure(((xl_large(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), 2) if xl_bool(xl_gt(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max of one-off (exc. 1st yr)'], 0)) else chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max, exc. 1st year']) if xl_bool(xl_isnumber(lambda: chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path[scenario, 2025])) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Maximum value of one-off breaches: rank of one-off':
+            return as_measure((xl_rank(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        return as_measure((1 if xl_bool(xl_and(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Maximum value of one-off breaches: rank of one-off'], 1), xl_eq(chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank[scenario], 1))) else 0))
+
+    chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports = CoordinateReader('chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports', data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS.required, chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_formula)
+    def chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure_formula(scenario: str, time_period: int) -> float | str | None:
+        if scenario == 'C4. Market Financing' and time_period == 2024:
+            return as_measure(c4_market_path_revised_pv_debt_exports)
+        elif scenario == 'Baseline breach' and time_period <= 2034:
+            return as_measure((1 if xl_bool(xl_gt(chart_output_pv_debt_to_exports['Baseline', time_period], chart_output_pv_debt_to_exports['Threshold', time_period])) else 0))
+        elif scenario == 'Shock breach' and time_period <= 2034:
+            return as_measure((1 if xl_bool(xl_gt(chart_output_pv_debt_to_exports['MX shock Standard&Tailored', time_period], chart_output_pv_debt_to_exports['Threshold', time_period])) else 0))
+        elif scenario == 'C4. Market Financing' and time_period >= 2025:
+            return as_measure(c4_mkt_fin_revised_pv_debt_to_exports[time_period])
+        elif scenario == 'C2. Natural disaster':
+            return as_measure(dsa_pub_c2_natural_disaster_pv_of_debt_exports['C2', time_period])
+        return as_measure(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio['C3', time_period])
+
+    chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure = CoordinateReader('chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure', data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS_FIGURE.required, chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure_formula)
+    _chart_output_pv_debt_to_exports_table_0 = lazy_table(((view(chart_projection_years, cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None),))
+    def chart_output_pv_debt_to_exports_formula(scenario: str, time_period: int) -> float | str | None:
+        SCENARIO_TO_CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS_STRESS_PATH = {'Baseline': 'Baseline', 'Historical scenario': 'A1. Key variables at their historical averages in 2024-2034 2/'}
+        if scenario == 'MX shock Standard&Tailored':
+            return as_measure(xl_index(lazy_table(((view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank['B1. Real GDP growth']), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank['B2. Primary balance']), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank['B3. Exports']), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank['B4. Other flows 3/']), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank['B5. Depreciation']), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank['B6. Combination of B1-B5']), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank['C1. Combined contingent liabilities']), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank['C2. Natural disaster']), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank['C3. Commodity price']), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank['C4. Market Financing']))), xl_match(1, lazy_table(((view(chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank, rows=('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5')),), (lambda: None,), (view(chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank, rows=span(data.SCENARIO_AXIS, 'C1. Combined contingent liabilities', 'C4. Market Financing')),))), 0), xl_match(chart_projection_years[time_period], _chart_output_pv_debt_to_exports_table_0, 0)))
+        elif scenario == 'MX value, 1 yr only shock Standard&Tailored - for chart':
+            return as_measure((xl_raise('#N/A') if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports['A2. Alternative Scenario :[Customize, enter title]', 'If one-off breach and MX are the same stress test'], 1)) else (xl_index(lazy_table(((view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))))), xl_match(1, lazy_table(((view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Maximum value of one-off breaches: rank of one-off',)),), (lambda: None,), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Maximum value of one-off breaches: rank of one-off',)),))), 0), xl_match(chart_projection_years[time_period], _chart_output_pv_debt_to_exports_table_0, 0)) if xl_bool(xl_and(xl_gt(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports['A2. Alternative Scenario :[Customize, enter title]', 'Max of one-off (exc. 1st yr)'], 0), xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports['B2.2 Primary balance Non-Market', 'Max of one-off (exc. 1st yr)'], 1))) else xl_raise('#N/A'))))
+        elif scenario == 'Threshold':
+            return as_measure(ci_summary_pv_exports_applicable)
+        return as_measure(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path[SCENARIO_TO_CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS_STRESS_PATH[scenario], time_period])
+
+    chart_output_pv_debt_to_exports = CoordinateReader('chart_output_pv_debt_to_exports', data.CHART_OUTPUT_PV_DEBT_TO_EXPORTS.required, chart_output_pv_debt_to_exports_formula)
+    return ScanChartChartDataPvDebtToExportsMostExtremeShockRankResult(
+        chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank=data.CHART_CHART_DATA_PV_DEBT_TO_EXPORTS_MOST_EXTREME_SHOCK_RANK.collect((coord, chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank[coord]) for coord in data.CHART_CHART_DATA_PV_DEBT_TO_EXPORTS_MOST_EXTREME_SHOCK_RANK.required),
+        chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path=data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS_STRESS_PATH.collect((coord, chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS_STRESS_PATH.required),
+        chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports=data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS.collect((coord, chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS.required),
+        chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure=data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS_FIGURE.collect((coord, chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS_FIGURE.required),
+        chart_output_pv_debt_to_exports=data.CHART_OUTPUT_PV_DEBT_TO_EXPORTS.collect((coord, chart_output_pv_debt_to_exports[coord]) for coord in data.CHART_OUTPUT_PV_DEBT_TO_EXPORTS.required),
+    )
+
+@dataclass(frozen=True, slots=True)
+class ScanChartChartDataDebtServiceToExportsMostExtremeShockRankResult:
+    """Complete named results of one recurrence group evaluation."""
+    chart_chart_data_debt_service_to_exports_most_extreme_shock_rank: data.Series[int | str | None]
+    chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path: data.Series[float | str | None]
+    chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports: data.Series[float | str | None]
+    chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure: data.Series[float | str | None]
+    chart_output_debt_service_to_exports: data.ChartOutputDebtServiceToExports
+
+def scan_chart_chart_data_debt_service_to_exports_most_extreme_shock_rank(*, chart_tailored_test_marker: int | str, dsa_ext_ppg_debt_service_to_exports_ratio: data.Series[float | str | None], dsa_pub_debt_service_exports: data.Series[float | str | None], dsa_pub_b2_pb_non_mkt_pub_debt_service_exports: data.Series[float | str | None], dsa_pub_c2_natural_disaster_debt_service_exports: data.Series[float | str | None], chart_debt_service_to_exports_applicable_flag_c2_natdisaster: int | str, chart_debt_service_to_exports_applicable_flag_c3_commodity_price: int | str, chart_debt_service_to_exports_applicable_flag_c4_mkt_financing: int | str, chart_debt_service_to_exports_applicable_flag_b2_1_primary_balance_market: int | str, chart_debt_service_to_exports_applicable_flag_combined_market_financing_stress: int | str, chart_projection_years: data.Series[int | str | None], c4_mkt_fin_dsr_exports_stress: data.Series[float | str | None], ci_summary_ds_exports_applicable: float | str, in6opt_standard_scenario: int | str) -> ScanChartChartDataDebtServiceToExportsMostExtremeShockRankResult:
+    """Evaluate the recurrence group `chart_chart_data_debt_service_to_exports_most_extreme_shock_rank`, `chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path`, `chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports`, `chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure`, `chart_output_debt_service_to_exports` and publish complete tensors."""
+    def chart_chart_data_debt_service_to_exports_most_extreme_shock_rank_formula(scenario: str) -> int | str | None:
+        return as_measure((xl_rank(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max excl. 1st yr and largest in one-off',)), 0)), 'int')
+
+    chart_chart_data_debt_service_to_exports_most_extreme_shock_rank = CoordinateReader('chart_chart_data_debt_service_to_exports_most_extreme_shock_rank', data.CHART_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_MOST_EXTREME_SHOCK_RANK.required, chart_chart_data_debt_service_to_exports_most_extreme_shock_rank_formula)
+    def chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path_formula(scenario: str, time_period: int) -> float | str | None:
+        if scenario == 'Baseline':
+            return as_measure(dsa_ext_ppg_debt_service_to_exports_ratio[scenario, time_period])
+        elif scenario == 'A1. Key variables at their historical averages in 2024-2034 2/':
+            return as_measure(dsa_ext_ppg_debt_service_to_exports_ratio['A1', time_period])
+        elif scenario == 'B1. Real GDP growth':
+            return as_measure(dsa_ext_ppg_debt_service_to_exports_ratio['B1', time_period])
+        elif scenario == 'B2. Primary balance':
+            return as_measure((0 if xl_bool(xl_eq(in6opt_standard_scenario, 0)) else (chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path['B2.1 Primary balance Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_exports_applicable_flag_b2_1_primary_balance_market)) else chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path['B2.2 Primary balance Non-Market', time_period])))
+        elif scenario == 'B3. Exports':
+            return as_measure(dsa_ext_ppg_debt_service_to_exports_ratio['B3', time_period])
+        elif scenario == 'B4. Other flows 3/':
+            return as_measure(dsa_ext_ppg_debt_service_to_exports_ratio['B4', time_period])
+        elif scenario == 'B5. Depreciation':
+            return as_measure(dsa_ext_ppg_debt_service_to_exports_ratio['B5', time_period])
+        elif scenario == 'B6. Combination of B1-B5':
+            return as_measure((chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path['B6.1 Combination of B1-B5 Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_exports_applicable_flag_combined_market_financing_stress)) else chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path['B6.2 Combination of B1-B5 Non-Market', time_period]))
+        elif scenario == 'C1. Combined contingent liabilities':
+            return as_measure(dsa_pub_debt_service_exports['C1', time_period])
+        elif scenario == 'C2. Natural disaster':
+            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_exports_applicable_flag_c2_natdisaster)) else ' '), lambda: ' '))
+        elif scenario == 'C3. Commodity price':
+            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_exports_applicable_flag_c3_commodity_price)) else ' '), lambda: ' '))
+        elif scenario == 'C4. Market Financing':
+            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_exports_applicable_flag_c4_mkt_financing)) else ' '), lambda: ' '))
+        elif scenario == 'B2.1 Primary balance Market':
+            return as_measure(dsa_pub_debt_service_exports['B2_mkt', time_period])
+        elif scenario == 'B2.2 Primary balance Non-Market':
+            return as_measure(dsa_pub_b2_pb_non_mkt_pub_debt_service_exports['B2_nonmkt', time_period])
+        elif scenario == 'B6.1 Combination of B1-B5 Market':
+            return as_measure(dsa_ext_ppg_debt_service_to_exports_ratio['B6_mkt', time_period])
+        return as_measure(dsa_ext_ppg_debt_service_to_exports_ratio['B6_nonmkt', time_period])
+
+    chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path = CoordinateReader('chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path', data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS_STRESS_PATH.required, chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path_formula)
+    def chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_formula(scenario: str, variant: str) -> float | str | None:
+        if scenario == 'B1. Real GDP growth' and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure(((chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        elif scenario == 'B1. Real GDP growth' and variant == 'Max of non-one-off':
+            return as_measure(((chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
+        elif scenario == 'C4. Market Financing' and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure(((chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        elif scenario == 'C4. Market Financing' and variant == 'Max of non-one-off':
+            return as_measure(((chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
+        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant == 'If one-off breach and MX are the same stress test':
+            return as_measure(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
+        elif scenario == 'B2.2 Primary balance Non-Market' and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure((1 if xl_bool(xl_gt(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports['A2. Alternative Scenario :[Customize, enter title]', variant], chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports['A2. Alternative Scenario :[Customize, enter title]', 'Max of non-one-off'])) else 0))
+        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant in ('Max of one-off (exc. 1st yr)', 'Max of non-one-off'):
+            return as_measure(xl_max(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
+        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure(((chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of non-one-off':
+            return as_measure(((chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Number of breaches exc. 1st year - 2024':
+            return as_measure(xl_countif(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), xl_concat('>', chart_output_debt_service_to_exports['Threshold', 2025])))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == '1st year breach - 2024':
+            return as_measure(((1 if xl_bool(xl_gt(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path[scenario, 2024], chart_output_debt_service_to_exports['Threshold', 2024])) else 0) if xl_bool(xl_isnumber(lambda: chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path[scenario, 2024])) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, exc. 1st year - 2024':
+            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Number of breaches exc. 1st year - 2024'], 1)) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, inc. 1st year':
+            return as_measure(((0 if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, '1st year breach - 2024'], 1)) else 1) if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'One-off breach, exc. 1st year - 2024'], 1)) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Non-one-off breach, incl. 1st year':
+            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'One-off breach, inc. 1st year'], 0)) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max, exc. 1st year':
+            return as_measure(xl_max(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034))))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max excl. 1st yr and largest in one-off':
+            return as_measure(((xl_large(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), 2) if xl_bool(xl_gt(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max of one-off (exc. 1st yr)'], 0)) else chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max, exc. 1st year']) if xl_bool(xl_isnumber(lambda: chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path[scenario, 2025])) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Maximum value of one-off breaches: rank of one-off':
+            return as_measure((xl_rank(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        return as_measure((1 if xl_bool(xl_and(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Maximum value of one-off breaches: rank of one-off'], 1), xl_eq(chart_chart_data_debt_service_to_exports_most_extreme_shock_rank[scenario], 1))) else 0))
+
+    chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports = CoordinateReader('chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports', data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS.required, chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_formula)
+    def chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure_formula(scenario: str, time_period: int) -> float | str | None:
+        if scenario == 'Baseline breach' and time_period <= 2034:
+            return as_measure((1 if xl_bool(xl_gt(chart_output_debt_service_to_exports['Baseline', time_period], chart_output_debt_service_to_exports['Threshold', time_period])) else 0))
+        elif scenario == 'Shock breach' and time_period <= 2034:
+            return as_measure((1 if xl_bool(xl_gt(chart_output_debt_service_to_exports['MX shock Standard&Tailored', time_period], chart_output_debt_service_to_exports['Threshold', time_period])) else 0))
+        elif scenario == 'C2. Natural disaster':
+            return as_measure(dsa_pub_c2_natural_disaster_debt_service_exports['C2', time_period])
+        elif scenario == 'C3. Commodity price':
+            return as_measure(dsa_ext_ppg_debt_service_to_exports_ratio['C3', time_period])
+        return as_measure(c4_mkt_fin_dsr_exports_stress[time_period])
+
+    chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure = CoordinateReader('chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure', data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS_FIGURE.required, chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure_formula)
+    _chart_output_debt_service_to_exports_table_0 = lazy_table(((view(chart_projection_years, cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None),))
+    def chart_output_debt_service_to_exports_formula(scenario: str, time_period: int) -> float | str | None:
+        SCENARIO_TO_CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS_STRESS_PATH = {'Baseline': 'Baseline', 'Historical scenario': 'A1. Key variables at their historical averages in 2024-2034 2/'}
+        if scenario == 'MX shock Standard&Tailored':
+            return as_measure(xl_index(lazy_table(((view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_exports_most_extreme_shock_rank['B1. Real GDP growth']), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_exports_most_extreme_shock_rank['B2. Primary balance']), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_exports_most_extreme_shock_rank['B3. Exports']), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_exports_most_extreme_shock_rank['B4. Other flows 3/']), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_exports_most_extreme_shock_rank['B5. Depreciation']), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_exports_most_extreme_shock_rank['B6. Combination of B1-B5']), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_exports_most_extreme_shock_rank['C1. Combined contingent liabilities']), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_exports_most_extreme_shock_rank['C2. Natural disaster']), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_exports_most_extreme_shock_rank['C3. Commodity price']), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_exports_most_extreme_shock_rank['C4. Market Financing']))), xl_match(1, lazy_table(((view(chart_chart_data_debt_service_to_exports_most_extreme_shock_rank, rows=('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5')),), (lambda: None,), (view(chart_chart_data_debt_service_to_exports_most_extreme_shock_rank, rows=span(data.SCENARIO_AXIS, 'C1. Combined contingent liabilities', 'C4. Market Financing')),))), 0), xl_match(chart_projection_years[time_period], _chart_output_debt_service_to_exports_table_0, 0)))
+        elif scenario == 'MX value, 1 yr only shock Standard&Tailored - for chart':
+            return as_measure((xl_raise('#N/A') if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports['A2. Alternative Scenario :[Customize, enter title]', 'If one-off breach and MX are the same stress test'], 1)) else (xl_index(lazy_table(((view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))))), xl_match(1, lazy_table(((view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Maximum value of one-off breaches: rank of one-off',)),), (lambda: None,), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Maximum value of one-off breaches: rank of one-off',)),))), 0), xl_match(chart_projection_years[time_period], _chart_output_debt_service_to_exports_table_0, 0)) if xl_bool(xl_and(xl_gt(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports['A2. Alternative Scenario :[Customize, enter title]', 'Max of one-off (exc. 1st yr)'], 0), xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports['B2.2 Primary balance Non-Market', 'Max of one-off (exc. 1st yr)'], 1))) else xl_raise('#N/A'))))
+        elif scenario == 'Threshold':
+            return as_measure(ci_summary_ds_exports_applicable)
+        return as_measure(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path[SCENARIO_TO_CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS_STRESS_PATH[scenario], time_period])
+
+    chart_output_debt_service_to_exports = CoordinateReader('chart_output_debt_service_to_exports', data.CHART_OUTPUT_DEBT_SERVICE_TO_EXPORTS.required, chart_output_debt_service_to_exports_formula)
+    return ScanChartChartDataDebtServiceToExportsMostExtremeShockRankResult(
+        chart_chart_data_debt_service_to_exports_most_extreme_shock_rank=data.CHART_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_MOST_EXTREME_SHOCK_RANK.collect((coord, chart_chart_data_debt_service_to_exports_most_extreme_shock_rank[coord]) for coord in data.CHART_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_MOST_EXTREME_SHOCK_RANK.required),
+        chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path=data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS_STRESS_PATH.collect((coord, chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS_STRESS_PATH.required),
+        chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports=data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS.collect((coord, chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS.required),
+        chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure=data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS_FIGURE.collect((coord, chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS_FIGURE.required),
+        chart_output_debt_service_to_exports=data.CHART_OUTPUT_DEBT_SERVICE_TO_EXPORTS.collect((coord, chart_output_debt_service_to_exports[coord]) for coord in data.CHART_OUTPUT_DEBT_SERVICE_TO_EXPORTS.required),
+    )
+
+@dataclass(frozen=True, slots=True)
+class ScanChartChartDataDebtServiceToRevenueMostExtremeShockRankResult:
+    """Complete named results of one recurrence group evaluation."""
+    chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank: data.Series[int | str | None]
+    chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path: data.Series[float | str | None]
+    chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue: data.Series[float | str | None]
+    chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure: data.Series[float | str | None]
+    chart_output_debt_service_to_revenue: data.ChartOutputDebtServiceToRevenue
+
+def scan_chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank(*, chart_tailored_test_marker: int | str, dsa_ext_ppg_debt_service_to_revenue_ratio: data.Series[float | str | None], dsa_pub_debt_service_revenue_excl_grants: data.Series[float | str | None], dsa_pub_b2_pb_non_mkt_pub_debt_service_revenue_excl_grants: data.Series[float | str | None], dsa_pub_c2_natural_disaster_debt_service_revenue_excl_grants: data.Series[float | str | None], chart_debt_service_to_revenue_applicable_flag_c2_natdisaster: int | str, chart_debt_service_to_revenue_applicable_flag_c3_commodity_price: int | str, chart_debt_service_to_revenue_applicable_flag_c4_mkt_financing: int | str, chart_debt_service_to_revenue_applicable_flag_b2_1_primary_balance_market: int | str, chart_debt_service_to_revenue_applicable_flag_combined_market_financing_stress: int | str, chart_projection_years: data.Series[int | str | None], c4_mkt_fin_dsr_revenue_stress: data.Series[float | str | None], ci_summary_ds_revenue_applicable: float | str, in6opt_standard_scenario: int | str) -> ScanChartChartDataDebtServiceToRevenueMostExtremeShockRankResult:
+    """Evaluate the recurrence group `chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank`, `chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path`, `chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue`, `chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure`, `chart_output_debt_service_to_revenue` and publish complete tensors."""
+    def chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank_formula(scenario: str) -> int | str | None:
+        return as_measure((xl_rank(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max excl. 1st yr and largest in one-off',)), 0)), 'int')
+
+    chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank = CoordinateReader('chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank', data.CHART_CHART_DATA_DEBT_SERVICE_TO_REVENUE_MOST_EXTREME_SHOCK_RANK.required, chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank_formula)
+    def chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path_formula(scenario: str, time_period: int) -> float | str | None:
+        if scenario == 'Baseline':
+            return as_measure(dsa_ext_ppg_debt_service_to_revenue_ratio[scenario, time_period])
+        elif scenario == 'A1. Key variables at their historical averages in 2024-2034 2/':
+            return as_measure(dsa_ext_ppg_debt_service_to_revenue_ratio['A1', time_period])
+        elif scenario == 'B1. Real GDP growth':
+            return as_measure(dsa_ext_ppg_debt_service_to_revenue_ratio['B1', time_period])
+        elif scenario == 'B2. Primary balance':
+            return as_measure((0 if xl_bool(xl_eq(in6opt_standard_scenario, 0)) else (chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path['B2.1 Primary balance Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_revenue_applicable_flag_b2_1_primary_balance_market)) else chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path['B2.2 Primary balance Non-Market', time_period])))
+        elif scenario == 'B3. Exports':
+            return as_measure(dsa_ext_ppg_debt_service_to_revenue_ratio['B3', time_period])
+        elif scenario == 'B4. Other flows 3/':
+            return as_measure(dsa_ext_ppg_debt_service_to_revenue_ratio['B4', time_period])
+        elif scenario == 'B5. Depreciation':
+            return as_measure(dsa_ext_ppg_debt_service_to_revenue_ratio['B5', time_period])
+        elif scenario == 'B6. Combination of B1-B5':
+            return as_measure((chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path['B6.1 Combination of B1-B5 Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_revenue_applicable_flag_combined_market_financing_stress)) else chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path['B6.2 Combination of B1-B5 Non-Market', time_period]))
+        elif scenario == 'C1. Combined contingent liabilities':
+            return as_measure(dsa_pub_debt_service_revenue_excl_grants['C1', time_period])
+        elif scenario == 'C2. Natural disaster':
+            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_revenue_applicable_flag_c2_natdisaster)) else ' '), lambda: ' '))
+        elif scenario == 'C3. Commodity price':
+            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_revenue_applicable_flag_c3_commodity_price)) else ' '), lambda: ' '))
+        elif scenario == 'C4. Market Financing':
+            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_revenue_applicable_flag_c4_mkt_financing)) else ' '), lambda: ' '))
+        elif scenario == 'B2.1 Primary balance Market':
+            return as_measure(dsa_pub_debt_service_revenue_excl_grants['B2_mkt', time_period])
+        elif scenario == 'B2.2 Primary balance Non-Market':
+            return as_measure(dsa_pub_b2_pb_non_mkt_pub_debt_service_revenue_excl_grants['B2_nonmkt', time_period])
+        elif scenario == 'B6.1 Combination of B1-B5 Market':
+            return as_measure(dsa_ext_ppg_debt_service_to_revenue_ratio['B6_mkt', time_period])
+        return as_measure(dsa_ext_ppg_debt_service_to_revenue_ratio['B6_nonmkt', time_period])
+
+    chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path = CoordinateReader('chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path', data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE_STRESS_PATH.required, chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path_formula)
+    def chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_formula(scenario: str, variant: str) -> float | str | None:
+        if scenario == 'B1. Real GDP growth' and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure(((chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        elif scenario == 'B1. Real GDP growth' and variant == 'Max of non-one-off':
+            return as_measure(((chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
+        elif scenario == 'C4. Market Financing' and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure(((chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        elif scenario == 'C4. Market Financing' and variant == 'Max of non-one-off':
+            return as_measure(((chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
+        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant == 'If one-off breach and MX are the same stress test':
+            return as_measure(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
+        elif scenario == 'B2.2 Primary balance Non-Market' and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure((1 if xl_bool(xl_gt(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue['A2. Alternative Scenario :[Customize, enter title]', variant], chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue['A2. Alternative Scenario :[Customize, enter title]', 'Max of non-one-off'])) else 0))
+        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant in ('Max of one-off (exc. 1st yr)', 'Max of non-one-off'):
+            return as_measure(xl_max(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
+        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure(((chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of non-one-off':
+            return as_measure(((chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Number of breaches exc. 1st year - 2024':
+            return as_measure(xl_countif(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), xl_concat('>', chart_output_debt_service_to_revenue['Threshold', 2025])))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == '1st year breach - 2024':
+            return as_measure(((1 if xl_bool(xl_gt(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path[scenario, 2024], chart_output_debt_service_to_revenue['Threshold', 2024])) else 0) if xl_bool(xl_isnumber(lambda: chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path[scenario, 2024])) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, exc. 1st year - 2024':
+            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Number of breaches exc. 1st year - 2024'], 1)) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, inc. 1st year':
+            return as_measure(((0 if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, '1st year breach - 2024'], 1)) else 1) if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'One-off breach, exc. 1st year - 2024'], 1)) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Non-one-off breach, incl. 1st year':
+            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'One-off breach, inc. 1st year'], 0)) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max, exc. 1st year':
+            return as_measure(xl_max(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034))))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max excl. 1st yr and largest in one-off':
+            return as_measure(((xl_large(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), 2) if xl_bool(xl_gt(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max of one-off (exc. 1st yr)'], 0)) else chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max, exc. 1st year']) if xl_bool(xl_isnumber(lambda: chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path[scenario, 2025])) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Maximum value of one-off breaches: rank of one-off':
+            return as_measure((xl_rank(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        return as_measure((1 if xl_bool(xl_and(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Maximum value of one-off breaches: rank of one-off'], 1), xl_eq(chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank[scenario], 1))) else 0))
+
+    chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue = CoordinateReader('chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue', data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE.required, chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_formula)
+    def chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure_formula(scenario: str, time_period: int) -> float | str | None:
+        if scenario == 'Baseline breach' and time_period <= 2034:
+            return as_measure((1 if xl_bool(xl_gt(chart_output_debt_service_to_revenue['Baseline', time_period], chart_output_debt_service_to_revenue['Threshold', time_period])) else 0))
+        elif scenario == 'Shock breach' and time_period <= 2034:
+            return as_measure((1 if xl_bool(xl_gt(chart_output_debt_service_to_revenue['MX shock Standard&Tailored', time_period], chart_output_debt_service_to_revenue['Threshold', time_period])) else 0))
+        elif scenario == 'C2. Natural disaster':
+            return as_measure(dsa_pub_c2_natural_disaster_debt_service_revenue_excl_grants['C2', time_period])
+        elif scenario == 'C3. Commodity price':
+            return as_measure(dsa_ext_ppg_debt_service_to_revenue_ratio['C3', time_period])
+        return as_measure(c4_mkt_fin_dsr_revenue_stress[time_period])
+
+    chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure = CoordinateReader('chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure', data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE_FIGURE.required, chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure_formula)
+    _chart_output_debt_service_to_revenue_table_0 = lazy_table(((view(chart_projection_years, cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None),))
+    def chart_output_debt_service_to_revenue_formula(scenario: str, time_period: int) -> float | str | None:
+        SCENARIO_TO_CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE_STRESS_PATH = {'Baseline': 'Baseline', 'Historical scenario': 'A1. Key variables at their historical averages in 2024-2034 2/'}
+        if scenario == 'MX shock Standard&Tailored':
+            return as_measure(xl_index(lazy_table(((view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank['B1. Real GDP growth']), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank['B2. Primary balance']), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank['B3. Exports']), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank['B4. Other flows 3/']), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank['B5. Depreciation']), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank['B6. Combination of B1-B5']), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank['C1. Combined contingent liabilities']), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank['C2. Natural disaster']), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank['C3. Commodity price']), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank['C4. Market Financing']))), xl_match(1, lazy_table(((view(chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank, rows=('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5')),), (lambda: None,), (view(chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank, rows=span(data.SCENARIO_AXIS, 'C1. Combined contingent liabilities', 'C4. Market Financing')),))), 0), xl_match(chart_projection_years[time_period], _chart_output_debt_service_to_revenue_table_0, 0)))
+        elif scenario == 'MX value, 1 yr only shock Standard&Tailored - for chart':
+            return as_measure((xl_raise('#N/A') if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue['A2. Alternative Scenario :[Customize, enter title]', 'If one-off breach and MX are the same stress test'], 1)) else (xl_index(lazy_table(((view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))))), xl_match(1, lazy_table(((view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Maximum value of one-off breaches: rank of one-off',)),), (lambda: None,), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Maximum value of one-off breaches: rank of one-off',)),))), 0), xl_match(chart_projection_years[time_period], _chart_output_debt_service_to_revenue_table_0, 0)) if xl_bool(xl_and(xl_gt(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue['A2. Alternative Scenario :[Customize, enter title]', 'Max of one-off (exc. 1st yr)'], 0), xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue['B2.2 Primary balance Non-Market', 'Max of one-off (exc. 1st yr)'], 1))) else xl_raise('#N/A'))))
+        elif scenario == 'Threshold':
+            return as_measure(ci_summary_ds_revenue_applicable)
+        return as_measure(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path[SCENARIO_TO_CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE_STRESS_PATH[scenario], time_period])
+
+    chart_output_debt_service_to_revenue = CoordinateReader('chart_output_debt_service_to_revenue', data.CHART_OUTPUT_DEBT_SERVICE_TO_REVENUE.required, chart_output_debt_service_to_revenue_formula)
+    return ScanChartChartDataDebtServiceToRevenueMostExtremeShockRankResult(
+        chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank=data.CHART_CHART_DATA_DEBT_SERVICE_TO_REVENUE_MOST_EXTREME_SHOCK_RANK.collect((coord, chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank[coord]) for coord in data.CHART_CHART_DATA_DEBT_SERVICE_TO_REVENUE_MOST_EXTREME_SHOCK_RANK.required),
+        chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path=data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE_STRESS_PATH.collect((coord, chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE_STRESS_PATH.required),
+        chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue=data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE.collect((coord, chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE.required),
+        chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure=data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE_FIGURE.collect((coord, chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE_FIGURE.required),
+        chart_output_debt_service_to_revenue=data.CHART_OUTPUT_DEBT_SERVICE_TO_REVENUE.collect((coord, chart_output_debt_service_to_revenue[coord]) for coord in data.CHART_OUTPUT_DEBT_SERVICE_TO_REVENUE.required),
+    )
+
+@dataclass(frozen=True, slots=True)
+class ScanChartChartDataPvOfDebtToGdpRatioMostExtremeShockRankResult:
+    """Complete named results of one recurrence group evaluation."""
+    chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank: data.Series[int | str | None]
+    chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp: data.Series[float | str | None]
+    chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure: data.Series[float | str | None]
+    chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp: data.ChartOutputChartDataPvOfDebtToGdpRatioPvDebtToGdp
+    chart_output_pv_debt_to_gdp: data.ChartOutputPvDebtToGdp
+
+def scan_chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank(*, chart_tailored_test_marker: int | str, dsa_pub_pv_of_total_public_debt: data.Series[float | str | None], customized_public_include_scenario: str, chart_chart_data_pv_of_debt_to_gdp_ratio_c2_natural_disaster_stress_pa: int | str, chart_chart_data_pv_of_debt_to_gdp_ratio_c3_commodity_price_stress_pat: int | str, chart_chart_data_pv_of_debt_to_gdp_ratio_c4_market_financing_stress_pa: int | str, chart_pv_of_debt_to_gdp_ratio_applicable_flag_b2_1_primary_balance_market: int | str, chart_pv_of_debt_to_gdp_ratio_applicable_flag_combined_market_financing_stress: int | str, chart_projection_years: data.Series[int | str | None], chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path: data.Series[float | str | None], ci_summary_public_pv_medium_cutoff: float | str, baseline_pub_pv_of_public_debt_gdp_ratio: data.Series[float | str | None], baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports: data.Series[float | str | None], baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows: data.Series[float | str | None], baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin: data.Series[float | str | None], custom_pub_pv_of_public_debt_gdp_ratio: data.Series[float | str | None], in6opt_standard_scenario: int | str) -> ScanChartChartDataPvOfDebtToGdpRatioMostExtremeShockRankResult:
+    """Evaluate the recurrence group `chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank`, `chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp`, `chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure`, `chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp`, `chart_output_pv_debt_to_gdp` and publish complete tensors."""
+    def chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank_formula(scenario: str) -> int | str | None:
+        return as_measure((xl_rank(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max excl. 1st yr and largest in one-off',)), 0)), 'int')
+
+    chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank = CoordinateReader('chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank', data.CHART_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_MOST_EXTREME_SHOCK_RANK.required, chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank_formula)
+    def chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_formula(scenario: str, variant: str) -> float | str | None:
+        if scenario == 'B1. Real GDP growth' and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure(((chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        elif scenario == 'B1. Real GDP growth' and variant == 'Max of non-one-off':
+            return as_measure(((chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
+        elif scenario == 'C4. Market Financing' and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure(((chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        elif scenario == 'C4. Market Financing' and variant == 'Max of non-one-off':
+            return as_measure(((chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
+        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant == 'If one-off breach and MX are the same stress test':
+            return as_measure(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
+        elif scenario == 'B2.2 Primary balance Non-Market' and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure((1 if xl_bool(xl_gt(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp['A2. Alternative Scenario :[Customize, enter title]', variant], chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp['A2. Alternative Scenario :[Customize, enter title]', 'Max of non-one-off'])) else 0))
+        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant in ('Max of one-off (exc. 1st yr)', 'Max of non-one-off'):
+            return as_measure(xl_max(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
+        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of one-off (exc. 1st yr)':
+            return as_measure(((chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of non-one-off':
+            return as_measure(((chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Number of breaches exc. 1st year - 2024':
+            return as_measure(xl_countif(view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), xl_concat('>', chart_output_pv_debt_to_gdp['Public debt benchmark', 2025])))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == '1st year breach - 2024':
+            return as_measure(((1 if xl_bool(xl_gt(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 2024], chart_output_pv_debt_to_gdp['Public debt benchmark', 2024])) else 0) if xl_bool(xl_isnumber(lambda: chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 2024])) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, exc. 1st year - 2024':
+            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Number of breaches exc. 1st year - 2024'], 1)) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, inc. 1st year':
+            return as_measure(((0 if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, '1st year breach - 2024'], 1)) else 1) if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'One-off breach, exc. 1st year - 2024'], 1)) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Non-one-off breach, incl. 1st year':
+            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'One-off breach, inc. 1st year'], 0)) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max, exc. 1st year':
+            return as_measure(xl_max(view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034))))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max excl. 1st yr and largest in one-off':
+            return as_measure(((xl_large(view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), 2) if xl_bool(xl_gt(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max of one-off (exc. 1st yr)'], 0)) else chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max, exc. 1st year']) if xl_bool(xl_isnumber(lambda: chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 2025])) else 0))
+        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Maximum value of one-off breaches: rank of one-off':
+            return as_measure((xl_rank(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
+        return as_measure((1 if xl_bool(xl_and(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Maximum value of one-off breaches: rank of one-off'], 1), xl_eq(chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank[scenario], 1))) else 0))
+
+    chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp = CoordinateReader('chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp', data.CHART_INTERNAL_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP.required, chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_formula)
+    def chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure_formula(scenario: str, time_period: int) -> float | str | None:
+        SCENARIO_TO_DSA_PUB_PV_OF_TOTAL_PUBLIC_DEBT = {'C2. Natural disaster': 'C2', 'C3. Commodity price': 'C3'}
+        if scenario == 'Baseline' and time_period <= 2034:
+            return as_measure(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, time_period])
+        elif scenario == 'Baseline breach' and time_period <= 2034:
+            return as_measure((1 if xl_bool(xl_gt(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure['Baseline', time_period], chart_output_pv_debt_to_gdp['Public debt benchmark', time_period])) else 0))
+        elif scenario == 'Shock breach' and time_period <= 2034:
+            return as_measure((1 if xl_bool(xl_gt(chart_output_pv_debt_to_gdp['MX shock Standard&Tailored', time_period], chart_output_pv_debt_to_gdp['Public debt benchmark', time_period])) else 0))
+        elif scenario == 'C4. Market Financing':
+            return as_measure(baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin[time_period])
+        return as_measure(dsa_pub_pv_of_total_public_debt[SCENARIO_TO_DSA_PUB_PV_OF_TOTAL_PUBLIC_DEBT[scenario], time_period])
+
+    chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure = CoordinateReader('chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure', data.CHART_INTERNAL_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP_FIGURE.required, chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure_formula)
+    def chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_formula(scenario: str, time_period: int) -> float | str | None:
+        if scenario == 'Baseline':
+            return as_measure(baseline_pub_pv_of_public_debt_gdp_ratio[time_period])
+        elif scenario == 'A1. Key variables at their historical averages in 2024-2034 2/':
+            return as_measure(dsa_pub_pv_of_total_public_debt['A1', time_period])
+        elif scenario == 'B1. Real GDP growth':
+            return as_measure(dsa_pub_pv_of_total_public_debt['B1', time_period])
+        elif scenario == 'B2. Primary balance':
+            return as_measure((chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path['B2.1 Primary balance Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_pv_of_debt_to_gdp_ratio_applicable_flag_b2_1_primary_balance_market)) else chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path['B2.2 Primary balance Non-Market', time_period]))
+        elif scenario == 'B3. Exports':
+            return as_measure((0 if xl_bool(xl_eq(in6opt_standard_scenario, 0)) else baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports[time_period]))
+        elif scenario == 'B4. Other flows 3/':
+            return as_measure((0 if xl_bool(xl_eq(in6opt_standard_scenario, 0)) else baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows[time_period]))
+        elif scenario == 'B5. Depreciation':
+            return as_measure(dsa_pub_pv_of_total_public_debt['B5', time_period])
+        elif scenario == 'B6. Combination of B1-B5':
+            return as_measure((chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path['B6.1 Combination of B1-B5 Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_pv_of_debt_to_gdp_ratio_applicable_flag_combined_market_financing_stress)) else chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path['B6.2 Combination of B1-B5 Non-Market', time_period]))
+        elif scenario == 'C1. Combined contingent liabilities':
+            return as_measure(dsa_pub_pv_of_total_public_debt['C1', time_period])
+        elif scenario == 'C2. Natural disaster':
+            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_chart_data_pv_of_debt_to_gdp_ratio_c2_natural_disaster_stress_pa)) else ' '), lambda: ' '))
+        elif scenario == 'C3. Commodity price':
+            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_chart_data_pv_of_debt_to_gdp_ratio_c3_commodity_price_stress_pat)) else ' '), lambda: ' '))
+        elif scenario == 'C4. Market Financing':
+            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_chart_data_pv_of_debt_to_gdp_ratio_c4_market_financing_stress_pa)) else ' '), lambda: ' '))
+        return as_measure((xl_raise('#N/A') if xl_bool(xl_eq(customized_public_include_scenario, 'No')) else custom_pub_pv_of_public_debt_gdp_ratio[time_period]))
+
+    chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp = CoordinateReader('chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp', data.CHART_OUTPUT_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP.required, chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_formula)
+    _chart_output_pv_debt_to_gdp_table_0 = lazy_table(((view(chart_projection_years, cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None),))
+    def chart_output_pv_debt_to_gdp_formula(scenario: str, time_period: int) -> float | str | None:
+        if scenario == 'Public debt benchmark' and time_period == 2024:
+            return as_measure(ci_summary_public_pv_medium_cutoff)
+        elif scenario == 'Public debt benchmark' and time_period == 2025:
+            return as_measure(chart_output_pv_debt_to_gdp[scenario, time_period - 1])
+        elif scenario == 'Public debt benchmark' and time_period >= 2026:
+            return as_measure(chart_output_pv_debt_to_gdp['Public debt benchmark', time_period - 1])
+        elif scenario == 'Historical scenario':
+            return as_measure(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp['A1. Key variables at their historical averages in 2024-2034 2/', time_period])
+        elif scenario == 'MX shock Standard&Tailored':
+            return as_measure(xl_index(lazy_table(((view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank['B1. Real GDP growth']), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank['B2. Primary balance']), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank['B3. Exports']), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank['B4. Other flows 3/']), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank['B5. Depreciation']), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank['B6. Combination of B1-B5']), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank['C1. Combined contingent liabilities']), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank['C2. Natural disaster']), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank['C3. Commodity price']), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off')), lambda: chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank['C4. Market Financing']))), xl_match(1, lazy_table(((view(chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank, rows=('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5')),), (lambda: None,), (view(chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank, rows=span(data.SCENARIO_AXIS, 'C1. Combined contingent liabilities', 'C4. Market Financing')),))), 0), xl_match(chart_projection_years[time_period], _chart_output_pv_debt_to_gdp_table_0, 0)))
+        return as_measure((xl_raise('#N/A') if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp['A2. Alternative Scenario :[Customize, enter title]', 'If one-off breach and MX are the same stress test'], 1)) else (xl_index(lazy_table(((view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))))), xl_match(1, lazy_table(((view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Maximum value of one-off breaches: rank of one-off',)),), (lambda: None,), (view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Maximum value of one-off breaches: rank of one-off',)),))), 0), xl_match(chart_projection_years[time_period], _chart_output_pv_debt_to_gdp_table_0, 0)) if xl_bool(xl_and(xl_gt(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp['A2. Alternative Scenario :[Customize, enter title]', 'Max of one-off (exc. 1st yr)'], 0), xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp['B2.2 Primary balance Non-Market', 'Max of one-off (exc. 1st yr)'], 1))) else xl_raise('#N/A'))))
+
+    chart_output_pv_debt_to_gdp = CoordinateReader('chart_output_pv_debt_to_gdp', data.CHART_OUTPUT_PV_DEBT_TO_GDP.required, chart_output_pv_debt_to_gdp_formula)
+    return ScanChartChartDataPvOfDebtToGdpRatioMostExtremeShockRankResult(
+        chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank=data.CHART_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_MOST_EXTREME_SHOCK_RANK.collect((coord, chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank[coord]) for coord in data.CHART_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_MOST_EXTREME_SHOCK_RANK.required),
+        chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp=data.CHART_INTERNAL_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP.collect((coord, chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP.required),
+        chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure=data.CHART_INTERNAL_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP_FIGURE.collect((coord, chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP_FIGURE.required),
+        chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp=data.CHART_OUTPUT_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP.collect((coord, chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[coord]) for coord in data.CHART_OUTPUT_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP.required),
+        chart_output_pv_debt_to_gdp=data.CHART_OUTPUT_PV_DEBT_TO_GDP.collect((coord, chart_output_pv_debt_to_gdp[coord]) for coord in data.CHART_OUTPUT_PV_DEBT_TO_GDP.required),
+    )
 
 @publish(key=(), domain=None, cells=data.CHART_CHART_DATA_PV_DEBT_TO_GDP_C2_NATURAL_DISASTER_STRESS_PATH_APPLIC_CELLS)
 def chart_chart_data_pv_debt_to_gdp_c2_natural_disaster_stress_path_applic(*, chart_tailored_test_names: data.Series[str | None], chart_chart_data_scenario_labels_pv_debt_to_gdp: data.Series[str | int | float | bool | None], tailored_stress_natural_disaster_applicable: float | str, tailored_stress_commodity_price_applicable: float | str, tailored_stress_market_financing_applicable: float | str) -> int | str:
@@ -7959,22 +8582,22 @@ def chart_pv_debt_to_gdp_applicable_flag_combined_market_financing_stress(*, cha
         return error.code
 
 @publish(key=(), domain=None, cells=data.CHART_CHART_DATA_PV_DEBT_TO_GDP_MOST_EXTREME_SHOCK_CELLS)
-def chart_chart_data_pv_debt_to_gdp_most_extreme_shock(*, chart_combined_contingent_liabilities_label: str, chart_chart_data_scenario_labels_pv_debt_to_gdp: data.Series[str | int | float | bool | None], chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio: data.Series[float | str | None]) -> str | int | float | bool:
-    """Return the label of the most extreme shock for the PV of debt-to-GDP ratio.
+def chart_chart_data_pv_debt_to_gdp_most_extreme_shock(*, chart_combined_contingent_liabilities_label: str, chart_chart_data_scenario_labels_pv_debt_to_gdp: data.Series[str | int | float | bool | None], chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank: data.Series[int | str | None]) -> str | int | float | bool:
+    """Return the label of the most extreme PV of debt-to-GDP shock scenario.
 
-    Picks the most extreme shock scenario label from the PV debt-to-GDP ratio ladder for Chart Data!C69.
+    Select the scenario-ladder entry whose shock most stresses the PV of debt-to-GDP ratio.
 
     Args:
-        chart_combined_contingent_liabilities_label: Combined contingent liabilities label (scalar string) supplying the scenario name at the contingent-liabilities ladder position.
-        chart_chart_data_scenario_labels_pv_debt_to_gdp: Scenario-label series over scenario names (Primary Balance, Exports, Natural disaster, Commodity price, Market financing) that supplies label text for each ranked shock.
-        chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio: Internal PV of debt-to-GDP ratio series over the scenario axis (B1–B6, C1–C4) whose non-one values are ranked to select the most extreme shock.
+        chart_combined_contingent_liabilities_label: Scalar label text for the combined contingent liabilities scenario used as one candidate shock entry.
+        chart_chart_data_scenario_labels_pv_debt_to_gdp: Named-axis series of chart scenario labels over catalog coordinates, supplying the candidate shock labels.
+        chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank: Named-axis series of ranks over catalog coordinates that orders shocks and identifies the most extreme candidate.
 
     Returns:
-        Most extreme shock label as str, int, float, or bool; returns the XL error code string when the underlying lookup fails.
+        The most extreme shock label as a scalar string, numeric, boolean, or null value, or the spreadsheet error code string when the lookup fails.
     """
-    _chart_chart_data_pv_debt_to_gdp_most_extreme_shock_table_0 = lazy_table(((view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Most extreme shock: rank of non-one off',)),), (lambda: None,), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Most extreme shock: rank of non-one off',)),)))
+    _chart_chart_data_pv_debt_to_gdp_most_extreme_shock_table_0 = lazy_table(((view(chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank, rows=('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5')),), (lambda: None,), (view(chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank, rows=span(data.SCENARIO_AXIS, 'C1. Combined contingent liabilities', 'C4. Market Financing')),)))
     try:
-        return as_measure(xl_index(((None,), (chart_chart_data_scenario_labels_pv_debt_to_gdp['Primary Balance'],), (chart_chart_data_scenario_labels_pv_debt_to_gdp['Exports'],), (None,), (None,), (None,), (None,), (chart_combined_contingent_liabilities_label,), (chart_chart_data_scenario_labels_pv_debt_to_gdp['Natural disaster'],), (chart_chart_data_scenario_labels_pv_debt_to_gdp['Commodity price'],), (chart_chart_data_scenario_labels_pv_debt_to_gdp['Market financing'],),), xl_match(1, _chart_chart_data_pv_debt_to_gdp_most_extreme_shock_table_0, 0), 1), 'str')
+        return as_measure(xl_index(((chart_chart_data_scenario_labels_pv_debt_to_gdp['Growth'],), (chart_chart_data_scenario_labels_pv_debt_to_gdp['Primary Balance'],), (chart_chart_data_scenario_labels_pv_debt_to_gdp['Exports'],), (chart_chart_data_scenario_labels_pv_debt_to_gdp['Non-debt flows'],), (chart_chart_data_scenario_labels_pv_debt_to_gdp['One-time depreciation'],), (chart_chart_data_scenario_labels_pv_debt_to_gdp['Combination'],), (None,), (chart_combined_contingent_liabilities_label,), (chart_chart_data_scenario_labels_pv_debt_to_gdp['Natural disaster'],), (chart_chart_data_scenario_labels_pv_debt_to_gdp['Commodity price'],), (chart_chart_data_scenario_labels_pv_debt_to_gdp['Market financing'],),), xl_match(1, _chart_chart_data_pv_debt_to_gdp_most_extreme_shock_table_0, 0), 1), 'str')
     except XlError as error:
         return error.code
 
@@ -8100,21 +8723,21 @@ def chart_pv_debt_to_exports_applicable_flag_combined_market_financing_stress(*,
         return error.code
 
 @publish(key=(), domain=None, cells=data.CHART_CHART_DATA_PV_DEBT_TO_EXPORTS_MOST_EXTREME_SHOCK_CELLS)
-def chart_chart_data_pv_debt_to_exports_most_extreme_shock(*, chart_chart_data_scenario_labels_pv_debt_to_exports: data.Series[str | int | float | bool | None], chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports: data.Series[float | str | None]) -> str | int | float | bool:
-    """Return the most extreme shock label for the PV of debt-to-exports ratio from `Chart Data!C111`.
+def chart_chart_data_pv_debt_to_exports_most_extreme_shock(*, chart_chart_data_scenario_labels_pv_debt_to_exports: data.Series[str | int | float | bool | None], chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank: data.Series[int | str | None]) -> str | int | float | bool:
+    """Return the label of the most extreme PV of debt-to-exports shock shown on Chart Data.
 
-    Identifies the scenario with the largest shock to the PV of debt-to-exports indicator by ranking the authored stress-test series.
+    Ranks the standard and tailored PV debt-to-exports stress scenarios and selects the winning scenario's label.
 
     Args:
-        chart_chart_data_scenario_labels_pv_debt_to_exports: Named-axis `data.Series[str | int | float | bool | None]` of scenario labels over catalog coordinates, including the Exports label used to select the ranked shock.
-        chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports: Named-axis `data.Series[float | str | None]` of PV-of-debt-to-exports values over catalog coordinates, whose stress scenario rows are matched and ranked to locate the most extreme shock.
+        chart_chart_data_scenario_labels_pv_debt_to_exports: Label series over the PV debt-to-exports shock ladder, keyed by scenario coordinate (Growth, Primary Balance, Exports, Non-debt flows, One-time depreciation, Combination, Combined contingent liabilities, Natural disaster, Commodity price, Market financing); each entry holds the scenario label or None.
+        chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank: Scalar-valued series of per-scenario shock ranks spanning the B1–B6 standard and C1–C4 tailored stress rows, with blanks marking non-scenario rows.
 
     Returns:
-        The most extreme shock label for the PV of debt-to-exports ratio (`Chart Data!C111`), or an `XlError` code string when the lookup fails; return type is `str | int | float | bool`.
+        Scalar scenario label (str, int, float, or bool) identifying the most extreme PV of debt-to-exports shock, or the XlError code string when the lookup fails.
     """
-    _chart_chart_data_pv_debt_to_exports_most_extreme_shock_table_0 = lazy_table(((view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Most extreme shock: rank of non-one off',)),), (lambda: None,), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Most extreme shock: rank of non-one off',)),)))
+    _chart_chart_data_pv_debt_to_exports_most_extreme_shock_table_0 = lazy_table(((view(chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank, rows=('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5')),), (lambda: None,), (view(chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank, rows=span(data.SCENARIO_AXIS, 'C1. Combined contingent liabilities', 'C4. Market Financing')),)))
     try:
-        return as_measure(xl_index(((None,), (None,), (chart_chart_data_scenario_labels_pv_debt_to_exports['Exports'],), (None,), (None,), (None,), (None,), (None,), (None,), (None,), (None,),), xl_match(1, _chart_chart_data_pv_debt_to_exports_most_extreme_shock_table_0, 0), 1), 'str')
+        return as_measure(xl_index(((chart_chart_data_scenario_labels_pv_debt_to_exports['Growth'],), (chart_chart_data_scenario_labels_pv_debt_to_exports['Primary Balance'],), (chart_chart_data_scenario_labels_pv_debt_to_exports['Exports'],), (chart_chart_data_scenario_labels_pv_debt_to_exports['Non-debt flows'],), (chart_chart_data_scenario_labels_pv_debt_to_exports['One-time depreciation'],), (chart_chart_data_scenario_labels_pv_debt_to_exports['Combination'],), (None,), (chart_chart_data_scenario_labels_pv_debt_to_exports['Combined contingent liabilities'],), (chart_chart_data_scenario_labels_pv_debt_to_exports['Natural disaster'],), (chart_chart_data_scenario_labels_pv_debt_to_exports['Commodity price'],), (chart_chart_data_scenario_labels_pv_debt_to_exports['Market financing'],),), xl_match(1, _chart_chart_data_pv_debt_to_exports_most_extreme_shock_table_0, 0), 1), 'str')
     except XlError as error:
         return error.code
 
@@ -8240,21 +8863,21 @@ def chart_debt_service_to_exports_applicable_flag_combined_market_financing_stre
         return error.code
 
 @publish(key=(), domain=None, cells=data.CHART_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_MOST_EXTREME_SHOCK_CELLS)
-def chart_chart_data_debt_service_to_exports_most_extreme_shock(*, chart_chart_data_scenario_labels_debt_service_to_exports: data.Series[str | int | float | bool | None], chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports: data.Series[float | str | None]) -> str | int | float | bool:
-    """Return the most extreme shock label for the Debt service-to-exports ratio.
+def chart_chart_data_debt_service_to_exports_most_extreme_shock(*, chart_chart_data_scenario_labels_debt_service_to_exports: data.Series[str | int | float | bool | None], chart_chart_data_debt_service_to_exports_most_extreme_shock_rank: data.Series[int | str | None]) -> str | int | float | bool:
+    """Return the most extreme shock label for the debt service-to-exports ratio.
 
-    Selects the scenario label whose shock most exceeds one in the Chart Data!C153 ranking for debt service-to-exports.
+    Compute the most extreme shock label by matching the scenario labels series against the ranked shock series.
 
     Args:
-        chart_chart_data_scenario_labels_debt_service_to_exports: Keyword-only data.Series[str | int | float | bool | None] named-axis tensor over catalog coordinates containing scenario labels; its Exports coordinate seeds the lookup.
-        chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports: Keyword-only data.Series[float | str | None] named-axis tensor over catalog coordinates containing internal debt service-to-exports chart values; supplies the B1-B6 and C1-C4 most-extreme-shock rank cells.
+        chart_chart_data_scenario_labels_debt_service_to_exports: Series of scenario labels for the debt service-to-exports ratio, keyed by scenario names (e.g., 'Growth', 'Primary Balance', etc.).
+        chart_chart_data_debt_service_to_exports_most_extreme_shock_rank: Series of ranks for the most extreme shock for the debt service-to-exports ratio, used to index into the scenario labels.
 
     Returns:
-        Scalar most extreme shock label, annotated str | int | float | bool; an XlError code string is returned if the lookup fails.
+        The most extreme shock label for the debt service-to-exports ratio, which can be a string, integer, float, or boolean.
     """
-    _chart_chart_data_debt_service_to_exports_most_extreme_shock_table_0 = lazy_table(((view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Most extreme shock: rank of non-one off',)),), (lambda: None,), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Most extreme shock: rank of non-one off',)),)))
+    _chart_chart_data_debt_service_to_exports_most_extreme_shock_table_0 = lazy_table(((view(chart_chart_data_debt_service_to_exports_most_extreme_shock_rank, rows=('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5')),), (lambda: None,), (view(chart_chart_data_debt_service_to_exports_most_extreme_shock_rank, rows=span(data.SCENARIO_AXIS, 'C1. Combined contingent liabilities', 'C4. Market Financing')),)))
     try:
-        return as_measure(xl_index(((None,), (None,), (chart_chart_data_scenario_labels_debt_service_to_exports['Exports'],), (None,), (None,), (None,), (None,), (None,), (None,), (None,), (None,),), xl_match(1, _chart_chart_data_debt_service_to_exports_most_extreme_shock_table_0, 0), 1), 'str')
+        return as_measure(xl_index(((chart_chart_data_scenario_labels_debt_service_to_exports['Growth'],), (chart_chart_data_scenario_labels_debt_service_to_exports['Primary Balance'],), (chart_chart_data_scenario_labels_debt_service_to_exports['Exports'],), (chart_chart_data_scenario_labels_debt_service_to_exports['Non-debt flows'],), (chart_chart_data_scenario_labels_debt_service_to_exports['One-time depreciation'],), (chart_chart_data_scenario_labels_debt_service_to_exports['Combination'],), (None,), (chart_chart_data_scenario_labels_debt_service_to_exports['Combined contingent liabilities'],), (chart_chart_data_scenario_labels_debt_service_to_exports['Natural disaster'],), (chart_chart_data_scenario_labels_debt_service_to_exports['Commodity price'],), (chart_chart_data_scenario_labels_debt_service_to_exports['Market financing'],),), xl_match(1, _chart_chart_data_debt_service_to_exports_most_extreme_shock_table_0, 0), 1), 'str')
     except XlError as error:
         return error.code
 
@@ -8380,21 +9003,21 @@ def chart_debt_service_to_revenue_applicable_flag_combined_market_financing_stre
         return error.code
 
 @publish(key=(), domain=None, cells=data.CHART_CHART_DATA_DEBT_SERVICE_TO_REVENUE_MOST_EXTREME_SHOCK_CELLS)
-def chart_chart_data_debt_service_to_revenue_most_extreme_shock(*, chart_chart_data_scenario_labels_debt_service_to_revenue: data.Series[str | int | float | bool | None], chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue: data.Series[float | str | None]) -> str | int | float | bool:
-    """Return the most extreme shock label for the Debt service-to-revenue ratio.
+def chart_chart_data_debt_service_to_revenue_most_extreme_shock(*, chart_chart_data_scenario_labels_debt_service_to_revenue: data.Series[str | int | float | bool | None], chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank: data.Series[int | str | None]) -> str | int | float | bool:
+    """Selects the most extreme shock label for the Debt service-to-revenue ratio from ranked scenario coordinates.
 
-    Resolve the Debt service-to-revenue ratio’s most extreme shock label from the scenario ladder on Chart Data.
+    Resolves the deepest stress-test scenario label used by the Debt service-to-revenue chart series.
 
     Args:
-        chart_chart_data_scenario_labels_debt_service_to_revenue: Scenario label series for the Debt service-to-revenue stress block, keyed by scenario coordinates and including the Exports label used to orient the most-extreme-shock rank.
-        chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue: Debt service-to-revenue shock-rank series across the standard scenario ladder (B1-B6 and C1-C4), whose most extreme non-one-off rank determines the returned label.
+        chart_chart_data_scenario_labels_debt_service_to_revenue: Keyword-only data.Series of scenario labels aligned to the Debt service-to-revenue stress ladder, keyed by named scenario coordinates such as Growth, Primary Balance, Exports, Non-debt flows, One-time depreciation, Combination, and tailored shocks.
+        chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank: Keyword-only data.Series of ranks (integer, string, or None) identifying the most extreme shock among the B1–B6 and C1–C4 scenario rows for the Debt service-to-revenue ratio.
 
     Returns:
-        Most extreme shock label for the Debt service-to-revenue ratio (Chart Data!C195), as a string, integer, float, or boolean.
+        Scalar value (str, int, float, or bool) giving the most extreme shock label for the Debt service-to-revenue ratio, or an Excel error code string when the underlying lookup fails.
     """
-    _chart_chart_data_debt_service_to_revenue_most_extreme_shock_table_0 = lazy_table(((view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Most extreme shock: rank of non-one off',)),), (lambda: None,), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Most extreme shock: rank of non-one off',)),)))
+    _chart_chart_data_debt_service_to_revenue_most_extreme_shock_table_0 = lazy_table(((view(chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank, rows=('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5')),), (lambda: None,), (view(chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank, rows=span(data.SCENARIO_AXIS, 'C1. Combined contingent liabilities', 'C4. Market Financing')),)))
     try:
-        return as_measure(xl_index(((None,), (None,), (chart_chart_data_scenario_labels_debt_service_to_revenue['Exports'],), (None,), (None,), (None,), (None,), (None,), (None,), (None,), (None,),), xl_match(1, _chart_chart_data_debt_service_to_revenue_most_extreme_shock_table_0, 0), 1), 'str')
+        return as_measure(xl_index(((chart_chart_data_scenario_labels_debt_service_to_revenue['Growth'],), (chart_chart_data_scenario_labels_debt_service_to_revenue['Primary Balance'],), (chart_chart_data_scenario_labels_debt_service_to_revenue['Exports'],), (chart_chart_data_scenario_labels_debt_service_to_revenue['Non-debt flows'],), (chart_chart_data_scenario_labels_debt_service_to_revenue['One-time depreciation'],), (chart_chart_data_scenario_labels_debt_service_to_revenue['Combination'],), (None,), (chart_chart_data_scenario_labels_debt_service_to_revenue['Combined contingent liabilities'],), (chart_chart_data_scenario_labels_debt_service_to_revenue['Natural disaster'],), (chart_chart_data_scenario_labels_debt_service_to_revenue['Commodity price'],), (chart_chart_data_scenario_labels_debt_service_to_revenue['Market financing'],),), xl_match(1, _chart_chart_data_debt_service_to_revenue_most_extreme_shock_table_0, 0), 1), 'str')
     except XlError as error:
         return error.code
 
@@ -8520,21 +9143,21 @@ def chart_pv_of_debt_to_gdp_ratio_applicable_flag_combined_market_financing_stre
         return error.code
 
 @publish(key=(), domain=None, cells=data.CHART_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_MOST_EXTREME_SHOCK_CELLS)
-def chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock(*, chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio: data.Series[str | int | float | bool | None], chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp: data.Series[float | str | None]) -> str | int | float | bool:
-    """Return the most extreme shock label for the PV of Debt-to-GDP Ratio chart series.
+def chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock(*, chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio: data.Series[str | int | float | bool | None], chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank: data.Series[int | str | None]) -> str | int | float | bool:
+    """Select the scenario label of the most extreme shock applied to the PV of Debt-to-GDP Ratio series.
 
-    Resolves the standardized or tailored shock identified as most extreme for the PV of Debt-to-GDP Ratio block on Chart Data.
+    Resolve the single standardized or tailored shock that ranks as most extreme for the public-debt PV-of-GDP chart block, via an authored coordinate lookup over the scenario axis.
 
     Args:
-        chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio: Scenario-label series over catalog coordinates, supplying the 'Primary Balance' entry used to anchor the lookup row for the PV of Debt-to-GDP Ratio scenario ladder.
-        chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp: Internal per-scenario PV of Debt-to-GDP ratio series over catalog coordinates, read across the B1-B6 and C1-C4 scenario spans to locate the row ranked as the most extreme non-one shock.
+        chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio: Named-axis data.Series[str | int | float | bool | None] of scenario labels for the PV of Debt-to-GDP Ratio block (for example growth, primary balance, exports, non-debt flows, one-time depreciation, combination, combined contingent liabilities, natural disaster, commodity price, and market financing), aligned to the scenario axis and used as the lookup labels; entries may be blank for scenarios that do not apply.
+        chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank: Named-axis data.Series[int | str | None] of rank or ordering values for the most extreme shock, carrying the standardized shock rows (B1–B6) and the tailored shock span (C1–C4) that establish which scenario wins the extremeness comparison.
 
     Returns:
-        Scalar shock label for the most extreme PV of Debt-to-GDP Ratio shock as a str, int, float, or bool; an XlError code string is returned when the lookup raises instead.
+        Scalar str | int | float | bool: the label of the most extreme shock applied to the PV of Debt-to-GDP Ratio series (or the corresponding numeric or boolean measure), or the XlError code string when the lookup cannot be resolved.
     """
-    _chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_table_0 = lazy_table(((view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Most extreme shock: rank of non-one off',)),), (lambda: None,), (view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Most extreme shock: rank of non-one off',)),)))
+    _chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_table_0 = lazy_table(((view(chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank, rows=('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5')),), (lambda: None,), (view(chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank, rows=span(data.SCENARIO_AXIS, 'C1. Combined contingent liabilities', 'C4. Market Financing')),)))
     try:
-        return as_measure(xl_index(((None,), (chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio['Primary Balance'],), (None,), (None,), (None,), (None,), (None,), (None,), (None,), (None,), (None,),), xl_match(1, _chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_table_0, 0), 1), 'str')
+        return as_measure(xl_index(((chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio['Growth'],), (chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio['Primary Balance'],), (chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio['Exports'],), (chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio['Non-debt flows'],), (chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio['One-time depreciation'],), (chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio['Combination'],), (None,), (chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio['Combined contingent liabilities'],), (chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio['Natural disaster'],), (chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio['Commodity price'],), (chart_chart_data_scenario_labels_pv_of_debt_to_gdp_ratio['Market financing'],),), xl_match(1, _chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_table_0, 0), 1), 'str')
     except XlError as error:
         return error.code
 
@@ -8920,621 +9543,6 @@ def chart_projection_years(*, macro_debt_main_assumptions_further_details: int |
         return as_measure(macro_debt_further_details[time_period], 'int')
 
     return data.CHART_PROJECTION_YEARS.collect(evaluate(formula, data.CHART_PROJECTION_YEARS.required))
-
-@dataclass(frozen=True, slots=True)
-class ScanChartInternalChartDataPvDebtToGdpPvDebtGdpRatioStressPathResult:
-    """Complete named results of one recurrence group evaluation."""
-    chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path: data.Series[float | str | None]
-    chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio: data.Series[float | str | None]
-    chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure: data.Series[float | str | None]
-    chart_output_pv_debt_gdp_ratio: data.ChartOutputPvDebtGdpRatio
-
-def scan_chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path(*, chart_tailored_test_marker: int | str, dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio: data.Series[float | str | None], dsa_pub_pv_of_debt_gdp: data.Series[float | str | None], dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_gdp: data.Series[float | str | None], dsa_pub_c2_natural_disaster_pv_of_debt_gdp: data.Series[float | str | None], chart_chart_data_pv_debt_to_gdp_c2_natural_disaster_stress_path_applic: int | str, chart_chart_data_pv_debt_to_gdp_c3_commodity_price_stress_path_applica: int | str, chart_chart_data_pv_debt_to_gdp_c4_market_financing_stress_path_applic: int | str, chart_pv_debt_to_gdp_applicable_flag_b2_1_primary_balance_market: int | str, chart_pv_debt_to_gdp_applicable_flag_combined_market_financing_stress: int | str, chart_projection_years: data.Series[int | str | None], c4_mkt_fin_revised_pv_debt_pct_gdp: data.Series[float | str | None], ci_summary_pv_gdp_applicable: float | str, in6opt_standard_scenario: int | str) -> ScanChartInternalChartDataPvDebtToGdpPvDebtGdpRatioStressPathResult:
-    """Evaluate the recurrence group `chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path`, `chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio`, `chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure`, `chart_output_pv_debt_gdp_ratio` and publish complete tensors."""
-    def chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path_formula(scenario: str, time_period: int) -> float | str | None:
-        if scenario == 'Baseline':
-            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio[scenario, time_period])
-        elif scenario == 'A1. Key variables at their historical averages in 2024-2034 2/':
-            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio['A1', time_period])
-        elif scenario == 'B1. Real GDP growth':
-            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio['B1', time_period])
-        elif scenario == 'B2. Primary balance':
-            return as_measure((0 if xl_bool(xl_eq(in6opt_standard_scenario, 0)) else (chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path['B2.1 Primary balance Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_pv_debt_to_gdp_applicable_flag_b2_1_primary_balance_market)) else chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path['B2.2 Primary balance Non-Market', time_period])))
-        elif scenario == 'B3. Exports':
-            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio['B3', time_period])
-        elif scenario == 'B4. Other flows 3/':
-            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio['B4', time_period])
-        elif scenario == 'B5. Depreciation':
-            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio['B5', time_period])
-        elif scenario == 'B6. Combination of B1-B5':
-            return as_measure((chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path['B6.1 Combination of B1-B5 Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_pv_debt_to_gdp_applicable_flag_combined_market_financing_stress)) else chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path['B6.2 Combination of B1-B5 Non-Market', time_period]))
-        elif scenario == 'C1. Combined contingent liabilities':
-            return as_measure(dsa_pub_pv_of_debt_gdp['C1', time_period])
-        elif scenario == 'C2. Natural disaster':
-            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_chart_data_pv_debt_to_gdp_c2_natural_disaster_stress_path_applic)) else ' '), lambda: ' '))
-        elif scenario == 'C3. Commodity price':
-            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_chart_data_pv_debt_to_gdp_c3_commodity_price_stress_path_applica)) else ' '), lambda: ' '))
-        elif scenario == 'C4. Market Financing':
-            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_chart_data_pv_debt_to_gdp_c4_market_financing_stress_path_applic)) else ' '), lambda: ' '))
-        elif scenario == 'B2.1 Primary balance Market':
-            return as_measure(dsa_pub_pv_of_debt_gdp['B2_mkt', time_period])
-        elif scenario == 'B2.2 Primary balance Non-Market':
-            return as_measure(dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_gdp['B2_nonmkt', time_period])
-        elif scenario == 'B6.1 Combination of B1-B5 Market':
-            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio['B6_mkt', time_period])
-        return as_measure(dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio['B6_nonmkt', time_period])
-
-    chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path = CoordinateReader('chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path', data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO_STRESS_PATH.required, chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path_formula)
-    def chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_formula(scenario: str, variant: str) -> float | str | None:
-        if scenario == 'B1. Real GDP growth' and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure(((chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'B1. Real GDP growth' and variant == 'Max of non-one-off':
-            return as_measure(((chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
-        elif scenario == 'B1. Real GDP growth' and variant == 'Maximum value of one-off breaches: rank of one-off':
-            return as_measure((xl_rank(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'B1. Real GDP growth' and variant == 'Most extreme shock: rank of non-one off':
-            return as_measure((xl_rank(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Max excl. 1st yr and largest in one-off',)), 0)))
-        elif scenario == 'C4. Market Financing' and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure(((chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'C4. Market Financing' and variant == 'Max of non-one-off':
-            return as_measure(((chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
-        elif scenario == 'C4. Market Financing' and variant == 'Maximum value of one-off breaches: rank of one-off':
-            return as_measure((xl_rank(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'C4. Market Financing' and variant == 'Most extreme shock: rank of non-one off':
-            return as_measure((xl_rank(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Max excl. 1st yr and largest in one-off',)), 0)))
-        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant == 'If one-off breach and MX are the same stress test':
-            return as_measure(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
-        elif scenario == 'B2.2 Primary balance Non-Market' and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure((1 if xl_bool(xl_gt(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio['A2. Alternative Scenario :[Customize, enter title]', variant], chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio['A2. Alternative Scenario :[Customize, enter title]', 'Max of non-one-off'])) else 0))
-        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant in ('Max of one-off (exc. 1st yr)', 'Max of non-one-off'):
-            return as_measure(xl_max(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure(((chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of non-one-off':
-            return as_measure(((chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Maximum value of one-off breaches: rank of one-off':
-            return as_measure((xl_rank(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Most extreme shock: rank of non-one off':
-            return as_measure((xl_rank(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max excl. 1st yr and largest in one-off',)), 0)))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Number of breaches exc. 1st year - 2024':
-            return as_measure(xl_countif(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), xl_concat('>', chart_output_pv_debt_gdp_ratio['Threshold', 2025])))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == '1st year breach - 2024':
-            return as_measure(((1 if xl_bool(xl_gt(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path[scenario, 2024], chart_output_pv_debt_gdp_ratio['Threshold', 2024])) else 0) if xl_bool(xl_isnumber(lambda: chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path[scenario, 2024])) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, exc. 1st year - 2024':
-            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Number of breaches exc. 1st year - 2024'], 1)) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, inc. 1st year':
-            return as_measure(((0 if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, '1st year breach - 2024'], 1)) else 1) if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'One-off breach, exc. 1st year - 2024'], 1)) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Non-one-off breach, incl. 1st year':
-            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'One-off breach, inc. 1st year'], 0)) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max, exc. 1st year':
-            return as_measure(xl_max(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034))))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max excl. 1st yr and largest in one-off':
-            return as_measure(((xl_large(view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), 2) if xl_bool(xl_gt(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max of one-off (exc. 1st yr)'], 0)) else chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Max, exc. 1st year']) if xl_bool(xl_isnumber(lambda: chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path[scenario, 2025])) else 0))
-        return as_measure((1 if xl_bool(xl_and(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Maximum value of one-off breaches: rank of one-off'], 1), xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[scenario, 'Most extreme shock: rank of non-one off'], 1))) else 0))
-
-    chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio = CoordinateReader('chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio', data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO.required, chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_formula)
-    def chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure_formula(scenario: str, time_period: int) -> float | str | None:
-        if scenario == 'Baseline breach' and time_period <= 2034:
-            return as_measure((1 if xl_bool(xl_gt(chart_output_pv_debt_gdp_ratio['Baseline', time_period], chart_output_pv_debt_gdp_ratio['Threshold', time_period])) else 0))
-        elif scenario == 'Shock breach' and time_period <= 2034:
-            return as_measure((1 if xl_bool(xl_gt(chart_output_pv_debt_gdp_ratio['MX shock Standard&Tailored', time_period], chart_output_pv_debt_gdp_ratio['Threshold', time_period])) else 0))
-        elif scenario == 'C2. Natural disaster':
-            return as_measure(dsa_pub_c2_natural_disaster_pv_of_debt_gdp['C2', time_period])
-        elif scenario == 'C3. Commodity price':
-            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio['C3', time_period])
-        return as_measure(c4_mkt_fin_revised_pv_debt_pct_gdp[time_period])
-
-    chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure = CoordinateReader('chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure', data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO_FIGURE.required, chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure_formula)
-    _chart_output_pv_debt_gdp_ratio_table_0 = lazy_table(((view(chart_projection_years, cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None),))
-    def chart_output_pv_debt_gdp_ratio_formula(scenario: str, time_period: int) -> float | str | None:
-        SCENARIO_TO_CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO_STRESS_PATH = {'Baseline': 'Baseline', 'Historical scenario': 'A1. Key variables at their historical averages in 2024-2034 2/'}
-        if scenario == 'MX shock Standard&Tailored':
-            return as_measure(xl_index(lazy_table(((view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))))), xl_match(1, lazy_table(((view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Most extreme shock: rank of non-one off',)),), (lambda: None,), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Most extreme shock: rank of non-one off',)),))), 0), xl_match(chart_projection_years[time_period], _chart_output_pv_debt_gdp_ratio_table_0, 0)))
-        elif scenario == 'MX value, 1 yr only shock Standard&Tailored - for chart':
-            return as_measure((xl_raise('#N/A') if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio['A2. Alternative Scenario :[Customize, enter title]', 'If one-off breach and MX are the same stress test'], 1)) else (xl_index(lazy_table(((view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))))), xl_match(1, lazy_table(((view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Maximum value of one-off breaches: rank of one-off',)),), (lambda: None,), (view(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Maximum value of one-off breaches: rank of one-off',)),))), 0), xl_match(chart_projection_years[time_period], _chart_output_pv_debt_gdp_ratio_table_0, 0)) if xl_bool(xl_and(xl_gt(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio['A2. Alternative Scenario :[Customize, enter title]', 'Max of one-off (exc. 1st yr)'], 0), xl_eq(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio['B2.2 Primary balance Non-Market', 'Max of one-off (exc. 1st yr)'], 1))) else xl_raise('#N/A'))))
-        elif scenario == 'Threshold':
-            return as_measure(ci_summary_pv_gdp_applicable)
-        return as_measure(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path[SCENARIO_TO_CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO_STRESS_PATH[scenario], time_period])
-
-    chart_output_pv_debt_gdp_ratio = CoordinateReader('chart_output_pv_debt_gdp_ratio', data.CHART_OUTPUT_PV_DEBT_GDP_RATIO.required, chart_output_pv_debt_gdp_ratio_formula)
-    return ScanChartInternalChartDataPvDebtToGdpPvDebtGdpRatioStressPathResult(
-        chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path=data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO_STRESS_PATH.collect((coord, chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO_STRESS_PATH.required),
-        chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio=data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO.collect((coord, chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO.required),
-        chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure=data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO_FIGURE.collect((coord, chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_GDP_PV_DEBT_GDP_RATIO_FIGURE.required),
-        chart_output_pv_debt_gdp_ratio=data.CHART_OUTPUT_PV_DEBT_GDP_RATIO.collect((coord, chart_output_pv_debt_gdp_ratio[coord]) for coord in data.CHART_OUTPUT_PV_DEBT_GDP_RATIO.required),
-    )
-
-@dataclass(frozen=True, slots=True)
-class ScanChartInternalChartDataPvDebtToExportsPvDebtToExportsStressPathResult:
-    """Complete named results of one recurrence group evaluation."""
-    chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path: data.Series[float | str | None]
-    chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports: data.Series[float | str | None]
-    chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure: data.Series[float | str | None]
-    chart_output_pv_debt_to_exports: data.ChartOutputPvDebtToExports
-
-def scan_chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path(*, chart_tailored_test_marker: int | str, dsa_ext_pv_of_ppg_external_debt_to_exports_ratio: data.Series[float | str | None], dsa_pub_pv_of_debt_exports: data.Series[float | str | None], dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_exports: data.Series[float | str | None], dsa_pub_c2_natural_disaster_pv_of_debt_exports: data.Series[float | str | None], chart_chart_data_pv_debt_to_exports_c2_natural_disaster_stress_path_ap: int | str, chart_chart_data_pv_debt_to_exports_c3_commodity_price_stress_path_app: int | str, chart_chart_data_pv_debt_to_exports_c4_market_financing_stress_path_ap: int | str, chart_pv_debt_to_exports_applicable_flag_b2_1_primary_balance_market: int | str, chart_pv_debt_to_exports_applicable_flag_combined_market_financing_stress: int | str, chart_projection_years: data.Series[int | str | None], c4_mkt_fin_revised_pv_debt_to_exports: data.Series[float | str | None], ci_summary_pv_exports_applicable: float | str, in6opt_standard_scenario: int | str, c4_market_path_revised_pv_debt_exports: float | str) -> ScanChartInternalChartDataPvDebtToExportsPvDebtToExportsStressPathResult:
-    """Evaluate the recurrence group `chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path`, `chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports`, `chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure`, `chart_output_pv_debt_to_exports` and publish complete tensors."""
-    def chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path_formula(scenario: str, time_period: int) -> float | str | None:
-        if scenario == 'Baseline':
-            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio[scenario, time_period])
-        elif scenario == 'A1. Key variables at their historical averages in 2024-2034 2/':
-            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio['A1', time_period])
-        elif scenario == 'B1. Real GDP growth':
-            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio['B1', time_period])
-        elif scenario == 'B2. Primary balance':
-            return as_measure((0 if xl_bool(xl_eq(in6opt_standard_scenario, 0)) else (chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path['B2.1 Primary balance Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_pv_debt_to_exports_applicable_flag_b2_1_primary_balance_market)) else chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path['B2.2 Primary balance Non-Market', time_period])))
-        elif scenario == 'B3. Exports':
-            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio['B3', time_period])
-        elif scenario == 'B4. Other flows 3/':
-            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio['B4', time_period])
-        elif scenario == 'B5. Depreciation':
-            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio['B5', time_period])
-        elif scenario == 'B6. Combination of B1-B5':
-            return as_measure((chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path['B6.1 Combination of B1-B5 Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_pv_debt_to_exports_applicable_flag_combined_market_financing_stress)) else chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path['B6.2 Combination of B1-B5 Non-Market', time_period]))
-        elif scenario == 'C1. Combined contingent liabilities':
-            return as_measure(dsa_pub_pv_of_debt_exports['C1', time_period])
-        elif scenario == 'C2. Natural disaster':
-            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_chart_data_pv_debt_to_exports_c2_natural_disaster_stress_path_ap)) else ' '), lambda: ' '))
-        elif scenario == 'C3. Commodity price':
-            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_chart_data_pv_debt_to_exports_c3_commodity_price_stress_path_app)) else ' '), lambda: ' '))
-        elif scenario == 'C4. Market Financing':
-            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_chart_data_pv_debt_to_exports_c4_market_financing_stress_path_ap)) else ' '), lambda: ' '))
-        elif scenario == 'B2.1 Primary balance Market':
-            return as_measure(dsa_pub_pv_of_debt_exports['B2_mkt', time_period])
-        elif scenario == 'B2.2 Primary balance Non-Market':
-            return as_measure(dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_exports['B2_nonmkt', time_period])
-        elif scenario == 'B6.1 Combination of B1-B5 Market':
-            return as_measure(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio['B6_mkt', time_period])
-        return as_measure(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio['B6_nonmkt', time_period])
-
-    chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path = CoordinateReader('chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path', data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS_STRESS_PATH.required, chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path_formula)
-    def chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_formula(scenario: str, variant: str) -> float | str | None:
-        if scenario == 'B1. Real GDP growth' and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure(((chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'B1. Real GDP growth' and variant == 'Max of non-one-off':
-            return as_measure(((chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
-        elif scenario == 'B1. Real GDP growth' and variant == 'Maximum value of one-off breaches: rank of one-off':
-            return as_measure((xl_rank(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'B1. Real GDP growth' and variant == 'Most extreme shock: rank of non-one off':
-            return as_measure((xl_rank(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Max excl. 1st yr and largest in one-off',)), 0)))
-        elif scenario == 'C4. Market Financing' and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure(((chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'C4. Market Financing' and variant == 'Max of non-one-off':
-            return as_measure(((chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
-        elif scenario == 'C4. Market Financing' and variant == 'Maximum value of one-off breaches: rank of one-off':
-            return as_measure((xl_rank(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'C4. Market Financing' and variant == 'Most extreme shock: rank of non-one off':
-            return as_measure((xl_rank(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Max excl. 1st yr and largest in one-off',)), 0)))
-        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant == 'If one-off breach and MX are the same stress test':
-            return as_measure(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
-        elif scenario == 'B2.2 Primary balance Non-Market' and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure((1 if xl_bool(xl_gt(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports['A2. Alternative Scenario :[Customize, enter title]', variant], chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports['A2. Alternative Scenario :[Customize, enter title]', 'Max of non-one-off'])) else 0))
-        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant in ('Max of one-off (exc. 1st yr)', 'Max of non-one-off'):
-            return as_measure(xl_max(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure(((chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of non-one-off':
-            return as_measure(((chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Maximum value of one-off breaches: rank of one-off':
-            return as_measure((xl_rank(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Most extreme shock: rank of non-one off':
-            return as_measure((xl_rank(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max excl. 1st yr and largest in one-off',)), 0)))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Number of breaches exc. 1st year - 2024':
-            return as_measure(xl_countif(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), xl_concat('>', chart_output_pv_debt_to_exports['Threshold', 2025])))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == '1st year breach - 2024':
-            return as_measure(((1 if xl_bool(xl_gt(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path[scenario, 2024], chart_output_pv_debt_to_exports['Threshold', 2024])) else 0) if xl_bool(xl_isnumber(lambda: chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path[scenario, 2024])) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, exc. 1st year - 2024':
-            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Number of breaches exc. 1st year - 2024'], 1)) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, inc. 1st year':
-            return as_measure(((0 if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, '1st year breach - 2024'], 1)) else 1) if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'One-off breach, exc. 1st year - 2024'], 1)) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Non-one-off breach, incl. 1st year':
-            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'One-off breach, inc. 1st year'], 0)) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max, exc. 1st year':
-            return as_measure(xl_max(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034))))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max excl. 1st yr and largest in one-off':
-            return as_measure(((xl_large(view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), 2) if xl_bool(xl_gt(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max of one-off (exc. 1st yr)'], 0)) else chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Max, exc. 1st year']) if xl_bool(xl_isnumber(lambda: chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path[scenario, 2025])) else 0))
-        return as_measure((1 if xl_bool(xl_and(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Maximum value of one-off breaches: rank of one-off'], 1), xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[scenario, 'Most extreme shock: rank of non-one off'], 1))) else 0))
-
-    chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports = CoordinateReader('chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports', data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS.required, chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_formula)
-    def chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure_formula(scenario: str, time_period: int) -> float | str | None:
-        if scenario == 'C4. Market Financing' and time_period == 2024:
-            return as_measure(c4_market_path_revised_pv_debt_exports)
-        elif scenario == 'Baseline breach' and time_period <= 2034:
-            return as_measure((1 if xl_bool(xl_gt(chart_output_pv_debt_to_exports['Baseline', time_period], chart_output_pv_debt_to_exports['Threshold', time_period])) else 0))
-        elif scenario == 'Shock breach' and time_period <= 2034:
-            return as_measure((1 if xl_bool(xl_gt(chart_output_pv_debt_to_exports['MX shock Standard&Tailored', time_period], chart_output_pv_debt_to_exports['Threshold', time_period])) else 0))
-        elif scenario == 'C4. Market Financing' and time_period >= 2025:
-            return as_measure(c4_mkt_fin_revised_pv_debt_to_exports[time_period])
-        elif scenario == 'C2. Natural disaster':
-            return as_measure(dsa_pub_c2_natural_disaster_pv_of_debt_exports['C2', time_period])
-        return as_measure(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio['C3', time_period])
-
-    chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure = CoordinateReader('chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure', data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS_FIGURE.required, chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure_formula)
-    _chart_output_pv_debt_to_exports_table_0 = lazy_table(((view(chart_projection_years, cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None),))
-    def chart_output_pv_debt_to_exports_formula(scenario: str, time_period: int) -> float | str | None:
-        SCENARIO_TO_CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS_STRESS_PATH = {'Baseline': 'Baseline', 'Historical scenario': 'A1. Key variables at their historical averages in 2024-2034 2/'}
-        if scenario == 'MX shock Standard&Tailored':
-            return as_measure(xl_index(lazy_table(((view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))))), xl_match(1, lazy_table(((view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Most extreme shock: rank of non-one off',)),), (lambda: None,), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Most extreme shock: rank of non-one off',)),))), 0), xl_match(chart_projection_years[time_period], _chart_output_pv_debt_to_exports_table_0, 0)))
-        elif scenario == 'MX value, 1 yr only shock Standard&Tailored - for chart':
-            return as_measure((xl_raise('#N/A') if xl_bool(xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports['A2. Alternative Scenario :[Customize, enter title]', 'If one-off breach and MX are the same stress test'], 1)) else (xl_index(lazy_table(((view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))))), xl_match(1, lazy_table(((view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Maximum value of one-off breaches: rank of one-off',)),), (lambda: None,), (view(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Maximum value of one-off breaches: rank of one-off',)),))), 0), xl_match(chart_projection_years[time_period], _chart_output_pv_debt_to_exports_table_0, 0)) if xl_bool(xl_and(xl_gt(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports['A2. Alternative Scenario :[Customize, enter title]', 'Max of one-off (exc. 1st yr)'], 0), xl_eq(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports['B2.2 Primary balance Non-Market', 'Max of one-off (exc. 1st yr)'], 1))) else xl_raise('#N/A'))))
-        elif scenario == 'Threshold':
-            return as_measure(ci_summary_pv_exports_applicable)
-        return as_measure(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path[SCENARIO_TO_CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS_STRESS_PATH[scenario], time_period])
-
-    chart_output_pv_debt_to_exports = CoordinateReader('chart_output_pv_debt_to_exports', data.CHART_OUTPUT_PV_DEBT_TO_EXPORTS.required, chart_output_pv_debt_to_exports_formula)
-    return ScanChartInternalChartDataPvDebtToExportsPvDebtToExportsStressPathResult(
-        chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path=data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS_STRESS_PATH.collect((coord, chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS_STRESS_PATH.required),
-        chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports=data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS.collect((coord, chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS.required),
-        chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure=data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS_FIGURE.collect((coord, chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_PV_DEBT_TO_EXPORTS_PV_DEBT_TO_EXPORTS_FIGURE.required),
-        chart_output_pv_debt_to_exports=data.CHART_OUTPUT_PV_DEBT_TO_EXPORTS.collect((coord, chart_output_pv_debt_to_exports[coord]) for coord in data.CHART_OUTPUT_PV_DEBT_TO_EXPORTS.required),
-    )
-
-@dataclass(frozen=True, slots=True)
-class ScanChartInternalChartDataDebtServiceToExportsDebtServiceToExportsStressPathResult:
-    """Complete named results of one recurrence group evaluation."""
-    chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path: data.Series[float | str | None]
-    chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports: data.Series[float | str | None]
-    chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure: data.Series[float | str | None]
-    chart_output_debt_service_to_exports: data.ChartOutputDebtServiceToExports
-
-def scan_chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path(*, chart_tailored_test_marker: int | str, dsa_ext_ppg_debt_service_to_exports_ratio: data.Series[float | str | None], dsa_pub_debt_service_exports: data.Series[float | str | None], dsa_pub_b2_pb_non_mkt_pub_debt_service_exports: data.Series[float | str | None], dsa_pub_c2_natural_disaster_debt_service_exports: data.Series[float | str | None], chart_debt_service_to_exports_applicable_flag_c2_natdisaster: int | str, chart_debt_service_to_exports_applicable_flag_c3_commodity_price: int | str, chart_debt_service_to_exports_applicable_flag_c4_mkt_financing: int | str, chart_debt_service_to_exports_applicable_flag_b2_1_primary_balance_market: int | str, chart_debt_service_to_exports_applicable_flag_combined_market_financing_stress: int | str, chart_projection_years: data.Series[int | str | None], c4_mkt_fin_dsr_exports_stress: data.Series[float | str | None], ci_summary_ds_exports_applicable: float | str, in6opt_standard_scenario: int | str) -> ScanChartInternalChartDataDebtServiceToExportsDebtServiceToExportsStressPathResult:
-    """Evaluate the recurrence group `chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path`, `chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports`, `chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure`, `chart_output_debt_service_to_exports` and publish complete tensors."""
-    def chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path_formula(scenario: str, time_period: int) -> float | str | None:
-        if scenario == 'Baseline':
-            return as_measure(dsa_ext_ppg_debt_service_to_exports_ratio[scenario, time_period])
-        elif scenario == 'A1. Key variables at their historical averages in 2024-2034 2/':
-            return as_measure(dsa_ext_ppg_debt_service_to_exports_ratio['A1', time_period])
-        elif scenario == 'B1. Real GDP growth':
-            return as_measure(dsa_ext_ppg_debt_service_to_exports_ratio['B1', time_period])
-        elif scenario == 'B2. Primary balance':
-            return as_measure((0 if xl_bool(xl_eq(in6opt_standard_scenario, 0)) else (chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path['B2.1 Primary balance Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_exports_applicable_flag_b2_1_primary_balance_market)) else chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path['B2.2 Primary balance Non-Market', time_period])))
-        elif scenario == 'B3. Exports':
-            return as_measure(dsa_ext_ppg_debt_service_to_exports_ratio['B3', time_period])
-        elif scenario == 'B4. Other flows 3/':
-            return as_measure(dsa_ext_ppg_debt_service_to_exports_ratio['B4', time_period])
-        elif scenario == 'B5. Depreciation':
-            return as_measure(dsa_ext_ppg_debt_service_to_exports_ratio['B5', time_period])
-        elif scenario == 'B6. Combination of B1-B5':
-            return as_measure((chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path['B6.1 Combination of B1-B5 Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_exports_applicable_flag_combined_market_financing_stress)) else chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path['B6.2 Combination of B1-B5 Non-Market', time_period]))
-        elif scenario == 'C1. Combined contingent liabilities':
-            return as_measure(dsa_pub_debt_service_exports['C1', time_period])
-        elif scenario == 'C2. Natural disaster':
-            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_exports_applicable_flag_c2_natdisaster)) else ' '), lambda: ' '))
-        elif scenario == 'C3. Commodity price':
-            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_exports_applicable_flag_c3_commodity_price)) else ' '), lambda: ' '))
-        elif scenario == 'C4. Market Financing':
-            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_exports_applicable_flag_c4_mkt_financing)) else ' '), lambda: ' '))
-        elif scenario == 'B2.1 Primary balance Market':
-            return as_measure(dsa_pub_debt_service_exports['B2_mkt', time_period])
-        elif scenario == 'B2.2 Primary balance Non-Market':
-            return as_measure(dsa_pub_b2_pb_non_mkt_pub_debt_service_exports['B2_nonmkt', time_period])
-        elif scenario == 'B6.1 Combination of B1-B5 Market':
-            return as_measure(dsa_ext_ppg_debt_service_to_exports_ratio['B6_mkt', time_period])
-        return as_measure(dsa_ext_ppg_debt_service_to_exports_ratio['B6_nonmkt', time_period])
-
-    chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path = CoordinateReader('chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path', data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS_STRESS_PATH.required, chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path_formula)
-    def chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_formula(scenario: str, variant: str) -> float | str | None:
-        if scenario == 'B1. Real GDP growth' and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure(((chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'B1. Real GDP growth' and variant == 'Max of non-one-off':
-            return as_measure(((chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
-        elif scenario == 'B1. Real GDP growth' and variant == 'Maximum value of one-off breaches: rank of one-off':
-            return as_measure((xl_rank(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'B1. Real GDP growth' and variant == 'Most extreme shock: rank of non-one off':
-            return as_measure((xl_rank(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Max excl. 1st yr and largest in one-off',)), 0)))
-        elif scenario == 'C4. Market Financing' and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure(((chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'C4. Market Financing' and variant == 'Max of non-one-off':
-            return as_measure(((chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
-        elif scenario == 'C4. Market Financing' and variant == 'Maximum value of one-off breaches: rank of one-off':
-            return as_measure((xl_rank(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'C4. Market Financing' and variant == 'Most extreme shock: rank of non-one off':
-            return as_measure((xl_rank(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Max excl. 1st yr and largest in one-off',)), 0)))
-        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant == 'If one-off breach and MX are the same stress test':
-            return as_measure(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
-        elif scenario == 'B2.2 Primary balance Non-Market' and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure((1 if xl_bool(xl_gt(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports['A2. Alternative Scenario :[Customize, enter title]', variant], chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports['A2. Alternative Scenario :[Customize, enter title]', 'Max of non-one-off'])) else 0))
-        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant in ('Max of one-off (exc. 1st yr)', 'Max of non-one-off'):
-            return as_measure(xl_max(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure(((chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of non-one-off':
-            return as_measure(((chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Maximum value of one-off breaches: rank of one-off':
-            return as_measure((xl_rank(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Most extreme shock: rank of non-one off':
-            return as_measure((xl_rank(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max excl. 1st yr and largest in one-off',)), 0)))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Number of breaches exc. 1st year - 2024':
-            return as_measure(xl_countif(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), xl_concat('>', chart_output_debt_service_to_exports['Threshold', 2025])))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == '1st year breach - 2024':
-            return as_measure(((1 if xl_bool(xl_gt(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path[scenario, 2024], chart_output_debt_service_to_exports['Threshold', 2024])) else 0) if xl_bool(xl_isnumber(lambda: chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path[scenario, 2024])) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, exc. 1st year - 2024':
-            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Number of breaches exc. 1st year - 2024'], 1)) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, inc. 1st year':
-            return as_measure(((0 if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, '1st year breach - 2024'], 1)) else 1) if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'One-off breach, exc. 1st year - 2024'], 1)) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Non-one-off breach, incl. 1st year':
-            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'One-off breach, inc. 1st year'], 0)) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max, exc. 1st year':
-            return as_measure(xl_max(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034))))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max excl. 1st yr and largest in one-off':
-            return as_measure(((xl_large(view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), 2) if xl_bool(xl_gt(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max of one-off (exc. 1st yr)'], 0)) else chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Max, exc. 1st year']) if xl_bool(xl_isnumber(lambda: chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path[scenario, 2025])) else 0))
-        return as_measure((1 if xl_bool(xl_and(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Maximum value of one-off breaches: rank of one-off'], 1), xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[scenario, 'Most extreme shock: rank of non-one off'], 1))) else 0))
-
-    chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports = CoordinateReader('chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports', data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS.required, chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_formula)
-    def chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure_formula(scenario: str, time_period: int) -> float | str | None:
-        if scenario == 'Baseline breach' and time_period <= 2034:
-            return as_measure((1 if xl_bool(xl_gt(chart_output_debt_service_to_exports['Baseline', time_period], chart_output_debt_service_to_exports['Threshold', time_period])) else 0))
-        elif scenario == 'Shock breach' and time_period <= 2034:
-            return as_measure((1 if xl_bool(xl_gt(chart_output_debt_service_to_exports['MX shock Standard&Tailored', time_period], chart_output_debt_service_to_exports['Threshold', time_period])) else 0))
-        elif scenario == 'C2. Natural disaster':
-            return as_measure(dsa_pub_c2_natural_disaster_debt_service_exports['C2', time_period])
-        elif scenario == 'C3. Commodity price':
-            return as_measure(dsa_ext_ppg_debt_service_to_exports_ratio['C3', time_period])
-        return as_measure(c4_mkt_fin_dsr_exports_stress[time_period])
-
-    chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure = CoordinateReader('chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure', data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS_FIGURE.required, chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure_formula)
-    _chart_output_debt_service_to_exports_table_0 = lazy_table(((view(chart_projection_years, cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None),))
-    def chart_output_debt_service_to_exports_formula(scenario: str, time_period: int) -> float | str | None:
-        SCENARIO_TO_CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS_STRESS_PATH = {'Baseline': 'Baseline', 'Historical scenario': 'A1. Key variables at their historical averages in 2024-2034 2/'}
-        if scenario == 'MX shock Standard&Tailored':
-            return as_measure(xl_index(lazy_table(((view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))))), xl_match(1, lazy_table(((view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Most extreme shock: rank of non-one off',)),), (lambda: None,), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Most extreme shock: rank of non-one off',)),))), 0), xl_match(chart_projection_years[time_period], _chart_output_debt_service_to_exports_table_0, 0)))
-        elif scenario == 'MX value, 1 yr only shock Standard&Tailored - for chart':
-            return as_measure((xl_raise('#N/A') if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports['A2. Alternative Scenario :[Customize, enter title]', 'If one-off breach and MX are the same stress test'], 1)) else (xl_index(lazy_table(((view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))))), xl_match(1, lazy_table(((view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Maximum value of one-off breaches: rank of one-off',)),), (lambda: None,), (view(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Maximum value of one-off breaches: rank of one-off',)),))), 0), xl_match(chart_projection_years[time_period], _chart_output_debt_service_to_exports_table_0, 0)) if xl_bool(xl_and(xl_gt(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports['A2. Alternative Scenario :[Customize, enter title]', 'Max of one-off (exc. 1st yr)'], 0), xl_eq(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports['B2.2 Primary balance Non-Market', 'Max of one-off (exc. 1st yr)'], 1))) else xl_raise('#N/A'))))
-        elif scenario == 'Threshold':
-            return as_measure(ci_summary_ds_exports_applicable)
-        return as_measure(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path[SCENARIO_TO_CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS_STRESS_PATH[scenario], time_period])
-
-    chart_output_debt_service_to_exports = CoordinateReader('chart_output_debt_service_to_exports', data.CHART_OUTPUT_DEBT_SERVICE_TO_EXPORTS.required, chart_output_debt_service_to_exports_formula)
-    return ScanChartInternalChartDataDebtServiceToExportsDebtServiceToExportsStressPathResult(
-        chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path=data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS_STRESS_PATH.collect((coord, chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS_STRESS_PATH.required),
-        chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports=data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS.collect((coord, chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS.required),
-        chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure=data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS_FIGURE.collect((coord, chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_EXPORTS_DEBT_SERVICE_TO_EXPORTS_FIGURE.required),
-        chart_output_debt_service_to_exports=data.CHART_OUTPUT_DEBT_SERVICE_TO_EXPORTS.collect((coord, chart_output_debt_service_to_exports[coord]) for coord in data.CHART_OUTPUT_DEBT_SERVICE_TO_EXPORTS.required),
-    )
-
-@dataclass(frozen=True, slots=True)
-class ScanChartInternalChartDataDebtServiceToRevenueDebtServiceToRevenueStressPathResult:
-    """Complete named results of one recurrence group evaluation."""
-    chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path: data.Series[float | str | None]
-    chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue: data.Series[float | str | None]
-    chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure: data.Series[float | str | None]
-    chart_output_debt_service_to_revenue: data.ChartOutputDebtServiceToRevenue
-
-def scan_chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path(*, chart_tailored_test_marker: int | str, dsa_ext_ppg_debt_service_to_revenue_ratio: data.Series[float | str | None], dsa_pub_debt_service_revenue_excl_grants: data.Series[float | str | None], dsa_pub_b2_pb_non_mkt_pub_debt_service_revenue_excl_grants: data.Series[float | str | None], dsa_pub_c2_natural_disaster_debt_service_revenue_excl_grants: data.Series[float | str | None], chart_debt_service_to_revenue_applicable_flag_c2_natdisaster: int | str, chart_debt_service_to_revenue_applicable_flag_c3_commodity_price: int | str, chart_debt_service_to_revenue_applicable_flag_c4_mkt_financing: int | str, chart_debt_service_to_revenue_applicable_flag_b2_1_primary_balance_market: int | str, chart_debt_service_to_revenue_applicable_flag_combined_market_financing_stress: int | str, chart_projection_years: data.Series[int | str | None], c4_mkt_fin_dsr_revenue_stress: data.Series[float | str | None], ci_summary_ds_revenue_applicable: float | str, in6opt_standard_scenario: int | str) -> ScanChartInternalChartDataDebtServiceToRevenueDebtServiceToRevenueStressPathResult:
-    """Evaluate the recurrence group `chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path`, `chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue`, `chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure`, `chart_output_debt_service_to_revenue` and publish complete tensors."""
-    def chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path_formula(scenario: str, time_period: int) -> float | str | None:
-        if scenario == 'Baseline':
-            return as_measure(dsa_ext_ppg_debt_service_to_revenue_ratio[scenario, time_period])
-        elif scenario == 'A1. Key variables at their historical averages in 2024-2034 2/':
-            return as_measure(dsa_ext_ppg_debt_service_to_revenue_ratio['A1', time_period])
-        elif scenario == 'B1. Real GDP growth':
-            return as_measure(dsa_ext_ppg_debt_service_to_revenue_ratio['B1', time_period])
-        elif scenario == 'B2. Primary balance':
-            return as_measure((0 if xl_bool(xl_eq(in6opt_standard_scenario, 0)) else (chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path['B2.1 Primary balance Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_revenue_applicable_flag_b2_1_primary_balance_market)) else chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path['B2.2 Primary balance Non-Market', time_period])))
-        elif scenario == 'B3. Exports':
-            return as_measure(dsa_ext_ppg_debt_service_to_revenue_ratio['B3', time_period])
-        elif scenario == 'B4. Other flows 3/':
-            return as_measure(dsa_ext_ppg_debt_service_to_revenue_ratio['B4', time_period])
-        elif scenario == 'B5. Depreciation':
-            return as_measure(dsa_ext_ppg_debt_service_to_revenue_ratio['B5', time_period])
-        elif scenario == 'B6. Combination of B1-B5':
-            return as_measure((chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path['B6.1 Combination of B1-B5 Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_revenue_applicable_flag_combined_market_financing_stress)) else chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path['B6.2 Combination of B1-B5 Non-Market', time_period]))
-        elif scenario == 'C1. Combined contingent liabilities':
-            return as_measure(dsa_pub_debt_service_revenue_excl_grants['C1', time_period])
-        elif scenario == 'C2. Natural disaster':
-            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_revenue_applicable_flag_c2_natdisaster)) else ' '), lambda: ' '))
-        elif scenario == 'C3. Commodity price':
-            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_revenue_applicable_flag_c3_commodity_price)) else ' '), lambda: ' '))
-        elif scenario == 'C4. Market Financing':
-            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_debt_service_to_revenue_applicable_flag_c4_mkt_financing)) else ' '), lambda: ' '))
-        elif scenario == 'B2.1 Primary balance Market':
-            return as_measure(dsa_pub_debt_service_revenue_excl_grants['B2_mkt', time_period])
-        elif scenario == 'B2.2 Primary balance Non-Market':
-            return as_measure(dsa_pub_b2_pb_non_mkt_pub_debt_service_revenue_excl_grants['B2_nonmkt', time_period])
-        elif scenario == 'B6.1 Combination of B1-B5 Market':
-            return as_measure(dsa_ext_ppg_debt_service_to_revenue_ratio['B6_mkt', time_period])
-        return as_measure(dsa_ext_ppg_debt_service_to_revenue_ratio['B6_nonmkt', time_period])
-
-    chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path = CoordinateReader('chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path', data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE_STRESS_PATH.required, chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path_formula)
-    def chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_formula(scenario: str, variant: str) -> float | str | None:
-        if scenario == 'B1. Real GDP growth' and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure(((chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'B1. Real GDP growth' and variant == 'Max of non-one-off':
-            return as_measure(((chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
-        elif scenario == 'B1. Real GDP growth' and variant == 'Maximum value of one-off breaches: rank of one-off':
-            return as_measure((xl_rank(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'B1. Real GDP growth' and variant == 'Most extreme shock: rank of non-one off':
-            return as_measure((xl_rank(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Max excl. 1st yr and largest in one-off',)), 0)))
-        elif scenario == 'C4. Market Financing' and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure(((chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'C4. Market Financing' and variant == 'Max of non-one-off':
-            return as_measure(((chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
-        elif scenario == 'C4. Market Financing' and variant == 'Maximum value of one-off breaches: rank of one-off':
-            return as_measure((xl_rank(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'C4. Market Financing' and variant == 'Most extreme shock: rank of non-one off':
-            return as_measure((xl_rank(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Max excl. 1st yr and largest in one-off',)), 0)))
-        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant == 'If one-off breach and MX are the same stress test':
-            return as_measure(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
-        elif scenario == 'B2.2 Primary balance Non-Market' and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure((1 if xl_bool(xl_gt(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue['A2. Alternative Scenario :[Customize, enter title]', variant], chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue['A2. Alternative Scenario :[Customize, enter title]', 'Max of non-one-off'])) else 0))
-        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant in ('Max of one-off (exc. 1st yr)', 'Max of non-one-off'):
-            return as_measure(xl_max(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure(((chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of non-one-off':
-            return as_measure(((chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Maximum value of one-off breaches: rank of one-off':
-            return as_measure((xl_rank(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Most extreme shock: rank of non-one off':
-            return as_measure((xl_rank(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max excl. 1st yr and largest in one-off',)), 0)))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Number of breaches exc. 1st year - 2024':
-            return as_measure(xl_countif(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), xl_concat('>', chart_output_debt_service_to_revenue['Threshold', 2025])))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == '1st year breach - 2024':
-            return as_measure(((1 if xl_bool(xl_gt(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path[scenario, 2024], chart_output_debt_service_to_revenue['Threshold', 2024])) else 0) if xl_bool(xl_isnumber(lambda: chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path[scenario, 2024])) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, exc. 1st year - 2024':
-            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Number of breaches exc. 1st year - 2024'], 1)) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, inc. 1st year':
-            return as_measure(((0 if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, '1st year breach - 2024'], 1)) else 1) if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'One-off breach, exc. 1st year - 2024'], 1)) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Non-one-off breach, incl. 1st year':
-            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'One-off breach, inc. 1st year'], 0)) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max, exc. 1st year':
-            return as_measure(xl_max(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034))))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max excl. 1st yr and largest in one-off':
-            return as_measure(((xl_large(view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), 2) if xl_bool(xl_gt(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max of one-off (exc. 1st yr)'], 0)) else chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Max, exc. 1st year']) if xl_bool(xl_isnumber(lambda: chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path[scenario, 2025])) else 0))
-        return as_measure((1 if xl_bool(xl_and(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Maximum value of one-off breaches: rank of one-off'], 1), xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[scenario, 'Most extreme shock: rank of non-one off'], 1))) else 0))
-
-    chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue = CoordinateReader('chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue', data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE.required, chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_formula)
-    def chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure_formula(scenario: str, time_period: int) -> float | str | None:
-        if scenario == 'Baseline breach' and time_period <= 2034:
-            return as_measure((1 if xl_bool(xl_gt(chart_output_debt_service_to_revenue['Baseline', time_period], chart_output_debt_service_to_revenue['Threshold', time_period])) else 0))
-        elif scenario == 'Shock breach' and time_period <= 2034:
-            return as_measure((1 if xl_bool(xl_gt(chart_output_debt_service_to_revenue['MX shock Standard&Tailored', time_period], chart_output_debt_service_to_revenue['Threshold', time_period])) else 0))
-        elif scenario == 'C2. Natural disaster':
-            return as_measure(dsa_pub_c2_natural_disaster_debt_service_revenue_excl_grants['C2', time_period])
-        elif scenario == 'C3. Commodity price':
-            return as_measure(dsa_ext_ppg_debt_service_to_revenue_ratio['C3', time_period])
-        return as_measure(c4_mkt_fin_dsr_revenue_stress[time_period])
-
-    chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure = CoordinateReader('chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure', data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE_FIGURE.required, chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure_formula)
-    _chart_output_debt_service_to_revenue_table_0 = lazy_table(((view(chart_projection_years, cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None),))
-    def chart_output_debt_service_to_revenue_formula(scenario: str, time_period: int) -> float | str | None:
-        SCENARIO_TO_CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE_STRESS_PATH = {'Baseline': 'Baseline', 'Historical scenario': 'A1. Key variables at their historical averages in 2024-2034 2/'}
-        if scenario == 'MX shock Standard&Tailored':
-            return as_measure(xl_index(lazy_table(((view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))))), xl_match(1, lazy_table(((view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Most extreme shock: rank of non-one off',)),), (lambda: None,), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Most extreme shock: rank of non-one off',)),))), 0), xl_match(chart_projection_years[time_period], _chart_output_debt_service_to_revenue_table_0, 0)))
-        elif scenario == 'MX value, 1 yr only shock Standard&Tailored - for chart':
-            return as_measure((xl_raise('#N/A') if xl_bool(xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue['A2. Alternative Scenario :[Customize, enter title]', 'If one-off breach and MX are the same stress test'], 1)) else (xl_index(lazy_table(((view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))))), xl_match(1, lazy_table(((view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Maximum value of one-off breaches: rank of one-off',)),), (lambda: None,), (view(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Maximum value of one-off breaches: rank of one-off',)),))), 0), xl_match(chart_projection_years[time_period], _chart_output_debt_service_to_revenue_table_0, 0)) if xl_bool(xl_and(xl_gt(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue['A2. Alternative Scenario :[Customize, enter title]', 'Max of one-off (exc. 1st yr)'], 0), xl_eq(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue['B2.2 Primary balance Non-Market', 'Max of one-off (exc. 1st yr)'], 1))) else xl_raise('#N/A'))))
-        elif scenario == 'Threshold':
-            return as_measure(ci_summary_ds_revenue_applicable)
-        return as_measure(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path[SCENARIO_TO_CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE_STRESS_PATH[scenario], time_period])
-
-    chart_output_debt_service_to_revenue = CoordinateReader('chart_output_debt_service_to_revenue', data.CHART_OUTPUT_DEBT_SERVICE_TO_REVENUE.required, chart_output_debt_service_to_revenue_formula)
-    return ScanChartInternalChartDataDebtServiceToRevenueDebtServiceToRevenueStressPathResult(
-        chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path=data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE_STRESS_PATH.collect((coord, chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE_STRESS_PATH.required),
-        chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue=data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE.collect((coord, chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE.required),
-        chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure=data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE_FIGURE.collect((coord, chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_DEBT_SERVICE_TO_REVENUE_DEBT_SERVICE_TO_REVENUE_FIGURE.required),
-        chart_output_debt_service_to_revenue=data.CHART_OUTPUT_DEBT_SERVICE_TO_REVENUE.collect((coord, chart_output_debt_service_to_revenue[coord]) for coord in data.CHART_OUTPUT_DEBT_SERVICE_TO_REVENUE.required),
-    )
-
-@dataclass(frozen=True, slots=True)
-class ScanChartInternalChartDataPvOfDebtToGdpRatioPvDebtToGdpResult:
-    """Complete named results of one recurrence group evaluation."""
-    chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp: data.Series[float | str | None]
-    chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure: data.Series[float | str | None]
-    chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp: data.ChartOutputChartDataPvOfDebtToGdpRatioPvDebtToGdp
-    chart_output_pv_debt_to_gdp: data.ChartOutputPvDebtToGdp
-
-def scan_chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp(*, chart_tailored_test_marker: int | str, dsa_pub_pv_of_total_public_debt: data.Series[float | str | None], customized_public_include_scenario: str, chart_chart_data_pv_of_debt_to_gdp_ratio_c2_natural_disaster_stress_pa: int | str, chart_chart_data_pv_of_debt_to_gdp_ratio_c3_commodity_price_stress_pat: int | str, chart_chart_data_pv_of_debt_to_gdp_ratio_c4_market_financing_stress_pa: int | str, chart_pv_of_debt_to_gdp_ratio_applicable_flag_b2_1_primary_balance_market: int | str, chart_pv_of_debt_to_gdp_ratio_applicable_flag_combined_market_financing_stress: int | str, chart_projection_years: data.Series[int | str | None], chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path: data.Series[float | str | None], ci_summary_public_pv_medium_cutoff: float | str, baseline_pub_pv_of_public_debt_gdp_ratio: data.Series[float | str | None], baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports: data.Series[float | str | None], baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows: data.Series[float | str | None], baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin: data.Series[float | str | None], custom_pub_pv_of_public_debt_gdp_ratio: data.Series[float | str | None], in6opt_standard_scenario: int | str) -> ScanChartInternalChartDataPvOfDebtToGdpRatioPvDebtToGdpResult:
-    """Evaluate the recurrence group `chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp`, `chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure`, `chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp`, `chart_output_pv_debt_to_gdp` and publish complete tensors."""
-    def chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_formula(scenario: str, variant: str) -> float | str | None:
-        if scenario == 'B1. Real GDP growth' and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure(((chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'B1. Real GDP growth' and variant == 'Max of non-one-off':
-            return as_measure(((chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
-        elif scenario == 'B1. Real GDP growth' and variant == 'Maximum value of one-off breaches: rank of one-off':
-            return as_measure((xl_rank(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'B1. Real GDP growth' and variant == 'Most extreme shock: rank of non-one off':
-            return as_measure((xl_rank(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, scenario, 'C4. Market Financing'), cols=('Max excl. 1st yr and largest in one-off',)), 0)))
-        elif scenario == 'C4. Market Financing' and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure(((chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'C4. Market Financing' and variant == 'Max of non-one-off':
-            return as_measure(((chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
-        elif scenario == 'C4. Market Financing' and variant == 'Maximum value of one-off breaches: rank of one-off':
-            return as_measure((xl_rank(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario == 'C4. Market Financing' and variant == 'Most extreme shock: rank of non-one off':
-            return as_measure((xl_rank(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', scenario), cols=('Max excl. 1st yr and largest in one-off',)), 0)))
-        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant == 'If one-off breach and MX are the same stress test':
-            return as_measure(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
-        elif scenario == 'B2.2 Primary balance Non-Market' and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure((1 if xl_bool(xl_gt(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp['A2. Alternative Scenario :[Customize, enter title]', variant], chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp['A2. Alternative Scenario :[Customize, enter title]', 'Max of non-one-off'])) else 0))
-        elif scenario == 'A2. Alternative Scenario :[Customize, enter title]' and variant in ('Max of one-off (exc. 1st yr)', 'Max of non-one-off'):
-            return as_measure(xl_max(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=(variant,))))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of one-off (exc. 1st yr)':
-            return as_measure(((chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'One-off breach, inc. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Max of non-one-off':
-            return as_measure(((chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max, exc. 1st year'] if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Non-one-off breach, incl. 1st year'], 1)) else 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Non-one-off breach, incl. 1st year',))), 0)) else False))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Maximum value of one-off breaches: rank of one-off':
-            return as_measure((xl_rank(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max of one-off (exc. 1st yr)'], view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of one-off (exc. 1st yr)',)), 0) if xl_bool(xl_gt(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else 0))
-        elif scenario in ('B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price') and variant == 'Most extreme shock: rank of non-one off':
-            return as_measure((xl_rank(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max of non-one-off'], view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max of non-one-off',)), 0) if xl_bool(xl_eq(xl_sum(view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('One-off breach, inc. 1st year',))), 0)) else xl_rank(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max excl. 1st yr and largest in one-off'], view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'C4. Market Financing'), cols=('Max excl. 1st yr and largest in one-off',)), 0)))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Number of breaches exc. 1st year - 2024':
-            return as_measure(xl_countif(view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), xl_concat('>', chart_output_pv_debt_to_gdp['Public debt benchmark', 2025])))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == '1st year breach - 2024':
-            return as_measure(((1 if xl_bool(xl_gt(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 2024], chart_output_pv_debt_to_gdp['Public debt benchmark', 2024])) else 0) if xl_bool(xl_isnumber(lambda: chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 2024])) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, exc. 1st year - 2024':
-            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Number of breaches exc. 1st year - 2024'], 1)) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'One-off breach, inc. 1st year':
-            return as_measure(((0 if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, '1st year breach - 2024'], 1)) else 1) if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'One-off breach, exc. 1st year - 2024'], 1)) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Non-one-off breach, incl. 1st year':
-            return as_measure((1 if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'One-off breach, inc. 1st year'], 0)) else 0))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max, exc. 1st year':
-            return as_measure(xl_max(view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034))))
-        elif scenario in ('B1. Real GDP growth', 'B2. Primary balance', 'B3. Exports', 'B4. Other flows 3/', 'B5. Depreciation', 'B6. Combination of B1-B5', 'C1. Combined contingent liabilities', 'C2. Natural disaster', 'C3. Commodity price', 'C4. Market Financing') and variant == 'Max excl. 1st yr and largest in one-off':
-            return as_measure(((xl_large(view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=(scenario,), cols=span(data.TIME_PERIOD_AXIS, 2025, 2034)), 2) if xl_bool(xl_gt(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max of one-off (exc. 1st yr)'], 0)) else chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Max, exc. 1st year']) if xl_bool(xl_isnumber(lambda: chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 2025])) else 0))
-        return as_measure((1 if xl_bool(xl_and(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Maximum value of one-off breaches: rank of one-off'], 1), xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, 'Most extreme shock: rank of non-one off'], 1))) else 0))
-
-    chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp = CoordinateReader('chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp', data.CHART_INTERNAL_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP.required, chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_formula)
-    def chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure_formula(scenario: str, time_period: int) -> float | str | None:
-        SCENARIO_TO_DSA_PUB_PV_OF_TOTAL_PUBLIC_DEBT = {'C2. Natural disaster': 'C2', 'C3. Commodity price': 'C3'}
-        if scenario == 'Baseline' and time_period <= 2034:
-            return as_measure(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[scenario, time_period])
-        elif scenario == 'Baseline breach' and time_period <= 2034:
-            return as_measure((1 if xl_bool(xl_gt(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure['Baseline', time_period], chart_output_pv_debt_to_gdp['Public debt benchmark', time_period])) else 0))
-        elif scenario == 'Shock breach' and time_period <= 2034:
-            return as_measure((1 if xl_bool(xl_gt(chart_output_pv_debt_to_gdp['MX shock Standard&Tailored', time_period], chart_output_pv_debt_to_gdp['Public debt benchmark', time_period])) else 0))
-        elif scenario == 'C4. Market Financing':
-            return as_measure(baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin[time_period])
-        return as_measure(dsa_pub_pv_of_total_public_debt[SCENARIO_TO_DSA_PUB_PV_OF_TOTAL_PUBLIC_DEBT[scenario], time_period])
-
-    chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure = CoordinateReader('chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure', data.CHART_INTERNAL_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP_FIGURE.required, chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure_formula)
-    def chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_formula(scenario: str, time_period: int) -> float | str | None:
-        if scenario == 'Baseline':
-            return as_measure(baseline_pub_pv_of_public_debt_gdp_ratio[time_period])
-        elif scenario == 'A1. Key variables at their historical averages in 2024-2034 2/':
-            return as_measure(dsa_pub_pv_of_total_public_debt['A1', time_period])
-        elif scenario == 'B1. Real GDP growth':
-            return as_measure(dsa_pub_pv_of_total_public_debt['B1', time_period])
-        elif scenario == 'B2. Primary balance':
-            return as_measure((chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path['B2.1 Primary balance Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_pv_of_debt_to_gdp_ratio_applicable_flag_b2_1_primary_balance_market)) else chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path['B2.2 Primary balance Non-Market', time_period]))
-        elif scenario == 'B3. Exports':
-            return as_measure((0 if xl_bool(xl_eq(in6opt_standard_scenario, 0)) else baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports[time_period]))
-        elif scenario == 'B4. Other flows 3/':
-            return as_measure((0 if xl_bool(xl_eq(in6opt_standard_scenario, 0)) else baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows[time_period]))
-        elif scenario == 'B5. Depreciation':
-            return as_measure(dsa_pub_pv_of_total_public_debt['B5', time_period])
-        elif scenario == 'B6. Combination of B1-B5':
-            return as_measure((chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path['B6.1 Combination of B1-B5 Market', time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_pv_of_debt_to_gdp_ratio_applicable_flag_combined_market_financing_stress)) else chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path['B6.2 Combination of B1-B5 Non-Market', time_period]))
-        elif scenario == 'C1. Combined contingent liabilities':
-            return as_measure(dsa_pub_pv_of_total_public_debt['C1', time_period])
-        elif scenario == 'C2. Natural disaster':
-            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_chart_data_pv_of_debt_to_gdp_ratio_c2_natural_disaster_stress_pa)) else ' '), lambda: ' '))
-        elif scenario == 'C3. Commodity price':
-            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_chart_data_pv_of_debt_to_gdp_ratio_c3_commodity_price_stress_pat)) else ' '), lambda: ' '))
-        elif scenario == 'C4. Market Financing':
-            return as_measure(xl_iferror(lambda: (chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure[scenario, time_period] if xl_bool(xl_eq(chart_tailored_test_marker, chart_chart_data_pv_of_debt_to_gdp_ratio_c4_market_financing_stress_pa)) else ' '), lambda: ' '))
-        return as_measure((xl_raise('#N/A') if xl_bool(xl_eq(customized_public_include_scenario, 'No')) else custom_pub_pv_of_public_debt_gdp_ratio[time_period]))
-
-    chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp = CoordinateReader('chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp', data.CHART_OUTPUT_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP.required, chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_formula)
-    _chart_output_pv_debt_to_gdp_table_0 = lazy_table(((view(chart_projection_years, cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None),))
-    def chart_output_pv_debt_to_gdp_formula(scenario: str, time_period: int) -> float | str | None:
-        if scenario == 'Public debt benchmark' and time_period == 2024:
-            return as_measure(ci_summary_public_pv_medium_cutoff)
-        elif scenario == 'Public debt benchmark' and time_period == 2025:
-            return as_measure(chart_output_pv_debt_to_gdp[scenario, time_period - 1])
-        elif scenario == 'Public debt benchmark' and time_period >= 2026:
-            return as_measure(chart_output_pv_debt_to_gdp['Public debt benchmark', time_period - 1])
-        elif scenario == 'Historical scenario':
-            return as_measure(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp['A1. Key variables at their historical averages in 2024-2034 2/', time_period])
-        elif scenario == 'MX shock Standard&Tailored':
-            return as_measure(xl_index(lazy_table(((view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Most extreme shock: rank of non-one off'))))), xl_match(1, lazy_table(((view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Most extreme shock: rank of non-one off',)),), (lambda: None,), (view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Most extreme shock: rank of non-one off',)),))), 0), xl_match(chart_projection_years[time_period], _chart_output_pv_debt_to_gdp_table_0, 0)))
-        return as_measure((xl_raise('#N/A') if xl_bool(xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp['A2. Alternative Scenario :[Customize, enter title]', 'If one-off breach and MX are the same stress test'], 1)) else (xl_index(lazy_table(((view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B1. Real GDP growth',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B1. Real GDP growth',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B2. Primary balance',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B2. Primary balance',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B3. Exports',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B3. Exports',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B4. Other flows 3/',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B4. Other flows 3/',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B5. Depreciation',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B5. Depreciation',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B6. Combination of B1-B5',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('B6. Combination of B1-B5',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C1. Combined contingent liabilities',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C1. Combined contingent liabilities',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C2. Natural disaster',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C2. Natural disaster',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C3. Commodity price',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C3. Commodity price',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))), (view(chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C4. Market Financing',), cols=span(data.TIME_PERIOD_AXIS, 2024, 2044)), lambda: None, view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=('C4. Market Financing',), cols=span(data.VARIANT_AXIS, 'Number of breaches exc. 1st year - 2024', 'Maximum value of one-off breaches: rank of one-off'))))), xl_match(1, lazy_table(((view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'B1. Real GDP growth', 'B6. Combination of B1-B5'), cols=('Maximum value of one-off breaches: rank of one-off',)),), (lambda: None,), (view(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp, rows=span(data.SCENARIO_AXIS_5, 'C1. Combined contingent liabilities', 'C4. Market Financing'), cols=('Maximum value of one-off breaches: rank of one-off',)),))), 0), xl_match(chart_projection_years[time_period], _chart_output_pv_debt_to_gdp_table_0, 0)) if xl_bool(xl_and(xl_gt(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp['A2. Alternative Scenario :[Customize, enter title]', 'Max of one-off (exc. 1st yr)'], 0), xl_eq(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp['B2.2 Primary balance Non-Market', 'Max of one-off (exc. 1st yr)'], 1))) else xl_raise('#N/A'))))
-
-    chart_output_pv_debt_to_gdp = CoordinateReader('chart_output_pv_debt_to_gdp', data.CHART_OUTPUT_PV_DEBT_TO_GDP.required, chart_output_pv_debt_to_gdp_formula)
-    return ScanChartInternalChartDataPvOfDebtToGdpRatioPvDebtToGdpResult(
-        chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp=data.CHART_INTERNAL_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP.collect((coord, chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP.required),
-        chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure=data.CHART_INTERNAL_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP_FIGURE.collect((coord, chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure[coord]) for coord in data.CHART_INTERNAL_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP_FIGURE.required),
-        chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp=data.CHART_OUTPUT_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP.collect((coord, chart_output_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp[coord]) for coord in data.CHART_OUTPUT_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP.required),
-        chart_output_pv_debt_to_gdp=data.CHART_OUTPUT_PV_DEBT_TO_GDP.collect((coord, chart_output_pv_debt_to_gdp[coord]) for coord in data.CHART_OUTPUT_PV_DEBT_TO_GDP.required),
-    )
 
 @publish(data.CHART_INTERNAL_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP_STRESS_PATH.schema, cells=data.CHART_INTERNAL_CHART_DATA_PV_OF_DEBT_TO_GDP_RATIO_PV_DEBT_TO_GDP_STRESS_PATH.cells)
 def chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path(*, dsa_pub_pv_of_total_public_debt: data.Series[float | str | None]) -> data.Series[float | str | None]:
@@ -11374,83 +11382,83 @@ def imported_classification_years(*, classification_cpia_reported_years: data.Se
 
 @publish(data.IMPORTED_CLASSIFICATION_VALUES.schema, cells=data.IMPORTED_CLASSIFICATION_VALUES.cells)
 def imported_classification_values(*, classification_cpia_reported_codes: data.Series[str | None], classification_cpia_reported_years: data.Series[int | str | None], classification_cpia_reported_values: data.Series[float | str | None], classification_growth_reported_codes: data.Series[str | None], classification_growth_reported_years: data.Series[int | str | None], classification_growth_reported_values: data.Series[float | str | None], classification_growth_actual_codes: data.Series[str | None], classification_growth_actual_years: data.Series[int | str | None], classification_growth_actual_values: data.Series[float | str | None], classification_reserves_reported_codes: data.Series[str | None], classification_reserves_reported_years: data.Series[int | str | None], classification_reserves_reported_values: data.Series[float | str | None], classification_reserves_actual_codes: data.Series[str | None], classification_reserves_actual_years: data.Series[int | str | None], classification_reserves_actual_values: data.Series[float | str | None], classification_remittances_reported_codes: data.Series[str | None], classification_remittances_reported_years: data.Series[int | str | None], classification_remittances_reported_values: data.Series[float | str | None], classification_remittances_actual_codes: data.Series[str | None], classification_remittances_actual_years: data.Series[int | str | None], classification_remittances_actual_values: data.Series[float | str | None], classification_world_growth_reported_codes: data.Series[str | None], classification_world_growth_reported_years: data.Series[int | str | None], classification_world_growth_reported_values: data.Series[float | str | None], classification_lookup_year_id_note: str, classification_classification_prior_vintage_header: str, classification_classification_two_vintages_ago_header: str, classification_ci_score_prior_vintage_header: str, classification_ci_score_two_vintages_ago_column_header: str, classification_column_headers: data.Series[str | None], classification_ifs_code: int | str, classification_iso_alpha3: str, classification_country_name: str, classification_classification_final: str, classification_classification_current_vintage: str, classification_classification_previous_vintage: str, classification_classification_final_previous: str, classification_current_ci_score_current_vintage: float | str, classification_current_ci_score_previous_vintage: float | str, classification_current_ci_score_2_vintages_ago: float | str, classification_current_cpia: float | str, classification_current_growth: float | str, classification_current_reserves: float | str, classification_current_remittances: float | str, classification_current_world_growth: float | str, classification_growth_memo_primary: float | str, classification_growth_memo_secondary: float | str, classification_reserves_memo: float | str, classification_remittances_memo: float | str, classification_ci_score_2018_oct_header: str, classification_ci_class_2018_oct_header: str, classification_ci_score_2018_oct_label: str, classification_ci_class_2018_oct_label: str, classification_ci_score_2018_oct: float | str, classification_ci_class_2018_oct: str, classification_ci_components_share_headers: data.Series[str | None], classification_ci_components_share: data.Series[float | str | None], classification_ci_components_contribution_headers: data.Series[str | None], classification_ci_components_contribution: data.Series[float | str | None], data_rem_headers: data.Series[str | None], data_rem_notes_header: str, data_rem_metadata: data.Series[str | None], data_gdpusd_headers: data.Series[str | None], data_gdpusd_country_code_note: str, data_gdpusd_metadata: data.Series[str | None], data_gdpusd_ifs_code: int | str, imported_country_code: int | str, imported_classification_years: data.Series[int | str | None], imported_classification_ids: data.Series[str | int | float | bool | None]) -> data.Series[float | str | None]:
-    """Assemble imported classification values from authored coordinate identities.
+    """Build the imported classification values, plus the CPIA, growth, reserves, remittances, world-growth, and CI-component series that the LIC-DSF classification sheet consumes.
 
-    Project CI components, remittances, and GDP series onto the imported classification year/id grid to produce a single classification-values series.
+    Assemble, from the classification, remittances, and GDP (USD) tables, the year-indexed series the classification sheet imports for the current projection.
 
     Args:
-        classification_cpia_reported_codes: Reported CPIA codes aligned to the classification coordinate series.
-        classification_cpia_reported_years: Reported CPIA years aligned to the classification coordinate series.
-        classification_cpia_reported_values: Reported CPIA values aligned to the classification coordinate series.
-        classification_growth_reported_codes: Reported growth codes aligned to the classification coordinate series.
-        classification_growth_reported_years: Reported growth years aligned to the classification coordinate series.
-        classification_growth_reported_values: Reported growth values aligned to the classification coordinate series.
-        classification_growth_actual_codes: Actual growth codes aligned to the classification coordinate series.
-        classification_growth_actual_years: Actual growth years aligned to the classification coordinate series.
-        classification_growth_actual_values: Actual growth values aligned to the classification coordinate series.
-        classification_reserves_reported_codes: Reported reserves codes aligned to the classification coordinate series.
-        classification_reserves_reported_years: Reported reserves years aligned to the classification coordinate series.
-        classification_reserves_reported_values: Reported reserves values aligned to the classification coordinate series.
-        classification_reserves_actual_codes: Actual reserves codes aligned to the classification coordinate series.
-        classification_reserves_actual_years: Actual reserves years aligned to the classification coordinate series.
-        classification_reserves_actual_values: Actual reserves values aligned to the classification coordinate series.
-        classification_remittances_reported_codes: Reported remittances codes aligned to the classification coordinate series.
-        classification_remittances_reported_years: Reported remittances years aligned to the classification coordinate series.
-        classification_remittances_reported_values: Reported remittances values aligned to the classification coordinate series.
-        classification_remittances_actual_codes: Actual remittances codes aligned to the classification coordinate series.
-        classification_remittances_actual_years: Actual remittances years aligned to the classification coordinate series.
-        classification_remittances_actual_values: Actual remittances values aligned to the classification coordinate series.
-        classification_world_growth_reported_codes: Reported world growth codes aligned to the classification coordinate series.
-        classification_world_growth_reported_years: Reported world growth years aligned to the classification coordinate series.
-        classification_world_growth_reported_values: Reported world growth values aligned to the classification coordinate series.
-        classification_lookup_year_id_note: Text note identifying the lookup year used for the classification import.
-        classification_classification_prior_vintage_header: Header text for the prior-vintage classification column.
-        classification_classification_two_vintages_ago_header: Header text for the classification column two vintages ago.
-        classification_ci_score_prior_vintage_header: Header text for the prior-vintage CI score column.
-        classification_ci_score_two_vintages_ago_column_header: Header text for the CI score column two vintages ago.
-        classification_column_headers: Column headers naming-axis labels for the classification block.
-        classification_ifs_code: IMF IFS country code used to key the classification rows.
-        classification_iso_alpha3: ISO alpha-3 country code used to key the classification rows.
-        classification_country_name: Country name label carried into the classification output.
-        classification_classification_final: Final classification value from the current workbook vintage.
-        classification_classification_current_vintage: Classification value for the current vintage.
-        classification_classification_previous_vintage: Classification value from the previous vintage.
-        classification_classification_final_previous: Final classification value from the previous vintage.
-        classification_current_ci_score_current_vintage: Current-vintage CI score for the current vintage.
-        classification_current_ci_score_previous_vintage: Current-vintage CI score from the previous vintage.
-        classification_current_ci_score_2_vintages_ago: Current-vintage CI score from two vintages ago.
-        classification_current_cpia: Current CPIA value used in the classification.
-        classification_current_growth: Current growth value used in the classification.
-        classification_current_reserves: Current reserves value used in the classification.
-        classification_current_remittances: Current remittances value used in the classification.
-        classification_current_world_growth: Current world growth value used in the classification.
-        classification_growth_memo_primary: Primary growth memo value carried alongside the classification.
-        classification_growth_memo_secondary: Secondary growth memo value carried alongside the classification.
-        classification_reserves_memo: Reserves memo value carried alongside the classification.
-        classification_remittances_memo: Remittances memo value carried alongside the classification.
-        classification_ci_score_2018_oct_header: Header text for the October 2018 CI score column.
-        classification_ci_class_2018_oct_header: Header text for the October 2018 CI class column.
-        classification_ci_score_2018_oct_label: Label text for the October 2018 CI score.
-        classification_ci_class_2018_oct_label: Label text for the October 2018 CI class.
-        classification_ci_score_2018_oct: October 2018 CI score value.
-        classification_ci_class_2018_oct: October 2018 CI class value.
-        classification_ci_components_share_headers: Headers naming the CI component share coordinates.
-        classification_ci_components_share: CI component share values over the named component coordinates.
-        classification_ci_components_contribution_headers: Headers naming the CI component contribution coordinates.
-        classification_ci_components_contribution: CI component contribution values over the named component coordinates.
-        data_rem_headers: Headers naming the remittances data coordinates.
-        data_rem_notes_header: Header text for the remittances notes column.
-        data_rem_metadata: Remittances metadata values over the named coordinate series.
-        data_gdpusd_headers: Headers naming the GDP in USD data coordinates.
-        data_gdpusd_country_code_note: Text note describing the GDP in USD country code.
-        data_gdpusd_metadata: GDP in USD metadata values over the named coordinate series.
-        data_gdpusd_ifs_code: IMF IFS country code used for the GDP in USD tables.
-        imported_country_code: Country code used to key the imported classification rows.
-        imported_classification_years: Projection years of the imported classification grid.
-        imported_classification_ids: Identifier labels of the imported classification grid.
+        classification_cpia_reported_codes: Reported CPIA codes as a named-axis series over classification catalog coordinates.
+        classification_cpia_reported_years: Projection-year labels for the reported CPIA codes, as a named-axis series whose entries are integer years or text.
+        classification_cpia_reported_values: Reported CPIA values aligned to those year labels, as a named-axis series of floats or text.
+        classification_growth_reported_codes: Reported growth codes as a named-axis series over classification catalog coordinates.
+        classification_growth_reported_years: Projection-year labels for the reported growth codes, as a named-axis series whose entries are integer years or text.
+        classification_growth_reported_values: Reported growth values aligned to those year labels, as a named-axis series of floats or text.
+        classification_growth_actual_codes: Actual growth codes as a named-axis series over classification catalog coordinates.
+        classification_growth_actual_years: Projection-year labels for the actual growth codes, as a named-axis series whose entries are integer years or text.
+        classification_growth_actual_values: Actual growth values aligned to those year labels, as a named-axis series of floats or text.
+        classification_reserves_reported_codes: Reported reserves codes as a named-axis series over classification catalog coordinates.
+        classification_reserves_reported_years: Projection-year labels for the reported reserves codes, as a named-axis series whose entries are integer years or text.
+        classification_reserves_reported_values: Reported reserves values aligned to those year labels, as a named-axis series of floats or text.
+        classification_reserves_actual_codes: Actual reserves codes as a named-axis series over classification catalog coordinates.
+        classification_reserves_actual_years: Projection-year labels for the actual reserves codes, as a named-axis series whose entries are integer years or text.
+        classification_reserves_actual_values: Actual reserves values aligned to those year labels, as a named-axis series of floats or text.
+        classification_remittances_reported_codes: Reported remittances codes as a named-axis series over classification catalog coordinates.
+        classification_remittances_reported_years: Projection-year labels for the reported remittances codes, as a named-axis series whose entries are integer years or text.
+        classification_remittances_reported_values: Reported remittances values aligned to those year labels, as a named-axis series of floats or text.
+        classification_remittances_actual_codes: Actual remittances codes as a named-axis series over classification catalog coordinates.
+        classification_remittances_actual_years: Projection-year labels for the actual remittances codes, as a named-axis series whose entries are integer years or text.
+        classification_remittances_actual_values: Actual remittances values aligned to those year labels, as a named-axis series of floats or text.
+        classification_world_growth_reported_codes: Reported world-growth codes as a named-axis series over classification catalog coordinates.
+        classification_world_growth_reported_years: Projection-year labels for the reported world-growth codes, as a named-axis series whose entries are integer years or text.
+        classification_world_growth_reported_values: Reported world-growth values aligned to those year labels, as a named-axis series of floats or text.
+        classification_lookup_year_id_note: Free-text note identifying the lookup year entry used by the classification sheet.
+        classification_classification_prior_vintage_header: Column header text for the prior-vintage classification column.
+        classification_classification_two_vintages_ago_header: Column header text for the classification column two vintages ago.
+        classification_ci_score_prior_vintage_header: Column header text for the prior-vintage CI score column.
+        classification_ci_score_two_vintages_ago_column_header: Column header text for the CI score column two vintages ago.
+        classification_column_headers: Column labels of the classification table as a named-axis series over catalog coordinates.
+        classification_ifs_code: IFS country code for the classification row, as an integer or text scalar.
+        classification_iso_alpha3: ISO alpha-3 country code for the classification row, as text.
+        classification_country_name: Country name for the classification row, as text.
+        classification_classification_final: Final classification outcome for the current vintage, as text.
+        classification_classification_current_vintage: Classification label for the current vintage, as text.
+        classification_classification_previous_vintage: Classification label for the previous vintage, as text.
+        classification_classification_final_previous: Final classification outcome for the previous vintage, as text.
+        classification_current_ci_score_current_vintage: CI score for the current vintage, as a float or text scalar.
+        classification_current_ci_score_previous_vintage: CI score for the previous vintage, as a float or text scalar.
+        classification_current_ci_score_2_vintages_ago: CI score from two vintages ago, as a float or text scalar.
+        classification_current_cpia: Current CPIA value used in the classification, as a float or text scalar.
+        classification_current_growth: Current growth value used in the classification, as a float or text scalar.
+        classification_current_reserves: Current reserves value used in the classification, as a float or text scalar.
+        classification_current_remittances: Current remittances value used in the classification, as a float or text scalar.
+        classification_current_world_growth: Current world-growth value used in the classification, as a float or text scalar.
+        classification_growth_memo_primary: Primary growth memo value carried alongside the classification, as a float or text scalar.
+        classification_growth_memo_secondary: Secondary growth memo value carried alongside the classification, as a float or text scalar.
+        classification_reserves_memo: Reserves memo value carried alongside the classification, as a float or text scalar.
+        classification_remittances_memo: Remittances memo value carried alongside the classification, as a float or text scalar.
+        classification_ci_score_2018_oct_header: Column header text for the October 2018 CI score column.
+        classification_ci_class_2018_oct_header: Column header text for the October 2018 CI classification column.
+        classification_ci_score_2018_oct_label: Row label text for the October 2018 CI score entry.
+        classification_ci_class_2018_oct_label: Row label text for the October 2018 CI classification entry.
+        classification_ci_score_2018_oct: October 2018 CI score value, as a float or text scalar.
+        classification_ci_class_2018_oct: October 2018 CI classification label, as text.
+        classification_ci_components_share_headers: Headers for the CI component share rows, as a named-axis series over catalog coordinates.
+        classification_ci_components_share: CI component share values, as a named-axis series of floats or text aligned to those headers.
+        classification_ci_components_contribution_headers: Headers for the CI component contribution rows, as a named-axis series over catalog coordinates.
+        classification_ci_components_contribution: CI component contribution values, as a named-axis series of floats or text aligned to those headers.
+        data_rem_headers: Column labels of the remittances data block, as a named-axis series over catalog coordinates.
+        data_rem_notes_header: Column header text for the remittances notes column.
+        data_rem_metadata: Metadata rows of the remittances data block, as a named-axis series of text over catalog coordinates.
+        data_gdpusd_headers: Column labels of the GDP (USD) data block, as a named-axis series over catalog coordinates.
+        data_gdpusd_country_code_note: Free-text note describing the country-code column of the GDP (USD) data block.
+        data_gdpusd_metadata: Metadata rows of the GDP (USD) data block, as a named-axis series of text over catalog coordinates.
+        data_gdpusd_ifs_code: IFS country code for the GDP (USD) block, as an integer or text scalar.
+        imported_country_code: Country code used by the importing classification lookup, as an integer or text scalar.
+        imported_classification_years: Projection years of the imported classification series, as a named-axis series whose entries are integer years or text.
+        imported_classification_ids: Identifiers of the imported classification rows, as a named-axis series whose entries are strings, integers, floats, booleans, or null.
 
     Returns:
-        A named-axis series of the classification values projected onto the imported classification year and identifier coordinates, holding floats where resolved and strings or nulls where the underlying cell is textual or blank.
+        A named-axis series over catalog coordinates holding the imported classification values per projection year, with float or text entries and nulls where a value is unavailable.
     """
     data.CLASSIFICATION_CPIA_REPORTED_CODES.schema.validate(classification_cpia_reported_codes)
     data.CLASSIFICATION_CPIA_REPORTED_YEARS.schema.validate(classification_cpia_reported_years)
@@ -11487,7 +11495,7 @@ def imported_classification_values(*, classification_cpia_reported_codes: data.S
     data.DATA_GDPUSD_METADATA.schema.validate(data_gdpusd_metadata)
     _imported_classification_values_table_0 = lazy_table(((lambda: classification_lookup_year_id_note, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: classification_classification_prior_vintage_header, lambda: classification_classification_two_vintages_ago_header, lambda: None, lambda: classification_ci_score_prior_vintage_header, lambda: classification_ci_score_two_vintages_ago_column_header, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(classification_cpia_reported_codes, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), lambda: None, lambda: None, lambda: None, view(classification_growth_reported_codes, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), view(classification_growth_actual_codes, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), lambda: None, lambda: None, view(classification_reserves_reported_codes, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), view(classification_reserves_actual_codes, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), lambda: None, lambda: None, view(classification_remittances_reported_codes, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), view(classification_remittances_actual_codes, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), lambda: None, view(classification_world_growth_reported_codes, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), lambda: None, lambda: classification_ci_score_2018_oct_header, lambda: classification_ci_class_2018_oct_header, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (view(classification_column_headers, cols=span(data.INDICATOR_AXIS, 'IFS Code', 'W_GROWTH')), lambda: None, view(classification_cpia_reported_years, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), lambda: None, lambda: None, lambda: None, view(classification_growth_reported_years, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), view(classification_growth_actual_years, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), lambda: None, lambda: None, view(classification_reserves_reported_years, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), view(classification_reserves_actual_years, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), lambda: None, lambda: None, view(classification_remittances_reported_years, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), view(classification_remittances_actual_years, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), lambda: None, view(classification_world_growth_reported_years, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), lambda: None, lambda: classification_ci_score_2018_oct_label, lambda: classification_ci_class_2018_oct_label, lambda: None, view(classification_ci_components_share_headers, cols=data.INDICATOR_AXIS_4.keys), view(classification_ci_components_contribution_headers, cols=data.INDICATOR_AXIS_4.keys), lambda: None), (lambda: classification_ifs_code, lambda: classification_iso_alpha3, lambda: classification_country_name, lambda: None, lambda: classification_classification_final, lambda: classification_classification_current_vintage, lambda: classification_classification_previous_vintage, lambda: classification_classification_final_previous, lambda: classification_current_ci_score_current_vintage, lambda: classification_current_ci_score_previous_vintage, lambda: classification_current_ci_score_2_vintages_ago, lambda: classification_current_cpia, lambda: classification_current_growth, lambda: classification_current_reserves, lambda: classification_current_remittances, lambda: classification_current_world_growth, lambda: None, view(classification_cpia_reported_values, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), lambda: None, lambda: classification_growth_memo_primary, lambda: classification_growth_memo_secondary, view(classification_growth_reported_values, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), view(classification_growth_actual_values, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), lambda: None, lambda: classification_reserves_memo, view(classification_reserves_reported_values, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), view(classification_reserves_actual_values, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), lambda: None, lambda: classification_remittances_memo, view(classification_remittances_reported_values, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), view(classification_remittances_actual_values, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), lambda: None, view(classification_world_growth_reported_values, cols=span(data.TIME_PERIOD_AXIS, 2019, 2029)), lambda: None, lambda: classification_ci_score_2018_oct, lambda: classification_ci_class_2018_oct, lambda: None, view(classification_ci_components_share, cols=data.INDICATOR_AXIS_4.keys), view(classification_ci_components_contribution, cols=data.INDICATOR_AXIS_4.keys), lambda: None)))
     _imported_classification_values_table_1 = lazy_table(((xl_typed_range(view(data_rem_headers, cols=span(data.VARIANT_AXIS, 'Database', '45420')), (('Database', 'Series_Code', 'Country.Code', 'Country.Name', 'Indicator.Name', 'Indicator.Unit', 'Scale', 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029, 'Source', 'Updated', 45420),)), lambda: None, lambda: None, lambda: data_rem_notes_header, lambda: None, lambda: None, lambda: None), (xl_typed_range(view(data_rem_metadata, cols=span(data.VARIANT_AXIS, 'Database', 'Updated')), (('DSA database', 'GHA', 652, 'Ghana', "Gross worker's remittances", 'US Dollars', 'Billions', 3.4, 3.6, 3.4, 3.6, 3.8, 3.9, 4.7, 4.9, 5.1, 5.3, 5.6, 'DSA (level)', 'Updated and appended by Python Apr 30, 2024'),)), lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None)))
-    _imported_classification_values_table_2 = lazy_table(((xl_typed_range(view(data_gdpusd_headers, cols=data.VARIANT_AXIS_2.keys), (('EcDatabase', 'Series_Code', 'Country.Code', 'Country.Name', 'Indicator.Code', 'Indicator.Name', 'Indicator.Unit', 'Scale', 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029),)), lambda: None, lambda: None, lambda: None, lambda: data_gdpusd_country_code_note, lambda: None, lambda: None), (xl_typed_range(view(data_gdpusd_metadata, cols=data.VARIANT_AXIS_2.keys), (('ID:WEOApr2024Pub', '652NGDPD.A', 652, 'Ghana', 'NGDPD', 'Gross domestic product in US dollars', 'US Dollars', 'Billions', 68.35263210221115, 70.00823913871191, 79.59900694372529, 72.24280037900431, 76.27696516197227, 75.24362825058772, 76.01915452700602, 81.08354463478841, 86.45604489849164, 92.24421778711003, 98.55436605195102),)), lambda: None, lambda: None, lambda: None, lambda: data_gdpusd_ifs_code, lambda: None, lambda: None), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None)))
+    _imported_classification_values_table_2 = lazy_table(((xl_typed_range(view(data_gdpusd_headers, cols=data.VARIANT_AXIS_3.keys), (('EcDatabase', 'Series_Code', 'Country.Code', 'Country.Name', 'Indicator.Code', 'Indicator.Name', 'Indicator.Unit', 'Scale', 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029),)), lambda: None, lambda: None, lambda: None, lambda: data_gdpusd_country_code_note, lambda: None, lambda: None), (xl_typed_range(view(data_gdpusd_metadata, cols=data.VARIANT_AXIS_3.keys), (('ID:WEOApr2024Pub', '652NGDPD.A', 652, 'Ghana', 'NGDPD', 'Gross domestic product in US dollars', 'US Dollars', 'Billions', 68.35263210221115, 70.00823913871191, 79.59900694372529, 72.24280037900431, 76.27696516197227, 75.24362825058772, 76.01915452700602, 81.08354463478841, 86.45604489849164, 92.24421778711003, 98.55436605195102),)), lambda: None, lambda: None, lambda: None, lambda: data_gdpusd_ifs_code, lambda: None, lambda: None), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None)))
     def formula(indicator: str, time_period: int) -> float | str | None:
         if indicator == 'Remittances':
             return as_measure(xl_index(_imported_classification_values_table_1, xl_match(imported_country_code, xl_index(((data_rem_headers['Country.Code'],), (xl_lookup_cell(data_rem_metadata['Country.Code'], 652),), (None,), (None,), (None,), (None,), (None,),), None, 1), 0), xl_match(imported_classification_years[time_period], xl_index(_imported_classification_values_table_1, 1, 0), 0)))
@@ -14965,19 +14973,19 @@ def c4_mkt_fin_dsr_revenue_stress(*, c4_mkt_fin_adjusted_debt_service: data.Seri
     return data.C4_MKT_FIN_DSR_REVENUE_STRESS.collect(evaluate(formula, data.C4_MKT_FIN_DSR_REVENUE_STRESS.required))
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_DEBT_CARRYING_CAPACITY_CELLS)
-def ci_summary_debt_carrying_capacity(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_performance_policy: str | int | float | bool, ci_summary_debt_carrying_capacity_vintage_reconciled: str | int | float | bool) -> str | int | float | bool:
-    """Return the effective debt-carrying-capacity classification for the IDA terms threshold mode.
+def ci_summary_debt_carrying_capacity(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, ci_summary_performance_policy: str | int | float | bool, ci_summary_debt_carrying_capacity_vintage_reconciled: str | int | float | bool) -> str | int | float | bool:
+    """Determine the debt carrying capacity classification using IDA terms and standard size threshold mode.
 
-    Selects between the vintage-reconciled capacity and performance-policy value according to whether the standard-size threshold mode matches the new IDA terms label.
+    Selects between the vintage-reconciled and performance-policy debt carrying capacity values based on whether the standard size threshold mode matches the IDA terms lookup.
 
     Args:
-        lookup_ida_terms_new: Scalar IDA terms identifier used as the comparison value for the active standard-size threshold mode.
-        input6_standard_size_threshold_mode: Scalar threshold-mode literal, either 'New' or 'Old', that determines which capacity source is selected.
-        ci_summary_performance_policy: Scalar performance-policy value, typically the weak/medium/strong classification used for applicable thresholds, returned when the threshold mode does not match the IDA terms label.
-        ci_summary_debt_carrying_capacity_vintage_reconciled: Scalar vintage-reconciled debt-carrying-capacity value, typically the weak/medium/strong classification used for applicable thresholds, returned when the threshold mode matches the IDA terms label.
+        lookup_ida_terms_new: Lookup value for new IDA terms, used as the comparison target.
+        input6_standard_size_threshold_mode: Standard size threshold mode from Input 6, compared against the IDA terms lookup.
+        ci_summary_performance_policy: Performance-policy debt carrying capacity value, used when the threshold mode does not match the IDA terms lookup.
+        ci_summary_debt_carrying_capacity_vintage_reconciled: Vintage-reconciled debt carrying capacity value, used when the threshold mode matches the IDA terms lookup.
 
     Returns:
-        Scalar value selected from the vintage-reconciled capacity or performance policy, returned as a string measure when conversion succeeds, or the workbook error code string when an XlError occurs.
+        The selected debt carrying capacity classification as a scalar (str, int, float, or bool), or an Excel error code string if an XlError occurs.
     """
     try:
         return as_measure((ci_summary_debt_carrying_capacity_vintage_reconciled if xl_bool(xl_eq(input6_standard_size_threshold_mode, lookup_ida_terms_new)) else ci_summary_performance_policy), 'str')
@@ -15137,24 +15145,24 @@ def ci_summary_ds_revenue_heading(*, start_debt_sustainability_analysis: str | i
         return error.code
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_PUBLIC_PV_MEDIUM_CUTOFF_CELLS)
-def ci_summary_public_pv_medium_cutoff(*, lookup_ida_terms_new: str, ci_pub_pv_debt_gdp_new: data.Series[float | str | None], input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_public_pv_heading: str | int | float | bool, ci_summary_cpia_rating: float | str, ci_summary_public_benchmark_grid_heading: str | int | float | bool, ci_summary_public_pv_grid_heading: str | int | float | bool, ci_summary_public_capacity_class_headers: data.Series[str | int | float | bool | None]) -> float | str:
-    """Return the public PV medium cutoff from the CI summary table for the new IDA terms.
+def ci_summary_public_pv_medium_cutoff(*, lookup_ida_terms_new: str, ci_pub_pv_debt_gdp_new: data.Series[float | str | None], input6_standard_size_threshold_mode: str, ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_public_pv_heading: str | int | float | bool, ci_summary_cpia_rating: float | str, ci_summary_public_benchmark_grid_heading: str | int | float | bool, ci_summary_public_pv_grid_heading: str | int | float | bool, ci_summary_public_capacity_class_headers: data.Series[str | int | float | bool | None]) -> float | str:
+    """Return the public PV debt-to-GDP medium capacity threshold from the CI summary lookup.
 
-    Selects the medium PV threshold by carrying-capacity class when the standardized size threshold mode matches the IDA terms label, otherwise falls back to the CPIA rating.
+    Selects the applicable public PV medium threshold by matching heading and debt-carrying-capacity labels, falling back to the CPIA rating when the standard-size threshold mode is not IDA terms.
 
     Args:
-        lookup_ida_terms_new: Scalar text label of the IDA terms variant used to decide whether the new standardized size threshold applies.
-        ci_pub_pv_debt_gdp_new: Named-axis series of public PV debt-to-GDP values over catalog coordinates for the new IDA terms variant.
-        input6_standard_size_threshold_mode: Scalar selector indicating whether the standardized size threshold uses the 'New' or 'Old' definition.
-        ci_summary_debt_carrying_capacity: Scalar debt-carrying-capacity class value used as the row lookup key within the CI summary grid.
-        ci_summary_public_pv_heading: Scalar heading value identifying the public PV row to retrieve from the CI summary table.
-        ci_summary_cpia_rating: Scalar CPIA rating returned as the fallback when the threshold mode does not match the IDA terms label.
-        ci_summary_public_benchmark_grid_heading: Scalar heading value identifying the benchmark grid row used to align the CI summary table.
-        ci_summary_public_pv_grid_heading: Scalar heading value identifying the public PV grid row used to align the CI summary table.
-        ci_summary_public_capacity_class_headers: Named-axis series of capacity-class headers over catalog coordinates supplying the column labels for the CI summary lookup.
+        lookup_ida_terms_new: String lookup key identifying the IDA-terms option used when comparing the standard-size threshold mode.
+        ci_pub_pv_debt_gdp_new: Typed data series of public PV debt-to-GDP values over the variant axis, supplying the capacity-class threshold lookup grid.
+        input6_standard_size_threshold_mode: String mode indicating the standard-size threshold treatment; when it matches the IDA-terms lookup, the grid value is returned instead of the CPIA rating.
+        ci_summary_debt_carrying_capacity: Scalar debt-carrying-capacity label used to match a row in the public PV threshold table.
+        ci_summary_public_pv_heading: Scalar public PV heading used to locate the relevant row index in the threshold table.
+        ci_summary_cpia_rating: Scalar CPIA rating returned as the threshold when the standard-size threshold mode does not select the IDA-terms lookup.
+        ci_summary_public_benchmark_grid_heading: Scalar heading identifying the public benchmark grid row in the threshold lookup table.
+        ci_summary_public_pv_grid_heading: Scalar heading identifying the public PV grid row in the threshold lookup table.
+        ci_summary_public_capacity_class_headers: Typed data series of public capacity-class header labels over the parameter axis, defining the lookup table columns.
 
     Returns:
-        The public PV medium cutoff as a float when the new IDA terms threshold applies, or the CPIA rating as a float or str fallback; an Excel error code string if the lookup raises an error.
+        The applicable public PV medium capacity threshold as a scalar floating-point value or string, or an Excel error code string if the lookup fails.
     """
     data.CI_PUB_PV_DEBT_GDP_NEW.schema.validate(ci_pub_pv_debt_gdp_new)
     _ci_summary_public_pv_medium_cutoff_table_0 = lazy_table(((lambda: ci_summary_public_benchmark_grid_heading, lambda: None, lambda: None, view(ci_summary_public_capacity_class_headers, cols=span(data.PARAMETER_AXIS, 'Weak', 'Strong'))), (lambda: ci_summary_public_pv_grid_heading, lambda: None, lambda: None, view(ci_pub_pv_debt_gdp_new, cols=span(data.VARIANT_AXIS, 'Weak', 'Strong')))))
@@ -15166,27 +15174,27 @@ def ci_summary_public_pv_medium_cutoff(*, lookup_ida_terms_new: str, ci_pub_pv_d
         return error.code
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_PV_EXPORTS_APPLICABLE_CELLS)
-def ci_summary_pv_exports_applicable(*, ci_summary_old_policy_exports_threshold: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_pv_debt_exports: data.Series[float | str | None], ci_ext_pv_debt_gdp: data.Series[float | str | None], input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_pv_exports_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_pv_of_debt_grid_heading: str | int | float | bool, ci_summary_pv_exports_grid_heading: str | int | float | bool, ci_summary_pv_gdp_grid_heading: str | int | float | bool) -> float | str:
-    """Return the applicable PV of debt-to-exports threshold for the current CI rating.
+def ci_summary_pv_exports_applicable(*, ci_summary_old_policy_exports_threshold: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_pv_debt_exports: data.Series[float | str | None], ci_ext_pv_debt_gdp: data.Series[float | str | None], input6_standard_size_threshold_mode: str, ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_pv_exports_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_pv_of_debt_grid_heading: str | int | float | bool, ci_summary_pv_exports_grid_heading: str | int | float | bool, ci_summary_pv_gdp_grid_heading: str | int | float | bool) -> float | str:
+    """Look up the applicable PV of debt-to-exports threshold from the current CI rating and debt-carrying capacity.
 
-    Resolve the CI Summary PV-exports applicable threshold from rating-specific lookup tables or the legacy policy fallback.
+    Resolve the PV of debt-to-exports threshold used by the CI summary, falling back to the old-policy value or returning an Excel error code.
 
     Args:
-        ci_summary_old_policy_exports_threshold: Fallback PV-exports threshold for the legacy policy mode; may be numeric or a string sentinel.
-        lookup_ida_terms_new: Lookup key identifying the current IDA terms, used to decide whether the new threshold grid applies.
-        ci_class_labels_thresholds: Named-axis series of CI class labels used to label the Weak-to-Strong threshold columns; validated against catalog coordinates.
-        ci_ext_pv_debt_exports: Named-axis series of external PV of debt-to-exports values used as the lookup payload for the PV-exports grid, narrowed to the Weak-to-Strong variant span.
-        ci_ext_pv_debt_gdp: Named-axis series of external PV of debt-to-GDP values used as the lookup payload for the PV/GDP grid, narrowed to the Weak-to-Strong variant span.
-        input6_standard_size_threshold_mode: Scalar mode selecting between the new and old standardized-size threshold rules.
-        ci_summary_debt_carrying_capacity: Scalar row label for the debt-carrying-capacity dimension, matched against the threshold grid.
-        ci_summary_pv_exports_heading: Scalar heading identifying the PV-exports row to match in the threshold table.
-        ci_summary_external_thresholds_grid_heading: Scalar heading for the external thresholds grid that anchors the rating and metric lookup tables.
-        ci_summary_pv_of_debt_grid_heading: Scalar heading for the PV-of-debt grid column used in the threshold table structure.
-        ci_summary_pv_exports_grid_heading: Scalar heading for the PV-exports grid column whose series supplies lookup values.
-        ci_summary_pv_gdp_grid_heading: Scalar heading for the PV-to-GDP grid column whose series supplies lookup values.
+        ci_summary_old_policy_exports_threshold: Scalar fallback threshold for PV of debt-to-exports under the old policy regime; float or string.
+        lookup_ida_terms_new: Scalar key identifying the new IDA terms option used to compare against the standard-size threshold mode.
+        ci_class_labels_thresholds: Typed series of CI class-label thresholds over variant-axis coordinates from Weak to Strong; string or null per coordinate.
+        ci_ext_pv_debt_exports: Typed series of external PV of debt-to-exports values over variant-axis coordinates from Weak to Strong; float, string, or null per coordinate.
+        ci_ext_pv_debt_gdp: Typed series of external PV of debt-to-GDP values over variant-axis coordinates from Weak to Strong; float, string, or null per coordinate.
+        input6_standard_size_threshold_mode: Scalar Input 6 mode string that selects between new IDA terms and the old-policy fallback.
+        ci_summary_debt_carrying_capacity: Scalar debt-carrying capacity label or code used as the column lookup key against the class-label thresholds.
+        ci_summary_pv_exports_heading: Scalar heading used to locate the PV of debt-to-exports row in the threshold grid.
+        ci_summary_external_thresholds_grid_heading: Scalar heading for the external-thresholds grid block.
+        ci_summary_pv_of_debt_grid_heading: Scalar heading for the PV of debt grid block.
+        ci_summary_pv_exports_grid_heading: Scalar heading for the PV of exports grid block.
+        ci_summary_pv_gdp_grid_heading: Scalar heading for the PV of GDP grid block.
 
     Returns:
-        Applicable PV-exports threshold as returned by the authored coordinate identity: a numeric threshold or a string result, including an Excel error code when the lookup fails.
+        Applicable PV of debt-to-exports threshold as a scalar float measure, or an Excel error code string if the lookup raises.
     """
     data.CI_CLASS_LABELS_THRESHOLDS.schema.validate(ci_class_labels_thresholds)
     data.CI_EXT_PV_DEBT_EXPORTS.schema.validate(ci_ext_pv_debt_exports)
@@ -15200,27 +15208,27 @@ def ci_summary_pv_exports_applicable(*, ci_summary_old_policy_exports_threshold:
         return error.code
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_PV_GDP_APPLICABLE_CELLS)
-def ci_summary_pv_gdp_applicable(*, ci_summary_old_framework_gdp_lookup: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_pv_debt_exports: data.Series[float | str | None], ci_ext_pv_debt_gdp: data.Series[float | str | None], input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_pv_gdp_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_pv_of_debt_grid_heading: str | int | float | bool, ci_summary_pv_exports_grid_heading: str | int | float | bool, ci_summary_pv_gdp_grid_heading: str | int | float | bool) -> float | str:
-    """Compute the applicable PV-of-debt-to-GDP threshold for the current CI rating.
+def ci_summary_pv_gdp_applicable(*, ci_summary_old_framework_gdp_lookup: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_pv_debt_exports: data.Series[float | str | None], ci_ext_pv_debt_gdp: data.Series[float | str | None], input6_standard_size_threshold_mode: str, ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_pv_gdp_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_pv_of_debt_grid_heading: str | int | float | bool, ci_summary_pv_exports_grid_heading: str | int | float | bool, ci_summary_pv_gdp_grid_heading: str | int | float | bool) -> float | str:
+    """Resolve the PV-of-GDP threshold applicable to the current CI rating by matching the debt-carrying-capacity and PV-of-GDP heading rows against the CI threshold grid.
 
-    Selects the PV/GDP threshold from new IDA-terms lookup tables or the old-framework fallback.
+    Selects the applicable PV-of-GDP threshold from the CI summary grid, falling back to the old-framework lookup when the standard-size threshold mode is not the new IDA terms.
 
     Args:
-        ci_summary_old_framework_gdp_lookup: Scalar old-framework GDP threshold lookup value (float or string) returned when the new IDA-terms mode is not selected.
-        lookup_ida_terms_new: Scalar string label identifying the new IDA-terms threshold regime, compared against the standard-size threshold mode.
-        ci_class_labels_thresholds: Typed data series of CI class-label threshold strings (nullable) over catalog coordinates, used to match debt-carrying-capacity bands.
-        ci_ext_pv_debt_exports: Typed data series of external PV-of-debt-to-exports values (float, string, or null) over catalog coordinates, viewed across the Weak-to-Strong variant axis.
-        ci_ext_pv_debt_gdp: Typed data series of external PV-of-debt-to-GDP values (float, string, or null) over catalog coordinates, viewed across the Weak-to-Strong variant axis.
-        input6_standard_size_threshold_mode: Scalar literal selecting the standardized-size threshold mode, either 'New' or 'Old', which chooses the lookup path.
-        ci_summary_debt_carrying_capacity: Scalar debt-carrying-capacity key (string, integer, float, or boolean) matched against the external-thresholds grid to select the applicable column.
-        ci_summary_pv_gdp_heading: Scalar heading key (string, integer, float, or boolean) matched against the PV-of-debt-to-GDP row in the threshold table.
-        ci_summary_external_thresholds_grid_heading: Scalar heading key (string, integer, float, or boolean) for the external-thresholds grid, used to build the lazy lookup tables.
-        ci_summary_pv_of_debt_grid_heading: Scalar heading key (string, integer, float, or boolean) for the PV-of-debt grid, used to build the lazy lookup tables.
-        ci_summary_pv_exports_grid_heading: Scalar heading key (string, integer, float, or boolean) for the PV-exports grid, used to build the lazy lookup tables.
-        ci_summary_pv_gdp_grid_heading: Scalar heading key (string, integer, float, or boolean) for the PV-GDP grid, used to build the lazy lookup tables.
+        ci_summary_old_framework_gdp_lookup: Scalar PV-of-GDP threshold or label from the old framework, returned verbatim when the standard-size threshold mode is not the new IDA terms.
+        lookup_ida_terms_new: Sentinel string for the new IDA-terms standard-size threshold mode, compared for equality against the Input 6 mode to choose the grid lookup path.
+        ci_class_labels_thresholds: Named-axis series over catalog coordinates holding the CI class label and threshold rows, viewed across the Weak-to-Strong variant span to form the CI summary threshold grid.
+        ci_ext_pv_debt_exports: Named-axis series over catalog coordinates of external PV of debt-to-exports values, viewed across the Weak-to-Strong variant span as the exports grid row of the CI summary table.
+        ci_ext_pv_debt_gdp: Named-axis series over catalog coordinates of external PV of debt-to-GDP values, viewed across the Weak-to-Strong variant span as the PV-of-GDP grid row of the CI summary table.
+        input6_standard_size_threshold_mode: Scalar Input 6 setting naming the standardized threshold mode, tested against the new IDA-terms lookup value to decide whether the grid lookup is used.
+        ci_summary_debt_carrying_capacity: Scalar debt-carrying-capacity label matched against the CI summary grid rows to pick the applicable threshold cell.
+        ci_summary_pv_gdp_heading: Scalar PV-of-GDP grid row heading matched against the CI summary grid to pick the row supplying the applicable threshold.
+        ci_summary_external_thresholds_grid_heading: Scalar heading for the external thresholds grid row, labeling the first CI summary table row in the lazy table built for the lookup.
+        ci_summary_pv_of_debt_grid_heading: Scalar heading for the PV-of-debt grid row, used as the row label when the CI summary table is assembled.
+        ci_summary_pv_exports_grid_heading: Scalar heading for the PV-of-exports grid row, labeling the row that carries the PV of debt-to-exports values.
+        ci_summary_pv_gdp_grid_heading: Scalar heading for the PV-of-GDP grid row, labeling the row that carries the PV of debt-to-GDP values used in the match.
 
     Returns:
-        Applicable PV-of-debt-to-GDP threshold as a float, or a string result/error code from the old-framework fallback or a failed Excel lookup.
+        The applicable PV-of-GDP threshold resolved from the current CI rating as a float, or the string representing the Excel error code if the grid lookup raises an XlError.
     """
     data.CI_CLASS_LABELS_THRESHOLDS.schema.validate(ci_class_labels_thresholds)
     data.CI_EXT_PV_DEBT_EXPORTS.schema.validate(ci_ext_pv_debt_exports)
@@ -15234,27 +15242,27 @@ def ci_summary_pv_gdp_applicable(*, ci_summary_old_framework_gdp_lookup: float |
         return error.code
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_DS_EXPORTS_APPLICABLE_CELLS)
-def ci_summary_ds_exports_applicable(*, ci_summary_old_framework_ds_exports_lookup: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_debt_service_exports: data.Series[float | str | None], ci_ext_debt_service_revenue: data.Series[float | str | None], ci_debt_service_in_percent_of: str, input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_ds_exports_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_ds_exports_grid_heading: str | int | float | bool, ci_summary_ds_revenue_grid_heading: str | int | float | bool) -> float | str:
-    """Compute the applicable debt-service-to-exports threshold.
+def ci_summary_ds_exports_applicable(*, ci_summary_old_framework_ds_exports_lookup: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_debt_service_exports: data.Series[float | str | None], ci_ext_debt_service_revenue: data.Series[float | str | None], ci_debt_service_in_percent_of: str, input6_standard_size_threshold_mode: str, ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_ds_exports_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_ds_exports_grid_heading: str | int | float | bool, ci_summary_ds_revenue_grid_heading: str | int | float | bool) -> float | str:
+    """Look up the applicable CI debt-service-to-exports threshold from the current rating.
 
-    Resolve the CI summary applicable threshold for the debt-service-to-exports ratio under the selected standard-size threshold framework.
+    Selects the IDA-terms threshold grid or old-framework fallback according to the Input 6 standard-size threshold mode.
 
     Args:
-        ci_summary_old_framework_ds_exports_lookup: Legacy-framework debt-service-to-exports lookup value, as a scalar float or string fallback.
-        lookup_ida_terms_new: Scalar IDA-terms label identifying the new standard-size threshold framework.
-        ci_class_labels_thresholds: Named-axis series over catalog coordinates of CI class-label threshold values, possibly None.
-        ci_ext_debt_service_exports: Named-axis series over catalog coordinates of external debt-service-to-exports ratios, possibly string or None.
-        ci_ext_debt_service_revenue: Named-axis series over catalog coordinates of external debt-service-to-revenue ratios, possibly string or None.
-        ci_debt_service_in_percent_of: Scalar label for the debt-service percentage basis row.
-        input6_standard_size_threshold_mode: Keyword-only scalar selector for the standard-size threshold framework, either 'New' or 'Old'.
-        ci_summary_debt_carrying_capacity: Scalar debt-carrying-capacity label or value used to match the threshold grid.
-        ci_summary_ds_exports_heading: Scalar heading label identifying the debt-service-to-exports row.
-        ci_summary_external_thresholds_grid_heading: Scalar heading label identifying the external thresholds grid.
-        ci_summary_ds_exports_grid_heading: Scalar heading label identifying the debt-service-to-exports grid.
-        ci_summary_ds_revenue_grid_heading: Scalar heading label identifying the debt-service-to-revenue grid.
+        ci_summary_old_framework_ds_exports_lookup: Scalar fallback threshold or label used when the standard-size threshold mode is not the new IDA terms value.
+        lookup_ida_terms_new: Scalar lookup key identifying the new IDA terms variant for the standard-size threshold comparison.
+        ci_class_labels_thresholds: Named-axis data.Series[str | None] of CI class-label thresholds over catalog coordinates, viewed across the Weak-to-Strong variant span.
+        ci_ext_debt_service_exports: Named-axis data.Series[float | str | None] of external debt-service-to-exports values over catalog coordinates, viewed across the Weak-to-Strong variant span.
+        ci_ext_debt_service_revenue: Named-axis data.Series[float | str | None] of external debt-service-to-revenue values over catalog coordinates, viewed across the Weak-to-Strong variant span.
+        ci_debt_service_in_percent_of: Scalar text row label for the debt-service measure, expressed in percent of exports or revenue.
+        input6_standard_size_threshold_mode: Scalar Input 6 standard-size threshold mode text compared against the new IDA terms lookup key.
+        ci_summary_debt_carrying_capacity: Scalar debt-carrying-capacity heading or key matched against the external thresholds grid.
+        ci_summary_ds_exports_heading: Scalar heading or key for the debt-service-to-exports row used as a match value in the grid lookup.
+        ci_summary_external_thresholds_grid_heading: Scalar heading or key for the external thresholds grid used as a match column.
+        ci_summary_ds_exports_grid_heading: Scalar heading or key for the debt-service-to-exports grid row.
+        ci_summary_ds_revenue_grid_heading: Scalar heading or key for the debt-service-to-revenue grid row.
 
     Returns:
-        The applicable debt-service-to-exports threshold as a scalar float, or the XlError code string when the lookup raises.
+        Applicable threshold as a float, or a string XlError code if the lookup fails.
     """
     data.CI_CLASS_LABELS_THRESHOLDS.schema.validate(ci_class_labels_thresholds)
     data.CI_EXT_DEBT_SERVICE_EXPORTS.schema.validate(ci_ext_debt_service_exports)
@@ -15268,27 +15276,27 @@ def ci_summary_ds_exports_applicable(*, ci_summary_old_framework_ds_exports_look
         return error.code
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_DS_REVENUE_APPLICABLE_CELLS)
-def ci_summary_ds_revenue_applicable(*, ci_summary_old_framework_ds_revenue_lookup: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_debt_service_exports: data.Series[float | str | None], ci_ext_debt_service_revenue: data.Series[float | str | None], ci_debt_service_in_percent_of: str, input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_ds_revenue_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_ds_exports_grid_heading: str | int | float | bool, ci_summary_ds_revenue_grid_heading: str | int | float | bool) -> float | str:
-    """Compute the applicable CI summary debt-service-to-revenue threshold.
+def ci_summary_ds_revenue_applicable(*, ci_summary_old_framework_ds_revenue_lookup: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_debt_service_exports: data.Series[float | str | None], ci_ext_debt_service_revenue: data.Series[float | str | None], ci_debt_service_in_percent_of: str, input6_standard_size_threshold_mode: str, ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_ds_revenue_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_ds_exports_grid_heading: str | int | float | bool, ci_summary_ds_revenue_grid_heading: str | int | float | bool) -> float | str:
+    """Return the applicable debt-service-to-revenue threshold for the current CI rating or an Excel error code.
 
-    Resolve the DS revenue applicability threshold from the current classification, grid headings, and standard-size threshold mode.
+    Looks up the applicable threshold from the current CI rating using the selected standard-size threshold mode and class-label thresholds.
 
     Args:
-        ci_summary_old_framework_ds_revenue_lookup: Scalar fallback value for the old-framework debt-service-to-revenue threshold, returned when the standard-size threshold mode is not the new IDA terms marker.
-        lookup_ida_terms_new: Scalar marker used to recognize the new IDA terms regime in the Input 6 standard-size threshold mode comparison.
-        ci_class_labels_thresholds: Named-axis series over catalog coordinates holding class-label threshold values (or nulls) for the external-thresholds grid lookup.
-        ci_ext_debt_service_exports: Named-axis series over catalog coordinates holding external debt-service-to-exports values (or nulls) for the DS exports grid slice.
-        ci_ext_debt_service_revenue: Named-axis series over catalog coordinates holding external debt-service-to-revenue values (or nulls) for the DS revenue grid slice.
-        ci_debt_service_in_percent_of: Scalar heading identifying the debt-service denominator row in the CI summary lookup tables.
-        input6_standard_size_threshold_mode: Scalar mode selecting the standard-size threshold regime from Input 6; "New" activates the IDA-terms lookup, while "Old" uses the legacy fallback.
-        ci_summary_debt_carrying_capacity: Scalar debt-carrying-capacity classification used as the match key against the external thresholds grid.
-        ci_summary_ds_revenue_heading: Scalar heading locating the debt-service-to-revenue line in the CI summary table.
-        ci_summary_external_thresholds_grid_heading: Scalar heading locating the external-thresholds grid block in the CI summary table.
-        ci_summary_ds_exports_grid_heading: Scalar heading locating the debt-service-to-exports grid block in the CI summary table.
-        ci_summary_ds_revenue_grid_heading: Scalar heading locating the debt-service-to-revenue grid block in the CI summary table.
+        ci_summary_old_framework_ds_revenue_lookup: Scalar or string old-framework debt-service-to-revenue threshold lookup used as a fallback when the new IDA-terms condition is not met.
+        lookup_ida_terms_new: String IDA-terms sentinel compared against the Input 6 standard-size threshold mode to select the new-framework lookup path.
+        ci_class_labels_thresholds: Named-axis series of class labels and threshold markers over catalog coordinates, used to resolve the applicable threshold row.
+        ci_ext_debt_service_exports: Named-axis series of external debt service-to-exports values over catalog coordinates, spanning weak-to-strong variants for the threshold grid.
+        ci_ext_debt_service_revenue: Named-axis series of external debt service-to-revenue values over catalog coordinates, spanning weak-to-strong variants for the threshold grid.
+        ci_debt_service_in_percent_of: String label for the debt-service denominator, such as exports or revenue, that heads the applicable threshold table.
+        input6_standard_size_threshold_mode: String selected standard-size threshold mode from Input 6, controlling whether the new IDA-terms lookup or the old-framework fallback is returned.
+        ci_summary_debt_carrying_capacity: Scalar debt-carrying-capacity heading key used to match the corresponding row in the external thresholds grid.
+        ci_summary_ds_revenue_heading: Scalar debt-service-to-revenue heading key used to match the applicable threshold column in the standard-size table.
+        ci_summary_external_thresholds_grid_heading: Scalar heading key for the external thresholds grid, locating the class-label threshold row.
+        ci_summary_ds_exports_grid_heading: Scalar heading key for the debt-service-to-exports grid, locating the external debt service-to-exports series.
+        ci_summary_ds_revenue_grid_heading: Scalar heading key for the debt-service-to-revenue grid, locating the external debt service-to-revenue series.
 
     Returns:
-        Applicable debt-service-to-revenue threshold as a float, or the XlError code string when the indexed lookup cannot be resolved.
+        Applicable debt-service-to-revenue threshold as a float, or an Excel error code string if the lookup raises XlError.
     """
     data.CI_CLASS_LABELS_THRESHOLDS.schema.validate(ci_class_labels_thresholds)
     data.CI_EXT_DEBT_SERVICE_EXPORTS.schema.validate(ci_ext_debt_service_exports)
@@ -15699,18 +15707,18 @@ def ci_summary_debt_carrying_capacity_vintage_reconciled(*, ci_summary_debt_carr
         return error.code
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_DEBT_CARRYING_CAPACITY_CURRENT_VINTAGE_CELLS)
-def ci_summary_debt_carrying_capacity_current_vintage(*, input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_ci_rating: str | int | float | bool, ci_summary_performance_policy: str | int | float | bool) -> str | int | float | bool:
-    """Selects the current-vintage debt-carrying-capacity classification from the new-framework CI rating or the old-framework performance-policy rating.
+def ci_summary_debt_carrying_capacity_current_vintage(*, input6_standard_size_threshold_mode: str, ci_summary_ci_rating: str | int | float | bool, ci_summary_performance_policy: str | int | float | bool) -> str | int | float | bool:
+    """Return the current-vintage CI debt-carrying-capacity classification for the summary block.
 
-    Resolves the applicable current-vintage classification according to the selected standard-size threshold mode.
+    Selects the applicable CI or performance-policy rating according to the threshold mode and normalizes it to the template scalar measure.
 
     Args:
-        input6_standard_size_threshold_mode: input6_standard_size_threshold_mode: Scalar Literal selecting the standard-size threshold framework; 'New' takes the CI rating, 'Old' takes the performance-policy rating.
-        ci_summary_ci_rating: ci_summary_ci_rating: Scalar new-framework CI rating used when the New standard-size threshold mode is active.
-        ci_summary_performance_policy: ci_summary_performance_policy: Scalar old-framework performance-policy rating used when the Old standard-size threshold mode is active.
+        input6_standard_size_threshold_mode: Scalar string threshold-mode switch; when equal to 'New' the new-framework CI rating is used, otherwise the old-framework performance-policy rating is used.
+        ci_summary_ci_rating: Scalar new-framework CI rating value selected when the threshold mode is 'New'.
+        ci_summary_performance_policy: Scalar old-framework performance-policy rating value selected when the threshold mode is not 'New'.
 
     Returns:
-        Current-vintage debt-carrying-capacity classification as a scalar or string (str | int | float | bool), or the XlError code string if evaluation fails.
+        Scalar classification value (str, int, float, or bool) for the current-vintage debt-carrying-capacity signal, taken from the selected CI rating or performance-policy input and normalized by the template measure.
     """
     try:
         return as_measure((ci_summary_ci_rating if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else ci_summary_performance_policy), 'str')
@@ -15974,42 +15982,6 @@ def ci_summary_old_ds_revenue_grid_heading(*, ci_summary_ds_revenue_grid_heading
     except XlError as error:
         return error.code
 
-@publish(key=(), domain=None, cells=data.TRIGGER_IFSCODE_HEADER_CELLS)
-def trigger_ifscode_header(*, lookup_country_table_headers: data.Series[str | None]) -> str | int | float | bool:
-    """Return the IFS-code column header from the lookup country table.
-
-    Extract the country table's Code2 header as an IFS-code signal for trigger evaluation.
-
-    Args:
-        lookup_country_table_headers: A data.Series of optional string IFS-code column header values copied from the lookup country table, where None marks blanks.
-
-    Returns:
-        The Code2 value as a str when present; otherwise the XlError code as an int, float, or bool.
-    """
-    data.LOOKUP_COUNTRY_TABLE_HEADERS.schema.validate(lookup_country_table_headers)
-    try:
-        return as_measure(lookup_country_table_headers['Code2'], 'str')
-    except XlError as error:
-        return error.code
-
-@publish(key=(), domain=None, cells=data.TRIGGER_COUNTRY_HEADER_CELLS)
-def trigger_country_header(*, lookup_country_table_headers: data.Series[str | None]) -> str | int | float | bool:
-    """Return the country-name header used to trigger country-specific lookup dispatch.
-
-    Extracts the validated `Country Name` header from the lookup country-table headers series so callers can key country-scoped processing.
-
-    Args:
-        lookup_country_table_headers: Typed `data.Series[str | None]` keyed by catalog coordinates whose `Country Name` entry holds the country-name column header; missing headers are represented as `None`.
-
-    Returns:
-        A scalar country-name header value when present, otherwise the corresponding `XlError` code; the declared return annotation is `str | int | float | bool`.
-    """
-    data.LOOKUP_COUNTRY_TABLE_HEADERS.schema.validate(lookup_country_table_headers)
-    try:
-        return as_measure(lookup_country_table_headers['Country Name'], 'str')
-    except XlError as error:
-        return error.code
-
 @publish(data.TRIGGER_IFSCODE.schema, cells=data.TRIGGER_IFSCODE.cells)
 def trigger_ifscode(*, imported_ppp_ifs_code: data.Series[int | str | None]) -> data.Series[int | str | None]:
     """Map each LIC-DSF reference area to the IFS code imported for its country.
@@ -16134,358 +16106,40 @@ def trigger_ifscode(*, imported_ppp_ifs_code: data.Series[int | str | None]) -> 
 
     return data.TRIGGER_IFSCODE.collect(evaluate(formula, data.TRIGGER_IFSCODE.required))
 
-@publish(data.TRIGGER_ISOCODE.schema, cells=data.TRIGGER_ISOCODE.cells)
-def trigger_isocode(*, lookup_imf_country_code: data.Series[int | str | None], lookup_country_table_headers: data.Series[str | None], lookup_iso_alpha3: data.Series[str | None], lookup_country_name: data.Series[str | None], lookup_hipc_status: data.Series[str | None], trigger_ifscode_header: str | int | float | bool, trigger_ifscode: data.Series[int | str | None]) -> data.Series[str | int | float | bool | None]:
-    """Computes trigger ISO codes by Excel-style INDEX/MATCH across lookup headers and country tables.
-
-    Resolves each trigger country code to the lookup-table value selected by the supplied header.
-
-    Args:
-        lookup_imf_country_code: A data.Series[int | str | None] over reference-area coordinates providing IMF country codes; its values form the match column for trigger codes.
-        lookup_country_table_headers: A data.Series[str | None] over variant coordinates providing lookup-table headers from Code2 through HIPC status, used to resolve the requested column.
-        lookup_iso_alpha3: A data.Series[str | None] over reference-area coordinates providing ISO alpha-3 codes in the indexed country table.
-        lookup_country_name: A data.Series[str | None] over reference-area coordinates providing country names in the indexed country table.
-        lookup_hipc_status: A data.Series[str | None] over reference-area coordinates providing HIPC status values in the indexed country table.
-        trigger_ifscode_header: A scalar header selector (str | int | float | bool) that identifies which lookup-table column is returned.
-        trigger_ifscode: A data.Series[int | str | None] over reference-area coordinates containing trigger country codes to match against the IMF country-code column.
-
-    Returns:
-        A data.Series[str | int | float | bool | None] of values from the selected lookup column—typically ISO3 codes for the LIC-DSF country list—indexed by the trigger ISO-code axis.
-    """
-    data.LOOKUP_IMF_COUNTRY_CODE.schema.validate(lookup_imf_country_code)
-    data.LOOKUP_COUNTRY_TABLE_HEADERS.schema.validate(lookup_country_table_headers)
-    data.LOOKUP_ISO_ALPHA3.schema.validate(lookup_iso_alpha3)
-    data.LOOKUP_COUNTRY_NAME.schema.validate(lookup_country_name)
-    data.LOOKUP_HIPC_STATUS.schema.validate(lookup_hipc_status)
-    _trigger_isocode_table_0 = lazy_table(((view(lookup_country_table_headers, cols=span(data.VARIANT_AXIS, 'Code2', 'HIPC status')),), (view(lookup_iso_alpha3, rows=span(data.REF_AREA_AXIS, 'AFG', 'ZWE')), view(lookup_imf_country_code, rows=span(data.REF_AREA_AXIS, 'AFG', 'ZWE')), view(lookup_country_name, rows=span(data.REF_AREA_AXIS, 'AFG', 'ZWE')), view(lookup_hipc_status, rows=span(data.REF_AREA_AXIS, 'AFG', 'ZWE')))))
-    _trigger_isocode_table_1 = lazy_table(((lambda: lookup_country_table_headers['Country code'],), (view(lookup_imf_country_code, rows=span(data.REF_AREA_AXIS, 'AFG', 'ZWE')),)))
-    _trigger_isocode_table_2 = lazy_table(((view(lookup_country_table_headers, cols=span(data.VARIANT_AXIS, 'Code2', 'MDRI')), lambda: None),))
-    def formula(ref_area: str) -> str | int | float | bool | None:
-        return as_measure(xl_index(_trigger_isocode_table_0, xl_match(trigger_ifscode[ref_area], _trigger_isocode_table_1, 0), xl_match(trigger_ifscode_header, _trigger_isocode_table_2, 0)), 'str')
-
-    return data.TRIGGER_ISOCODE.collect(evaluate(formula, data.TRIGGER_ISOCODE.required))
-
-@publish(data.TRIGGER_COUNTRY_NAME.schema, cells=data.TRIGGER_COUNTRY_NAME.cells)
-def trigger_country_name(*, lookup_imf_country_code: data.Series[int | str | None], lookup_country_table_headers: data.Series[str | None], lookup_iso_alpha3: data.Series[str | None], lookup_country_name: data.Series[str | None], lookup_hipc_status: data.Series[str | None], trigger_country_header: str | int | float | bool, trigger_ifscode: data.Series[int | str | None]) -> data.Series[str | int | float | bool | None]:
-    """Resolve LIC-DSF trigger-country names from the IMF-World Bank country lookup tables.
-
-    Select the requested country-table field for each reference area by matching an IMF IFS code to the country-code column and a header to the lookup-table headers.
-
-    Args:
-        lookup_imf_country_code: Series of IMF country codes aligned to reference-area coordinates, providing the row labels for the country-code lookup.
-        lookup_country_table_headers: Series of country lookup-table column headers, such as code, name, and HIPC status labels, defining the selectable fields.
-        lookup_iso_alpha3: Series of ISO alpha-3 country codes over the reference-area axis.
-        lookup_country_name: Series of country names over the reference-area axis, supplying values for the country-name field.
-        lookup_hipc_status: Series of HIPC status values over the reference-area axis.
-        trigger_country_header: Scalar header value or index identifying which country lookup-table column to return.
-        trigger_ifscode: Series of IMF IFS country codes by reference area, used as the match key into the country-code lookup.
-
-    Returns:
-        Typed series aligned to the reference-area axis containing the selected country lookup-table value for each area; elements are str, int, float, bool, or None.
-    """
-    data.LOOKUP_IMF_COUNTRY_CODE.schema.validate(lookup_imf_country_code)
-    data.LOOKUP_COUNTRY_TABLE_HEADERS.schema.validate(lookup_country_table_headers)
-    data.LOOKUP_ISO_ALPHA3.schema.validate(lookup_iso_alpha3)
-    data.LOOKUP_COUNTRY_NAME.schema.validate(lookup_country_name)
-    data.LOOKUP_HIPC_STATUS.schema.validate(lookup_hipc_status)
-    _trigger_country_name_table_0 = lazy_table(((view(lookup_country_table_headers, cols=span(data.VARIANT_AXIS, 'Code2', 'HIPC status')),), (view(lookup_iso_alpha3, rows=span(data.REF_AREA_AXIS, 'AFG', 'ZWE')), view(lookup_imf_country_code, rows=span(data.REF_AREA_AXIS, 'AFG', 'ZWE')), view(lookup_country_name, rows=span(data.REF_AREA_AXIS, 'AFG', 'ZWE')), view(lookup_hipc_status, rows=span(data.REF_AREA_AXIS, 'AFG', 'ZWE')))))
-    _trigger_country_name_table_1 = lazy_table(((lambda: lookup_country_table_headers['Country code'],), (view(lookup_imf_country_code, rows=span(data.REF_AREA_AXIS, 'AFG', 'ZWE')),)))
-    _trigger_country_name_table_2 = lazy_table(((view(lookup_country_table_headers, cols=span(data.VARIANT_AXIS, 'Code2', 'MDRI')), lambda: None),))
-    def formula(ref_area: str) -> str | int | float | bool | None:
-        return as_measure(xl_index(_trigger_country_name_table_0, xl_match(trigger_ifscode[ref_area], _trigger_country_name_table_1, 0), xl_match(trigger_country_header, _trigger_country_name_table_2, 0)), 'str')
-
-    return data.TRIGGER_COUNTRY_NAME.collect(evaluate(formula, data.TRIGGER_COUNTRY_NAME.required))
-
-@publish(data.TRIGGER_PPP_YEAR.schema, cells=data.TRIGGER_PPP_YEAR.cells)
-def trigger_ppp_year(*, trigger_left_headers: data.Series[str | None], imported_ppp_headers: data.Series[str | None], imported_ppp_ifs_code: data.Series[int | str | None], imported_ppp_country_name: data.Series[str | None], imported_ppp_year: data.Series[int | str | None], imported_ppp_incgr: data.Series[int | str | None], imported_ppp_licdsf: data.Series[int | str | None], imported_ppp_kppp: data.Series[str | None], imported_ppp_gdp: data.Series[float | str | None], imported_ppp_ratio: data.Series[str | None]) -> data.Series[int | str | None]:
-    """Compute the PPP capital-stock vintage year for each country from imported PPP tables.
-
-    Resolves each ref area's PPP vintage-year trigger by matching its imported PPP row and the trigger year header.
-
-    Args:
-        trigger_left_headers: Named-axis series of trigger-sheet left-hand header labels, typically 'year', used as the column-match key into the imported PPP header table.
-        imported_ppp_headers: Named-axis series of imported PPP header labels spanning columns such as ifscode, country, year, incgr, licdsf, kppp_rppp, GDP_rppp, and PPP%GDP.
-        imported_ppp_ifs_code: Named-axis series of IFS codes indexed by country name, used to identify the imported PPP row for each ref area.
-        imported_ppp_country_name: Named-axis series of country names from the imported PPP table, aligned to the ref-area axis.
-        imported_ppp_year: Named-axis series of PPP vintage years from the imported PPP table, aligned to the ref-area axis.
-        imported_ppp_incgr: Named-axis series of income-group classifications from the imported PPP table, aligned to the ref-area axis.
-        imported_ppp_licdsf: Named-axis series of LIC-DSF status markers from the imported PPP table, aligned to the ref-area axis.
-        imported_ppp_kppp: Named-axis series of PPP conversion factors, kppp_rppp, from the imported PPP table, aligned to the ref-area axis.
-        imported_ppp_gdp: Named-axis series of GDP, rppp, values from the imported PPP table, aligned to the ref-area axis.
-        imported_ppp_ratio: Named-axis series of PPP-to-GDP percentages from the imported PPP table, aligned to the ref-area axis.
-
-    Returns:
-        Named-axis data.Series of PPP capital-stock vintage years keyed by country/ref area, with int, str, or None values for resolved, error-marker, or missing lookups.
-    """
-    data.TRIGGER_LEFT_HEADERS.schema.validate(trigger_left_headers)
-    data.IMPORTED_PPP_HEADERS.schema.validate(imported_ppp_headers)
-    data.IMPORTED_PPP_IFS_CODE.schema.validate(imported_ppp_ifs_code)
-    data.IMPORTED_PPP_COUNTRY_NAME.schema.validate(imported_ppp_country_name)
-    data.IMPORTED_PPP_YEAR.schema.validate(imported_ppp_year)
-    data.IMPORTED_PPP_INCGR.schema.validate(imported_ppp_incgr)
-    data.IMPORTED_PPP_LICDSF.schema.validate(imported_ppp_licdsf)
-    data.IMPORTED_PPP_KPPP.schema.validate(imported_ppp_kppp)
-    data.IMPORTED_PPP_GDP.schema.validate(imported_ppp_gdp)
-    data.IMPORTED_PPP_RATIO.schema.validate(imported_ppp_ratio)
-    _trigger_ppp_year_table_0 = lazy_table(((view(imported_ppp_headers, cols=('ifscode', 'country', 'year', 'incgr', 'licdsf', 'kppp_rppp', 'GDP_rppp', 'PPP%GDP')),), (view(imported_ppp_ifs_code, rows=data.REF_AREA_AXIS_4.keys), view(imported_ppp_country_name, rows=data.REF_AREA_AXIS_4.keys), view(imported_ppp_year, rows=data.REF_AREA_AXIS_4.keys), view(imported_ppp_incgr, rows=data.REF_AREA_AXIS_4.keys), view(imported_ppp_licdsf, rows=data.REF_AREA_AXIS_4.keys), xl_typed_range(view(imported_ppp_kppp, rows=data.REF_AREA_AXIS_4.keys), ((8.791740138513397,), (1.7012651492472828,), (0.40213602776542573,), (0.49404034253483015,), ('-',), (0.11604388776148777,), (6.152933530289001,), (1.5297017223942266,), (0,), (0.2585036681496742,), (0.000669066105933923,), (1.474463592293027,), (5.439505243548741,), (0.02557425873364302,), (1.099094974625146,), (0.019378339040155002,), (0.15760562710791864,), (2.003205133866983,), (10.226320943023278,), (0.041809759389457156,), (1.2897466951920964,), (0,), (0.18629338750676483,), (4.868434836145447,), (4.6294025981884,), ('-',), (36.373782723780536,), (0.04523491842996641,), (1.5570147175633846,), (0.24943681692514702,), (0.1247388127645663,), (0.7593139004385588,), (0.5914978714626153,), (1.0489487068057677,), (0.47213349497829615,), (3.055783108269053,), (3.8332588621326478,), (4.614659678596689,), (2.0866075450364168,), (0.04778846175199644,), (0.6166847312552113,), (0.1526507530362892,), (4.97361256853805,), (0.286149802110349,), ('-',), (2.010005910871274,), (1.4427982330658906,), (2.3610221654374297,), (2.2784217736820866,), (4.020594770880566,), (0.2783073826361879,), (1.3804297137169046,), (6.375304649819482,), (None,), (3.725963583678475,))), view(imported_ppp_gdp, rows=data.REF_AREA_AXIS_4.keys), xl_typed_range(view(imported_ppp_ratio, rows=data.REF_AREA_AXIS_4.keys), ((0.01409599676531788,), (0.06781267354943983,), (0.05238900769279552,), (0.01660698681399111,), ('#VALUE!',), (0.033154866894987096,), (0.11168984821379205,), (0.020013637405576067,), (0,), (0.010402724804677228,), (0.0002848366096869731,), (0.05706470494245304,), (0.06571475841402655,), (0.0003985541180378612,), (0.3653391401670146,), (0.03340915744318976,), (0.0008374091731408334,), (0.3887046435820851,), (0.06787086004972784,), (0.030177133726099595,), (0.04523109031284224,), (0,), (0.00967518431705705,), (0.11626438408287865,), (0.03014889937371882,), ('#VALUE!',), (0.7562752665498876,), (0.007531461640010637,), (0.36290088227797507,), (0.006396508389263465,), (0.00599741872778731,), (0.09467669059455612,), (0.012804446859961557,), (0.07258341898537654,), (0.01915503217677258,), (0.09351902545995912,), (0.012765428977557183,), (0.060142927253823274,), (0.06389117534503135,), (0.0024290681363787984,), (0.02619310269444538,), (0.1922757681037894,), (0.10087703501247496,), (0.024842347138640756,), ('#VALUE!',), (0.011701099484954985,), (0.040023382709813086,), (0.01566646317113463,), (0.1927581434417319,), (0.04870403743575748,), (0.0009068902363984344,), (0.02639636591622835,), (0.10707009281285589,), ('#N/A',), (None,))))))
-    _trigger_ppp_year_table_1 = lazy_table(((lambda: imported_ppp_headers['ifscode'],), (view(imported_ppp_ifs_code, rows=data.REF_AREA_AXIS_4.keys),)))
-    _trigger_ppp_year_table_2 = view(imported_ppp_headers, cols=('ifscode', 'country', 'year', 'incgr', 'licdsf', 'kppp_rppp', 'GDP_rppp', 'PPP%GDP'))
-    def formula(ref_area: str) -> int | str | None:
-        if ref_area == 'BGD':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Bangladesh'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'BEN':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Benin'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'BTN':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Bhutan'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'BFA':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Burkina Faso'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'BDI':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Burundi'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'CPV':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Cabo Verde'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'KHM':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Cambodia'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'CMR':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Cameroon'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'CAF':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Central African Republic'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'TCD':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Chad'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'COM':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Comoros'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'COG':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Congo, Republic of'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'CIV':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code["Cote d'Ivoire"], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'COD':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Democratic Republic of the Congo'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'DJI':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Djibouti'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'DMA':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Dominica'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'ETH':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Ethiopia'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'GMB':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Gambia, The'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'GHA':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Ghana'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'GRD':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Grenada'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'GIN':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Guinea'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'GNB':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Guinea-Bissau'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'HTI':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Haiti'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'HND':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Honduras'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'KEN':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Kenya'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'KGZ':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Kyrgyz Republic'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'LAO':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Lao P.D.R.'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'LSO':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Lesotho'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'LBR':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Liberia'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'MDG':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Madagascar'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'MWI':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Malawi'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'MDV':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Maldives'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'MLI':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Mali'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'MRT':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Mauritania'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'MDA':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Moldova'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'MOZ':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Mozambique'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'MMR':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Myanmar'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'NPL':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Nepal'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'NIC':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Nicaragua'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'NER':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Niger'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'RWA':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Rwanda'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'STP':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Sao Tome and Principe'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'SEN':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Senegal'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'SLE':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Sierra Leone'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'VCT':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['St. Vincent and the Grenadines'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'SDN':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Sudan'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'TJK':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Tajikistan'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'TZA':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Tanzania'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'TGO':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Togo'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'UGA':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Uganda'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'UZB':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Uzbekistan'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'YEM':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Yemen'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        elif ref_area == 'ZMB':
-            return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Zambia'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-        return as_measure(xl_index(_trigger_ppp_year_table_0, xl_match(imported_ppp_ifs_code['Zimbabwe'], _trigger_ppp_year_table_1, 0), xl_match(trigger_left_headers['year'], _trigger_ppp_year_table_2, 0)), 'int')
-
-    return data.TRIGGER_PPP_YEAR.collect(evaluate(formula, data.TRIGGER_PPP_YEAR.required))
-
 @publish(data.TRIGGER_PPP_STOCKS.schema, cells=data.TRIGGER_PPP_STOCKS.cells)
-def trigger_ppp_stocks(*, trigger_left_headers: data.Series[str | None], imported_ppp_headers: data.Series[str | None], imported_ppp_ifs_code: data.Series[int | str | None], imported_ppp_country_name: data.Series[str | None], imported_ppp_year: data.Series[int | str | None], imported_ppp_incgr: data.Series[int | str | None], imported_ppp_licdsf: data.Series[int | str | None], imported_ppp_kppp: data.Series[str | None], imported_ppp_gdp: data.Series[float | str | None], imported_ppp_ratio: data.Series[str | None]) -> data.Series[float | str | None]:
-    """Resolve PPP capital-stock and PPP-to-GDP measures for each reference area by matching trigger-left indicator headers against the imported PPP table.
+def trigger_ppp_stocks(*, trigger_left_headers: data.Series[str | None], imported_ppp_headers: data.Series[str | None], imported_ppp_ifs_code: data.Series[int | str | None], imported_ppp_country_name: data.Series[str | None], imported_ppp_incgr: data.Series[int | str | None], imported_ppp_licdsf: data.Series[int | str | None], imported_ppp_kppp: data.Series[str | None], imported_ppp_gdp: data.Series[float | str | None], imported_ppp_ratio: data.Series[str | None]) -> data.Series[float | str | None]:
+    """Compute the PPP capital-stock trigger series from imported PPP country, macro, and ratio data.
 
-    Indexes the imported PPP table rows and columns so the requested trigger indicator returns the correct PPP stock measure for every country.
+    Align imported PPP metadata and macroeconomic series over catalog coordinates to produce the trigger series used for PPP stock calculations.
 
     Args:
-        trigger_left_headers: Named-axis series of trigger indicator labels (for example "PPP%GDP") used as the left-hand headers matched against the imported PPP table columns.
-        imported_ppp_headers: Named-axis series of the imported PPP table's column headers, giving the label order used for header matching.
-        imported_ppp_ifs_code: Named-axis series of IFS country codes for the imported PPP rows, used to match reference areas to table rows.
-        imported_ppp_country_name: Named-axis series of country names aligned to the imported PPP rows and keyed by the reference-area axis.
-        imported_ppp_year: Named-axis series of reference years for the imported PPP observations.
-        imported_ppp_incgr: Named-axis series of income-group classification codes for the imported PPP rows.
-        imported_ppp_licdsf: Named-axis series of LIC-DSF eligibility flags for the imported PPP rows.
-        imported_ppp_kppp: Named-axis series of PPP conversion-factor values from the imported PPP table.
-        imported_ppp_gdp: Named-axis series of PPP-basis GDP values from the imported PPP table.
-        imported_ppp_ratio: Named-axis series of PPP-to-GDP ratio values from the imported PPP table.
+        trigger_left_headers: Named-axis series of left-side trigger header labels, with nulls preserved where the workbook omits a header.
+        imported_ppp_headers: Named-axis series of imported PPP header labels, with nulls preserved where headers are absent.
+        imported_ppp_ifs_code: Named-axis series of IFS country or area codes associated with imported PPP records, with nulls preserved for missing codes.
+        imported_ppp_country_name: Named-axis series of country names associated with imported PPP records, with nulls preserved for missing names.
+        imported_ppp_incgr: Named-axis series of income-group classifications for imported PPP records, with nulls preserved for missing classifications.
+        imported_ppp_licdsf: Named-axis series of LIC-DSF country classification codes for imported PPP records, with nulls preserved where the code is absent.
+        imported_ppp_kppp: Named-axis series of PPP conversion-factor or KPPP indicators, with nulls preserved for non-numeric or missing entries.
+        imported_ppp_gdp: Named-axis series of GDP values used in PPP calculations, with nulls preserved and textual placeholders retained where present.
+        imported_ppp_ratio: Named-axis series of PPP-to-GDP ratio values, with nulls preserved for missing or non-applicable ratios.
 
     Returns:
-        A named-axis series of resolved PPP stock measurements (the PPP-to-GDP trigger values) over the reference-area coordinate system, carrying numeric ratios plus legacy Excel error strings or blanks where inputs are non-numeric.
+        Named-axis series of PPP stock trigger values aligned to catalog coordinates, carrying float values where numeric and preserving textual or null entries from the source PPP data.
     """
     data.TRIGGER_LEFT_HEADERS.schema.validate(trigger_left_headers)
     data.IMPORTED_PPP_HEADERS.schema.validate(imported_ppp_headers)
     data.IMPORTED_PPP_IFS_CODE.schema.validate(imported_ppp_ifs_code)
     data.IMPORTED_PPP_COUNTRY_NAME.schema.validate(imported_ppp_country_name)
-    data.IMPORTED_PPP_YEAR.schema.validate(imported_ppp_year)
     data.IMPORTED_PPP_INCGR.schema.validate(imported_ppp_incgr)
     data.IMPORTED_PPP_LICDSF.schema.validate(imported_ppp_licdsf)
     data.IMPORTED_PPP_KPPP.schema.validate(imported_ppp_kppp)
     data.IMPORTED_PPP_GDP.schema.validate(imported_ppp_gdp)
     data.IMPORTED_PPP_RATIO.schema.validate(imported_ppp_ratio)
-    _trigger_ppp_stocks_table_0 = lazy_table(((view(imported_ppp_headers, cols=('ifscode', 'country', 'year', 'incgr', 'licdsf', 'kppp_rppp', 'GDP_rppp', 'PPP%GDP')),), (view(imported_ppp_ifs_code, rows=data.REF_AREA_AXIS_4.keys), view(imported_ppp_country_name, rows=data.REF_AREA_AXIS_4.keys), view(imported_ppp_year, rows=data.REF_AREA_AXIS_4.keys), view(imported_ppp_incgr, rows=data.REF_AREA_AXIS_4.keys), view(imported_ppp_licdsf, rows=data.REF_AREA_AXIS_4.keys), xl_typed_range(view(imported_ppp_kppp, rows=data.REF_AREA_AXIS_4.keys), ((8.791740138513397,), (1.7012651492472828,), (0.40213602776542573,), (0.49404034253483015,), ('-',), (0.11604388776148777,), (6.152933530289001,), (1.5297017223942266,), (0,), (0.2585036681496742,), (0.000669066105933923,), (1.474463592293027,), (5.439505243548741,), (0.02557425873364302,), (1.099094974625146,), (0.019378339040155002,), (0.15760562710791864,), (2.003205133866983,), (10.226320943023278,), (0.041809759389457156,), (1.2897466951920964,), (0,), (0.18629338750676483,), (4.868434836145447,), (4.6294025981884,), ('-',), (36.373782723780536,), (0.04523491842996641,), (1.5570147175633846,), (0.24943681692514702,), (0.1247388127645663,), (0.7593139004385588,), (0.5914978714626153,), (1.0489487068057677,), (0.47213349497829615,), (3.055783108269053,), (3.8332588621326478,), (4.614659678596689,), (2.0866075450364168,), (0.04778846175199644,), (0.6166847312552113,), (0.1526507530362892,), (4.97361256853805,), (0.286149802110349,), ('-',), (2.010005910871274,), (1.4427982330658906,), (2.3610221654374297,), (2.2784217736820866,), (4.020594770880566,), (0.2783073826361879,), (1.3804297137169046,), (6.375304649819482,), (None,), (3.725963583678475,))), view(imported_ppp_gdp, rows=data.REF_AREA_AXIS_4.keys), xl_typed_range(view(imported_ppp_ratio, rows=data.REF_AREA_AXIS_4.keys), ((0.01409599676531788,), (0.06781267354943983,), (0.05238900769279552,), (0.01660698681399111,), ('#VALUE!',), (0.033154866894987096,), (0.11168984821379205,), (0.020013637405576067,), (0,), (0.010402724804677228,), (0.0002848366096869731,), (0.05706470494245304,), (0.06571475841402655,), (0.0003985541180378612,), (0.3653391401670146,), (0.03340915744318976,), (0.0008374091731408334,), (0.3887046435820851,), (0.06787086004972784,), (0.030177133726099595,), (0.04523109031284224,), (0,), (0.00967518431705705,), (0.11626438408287865,), (0.03014889937371882,), ('#VALUE!',), (0.7562752665498876,), (0.007531461640010637,), (0.36290088227797507,), (0.006396508389263465,), (0.00599741872778731,), (0.09467669059455612,), (0.012804446859961557,), (0.07258341898537654,), (0.01915503217677258,), (0.09351902545995912,), (0.012765428977557183,), (0.060142927253823274,), (0.06389117534503135,), (0.0024290681363787984,), (0.02619310269444538,), (0.1922757681037894,), (0.10087703501247496,), (0.024842347138640756,), ('#VALUE!',), (0.011701099484954985,), (0.040023382709813086,), (0.01566646317113463,), (0.1927581434417319,), (0.04870403743575748,), (0.0009068902363984344,), (0.02639636591622835,), (0.10707009281285589,), ('#N/A',), (None,))))))
-    _trigger_ppp_stocks_table_1 = lazy_table(((lambda: imported_ppp_headers['ifscode'],), (view(imported_ppp_ifs_code, rows=data.REF_AREA_AXIS_4.keys),)))
+    _trigger_ppp_stocks_table_0 = lazy_table(((view(imported_ppp_headers, cols=('ifscode', 'country', 'year', 'incgr', 'licdsf', 'kppp_rppp', 'GDP_rppp', 'PPP%GDP')),), (lambda: imported_ppp_ifs_code['Bangladesh'], lambda: imported_ppp_country_name['Bangladesh'], lambda: None, lambda: imported_ppp_incgr['Bangladesh'], lambda: imported_ppp_licdsf['Bangladesh'], lambda: xl_lookup_cell(imported_ppp_kppp['Bangladesh'], 8.791740138513397), lambda: imported_ppp_gdp['Bangladesh'], lambda: imported_ppp_ratio['Bangladesh']), (lambda: imported_ppp_ifs_code['Benin'], lambda: imported_ppp_country_name['Benin'], lambda: None, lambda: imported_ppp_incgr['Benin'], lambda: imported_ppp_licdsf['Benin'], lambda: xl_lookup_cell(imported_ppp_kppp['Benin'], 1.7012651492472828), lambda: imported_ppp_gdp['Benin'], lambda: imported_ppp_ratio['Benin']), (lambda: imported_ppp_ifs_code['Bhutan'], lambda: imported_ppp_country_name['Bhutan'], lambda: None, lambda: imported_ppp_incgr['Bhutan'], lambda: imported_ppp_licdsf['Bhutan'], lambda: xl_lookup_cell(imported_ppp_kppp['Bhutan'], 0.40213602776542573), lambda: imported_ppp_gdp['Bhutan'], lambda: imported_ppp_ratio['Bhutan']), (lambda: imported_ppp_ifs_code['Burkina Faso'], lambda: imported_ppp_country_name['Burkina Faso'], lambda: None, lambda: imported_ppp_incgr['Burkina Faso'], lambda: imported_ppp_licdsf['Burkina Faso'], lambda: xl_lookup_cell(imported_ppp_kppp['Burkina Faso'], 0.49404034253483015), lambda: imported_ppp_gdp['Burkina Faso'], lambda: imported_ppp_ratio['Burkina Faso']), (lambda: imported_ppp_ifs_code['Burundi'], lambda: imported_ppp_country_name['Burundi'], lambda: None, lambda: imported_ppp_incgr['Burundi'], lambda: imported_ppp_licdsf['Burundi'], lambda: imported_ppp_kppp['Burundi'], lambda: imported_ppp_gdp['Burundi'], lambda: imported_ppp_ratio['Burundi']), (lambda: imported_ppp_ifs_code['Cabo Verde'], lambda: imported_ppp_country_name['Cabo Verde'], lambda: None, lambda: imported_ppp_incgr['Cabo Verde'], lambda: imported_ppp_licdsf['Cabo Verde'], lambda: xl_lookup_cell(imported_ppp_kppp['Cabo Verde'], 0.11604388776148777), lambda: imported_ppp_gdp['Cabo Verde'], lambda: imported_ppp_ratio['Cabo Verde']), (lambda: imported_ppp_ifs_code['Cambodia'], lambda: imported_ppp_country_name['Cambodia'], lambda: None, lambda: imported_ppp_incgr['Cambodia'], lambda: imported_ppp_licdsf['Cambodia'], lambda: xl_lookup_cell(imported_ppp_kppp['Cambodia'], 6.152933530289001), lambda: imported_ppp_gdp['Cambodia'], lambda: imported_ppp_ratio['Cambodia']), (lambda: imported_ppp_ifs_code['Cameroon'], lambda: imported_ppp_country_name['Cameroon'], lambda: None, lambda: imported_ppp_incgr['Cameroon'], lambda: imported_ppp_licdsf['Cameroon'], lambda: xl_lookup_cell(imported_ppp_kppp['Cameroon'], 1.5297017223942266), lambda: imported_ppp_gdp['Cameroon'], lambda: imported_ppp_ratio['Cameroon']), (lambda: imported_ppp_ifs_code['Central African Republic'], lambda: imported_ppp_country_name['Central African Republic'], lambda: None, lambda: imported_ppp_incgr['Central African Republic'], lambda: imported_ppp_licdsf['Central African Republic'], lambda: xl_lookup_cell(imported_ppp_kppp['Central African Republic'], 0), lambda: imported_ppp_gdp['Central African Republic'], lambda: imported_ppp_ratio['Central African Republic']), (lambda: imported_ppp_ifs_code['Chad'], lambda: imported_ppp_country_name['Chad'], lambda: None, lambda: imported_ppp_incgr['Chad'], lambda: imported_ppp_licdsf['Chad'], lambda: xl_lookup_cell(imported_ppp_kppp['Chad'], 0.2585036681496742), lambda: imported_ppp_gdp['Chad'], lambda: imported_ppp_ratio['Chad']), (lambda: imported_ppp_ifs_code['Comoros'], lambda: imported_ppp_country_name['Comoros'], lambda: None, lambda: imported_ppp_incgr['Comoros'], lambda: imported_ppp_licdsf['Comoros'], lambda: xl_lookup_cell(imported_ppp_kppp['Comoros'], 0.000669066105933923), lambda: imported_ppp_gdp['Comoros'], lambda: imported_ppp_ratio['Comoros']), (lambda: imported_ppp_ifs_code['Congo, Republic of'], lambda: imported_ppp_country_name['Congo, Republic of'], lambda: None, lambda: imported_ppp_incgr['Congo, Republic of'], lambda: imported_ppp_licdsf['Congo, Republic of'], lambda: xl_lookup_cell(imported_ppp_kppp['Congo, Republic of'], 1.474463592293027), lambda: imported_ppp_gdp['Congo, Republic of'], lambda: imported_ppp_ratio['Congo, Republic of']), (lambda: imported_ppp_ifs_code["Cote d'Ivoire"], lambda: imported_ppp_country_name["Cote d'Ivoire"], lambda: None, lambda: imported_ppp_incgr["Cote d'Ivoire"], lambda: imported_ppp_licdsf["Cote d'Ivoire"], lambda: xl_lookup_cell(imported_ppp_kppp["Cote d'Ivoire"], 5.439505243548741), lambda: imported_ppp_gdp["Cote d'Ivoire"], lambda: imported_ppp_ratio["Cote d'Ivoire"]), (lambda: imported_ppp_ifs_code['Democratic Republic of the Congo'], lambda: imported_ppp_country_name['Democratic Republic of the Congo'], lambda: None, lambda: imported_ppp_incgr['Democratic Republic of the Congo'], lambda: imported_ppp_licdsf['Democratic Republic of the Congo'], lambda: xl_lookup_cell(imported_ppp_kppp['Democratic Republic of the Congo'], 0.02557425873364302), lambda: imported_ppp_gdp['Democratic Republic of the Congo'], lambda: imported_ppp_ratio['Democratic Republic of the Congo']), (lambda: imported_ppp_ifs_code['Djibouti'], lambda: imported_ppp_country_name['Djibouti'], lambda: None, lambda: imported_ppp_incgr['Djibouti'], lambda: imported_ppp_licdsf['Djibouti'], lambda: xl_lookup_cell(imported_ppp_kppp['Djibouti'], 1.099094974625146), lambda: imported_ppp_gdp['Djibouti'], lambda: imported_ppp_ratio['Djibouti']), (lambda: imported_ppp_ifs_code['Dominica'], lambda: imported_ppp_country_name['Dominica'], lambda: None, lambda: imported_ppp_incgr['Dominica'], lambda: imported_ppp_licdsf['Dominica'], lambda: xl_lookup_cell(imported_ppp_kppp['Dominica'], 0.019378339040155002), lambda: imported_ppp_gdp['Dominica'], lambda: imported_ppp_ratio['Dominica']), (lambda: imported_ppp_ifs_code['Ethiopia'], lambda: imported_ppp_country_name['Ethiopia'], lambda: None, lambda: imported_ppp_incgr['Ethiopia'], lambda: imported_ppp_licdsf['Ethiopia'], lambda: xl_lookup_cell(imported_ppp_kppp['Ethiopia'], 0.15760562710791864), lambda: imported_ppp_gdp['Ethiopia'], lambda: imported_ppp_ratio['Ethiopia']), (lambda: imported_ppp_ifs_code['Gambia, The'], lambda: imported_ppp_country_name['Gambia, The'], lambda: None, lambda: imported_ppp_incgr['Gambia, The'], lambda: imported_ppp_licdsf['Gambia, The'], lambda: xl_lookup_cell(imported_ppp_kppp['Gambia, The'], 2.003205133866983), lambda: imported_ppp_gdp['Gambia, The'], lambda: imported_ppp_ratio['Gambia, The']), (lambda: imported_ppp_ifs_code['Ghana'], lambda: imported_ppp_country_name['Ghana'], lambda: None, lambda: imported_ppp_incgr['Ghana'], lambda: imported_ppp_licdsf['Ghana'], lambda: xl_lookup_cell(imported_ppp_kppp['Ghana'], 10.226320943023278), lambda: imported_ppp_gdp['Ghana'], lambda: imported_ppp_ratio['Ghana']), (lambda: imported_ppp_ifs_code['Grenada'], lambda: imported_ppp_country_name['Grenada'], lambda: None, lambda: imported_ppp_incgr['Grenada'], lambda: imported_ppp_licdsf['Grenada'], lambda: xl_lookup_cell(imported_ppp_kppp['Grenada'], 0.041809759389457156), lambda: imported_ppp_gdp['Grenada'], lambda: imported_ppp_ratio['Grenada']), (lambda: imported_ppp_ifs_code['Guinea'], lambda: imported_ppp_country_name['Guinea'], lambda: None, lambda: imported_ppp_incgr['Guinea'], lambda: imported_ppp_licdsf['Guinea'], lambda: xl_lookup_cell(imported_ppp_kppp['Guinea'], 1.2897466951920964), lambda: imported_ppp_gdp['Guinea'], lambda: imported_ppp_ratio['Guinea']), (lambda: imported_ppp_ifs_code['Guinea-Bissau'], lambda: imported_ppp_country_name['Guinea-Bissau'], lambda: None, lambda: imported_ppp_incgr['Guinea-Bissau'], lambda: imported_ppp_licdsf['Guinea-Bissau'], lambda: xl_lookup_cell(imported_ppp_kppp['Guinea-Bissau'], 0), lambda: imported_ppp_gdp['Guinea-Bissau'], lambda: imported_ppp_ratio['Guinea-Bissau']), (lambda: imported_ppp_ifs_code['Haiti'], lambda: imported_ppp_country_name['Haiti'], lambda: None, lambda: imported_ppp_incgr['Haiti'], lambda: imported_ppp_licdsf['Haiti'], lambda: xl_lookup_cell(imported_ppp_kppp['Haiti'], 0.18629338750676483), lambda: imported_ppp_gdp['Haiti'], lambda: imported_ppp_ratio['Haiti']), (lambda: imported_ppp_ifs_code['Honduras'], lambda: imported_ppp_country_name['Honduras'], lambda: None, lambda: imported_ppp_incgr['Honduras'], lambda: imported_ppp_licdsf['Honduras'], lambda: xl_lookup_cell(imported_ppp_kppp['Honduras'], 4.868434836145447), lambda: imported_ppp_gdp['Honduras'], lambda: imported_ppp_ratio['Honduras']), (lambda: imported_ppp_ifs_code['Kenya'], lambda: imported_ppp_country_name['Kenya'], lambda: None, lambda: imported_ppp_incgr['Kenya'], lambda: imported_ppp_licdsf['Kenya'], lambda: xl_lookup_cell(imported_ppp_kppp['Kenya'], 4.6294025981884), lambda: imported_ppp_gdp['Kenya'], lambda: imported_ppp_ratio['Kenya']), (lambda: imported_ppp_ifs_code['Kyrgyz Republic'], lambda: imported_ppp_country_name['Kyrgyz Republic'], lambda: None, lambda: imported_ppp_incgr['Kyrgyz Republic'], lambda: imported_ppp_licdsf['Kyrgyz Republic'], lambda: imported_ppp_kppp['Kyrgyz Republic'], lambda: imported_ppp_gdp['Kyrgyz Republic'], lambda: imported_ppp_ratio['Kyrgyz Republic']), (lambda: imported_ppp_ifs_code['Lao P.D.R.'], lambda: imported_ppp_country_name['Lao P.D.R.'], lambda: None, lambda: imported_ppp_incgr['Lao P.D.R.'], lambda: imported_ppp_licdsf['Lao P.D.R.'], lambda: xl_lookup_cell(imported_ppp_kppp['Lao P.D.R.'], 36.373782723780536), lambda: imported_ppp_gdp['Lao P.D.R.'], lambda: imported_ppp_ratio['Lao P.D.R.']), (lambda: imported_ppp_ifs_code['Lesotho'], lambda: imported_ppp_country_name['Lesotho'], lambda: None, lambda: imported_ppp_incgr['Lesotho'], lambda: imported_ppp_licdsf['Lesotho'], lambda: xl_lookup_cell(imported_ppp_kppp['Lesotho'], 0.04523491842996641), lambda: imported_ppp_gdp['Lesotho'], lambda: imported_ppp_ratio['Lesotho']), (lambda: imported_ppp_ifs_code['Liberia'], lambda: imported_ppp_country_name['Liberia'], lambda: None, lambda: imported_ppp_incgr['Liberia'], lambda: imported_ppp_licdsf['Liberia'], lambda: xl_lookup_cell(imported_ppp_kppp['Liberia'], 1.5570147175633846), lambda: imported_ppp_gdp['Liberia'], lambda: imported_ppp_ratio['Liberia']), (lambda: imported_ppp_ifs_code['Madagascar'], lambda: imported_ppp_country_name['Madagascar'], lambda: None, lambda: imported_ppp_incgr['Madagascar'], lambda: imported_ppp_licdsf['Madagascar'], lambda: xl_lookup_cell(imported_ppp_kppp['Madagascar'], 0.24943681692514702), lambda: imported_ppp_gdp['Madagascar'], lambda: imported_ppp_ratio['Madagascar']), (lambda: imported_ppp_ifs_code['Malawi'], lambda: imported_ppp_country_name['Malawi'], lambda: None, lambda: imported_ppp_incgr['Malawi'], lambda: imported_ppp_licdsf['Malawi'], lambda: xl_lookup_cell(imported_ppp_kppp['Malawi'], 0.1247388127645663), lambda: imported_ppp_gdp['Malawi'], lambda: imported_ppp_ratio['Malawi']), (lambda: imported_ppp_ifs_code['Maldives'], lambda: imported_ppp_country_name['Maldives'], lambda: None, lambda: imported_ppp_incgr['Maldives'], lambda: imported_ppp_licdsf['Maldives'], lambda: xl_lookup_cell(imported_ppp_kppp['Maldives'], 0.7593139004385588), lambda: imported_ppp_gdp['Maldives'], lambda: imported_ppp_ratio['Maldives']), (lambda: imported_ppp_ifs_code['Mali'], lambda: imported_ppp_country_name['Mali'], lambda: None, lambda: imported_ppp_incgr['Mali'], lambda: imported_ppp_licdsf['Mali'], lambda: xl_lookup_cell(imported_ppp_kppp['Mali'], 0.5914978714626153), lambda: imported_ppp_gdp['Mali'], lambda: imported_ppp_ratio['Mali']), (lambda: imported_ppp_ifs_code['Mauritania'], lambda: imported_ppp_country_name['Mauritania'], lambda: None, lambda: imported_ppp_incgr['Mauritania'], lambda: imported_ppp_licdsf['Mauritania'], lambda: xl_lookup_cell(imported_ppp_kppp['Mauritania'], 1.0489487068057677), lambda: imported_ppp_gdp['Mauritania'], lambda: imported_ppp_ratio['Mauritania']), (lambda: imported_ppp_ifs_code['Moldova'], lambda: imported_ppp_country_name['Moldova'], lambda: None, lambda: imported_ppp_incgr['Moldova'], lambda: imported_ppp_licdsf['Moldova'], lambda: xl_lookup_cell(imported_ppp_kppp['Moldova'], 0.47213349497829615), lambda: imported_ppp_gdp['Moldova'], lambda: imported_ppp_ratio['Moldova']), (lambda: imported_ppp_ifs_code['Mozambique'], lambda: imported_ppp_country_name['Mozambique'], lambda: None, lambda: imported_ppp_incgr['Mozambique'], lambda: imported_ppp_licdsf['Mozambique'], lambda: xl_lookup_cell(imported_ppp_kppp['Mozambique'], 3.055783108269053), lambda: imported_ppp_gdp['Mozambique'], lambda: imported_ppp_ratio['Mozambique']), (lambda: imported_ppp_ifs_code['Myanmar'], lambda: imported_ppp_country_name['Myanmar'], lambda: None, lambda: imported_ppp_incgr['Myanmar'], lambda: imported_ppp_licdsf['Myanmar'], lambda: xl_lookup_cell(imported_ppp_kppp['Myanmar'], 3.8332588621326478), lambda: imported_ppp_gdp['Myanmar'], lambda: imported_ppp_ratio['Myanmar']), (lambda: imported_ppp_ifs_code['Nepal'], lambda: imported_ppp_country_name['Nepal'], lambda: None, lambda: imported_ppp_incgr['Nepal'], lambda: imported_ppp_licdsf['Nepal'], lambda: xl_lookup_cell(imported_ppp_kppp['Nepal'], 4.614659678596689), lambda: imported_ppp_gdp['Nepal'], lambda: imported_ppp_ratio['Nepal']), (lambda: imported_ppp_ifs_code['Nicaragua'], lambda: imported_ppp_country_name['Nicaragua'], lambda: None, lambda: imported_ppp_incgr['Nicaragua'], lambda: imported_ppp_licdsf['Nicaragua'], lambda: xl_lookup_cell(imported_ppp_kppp['Nicaragua'], 2.0866075450364168), lambda: imported_ppp_gdp['Nicaragua'], lambda: imported_ppp_ratio['Nicaragua']), (lambda: imported_ppp_ifs_code['Niger'], lambda: imported_ppp_country_name['Niger'], lambda: None, lambda: imported_ppp_incgr['Niger'], lambda: imported_ppp_licdsf['Niger'], lambda: xl_lookup_cell(imported_ppp_kppp['Niger'], 0.04778846175199644), lambda: imported_ppp_gdp['Niger'], lambda: imported_ppp_ratio['Niger']), (lambda: imported_ppp_ifs_code['Rwanda'], lambda: imported_ppp_country_name['Rwanda'], lambda: None, lambda: imported_ppp_incgr['Rwanda'], lambda: imported_ppp_licdsf['Rwanda'], lambda: xl_lookup_cell(imported_ppp_kppp['Rwanda'], 0.6166847312552113), lambda: imported_ppp_gdp['Rwanda'], lambda: imported_ppp_ratio['Rwanda']), (lambda: imported_ppp_ifs_code['Sao Tome and Principe'], lambda: imported_ppp_country_name['Sao Tome and Principe'], lambda: None, lambda: imported_ppp_incgr['Sao Tome and Principe'], lambda: imported_ppp_licdsf['Sao Tome and Principe'], lambda: xl_lookup_cell(imported_ppp_kppp['Sao Tome and Principe'], 0.1526507530362892), lambda: imported_ppp_gdp['Sao Tome and Principe'], lambda: imported_ppp_ratio['Sao Tome and Principe']), (lambda: imported_ppp_ifs_code['Senegal'], lambda: imported_ppp_country_name['Senegal'], lambda: None, lambda: imported_ppp_incgr['Senegal'], lambda: imported_ppp_licdsf['Senegal'], lambda: xl_lookup_cell(imported_ppp_kppp['Senegal'], 4.97361256853805), lambda: imported_ppp_gdp['Senegal'], lambda: imported_ppp_ratio['Senegal']), (lambda: imported_ppp_ifs_code['Sierra Leone'], lambda: imported_ppp_country_name['Sierra Leone'], lambda: None, lambda: imported_ppp_incgr['Sierra Leone'], lambda: imported_ppp_licdsf['Sierra Leone'], lambda: xl_lookup_cell(imported_ppp_kppp['Sierra Leone'], 0.286149802110349), lambda: imported_ppp_gdp['Sierra Leone'], lambda: imported_ppp_ratio['Sierra Leone']), (lambda: imported_ppp_ifs_code['St. Vincent and the Grenadines'], lambda: imported_ppp_country_name['St. Vincent and the Grenadines'], lambda: None, lambda: imported_ppp_incgr['St. Vincent and the Grenadines'], lambda: imported_ppp_licdsf['St. Vincent and the Grenadines'], lambda: imported_ppp_kppp['St. Vincent and the Grenadines'], lambda: imported_ppp_gdp['St. Vincent and the Grenadines'], lambda: imported_ppp_ratio['St. Vincent and the Grenadines']), (lambda: imported_ppp_ifs_code['Sudan'], lambda: imported_ppp_country_name['Sudan'], lambda: None, lambda: imported_ppp_incgr['Sudan'], lambda: imported_ppp_licdsf['Sudan'], lambda: xl_lookup_cell(imported_ppp_kppp['Sudan'], 2.010005910871274), lambda: imported_ppp_gdp['Sudan'], lambda: imported_ppp_ratio['Sudan']), (lambda: imported_ppp_ifs_code['Tajikistan'], lambda: imported_ppp_country_name['Tajikistan'], lambda: None, lambda: imported_ppp_incgr['Tajikistan'], lambda: imported_ppp_licdsf['Tajikistan'], lambda: xl_lookup_cell(imported_ppp_kppp['Tajikistan'], 1.4427982330658906), lambda: imported_ppp_gdp['Tajikistan'], lambda: imported_ppp_ratio['Tajikistan']), (lambda: imported_ppp_ifs_code['Tanzania'], lambda: imported_ppp_country_name['Tanzania'], lambda: None, lambda: imported_ppp_incgr['Tanzania'], lambda: imported_ppp_licdsf['Tanzania'], lambda: xl_lookup_cell(imported_ppp_kppp['Tanzania'], 2.3610221654374297), lambda: imported_ppp_gdp['Tanzania'], lambda: imported_ppp_ratio['Tanzania']), (lambda: imported_ppp_ifs_code['Togo'], lambda: imported_ppp_country_name['Togo'], lambda: None, lambda: imported_ppp_incgr['Togo'], lambda: imported_ppp_licdsf['Togo'], lambda: xl_lookup_cell(imported_ppp_kppp['Togo'], 2.2784217736820866), lambda: imported_ppp_gdp['Togo'], lambda: imported_ppp_ratio['Togo']), (lambda: imported_ppp_ifs_code['Uganda'], lambda: imported_ppp_country_name['Uganda'], lambda: None, lambda: imported_ppp_incgr['Uganda'], lambda: imported_ppp_licdsf['Uganda'], lambda: xl_lookup_cell(imported_ppp_kppp['Uganda'], 4.020594770880566), lambda: imported_ppp_gdp['Uganda'], lambda: imported_ppp_ratio['Uganda']), (lambda: imported_ppp_ifs_code['Uzbekistan'], lambda: imported_ppp_country_name['Uzbekistan'], lambda: None, lambda: imported_ppp_incgr['Uzbekistan'], lambda: imported_ppp_licdsf['Uzbekistan'], lambda: xl_lookup_cell(imported_ppp_kppp['Uzbekistan'], 0.2783073826361879), lambda: imported_ppp_gdp['Uzbekistan'], lambda: imported_ppp_ratio['Uzbekistan']), (lambda: imported_ppp_ifs_code['Yemen'], lambda: imported_ppp_country_name['Yemen'], lambda: None, lambda: imported_ppp_incgr['Yemen'], lambda: imported_ppp_licdsf['Yemen'], lambda: xl_lookup_cell(imported_ppp_kppp['Yemen'], 1.3804297137169046), lambda: imported_ppp_gdp['Yemen'], lambda: imported_ppp_ratio['Yemen']), (lambda: imported_ppp_ifs_code['Zambia'], lambda: imported_ppp_country_name['Zambia'], lambda: None, lambda: imported_ppp_incgr['Zambia'], lambda: imported_ppp_licdsf['Zambia'], lambda: xl_lookup_cell(imported_ppp_kppp['Zambia'], 6.375304649819482), lambda: imported_ppp_gdp['Zambia'], lambda: imported_ppp_ratio['Zambia']), (lambda: imported_ppp_ifs_code['Utopia'], lambda: imported_ppp_country_name['Utopia'], lambda: None, lambda: imported_ppp_incgr['Utopia'], lambda: imported_ppp_licdsf['Utopia'], lambda: imported_ppp_kppp['Utopia'], lambda: imported_ppp_gdp['Utopia'], lambda: imported_ppp_ratio['Utopia']), (lambda: imported_ppp_ifs_code['Zimbabwe'], lambda: imported_ppp_country_name['Zimbabwe'], lambda: None, lambda: imported_ppp_incgr['Zimbabwe'], lambda: imported_ppp_licdsf['Zimbabwe'], lambda: xl_lookup_cell(imported_ppp_kppp['Zimbabwe'], 3.725963583678475), lambda: imported_ppp_gdp['Zimbabwe'], lambda: imported_ppp_ratio['Zimbabwe'])))
+    _trigger_ppp_stocks_table_1 = lazy_table(((lambda: imported_ppp_headers['ifscode'],), (view(imported_ppp_ifs_code, rows=data.REF_AREA_AXIS_3.keys),)))
     _trigger_ppp_stocks_table_2 = view(imported_ppp_headers, cols=('ifscode', 'country', 'year', 'incgr', 'licdsf', 'kppp_rppp', 'GDP_rppp', 'PPP%GDP'))
-    _trigger_ppp_stocks_table_3 = lazy_table(((view(imported_ppp_headers, cols=('ifscode', 'country', 'year', 'incgr', 'licdsf', 'kppp_rppp', 'GDP_rppp', 'PPP%GDP')),),))
     def formula(ref_area: str, indicator: str) -> float | str | None:
-        if ref_area == 'BGD' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Bangladesh'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'BEN' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Benin'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'BTN' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Bhutan'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'BFA' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Burkina Faso'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'BDI' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Burundi'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'CPV' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Cabo Verde'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'KHM' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Cambodia'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'CMR' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Cameroon'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'CAF' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Central African Republic'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'TCD' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Chad'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'COM' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Comoros'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'COG' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Congo, Republic of'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'CIV' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code["Cote d'Ivoire"], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'COD' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Democratic Republic of the Congo'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'DJI' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Djibouti'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'DMA' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Dominica'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'ETH' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Ethiopia'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'GMB' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Gambia, The'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'GHA' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Ghana'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'GRD' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Grenada'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'GIN' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Guinea'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'GNB' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Guinea-Bissau'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'HTI' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Haiti'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'HND' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Honduras'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'KEN' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Kenya'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'KGZ' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Kyrgyz Republic'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'LAO' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Lao P.D.R.'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'LSO' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Lesotho'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'LBR' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Liberia'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'MDG' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Madagascar'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'MWI' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Malawi'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'MDV' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Maldives'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'MLI' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Mali'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'MRT' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Mauritania'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'MDA' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Moldova'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'MOZ' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Mozambique'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'MMR' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Myanmar'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'NPL' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Nepal'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'NIC' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Nicaragua'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'NER' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Niger'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'RWA' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Rwanda'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'STP' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Sao Tome and Principe'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'SEN' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Senegal'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'SLE' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Sierra Leone'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'VCT' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['St. Vincent and the Grenadines'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'SDN' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Sudan'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'TJK' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Tajikistan'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'TZA' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Tanzania'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'TGO' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Togo'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'UGA' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Uganda'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'UZB' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Uzbekistan'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'YEM' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Yemen'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'ZMB' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Zambia'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'ZWE' and indicator == 'PPP%GDP':
-            return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Utopia'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], lazy_table(((_trigger_ppp_stocks_table_2,),)), 0)))
-        elif ref_area == 'BGD' and indicator in ('kppp_rppp', 'GDP_rppp'):
+        if ref_area == 'BGD' and indicator in ('kppp_rppp', 'GDP_rppp'):
             return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Bangladesh'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], _trigger_ppp_stocks_table_2, 0)))
         elif ref_area == 'BEN' and indicator in ('kppp_rppp', 'GDP_rppp'):
             return as_measure(xl_index(_trigger_ppp_stocks_table_0, xl_match(imported_ppp_ifs_code['Benin'], _trigger_ppp_stocks_table_1, 0), xl_match(trigger_left_headers[indicator], _trigger_ppp_stocks_table_2, 0)))
@@ -16599,27 +16253,23 @@ def trigger_ppp_stocks(*, trigger_left_headers: data.Series[str | None], importe
     return data.TRIGGER_PPP_STOCKS.collect((coord, trigger_ppp_stocks[coord]) for coord in data.TRIGGER_PPP_STOCKS.required)
 
 @publish(data.TRIGGER_MARKET_ACCESS_COUNTRY_CODE.schema, cells=data.TRIGGER_MARKET_ACCESS_COUNTRY_CODE.cells)
-def trigger_market_access_country_code(*, lookup_imf_country_code_index: data.Series[int | str | None], lookup_country_name: data.Series[str | None], lookup_hipc_status: data.Series[str | None], lookup_mdri: data.Series[str | None], trigger_country_names: data.Series[str | None]) -> data.Series[int | str | None]:
-    """Resolve IMF country codes for countries triggering market access.
+def trigger_market_access_country_code(*, lookup_imf_country_code_index: data.Series[int | str | None], lookup_country_name: data.Series[str | None], trigger_country_names: data.Series[str | None]) -> data.Series[int | str | None]:
+    """Resolve trigger country names to IMF country codes for market access lookups.
 
-    Derive the IMF country code series used to look up Eurobond and PRGT market access from trigger country names and supporting lookup tables.
+    Map each trigger country name to its IMF country code via the country-name and IMF-code lookup series so Eurobond and PRGT market access can be identified.
 
     Args:
-        lookup_imf_country_code_index: Index series mapping country identifiers to IMF country codes, keyed by catalog coordinates.
-        lookup_country_name: Series of country names used to match trigger countries against the IMF country code index.
-        lookup_hipc_status: Series of HIPC status labels used to qualify or filter market-access eligibility.
-        lookup_mdri: Series of MDRI status labels used to qualify or filter market-access eligibility.
-        trigger_country_names: Series of country names whose market-access triggers should be resolved to IMF country codes.
+        lookup_imf_country_code_index: A `data.Series[int | str | None]` of IMF country codes indexed by catalog coordinates, used to look up Eurobond and PRGT market access.
+        lookup_country_name: A `data.Series[str | None]` of country names indexed by catalog coordinates, matched against the trigger country names.
+        trigger_country_names: A `data.Series[str | None]` of trigger country names indexed by catalog coordinates whose corresponding IMF country code is retrieved.
 
     Returns:
-        Series of IMF country codes aligned to the trigger country names, with `None` where no code is resolved; these codes are used to look up Eurobond and PRGT market access.
+        A `data.Series[int | str | None]` of IMF country codes aligned to the trigger-country-name coordinates, with `None` where no code is found.
     """
     data.LOOKUP_IMF_COUNTRY_CODE_INDEX.schema.validate(lookup_imf_country_code_index)
     data.LOOKUP_COUNTRY_NAME.schema.validate(lookup_country_name)
-    data.LOOKUP_HIPC_STATUS.schema.validate(lookup_hipc_status)
-    data.LOOKUP_MDRI.schema.validate(lookup_mdri)
     data.TRIGGER_COUNTRY_NAMES.schema.validate(trigger_country_names)
-    _trigger_market_access_country_code_table_0 = lazy_table(((lambda: lookup_country_name['AFG'], lambda: lookup_hipc_status['AFG'], lambda: lookup_mdri['AFG'], lambda: None, lambda: lookup_imf_country_code_index['AFG']), (lambda: lookup_country_name['BGD'], lambda: lookup_hipc_status['BGD'], lambda: lookup_mdri['BGD'], lambda: None, lambda: lookup_imf_country_code_index['BGD']), (lambda: lookup_country_name['BEN'], lambda: lookup_hipc_status['BEN'], lambda: lookup_mdri['BEN'], lambda: None, lambda: lookup_imf_country_code_index['BEN']), (lambda: lookup_country_name['BTN'], lambda: lookup_hipc_status['BTN'], lambda: lookup_mdri['BTN'], lambda: None, lambda: lookup_imf_country_code_index['BTN']), (lambda: lookup_country_name['BFA'], lambda: lookup_hipc_status['BFA'], lambda: lookup_mdri['BFA'], lambda: None, lambda: lookup_imf_country_code_index['BFA']), (lambda: lookup_country_name['BDI'], lambda: lookup_hipc_status['BDI'], lambda: lookup_mdri['BDI'], lambda: None, lambda: lookup_imf_country_code_index['BDI']), (lambda: lookup_country_name['KHM'], lambda: lookup_hipc_status['KHM'], lambda: lookup_mdri['KHM'], lambda: None, lambda: lookup_imf_country_code_index['KHM']), (lambda: lookup_country_name['CMR'], lambda: lookup_hipc_status['CMR'], lambda: lookup_mdri['CMR'], lambda: None, lambda: lookup_imf_country_code_index['CMR']), (lambda: lookup_country_name['CPV'], lambda: lookup_hipc_status['CPV'], lambda: lookup_mdri['CPV'], lambda: None, lambda: lookup_imf_country_code_index['CPV']), (lambda: lookup_country_name['CAF'], lambda: lookup_hipc_status['CAF'], lambda: lookup_mdri['CAF'], lambda: None, lambda: lookup_imf_country_code_index['CAF']), (lambda: lookup_country_name['TCD'], lambda: lookup_hipc_status['TCD'], lambda: lookup_mdri['TCD'], lambda: None, lambda: lookup_imf_country_code_index['TCD']), (lambda: lookup_country_name['COM'], lambda: lookup_hipc_status['COM'], lambda: lookup_mdri['COM'], lambda: None, lambda: lookup_imf_country_code_index['COM']), (lambda: lookup_country_name['COD'], lambda: lookup_hipc_status['COD'], lambda: lookup_mdri['COD'], lambda: None, lambda: lookup_imf_country_code_index['COD']), (lambda: lookup_country_name['COG'], lambda: lookup_hipc_status['COG'], lambda: lookup_mdri['COG'], lambda: None, lambda: lookup_imf_country_code_index['COG']), (lambda: lookup_country_name['CIV'], lambda: lookup_hipc_status['CIV'], lambda: lookup_mdri['CIV'], lambda: None, lambda: lookup_imf_country_code_index['CIV']), (lambda: lookup_country_name['DJI'], lambda: lookup_hipc_status['DJI'], lambda: lookup_mdri['DJI'], lambda: None, lambda: lookup_imf_country_code_index['DJI']), (lambda: lookup_country_name['DMA'], lambda: lookup_hipc_status['DMA'], lambda: lookup_mdri['DMA'], lambda: None, lambda: lookup_imf_country_code_index['DMA']), (lambda: lookup_country_name['ERI'], lambda: lookup_hipc_status['ERI'], lambda: lookup_mdri['ERI'], lambda: None, lambda: lookup_imf_country_code_index['ERI']), (lambda: lookup_country_name['ETH'], lambda: lookup_hipc_status['ETH'], lambda: lookup_mdri['ETH'], lambda: None, lambda: lookup_imf_country_code_index['ETH']), (lambda: lookup_country_name['GMB'], lambda: lookup_hipc_status['GMB'], lambda: lookup_mdri['GMB'], lambda: None, lambda: lookup_imf_country_code_index['GMB']), (lambda: lookup_country_name['GHA'], lambda: lookup_hipc_status['GHA'], lambda: lookup_mdri['GHA'], lambda: None, lambda: lookup_imf_country_code_index['GHA']), (lambda: lookup_country_name['GRD'], lambda: lookup_hipc_status['GRD'], lambda: lookup_mdri['GRD'], lambda: None, lambda: lookup_imf_country_code_index['GRD']), (lambda: lookup_country_name['GIN'], lambda: lookup_hipc_status['GIN'], lambda: lookup_mdri['GIN'], lambda: None, lambda: lookup_imf_country_code_index['GIN']), (lambda: lookup_country_name['GNB'], lambda: lookup_hipc_status['GNB'], lambda: lookup_mdri['GNB'], lambda: None, lambda: lookup_imf_country_code_index['GNB']), (lambda: lookup_country_name['GUY'], lambda: lookup_hipc_status['GUY'], lambda: lookup_mdri['GUY'], lambda: None, lambda: lookup_imf_country_code_index['GUY']), (lambda: lookup_country_name['HTI'], lambda: lookup_hipc_status['HTI'], lambda: lookup_mdri['HTI'], lambda: None, lambda: lookup_imf_country_code_index['HTI']), (lambda: lookup_country_name['HND'], lambda: lookup_hipc_status['HND'], lambda: lookup_mdri['HND'], lambda: None, lambda: lookup_imf_country_code_index['HND']), (lambda: lookup_country_name['KEN'], lambda: lookup_hipc_status['KEN'], lambda: lookup_mdri['KEN'], lambda: None, lambda: lookup_imf_country_code_index['KEN']), (lambda: lookup_country_name['KIR'], lambda: lookup_hipc_status['KIR'], lambda: lookup_mdri['KIR'], lambda: None, lambda: lookup_imf_country_code_index['KIR']), (lambda: lookup_country_name['KGZ'], lambda: lookup_hipc_status['KGZ'], lambda: lookup_mdri['KGZ'], lambda: None, lambda: lookup_imf_country_code_index['KGZ']), (lambda: lookup_country_name['LAO'], lambda: lookup_hipc_status['LAO'], lambda: lookup_mdri['LAO'], lambda: None, lambda: lookup_imf_country_code_index['LAO']), (lambda: lookup_country_name['LSO'], lambda: lookup_hipc_status['LSO'], lambda: lookup_mdri['LSO'], lambda: None, lambda: lookup_imf_country_code_index['LSO']), (lambda: lookup_country_name['LBR'], lambda: lookup_hipc_status['LBR'], lambda: lookup_mdri['LBR'], lambda: None, lambda: lookup_imf_country_code_index['LBR']), (lambda: lookup_country_name['MDG'], lambda: lookup_hipc_status['MDG'], lambda: lookup_mdri['MDG'], lambda: None, lambda: lookup_imf_country_code_index['MDG']), (lambda: lookup_country_name['MWI'], lambda: lookup_hipc_status['MWI'], lambda: lookup_mdri['MWI'], lambda: None, lambda: lookup_imf_country_code_index['MWI']), (lambda: lookup_country_name['MDV'], lambda: lookup_hipc_status['MDV'], lambda: lookup_mdri['MDV'], lambda: None, lambda: lookup_imf_country_code_index['MDV']), (lambda: lookup_country_name['MLI'], lambda: lookup_hipc_status['MLI'], lambda: lookup_mdri['MLI'], lambda: None, lambda: lookup_imf_country_code_index['MLI']), (lambda: lookup_country_name['MHL'], lambda: lookup_hipc_status['MHL'], lambda: lookup_mdri['MHL'], lambda: None, lambda: lookup_imf_country_code_index['MHL']), (lambda: lookup_country_name['MRT'], lambda: lookup_hipc_status['MRT'], lambda: lookup_mdri['MRT'], lambda: None, lambda: lookup_imf_country_code_index['MRT']), (lambda: lookup_country_name['FSM'], lambda: lookup_hipc_status['FSM'], lambda: lookup_mdri['FSM'], lambda: None, lambda: lookup_imf_country_code_index['FSM']), (lambda: lookup_country_name['MDA'], lambda: lookup_hipc_status['MDA'], lambda: lookup_mdri['MDA'], lambda: None, lambda: lookup_imf_country_code_index['MDA']), (lambda: lookup_country_name['MOZ'], lambda: lookup_hipc_status['MOZ'], lambda: lookup_mdri['MOZ'], lambda: None, lambda: lookup_imf_country_code_index['MOZ']), (lambda: lookup_country_name['MMR'], lambda: lookup_hipc_status['MMR'], lambda: lookup_mdri['MMR'], lambda: None, lambda: lookup_imf_country_code_index['MMR']), (lambda: lookup_country_name['NPL'], lambda: lookup_hipc_status['NPL'], lambda: lookup_mdri['NPL'], lambda: None, lambda: lookup_imf_country_code_index['NPL']), (lambda: lookup_country_name['NIC'], lambda: lookup_hipc_status['NIC'], lambda: lookup_mdri['NIC'], lambda: None, lambda: lookup_imf_country_code_index['NIC']), (lambda: lookup_country_name['NER'], lambda: lookup_hipc_status['NER'], lambda: lookup_mdri['NER'], lambda: None, lambda: lookup_imf_country_code_index['NER']), (lambda: lookup_country_name['PNG'], lambda: lookup_hipc_status['PNG'], lambda: lookup_mdri['PNG'], lambda: None, lambda: lookup_imf_country_code_index['PNG']), (lambda: lookup_country_name['RWA'], lambda: lookup_hipc_status['RWA'], lambda: lookup_mdri['RWA'], lambda: None, lambda: lookup_imf_country_code_index['RWA']), (lambda: lookup_country_name['WSM'], lambda: lookup_hipc_status['WSM'], lambda: lookup_mdri['WSM'], lambda: None, lambda: lookup_imf_country_code_index['WSM']), (lambda: lookup_country_name['STP'], lambda: lookup_hipc_status['STP'], lambda: lookup_mdri['STP'], lambda: None, lambda: lookup_imf_country_code_index['STP']), (lambda: lookup_country_name['SEN'], lambda: lookup_hipc_status['SEN'], lambda: lookup_mdri['SEN'], lambda: None, lambda: lookup_imf_country_code_index['SEN']), (lambda: lookup_country_name['SLE'], lambda: lookup_hipc_status['SLE'], lambda: lookup_mdri['SLE'], lambda: None, lambda: lookup_imf_country_code_index['SLE']), (lambda: lookup_country_name['SLB'], lambda: lookup_hipc_status['SLB'], lambda: lookup_mdri['SLB'], lambda: None, lambda: lookup_imf_country_code_index['SLB']), (lambda: lookup_country_name['SOM'], lambda: lookup_hipc_status['SOM'], lambda: lookup_mdri['SOM'], lambda: None, lambda: lookup_imf_country_code_index['SOM']), (lambda: lookup_country_name['SSD'], lambda: lookup_hipc_status['SSD'], lambda: lookup_mdri['SSD'], lambda: None, lambda: lookup_imf_country_code_index['SSD']), (lambda: lookup_country_name['LCA'], lambda: lookup_hipc_status['LCA'], lambda: lookup_mdri['LCA'], lambda: None, lambda: lookup_imf_country_code_index['LCA']), (lambda: lookup_country_name['VCT'], lambda: lookup_hipc_status['VCT'], lambda: lookup_mdri['VCT'], lambda: None, lambda: lookup_imf_country_code_index['VCT']), (lambda: lookup_country_name['SDN'], lambda: lookup_hipc_status['SDN'], lambda: lookup_mdri['SDN'], lambda: None, lambda: lookup_imf_country_code_index['SDN']), (lambda: lookup_country_name['TJK'], lambda: lookup_hipc_status['TJK'], lambda: lookup_mdri['TJK'], lambda: None, lambda: lookup_imf_country_code_index['TJK']), (lambda: lookup_country_name['TZA'], lambda: lookup_hipc_status['TZA'], lambda: lookup_mdri['TZA'], lambda: None, lambda: lookup_imf_country_code_index['TZA']), (lambda: lookup_country_name['TLS'], lambda: lookup_hipc_status['TLS'], lambda: lookup_mdri['TLS'], lambda: None, lambda: lookup_imf_country_code_index['TLS']), (lambda: lookup_country_name['TGO'], lambda: lookup_hipc_status['TGO'], lambda: lookup_mdri['TGO'], lambda: None, lambda: lookup_imf_country_code_index['TGO']), (lambda: lookup_country_name['TON'], lambda: lookup_hipc_status['TON'], lambda: lookup_mdri['TON'], lambda: None, lambda: lookup_imf_country_code_index['TON']), (lambda: lookup_country_name['TUV'], lambda: lookup_hipc_status['TUV'], lambda: lookup_mdri['TUV'], lambda: None, lambda: lookup_imf_country_code_index['TUV']), (lambda: lookup_country_name['UGA'], lambda: lookup_hipc_status['UGA'], lambda: lookup_mdri['UGA'], lambda: None, lambda: lookup_imf_country_code_index['UGA']), (lambda: lookup_country_name['UZB'], lambda: lookup_hipc_status['UZB'], lambda: lookup_mdri['UZB'], lambda: None, lambda: lookup_imf_country_code_index['UZB']), (lambda: lookup_country_name['VUT'], lambda: lookup_hipc_status['VUT'], lambda: lookup_mdri['VUT'], lambda: None, lambda: lookup_imf_country_code_index['VUT']), (lambda: lookup_country_name['YEM'], lambda: lookup_hipc_status['YEM'], lambda: lookup_mdri['YEM'], lambda: None, lambda: lookup_imf_country_code_index['YEM']), (lambda: lookup_country_name['ZMB'], lambda: lookup_hipc_status['ZMB'], lambda: lookup_mdri['ZMB'], lambda: None, lambda: lookup_imf_country_code_index['ZMB']), (lambda: lookup_country_name['ZWE'], lambda: lookup_hipc_status['ZWE'], lambda: lookup_mdri['ZWE'], lambda: None, lambda: lookup_imf_country_code_index['ZWE'])))
+    _trigger_market_access_country_code_table_0 = lazy_table(((lambda: lookup_country_name['AFG'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['AFG']), (lambda: lookup_country_name['BGD'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['BGD']), (lambda: lookup_country_name['BEN'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['BEN']), (lambda: lookup_country_name['BTN'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['BTN']), (lambda: lookup_country_name['BFA'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['BFA']), (lambda: lookup_country_name['BDI'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['BDI']), (lambda: lookup_country_name['KHM'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['KHM']), (lambda: lookup_country_name['CMR'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['CMR']), (lambda: lookup_country_name['CPV'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['CPV']), (lambda: lookup_country_name['CAF'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['CAF']), (lambda: lookup_country_name['TCD'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['TCD']), (lambda: lookup_country_name['COM'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['COM']), (lambda: lookup_country_name['COD'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['COD']), (lambda: lookup_country_name['COG'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['COG']), (lambda: lookup_country_name['CIV'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['CIV']), (lambda: lookup_country_name['DJI'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['DJI']), (lambda: lookup_country_name['DMA'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['DMA']), (lambda: lookup_country_name['ERI'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['ERI']), (lambda: lookup_country_name['ETH'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['ETH']), (lambda: lookup_country_name['GMB'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['GMB']), (lambda: lookup_country_name['GHA'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['GHA']), (lambda: lookup_country_name['GRD'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['GRD']), (lambda: lookup_country_name['GIN'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['GIN']), (lambda: lookup_country_name['GNB'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['GNB']), (lambda: lookup_country_name['GUY'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['GUY']), (lambda: lookup_country_name['HTI'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['HTI']), (lambda: lookup_country_name['HND'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['HND']), (lambda: lookup_country_name['KEN'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['KEN']), (lambda: lookup_country_name['KIR'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['KIR']), (lambda: lookup_country_name['KGZ'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['KGZ']), (lambda: lookup_country_name['LAO'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['LAO']), (lambda: lookup_country_name['LSO'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['LSO']), (lambda: lookup_country_name['LBR'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['LBR']), (lambda: lookup_country_name['MDG'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['MDG']), (lambda: lookup_country_name['MWI'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['MWI']), (lambda: lookup_country_name['MDV'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['MDV']), (lambda: lookup_country_name['MLI'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['MLI']), (lambda: lookup_country_name['MHL'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['MHL']), (lambda: lookup_country_name['MRT'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['MRT']), (lambda: lookup_country_name['FSM'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['FSM']), (lambda: lookup_country_name['MDA'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['MDA']), (lambda: lookup_country_name['MOZ'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['MOZ']), (lambda: lookup_country_name['MMR'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['MMR']), (lambda: lookup_country_name['NPL'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['NPL']), (lambda: lookup_country_name['NIC'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['NIC']), (lambda: lookup_country_name['NER'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['NER']), (lambda: lookup_country_name['PNG'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['PNG']), (lambda: lookup_country_name['RWA'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['RWA']), (lambda: lookup_country_name['WSM'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['WSM']), (lambda: lookup_country_name['STP'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['STP']), (lambda: lookup_country_name['SEN'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['SEN']), (lambda: lookup_country_name['SLE'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['SLE']), (lambda: lookup_country_name['SLB'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['SLB']), (lambda: lookup_country_name['SOM'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['SOM']), (lambda: lookup_country_name['SSD'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['SSD']), (lambda: lookup_country_name['LCA'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['LCA']), (lambda: lookup_country_name['VCT'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['VCT']), (lambda: lookup_country_name['SDN'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['SDN']), (lambda: lookup_country_name['TJK'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['TJK']), (lambda: lookup_country_name['TZA'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['TZA']), (lambda: lookup_country_name['TLS'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['TLS']), (lambda: lookup_country_name['TGO'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['TGO']), (lambda: lookup_country_name['TON'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['TON']), (lambda: lookup_country_name['TUV'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['TUV']), (lambda: lookup_country_name['UGA'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['UGA']), (lambda: lookup_country_name['UZB'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['UZB']), (lambda: lookup_country_name['VUT'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['VUT']), (lambda: lookup_country_name['YEM'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['YEM']), (lambda: lookup_country_name['ZMB'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['ZMB']), (lambda: lookup_country_name['ZWE'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['ZWE'])))
     def formula(ref_area: str) -> int | str | None:
         return as_measure(xl_vlookup(trigger_country_names[ref_area], _trigger_market_access_country_code_table_0, 5, False), 'int')
 
@@ -19937,26 +19587,22 @@ def in1_basics_autofill_note(*, translation_input_1_basics_blue_cells_are_popula
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN1_BASICS_COUNTRY_CODE_CELLS)
-def in1_basics_country_code(*, country: str, lookup_imf_country_code_index: data.Series[int | str | None], lookup_country_name: data.Series[str | None], lookup_hipc_status: data.Series[str | None], lookup_mdri: data.Series[str | None]) -> int | str:
-    """Resolve the IMF country code for a single Input 1 – Basics country anchor.
+def in1_basics_country_code(*, country: str, lookup_imf_country_code_index: data.Series[int | str | None], lookup_country_name: data.Series[str | None]) -> int | str:
+    """Resolve the IMF country code index for a country from the authored Input 1 lookup table.
 
-    Match the supplied country label against the country code, name, HIPC status, and MDRI lookup catalogs to return the IMF country code used throughout the LIC-DSF template.
+    Maps the Input 1 - Basics country selector to its IMF country code index via the anchored country-name and country-code lookups.
 
     Args:
-        country: Country name label selecting the single-country anchor to resolve.
-        lookup_imf_country_code_index: Catalog-indexed series of IMF country code values (numeric or textual) keyed by country coordinate.
-        lookup_country_name: Catalog-indexed series of country names keyed by country coordinate, used to confirm the requested label.
-        lookup_hipc_status: Catalog-indexed series of HIPC status flags keyed by country coordinate.
-        lookup_mdri: Catalog-indexed series of MDRI status flags keyed by country coordinate.
+        country: Scalar country identifier (ISO alpha-3 key) used as the VLOOKUP key against the anchored lookup table.
+        lookup_imf_country_code_index: Typed data.Series of the IMF country code index lookup, a named-axis tensor over catalog coordinates keyed by country code, providing the index value per row.
+        lookup_country_name: Typed data.Series of the country name lookup, a named-axis tensor over catalog coordinates keyed by country code, supplying the display name per row.
 
     Returns:
-        The resolved IMF country code for the requested country, as an int when the catalog supplies a numeric code and as a str otherwise.
+        Scalar IMF country code index (int), or the spreadsheet error code string when the lookup raises an XlError.
     """
     data.LOOKUP_IMF_COUNTRY_CODE_INDEX.schema.validate(lookup_imf_country_code_index)
     data.LOOKUP_COUNTRY_NAME.schema.validate(lookup_country_name)
-    data.LOOKUP_HIPC_STATUS.schema.validate(lookup_hipc_status)
-    data.LOOKUP_MDRI.schema.validate(lookup_mdri)
-    _in1_basics_country_code_table_0 = lazy_table(((lambda: lookup_country_name['AFG'], lambda: lookup_hipc_status['AFG'], lambda: lookup_mdri['AFG'], lambda: None, lambda: lookup_imf_country_code_index['AFG']), (lambda: lookup_country_name['BGD'], lambda: lookup_hipc_status['BGD'], lambda: lookup_mdri['BGD'], lambda: None, lambda: lookup_imf_country_code_index['BGD']), (lambda: lookup_country_name['BEN'], lambda: lookup_hipc_status['BEN'], lambda: lookup_mdri['BEN'], lambda: None, lambda: lookup_imf_country_code_index['BEN']), (lambda: lookup_country_name['BTN'], lambda: lookup_hipc_status['BTN'], lambda: lookup_mdri['BTN'], lambda: None, lambda: lookup_imf_country_code_index['BTN']), (lambda: lookup_country_name['BFA'], lambda: lookup_hipc_status['BFA'], lambda: lookup_mdri['BFA'], lambda: None, lambda: lookup_imf_country_code_index['BFA']), (lambda: lookup_country_name['BDI'], lambda: lookup_hipc_status['BDI'], lambda: lookup_mdri['BDI'], lambda: None, lambda: lookup_imf_country_code_index['BDI']), (lambda: lookup_country_name['KHM'], lambda: lookup_hipc_status['KHM'], lambda: lookup_mdri['KHM'], lambda: None, lambda: lookup_imf_country_code_index['KHM']), (lambda: lookup_country_name['CMR'], lambda: lookup_hipc_status['CMR'], lambda: lookup_mdri['CMR'], lambda: None, lambda: lookup_imf_country_code_index['CMR']), (lambda: lookup_country_name['CPV'], lambda: lookup_hipc_status['CPV'], lambda: lookup_mdri['CPV'], lambda: None, lambda: lookup_imf_country_code_index['CPV']), (lambda: lookup_country_name['CAF'], lambda: lookup_hipc_status['CAF'], lambda: lookup_mdri['CAF'], lambda: None, lambda: lookup_imf_country_code_index['CAF']), (lambda: lookup_country_name['TCD'], lambda: lookup_hipc_status['TCD'], lambda: lookup_mdri['TCD'], lambda: None, lambda: lookup_imf_country_code_index['TCD']), (lambda: lookup_country_name['COM'], lambda: lookup_hipc_status['COM'], lambda: lookup_mdri['COM'], lambda: None, lambda: lookup_imf_country_code_index['COM']), (lambda: lookup_country_name['COD'], lambda: lookup_hipc_status['COD'], lambda: lookup_mdri['COD'], lambda: None, lambda: lookup_imf_country_code_index['COD']), (lambda: lookup_country_name['COG'], lambda: lookup_hipc_status['COG'], lambda: lookup_mdri['COG'], lambda: None, lambda: lookup_imf_country_code_index['COG']), (lambda: lookup_country_name['CIV'], lambda: lookup_hipc_status['CIV'], lambda: lookup_mdri['CIV'], lambda: None, lambda: lookup_imf_country_code_index['CIV']), (lambda: lookup_country_name['DJI'], lambda: lookup_hipc_status['DJI'], lambda: lookup_mdri['DJI'], lambda: None, lambda: lookup_imf_country_code_index['DJI']), (lambda: lookup_country_name['DMA'], lambda: lookup_hipc_status['DMA'], lambda: lookup_mdri['DMA'], lambda: None, lambda: lookup_imf_country_code_index['DMA']), (lambda: lookup_country_name['ERI'], lambda: lookup_hipc_status['ERI'], lambda: lookup_mdri['ERI'], lambda: None, lambda: lookup_imf_country_code_index['ERI']), (lambda: lookup_country_name['ETH'], lambda: lookup_hipc_status['ETH'], lambda: lookup_mdri['ETH'], lambda: None, lambda: lookup_imf_country_code_index['ETH']), (lambda: lookup_country_name['GMB'], lambda: lookup_hipc_status['GMB'], lambda: lookup_mdri['GMB'], lambda: None, lambda: lookup_imf_country_code_index['GMB']), (lambda: lookup_country_name['GHA'], lambda: lookup_hipc_status['GHA'], lambda: lookup_mdri['GHA'], lambda: None, lambda: lookup_imf_country_code_index['GHA']), (lambda: lookup_country_name['GRD'], lambda: lookup_hipc_status['GRD'], lambda: lookup_mdri['GRD'], lambda: None, lambda: lookup_imf_country_code_index['GRD']), (lambda: lookup_country_name['GIN'], lambda: lookup_hipc_status['GIN'], lambda: lookup_mdri['GIN'], lambda: None, lambda: lookup_imf_country_code_index['GIN']), (lambda: lookup_country_name['GNB'], lambda: lookup_hipc_status['GNB'], lambda: lookup_mdri['GNB'], lambda: None, lambda: lookup_imf_country_code_index['GNB']), (lambda: lookup_country_name['GUY'], lambda: lookup_hipc_status['GUY'], lambda: lookup_mdri['GUY'], lambda: None, lambda: lookup_imf_country_code_index['GUY']), (lambda: lookup_country_name['HTI'], lambda: lookup_hipc_status['HTI'], lambda: lookup_mdri['HTI'], lambda: None, lambda: lookup_imf_country_code_index['HTI']), (lambda: lookup_country_name['HND'], lambda: lookup_hipc_status['HND'], lambda: lookup_mdri['HND'], lambda: None, lambda: lookup_imf_country_code_index['HND']), (lambda: lookup_country_name['KEN'], lambda: lookup_hipc_status['KEN'], lambda: lookup_mdri['KEN'], lambda: None, lambda: lookup_imf_country_code_index['KEN']), (lambda: lookup_country_name['KIR'], lambda: lookup_hipc_status['KIR'], lambda: lookup_mdri['KIR'], lambda: None, lambda: lookup_imf_country_code_index['KIR']), (lambda: lookup_country_name['KGZ'], lambda: lookup_hipc_status['KGZ'], lambda: lookup_mdri['KGZ'], lambda: None, lambda: lookup_imf_country_code_index['KGZ']), (lambda: lookup_country_name['LAO'], lambda: lookup_hipc_status['LAO'], lambda: lookup_mdri['LAO'], lambda: None, lambda: lookup_imf_country_code_index['LAO']), (lambda: lookup_country_name['LSO'], lambda: lookup_hipc_status['LSO'], lambda: lookup_mdri['LSO'], lambda: None, lambda: lookup_imf_country_code_index['LSO']), (lambda: lookup_country_name['LBR'], lambda: lookup_hipc_status['LBR'], lambda: lookup_mdri['LBR'], lambda: None, lambda: lookup_imf_country_code_index['LBR']), (lambda: lookup_country_name['MDG'], lambda: lookup_hipc_status['MDG'], lambda: lookup_mdri['MDG'], lambda: None, lambda: lookup_imf_country_code_index['MDG']), (lambda: lookup_country_name['MWI'], lambda: lookup_hipc_status['MWI'], lambda: lookup_mdri['MWI'], lambda: None, lambda: lookup_imf_country_code_index['MWI']), (lambda: lookup_country_name['MDV'], lambda: lookup_hipc_status['MDV'], lambda: lookup_mdri['MDV'], lambda: None, lambda: lookup_imf_country_code_index['MDV']), (lambda: lookup_country_name['MLI'], lambda: lookup_hipc_status['MLI'], lambda: lookup_mdri['MLI'], lambda: None, lambda: lookup_imf_country_code_index['MLI']), (lambda: lookup_country_name['MHL'], lambda: lookup_hipc_status['MHL'], lambda: lookup_mdri['MHL'], lambda: None, lambda: lookup_imf_country_code_index['MHL']), (lambda: lookup_country_name['MRT'], lambda: lookup_hipc_status['MRT'], lambda: lookup_mdri['MRT'], lambda: None, lambda: lookup_imf_country_code_index['MRT']), (lambda: lookup_country_name['FSM'], lambda: lookup_hipc_status['FSM'], lambda: lookup_mdri['FSM'], lambda: None, lambda: lookup_imf_country_code_index['FSM']), (lambda: lookup_country_name['MDA'], lambda: lookup_hipc_status['MDA'], lambda: lookup_mdri['MDA'], lambda: None, lambda: lookup_imf_country_code_index['MDA']), (lambda: lookup_country_name['MOZ'], lambda: lookup_hipc_status['MOZ'], lambda: lookup_mdri['MOZ'], lambda: None, lambda: lookup_imf_country_code_index['MOZ']), (lambda: lookup_country_name['MMR'], lambda: lookup_hipc_status['MMR'], lambda: lookup_mdri['MMR'], lambda: None, lambda: lookup_imf_country_code_index['MMR']), (lambda: lookup_country_name['NPL'], lambda: lookup_hipc_status['NPL'], lambda: lookup_mdri['NPL'], lambda: None, lambda: lookup_imf_country_code_index['NPL']), (lambda: lookup_country_name['NIC'], lambda: lookup_hipc_status['NIC'], lambda: lookup_mdri['NIC'], lambda: None, lambda: lookup_imf_country_code_index['NIC']), (lambda: lookup_country_name['NER'], lambda: lookup_hipc_status['NER'], lambda: lookup_mdri['NER'], lambda: None, lambda: lookup_imf_country_code_index['NER']), (lambda: lookup_country_name['PNG'], lambda: lookup_hipc_status['PNG'], lambda: lookup_mdri['PNG'], lambda: None, lambda: lookup_imf_country_code_index['PNG']), (lambda: lookup_country_name['RWA'], lambda: lookup_hipc_status['RWA'], lambda: lookup_mdri['RWA'], lambda: None, lambda: lookup_imf_country_code_index['RWA']), (lambda: lookup_country_name['WSM'], lambda: lookup_hipc_status['WSM'], lambda: lookup_mdri['WSM'], lambda: None, lambda: lookup_imf_country_code_index['WSM']), (lambda: lookup_country_name['STP'], lambda: lookup_hipc_status['STP'], lambda: lookup_mdri['STP'], lambda: None, lambda: lookup_imf_country_code_index['STP']), (lambda: lookup_country_name['SEN'], lambda: lookup_hipc_status['SEN'], lambda: lookup_mdri['SEN'], lambda: None, lambda: lookup_imf_country_code_index['SEN']), (lambda: lookup_country_name['SLE'], lambda: lookup_hipc_status['SLE'], lambda: lookup_mdri['SLE'], lambda: None, lambda: lookup_imf_country_code_index['SLE']), (lambda: lookup_country_name['SLB'], lambda: lookup_hipc_status['SLB'], lambda: lookup_mdri['SLB'], lambda: None, lambda: lookup_imf_country_code_index['SLB']), (lambda: lookup_country_name['SOM'], lambda: lookup_hipc_status['SOM'], lambda: lookup_mdri['SOM'], lambda: None, lambda: lookup_imf_country_code_index['SOM']), (lambda: lookup_country_name['SSD'], lambda: lookup_hipc_status['SSD'], lambda: lookup_mdri['SSD'], lambda: None, lambda: lookup_imf_country_code_index['SSD']), (lambda: lookup_country_name['LCA'], lambda: lookup_hipc_status['LCA'], lambda: lookup_mdri['LCA'], lambda: None, lambda: lookup_imf_country_code_index['LCA']), (lambda: lookup_country_name['VCT'], lambda: lookup_hipc_status['VCT'], lambda: lookup_mdri['VCT'], lambda: None, lambda: lookup_imf_country_code_index['VCT']), (lambda: lookup_country_name['SDN'], lambda: lookup_hipc_status['SDN'], lambda: lookup_mdri['SDN'], lambda: None, lambda: lookup_imf_country_code_index['SDN']), (lambda: lookup_country_name['TJK'], lambda: lookup_hipc_status['TJK'], lambda: lookup_mdri['TJK'], lambda: None, lambda: lookup_imf_country_code_index['TJK']), (lambda: lookup_country_name['TZA'], lambda: lookup_hipc_status['TZA'], lambda: lookup_mdri['TZA'], lambda: None, lambda: lookup_imf_country_code_index['TZA']), (lambda: lookup_country_name['TLS'], lambda: lookup_hipc_status['TLS'], lambda: lookup_mdri['TLS'], lambda: None, lambda: lookup_imf_country_code_index['TLS']), (lambda: lookup_country_name['TGO'], lambda: lookup_hipc_status['TGO'], lambda: lookup_mdri['TGO'], lambda: None, lambda: lookup_imf_country_code_index['TGO']), (lambda: lookup_country_name['TON'], lambda: lookup_hipc_status['TON'], lambda: lookup_mdri['TON'], lambda: None, lambda: lookup_imf_country_code_index['TON']), (lambda: lookup_country_name['TUV'], lambda: lookup_hipc_status['TUV'], lambda: lookup_mdri['TUV'], lambda: None, lambda: lookup_imf_country_code_index['TUV']), (lambda: lookup_country_name['UGA'], lambda: lookup_hipc_status['UGA'], lambda: lookup_mdri['UGA'], lambda: None, lambda: lookup_imf_country_code_index['UGA']), (lambda: lookup_country_name['UZB'], lambda: lookup_hipc_status['UZB'], lambda: lookup_mdri['UZB'], lambda: None, lambda: lookup_imf_country_code_index['UZB']), (lambda: lookup_country_name['VUT'], lambda: lookup_hipc_status['VUT'], lambda: lookup_mdri['VUT'], lambda: None, lambda: lookup_imf_country_code_index['VUT']), (lambda: lookup_country_name['YEM'], lambda: lookup_hipc_status['YEM'], lambda: lookup_mdri['YEM'], lambda: None, lambda: lookup_imf_country_code_index['YEM']), (lambda: lookup_country_name['ZMB'], lambda: lookup_hipc_status['ZMB'], lambda: lookup_mdri['ZMB'], lambda: None, lambda: lookup_imf_country_code_index['ZMB']), (lambda: lookup_country_name['ZWE'], lambda: lookup_hipc_status['ZWE'], lambda: lookup_mdri['ZWE'], lambda: None, lambda: lookup_imf_country_code_index['ZWE'])))
+    _in1_basics_country_code_table_0 = lazy_table(((lambda: lookup_country_name['AFG'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['AFG']), (lambda: lookup_country_name['BGD'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['BGD']), (lambda: lookup_country_name['BEN'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['BEN']), (lambda: lookup_country_name['BTN'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['BTN']), (lambda: lookup_country_name['BFA'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['BFA']), (lambda: lookup_country_name['BDI'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['BDI']), (lambda: lookup_country_name['KHM'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['KHM']), (lambda: lookup_country_name['CMR'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['CMR']), (lambda: lookup_country_name['CPV'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['CPV']), (lambda: lookup_country_name['CAF'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['CAF']), (lambda: lookup_country_name['TCD'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['TCD']), (lambda: lookup_country_name['COM'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['COM']), (lambda: lookup_country_name['COD'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['COD']), (lambda: lookup_country_name['COG'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['COG']), (lambda: lookup_country_name['CIV'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['CIV']), (lambda: lookup_country_name['DJI'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['DJI']), (lambda: lookup_country_name['DMA'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['DMA']), (lambda: lookup_country_name['ERI'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['ERI']), (lambda: lookup_country_name['ETH'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['ETH']), (lambda: lookup_country_name['GMB'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['GMB']), (lambda: lookup_country_name['GHA'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['GHA']), (lambda: lookup_country_name['GRD'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['GRD']), (lambda: lookup_country_name['GIN'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['GIN']), (lambda: lookup_country_name['GNB'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['GNB']), (lambda: lookup_country_name['GUY'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['GUY']), (lambda: lookup_country_name['HTI'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['HTI']), (lambda: lookup_country_name['HND'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['HND']), (lambda: lookup_country_name['KEN'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['KEN']), (lambda: lookup_country_name['KIR'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['KIR']), (lambda: lookup_country_name['KGZ'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['KGZ']), (lambda: lookup_country_name['LAO'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['LAO']), (lambda: lookup_country_name['LSO'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['LSO']), (lambda: lookup_country_name['LBR'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['LBR']), (lambda: lookup_country_name['MDG'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['MDG']), (lambda: lookup_country_name['MWI'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['MWI']), (lambda: lookup_country_name['MDV'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['MDV']), (lambda: lookup_country_name['MLI'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['MLI']), (lambda: lookup_country_name['MHL'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['MHL']), (lambda: lookup_country_name['MRT'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['MRT']), (lambda: lookup_country_name['FSM'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['FSM']), (lambda: lookup_country_name['MDA'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['MDA']), (lambda: lookup_country_name['MOZ'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['MOZ']), (lambda: lookup_country_name['MMR'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['MMR']), (lambda: lookup_country_name['NPL'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['NPL']), (lambda: lookup_country_name['NIC'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['NIC']), (lambda: lookup_country_name['NER'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['NER']), (lambda: lookup_country_name['PNG'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['PNG']), (lambda: lookup_country_name['RWA'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['RWA']), (lambda: lookup_country_name['WSM'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['WSM']), (lambda: lookup_country_name['STP'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['STP']), (lambda: lookup_country_name['SEN'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['SEN']), (lambda: lookup_country_name['SLE'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['SLE']), (lambda: lookup_country_name['SLB'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['SLB']), (lambda: lookup_country_name['SOM'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['SOM']), (lambda: lookup_country_name['SSD'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['SSD']), (lambda: lookup_country_name['LCA'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['LCA']), (lambda: lookup_country_name['VCT'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['VCT']), (lambda: lookup_country_name['SDN'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['SDN']), (lambda: lookup_country_name['TJK'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['TJK']), (lambda: lookup_country_name['TZA'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['TZA']), (lambda: lookup_country_name['TLS'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['TLS']), (lambda: lookup_country_name['TGO'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['TGO']), (lambda: lookup_country_name['TON'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['TON']), (lambda: lookup_country_name['TUV'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['TUV']), (lambda: lookup_country_name['UGA'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['UGA']), (lambda: lookup_country_name['UZB'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['UZB']), (lambda: lookup_country_name['VUT'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['VUT']), (lambda: lookup_country_name['YEM'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['YEM']), (lambda: lookup_country_name['ZMB'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['ZMB']), (lambda: lookup_country_name['ZWE'], lambda: None, lambda: None, lambda: None, lambda: lookup_imf_country_code_index['ZWE'])))
     try:
         return as_measure(xl_vlookup(country, _in1_basics_country_code_table_0, 5, False), 'int')
     except XlError as error:
@@ -19981,27 +19627,22 @@ def in2_coverage_ppp(*, in2_coverage_y1_ppp_capital_stock_from_world_bank_s_ppp:
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN2_COVERAGE_Y1_PPP_CAPITAL_STOCK_FROM_WORLD_BANK_S_PPP_CELLS)
-def in2_coverage_y1_ppp_capital_stock_from_world_bank_s_ppp(*, trigger_country_flags: data.Series[int | str | None], trigger_left_headers: data.Series[str | None], trigger_ifscode: data.Series[int | str | None], trigger_isocode: data.Series[str | int | float | bool | None], trigger_country_name: data.Series[str | int | float | bool | None], trigger_ppp_year: data.Series[int | str | None], trigger_ppp_stocks: data.Series[float | str | None], in1_basics_country_code: int | str) -> float | str:
-    """Compute the year-1 PPP capital-stock coverage value from World Bank PPP data.
+def in2_coverage_y1_ppp_capital_stock_from_world_bank_s_ppp(*, trigger_left_headers: data.Series[str | None], trigger_ifscode: data.Series[int | str | None], trigger_ppp_stocks: data.Series[float | str | None], in1_basics_country_code: int | str) -> float | str:
+    """Look up a country's year-1 PPP capital stock (percent of GDP) from the World Bank PPP table.
 
-    Resolve the Input 2 debt-coverage PPP capital-stock (percent of GDP) entry for a given country via an authored lookup table.
+    Resolves the single-cell Input 2 anchor that feeds the PPP capital-stock coverage series from the country code, returning a percent-of-GDP scalar.
 
     Args:
-        trigger_country_flags: Series of country-level trigger flags used to filter or classify the PPP lookup rows.
-        trigger_left_headers: Series of table header labels over the variant axis, spanning IFSCode through the PPP%GDP in 2017 column.
-        trigger_ifscode: Series of IFSCode identifiers over the reference-area axis for the lookup rows.
-        trigger_isocode: Series of ISO-style country identifiers over the reference-area axis for the lookup rows.
-        trigger_country_name: Series of country names over the reference-area axis for the lookup rows.
-        trigger_ppp_year: Series of PPP reference years over the reference-area axis for the lookup rows.
-        trigger_ppp_stocks: Series of World Bank PPP capital-stock values as percent of GDP over reference areas and indicator columns.
-        in1_basics_country_code: Scalar country code from Input 1 basics used as the VLOOKUP key.
+        trigger_left_headers: Left-hand header series over the variant axis: supplies the lookup table's column labels, including the 'PPP%GDP in 2017' key column.
+        trigger_ifscode: Country-key series of IFSCode identifiers, one row per economy, used to assemble the lookup table's key column.
+        trigger_ppp_stocks: PPP capital-stock series from the World Bank PPP database, one row per country over the shared 25-key indicator axis, providing the looked-up values.
+        in1_basics_country_code: Scalar country identifier (int or str) used as the VLOOKUP key against the assembled PPP stock table.
 
     Returns:
-        Matched PPP capital-stock value as a percentage of GDP, or `0` when the lookup is unavailable; an Excel error code string is returned if evaluation raises an XlError.
+        Scalar percent-of-GDP PPP capital stock (the looked-up value times 100) for the requested country; 0 when the lookup resolves to an error, or the string error code if evaluation fails.
     """
-    data.TRIGGER_COUNTRY_FLAGS.schema.validate(trigger_country_flags)
     data.TRIGGER_LEFT_HEADERS.schema.validate(trigger_left_headers)
-    _in2_coverage_y1_ppp_capital_stock_from_world_bank_s_ppp_table_0 = lazy_table(((view(trigger_left_headers, cols=span(data.VARIANT_AXIS, 'ifscode', 'PPP%GDP in 2017')),), (view(trigger_ifscode, rows=data.REF_AREA_AXIS_2.keys), view(trigger_isocode, rows=data.REF_AREA_AXIS_2.keys), view(trigger_country_name, rows=data.REF_AREA_AXIS_2.keys), view(trigger_ppp_year, rows=data.REF_AREA_AXIS_2.keys), view(trigger_country_flags, rows=data.REF_AREA_AXIS_2.keys, cols=span(data.INDICATOR_AXIS, 'incgr', 'licdsf')), view(trigger_ppp_stocks, rows=data.REF_AREA_AXIS_2.keys, cols=data.INDICATOR_AXIS_25.keys))))
+    _in2_coverage_y1_ppp_capital_stock_from_world_bank_s_ppp_table_0 = lazy_table(((view(trigger_left_headers, cols=span(data.VARIANT_AXIS, 'ifscode', 'PPP%GDP in 2017')),), (lambda: trigger_ifscode['BGD'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('BGD',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['BEN'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('BEN',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['BTN'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('BTN',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['BFA'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('BFA',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['BDI'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('BDI',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['CPV'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('CPV',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['KHM'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('KHM',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['CMR'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('CMR',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['CAF'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('CAF',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['TCD'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('TCD',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['COM'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('COM',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['COG'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('COG',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['CIV'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('CIV',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['COD'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('COD',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['DJI'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('DJI',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['DMA'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('DMA',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['ETH'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('ETH',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['GMB'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('GMB',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['GHA'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('GHA',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['GRD'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('GRD',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['GIN'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('GIN',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['GNB'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('GNB',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['HTI'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('HTI',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['HND'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('HND',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['KEN'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('KEN',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['KGZ'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('KGZ',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['LAO'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('LAO',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['LSO'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('LSO',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['LBR'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('LBR',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['MDG'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('MDG',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['MWI'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('MWI',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['MDV'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('MDV',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['MLI'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('MLI',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['MRT'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('MRT',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['MDA'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('MDA',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['MOZ'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('MOZ',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['MMR'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('MMR',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['NPL'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('NPL',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['NIC'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('NIC',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['NER'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('NER',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['RWA'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('RWA',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['STP'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('STP',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['SEN'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('SEN',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['SLE'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('SLE',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['VCT'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('VCT',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['SDN'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('SDN',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['TJK'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('TJK',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['TZA'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('TZA',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['TGO'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('TGO',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['UGA'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('UGA',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['UZB'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('UZB',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['YEM'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('YEM',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['ZMB'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('ZMB',), cols=data.INDICATOR_AXIS_25.keys)), (lambda: trigger_ifscode['ZWE'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(trigger_ppp_stocks, rows=('ZWE',), cols=data.INDICATOR_AXIS_25.keys))))
     try:
         return as_measure((0 if xl_bool(xl_iserror(lambda: xl_vlookup(in1_basics_country_code, _in2_coverage_y1_ppp_capital_stock_from_world_bank_s_ppp_table_0, 10, False))) else xl_mul(xl_vlookup(in1_basics_country_code, _in2_coverage_y1_ppp_capital_stock_from_world_bank_s_ppp_table_0, 10, False), 100)))
     except XlError as error:
@@ -20214,17 +19855,17 @@ def in6_tailored_natdisaster(*, trigger_natural_disaster_sample: data.Series[str
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_COMMODITY_PRICE_CELLS)
-def in6_tailored_commodity_price(*, input6_tailored_tests_enabled: Literal["Off", "On"], in6_tailored_share_of_commodities_in_total_exports_of_goods: float | str) -> str | int | float | bool:
-    """Determine whether the tailored commodity-price stress test applies.
+def in6_tailored_commodity_price(*, input6_tailored_tests_enabled: str, in6_tailored_share_of_commodities_in_total_exports_of_goods: float | str) -> str | int | float | bool:
+    """Compute the Input 6 tailored commodity-price applicability flag.
 
-    Derive the tailored commodity-price applicability flag from the Input 6 tailored-tests switch and the commodity export share.
+    Decide whether the tailored commodity-price stress test applies given the tailored-tests toggle and the commodity-export share.
 
     Args:
-        input6_tailored_tests_enabled: Scalar toggle indicating whether tailored tests are enabled ('On') or disabled ('Off').
-        in6_tailored_share_of_commodities_in_total_exports_of_goods: Scalar share of commodities in total exports of goods, evaluated against the 0.5 threshold.
+        input6_tailored_tests_enabled: String scalar toggle for the Input 6 tailored tests; the value `'On'` enables the tailored commodity-price test.
+        in6_tailored_share_of_commodities_in_total_exports_of_goods: Float or string scalar giving the share of commodities in total exports of goods, compared against the 0.5 threshold.
 
     Returns:
-        Scalar 'Yes' when tailored tests are on and the commodity export share exceeds 0.5, otherwise 'No'; an error code string is returned if evaluation raises an XlError.
+        `'Yes'` when tailored tests are enabled and the commodity share exceeds 0.5, otherwise `'No'`; an `XlError` code string if evaluation fails.
     """
     try:
         return as_measure((('Yes' if xl_bool(xl_gt(in6_tailored_share_of_commodities_in_total_exports_of_goods, 0.5)) else 'No') if xl_bool(xl_eq(input6_tailored_tests_enabled, 'On')) else 'No'), 'str')
@@ -20232,20 +19873,20 @@ def in6_tailored_commodity_price(*, input6_tailored_tests_enabled: Literal["Off"
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_MKT_FINANCING_CELLS)
-def in6_tailored_mkt_financing(*, trigger_right_headers: data.Series[str | None], input6_tailored_tests_enabled: Literal["Off", "On"], trigger_market_access_country_code: data.Series[int | str | None], trigger_market_access: data.Series[str | int | float | bool | None], in1_basics_country_code: int | str) -> str | int | float | bool:
-    """Flag applicability of the Market Financing tailored stress test for the selected country.
+def in6_tailored_mkt_financing(*, trigger_right_headers: data.Series[str | None], input6_tailored_tests_enabled: str, trigger_market_access_country_code: data.Series[int | str | None], trigger_market_access: data.Series[str | int | float | bool | None], in1_basics_country_code: int | str) -> str | int | float | bool:
+    """Resolves the Market Financing (Input 6 – Tailored Tests) market-access flag for the selected country.
 
-    Resolve the Input 6 market-access trigger for the active country so downstream tailored-test logic can treat Market Financing as applicable.
+    Gates the tailored market-financing stress test behind the Input 6 enable toggle and the country's market-access indicator.
 
     Args:
-        trigger_right_headers: Named-axis series of right-hand header labels over catalog coordinates, supplying the market-access trigger column header and the country-code column header, with blank cells carried as None.
-        input6_tailored_tests_enabled: Scalar switch holding either 'Off' or 'On' that gates tailored stress tests; when 'Off' the market-access trigger short-circuits to 'No'.
-        trigger_market_access_country_code: Named-axis series of country codes (integer or text, None where blank) indexed by country name.
-        trigger_market_access: Named-axis series of per-country market-access trigger values keyed by country name, holding heterogeneous scalar types with None for blanks.
-        in1_basics_country_code: Scalar country code taken from the Input 1 basics sheet, used to locate the matching row in the market-access trigger series.
+        trigger_right_headers: Named-axis series of right-hand header labels on the Market financing (Input 6 – Tailored Tests) anchor sheet, including the 'Country code' and 'Market access (for stress tests and market fin. Module)' column headers; blank labels are permitted.
+        input6_tailored_tests_enabled: Scalar switch text from Input 6; only the literal 'On' activates the tailored-tests branch, while any other value short-circuits to 'No'.
+        trigger_market_access_country_code: Named-axis series of country codes keyed by country name, used to locate the row whose code matches the Input 1 basics country code.
+        trigger_market_access: Named-axis series of market-access indicator values keyed by country name; the matched cell is coerced to boolean to decide 'Yes' versus 'No'.
+        in1_basics_country_code: Scalar country code taken from Input 1 (basics), matched positionally against the country-code series to select the row.
 
     Returns:
-        Text 'Yes' when the selected country's market-access trigger matches and tailored tests are enabled, otherwise 'No'; an XlError code string is returned if evaluation raises a spreadsheet error.
+        Scalar outcome: the text 'Yes' when tailored tests are enabled and the country is flagged with market access, 'No' otherwise; if formula evaluation raises an Excel error, the error code is returned instead.
     """
     data.TRIGGER_RIGHT_HEADERS.schema.validate(trigger_right_headers)
     try:
@@ -20296,7 +19937,7 @@ class ScanIn6TailoredAdjustedShareOfFuelInExportsOfGSResult:
     in6_tailored_average_of_prices_shock_default: float | str
     input6_tailored_params_2: data.Series[float | str | None]
 
-def scan_in6_tailored_adjusted_share_of_fuel_in_exports_of_g_s(*, input6_tailored_tests_enabled: Literal["Off", "On"], in6_tailored_price_shock_non_fuel: data.Series[float | str | None], in6_tailored_natdisaster_shock_size_default: float | str, in6_tailored_commodity_close_gap_default: float | str, in6_tailored_share_of_fuel_in_exports_of_g_s_default: float | str, in6_tailored_share_of_non_fuel_in_exports_of_g_s_default: float | str, in6_tailored_mitigating_factor_fuel_default: float | str, in6_tailored_mitigating_factor_non_fuel_default: float | str, in6_tailored_mkt_fin_borrowing_cost_default: float | str, in6_tailored_mkt_fin_maturity_defaults: data.Series[float | str | None], in6_tailored_mkt_fin_fx_depreciation_default: float | str, input6_tailored_params_fuel_label: str | int | float | bool) -> ScanIn6TailoredAdjustedShareOfFuelInExportsOfGSResult:
+def scan_in6_tailored_adjusted_share_of_fuel_in_exports_of_g_s(*, input6_tailored_tests_enabled: str, in6_tailored_price_shock_non_fuel: data.Series[float | str | None], in6_tailored_natdisaster_shock_size_default: float | str, in6_tailored_commodity_close_gap_default: float | str, in6_tailored_share_of_fuel_in_exports_of_g_s_default: float | str, in6_tailored_share_of_non_fuel_in_exports_of_g_s_default: float | str, in6_tailored_mitigating_factor_fuel_default: float | str, in6_tailored_mitigating_factor_non_fuel_default: float | str, in6_tailored_mkt_fin_borrowing_cost_default: float | str, in6_tailored_mkt_fin_maturity_defaults: data.Series[float | str | None], in6_tailored_mkt_fin_fx_depreciation_default: float | str, input6_tailored_params_fuel_label: str | int | float | bool) -> ScanIn6TailoredAdjustedShareOfFuelInExportsOfGSResult:
     """Evaluate the recurrence group `in6_tailored_adjusted_share_of_fuel_in_exports_of_g_s`, `in6_tailored_adjusted_share_of_non_fuel_in_exports_of_g_s`, `in6_tailored_average_of_prices_shock_default`, `input6_tailored_params_2` and publish complete tensors."""
     def in6_tailored_adjusted_share_of_fuel_in_exports_of_g_s_formula(variant: str) -> float | str | None:
         if variant == 'Default':
@@ -20385,16 +20026,16 @@ def in6_tailored_commodity_group_price_shock(*, input6_commodity_group_relevant:
     return data.IN6_TAILORED_COMMODITY_GROUP_PRICE_SHOCK.collect((coord, in6_tailored_commodity_group_price_shock[coord]) for coord in data.IN6_TAILORED_COMMODITY_GROUP_PRICE_SHOCK.required)
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_NATDISASTER_SHOCK_SIZE_DEFAULT_CELLS)
-def in6_tailored_natdisaster_shock_size_default(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> float | str:
-    """Compute the default natural-disaster PPG-debt-GDP shock size for tailored tests.
+def in6_tailored_natdisaster_shock_size_default(*, input6_tailored_tests_enabled: str) -> float | str:
+    """Return the default natural-disaster PPG-debt-GDP shock size when tailored tests are enabled.
 
-    Provides the Input 6 default tailored natural-disaster shock size used when tailored tests are enabled.
+    Resolve the standardized tailored natural-disaster shock magnitude from the tailored-tests applicability flag.
 
     Args:
-        input6_tailored_tests_enabled: Scalar toggle accepting 'Off' or 'On'; 'On' applies the tailored natural-disaster shock size and 'Off' suppresses it.
+        input6_tailored_tests_enabled: Scalar string toggle indicating whether tailored stress tests are enabled ('On' applies the default shock size, otherwise zero).
 
     Returns:
-        Scalar shock size as a float (10 when tailored tests are enabled, otherwise 0), or a string workbook error code if evaluation fails.
+        The default natural-disaster PPG-debt-GDP shock size as a float, or the workbook error code as a string when evaluation fails.
     """
     try:
         return as_measure((10 if xl_bool(xl_eq(input6_tailored_tests_enabled, 'On')) else 0))
@@ -20402,16 +20043,16 @@ def in6_tailored_natdisaster_shock_size_default(*, input6_tailored_tests_enabled
         return error.code
 
 @publish(data.IN6_TAILORED_NATDISASTER_INTERACTION_DEFAULTS.schema, cells=data.IN6_TAILORED_NATDISASTER_INTERACTION_DEFAULTS.cells)
-def in6_tailored_natdisaster_interaction_defaults(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> data.Series[float | str | None]:
-    """Return the Input 6 tailored natural-disaster interaction shock defaults series.
+def in6_tailored_natdisaster_interaction_defaults(*, input6_tailored_tests_enabled: str) -> data.Series[float | str | None]:
+    """Return default tailored natural-disaster interaction shocks for Input 6.
 
-    Compute standardized natural-disaster GDP and export growth interaction shocks conditioned on the tailored-tests enable flag.
+    Supplies the standard GDP and export growth interaction shock defaults used when tailored tests are enabled.
 
     Args:
-        input6_tailored_tests_enabled: Scalar literal flag ('Off' or 'On') that toggles tailored tests; when 'On', the series holds the standard natural-disaster interaction shocks, and when 'Off', it holds zeros.
+        input6_tailored_tests_enabled: String tailored-tests enable flag; when it equals 'On', the standard shock magnitudes are returned, otherwise zero values are returned.
 
     Returns:
-        A data.Series[float | str | None] over catalog coordinates containing the natural-disaster interaction shock values (1.5 for the real GDP growth shock and 3.5 for the export growth shock when enabled; 0 otherwise).
+        A data.Series[float | str | None] of standard natural-disaster GDP and export growth interaction shock defaults keyed by catalog coordinates.
     """
     def formula(indicator: str) -> float | str | None:
         if indicator == 'Size of associated real GDP growth shock':
@@ -20421,16 +20062,16 @@ def in6_tailored_natdisaster_interaction_defaults(*, input6_tailored_tests_enabl
     return data.IN6_TAILORED_NATDISASTER_INTERACTION_DEFAULTS.collect(evaluate(formula, data.IN6_TAILORED_NATDISASTER_INTERACTION_DEFAULTS.required))
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_COMMODITY_CLOSE_GAP_DEFAULT_CELLS)
-def in6_tailored_commodity_close_gap_default(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> float | str:
-    """Return the default tailored commodity close-gap duration.
+def in6_tailored_commodity_close_gap_default(*, input6_tailored_tests_enabled: str) -> float | str:
+    """Return the Input 6 tailored-commodity close-gap default.
 
-    Resolves the standard years-to-close commodity price gap used when tailored stress tests are enabled, otherwise zero.
+    Supplies the standard years-to-close commodity price gap applied when tailored stress tests are enabled.
 
     Args:
-        input6_tailored_tests_enabled: Scalar enable/disable flag: 'On' selects the standard commodity close-gap default, while 'Off' selects zero.
+        input6_tailored_tests_enabled: Scalar string flag from Input 6 indicating whether tailored stress tests are enabled; the literal 'On' activates the tailored-commodity close-gap default.
 
     Returns:
-        Float equal to the standard years-to-close commodity price gap (6 when tailored tests are enabled, else 0), or a string workbook error code if evaluation fails.
+        Scalar 6.0 when tailored tests are enabled, 0.0 otherwise, or the Excel error code string if evaluation fails.
     """
     try:
         return as_measure((6 if xl_bool(xl_eq(input6_tailored_tests_enabled, 'On')) else 0))
@@ -20438,17 +20079,17 @@ def in6_tailored_commodity_close_gap_default(*, input6_tailored_tests_enabled: L
         return error.code
 
 @publish(data.IN6_TAILORED_COMMODITY_INTERACTION_DEFAULTS.schema, cells=data.IN6_TAILORED_COMMODITY_INTERACTION_DEFAULTS.cells)
-def in6_tailored_commodity_interaction_defaults(*, in6_tailored_average_of_prices_shock_default: float | str, input6_tailored_tests_enabled: Literal["Off", "On"]) -> data.Series[float | str | None]:
-    """Return the standard tailored commodity-interaction shock defaults from Input 6.
+def in6_tailored_commodity_interaction_defaults(*, in6_tailored_average_of_prices_shock_default: float | str, input6_tailored_tests_enabled: str) -> data.Series[float | str | None]:
+    """Compute the Input 6 tailored commodity-price interaction shock defaults.
 
-    Supplies the commodity-price GDP-growth and revenue-drop interaction defaults used by the LIC-DSF tailored stress tests.
+    Derive standard real-GDP-growth and revenue interaction shocks from a commodity-price shock when tailored stress tests are enabled.
 
     Args:
-        in6_tailored_average_of_prices_shock_default: Scalar default average commodity-price shock, provided as a number or formula string, applied to the tailored commodity interaction calculations.
-        input6_tailored_tests_enabled: Scalar switch, either 'Off' or 'On', that enables or suppresses the tailored commodity interaction defaults.
+        in6_tailored_average_of_prices_shock_default: Average-of-prices shock default for the Input 6 tailored commodity-price test, supplied as a scalar or text value and scaled to yield the associated growth and revenue interaction magnitudes.
+        input6_tailored_tests_enabled: Tailored-tests enable flag from Input 6; the interaction shocks are computed only when it equals 'On', otherwise both default to zero.
 
     Returns:
-        Typed data.Series[float | str | None] over the IN6_TAILORED_COMMODITY_INTERACTION_DEFAULTS coordinate labels; holds the associated real GDP growth shock size and revenue-drop interaction default when tailored tests are on, and zero otherwise.
+        A named-axis data.Series over the Input 6 tailored commodity interaction indicators (associated real GDP growth shock size and revenue drop), each holding a float magnitude or zero when tailored tests are off; annotated float | str | None over catalog coordinates.
     """
     def formula(indicator: str) -> float | str | None:
         if indicator == 'Size of associated real GDP growth shock':
@@ -20530,16 +20171,16 @@ def in6_tailored_mitigating_factor_non_fuel_default(*, macro_debt_share_of_commo
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_MKT_FIN_BORROWING_COST_DEFAULT_CELLS)
-def in6_tailored_mkt_fin_borrowing_cost_default(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> float | str:
-    """Default commercial borrowing-cost increase for tailored market-financing tests.
+def in6_tailored_mkt_fin_borrowing_cost_default(*, input6_tailored_tests_enabled: str) -> float | str:
+    """Determine the standard three-year commercial borrowing-cost increase for tailored market-financing tests.
 
-    Supplies the standard three-year uplift applied when tailored stress tests are enabled.
+    Provide the default borrowing-cost uplift used when Input 6 tailored tests are enabled.
 
     Args:
-        input6_tailored_tests_enabled: A scalar literal flag that enables the tailored-test uplift when set to 'On'; 'Off' yields no increase.
+        input6_tailored_tests_enabled: Keyword-only string flag indicating whether Input 6 tailored tests are enabled, with the literal 'On' activating the uplift.
 
     Returns:
-        A float measure of 400 when tailored tests are enabled, otherwise 0; or a string workbook error code on failure.
+        A float of 400.0 when tailored tests are enabled, 0.0 when disabled, or the workbook error code string if the comparison fails.
     """
     try:
         return as_measure((400 if xl_bool(xl_eq(input6_tailored_tests_enabled, 'On')) else 0))
@@ -20547,16 +20188,16 @@ def in6_tailored_mkt_fin_borrowing_cost_default(*, input6_tailored_tests_enabled
         return error.code
 
 @publish(data.IN6_TAILORED_MKT_FIN_MATURITY_DEFAULTS.schema, cells=data.IN6_TAILORED_MKT_FIN_MATURITY_DEFAULTS.cells)
-def in6_tailored_mkt_fin_maturity_defaults(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> data.Series[float | str | None]:
-    """Return Input 6 tailored-test defaults for market-financing maturity and grace-period shortenings.
+def in6_tailored_mkt_fin_maturity_defaults(*, input6_tailored_tests_enabled: str) -> data.Series[float | str | None]:
+    """Compute tailored market-financing maturity defaults for commercial and grace-period shortenings.
 
-    Supplies the standard commercial-maturity and grace-period reductions applied when tailored stress tests are enabled.
+    Return the default maturity adjustments applied when tailored market-financing stress tests are enabled.
 
     Args:
-        input6_tailored_tests_enabled: Scalar switch that enables or disables the tailored-test defaults; when enabled, the returned series carries the standard shortening amounts, and when disabled those amounts fall back to zero.
+        input6_tailored_tests_enabled: String flag indicating whether tailored tests are enabled, expected to be 'On' or 'Off'.
 
     Returns:
-        A data.Series[float | str | None] over the IN6_TAILORED_MKT_FIN_MATURITY_DEFAULTS catalog coordinates containing the applicable numeric shortening values, or authored str/None values, for market-financing maturity and grace-period defaults.
+        data.Series[float | str | None] of tailored market-financing maturity defaults keyed by indicator, yielding 5.0 or 0.0 for the greater-than-five-year original-maturity case and 2/3 or 0.0 for the remaining indicators depending on whether tailored tests are enabled.
     """
     def formula(indicator: str) -> float | str | None:
         if indicator == 'If original maturity is greater than 5 years, new maturity is':
@@ -20566,16 +20207,16 @@ def in6_tailored_mkt_fin_maturity_defaults(*, input6_tailored_tests_enabled: Lit
     return data.IN6_TAILORED_MKT_FIN_MATURITY_DEFAULTS.collect(evaluate(formula, data.IN6_TAILORED_MKT_FIN_MATURITY_DEFAULTS.required))
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_MKT_FIN_FX_DEPRECIATION_DEFAULT_CELLS)
-def in6_tailored_mkt_fin_fx_depreciation_default(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> float | str:
-    """Default market-financing FX depreciation shock for tailored tests.
+def in6_tailored_mkt_fin_fx_depreciation_default(*, input6_tailored_tests_enabled: str) -> float | str:
+    """Return the standard market-financing FX depreciation shock default when tailored tests are enabled.
 
-    Returns the standard FX depreciation shock applied under the market-financing tailored stress test when tailored tests are enabled.
+    Resolve the Input 6 baseline value for the market-financing FX depreciation tailored stress test, yielding the standard 15 percent shock when tailored tests are switched on.
 
     Args:
-        input6_tailored_tests_enabled: Literal string flag ('On' or 'Off') indicating whether tailored stress tests are enabled; 'On' applies the shock, 'Off' yields zero.
+        input6_tailored_tests_enabled: Scalar flag taken from Input 6 indicating whether tailored stress tests are enabled; the string 'On' activates the tailored-tests branch, and any other value leaves the shock at zero.
 
     Returns:
-        A float shock value (15.0 when tailored tests are enabled, otherwise 0.0), or the XL error code as a string if evaluation fails.
+        Scalar float giving the default FX depreciation shock (15.0 when `input6_tailored_tests_enabled` is 'On', otherwise 0.0), or the string error code if workbook evaluation raises an `XlError`.
     """
     try:
         return as_measure((15 if xl_bool(xl_eq(input6_tailored_tests_enabled, 'On')) else 0))
@@ -20583,16 +20224,16 @@ def in6_tailored_mkt_fin_fx_depreciation_default(*, input6_tailored_tests_enable
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_MKT_FIN_FX_PASSTHROUGH_DEFAULT_CELLS)
-def in6_tailored_mkt_fin_fx_passthrough_default(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> float | str:
-    """Return the standard market-financing exchange-rate pass-through default for tailored stress tests.
+def in6_tailored_mkt_fin_fx_passthrough_default(*, input6_tailored_tests_enabled: str) -> float | str:
+    """Return the standard market-financing exchange-rate pass-through default for Input 6 tailored tests.
 
-    Provide the tailored market-financing FX pass-through coefficient when tailored tests are enabled.
+    Provide the default FX pass-through coefficient used when tailored market-financing tests are active.
 
     Args:
-        input6_tailored_tests_enabled: Scalar literal flag indicating whether tailored stress tests are enabled; 'On' activates the standard tailored pass-through and 'Off' disables it.
+        input6_tailored_tests_enabled: String scalar flag indicating whether tailored tests are enabled, typically 'On'.
 
     Returns:
-        Scalar pass-through coefficient: 0.3 when the tailored-tests flag is 'On', 0.0 when 'Off', or a string workbook error code if evaluation fails.
+        The default pass-through as a float (0.3 when tailored tests are enabled, otherwise 0.0), or a string workbook error code if evaluation raises XlError.
     """
     try:
         return as_measure((0.3 if xl_bool(xl_eq(input6_tailored_tests_enabled, 'On')) else 0))
@@ -20600,20 +20241,20 @@ def in6_tailored_mkt_fin_fx_passthrough_default(*, input6_tailored_tests_enabled
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_SCENARIO_CELLS)
-def in6opt_standard_scenario(*, lookup_ida_terms_old: str, lookup_onoff_off: str, input6_tailored_tests_enabled: Literal["Off", "On"], input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_interactions: str) -> int | str:
-    """Evaluate the Input 6(optional)-Standard Test scenario anchor from the legacy IDA-terms and tailored-test switches.
+def in6opt_standard_scenario(*, lookup_ida_terms_old: str, lookup_onoff_off: str, input6_tailored_tests_enabled: str, input6_standard_size_threshold_mode: str, input6_standard_interactions: str) -> int | str:
+    """Evaluate the Input 6 optional-standard scenario toggle.
 
-    Determine whether the standard test scenario is active by comparing the standard size-threshold mode, standard interactions, and tailored-tests enable flags against authored lookup tokens.
+    Return whether the Input 6 standard-size and tailored-test settings match the legacy IDA terms and off sentinels.
 
     Args:
-        lookup_ida_terms_old: Legacy IDA-terms lookup token used as the comparison value for the standard size-threshold mode.
-        lookup_onoff_off: On/off lookup token used as the comparison value for the standard interactions and tailored-tests settings.
-        input6_tailored_tests_enabled: Input 6 tailored stress-test enable switch, compared against the off token.
-        input6_standard_size_threshold_mode: Input 6 standard size-threshold mode selector, compared against the legacy IDA-terms token.
-        input6_standard_interactions: Input 6 standard interactions setting, compared against the off token.
+        lookup_ida_terms_old: Legacy IDA terms lookup value, a scalar string compared against the standard-size threshold mode.
+        lookup_onoff_off: Off-state sentinel, a scalar string compared against the standard interactions and tailored-tests flags.
+        input6_tailored_tests_enabled: Input 6 flag indicating whether tailored stress tests are enabled, as a scalar string.
+        input6_standard_size_threshold_mode: Input 6 standard-size threshold mode selector, as a scalar string.
+        input6_standard_interactions: Input 6 standard interactions setting, as a scalar string.
 
     Returns:
-        Scalar integer scenario anchor: 0 when the size-threshold mode equals the legacy IDA-terms token and both standard interactions and tailored tests are off, otherwise 1; if an Excel evaluation error occurs, returns its error-code string.
+        Integer 0 when the three Input 6 fields equal their respective lookup sentinels; otherwise integer 1. Returns an Excel error-code string if evaluation raises an error.
     """
     try:
         return as_measure((0 if xl_bool(xl_and(xl_eq(input6_standard_size_threshold_mode, lookup_ida_terms_old), xl_eq(input6_standard_interactions, lookup_onoff_off), xl_eq(input6_tailored_tests_enabled, lookup_onoff_off))) else 1), 'int')
@@ -20621,18 +20262,18 @@ def in6opt_standard_scenario(*, lookup_ida_terms_old: str, lookup_onoff_off: str
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_CELLS)
-def in6opt_standard_historical_average_baseline_projection(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
-    """Resolve the Input 6(optional)-Standard Test threshold option from the chosen mode.
+def in6opt_standard_historical_average_baseline_projection(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
+    """Selects the Input 6(optional)-Standard size-threshold option for historical-average versus baseline projection.
 
-    Provide the historical-average or whichever-is-lower option for the standard-size threshold projection.
+    Resolve the single-cell anchor for the standard historical-average/baseline projection test.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: Historical-average-only threshold option string for the Input 6(optional)-Standard Test.
-        input6_standard_size_threshold_option_whichever_is_lower: Whichever-is-lower threshold option string for the Input 6(optional)-Standard Test.
-        input6_standard_size_threshold_mode: Mode flag, either 'New' or 'Old', selecting whether the whichever-is-lower option overrides the historical-average-only option.
+        input6_standard_size_threshold_option_historical_average_only: Scalar string threshold option used when the mode is not 'New'.
+        input6_standard_size_threshold_option_whichever_is_lower: Scalar string threshold option used when the mode is 'New'.
+        input6_standard_size_threshold_mode: Scalar string mode; 'New' selects the whichever-is-lower option, otherwise the historical-average-only option.
 
     Returns:
-        The chosen threshold-option string, or an Excel error code string on failure; declared as str | int | float | bool to accommodate the formula measure result.
+        Scalar result: the selected threshold option string, or an Excel error code string if the lookup fails.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -20640,18 +20281,18 @@ def in6opt_standard_historical_average_baseline_projection(*, input6_standard_si
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_B1_REAL_GDP_GROWTH_HISTORICAL_AVERAGE_BASELINE_PROJECTION_CELLS)
-def in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
-    """Return the selected Input 6(optional)-Standard Test threshold option for the real GDP growth historical-average baseline projection anchor.
+def in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
+    """Resolve the Input 6 standard-test B1 real GDP growth historical-average baseline projection option.
 
-    Resolve the single-cell anchor by choosing the configured threshold string according to the New/Old mode.
+    Selects between the historical-average-only and whichever-is-lower option tokens from the Input 6 threshold mode.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: Scalar string for the historical-average-only threshold setting at the single-cell anchor.
-        input6_standard_size_threshold_option_whichever_is_lower: Scalar string for the whichever-is-lower threshold setting at the single-cell anchor.
-        input6_standard_size_threshold_mode: Scalar literal indicating whether the New or Old threshold selection rule applies.
+        input6_standard_size_threshold_option_historical_average_only: Historical-average-only option token, selected when the threshold mode is not `New`.
+        input6_standard_size_threshold_option_whichever_is_lower: Whichever-is-lower option token, selected when the threshold mode is `New`.
+        input6_standard_size_threshold_mode: Threshold mode selector; the literal `New` chooses the whichever-is-lower branch, while any other value chooses the historical-average-only branch.
 
     Returns:
-        Scalar value typed str | int | float | bool, normally the selected threshold option string or the propagated error code.
+        A scalar option value as a string, or the spreadsheet error code when the mode comparison raises an error.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -20659,18 +20300,18 @@ def in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection(*,
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_B3_EXPORTS_HISTORICAL_AVERAGE_BASELINE_PROJECTION_CELLS)
-def in6opt_standard_b3_exports_historical_average_baseline_projection(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
-    """Returns the Input 6(optional)-Standard size-threshold option string selected for the B3 exports historical-average baseline projection.
+def in6opt_standard_b3_exports_historical_average_baseline_projection(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
+    """Return the Input 6(optional)-Standard B3 exports threshold option selected by the threshold mode.
 
-    Chooses between the whichever-is-lower and historical-average-only threshold bases according to the supplied mode flag.
+    Resolve whether the historical-average-only or whichever-is-lower option applies to the B3 exports baseline projection anchor.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: Scalar string option applied when the historical-average-only basis governs the Input 6 standard size-threshold test.
-        input6_standard_size_threshold_option_whichever_is_lower: Scalar string option applied when the whichever-is-lower basis governs the Input 6 standard size-threshold test.
-        input6_standard_size_threshold_mode: Scalar literal flag ('New' or 'Old') that selects which of the two threshold option strings is returned.
+        input6_standard_size_threshold_option_historical_average_only: String scalar naming the Input 6(optional)-Standard size-threshold option that uses the historical average only.
+        input6_standard_size_threshold_option_whichever_is_lower: String scalar naming the Input 6(optional)-Standard size-threshold option that takes whichever is lower.
+        input6_standard_size_threshold_mode: String scalar mode selector; when it equals `New`, the whichever-is-lower option is chosen, otherwise the historical-average-only option is chosen.
 
     Returns:
-        Scalar selected option string, or the workbook error code string when evaluation raises XlError; the annotation admits str, int, float, or bool.
+        The chosen threshold option as a `str` scalar, or the Excel error code as an `int`/`str` when evaluation fails, matching the `str | int | float | bool` return annotation.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -20678,18 +20319,18 @@ def in6opt_standard_b3_exports_historical_average_baseline_projection(*, input6_
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_CURRENT_TRANSFERS_B4_OTHER_NON_DEBT_CREATING_FLOWS_CELLS)
-def in6opt_standard_historical_average_baseline_projection_current_transfers_b4_other_non_debt_creating_flows(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
-    """Select the Input 6(optional)-Standard Test size-threshold option for the historical-average baseline projection before other non-debt-creating flows.
+def in6opt_standard_historical_average_baseline_projection_current_transfers_b4_other_non_debt_creating_flows(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
+    """Return the active standard size-threshold option for the historical-average, baseline-projection, current-transfers B4 other-non-debt-creating-flows single-cell anchor.
 
-    Resolve the single-cell threshold option used by the standard test's historical-average baseline projection.
+    Selects between the historical-average-only and whichever-is-lower Input 6(optional)-Standard Test threshold options according to the threshold mode.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: Scalar text flag for the historical-average-only size-threshold option, used when the mode is not 'New'.
-        input6_standard_size_threshold_option_whichever_is_lower: Scalar text flag for the whichever-is-lower size-threshold option, selected when the mode is 'New'.
-        input6_standard_size_threshold_mode: Scalar literal mode selector, either 'New' or 'Old'; 'New' selects the whichever-is-lower option, while 'Old' selects the historical-average-only option.
+        input6_standard_size_threshold_option_historical_average_only: Scalar string containing the historical-average-only standard size-threshold option.
+        input6_standard_size_threshold_option_whichever_is_lower: Scalar string containing the whichever-is-lower standard size-threshold option.
+        input6_standard_size_threshold_mode: Scalar string giving the threshold mode; when it equals 'New', the whichever-is-lower option is selected, otherwise the historical-average-only option is used.
 
     Returns:
-        A scalar string containing the selected threshold option; if formula evaluation raises an XlError, the Excel error code string is returned instead.
+        A scalar value of type str | int | float | bool: the selected standard size-threshold option string, or an Excel error code when evaluation fails.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -20697,18 +20338,18 @@ def in6opt_standard_historical_average_baseline_projection_current_transfers_b4_
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_FDI_B4_OTHER_NON_DEBT_CREATING_FLOWS_CELLS)
-def in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt_creating_flows(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
-    """Select the Input 6(optional)-Standard Test size-threshold option for the FDI B4 other non-debt-creating flows anchor.
+def in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt_creating_flows(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
+    """Select the Input 6(optional)-Standard size threshold option for FDI B4 other non-debt-creating flows.
 
-    Resolve the single-cell anchor by choosing the whichever-is-lower option for New mode and the historical-average-only option otherwise.
+    Resolve the single-cell historical-average or baseline-projection threshold choice according to the Standard Test mode.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: Historical-average-only Input 6(optional)-Standard Test size-threshold option, supplied as a string.
-        input6_standard_size_threshold_option_whichever_is_lower: Whichever-is-lower Input 6(optional)-Standard Test size-threshold option, supplied as a string.
-        input6_standard_size_threshold_mode: Mode selector as a scalar literal: 'New' picks whichever-is-lower, while 'Old' picks historical-average-only.
+        input6_standard_size_threshold_option_historical_average_only: Historical-average-only threshold option supplied as a text scalar from the Input 6(optional)-Standard Test settings.
+        input6_standard_size_threshold_option_whichever_is_lower: Whichever-is-lower threshold option supplied as a text scalar from the Input 6(optional)-Standard Test settings.
+        input6_standard_size_threshold_mode: Mode selector text scalar; when equal to 'New', the whichever-is-lower option is selected, otherwise the historical-average-only option is selected.
 
     Returns:
-        A string measure containing the selected standard Test size-threshold option; declared as str | int | float | bool because error paths may return an Excel error code instead.
+        A scalar threshold selection, normally a string and otherwise an integer, float, or boolean when a spreadsheet error code is returned.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -20716,17 +20357,17 @@ def in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_ONE_TIME_30_PERCENT_NOMINAL_DEPRECIATION_OF_CELLS)
-def in6opt_standard_one_time_30_percent_nominal_depreciation_of(*, input_1_rer_overvaluation: float | str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> int | str:
-    """Computes the one-time 30 percent nominal depreciation of the domestic currency or the size needed to close the estimated real exchange rate overvaluation gap, whichever is larger, for the Input 6 optional Standard Test.
+def in6opt_standard_one_time_30_percent_nominal_depreciation_of(*, input_1_rer_overvaluation: float | str, input6_standard_size_threshold_mode: str) -> int | str:
+    """Return the Input 6(optional)-Standard Test single-cell anchor for one-time nominal depreciation.
 
-    Provides the single-cell Standard Test anchor for the one-time nominal depreciation threshold used in the LIC-DSF template.
+    Represent the larger of the one-time 30 percent nominal depreciation and the REER-overvaluation-closing amount under the selected standard size threshold mode.
 
     Args:
-        input_1_rer_overvaluation: Scalar real exchange rate overvaluation gap, supplied as a float or string-valued input.
-        input6_standard_size_threshold_mode: Literal threshold-mode selector, either 'New' or 'Old', controlling whether the overvaluation gap is applied.
+        input_1_rer_overvaluation: Scalar float or string giving the estimated real exchange rate overvaluation gap used to size the one-time nominal depreciation when the standard size threshold mode is active.
+        input6_standard_size_threshold_mode: Scalar string threshold mode for the Input 6(optional)-Standard Test; `NEW` selects the REER-overvaluation-based amount, while any other value yields zero.
 
     Returns:
-        Integer nominal depreciation size, zero when the threshold mode is not 'New', or an Excel error code string if the computation fails.
+        Scalar integer for the one-time 30 percent nominal depreciation or the REER-overvaluation-closing amount, whichever is larger, for the single-cell anchor, or an Excel error code string if evaluation fails.
     """
     try:
         return as_measure((input_1_rer_overvaluation if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'NEW')) else 0), 'int')
@@ -20734,20 +20375,20 @@ def in6opt_standard_one_time_30_percent_nominal_depreciation_of(*, input_1_rer_o
         return error.code
 
 @publish(data.IN6OPT_STANDARD_NOMINAL_DEPRECIATION_CLOSE_REAL_OVERVALUATION.schema, cells=data.IN6OPT_STANDARD_NOMINAL_DEPRECIATION_CLOSE_REAL_OVERVALUATION.cells)
-def in6opt_standard_nominal_depreciation_close_real_overvaluation(*, input6_standard_size_threshold_mode: Literal["New", "Old"], baseline_pub_inflation_rate_gdp_deflator_pct: data.Series[float | str | None], in6opt_standard_one_time_30_percent_nominal_depreciation_of: int | str, in6opt_standard_us_inflation_default: float | str, input6_standard_params_2: data.Series[float | str | None]) -> data.Series[float | str | None]:
-    """Compute the Input 6 optional-standard nominal depreciation required to close the real exchange-rate overvaluation gap.
+def in6opt_standard_nominal_depreciation_close_real_overvaluation(*, input6_standard_size_threshold_mode: str, baseline_pub_inflation_rate_gdp_deflator_pct: data.Series[float | str | None], in6opt_standard_one_time_30_percent_nominal_depreciation_of: int | str, in6opt_standard_us_inflation_default: float | str, input6_standard_params_2: data.Series[float | str | None]) -> data.Series[float | str | None]:
+    """Compute the Input 6(optional)-Standard nominal depreciation needed to close the real overvaluation gap.
 
-    Produce the nominal-depreciation adjustment series used by the optional-standard test to close real overvaluation, switching between the New size-threshold path and the default parameter path.
+    Derive the nominal depreciation adjustment used by the standard LIC-DSF stress test to close an identified real exchange-rate overvaluation gap.
 
     Args:
-        input6_standard_size_threshold_mode: Scalar literal selecting the size-threshold mode; 'New' adds the default US inflation term, while 'Old' returns zero for that branch.
-        baseline_pub_inflation_rate_gdp_deflator_pct: Typed data series of baseline public inflation rates from the GDP deflator, expressed in percent; the 2025 coordinate is read as the base inflation input.
-        in6opt_standard_one_time_30_percent_nominal_depreciation_of: Scalar one-time 30 percent nominal depreciation amount, supplied as an integer or numeric string.
-        in6opt_standard_us_inflation_default: Scalar default US inflation rate added in the 'New' size-threshold branch.
-        input6_standard_params_2: Typed data series of optional-standard parameters keyed by catalog row and column coordinates; the 'b5_depreciation_3' default entry is read on the non-'New' branch.
+        input6_standard_size_threshold_mode: String scalar controlling the Input 6(optional)-Standard threshold branch; the default branch is active only when it equals 'NEW'.
+        baseline_pub_inflation_rate_gdp_deflator_pct: Named-axis tensor of baseline public inflation rates (GDP deflator, percent) over catalog coordinates; its 2025 coordinate supplies the baseline inflation term.
+        in6opt_standard_one_time_30_percent_nominal_depreciation_of: Scalar integer or string giving the one-time 30 percent nominal depreciation amount added in the standard-test calculation.
+        in6opt_standard_us_inflation_default: Scalar float or string giving the default U.S. inflation rate applied when the threshold mode is 'NEW'.
+        input6_standard_params_2: Named-axis tensor of Input 6(optional)-Standard parameters over catalog coordinates; the 'b5_depreciation_3'/'default' coordinate supplies the depreciation term for the non-default variant.
 
     Returns:
-        Typed data series of nominal depreciation values that close the real overvaluation gap, keyed by column labels from row 14, with scalar or string entries permitted.
+        Typed data.Series[float | str | None] of nominal depreciation values needed to close the real overvaluation gap, keyed by the row-14 column labels and aligned to the standard Input 6 optional calculation.
     """
     def formula(variant: str) -> float | str | None:
         if variant == 'Default':
@@ -20757,16 +20398,16 @@ def in6opt_standard_nominal_depreciation_close_real_overvaluation(*, input6_stan
     return data.IN6OPT_STANDARD_NOMINAL_DEPRECIATION_CLOSE_REAL_OVERVALUATION.collect(evaluate(formula, data.IN6OPT_STANDARD_NOMINAL_DEPRECIATION_CLOSE_REAL_OVERVALUATION.required))
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_APPLY_ALL_INDIVIDUAL_SHOCKS_B1_THROUGH_B5_HALF_CELLS)
-def in6opt_standard_apply_all_individual_shocks_b1_through_b5_half(*, input6_standard_params: data.Series[int | str | None]) -> float | str:
-    """Apply all individual shocks B1 through B5 at half their magnitudes in the second and third projection years for the Input 6(optional)-Standard Test.
+def in6opt_standard_apply_all_individual_shocks_b1_through_b5_half(*, input6_standard_params: data.Series[float | str | None]) -> float | str:
+    """Apply the B1 through B5 individual standardized shocks at half magnitude under the Input 6(optional)-Standard Test.
 
-    Produce the single-cell standardized half-shock value used by the Input 6 optional standard-test scenario.
+    Provide the standard-test half-shock variant used to size alternative stress paths for the single-cell anchor.
 
     Args:
-        input6_standard_params: Keyword-only data.Series[int | str | None] over catalog coordinates for the Input 6 standard-test shock parameters; the anchored cell supplies the B1 real GDP growth user input.
+        input6_standard_params: Named-axis data.Series over catalog coordinates supplying the Input 6(optional)-Standard Test parameters, including the shock entries such as `b1_real_gdp_growth` selected by user labels and carrying float, str, or None values.
 
     Returns:
-        A float containing the half-magnitude B1 real GDP growth shock value, or a str workbook error code if evaluation fails.
+        Scalar float giving the computed half-shock value for the single-cell anchor, or a str error code if the underlying evaluation raises an XlError.
     """
     try:
         return as_measure(xl_div(input6_standard_params['b1_real_gdp_growth', 'user'], 2))
@@ -20774,18 +20415,18 @@ def in6opt_standard_apply_all_individual_shocks_b1_through_b5_half(*, input6_sta
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_REAL_GDP_B6_COMBINATION_CELLS)
-def in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
-    """Resolves the Input 6 optional standardized size-threshold mode between the historical-average-only and whichever-is-lower options.
+def in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
+    """Selects the Input 6 Standard Test size-threshold option for the historical-average/baseline-projection B6 real GDP combination.
 
-    Provides a single-cell anchor for the B6 real GDP combination under the standard test.
+    Resolves a single-cell anchor by choosing between the historical-average-only and whichever-is-lower threshold settings according to the mode selector.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: String label for the standardized size-threshold choice that uses only the historical average baseline.
-        input6_standard_size_threshold_option_whichever_is_lower: String label for the standardized size-threshold choice that takes the lower of the historical average and the baseline projection.
-        input6_standard_size_threshold_mode: Literal mode selector where 'New' chooses the whichever-is-lower option and 'Old' chooses the historical-average-only option.
+        input6_standard_size_threshold_option_historical_average_only: Scalar string option for the historical-average-only standard size-threshold test.
+        input6_standard_size_threshold_option_whichever_is_lower: Scalar string option for the whichever-is-lower standard size-threshold test.
+        input6_standard_size_threshold_mode: Scalar string mode selector; 'New' selects the whichever-is-lower option, otherwise the historical-average-only option.
 
     Returns:
-        The selected scalar threshold option as a string when valid, or the Excel error code string on an XlError; annotated as str | int | float | bool.
+        Selected threshold option as a string, or an error code (str | int | float | bool) if an XlError occurs.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -20793,16 +20434,16 @@ def in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combinati
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_CELLS)
-def in6opt_standard_size_of_exports_growth_shock_of_standard(*, input6_standard_params: data.Series[int | str | None]) -> float | str:
-    """Return the standardized size of the exports growth shock from the optional Input 6 standard test.
+def in6opt_standard_size_of_exports_growth_shock_of_standard(*, input6_standard_params: data.Series[float | str | None]) -> float | str:
+    """Compute the standard-size exports growth shock from Input 6 optional standard-test parameters.
 
-    Computes the exports growth shock magnitude in standard deviations by halving the user-specified standard-test anchor.
+    Derives the exports growth shock size in standard deviations by halving the supplied Input 6 standard-test anchor.
 
     Args:
-        input6_standard_params: Input 6 optional standard-test parameter series containing the single-cell exports growth shock anchor; a data.Series over catalog coordinates typed as int, str, or None per cell, with the user value divided by two.
+        input6_standard_params: Typed data.Series over Input 6 standard-test coordinates holding the exports growth shock size in standard deviations as a single-cell anchor, with optional float, string, or None entries.
 
     Returns:
-        Size of the exports growth shock in standard deviations as a float, or the XlError code as a str when the computation fails.
+        A float equal to half the supplied exports growth shock size in standard deviations, or a string Excel error code when the underlying division fails.
     """
     try:
         return as_measure(xl_div(input6_standard_params['b3_exports', 'user'], 2))
@@ -20810,18 +20451,18 @@ def in6opt_standard_size_of_exports_growth_shock_of_standard(*, input6_standard_
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_EXPORTS_B6_COMBINATION_CELLS)
-def in6opt_standard_historical_average_baseline_projection_exports_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
-    """Selects the size threshold option for historical average and baseline projection exports B6.
+def in6opt_standard_historical_average_baseline_projection_exports_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
+    """Select the Input 6(optional)-Standard Test stress threshold under historical-average or whichever-is-lower mode.
 
-    Combines Input 6(optional)-Standard Test options into a single-cell anchor based on the mode.
+    Resolve the standardized stress size threshold used by the historical-average/baseline-projection B6 export combination.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: A string scalar representing the size threshold option when only the historical average is used.
-        input6_standard_size_threshold_option_whichever_is_lower: A string scalar representing the size threshold option when whichever is lower (historical average or baseline projection) is used.
-        input6_standard_size_threshold_mode: A literal string scalar indicating the mode: 'New' selects the whichever-is-lower option, 'Old' selects the historical-average-only option.
+        input6_standard_size_threshold_option_historical_average_only: Scalar string single-cell anchor for the historical-average-only threshold option; selected when the mode is not New.
+        input6_standard_size_threshold_option_whichever_is_lower: Scalar string single-cell anchor for the whichever-is-lower threshold option; selected when the mode is New.
+        input6_standard_size_threshold_mode: Scalar string single-cell anchor controlling the threshold mode; when equal to 'New' the whichever-is-lower option is used.
 
     Returns:
-        The selected size threshold option as a string measure, or the XlError code on failure. The return annotation is str | int | float | bool.
+        Scalar return annotated as str | int | float | bool: the selected threshold option string on success, or the caught workbook error code on failure.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -20829,16 +20470,16 @@ def in6opt_standard_historical_average_baseline_projection_exports_b6_combinatio
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_CELLS)
-def in6opt_standard_size_of_pb_gdp_shock_of_standard_deviations(*, input6_standard_params: data.Series[int | str | None]) -> float | str:
-    """Compute the standardized PB/GDP shock size in standard deviations from the Input 6 optional standard-test parameters.
+def in6opt_standard_size_of_pb_gdp_shock_of_standard_deviations(*, input6_standard_params: data.Series[float | str | None]) -> float | str:
+    """Compute the standardized PB/GDP shock size in standard deviations.
 
-    Derive the PB/GDP shock magnitude used by the Input 6 optional standard test.
+    Derive the Input 6 optional standard-test shock magnitude from the primary-balance input series.
 
     Args:
-        input6_standard_params: Named-axis series of Input 6 optional standard-test parameters, with a single-cell anchor for the primary-balance user input used to derive the PB/GDP shock size.
+        input6_standard_params: Primary-balance input series over Input 6(optional)-Standard Test catalog coordinates, yielding a numeric or string value (or None) for the single-cell user entry.
 
     Returns:
-        The PB/GDP shock size in standard deviations as a float, or the spreadsheet error code string if the underlying calculation fails.
+        Standardized PB/GDP shock size as a number of standard deviations (float), or an Excel error code string if the computation fails.
     """
     try:
         return as_measure(xl_div(input6_standard_params['b2_primary_balance', 'user'], 2))
@@ -20846,18 +20487,18 @@ def in6opt_standard_size_of_pb_gdp_shock_of_standard_deviations(*, input6_standa
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_PRIMARY_BALANCE_B6_COMBINATION_CELLS)
-def in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
-    """Select the Input 6 optional Standard Test size-threshold option used by the B6 primary-balance combination.
+def in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
+    """Return the single-cell Input 6(optional)-Standard anchor for the historical-average/baseline-projection primary-balance B6 combination.
 
-    Resolve whether the B6 combination takes the historical-average-only threshold or the whichever-is-lower threshold according to the New/Old mode.
+    Select the applicable Input 6 standard-test threshold option under the configured size-threshold mode.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: Single-cell anchor string for the historical-average-only size-threshold option in the Input 6 optional Standard Test.
-        input6_standard_size_threshold_option_whichever_is_lower: Single-cell anchor string for the whichever-is-lower size-threshold option in the Input 6 optional Standard Test.
-        input6_standard_size_threshold_mode: Mode selector for the threshold behavior: New chooses the whichever-is-lower option, while Old or any other value chooses the historical-average-only option.
+        input6_standard_size_threshold_option_historical_average_only: Scalar string selecting the historical-average-only option for the Input 6(optional)-Standard test.
+        input6_standard_size_threshold_option_whichever_is_lower: Scalar string selecting the whichever-is-lower option for the Input 6(optional)-Standard test.
+        input6_standard_size_threshold_mode: Scalar string giving the Input 6 standard size-threshold mode; the literal 'New' makes the whichever-is-lower option win, otherwise the historical-average-only option is used.
 
     Returns:
-        The selected size-threshold option as a string, or an Excel error code when evaluation raises XlError, matching the str | int | float | bool annotation.
+        The selected option as a string measure, or the XlError code when evaluation fails; annotated as str | int | float | bool.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -20865,16 +20506,16 @@ def in6opt_standard_historical_average_baseline_projection_primary_balance_b6_co
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_OTHER_FLOWS_CURRENT_TRANSFERS_SHOCK_OF_STANDARD_CELLS)
-def in6opt_standard_other_flows_current_transfers_shock_of_standard(*, input6_standard_params: data.Series[int | str | None]) -> float | str:
-    """Compute the standardized other-flows current-transfers shock for the Input 6 optional standard test.
+def in6opt_standard_other_flows_current_transfers_shock_of_standard(*, input6_standard_params: data.Series[float | str | None]) -> float | str:
+    """Compute the standardized other-flows (current transfers) shock from Input 6 optional standard-test parameters.
 
-    Provide the single-anchor shock magnitude from the Input 6 standard-test parameter series for stress-test calculations.
+    Derive the single-cell standardized current-transfers shock used by the Input 6 optional standard-test scenario.
 
     Args:
-        input6_standard_params: A keyword-only data.Series over catalog coordinates carrying the Input 6 optional standard-test parameters, with the current-transfers shock stored as a single-cell anchor.
+        input6_standard_params: Keyword-only data series of Input 6 optional standard-test parameters whose user coordinate holds a single-cell anchor for the other-flows (current transfers) shock in number of standard deviations.
 
     Returns:
-        A float when the measure is computed successfully; otherwise a string containing the workbook error code.
+        The standardized other-flows (current transfers) shock as a float measure, or the XlError code string if the calculation fails.
     """
     try:
         return as_measure(xl_div(input6_standard_params['b4_other_flows', 'user'], 2))
@@ -20882,18 +20523,18 @@ def in6opt_standard_other_flows_current_transfers_shock_of_standard(*, input6_st
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_CURRENT_TRANSFERS_B6_COMBINATION_CELLS)
-def in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
-    """Select the Input 6(optional)-Standard Test size-threshold option for the historical-average versus baseline-projection current-transfers B6 combination.
+def in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
+    """Select the Input 6(optional)-Standard size-threshold option for the B6 combination, preferring 'whichever is lower' when the mode is 'New' and the historical-average-only option otherwise.
 
-    Resolve the standardized-test threshold choice from the configured mode and option scalars.
+    Resolve a single-cell standard-test size-threshold anchor so the B6 combination uses the mode-appropriate Input 6(optional) option.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: String scalar for the Input 6(optional)-Standard Test size-threshold option that uses the historical average only.
-        input6_standard_size_threshold_option_whichever_is_lower: String scalar for the Input 6(optional)-Standard Test size-threshold option that uses whichever value is lower.
-        input6_standard_size_threshold_mode: Literal scalar for the threshold mode, either 'New' or 'Old', controlling which option is returned.
+        input6_standard_size_threshold_option_historical_average_only: Scalar size-threshold option string for the historical-average-only variant, returned when the mode does not select the 'New' option.
+        input6_standard_size_threshold_option_whichever_is_lower: Scalar size-threshold option string for the whichever-is-lower variant, returned when the mode equals 'New'.
+        input6_standard_size_threshold_mode: Scalar mode string that selects between the two Input 6(optional)-Standard options, where 'New' chooses whichever-is-lower.
 
     Returns:
-        String scalar containing the selected threshold option, or an Excel error code as a scalar if the mode comparison fails.
+        The selected option as a str; if the underlying workbook evaluation raises XlError, the error code as a str. The declared annotation is str | int | float | bool.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -20901,16 +20542,16 @@ def in6opt_standard_historical_average_baseline_projection_current_transfers_b6_
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_B6_COMBINATION_OTHER_FLOWS_FDI_SHOCK_OF_STANDARD_DEVIATIONS_CELLS)
-def in6opt_standard_b6_combination_other_flows_fdi_shock_of_standard_deviations(*, input6_standard_params: data.Series[int | str | None]) -> float | str:
-    """Return the B6 other-flows FDI shock magnitude in standard deviations from Input 6 standard-test parameters.
+def in6opt_standard_b6_combination_other_flows_fdi_shock_of_standard_deviations(*, input6_standard_params: data.Series[float | str | None]) -> float | str:
+    """Return the B6-combination other-flows FDI shock expressed in standard deviations.
 
-    Extract and halve the user-supplied B4 FDI shock for the B6 combination stress path.
+    Extract the optional Input 6 standardized-test FDI shock anchor and scale it for B6 combination use.
 
     Args:
-        input6_standard_params: Input 6 standard-test parameters as a data.Series[int | str | None] over catalog coordinates; the relevant 'b4_fdi_shock_sd' user value supplies the FDI shock in standard deviations.
+        input6_standard_params: Single-cell data.Series anchor over catalog coordinates holding the optional Input 6 standardized-test other-flows (FDI) shock in standard deviations, typed as float, string, or None.
 
     Returns:
-        The B6 other-flows FDI shock as a float (half the user-specified standard-deviation input), or an XlError code string if the referenced parameter cannot be evaluated.
+        The scaled FDI shock as a float, or a workbook error-code string if the anchored value cannot be divided.
     """
     try:
         return as_measure(xl_div(input6_standard_params['b4_fdi_shock_sd', 'user'], 2))
@@ -20918,18 +20559,18 @@ def in6opt_standard_b6_combination_other_flows_fdi_shock_of_standard_deviations(
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_FDI_B6_COMBINATION_CELLS)
-def in6opt_standard_historical_average_baseline_projection_fdi_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
-    """Select the Input 6(optional)-Standard Test size-threshold option for the historical-average versus baseline-projection FDI B6 combination.
+def in6opt_standard_historical_average_baseline_projection_fdi_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
+    """Select the Input 6(optional)-Standard historical-average or baseline-projection FDI B6 combination option.
 
-    Resolve the active single-cell anchor according to the chosen standard size-threshold mode.
+    Resolve the standardized size-threshold option by applying the threshold mode to choose between historical-average-only and whichever-is-lower values.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: Scalar text option value used when the historical-average-only standard size-threshold treatment is selected.
-        input6_standard_size_threshold_option_whichever_is_lower: Scalar text option value used when the whichever-is-lower standard size-threshold treatment is selected.
-        input6_standard_size_threshold_mode: Scalar Literal selector ('New' or 'Old') that determines which of the two option values supplies the combination result.
+        input6_standard_size_threshold_option_historical_average_only: Historical-average-only option scalar string for the Input 6(optional)-Standard size threshold; a single-cell anchor value.
+        input6_standard_size_threshold_option_whichever_is_lower: Whichever-is-lower option scalar string for the Input 6(optional)-Standard size threshold; a single-cell anchor value.
+        input6_standard_size_threshold_mode: Threshold mode scalar string controlling the choice; a value of 'New' selects the whichever-is-lower option, otherwise the historical-average-only option is used.
 
     Returns:
-        Scalar str, int, float, or bool carrying the selected single-cell anchor value; in normal operation this is a str option value, with Excel error codes returned as str labels.
+        Selected option scalar as a string when evaluation succeeds; otherwise an error-code scalar under the str | int | float | bool return annotation.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -22557,18 +22198,18 @@ def macro_debt_depreciation_of_nc_depreciation(*, macro_debt_exchange_rate_dolla
     return data.MACRO_DEBT_DEPRECIATION_OF_NC_DEPRECIATION.collect(evaluate(formula, data.MACRO_DEBT_DEPRECIATION_OF_NC_DEPRECIATION.required))
 
 @publish(key=(), domain=None, cells=data.START_DEBT_SUSTAINABILITY_ANALYSIS_CELLS)
-def start_debt_sustainability_analysis(*, start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"], lookup_language_native_name: data.Series[str | None], lookup_language_english_name: data.Series[str | None]) -> str | int | float | bool:
-    """Return the English-language name for a selected working language.
+def start_debt_sustainability_analysis(*, start_working_language: str, lookup_language_native_name: data.Series[str | None], lookup_language_english_name: data.Series[str | None]) -> str | int | float | bool:
+    """Resolve the start language's English name from the workbook language lookup.
 
-    Resolve the single-cell language lookup used by the debt sustainability analysis start anchor.
+    Provides the single-cell anchor used by the Debt Sustainability Analysis (START) pipeline to locate the language entry matching the requested working language.
 
     Args:
-        start_working_language: Selected working language, restricted to English, Español, Français, or Portugues.
-        lookup_language_native_name: Named-axis series over catalog language coordinates holding native language names, with nulls allowed.
-        lookup_language_english_name: Named-axis series over catalog language coordinates holding English language names, with nulls allowed.
+        start_working_language: Scalar working-language string to look up in the language table.
+        lookup_language_native_name: Typed data.Series over the language axis holding native language names, aligned to catalog language coordinates and used as the first lookup column.
+        lookup_language_english_name: Typed data.Series over the language axis holding English language names, aligned to catalog language coordinates and used as the second lookup column.
 
     Returns:
-        A scalar string giving the matched English language name, or the spreadsheet error code when the lookup fails; the str | int | float | bool annotation reflects the lookup and error-result surface.
+        Scalar string giving the matched English language name, or a scalar error code if the lookup fails.
     """
     data.LOOKUP_LANGUAGE_NATIVE_NAME.schema.validate(lookup_language_native_name)
     data.LOOKUP_LANGUAGE_ENGLISH_NAME.schema.validate(lookup_language_english_name)
@@ -23509,31 +23150,31 @@ def c4_market_instruments_k(*, pv_stress_com_discount_interest_rate: data.Series
     return data.C4_MARKET_INSTRUMENTS_K.collect(evaluate(formula, data.C4_MARKET_INSTRUMENTS_K.required))
 
 @publish(data.INPUT6_STANDARD_PARAMS.schema, cells=data.INPUT6_STANDARD_PARAMS.cells)
-def input6_standard_params(*, input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str, input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str, input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str, input6_standard_b4_other_non_debt_creating_flows_other_flows_current_transfers_shock_of_standard_deviations: float | str, input6_standard_b4_other_non_debt_creating_flows_other_flows_fdi_shock_of_standard_deviations: float | str) -> data.Series[int | str | None]:
-    """Collect Input 6 standardized stress-test shock parameters into a catalog-indexed series.
+def input6_standard_params(*, input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str, input6_standard_b4_other_non_debt_creating_flows_other_flows_current_transfers_shock_of_standard_deviations: float | str, input6_standard_b4_other_non_debt_creating_flows_other_flows_fdi_shock_of_standard_deviations: float | str, input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str, input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str) -> data.Series[float | str | None]:
+    """Collects the Input 6 standard-test standardized-shock parameters into one series.
 
-    Resolve the B1–B4 standardized shock sizes from Input 6 into typed series values keyed by lic_dsf field names.
+    Exposes the Input 6 standard-test shock sizes as a single named-axis series over the input6.standard_test parameter catalog.
 
     Args:
-        input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: Standardized shock size, in standard deviations, applied to real GDP growth for the B1 standard stress scenario; accepts a numeric value or workbook string reference.
-        input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: Standardized shock size, in standard deviations, applied to the primary balance as a share of GDP for the B2 standard stress scenario; accepts a numeric value or workbook string reference.
-        input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: Standardized shock size, in standard deviations, applied to exports growth for the B3 standard stress scenario; accepts a numeric value or workbook string reference.
-        input6_standard_b4_other_non_debt_creating_flows_other_flows_current_transfers_shock_of_standard_deviations: Standardized shock size, in standard deviations, applied to other non-debt-creating flows through current transfers for the B4 standard stress scenario; accepts a numeric value or workbook string reference.
-        input6_standard_b4_other_non_debt_creating_flows_other_flows_fdi_shock_of_standard_deviations: Standardized shock size, in standard deviations, applied to other non-debt-creating flows through FDI for the B4 standard stress scenario; accepts a numeric value or workbook string reference.
+        input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: Real GDP growth shock size for the B1 standard-test scenario, expressed in standard deviations; a float or str scalar.
+        input6_standard_b4_other_non_debt_creating_flows_other_flows_current_transfers_shock_of_standard_deviations: Current-transfers shock size within the B4 other non-debt-creating flows standard-test scenario, expressed in standard deviations; a float or str scalar.
+        input6_standard_b4_other_non_debt_creating_flows_other_flows_fdi_shock_of_standard_deviations: FDI shock size within the B4 other non-debt-creating flows standard-test scenario, expressed in standard deviations; a float or str scalar.
+        input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: Primary balance (percent-of-GDP) shock size for the B2 standard-test scenario, expressed in standard deviations; a float or str scalar.
+        input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: Exports growth shock size for the B3 standard-test scenario, expressed in standard deviations; a float or str scalar.
 
     Returns:
-        A data.Series[int | str | None] over Input 6 standard-parameter coordinates containing the resolved standardized shock values for the input6.standard_test fields.
+        A data.Series of float | str | None indexed by the input6.standard_test parameter coordinates (the lic_dsf field names), holding the standardized-deviation shock size for each standard-test parameter.
     """
-    def formula(parameter: str, variant: str) -> int | str | None:
+    def formula(parameter: str, variant: str) -> float | str | None:
         if parameter == 'b1_real_gdp_growth':
-            return as_measure(input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations, 'int')
+            return as_measure(input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations)
         elif parameter == 'b2_primary_balance':
-            return as_measure(input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations, 'int')
+            return as_measure(input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations)
         elif parameter == 'b3_exports':
-            return as_measure(input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations, 'int')
+            return as_measure(input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations)
         elif parameter == 'b4_other_flows':
-            return as_measure(input6_standard_b4_other_non_debt_creating_flows_other_flows_current_transfers_shock_of_standard_deviations, 'int')
-        return as_measure(input6_standard_b4_other_non_debt_creating_flows_other_flows_fdi_shock_of_standard_deviations, 'int')
+            return as_measure(input6_standard_b4_other_non_debt_creating_flows_other_flows_current_transfers_shock_of_standard_deviations)
+        return as_measure(input6_standard_b4_other_non_debt_creating_flows_other_flows_fdi_shock_of_standard_deviations)
 
     return data.INPUT6_STANDARD_PARAMS.collect(evaluate(formula, data.INPUT6_STANDARD_PARAMS.required))
 
@@ -23741,101 +23382,101 @@ def leftover_revenue_gdp(*, in6opt_standard_size_of_pb_gdp_shock_of_standard_dev
     return data.LEFTOVER_REVENUE_GDP.collect(evaluate(formula, data.LEFTOVER_REVENUE_GDP.required))
 
 @publish(key=(), domain=None, cells=data.B1_GDP_EXT_II_KEY_MACROECONOMIC_ASSUMPTIONS_CELLS)
-def b1_gdp_ext_ii_key_macroeconomic_assumptions(*, input6_standard_params: data.Series[int | str | None]) -> int | str:
-    """Extract the B1 real GDP growth value from the Input 6 standard-parameter series.
+def b1_gdp_ext_ii_key_macroeconomic_assumptions(*, input6_standard_params: data.Series[float | str | None]) -> float | str:
+    """Resolve the B1 real GDP growth user assumption from the Input 6 standard-parameters series.
 
-    Provides the internal macroeconomic assumption lookup used by the LIC-DSF IDA21 external debt template.
+    Internal helper that supplies the authored B1 real GDP growth coordinate for macroeconomic-assumption assembly; not a public series.
 
     Args:
-        input6_standard_params: A keyword-only data.Series[int | str | None] over catalog coordinates containing Input 6 standard parameters; it holds integer, string, or null coverage and lookup tokens rather than a public economist-facing series.
+        input6_standard_params: Keyword-only data series of Input 6 standard-parameter values over catalog coordinates, yielding float, string, or None entries where template blanks or lookup tokens occur.
 
     Returns:
-        An int measure for the B1 real GDP growth assumption, or the spreadsheet error code str if the lookup raises an XlError.
+        Float B1 real GDP growth user value when the coordinate is numeric; otherwise the XlError code string if the lookup or measure conversion fails.
     """
     try:
-        return as_measure(input6_standard_params['b1_real_gdp_growth', 'user'], 'int')
+        return as_measure(input6_standard_params['b1_real_gdp_growth', 'user'])
     except XlError as error:
         return error.code
 
 @publish(key=(), domain=None, cells=data.B1_GDP_PUB_KEY_MACROECONOMIC_FISCAL_ASSUMPTIONS_CELLS)
-def b1_gdp_pub_key_macroeconomic_fiscal_assumptions(*, input6_standard_params: data.Series[int | str | None]) -> int | str:
-    """Extract the B1 real GDP growth user assumption from the Input 6 standard-parameter series.
+def b1_gdp_pub_key_macroeconomic_fiscal_assumptions(*, input6_standard_params: data.Series[float | str | None]) -> float | str:
+    """Return the B1 real GDP growth user assumption from Input 6 standard parameters.
 
-    Resolve the macro-fiscal input leaf used for baseline B1 real GDP growth in the DSA chart data.
+    Resolve the internal B1 GDP public-key macroeconomic and fiscal assumption used in LIC-DSF calculations.
 
     Args:
-        input6_standard_params: Keyword-only data.Series[int | str | None] over catalog coordinates containing the Input 6 standard macroeconomic and fiscal assumptions; the helper selects its b1_real_gdp_growth user leaf as the measure.
+        input6_standard_params: Keyword-only `data.Series[float | str | None]` over catalog coordinates holding Input 6 standard macroeconomic and fiscal assumptions; the helper reads the `b1_real_gdp_growth` user entry from it and treats it as graph-coverage chrome, not a public series.
 
     Returns:
-        The integer value of the b1_real_gdp_growth user assumption, or the XlError code string when the series lookup fails.
+        The scalar `float` or `str` value at the B1 real GDP growth user coordinate, or the Excel error code string if the lookup raises `XlError`.
     """
     try:
-        return as_measure(input6_standard_params['b1_real_gdp_growth', 'user'], 'int')
+        return as_measure(input6_standard_params['b1_real_gdp_growth', 'user'])
     except XlError as error:
         return error.code
 
 @publish(key=(), domain=None, cells=data.B2_PB_MKT_PUB_I_BASELINE_MEDIUM_TERM_PROJECTIONS_CELLS)
-def b2_pb_mkt_pub_i_baseline_medium_term_projections(*, input6_standard_params: data.Series[int | str | None]) -> int | str:
-    """Compute the baseline medium-term primary-balance projection for the market-financing public-debt scenario.
+def b2_pb_mkt_pub_i_baseline_medium_term_projections(*, input6_standard_params: data.Series[float | str | None]) -> float | str:
+    """Return the baseline medium-term primary balance projection from the Input 6 standard parameters.
 
-    Extract the standard Input 6 primary-balance value used to drive baseline medium-term public-debt projections from graph-coverage chrome, returning any Excel evaluation error code as a string.
+    Internal inverted-tree helper that extracts the user baseline primary balance coordinate for downstream public-market debt projections; not a public series.
 
     Args:
-        input6_standard_params: A keyword-only named-axis data.Series of int, str, or None values over catalog coordinates, carrying Standard Input 6 graph-coverage chrome such as section titles, footnotes, or lookup tokens rather than a public series; it is consumed at the b2_primary_balance/user coordinate.
+        input6_standard_params: A catalog-coordinate data series of Input 6 standard parameters (float, string, or None) whose `('b2_primary_balance', 'user')` element supplies the baseline medium-term primary balance projection.
 
     Returns:
-        The integer primary-balance measure selected by the b2_primary_balance/user coordinate, or the string Excel error code when evaluation raises XlError.
+        Float baseline medium-term primary balance projection, or a string workbook error code if the coordinate lookup raises `XlError`.
     """
     try:
-        return as_measure(input6_standard_params['b2_primary_balance', 'user'], 'int')
+        return as_measure(input6_standard_params['b2_primary_balance', 'user'])
     except XlError as error:
         return error.code
 
 @publish(key=(), domain=None, cells=data.B2_PB_NONMKT_PUB_I_BASELINE_MEDIUM_TERM_PROJECTIONS_CELLS)
-def b2_pb_nonmkt_pub_i_baseline_medium_term_projections(*, input6_standard_params: data.Series[int | str | None]) -> int | str:
-    """Compute the baseline medium-term primary-balance projection for the non-market public-debt block.
+def b2_pb_nonmkt_pub_i_baseline_medium_term_projections(*, input6_standard_params: data.Series[float | str | None]) -> float | str:
+    """Compute the baseline medium-term primary-balance projection for non-market public debt.
 
-    Reads the standard-parameter series at the `b2_primary_balance`/`user` coordinate and returns the measured integer or an Excel error code.
+    Read the Input 6 user baseline primary-balance entry used by internal medium-term projection logic.
 
     Args:
-        input6_standard_params: Keyword-only named-axis `int | str | None` series over catalog coordinates that supplies the `b2_primary_balance`/`user` standard-parameter lookup; this is graph-coverage chrome (section title, footnote, or lookup token), not a public series.
+        input6_standard_params: Input 6 standard-parameter series over catalog coordinates, containing the baseline primary-balance value; graph-coverage chrome, not a public series.
 
     Returns:
-        The baseline medium-term primary-balance projection as an `int`, or the `XlError` code as a `str` when the lookup fails.
+        The baseline primary-balance projection as a float, or an `XlError` code string if the coordinate cannot be resolved.
     """
     try:
-        return as_measure(input6_standard_params['b2_primary_balance', 'user'], 'int')
+        return as_measure(input6_standard_params['b2_primary_balance', 'user'])
     except XlError as error:
         return error.code
 
 @publish(key=(), domain=None, cells=data.B3_EXPORTS_EXT_III_AVERAGES_STANDARD_DEVIATIONS_CELLS)
-def b3_exports_ext_iii_averages_standard_deviations(*, input6_standard_params: data.Series[int | str | None]) -> int | str:
-    """Return the B3 exports external III averages/standard-deviations integer measure.
+def b3_exports_ext_iii_averages_standard_deviations(*, input6_standard_params: data.Series[float | str | None]) -> float | str:
+    """Return the B3 exports external-III average/standard-deviation parameter.
 
-    Resolve the authored coordinate identity for B3 exports external III averages/standard deviations and coerce its value to an integer.
+    Resolve the user-entered standardized stress value for the B3 exports external-III average/standard-deviation coordinate.
 
     Args:
-        input6_standard_params: Keyword-only data.Series over catalog coordinates holding standardized stress parameters for Input 6; cell values are int, str, or None, including graph-coverage chrome such as section titles, footnotes, or lookup tokens.
+        input6_standard_params: Keyword-only data.Series of Input 6 standardized stress parameters keyed by catalog coordinates; values are floats, strings, or blanks. This internal graph-coverage chrome is not a public series.
 
     Returns:
-        An integer measure when the authored identity resolves, or the XlError code as a string if that lookup fails.
+        The parameter as a float, or a string error code if the coordinate lookup raises XlError.
     """
     try:
-        return as_measure(input6_standard_params['b3_exports', 'user'], 'int')
+        return as_measure(input6_standard_params['b3_exports', 'user'])
     except XlError as error:
         return error.code
 
 @publish(key=(), domain=None, cells=data.B4_OTHERFLOWS_EXT_II_KEY_MACROECONOMIC_ASSUMPTIONS_CELLS)
-def b4_otherflows_ext_ii_key_macroeconomic_assumptions(*, input6_standard_params: data.Series[int | str | None]) -> int | str:
-    """Return the Input 6 external II key macroeconomic assumption as an int or error code.
+def b4_otherflows_ext_ii_key_macroeconomic_assumptions(*, input6_standard_params: data.Series[float | str | None]) -> int | str:
+    """Return the B4 other-flows external II key macroeconomic assumption from standard Input 6 parameters.
 
-    Resolve a b4 other-flows key macro assumption token for inverted-tree graph coverage.
+    Provides the internal graph-coverage scalar for the B4 Other Flows external II key macroeconomic assumptions key.
 
     Args:
-        input6_standard_params: Keyword-only data.Series over catalog coordinates for Input 6 standard parameters; supplies integer, string, or blank values, including the b4 other-flows user cell used as the macro assumption token.
+        input6_standard_params: Keyword-only named-axis data.Series over catalog coordinates holding standard Input 6 parameter cells (float, str, or None), including the B4 other-flows user entry read here.
 
     Returns:
-        The resolved assumption as an int, or the string XlError code if the lookup fails.
+        The graph-coverage scalar as an int when the B4 other-flows external II key macroeconomic assumption parses as an integer, or an Excel error-code string when evaluation fails.
     """
     try:
         return as_measure(input6_standard_params['b4_other_flows', 'user'], 'int')
@@ -24813,16 +24454,16 @@ def leftover_real_gdp_growth_2(*, input6_tailored_params_3: data.Series[float | 
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.LEFTOVER_US_GDP_DEFLATOR_2_CELLS)
-def leftover_us_gdp_deflator_2(*, input6_standard_params: data.Series[int | str | None]) -> int | str:
-    """Return the US GDP deflator leftover from a standardized DSA parameter series.
+def leftover_us_gdp_deflator_2(*, input6_standard_params: data.Series[float | str | None]) -> int | str:
+    """Compute the leftover US GDP deflator from standardized Input 6 scenario parameters.
 
-    Extracts the b4_fdi_shock_sd user measure as an integer for the US GDP deflator leftover scenario calculation.
+    Provides the inverted-tree helper that recovers the US GDP deflator residual used on DSA scenario sheets.
 
     Args:
-        input6_standard_params: Standardized-parameter series keyed by SCENARIO, supplying the b4_fdi_shock_sd user value used in the US GDP deflator leftover identity.
+        input6_standard_params: Typed data.Series over catalog coordinates, keyed by SCENARIO, holding standardized Input 6 parameters as float, str, or None per cell.
 
     Returns:
-        Integer measure value from the selected parameter, or the XlError code string if evaluation fails.
+        An integer measure extracted from the standardized series, or the XL error code string when extraction raises an error.
     """
     try:
         return as_measure(input6_standard_params['b4_fdi_shock_sd', 'user'], 'int')
@@ -25586,23 +25227,23 @@ def realism4_projected_3yr_adjustment_bin(*, realism4_projected_3yr_adjustment: 
 
 @publish(key=(), domain=None, cells=data.REALISM4_PROJECTED_3YR_ADJUSTMENT_CATEGORY_CELLS)
 def realism4_projected_3yr_adjustment_category(*, realism4_projected_3yr_adjustment_bin: float | str, realism4_fiscal_adjustment_bin_edges: data.Series[float | str | None], realism4_fiscal_adjustment_bin_frequencies: data.Series[float | str | None], realism4_fiscal_adjustment_bin_categories: data.Series[int | str | None]) -> float | str:
-    """Return the Realism 4 fiscal-adjustment histogram category for a projected three-year adjustment.
+    """Return the Realism 4 fiscal-adjustment histogram category index assigned to a projected 3-year adjustment.
 
-    Buckets a projected three-year fiscal adjustment into the histogram bin whose edge interval contains it.
+    Classify the projected 3-year fiscal adjustment into the authored Realism 4 fiscal-adjustment bin distribution, clamping values outside the bin range to the first or last category.
 
     Args:
-        realism4_projected_3yr_adjustment_bin: Scalar projected three-year adjustment value to place into the fiscal-adjustment histogram bins.
-        realism4_fiscal_adjustment_bin_edges: Named-axis series of bin edge thresholds, ordered ascending, that bound each histogram bucket.
-        realism4_fiscal_adjustment_bin_frequencies: Named-axis series of bin frequencies aligned with the edge series, carried as a coordinate identity of the histogram table.
-        realism4_fiscal_adjustment_bin_categories: Named-axis series of integer bin category indices aligned with the edge series, supplying the category reported for the matching bin.
+        realism4_projected_3yr_adjustment_bin: Scalar projected 3-year fiscal adjustment value (numeric or string bin label) to be located within the fiscal-adjustment bin table.
+        realism4_fiscal_adjustment_bin_edges: Named-axis series of fiscal-adjustment bin edge values over the Realism 4 variant axis, used to bracket the projected adjustment value against the first and last edges.
+        realism4_fiscal_adjustment_bin_frequencies: Named-axis series of bin frequencies aligned with the bin edges, supplying the distribution table consulted by the lookup.
+        realism4_fiscal_adjustment_bin_categories: Named-axis series of integer or string histogram category indices aligned with the bin edges, providing the category returned for the bin that matches the projected adjustment.
 
     Returns:
-        Scalar category index of the bin containing the projected adjustment, the first or last category when the value falls outside the edge range, or the error code string when the lookup raises an XlError.
+        Scalar histogram category index (integer-valued float or string label) for the projected 3-year adjustment; values below the first edge or above the last edge map to the first or last category respectively, and a spreadsheet lookup error yields its error-code string.
     """
     data.REALISM4_FISCAL_ADJUSTMENT_BIN_EDGES.schema.validate(realism4_fiscal_adjustment_bin_edges)
     data.REALISM4_FISCAL_ADJUSTMENT_BIN_FREQUENCIES.schema.validate(realism4_fiscal_adjustment_bin_frequencies)
     data.REALISM4_FISCAL_ADJUSTMENT_BIN_CATEGORIES.schema.validate(realism4_fiscal_adjustment_bin_categories)
-    _realism4_projected_3yr_adjustment_category_table_0 = lazy_table(((view(realism4_fiscal_adjustment_bin_edges, rows=span(data.VARIANT_AXIS_4, 2, 27)), view(realism4_fiscal_adjustment_bin_frequencies, rows=span(data.VARIANT_AXIS_4, 2, 27)), view(realism4_fiscal_adjustment_bin_categories, rows=span(data.VARIANT_AXIS_4, 2, 27))),))
+    _realism4_projected_3yr_adjustment_category_table_0 = lazy_table(((view(realism4_fiscal_adjustment_bin_edges, rows=span(data.VARIANT_AXIS_5, 2, 27)), view(realism4_fiscal_adjustment_bin_frequencies, rows=span(data.VARIANT_AXIS_5, 2, 27)), view(realism4_fiscal_adjustment_bin_categories, rows=span(data.VARIANT_AXIS_5, 2, 27))),))
     try:
         return as_measure((realism4_fiscal_adjustment_bin_categories[1] if xl_bool(xl_lt(realism4_projected_3yr_adjustment_bin, realism4_fiscal_adjustment_bin_edges[2])) else (realism4_fiscal_adjustment_bin_categories[28] if xl_bool(xl_gt(realism4_projected_3yr_adjustment_bin, realism4_fiscal_adjustment_bin_edges[27])) else xl_vlookup(realism4_projected_3yr_adjustment_bin, _realism4_projected_3yr_adjustment_category_table_0, 3, False))))
     except XlError as error:
@@ -25610,20 +25251,20 @@ def realism4_projected_3yr_adjustment_category(*, realism4_projected_3yr_adjustm
 
 @publish(key=(), domain=None, cells=data.REALISM4_PROJECTED_3YR_ADJUSTMENT_SAMPLE_SHARE_CELLS)
 def realism4_projected_3yr_adjustment_sample_share(*, realism4_projected_3yr_adjustment_category: float | str, realism4_fiscal_adjustment_bin_categories: data.Series[int | str | None], realism4_fiscal_adjustment_sample_share: data.Realism4FiscalAdjustmentSampleShare) -> float | str:
-    """Look up the Realism 4 projected 3-year fiscal-adjustment sample share by category.
+    """Return the Realism 4 percent-of-sample share for a projected 3-year fiscal-adjustment category.
 
-    Resolve the sample-share measure corresponding to a projected-adjustment category from the Realism 4 fiscal-adjustment table.
+    Look up the fiscal-adjustment sample share at the country's projected-adjustment bin.
 
     Args:
-        realism4_projected_3yr_adjustment_category: Scalar three-year projected fiscal-adjustment category used as the exact-match lookup key.
-        realism4_fiscal_adjustment_bin_categories: Typed named-axis series of Realism 4 fiscal-adjustment bin categories aligned to the variant axis, supplying the lookup column.
-        realism4_fiscal_adjustment_sample_share: Typed named-axis series of percent-of-sample (Y) values at the country's projected-adjustment bin, supplying the return-value column aligned to the same variant axis.
+        realism4_projected_3yr_adjustment_category: Projected 3-year fiscal-adjustment category label or numeric bin key to match; scalar.
+        realism4_fiscal_adjustment_bin_categories: Named-axis series of fiscal-adjustment bin categories (integer, string, or None) aligned to catalog coordinates; supplies the lookup keys.
+        realism4_fiscal_adjustment_sample_share: Named-axis Realism4FiscalAdjustmentSampleShare series of percent-of-sample (Y) values aligned to the bin categories and catalog coordinates; supplies the matched share values.
 
     Returns:
-        The matched percent-of-sample adjustment share as a float, or an Excel error code string if the category lookup fails.
+        Scalar percent-of-sample (Y) share at the projected-adjustment bin, or an Excel error-code string if the lookup fails.
     """
     data.REALISM4_FISCAL_ADJUSTMENT_BIN_CATEGORIES.schema.validate(realism4_fiscal_adjustment_bin_categories)
-    _realism4_projected_3yr_adjustment_sample_share_table_0 = lazy_table(((view(realism4_fiscal_adjustment_bin_categories, rows=data.VARIANT_AXIS_4.keys), view(realism4_fiscal_adjustment_sample_share, rows=data.VARIANT_AXIS_4.keys)),))
+    _realism4_projected_3yr_adjustment_sample_share_table_0 = lazy_table(((view(realism4_fiscal_adjustment_bin_categories, rows=data.VARIANT_AXIS_5.keys), view(realism4_fiscal_adjustment_sample_share, rows=data.VARIANT_AXIS_5.keys)),))
     try:
         return as_measure(xl_vlookup(realism4_projected_3yr_adjustment_category, _realism4_projected_3yr_adjustment_sample_share_table_0, 2, False))
     except XlError as error:
@@ -25650,18 +25291,18 @@ def realism4_fiscal_adjustment_top_bin_label(*, translation_more_phrase: data.Se
 
 @publish(data.REALISM4_FISCAL_ADJUSTMENT_SAMPLE_SHARE.schema, cells=data.REALISM4_FISCAL_ADJUSTMENT_SAMPLE_SHARE.cells)
 def realism4_fiscal_adjustment_sample_share(*, realism4_fiscal_adjustment_bin_frequencies: data.Series[float | str | None]) -> data.Realism4FiscalAdjustmentSampleShare:
-    """Compute each fiscal-adjustment bin's sample share as a percentage of the LIC sample.
+    """Compute LIC-DSF Realism 4 fiscal-adjustment sample shares.
 
-    Normalize authored fiscal-adjustment bin frequencies into sample shares for the Realism 4 tool.
+    Normalize 3-year fiscal-adjustment bin frequencies into percentage shares of the total LIC sample.
 
     Args:
-        realism4_fiscal_adjustment_bin_frequencies: Keyword-only `data.Series[float | str | None]` over fiscal-adjustment bin variants. A named-axis series whose values are the percent of the LIC sample in each 3-year fiscal-adjustment bin; entries may be numeric, string, or missing (`None`).
+        realism4_fiscal_adjustment_bin_frequencies: Keyword-only data.Series[float | str | None] giving the LIC sample percentage in each 3-year fiscal-adjustment bin; each entry is divided by the series total and scaled to 100.
 
     Returns:
-        A `data.Realism4FiscalAdjustmentSampleShare` series giving the percentage sample share for each fiscal-adjustment bin, computed as the bin frequency divided by the total across bins and multiplied by 100.
+        A data.Realism4FiscalAdjustmentSampleShare typed result mapping each fiscal-adjustment bin to its percentage share of the LIC sample.
     """
     data.REALISM4_FISCAL_ADJUSTMENT_BIN_FREQUENCIES.schema.validate(realism4_fiscal_adjustment_bin_frequencies)
-    _realism4_fiscal_adjustment_sample_share_table_0 = view(realism4_fiscal_adjustment_bin_frequencies, rows=data.VARIANT_AXIS_4.keys)
+    _realism4_fiscal_adjustment_sample_share_table_0 = view(realism4_fiscal_adjustment_bin_frequencies, rows=data.VARIANT_AXIS_5.keys)
     def formula(variant: int) -> float | str | None:
         return as_measure(xl_mul(xl_div(realism4_fiscal_adjustment_bin_frequencies[variant], xl_sum(_realism4_fiscal_adjustment_sample_share_table_0)), 100))
 
@@ -29348,9 +28989,9 @@ def scan_pv_lc_nr1_terms_fx_pa_growth(*, macro_debt_exchange_rate_national_curre
 
     pv_lc_nr1_terms_fx_pa_growth_avg = CoordinateReader('pv_lc_nr1_terms_fx_pa_growth_avg', Domain.product(), pv_lc_nr1_terms_fx_pa_growth_avg_formula)
     def pv_lc_nr1_terms_fx_pa_formula(instrument: str, holder: str, time_period: int) -> float | str | None:
-        if time_period <= 2044:
-            return as_measure(macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc[time_period])
-        return as_measure(xl_mul(pv_lc_nr1_terms_fx_pa[instrument, holder, time_period - 1], xl_add(1, pv_lc_nr1_terms_fx_pa_growth_avg[()])))
+        if time_period >= 2045:
+            return as_measure(xl_mul(pv_lc_nr1_terms_fx_pa[instrument, holder, time_period - 1], xl_add(1, pv_lc_nr1_terms_fx_pa_growth_avg[()])))
+        return as_measure(macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc[time_period])
 
     pv_lc_nr1_terms_fx_pa = CoordinateReader('pv_lc_nr1_terms_fx_pa', data.PV_LC_NR1_TERMS_FX_PA.required, pv_lc_nr1_terms_fx_pa_formula)
     return ScanPvLcNr1TermsFxPaGrowthResult(
@@ -29380,25 +29021,21 @@ def pv_lc_nr1_terms_projection_year(*, macro_debt_data: int | str) -> data.Serie
     return data.PV_LC_NR1_TERMS_PROJECTION_YEAR.collect((coord, pv_lc_nr1_terms_projection_year[coord]) for coord in data.PV_LC_NR1_TERMS_PROJECTION_YEAR.required)
 
 @publish(data.PV_LC_NR1_TERMS_FX_EOP.schema, cells=data.PV_LC_NR1_TERMS_FX_EOP.cells)
-def pv_lc_nr1_terms_fx_eop(*, macro_debt_exchange_rate_national_currency_per_u_s_dollar: data.Series[float | str | None], pv_lc_nr1_terms_fx_pa_growth_avg: float | str) -> data.Series[float | str | None]:
-    """Builds the end-of-period exchange-rate series for low-income-country PV terms of non-resident-held 1-3 year local-currency bonds.
+def pv_lc_nr1_terms_fx_eop(*, macro_debt_exchange_rate_national_currency_per_u_s_dollar: data.Series[float | str | None]) -> data.Series[float | str | None]:
+    """Extract end-of-period FX terms for non-resident local-currency bonds (1–3 years).
 
-    Projects the national-currency-per-USD exchange rate forward beyond the historical horizon so later PV calculations have a complete end-of-period FX path.
+    Builds the PV_LC_NR1_TERMS_FX_EOP series by projecting the national-currency-per-U.S.-dollar exchange rate across the required time periods.
 
     Args:
-        macro_debt_exchange_rate_national_currency_per_u_s_dollar: End-of-period national-currency-per-US-dollar exchange rate as a data.Series of floats, strings, or nulls indexed by time period over the workbook catalog coordinates.
-        pv_lc_nr1_terms_fx_pa_growth_avg: Average annual growth rate applied to the exchange rate after the final historical period, as a scalar float or string.
+        macro_debt_exchange_rate_national_currency_per_u_s_dollar: End-of-period macro debt exchange rate in national currency per U.S. dollar, provided as a data.Series[float | str | None] over time periods.
 
     Returns:
-        A data.Series[float | str | None] of end-of-period FX rates over the pv_lc_nr1_terms_fx_eop coordinates, using the observed exchange rate through the historical window and compounding each earlier value by one plus the growth rate thereafter.
+        A data.Series[float | str | None] of end-of-period FX terms for non-resident local-currency bonds (1–3 years), aligned to the output series' time-period coordinates.
     """
     def formula(instrument: str, holder: str, time_period: int) -> float | str | None:
-        if time_period <= 2044:
-            return as_measure(macro_debt_exchange_rate_national_currency_per_u_s_dollar[time_period])
-        return as_measure(xl_mul(pv_lc_nr1_terms_fx_eop[instrument, holder, time_period - 1], xl_add(1, pv_lc_nr1_terms_fx_pa_growth_avg)))
+        return as_measure(macro_debt_exchange_rate_national_currency_per_u_s_dollar[time_period])
 
-    pv_lc_nr1_terms_fx_eop = CoordinateReader('pv_lc_nr1_terms_fx_eop', data.PV_LC_NR1_TERMS_FX_EOP.required, formula)
-    return data.PV_LC_NR1_TERMS_FX_EOP.collect((coord, pv_lc_nr1_terms_fx_eop[coord]) for coord in data.PV_LC_NR1_TERMS_FX_EOP.required)
+    return data.PV_LC_NR1_TERMS_FX_EOP.collect(evaluate(formula, data.PV_LC_NR1_TERMS_FX_EOP.required))
 
 @publish(data.PV_LC_TERMS_INTEREST_RATE_LOCAL_CURRENCY.schema, cells=data.PV_LC_TERMS_INTEREST_RATE_LOCAL_CURRENCY.cells)
 def pv_lc_terms_interest_rate_local_currency(*, input5_internal_interest_rate_on_domestic_debt: data.Series[float | str | None]) -> data.Series[float | str | None]:
@@ -29532,22 +29169,61 @@ def pv_lc_output_issuance_year(*, pv_lc_nr1_terms_projection_year: data.Series[i
     return data.PV_LC_OUTPUT_ISSUANCE_YEAR.collect((coord, pv_lc_output_issuance_year[coord]) for coord in data.PV_LC_OUTPUT_ISSUANCE_YEAR.required)
 
 @publish(data.PV_LC_OUTPUT_PERIOD_INDEX.schema, cells=data.PV_LC_OUTPUT_PERIOD_INDEX.cells)
-def pv_lc_output_period_index() -> data.Series[int | str | None]:
-    """Compute the PV_LC output period index series keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, and PV_LC_NR3.
+def pv_lc_output_period_index(*, pv_lc_constant_output_period_index: data.Series[int | str | None]) -> data.Series[int | str | None]:
+    """Derive the PV_LC output period index from the constant-output period index baseline.
 
-    Derive the per-instrument output period index by evaluating the authored coordinate identities over the required PV_LC coordinates.
+    Builds the period-by-period output index on PV_LC by seeding each issuance year from the constant-output index and rolling subsequent periods forward.
 
     Args:
-        (none)
+        pv_lc_constant_output_period_index: data.Series[int | str | None] of constant-output period indices, keyed by INSTRUMENT and issuance year, providing the per-instrument seed values that anchor the forward roll.
 
     Returns:
-        data.Series[int | str | None]: Period index on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, and PV_LC_NR3; each element is an integer period offset, a string label, or None when unspecified.
+        data.Series[int | str | None] giving the PV_LC output period index, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, and PV_LC_NR3.
     """
+    data.PV_LC_CONSTANT_OUTPUT_PERIOD_INDEX.schema.validate(pv_lc_constant_output_period_index)
     def formula(instrument: str, holder: str, issuance_year: int, time_period: int) -> int | str | None:
-        if time_period == 2024:
-            return as_measure(0, 'int')
-        elif time_period == 2025:
-            return as_measure(xl_add(pv_lc_output_period_index[instrument, holder, issuance_year, time_period - 1], 1), 'int')
+        if issuance_year == 2024 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2024], 1), 'int')
+        elif issuance_year == 2025 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2025], 1), 'int')
+        elif issuance_year == 2026 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2026], 1), 'int')
+        elif issuance_year == 2027 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2027], 1), 'int')
+        elif issuance_year == 2028 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2028], 1), 'int')
+        elif issuance_year == 2029 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2029], 1), 'int')
+        elif issuance_year == 2030 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2030], 1), 'int')
+        elif issuance_year == 2031 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2031], 1), 'int')
+        elif issuance_year == 2032 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2032], 1), 'int')
+        elif issuance_year == 2033 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2033], 1), 'int')
+        elif issuance_year == 2034 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2034], 1), 'int')
+        elif issuance_year == 2035 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2035], 1), 'int')
+        elif issuance_year == 2036 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2036], 1), 'int')
+        elif issuance_year == 2037 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2037], 1), 'int')
+        elif issuance_year == 2038 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2038], 1), 'int')
+        elif issuance_year == 2039 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2039], 1), 'int')
+        elif issuance_year == 2040 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2040], 1), 'int')
+        elif issuance_year == 2041 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2041], 1), 'int')
+        elif issuance_year == 2042 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2042], 1), 'int')
+        elif issuance_year == 2043 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2043], 1), 'int')
+        elif issuance_year == 2044 and time_period == 2025:
+            return as_measure(xl_add(pv_lc_constant_output_period_index[instrument, holder, 2044], 1), 'int')
         elif issuance_year == 2024 and time_period >= 2026:
             return as_measure(xl_add(pv_lc_output_period_index[instrument, holder, 2024, time_period - 1], 1), 'int')
         elif issuance_year == 2025 and time_period >= 2026:
@@ -29934,116 +29610,204 @@ def pv_lc_output_discount(*, pv_lc_terms_discount: data.Series[float | str | Non
     return data.PV_LC_OUTPUT_DISCOUNT.collect(evaluate(formula, data.PV_LC_OUTPUT_DISCOUNT.required))
 
 @publish(data.PV_LC_OUTPUT_T_G_0.schema, cells=data.PV_LC_OUTPUT_T_G_0.cells)
-def pv_lc_output_t_g_0(*, pv_lc_output_period_index: data.Series[int | str | None], pv_lc_output_grace: data.Series[float | str | None]) -> data.Series[int | str | None]:
-    """Compute the PV_LC time-to-grace measure t-g when positive, otherwise zero.
+def pv_lc_output_t_g_0(*, pv_lc_constant_output_period_index: data.Series[int | str | None], pv_lc_output_period_index: data.Series[int | str | None], pv_lc_output_grace: data.Series[float | str | None]) -> data.Series[int | str | None]:
+    """Derive the PV_LC time-to-grace indicator, flagging periods where the remaining output period exceeds grace (t-g > 0).
 
-    Derive the positive time-to-grace output series keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, and PV_LC_NR3.
+    Computes, per instrument and holder, the positive residual of output period index minus grace, clamped to zero otherwise, so later PV_LC stages can condition on remaining disbursement time.
 
     Args:
-        pv_lc_output_period_index: Named-axis series of period indices (integer, string label, or missing) over catalog coordinates.
-        pv_lc_output_grace: Named-axis series of grace-period values (float, string label, or missing) over catalog coordinates.
+        pv_lc_constant_output_period_index: Constant-schedule output period index series over instrument, holder, and issuance-year coordinates; values are integral period counts, string labels, or None where the schedule is undefined.
+        pv_lc_output_period_index: Varying output period index series over instrument, holder, issuance-year, and time-period coordinates; values are integral period counts, string labels, or None for unpopulated cells.
+        pv_lc_output_grace: Grace period series over instrument, holder, and issuance-year coordinates; values are fractional or integral period lengths, string labels, or None where no grace applies.
 
     Returns:
-        Named-axis series of integer measures (with string or missing placeholders) equal to the period index minus the grace period where that difference is positive, and zero otherwise, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, and PV_LC_NR3.
+        A named-axis integer series keyed by INSTRUMENT across the PV_LC_NR1, PV_LC_NR2, and PV_LC_NR3 coordinates, holding the non-negative period remainder t-g (zero when the difference is not positive), with string or None entries propagated where inputs are unresolved.
     """
+    data.PV_LC_CONSTANT_OUTPUT_PERIOD_INDEX.schema.validate(pv_lc_constant_output_period_index)
     def formula(instrument: str, holder: str, issuance_year: int, time_period: int) -> int | str | None:
-        if issuance_year == 2024:
+        if issuance_year == 2024 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2024], pv_lc_output_grace[instrument, holder, 2024]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2024], pv_lc_output_grace[instrument, holder, 2024]), 0)) else 0), 'int')
+        elif issuance_year == 2025 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2025], pv_lc_output_grace[instrument, holder, 2025]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2025], pv_lc_output_grace[instrument, holder, 2025]), 0)) else 0), 'int')
+        elif issuance_year == 2026 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2026], pv_lc_output_grace[instrument, holder, 2026]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2026], pv_lc_output_grace[instrument, holder, 2026]), 0)) else 0), 'int')
+        elif issuance_year == 2027 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2027], pv_lc_output_grace[instrument, holder, 2027]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2027], pv_lc_output_grace[instrument, holder, 2027]), 0)) else 0), 'int')
+        elif issuance_year == 2028 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2028], pv_lc_output_grace[instrument, holder, 2028]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2028], pv_lc_output_grace[instrument, holder, 2028]), 0)) else 0), 'int')
+        elif issuance_year == 2029 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2029], pv_lc_output_grace[instrument, holder, 2029]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2029], pv_lc_output_grace[instrument, holder, 2029]), 0)) else 0), 'int')
+        elif issuance_year == 2030 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2030], pv_lc_output_grace[instrument, holder, 2030]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2030], pv_lc_output_grace[instrument, holder, 2030]), 0)) else 0), 'int')
+        elif issuance_year == 2031 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2031], pv_lc_output_grace[instrument, holder, 2031]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2031], pv_lc_output_grace[instrument, holder, 2031]), 0)) else 0), 'int')
+        elif issuance_year == 2032 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2032], pv_lc_output_grace[instrument, holder, 2032]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2032], pv_lc_output_grace[instrument, holder, 2032]), 0)) else 0), 'int')
+        elif issuance_year == 2033 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2033], pv_lc_output_grace[instrument, holder, 2033]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2033], pv_lc_output_grace[instrument, holder, 2033]), 0)) else 0), 'int')
+        elif issuance_year == 2034 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2034], pv_lc_output_grace[instrument, holder, 2034]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2034], pv_lc_output_grace[instrument, holder, 2034]), 0)) else 0), 'int')
+        elif issuance_year == 2035 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2035], pv_lc_output_grace[instrument, holder, 2035]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2035], pv_lc_output_grace[instrument, holder, 2035]), 0)) else 0), 'int')
+        elif issuance_year == 2036 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2036], pv_lc_output_grace[instrument, holder, 2036]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2036], pv_lc_output_grace[instrument, holder, 2036]), 0)) else 0), 'int')
+        elif issuance_year == 2037 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2037], pv_lc_output_grace[instrument, holder, 2037]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2037], pv_lc_output_grace[instrument, holder, 2037]), 0)) else 0), 'int')
+        elif issuance_year == 2038 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2038], pv_lc_output_grace[instrument, holder, 2038]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2038], pv_lc_output_grace[instrument, holder, 2038]), 0)) else 0), 'int')
+        elif issuance_year == 2039 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2039], pv_lc_output_grace[instrument, holder, 2039]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2039], pv_lc_output_grace[instrument, holder, 2039]), 0)) else 0), 'int')
+        elif issuance_year == 2040 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2040], pv_lc_output_grace[instrument, holder, 2040]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2040], pv_lc_output_grace[instrument, holder, 2040]), 0)) else 0), 'int')
+        elif issuance_year == 2041 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2041], pv_lc_output_grace[instrument, holder, 2041]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2041], pv_lc_output_grace[instrument, holder, 2041]), 0)) else 0), 'int')
+        elif issuance_year == 2042 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2042], pv_lc_output_grace[instrument, holder, 2042]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2042], pv_lc_output_grace[instrument, holder, 2042]), 0)) else 0), 'int')
+        elif issuance_year == 2043 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2043], pv_lc_output_grace[instrument, holder, 2043]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2043], pv_lc_output_grace[instrument, holder, 2043]), 0)) else 0), 'int')
+        elif issuance_year == 2044 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2044], pv_lc_output_grace[instrument, holder, 2044]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2044], pv_lc_output_grace[instrument, holder, 2044]), 0)) else 0), 'int')
+        elif issuance_year == 2024 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2024, time_period], pv_lc_output_grace[instrument, holder, 2024]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2024, time_period], pv_lc_output_grace[instrument, holder, 2024]), 0)) else 0), 'int')
-        elif issuance_year == 2025:
+        elif issuance_year == 2025 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2025, time_period], pv_lc_output_grace[instrument, holder, 2025]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2025, time_period], pv_lc_output_grace[instrument, holder, 2025]), 0)) else 0), 'int')
-        elif issuance_year == 2026:
+        elif issuance_year == 2026 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2026, time_period], pv_lc_output_grace[instrument, holder, 2026]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2026, time_period], pv_lc_output_grace[instrument, holder, 2026]), 0)) else 0), 'int')
-        elif issuance_year == 2027:
+        elif issuance_year == 2027 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2027, time_period], pv_lc_output_grace[instrument, holder, 2027]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2027, time_period], pv_lc_output_grace[instrument, holder, 2027]), 0)) else 0), 'int')
-        elif issuance_year == 2028:
+        elif issuance_year == 2028 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2028, time_period], pv_lc_output_grace[instrument, holder, 2028]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2028, time_period], pv_lc_output_grace[instrument, holder, 2028]), 0)) else 0), 'int')
-        elif issuance_year == 2029:
+        elif issuance_year == 2029 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2029, time_period], pv_lc_output_grace[instrument, holder, 2029]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2029, time_period], pv_lc_output_grace[instrument, holder, 2029]), 0)) else 0), 'int')
-        elif issuance_year == 2030:
+        elif issuance_year == 2030 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2030, time_period], pv_lc_output_grace[instrument, holder, 2030]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2030, time_period], pv_lc_output_grace[instrument, holder, 2030]), 0)) else 0), 'int')
-        elif issuance_year == 2031:
+        elif issuance_year == 2031 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2031, time_period], pv_lc_output_grace[instrument, holder, 2031]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2031, time_period], pv_lc_output_grace[instrument, holder, 2031]), 0)) else 0), 'int')
-        elif issuance_year == 2032:
+        elif issuance_year == 2032 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2032, time_period], pv_lc_output_grace[instrument, holder, 2032]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2032, time_period], pv_lc_output_grace[instrument, holder, 2032]), 0)) else 0), 'int')
-        elif issuance_year == 2033:
+        elif issuance_year == 2033 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2033, time_period], pv_lc_output_grace[instrument, holder, 2033]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2033, time_period], pv_lc_output_grace[instrument, holder, 2033]), 0)) else 0), 'int')
-        elif issuance_year == 2034:
+        elif issuance_year == 2034 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2034, time_period], pv_lc_output_grace[instrument, holder, 2034]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2034, time_period], pv_lc_output_grace[instrument, holder, 2034]), 0)) else 0), 'int')
-        elif issuance_year == 2035:
+        elif issuance_year == 2035 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2035, time_period], pv_lc_output_grace[instrument, holder, 2035]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2035, time_period], pv_lc_output_grace[instrument, holder, 2035]), 0)) else 0), 'int')
-        elif issuance_year == 2036:
+        elif issuance_year == 2036 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2036, time_period], pv_lc_output_grace[instrument, holder, 2036]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2036, time_period], pv_lc_output_grace[instrument, holder, 2036]), 0)) else 0), 'int')
-        elif issuance_year == 2037:
+        elif issuance_year == 2037 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2037, time_period], pv_lc_output_grace[instrument, holder, 2037]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2037, time_period], pv_lc_output_grace[instrument, holder, 2037]), 0)) else 0), 'int')
-        elif issuance_year == 2038:
+        elif issuance_year == 2038 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2038, time_period], pv_lc_output_grace[instrument, holder, 2038]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2038, time_period], pv_lc_output_grace[instrument, holder, 2038]), 0)) else 0), 'int')
-        elif issuance_year == 2039:
+        elif issuance_year == 2039 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2039, time_period], pv_lc_output_grace[instrument, holder, 2039]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2039, time_period], pv_lc_output_grace[instrument, holder, 2039]), 0)) else 0), 'int')
-        elif issuance_year == 2040:
+        elif issuance_year == 2040 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2040, time_period], pv_lc_output_grace[instrument, holder, 2040]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2040, time_period], pv_lc_output_grace[instrument, holder, 2040]), 0)) else 0), 'int')
-        elif issuance_year == 2041:
+        elif issuance_year == 2041 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2041, time_period], pv_lc_output_grace[instrument, holder, 2041]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2041, time_period], pv_lc_output_grace[instrument, holder, 2041]), 0)) else 0), 'int')
-        elif issuance_year == 2042:
+        elif issuance_year == 2042 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2042, time_period], pv_lc_output_grace[instrument, holder, 2042]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2042, time_period], pv_lc_output_grace[instrument, holder, 2042]), 0)) else 0), 'int')
-        elif issuance_year == 2043:
+        elif issuance_year == 2043 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2043, time_period], pv_lc_output_grace[instrument, holder, 2043]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2043, time_period], pv_lc_output_grace[instrument, holder, 2043]), 0)) else 0), 'int')
         return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2044, time_period], pv_lc_output_grace[instrument, holder, 2044]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2044, time_period], pv_lc_output_grace[instrument, holder, 2044]), 0)) else 0), 'int')
 
     return data.PV_LC_OUTPUT_T_G_0.collect(evaluate(formula, data.PV_LC_OUTPUT_T_G_0.required))
 
 @publish(data.PV_LC_OUTPUT_T_M_CONDITION.schema, cells=data.PV_LC_OUTPUT_T_M_CONDITION.cells)
-def pv_lc_output_t_m_condition(*, pv_lc_output_period_index: data.Series[int | str | None], pv_lc_output_maturity: data.Series[int | str | None]) -> data.Series[int | str | None]:
-    """Compute the PV_LC time-to-maturity condition, per instrument, as a named-axis series.
+def pv_lc_output_t_m_condition(*, pv_lc_constant_output_period_index: data.Series[int | str | None], pv_lc_output_period_index: data.Series[int | str | None], pv_lc_output_maturity: data.Series[int | str | None]) -> data.Series[int | str | None]:
+    """Compute the PV_LC time-maturity condition series keyed by instrument across PV_LC_NR1, PV_LC_NR2, and PV_LC_NR3.
 
-    Derive the t-m condition on PV_LC across the PV_LC_NR1, PV_LC_NR2, and PV_LC_NR3 series, keyed by INSTRUMENT over catalog coordinates.
+    Derive the time-versus-maturity alignment condition used by the PV of local-currency debt projection engine.
 
     Args:
-        pv_lc_output_period_index: data.Series[int | str | None] series of per-instrument period indices over the holder, issuance-year, and time-period catalog coordinates.
-        pv_lc_output_maturity: data.Series[int | str | None] series of per-instrument maturity values aligned to the same holder and issuance-year coordinates.
+        pv_lc_constant_output_period_index: Named-axis series of constant output period indices for PV of local-currency debt, keyed by instrument, holder, and issuance year.
+        pv_lc_output_period_index: Named-axis series of output period indices for PV of local-currency debt, keyed by instrument, holder, issuance year, and time period.
+        pv_lc_output_maturity: Named-axis series of PV of local-currency debt output maturities, keyed by instrument, holder, and issuance year.
 
     Returns:
-        data.Series[int | str | None] keyed by INSTRUMENT holding the period-index-minus-maturity difference where positive, otherwise zero.
+        Named-axis series of the t-m condition result keyed by instrument across PV_LC_NR1, PV_LC_NR2, and PV_LC_NR3, holding integer, string, or None values.
     """
+    data.PV_LC_CONSTANT_OUTPUT_PERIOD_INDEX.schema.validate(pv_lc_constant_output_period_index)
     def formula(instrument: str, holder: str, issuance_year: int, time_period: int) -> int | str | None:
-        if issuance_year == 2024:
+        if issuance_year == 2024 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2024], pv_lc_output_maturity[instrument, holder, 2024]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2024], pv_lc_output_maturity[instrument, holder, 2024]), 0)) else 0), 'int')
+        elif issuance_year == 2025 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2025], pv_lc_output_maturity[instrument, holder, 2025]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2025], pv_lc_output_maturity[instrument, holder, 2025]), 0)) else 0), 'int')
+        elif issuance_year == 2026 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2026], pv_lc_output_maturity[instrument, holder, 2026]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2026], pv_lc_output_maturity[instrument, holder, 2026]), 0)) else 0), 'int')
+        elif issuance_year == 2027 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2027], pv_lc_output_maturity[instrument, holder, 2027]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2027], pv_lc_output_maturity[instrument, holder, 2027]), 0)) else 0), 'int')
+        elif issuance_year == 2028 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2028], pv_lc_output_maturity[instrument, holder, 2028]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2028], pv_lc_output_maturity[instrument, holder, 2028]), 0)) else 0), 'int')
+        elif issuance_year == 2029 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2029], pv_lc_output_maturity[instrument, holder, 2029]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2029], pv_lc_output_maturity[instrument, holder, 2029]), 0)) else 0), 'int')
+        elif issuance_year == 2030 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2030], pv_lc_output_maturity[instrument, holder, 2030]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2030], pv_lc_output_maturity[instrument, holder, 2030]), 0)) else 0), 'int')
+        elif issuance_year == 2031 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2031], pv_lc_output_maturity[instrument, holder, 2031]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2031], pv_lc_output_maturity[instrument, holder, 2031]), 0)) else 0), 'int')
+        elif issuance_year == 2032 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2032], pv_lc_output_maturity[instrument, holder, 2032]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2032], pv_lc_output_maturity[instrument, holder, 2032]), 0)) else 0), 'int')
+        elif issuance_year == 2033 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2033], pv_lc_output_maturity[instrument, holder, 2033]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2033], pv_lc_output_maturity[instrument, holder, 2033]), 0)) else 0), 'int')
+        elif issuance_year == 2034 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2034], pv_lc_output_maturity[instrument, holder, 2034]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2034], pv_lc_output_maturity[instrument, holder, 2034]), 0)) else 0), 'int')
+        elif issuance_year == 2035 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2035], pv_lc_output_maturity[instrument, holder, 2035]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2035], pv_lc_output_maturity[instrument, holder, 2035]), 0)) else 0), 'int')
+        elif issuance_year == 2036 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2036], pv_lc_output_maturity[instrument, holder, 2036]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2036], pv_lc_output_maturity[instrument, holder, 2036]), 0)) else 0), 'int')
+        elif issuance_year == 2037 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2037], pv_lc_output_maturity[instrument, holder, 2037]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2037], pv_lc_output_maturity[instrument, holder, 2037]), 0)) else 0), 'int')
+        elif issuance_year == 2038 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2038], pv_lc_output_maturity[instrument, holder, 2038]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2038], pv_lc_output_maturity[instrument, holder, 2038]), 0)) else 0), 'int')
+        elif issuance_year == 2039 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2039], pv_lc_output_maturity[instrument, holder, 2039]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2039], pv_lc_output_maturity[instrument, holder, 2039]), 0)) else 0), 'int')
+        elif issuance_year == 2040 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2040], pv_lc_output_maturity[instrument, holder, 2040]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2040], pv_lc_output_maturity[instrument, holder, 2040]), 0)) else 0), 'int')
+        elif issuance_year == 2041 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2041], pv_lc_output_maturity[instrument, holder, 2041]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2041], pv_lc_output_maturity[instrument, holder, 2041]), 0)) else 0), 'int')
+        elif issuance_year == 2042 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2042], pv_lc_output_maturity[instrument, holder, 2042]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2042], pv_lc_output_maturity[instrument, holder, 2042]), 0)) else 0), 'int')
+        elif issuance_year == 2043 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2043], pv_lc_output_maturity[instrument, holder, 2043]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2043], pv_lc_output_maturity[instrument, holder, 2043]), 0)) else 0), 'int')
+        elif issuance_year == 2044 and time_period == 2024:
+            return as_measure((xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2044], pv_lc_output_maturity[instrument, holder, 2044]) if xl_bool(xl_gt(xl_sub(pv_lc_constant_output_period_index[instrument, holder, 2044], pv_lc_output_maturity[instrument, holder, 2044]), 0)) else 0), 'int')
+        elif issuance_year == 2024 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2024, time_period], pv_lc_output_maturity[instrument, holder, 2024]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2024, time_period], pv_lc_output_maturity[instrument, holder, 2024]), 0)) else 0), 'int')
-        elif issuance_year == 2025:
+        elif issuance_year == 2025 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2025, time_period], pv_lc_output_maturity[instrument, holder, 2025]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2025, time_period], pv_lc_output_maturity[instrument, holder, 2025]), 0)) else 0), 'int')
-        elif issuance_year == 2026:
+        elif issuance_year == 2026 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2026, time_period], pv_lc_output_maturity[instrument, holder, 2026]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2026, time_period], pv_lc_output_maturity[instrument, holder, 2026]), 0)) else 0), 'int')
-        elif issuance_year == 2027:
+        elif issuance_year == 2027 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2027, time_period], pv_lc_output_maturity[instrument, holder, 2027]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2027, time_period], pv_lc_output_maturity[instrument, holder, 2027]), 0)) else 0), 'int')
-        elif issuance_year == 2028:
+        elif issuance_year == 2028 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2028, time_period], pv_lc_output_maturity[instrument, holder, 2028]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2028, time_period], pv_lc_output_maturity[instrument, holder, 2028]), 0)) else 0), 'int')
-        elif issuance_year == 2029:
+        elif issuance_year == 2029 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2029, time_period], pv_lc_output_maturity[instrument, holder, 2029]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2029, time_period], pv_lc_output_maturity[instrument, holder, 2029]), 0)) else 0), 'int')
-        elif issuance_year == 2030:
+        elif issuance_year == 2030 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2030, time_period], pv_lc_output_maturity[instrument, holder, 2030]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2030, time_period], pv_lc_output_maturity[instrument, holder, 2030]), 0)) else 0), 'int')
-        elif issuance_year == 2031:
+        elif issuance_year == 2031 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2031, time_period], pv_lc_output_maturity[instrument, holder, 2031]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2031, time_period], pv_lc_output_maturity[instrument, holder, 2031]), 0)) else 0), 'int')
-        elif issuance_year == 2032:
+        elif issuance_year == 2032 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2032, time_period], pv_lc_output_maturity[instrument, holder, 2032]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2032, time_period], pv_lc_output_maturity[instrument, holder, 2032]), 0)) else 0), 'int')
-        elif issuance_year == 2033:
+        elif issuance_year == 2033 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2033, time_period], pv_lc_output_maturity[instrument, holder, 2033]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2033, time_period], pv_lc_output_maturity[instrument, holder, 2033]), 0)) else 0), 'int')
-        elif issuance_year == 2034:
+        elif issuance_year == 2034 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2034, time_period], pv_lc_output_maturity[instrument, holder, 2034]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2034, time_period], pv_lc_output_maturity[instrument, holder, 2034]), 0)) else 0), 'int')
-        elif issuance_year == 2035:
+        elif issuance_year == 2035 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2035, time_period], pv_lc_output_maturity[instrument, holder, 2035]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2035, time_period], pv_lc_output_maturity[instrument, holder, 2035]), 0)) else 0), 'int')
-        elif issuance_year == 2036:
+        elif issuance_year == 2036 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2036, time_period], pv_lc_output_maturity[instrument, holder, 2036]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2036, time_period], pv_lc_output_maturity[instrument, holder, 2036]), 0)) else 0), 'int')
-        elif issuance_year == 2037:
+        elif issuance_year == 2037 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2037, time_period], pv_lc_output_maturity[instrument, holder, 2037]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2037, time_period], pv_lc_output_maturity[instrument, holder, 2037]), 0)) else 0), 'int')
-        elif issuance_year == 2038:
+        elif issuance_year == 2038 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2038, time_period], pv_lc_output_maturity[instrument, holder, 2038]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2038, time_period], pv_lc_output_maturity[instrument, holder, 2038]), 0)) else 0), 'int')
-        elif issuance_year == 2039:
+        elif issuance_year == 2039 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2039, time_period], pv_lc_output_maturity[instrument, holder, 2039]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2039, time_period], pv_lc_output_maturity[instrument, holder, 2039]), 0)) else 0), 'int')
-        elif issuance_year == 2040:
+        elif issuance_year == 2040 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2040, time_period], pv_lc_output_maturity[instrument, holder, 2040]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2040, time_period], pv_lc_output_maturity[instrument, holder, 2040]), 0)) else 0), 'int')
-        elif issuance_year == 2041:
+        elif issuance_year == 2041 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2041, time_period], pv_lc_output_maturity[instrument, holder, 2041]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2041, time_period], pv_lc_output_maturity[instrument, holder, 2041]), 0)) else 0), 'int')
-        elif issuance_year == 2042:
+        elif issuance_year == 2042 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2042, time_period], pv_lc_output_maturity[instrument, holder, 2042]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2042, time_period], pv_lc_output_maturity[instrument, holder, 2042]), 0)) else 0), 'int')
-        elif issuance_year == 2043:
+        elif issuance_year == 2043 and time_period >= 2025:
             return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2043, time_period], pv_lc_output_maturity[instrument, holder, 2043]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2043, time_period], pv_lc_output_maturity[instrument, holder, 2043]), 0)) else 0), 'int')
         return as_measure((xl_sub(pv_lc_output_period_index[instrument, holder, 2044, time_period], pv_lc_output_maturity[instrument, holder, 2044]) if xl_bool(xl_gt(xl_sub(pv_lc_output_period_index[instrument, holder, 2044, time_period], pv_lc_output_maturity[instrument, holder, 2044]), 0)) else 0), 'int')
 
@@ -30071,38 +29835,34 @@ def pv_lc_terms_projection_year(*, macro_debt_data: int | str) -> data.Series[in
 
 @publish(data.PV_LC_TERMS_FX_PA.schema, cells=data.PV_LC_TERMS_FX_PA.cells)
 def pv_lc_terms_fx_pa(*, pv_lc_nr1_terms_fx_pa: data.Series[float | str | None]) -> data.Series[float | str | None]:
-    """Compute PV_LC FX (pa) terms from the NR1 series.
+    """Build the PV_LC FX (pa) terms series from NR1 term values.
 
-    Provide the PV_LC fixed-exchange (pa) term series for use in LIC-DSF calculations.
+    Populate the PV_LC result grid by collecting the NR1-sourced FX (pa) term measures over the required instrument, holder, and time-period coordinates.
 
     Args:
-        pv_lc_nr1_terms_fx_pa: data.Series of FX (pa) terms for PV_LC_NR1, keyed by INSTRUMENT across PV_LC_NR2 and PV_LC_NR3.
+        pv_lc_nr1_terms_fx_pa: A typed data.Series[float | str | None] over the source PV_LC_NR1 coordinate layout, supplying the FX (pa) terms values that this helper broadcasts into the PV_LC result series.
 
     Returns:
-        data.Series of FX (pa) terms on PV_LC, keyed by INSTRUMENT across PV_LC_NR2 and PV_LC_NR3.
+        A typed data.Series[float | str | None] representing FX (pa) on PV_LC, keyed by INSTRUMENT across PV_LC_NR2 and PV_LC_NR3.
     """
     def formula(instrument: str, holder: str, time_period: int) -> float | str | None:
-        if time_period >= 2075:
-            return as_measure(0)
         return as_measure(pv_lc_nr1_terms_fx_pa['Bonds (1 to 3 years)-LC', holder, time_period])
 
     return data.PV_LC_TERMS_FX_PA.collect(evaluate(formula, data.PV_LC_TERMS_FX_PA.required))
 
 @publish(data.PV_LC_TERMS_FX_EOP.schema, cells=data.PV_LC_TERMS_FX_EOP.cells)
 def pv_lc_terms_fx_eop(*, pv_lc_nr1_terms_fx_eop: data.Series[float | str | None]) -> data.Series[float | str | None]:
-    """Compute PV_LC terms at FX end-of-period.
+    """Compute PV_LC terms at FX end-of-period from NR1 terms.
 
-    Derive the FX end-of-period PV_LC term series from NR1 term values and authored coordinate identities.
+    Reindex the NR1 end-of-period FX terms series onto the PV_LC_TERMS_FX_EOP coordinate space.
 
     Args:
-        pv_lc_nr1_terms_fx_eop: A data.Series[float | str | None] of PV_LC NR1 terms at FX end-of-period, keyed by instrument across PV_LC_NR2 and PV_LC_NR3, supplying the Bonds (1 to 3 years)-LC values used by the calculation.
+        pv_lc_nr1_terms_fx_eop: data.Series[float | str | None] of NR1 end-of-period FX terms on PV_LC, keyed by instrument across PV_LC_NR2 and PV_LC_NR3.
 
     Returns:
-        A data.Series[float | str | None] of PV_LC terms at FX end-of-period, keyed by INSTRUMENT across PV_LC_NR2 and PV_LC_NR3; values are 0 for time periods from 2075 onward and otherwise equal the Bonds (1 to 3 years)-LC value from the input series.
+        data.Series[float | str | None] of end-of-period FX terms on PV_LC, keyed by instrument across PV_LC_NR2 and PV_LC_NR3.
     """
     def formula(instrument: str, holder: str, time_period: int) -> float | str | None:
-        if time_period >= 2075:
-            return as_measure(0)
         return as_measure(pv_lc_nr1_terms_fx_eop['Bonds (1 to 3 years)-LC', holder, time_period])
 
     return data.PV_LC_TERMS_FX_EOP.collect(evaluate(formula, data.PV_LC_TERMS_FX_EOP.required))

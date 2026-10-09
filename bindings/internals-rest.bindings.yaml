@@ -1,4 +1,4 @@
-schema_version: 1.21.0
+schema_version: 1.22.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -1688,42 +1688,6 @@ series:
     INDICATOR: Debt service in % of Revenue
     VARIANT: grid_heading
   notes: Old-framework display-grid copy of the debt-service-to-revenue row label.
-- id: trigger_ifscode_header
-  sheet: Trigger
-  data_range: Trigger!B3
-  layout: scalar
-  internal: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions: []
-  key: []
-  series_context:
-    TABLE: trigger.ppp_capital_stock
-    INDICATOR: ifscode header
-  notes: IFS-code column header copied from lookup.
-- id: trigger_country_header
-  sheet: Trigger
-  data_range: Trigger!C3
-  layout: scalar
-  internal: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions: []
-  key: []
-  series_context:
-    TABLE: trigger.ppp_capital_stock
-    INDICATOR: country header
-  notes: Country-name column header copied from lookup.
 - id: trigger_ifscode
   sheet: Trigger
   data_range: Trigger!A5:A58
@@ -1752,90 +1716,6 @@ series:
     TABLE: trigger.ppp_capital_stock
     INDICATOR: ifscode
   notes: IMF IFS numeric codes for the LIC-DSF country list.
-- id: trigger_isocode
-  sheet: Trigger
-  data_range: Trigger!B5:B58
-  layout: series
-  internal: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions:
-    - id: REF_AREA
-      concept: REF_AREA
-      role: key
-      scope: cell
-      bind:
-        kind: row_label
-        label_column: B
-        read: string
-        normalize: strip
-  key:
-  - REF_AREA
-  series_context:
-    TABLE: trigger.ppp_capital_stock
-    INDICATOR: isocode
-  notes: ISO3 codes for the LIC-DSF country list.
-- id: trigger_country_name
-  sheet: Trigger
-  data_range: Trigger!C5:C58
-  layout: series
-  internal: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: string
-      bind:
-        kind: data_cell
-        read: string
-    dimensions:
-    - id: REF_AREA
-      concept: REF_AREA
-      role: key
-      scope: cell
-      bind:
-        kind: row_label
-        label_column: B
-        read: string
-        normalize: strip
-  key:
-  - REF_AREA
-  series_context:
-    TABLE: trigger.ppp_capital_stock
-    INDICATOR: country
-  notes: Country names for the LIC-DSF country list.
-- id: trigger_ppp_year
-  sheet: Trigger
-  data_range: Trigger!D5:D58
-  layout: series
-  internal: {}
-  structure:
-    measure:
-      concept: OBS_VALUE
-      dtype: int
-      bind:
-        kind: data_cell
-        read: int
-    dimensions:
-    - id: REF_AREA
-      concept: REF_AREA
-      role: key
-      scope: cell
-      bind:
-        kind: row_label
-        label_column: B
-        read: string
-        normalize: strip
-  key:
-  - REF_AREA
-  series_context:
-    TABLE: trigger.ppp_capital_stock
-    INDICATOR: year
-  notes: PPP capital-stock vintage year by country.
 - id: trigger_ppp_stocks
   sheet: Trigger
   data_range: Trigger!G5:J58

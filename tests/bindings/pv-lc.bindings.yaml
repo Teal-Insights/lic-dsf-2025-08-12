@@ -1,4 +1,4 @@
-schema_version: 1.21.0
+schema_version: 1.22.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -787,15 +787,111 @@ series:
     INDICATOR: Issuance year
     VARIANT: output
   notes: Issuance year on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_constant_output_period_index
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D23:D403
+  - PV_LC_NR2!D23:D403
+  - PV_LC_NR3!D23:D403
+  layout: series
+  constant: {}
+  exclude_rows:
+  - '24:41'
+  - 43:60
+  - 62:79
+  - 81:98
+  - 100:117
+  - 119:136
+  - 138:155
+  - 157:174
+  - 176:193
+  - 195:212
+  - 214:231
+  - 233:250
+  - 252:269
+  - 271:288
+  - 290:307
+  - 309:326
+  - 328:345
+  - 347:364
+  - 366:383
+  - 385:402
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: int
+      bind:
+        kind: data_cell
+        read: int
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2024: 23
+          2025: 42
+          2026: 61
+          2027: 80
+          2028: 99
+          2029: 118
+          2030: 137
+          2031: 156
+          2032: 175
+          2033: 194
+          2034: 213
+          2035: 232
+          2036: 251
+          2037: 270
+          2038: 289
+          2039: 308
+          2040: 327
+          2041: 346
+          2042: 365
+          2043: 384
+          2044: 403
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: Period index
+    VARIANT: output
+  notes: Period-index origin (the literal 0 each counter row starts from) on PV_LC, keyed
+    by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
 - id: pv_lc_output_period_index
   sheet:
   - PV_LC_NR1
   - PV_LC_NR2
   - PV_LC_NR3
   data_range:
-  - PV_LC_NR1!D23:AE403
-  - PV_LC_NR2!D23:AE403
-  - PV_LC_NR3!D23:AE403
+  - PV_LC_NR1!E23:AE403
+  - PV_LC_NR2!E23:AE403
+  - PV_LC_NR3!E23:AE403
   layout: series
   internal: {}
   domain:

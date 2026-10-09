@@ -69,13 +69,14 @@ pd.DataFrame(
         ["External PV of debt to GDP", case.external_pv_debt_to_gdp_mx_shock],
         ["External PV of debt to exports", case.external_pv_debt_to_exports_mx_shock],
         ["External debt service to exports", case.external_debt_service_to_exports_mx_shock],
+        ["External debt service to revenue", case.external_debt_service_to_revenue_mx_shock],
         ["Fiscal PV of debt to GDP", case.fiscal_pv_debt_to_gdp_mx_shock],
     ],
     columns=["Ratio", "Most extreme shock"],
 ).style.hide(axis="index")
 ```
 
-In this snapshot the external MX shock on the stock and flow ratios is **Exports**; the fiscal MX shock on PV of debt-to-GDP is **Primary Balance**. Those labels are the same strings the workbook writes next to the rating block.
+In this snapshot the external MX shock on the stock and flow ratios is **Exports**; the fiscal MX shock on PV of debt-to-GDP is **Primary Balance**. Those labels are the same strings the workbook writes next to the rating block. Each one names the rank-1 stress test on that ratio — a standardized shock such as Exports, or a tailored test when that path is more extreme.
 
 ## Fiscal space (moderate risk)
 
@@ -85,6 +86,8 @@ When the mechanical rating is moderate, Chart Data also carries a fiscal-space p
 case.fiscal_space_moderate_risk_signal
 ```
 
+The phrase is **Limited space**. Chart Data fills `D23` even when the mechanical rating is not moderate; staff still decide whether that language belongs in the write-up.
+
 ## Chart Data map
 
 | What you want | Function | Workbook cell |
@@ -92,8 +95,10 @@ case.fiscal_space_moderate_risk_signal
 | External rating text | `compute_external_dsa_risk_rating_signal` | `Chart Data!D10` |
 | External rating number | `compute_external_dsa_risk_rating_numeric` | `Chart Data!D11` |
 | External baseline / shock breach | `compute_external_baseline_breach`, `compute_external_shock_breach` | `D12`, `D13` |
+| External MX labels | `compute_external_pv_debt_to_gdp_mx_shock`, `compute_external_pv_debt_to_exports_mx_shock`, `compute_external_debt_service_to_exports_mx_shock`, `compute_external_debt_service_to_revenue_mx_shock` | `D14`–`D17` |
 | Fiscal rating text / number | `compute_fiscal_risk_rating_signal`, `compute_fiscal_risk_rating_numeric` | `I10`, `I11` |
 | Fiscal baseline / shock breach | `compute_fiscal_baseline_breach`, `compute_fiscal_shock_breach` | `I12`, `I13` |
+| Fiscal MX label | `compute_fiscal_pv_debt_to_gdp_mx_shock` | `I14` |
 | Overall rating | `compute_overall_risk_rating_signal`, `compute_overall_risk_rating_numeric` | `L10`, `L11` |
 | Fiscal space phrase | `compute_fiscal_space_moderate_risk_signal` | `D23` |
 

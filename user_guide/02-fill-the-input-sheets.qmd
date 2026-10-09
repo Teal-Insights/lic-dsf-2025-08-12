@@ -7,40 +7,51 @@ bread-crumbs: false
 An economist does not type seventy fields by hand. You start from the shipped template snapshot and replace the cells you would have edited in yellow on Input 1–8.
 
 ```{python}
+import inspect
+
 import pandas as pd
 
-from lic_dsf_2025_08_12 import api, data
+from lic_dsf_2025_08_12 import api
 
-inputs = api.ExternalDsaRiskRatingSignalInputs.from_defaults()
-len(inputs.__dataclass_fields__)
+print(inspect.signature(api.compute_external_dsa_risk_rating_signal))
+len(api.ExternalDsaRiskRatingSignalInputs.describe())
 ```
 
-`compute_external_dsa_risk_rating_signal` needs 74 leaves; the overall rating needs 86. Each name is the snake_case form of an Input-sheet series. The matching default lives on `data` as `{NAME}_DEFAULT`. Unknown override names fail closed.
+The function takes one argument, `inputs`, whose type is `ExternalDsaRiskRatingSignalInputs`. That bundle has **77** leaves; the overall rating needs 89. Each name is the snake_case form of an Input-sheet series (plus a small engine leaf some rating functions also read). Unknown override names fail closed.
 
 `from_workbook(path)` binds the same leaves from a populated workbook of this vintage, then accepts the same overrides.
 
 ## Discover fields with `describe()`
 
-You do not need to guess field names. Every `*Inputs` bundle has a `describe()` class method. It returns a dictionary from field name to an `InputField` with four things on it: whether the field is a scalar or a series (and over which axes), the allowed values, the template default, and the worksheet cell behind each value. Call it before you write any overrides:
+You do not need to guess field names, allowed values, or source cells. Every `*Inputs` bundle has a `describe()` class method. It returns a dictionary from field name to an `InputField` with four things on it: the allowed values (`Literal` choices or `Annotated` bounds, or a plain type when the workbook list is checked at construction), the axes and keys of a series, the template default, and the worksheet cell behind each value. Call it before you write any overrides:
 
 ```{python}
 fields = api.ExternalDsaRiskRatingSignalInputs.describe()
 
+names = [
+    "country",
+    "discount_rate",
+    "external_domestic_debt_definition",
+    "input6_tailored_tests_enabled",
+    "input4_interest_rate",
+    "input3_input_3_macro_gross_domestic_product_us_dollars",
+]
 pd.DataFrame(
     [
         [
             name,
-            ", ".join(axis.name for axis in field.axes) or "scalar",
-            field.size,
-            next(iter(field.cells.values())),
+            fields[name].values,
+            ", ".join(axis.name for axis in fields[name].axes) or "scalar",
+            fields[name].default if not fields[name].is_series else f"{fields[name].size} values",
+            next(iter(fields[name].cells.values())),
         ]
-        for name, field in fields.items()
+        for name in names
     ],
-    columns=["Field", "Axes", "Values", "First cell"],
-).head(12).style.hide(axis="index")
+    columns=["Field", "Allowed values", "Axes", "Default", "First cell"],
+).style.hide(axis="index")
 ```
 
-Drop `.head(12)` to see all 74 fields. For a single field, read the attributes directly:
+Drop the name filter to see all 77 fields. For a single field, read the attributes directly:
 
 ```{python}
 tailored = fields["input6_tailored_tests_enabled"]
@@ -49,7 +60,7 @@ print("default:", tailored.default)
 print("cell:", tailored.cells[()])
 ```
 
-`values` is the type annotation of one value. A `Literal[...]` lists the only choices the model accepts. A plain `str` (for example `country`) is checked against the template's own lists when the bundle is built, not by the annotation. Scalar fields have one cell, keyed by the empty coordinate `()`.
+`values` is the type annotation of one value. A `Literal[...]` lists the only choices the model accepts; an `Annotated` bound (for example a closed interval) is the numeric range. On this vintage many fields show a plain type (`str`, `float | str`) instead — those closed lists and intervals are still enforced when the bundle is built. Scalar fields have one cell, keyed by the empty coordinate `()`.
 
 For a series, `axes` gives the axis names and their keys, and `cells` maps each coordinate to its worksheet cell. This is how you find the cell to edit in Excel for one creditor or one year:
 
@@ -72,27 +83,45 @@ pd.DataFrame(
 
 Each bundle describes only the fields its function reads. To find out whether an assumption affects a given output, check whether its name is in that bundle's `describe()`.
 
+An out-of-domain value fails at construction, before any formula runs. A discount rate of `5` (percent, instead of the decimal `0.05`) and a tailored-test switch that is not `On` or `Off` are both rejected:
+
+```{python}
+try:
+    api.ExternalDsaRiskRatingSignalInputs.from_defaults(discount_rate=5)
+except ValueError as error:
+    str(error)
+```
+
+```{python}
+try:
+    api.ExternalDsaRiskRatingSignalInputs.from_defaults(
+        input6_tailored_tests_enabled="Maybe"
+    )
+except ValueError as error:
+    str(error)
+```
+
 ## Scalars you change first
 
-These are the Input 1 / Input 2 / Input 6 switches that usually move first in a new vintage:
+These are the Input 1 / Input 2 / Input 6 switches that usually move first in a new vintage. The snapshot values come from the same `describe()` catalog:
 
 ```{python}
 pd.DataFrame(
     [
-        ["country", data.COUNTRY_DEFAULT],
-        ["first_projection_year", data.FIRST_PROJECTION_YEAR_DEFAULT],
-        ["discount_rate", data.DISCOUNT_RATE_DEFAULT],
-        ["external_domestic_debt_definition", data.EXTERNAL_DOMESTIC_DEBT_DEFINITION_DEFAULT],
-        ["input_1_rer_overvaluation", data.INPUT_1_RER_OVERVALUATION_DEFAULT],
-        ["input6_tailored_tests_enabled", data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT],
-        ["contingent_liability_soe_debt_pct_gdp", data.CONTINGENT_LIABILITY_SOE_DEBT_PCT_GDP_DEFAULT],
-        [
+        [name, fields[name].default, next(iter(fields[name].cells.values()))]
+        for name in [
+            "country",
+            "first_projection_year",
+            "discount_rate",
+            "external_domestic_debt_definition",
+            "input_1_rer_overvaluation",
+            "input6_tailored_tests_enabled",
+            "contingent_liability_soe_debt_pct_gdp",
             "contingent_liability_financial_market_pct_gdp",
-            data.CONTINGENT_LIABILITY_FINANCIAL_MARKET_PCT_GDP_DEFAULT,
-        ],
-        ["ppp_capital_stock_shock_pct", data.PPP_CAPITAL_STOCK_SHOCK_PCT_DEFAULT],
+            "ppp_capital_stock_shock_pct",
+        ]
     ],
-    columns=["Field", "Snapshot"],
+    columns=["Field", "Snapshot", "Cell"],
 ).style.hide(axis="index")
 ```
 
@@ -105,21 +134,12 @@ pd.DataFrame(
 | Input 1 `C33` | `external_domestic_debt_definition` | `Residency-based` or `Currency-based` |
 | Input 6 `C6` | `input6_tailored_tests_enabled` | `On` or `Off` |
 
-The package validates those domains before the formulas run. A misspelled country name or a discount rate of `5` (instead of `0.05`) fails closed:
-
-```{python}
-try:
-    api.ExternalDsaRiskRatingSignalInputs.from_defaults(discount_rate=5)
-except ValueError as error:
-    str(error)
-```
-
 ## Macro and financing series
 
-Input 3–5 are labeled `Series` objects — immutable tensors with named axes, not plain lists. Nominal GDP on Input 3 is a single `TIME_PERIOD` axis covering history and the projection:
+Input 3–5 are labeled `Series` objects — immutable tensors with named axes, not plain lists. Build them from the described field's `default` so the axes and cell provenance stay attached. Nominal GDP on Input 3 is a single `TIME_PERIOD` axis covering history and the projection:
 
 ```{python}
-gdp = data.INPUT3_INPUT_3_MACRO_GROSS_DOMESTIC_PRODUCT_US_DOLLARS_DEFAULT
+gdp = fields["input3_input_3_macro_gross_domestic_product_us_dollars"].default
 print("axes:", [axis.name for axis in gdp.domain.axes])
 print("years:", gdp.domain.axes[0].keys[0], "…", gdp.domain.axes[0].keys[-1])
 print("2024 GDP:", gdp.sel(TIME_PERIOD=2024))
@@ -130,7 +150,7 @@ print("2024 GDP:", gdp.sel(TIME_PERIOD=2024))
 Input 4 interest rates are keyed by `INSTRUMENT` — the same creditor rows as the external-financing sheet:
 
 ```{python}
-rates = data.INPUT4_INTEREST_RATE_DEFAULT
+rates = fields["input4_interest_rate"].default
 pd.DataFrame(
     [
         [instrument, rates.sel(INSTRUMENT=instrument)]
@@ -143,9 +163,11 @@ pd.DataFrame(
 Exports of goods and services (Input 3) use the same year axis as GDP:
 
 ```{python}
-exports = data.INPUT3_INPUT_3_MACRO_EXPORTS_OF_GOODS_AND_SERVICES_DEFAULT
+exports = fields["input3_input_3_macro_exports_of_goods_and_services"].default
 exports.sel(TIME_PERIOD=2024)
 ```
+
+On the snapshot, 2024 nominal GDP is about **45.5 billion** US dollars and exports of goods and services are about **18.7 billion**. IMF credit is priced at 0.25 percent; the Eurobond and short-term PPG external rows are 9 and 10 percent.
 
 ## Override one cell, keep the rest
 
@@ -157,10 +179,12 @@ api.compute_external_dsa_risk_rating_signal(
 )
 ```
 
-To edit a time series, rebuild it with `with_records` so the schema and cell provenance stay attached. The example raises 2024 nominal GDP and leaves every other year untouched:
+The mechanical external rating stays **High**. A one-point cut in the discount rate is not enough to move this snapshot off the High bin.
+
+To edit a time series, rebuild it from the described field's `default` with `with_records` (or `with_values` when you already have a complete list in axis order). Both keep the schema and cell provenance. The example raises 2024 nominal GDP and leaves every other year untouched:
 
 ```{python}
-gdp = data.INPUT3_INPUT_3_MACRO_GROSS_DOMESTIC_PRODUCT_US_DOLLARS_DEFAULT
+gdp = fields["input3_input_3_macro_gross_domestic_product_us_dollars"].default
 gdp_revised = gdp.with_records(
     (coord, 50_000.0 if coord == (2024,) else value)
     for coord, value in gdp.items()
@@ -177,6 +201,24 @@ pd.DataFrame(
 
 Pass `gdp_revised` as `input3_input_3_macro_gross_domestic_product_us_dollars` in `from_defaults`.
 
+`with_values` is the same idea when you already have a complete list in axis order. The Eurobond row on Input 4 is 9 percent in the snapshot; the call below rebuilds the whole `INSTRUMENT` series at 7 percent for that creditor and leaves every other rate — and the Input 4 cells — attached:
+
+```{python}
+rates = fields["input4_interest_rate"].default
+instruments = rates.domain.axes[0].keys
+rates_revised = rates.with_values(
+    [0.07 if instrument == "Eurobond" else rates[instrument] for instrument in instruments]
+)
+pd.DataFrame(
+    [
+        ["Eurobond template", rates.sel(INSTRUMENT="Eurobond")],
+        ["Eurobond revised", rates_revised.sel(INSTRUMENT="Eurobond")],
+        ["IMF unchanged", rates_revised.sel(INSTRUMENT="IMF")],
+    ],
+    columns=["Instrument", "Interest rate"],
+).style.hide(axis="index")
+```
+
 Two-axis series (Input 4 disbursements are `INSTRUMENT` × `TIME_PERIOD`; customized public deltas are `INDICATOR` × `TIME_PERIOD`) use the same pattern: iterate `items()`, change the coordinates you care about, and call `with_records`.
 
 ## Sheet → field groups
@@ -188,7 +230,7 @@ Two-axis series (Input 4 disbursements are `INSTRUMENT` × `TIME_PERIOD`; custom
 | Input 3 – Macro-debt | `input3_input_3_macro_*`, `input3_input_3_external_debt_*`, `input3_domestic_*`, `input3_old_debt_service`, `input3_new_disbursements` |
 | Input 4 – External financing | `input4_interest_rate`, `input4_grace_period`, `input4_loan_maturity`, `input4_disbursements`, `input4_blend_variant` |
 | Input 5 – Local-debt financing | `input5_grace_period`, `input5_interest_rate_on_domestic_debt`, `input5_maturity`, `input5_gfn_share` |
-| Input 6 – Tailored / standard tests | `input6_tailored_tests_enabled`, `input6_commodity_group_relevant`, `input6_standard_*` |
+| Input 6 – Tailored / standard tests | `input6_tailored_tests_enabled`, `input6_commodity_group_relevant`, `input6_standard_*` (including the optional B1–B3 shock sizes on `Input 6(optional)-Standard Test`) |
 | Input 8 – SDR | `input8_sdr_stock`, `input8_sdr_interest_rate` |
 | Customized scenario – public | `customized_public_include_scenario`, `customized_public_delta`, overflow and initial-stock scalars |
 

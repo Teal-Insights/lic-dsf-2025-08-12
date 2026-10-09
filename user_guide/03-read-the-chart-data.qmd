@@ -114,7 +114,7 @@ a2_frame["OBS_VALUE"] = a2_frame["OBS_VALUE"].round(1)
 a2_frame.head().style.hide(axis="index")
 ```
 
-On the snapshot the A2 path matches the baseline until you fill `customized_public_delta` — see [Stress tests and what-ifs](stress-tests-and-what-ifs.qmd).
+This is the customized path of the **external** PV-of-debt-to-GDP chart, not the public-debt stress-ladder row that starts near 67 percent. On the snapshot the public customized delta grid is zeros, so the A2 path tracks the figure baseline (about 45 percent in 2024). Fill `customized_public_delta` when you want them to diverge — see [Stress tests and what-ifs](stress-tests-and-what-ifs.qmd).
 
 ## Realism tools and the probability approach
 

@@ -1,4 +1,4 @@
-schema_version: 1.21.0
+schema_version: 1.22.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -2109,6 +2109,12 @@ series:
   data_range: "'Input 5 - Local-debt Financing'!I131:S131"
   layout: series
   internal: {}
+  domain:
+    enum:
+    - ""
+    real_between:
+      min: 0
+      max: 50
   structure:
     measure:
       concept: OBS_VALUE
@@ -2207,6 +2213,12 @@ series:
   data_range: "'Input 5 - Local-debt Financing'!I132:S132"
   layout: series
   internal: {}
+  domain:
+    enum:
+    - ""
+    real_between:
+      min: 0
+      max: 100
   structure:
     measure:
       concept: OBS_VALUE

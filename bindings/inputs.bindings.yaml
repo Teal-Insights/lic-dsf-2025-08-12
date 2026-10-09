@@ -1,4 +1,4 @@
-schema_version: 1.21.0
+schema_version: 1.22.0
 workbook: workbook.xlsm
 concept_scheme:
   id: lic_dsf_2025_08_12
@@ -2687,3 +2687,69 @@ series:
     TABLE: input_1.basics
     PARAMETER: current_year
   notes: 'Current year (Input 1!C17).'
+- id: input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations
+  sheet: Input 6(optional)-Standard Test
+  data_range: '''Input 6(optional)-Standard Test''!C17'
+  layout: scalar
+  input: {}
+  domain:
+    real_between:
+      min: 0
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_6.standard_test
+    SCENARIO: B1. Real GDP growth
+    INDICATOR: 'Size of real GDP growth shock, # of standard deviations'
+  notes: Size of the real GDP growth shock, in standard deviations (Input 6!C17).
+- id: input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations
+  sheet: Input 6(optional)-Standard Test
+  data_range: '''Input 6(optional)-Standard Test''!C21'
+  layout: scalar
+  input: {}
+  domain:
+    real_between:
+      min: 0
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_6.standard_test
+    SCENARIO: B2. Primary balance
+    INDICATOR: 'Size of PB/GDP shock, # of standard deviations'
+  notes: Size of the primary-balance shock, in standard deviations (Input 6!C21).
+- id: input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations
+  sheet: Input 6(optional)-Standard Test
+  data_range: '''Input 6(optional)-Standard Test''!C25'
+  layout: scalar
+  input: {}
+  domain:
+    real_between:
+      min: 0
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions: []
+  key: []
+  series_context:
+    TABLE: input_6.standard_test
+    SCENARIO: B3. Exports
+    INDICATOR: 'Size of exports growth shock, # of standard deviations'
+  notes: Size of the exports growth shock, in standard deviations (Input 6!C25).
