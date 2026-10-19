@@ -12,3 +12,4 @@ uv add "lic-dsf-2025-08-12 @ git+https://github.com/Teal-Insights/lic-dsf-2025-0
 
 See the [full documentation](https://teal-insights.github.io/lic-dsf-2025-08-12/).
 
+A SovTech tool, built by Teal Insights and commissioned by NatureFinance.
