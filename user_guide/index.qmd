@@ -31,6 +31,8 @@ include-in-header:
 
 This package is a Python implementation of the IMF–World Bank **Low-Income Country Debt Sustainability Framework** (LIC-DSF) IDA21 template, vintage **2025-08-12**. It evaluates the same Chart Data surface an economist reads in the Excel workbook: external and public-debt risk ratings, breach flags, tailored-stress applicability, fiscal-space language, and the indicator paths that feed the standard DSA charts.
 
+A SovTech tool, built by Teal Insights and commissioned by NatureFinance.
+
 Install it, then import the public functions from `lic_dsf_2025_08_12.api`:
 
 ```bash
