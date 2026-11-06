@@ -6,21 +6,504 @@ from dataclasses import Field, dataclass, fields
 from dataclasses import field as _field
 from functools import cached_property
 from pathlib import Path
-from typing import Any, ClassVar, Self
+from typing import Any, ClassVar, Literal, Self
 
 from . import data, internals, validation
 from .runtime import InputField, describe_inputs
+from .tensor import align_runtime_keys
 from .workbook import read_bound_inputs
 
 
-def _bind_inputs(target: object, inputs: dict[str, Any], *, validate: bool = True) -> None:
+def _bind_inputs(target: object, inputs: dict[str, Any], *, validate: bool = True, align_snapshot: bool = False) -> None:
     if not validate:
         for name, value in inputs.items():
             setattr(target, name, value)
         return
     for name, value in inputs.items():
+        if name in {'input4_disbursements', 'input5_interest_rate_on_domestic_debt', 'input5_interest_rate_on_domestic_debt_fx_long', 'input5_public_gfns_other_adjustment', 'customized_public_delta', 'input8_sdr_interest_historical', 'input8_sdr_interest', 'input3_input_3_macro_gross_domestic_product_us_dollars', 'input3_input_3_macro_real_gross_domestic_product', 'input3_input_3_macro_u_s_deflator', 'input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p', 'input3_input_3_macro_national_currency_per_u_s_dollar_p_a', 'input3_input_3_macro_government_revenue_and_grants', 'input3_input_3_macro_government_grants', 'in3_macro_government_primary_expenditures_this_used_be', 'in3_macro_public_sector_liquid_assets_stock_e_g_cash', 'in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g', 'input3_input_3_macro_privatization_proceeds', 'in3_macro_recognition_of_contingent_liab_e_g_bank', 'input3_input_3_macro_debt_relief_non_multilateral_hipc', 'input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify', 'input3_input_3_macro_exports_of_goods_and_services', 'input3_input_3_macro_exports_commodity_fuel', 'input3_input_3_macro_exports_commodity_non_fuel', 'input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number', 'input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number', 'input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number', 'input3_input_3_macro_current_transfers_net', 'input3_input_3_macro_foreign_direct_investment', 'input3_input_3_external_debt_ppg_mlt_external_debt_outstanding', 'input3_input_3_external_debt_ppg_st_external_debt_outstanding', 'input3_input_3_external_debt_ppg_external_debt_interest_due', 'input3_input_3_external_debt_ppg_external_arrears', 'input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding', 'input3_input_3_external_debt_private_sector_st_external_debt_outstanding', 'input3_input_3_external_debt_private_external_debt_interest_due', 'input3_input_3_external_debt_private_mlt_external_debt_amortization_due', 'input3_input_3_old_debt_service_total_principal_payment', 'customized_public_new_forex_borrowing_cumulative_overflow', 'customized_public_new_domestic_mlt_cumulative_overflow', 'customized_public_residual_overflow', 'customized_external_new_forex_borrowing_cumulative_overflow', 'input3_new_disbursements', 'input3_domestic_outstanding_of_existing_debt', 'input3_domestic_o_w_st', 'input3_domestic_interest_payment_from_existing_debt', 'input3_domestic_principal_payment_from_existing_debt', 'input3_domestic_new_gross_disbursement'}:
+            continue
         check = validation.CHECKS.get(name)
         setattr(target, name, value if check is None else check(value))
+    if 'input4_disbursements' in inputs:
+        value = inputs['input4_disbursements']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('input4_disbursements')
+        setattr(
+            target,
+            'input4_disbursements',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'input5_interest_rate_on_domestic_debt' in inputs:
+        value = inputs['input5_interest_rate_on_domestic_debt']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('input5_interest_rate_on_domestic_debt')
+        setattr(
+            target,
+            'input5_interest_rate_on_domestic_debt',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'input5_interest_rate_on_domestic_debt_fx_long' in inputs:
+        value = inputs['input5_interest_rate_on_domestic_debt_fx_long']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('input5_interest_rate_on_domestic_debt_fx_long')
+        setattr(
+            target,
+            'input5_interest_rate_on_domestic_debt_fx_long',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'input5_public_gfns_other_adjustment' in inputs:
+        value = inputs['input5_public_gfns_other_adjustment']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('input5_public_gfns_other_adjustment')
+        setattr(
+            target,
+            'input5_public_gfns_other_adjustment',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'customized_public_delta' in inputs:
+        value = inputs['customized_public_delta']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('customized_public_delta')
+        setattr(
+            target,
+            'customized_public_delta',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'input8_sdr_interest_historical' in inputs:
+        value = inputs['input8_sdr_interest_historical']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('input8_sdr_interest_historical')
+        setattr(
+            target,
+            'input8_sdr_interest_historical',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'input8_sdr_interest' in inputs:
+        value = inputs['input8_sdr_interest']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('input8_sdr_interest')
+        setattr(
+            target,
+            'input8_sdr_interest',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'input3_input_3_macro_gross_domestic_product_us_dollars' in inputs:
+        value = inputs['input3_input_3_macro_gross_domestic_product_us_dollars']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_macro_gross_domestic_product_us_dollars')
+        setattr(
+            target,
+            'input3_input_3_macro_gross_domestic_product_us_dollars',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_macro_real_gross_domestic_product' in inputs:
+        value = inputs['input3_input_3_macro_real_gross_domestic_product']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_macro_real_gross_domestic_product')
+        setattr(
+            target,
+            'input3_input_3_macro_real_gross_domestic_product',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_macro_u_s_deflator' in inputs:
+        value = inputs['input3_input_3_macro_u_s_deflator']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_macro_u_s_deflator')
+        setattr(
+            target,
+            'input3_input_3_macro_u_s_deflator',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p' in inputs:
+        value = inputs['input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p')
+        setattr(
+            target,
+            'input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_macro_national_currency_per_u_s_dollar_p_a' in inputs:
+        value = inputs['input3_input_3_macro_national_currency_per_u_s_dollar_p_a']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_macro_national_currency_per_u_s_dollar_p_a')
+        setattr(
+            target,
+            'input3_input_3_macro_national_currency_per_u_s_dollar_p_a',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_macro_government_revenue_and_grants' in inputs:
+        value = inputs['input3_input_3_macro_government_revenue_and_grants']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_macro_government_revenue_and_grants')
+        setattr(
+            target,
+            'input3_input_3_macro_government_revenue_and_grants',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_macro_government_grants' in inputs:
+        value = inputs['input3_input_3_macro_government_grants']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('input3_input_3_macro_government_grants')
+        setattr(
+            target,
+            'input3_input_3_macro_government_grants',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'in3_macro_government_primary_expenditures_this_used_be' in inputs:
+        value = inputs['in3_macro_government_primary_expenditures_this_used_be']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('in3_macro_government_primary_expenditures_this_used_be')
+        setattr(
+            target,
+            'in3_macro_government_primary_expenditures_this_used_be',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'in3_macro_public_sector_liquid_assets_stock_e_g_cash' in inputs:
+        value = inputs['in3_macro_public_sector_liquid_assets_stock_e_g_cash']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('in3_macro_public_sector_liquid_assets_stock_e_g_cash')
+        setattr(
+            target,
+            'in3_macro_public_sector_liquid_assets_stock_e_g_cash',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g' in inputs:
+        value = inputs['in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g')
+        setattr(
+            target,
+            'in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'input3_input_3_macro_privatization_proceeds' in inputs:
+        value = inputs['input3_input_3_macro_privatization_proceeds']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('input3_input_3_macro_privatization_proceeds')
+        setattr(
+            target,
+            'input3_input_3_macro_privatization_proceeds',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'in3_macro_recognition_of_contingent_liab_e_g_bank' in inputs:
+        value = inputs['in3_macro_recognition_of_contingent_liab_e_g_bank']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('in3_macro_recognition_of_contingent_liab_e_g_bank')
+        setattr(
+            target,
+            'in3_macro_recognition_of_contingent_liab_e_g_bank',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'input3_input_3_macro_debt_relief_non_multilateral_hipc' in inputs:
+        value = inputs['input3_input_3_macro_debt_relief_non_multilateral_hipc']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('input3_input_3_macro_debt_relief_non_multilateral_hipc')
+        setattr(
+            target,
+            'input3_input_3_macro_debt_relief_non_multilateral_hipc',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify' in inputs:
+        value = inputs['input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify')
+        setattr(
+            target,
+            'input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'input3_input_3_macro_exports_of_goods_and_services' in inputs:
+        value = inputs['input3_input_3_macro_exports_of_goods_and_services']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_macro_exports_of_goods_and_services')
+        setattr(
+            target,
+            'input3_input_3_macro_exports_of_goods_and_services',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_macro_exports_commodity_fuel' in inputs:
+        value = inputs['input3_input_3_macro_exports_commodity_fuel']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_macro_exports_commodity_fuel')
+        setattr(
+            target,
+            'input3_input_3_macro_exports_commodity_fuel',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_macro_exports_commodity_non_fuel' in inputs:
+        value = inputs['input3_input_3_macro_exports_commodity_non_fuel']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_macro_exports_commodity_non_fuel')
+        setattr(
+            target,
+            'input3_input_3_macro_exports_commodity_non_fuel',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number' in inputs:
+        value = inputs['input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number')
+        setattr(
+            target,
+            'input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number' in inputs:
+        value = inputs['input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number')
+        setattr(
+            target,
+            'input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number' in inputs:
+        value = inputs['input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number')
+        setattr(
+            target,
+            'input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_macro_current_transfers_net' in inputs:
+        value = inputs['input3_input_3_macro_current_transfers_net']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_macro_current_transfers_net')
+        setattr(
+            target,
+            'input3_input_3_macro_current_transfers_net',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_macro_foreign_direct_investment' in inputs:
+        value = inputs['input3_input_3_macro_foreign_direct_investment']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_macro_foreign_direct_investment')
+        setattr(
+            target,
+            'input3_input_3_macro_foreign_direct_investment',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_external_debt_ppg_mlt_external_debt_outstanding' in inputs:
+        value = inputs['input3_input_3_external_debt_ppg_mlt_external_debt_outstanding']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_external_debt_ppg_mlt_external_debt_outstanding')
+        setattr(
+            target,
+            'input3_input_3_external_debt_ppg_mlt_external_debt_outstanding',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_external_debt_ppg_st_external_debt_outstanding' in inputs:
+        value = inputs['input3_input_3_external_debt_ppg_st_external_debt_outstanding']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_external_debt_ppg_st_external_debt_outstanding')
+        setattr(
+            target,
+            'input3_input_3_external_debt_ppg_st_external_debt_outstanding',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_external_debt_ppg_external_debt_interest_due' in inputs:
+        value = inputs['input3_input_3_external_debt_ppg_external_debt_interest_due']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_external_debt_ppg_external_debt_interest_due')
+        setattr(
+            target,
+            'input3_input_3_external_debt_ppg_external_debt_interest_due',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_external_debt_ppg_external_arrears' in inputs:
+        value = inputs['input3_input_3_external_debt_ppg_external_arrears']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_external_debt_ppg_external_arrears')
+        setattr(
+            target,
+            'input3_input_3_external_debt_ppg_external_arrears',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding' in inputs:
+        value = inputs['input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding')
+        setattr(
+            target,
+            'input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_external_debt_private_sector_st_external_debt_outstanding' in inputs:
+        value = inputs['input3_input_3_external_debt_private_sector_st_external_debt_outstanding']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_external_debt_private_sector_st_external_debt_outstanding')
+        setattr(
+            target,
+            'input3_input_3_external_debt_private_sector_st_external_debt_outstanding',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_external_debt_private_external_debt_interest_due' in inputs:
+        value = inputs['input3_input_3_external_debt_private_external_debt_interest_due']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_input_3_external_debt_private_external_debt_interest_due')
+        setattr(
+            target,
+            'input3_input_3_external_debt_private_external_debt_interest_due',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_input_3_external_debt_private_mlt_external_debt_amortization_due' in inputs:
+        value = inputs['input3_input_3_external_debt_private_mlt_external_debt_amortization_due']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('input3_input_3_external_debt_private_mlt_external_debt_amortization_due')
+        setattr(
+            target,
+            'input3_input_3_external_debt_private_mlt_external_debt_amortization_due',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'input3_input_3_old_debt_service_total_principal_payment' in inputs:
+        value = inputs['input3_input_3_old_debt_service_total_principal_payment']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('input3_input_3_old_debt_service_total_principal_payment')
+        setattr(
+            target,
+            'input3_input_3_old_debt_service_total_principal_payment',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'customized_public_new_forex_borrowing_cumulative_overflow' in inputs:
+        value = inputs['customized_public_new_forex_borrowing_cumulative_overflow']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('customized_public_new_forex_borrowing_cumulative_overflow')
+        setattr(
+            target,
+            'customized_public_new_forex_borrowing_cumulative_overflow',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'customized_public_new_domestic_mlt_cumulative_overflow' in inputs:
+        value = inputs['customized_public_new_domestic_mlt_cumulative_overflow']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('customized_public_new_domestic_mlt_cumulative_overflow')
+        setattr(
+            target,
+            'customized_public_new_domestic_mlt_cumulative_overflow',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'customized_public_residual_overflow' in inputs:
+        value = inputs['customized_public_residual_overflow']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('customized_public_residual_overflow')
+        setattr(
+            target,
+            'customized_public_residual_overflow',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'customized_external_new_forex_borrowing_cumulative_overflow' in inputs:
+        value = inputs['customized_external_new_forex_borrowing_cumulative_overflow']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('customized_external_new_forex_borrowing_cumulative_overflow')
+        setattr(
+            target,
+            'customized_external_new_forex_borrowing_cumulative_overflow',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'input3_new_disbursements' in inputs:
+        value = inputs['input3_new_disbursements']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('input3_new_disbursements')
+        setattr(
+            target,
+            'input3_new_disbursements',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'input3_domestic_outstanding_of_existing_debt' in inputs:
+        value = inputs['input3_domestic_outstanding_of_existing_debt']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_domestic_outstanding_of_existing_debt')
+        setattr(
+            target,
+            'input3_domestic_outstanding_of_existing_debt',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_domestic_o_w_st' in inputs:
+        value = inputs['input3_domestic_o_w_st']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_domestic_o_w_st')
+        setattr(
+            target,
+            'input3_domestic_o_w_st',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_domestic_interest_payment_from_existing_debt' in inputs:
+        value = inputs['input3_domestic_interest_payment_from_existing_debt']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
+        check = validation.CHECKS.get('input3_domestic_interest_payment_from_existing_debt')
+        setattr(
+            target,
+            'input3_domestic_interest_payment_from_existing_debt',
+            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
+        )
+    if 'input3_domestic_principal_payment_from_existing_debt' in inputs:
+        value = inputs['input3_domestic_principal_payment_from_existing_debt']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('input3_domestic_principal_payment_from_existing_debt')
+        setattr(
+            target,
+            'input3_domestic_principal_payment_from_existing_debt',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
+    if 'input3_domestic_new_gross_disbursement' in inputs:
+        value = inputs['input3_domestic_new_gross_disbursement']
+        if align_snapshot:
+            value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
+        check = validation.CHECKS.get('input3_domestic_new_gross_disbursement')
+        setattr(
+            target,
+            'input3_domestic_new_gross_disbursement',
+            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
+        )
 
 
 class _BoundInputs:
@@ -31,7 +514,7 @@ class _BoundInputs:
 
     @classmethod
     def from_workbook(cls, workbook: Path | str, **overrides: object) -> Self:
-        """Bind input leaves from a populated workbook of this vintage."""
+        """Bind declared inputs from a populated workbook of this vintage."""
         declared = getattr(cls, "__dataclass_fields__", None)
         names = tuple(declared) if declared else cls._INPUT_IDS
         unknown = overrides.keys() - set(names)
@@ -39,16 +522,23 @@ class _BoundInputs:
             raise TypeError(f"unknown inputs: {sorted(unknown)}")
         values = read_bound_inputs(Path(workbook), names, data)
         values.update(overrides)
-        return cls(**values)
+        instance = cls.__new__(cls)
+        if isinstance(instance, Model):
+            _bind_inputs(instance, values, align_snapshot=True)
+            return instance
+        for name, value in values.items():
+            object.__setattr__(instance, name, value)
+        instance._validate(align_snapshot=True)
+        return instance
 
     def __post_init__(self) -> None:
         self._validate()
 
-    def _validate(self) -> None:
+    def _validate(self, *, align_snapshot: bool = False) -> None:
         holder = Model.__new__(Model)
         names = {field.name for field in fields(self)}
         values = {name: getattr(self, name) for name in names}
-        _bind_inputs(holder, values)
+        _bind_inputs(holder, values, align_snapshot=align_snapshot)
         for name in names:
             object.__setattr__(self, name, getattr(holder, name))
 
@@ -84,8 +574,8 @@ class Model(_BoundInputs):
     inputs bound at construction are available, so a public function
     supplies exactly the leaves of its output. Unknown constructor
     names fail closed. `from_defaults` binds every input from
-    `data.*_DEFAULT`. `from_workbook` reads those input cells from a
-    populated workbook of this vintage.
+    `data.*_DEFAULT`. `from_workbook` reads those input cells from
+    a populated workbook of this vintage.
     """
 
     input4_interest_rate: data.Input4InterestRate
@@ -103,7 +593,7 @@ class Model(_BoundInputs):
     input5_public_gfns_other_adjustment: data.Input5PublicGfnsOtherAdjustment
     input5_domestic_financing_source: int | str
     input5_gfn_share: data.Input5GfnShare
-    start_working_language: str
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"]
     country: str
     first_projection_year: int | str
     discount_rate: float | str
@@ -123,8 +613,8 @@ class Model(_BoundInputs):
     input8_sdr_interest_historical: data.Input8SdrInterestHistorical
     input8_sdr_interest: data.Input8SdrInterest
     input8_sdr_interest_rate: float | str
-    input6_tailored_tests_enabled: str
-    input6_standard_size_threshold_mode: str
+    input6_tailored_tests_enabled: Literal["Off", "On"]
+    input6_standard_size_threshold_mode: Literal["New", "Old"]
     input6_standard_interactions: str
     input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold
     input3_input_3_macro_gross_domestic_product_us_dollars: data.Input3Input3MacroGrossDomesticProductUsDollars
@@ -221,7 +711,7 @@ class Model(_BoundInputs):
         input5_public_gfns_other_adjustment: data.Input5PublicGfnsOtherAdjustment = data.INPUT5_PUBLIC_GFNS_OTHER_ADJUSTMENT_DEFAULT,
         input5_domestic_financing_source: int | str = data.INPUT5_DOMESTIC_FINANCING_SOURCE_DEFAULT,
         input5_gfn_share: data.Input5GfnShare = data.INPUT5_GFN_SHARE_DEFAULT,
-        start_working_language: str = data.START_WORKING_LANGUAGE_DEFAULT,
+        start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = data.START_WORKING_LANGUAGE_DEFAULT,
         country: str = data.COUNTRY_DEFAULT,
         first_projection_year: int | str = data.FIRST_PROJECTION_YEAR_DEFAULT,
         discount_rate: float | str = data.DISCOUNT_RATE_DEFAULT,
@@ -241,8 +731,8 @@ class Model(_BoundInputs):
         input8_sdr_interest_historical: data.Input8SdrInterestHistorical = data.INPUT8_SDR_INTEREST_HISTORICAL_DEFAULT,
         input8_sdr_interest: data.Input8SdrInterest = data.INPUT8_SDR_INTEREST_DEFAULT,
         input8_sdr_interest_rate: float | str = data.INPUT8_SDR_INTEREST_RATE_DEFAULT,
-        input6_tailored_tests_enabled: str = data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT,
-        input6_standard_size_threshold_mode: str = data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT,
+        input6_tailored_tests_enabled: Literal["Off", "On"] = data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT,
+        input6_standard_size_threshold_mode: Literal["New", "Old"] = data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT,
         input6_standard_interactions: str = data.INPUT6_STANDARD_INTERACTIONS_DEFAULT,
         input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold = data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD_DEFAULT,
         input3_input_3_macro_gross_domestic_product_us_dollars: data.Input3Input3MacroGrossDomesticProductUsDollars = data.INPUT3_INPUT_3_MACRO_GROSS_DOMESTIC_PRODUCT_US_DOLLARS_DEFAULT,
@@ -403,21 +893,41 @@ class Model(_BoundInputs):
             pv_base_input_output_cumulative=pv_base_input_output_cumulative,
         )
 
+    def cells(self, series_id: str) -> object:
+        """Authored worksheet cells of `series_id` over this model's labels."""
+        binding = getattr(data, series_id.upper())
+        cells = getattr(binding, 'cells', None)
+        if cells is None:
+            cells = getattr(data, f'{series_id.upper()}_CELLS')
+        bind = getattr(cells, 'bind', None)
+        if bind is None:
+            return cells
+        labellers: dict[str, object] = {}
+        schema = getattr(binding, 'schema', None)
+        domain = getattr(schema, 'domain', None)
+        for axis in getattr(domain, 'axes', ()):
+            labeller_id = getattr(axis, 'labeller', None)
+            if isinstance(labeller_id, str):
+                labellers[axis.name] = getattr(self, labeller_id)
+        for axis_name, labeller_id in data.LABELLED_AXES.items():
+            labellers.setdefault(axis_name, getattr(self, labeller_id))
+        return bind(**labellers)
+
     @cached_property
     def imported_prev_dsa_match_keys(self) -> data.Series[str | int | float | bool | None]:
         return internals.imported_prev_dsa_match_keys(imported_prev_dsa_investment_weo_codes=data.IMPORTED_PREV_DSA_INVESTMENT_WEO_CODES, imported_country_code=self.imported_country_code, imported_prev_dsa_weo_codes=self.imported_prev_dsa_weo_codes, imported_selected_vintage_dates=self.imported_selected_vintage_dates)
 
     @cached_property
     def imported_prev_dsa_history_year_headers(self) -> data.Series[int | str | None]:
-        return internals.imported_prev_dsa_history_year_headers(realism1_external_year_headers=self.realism1_external_year_headers)
+        return internals.imported_prev_dsa_history_year_headers(realism1_external_year_headers=self.realism1_external_year_headers, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def imported_prev_dsa_investment_year_headers(self) -> data.Series[int | str | None]:
-        return internals.imported_prev_dsa_investment_year_headers(realism3_contribution_years=self.realism3_contribution_years)
+        return internals.imported_prev_dsa_investment_year_headers(realism3_contribution_years=self.realism3_contribution_years, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def _scan_dsa_ext_external_debt_nominal_1(self) -> internals.ScanDsaExtExternalDebtNominal1Result:
-        return internals.scan_dsa_ext_external_debt_nominal_1(dsa_ext_non_interest_current_account_deficit=self.dsa_ext_non_interest_current_account_deficit, dsa_ext_net_fdi_negative_inflow=self.dsa_ext_net_fdi_negative_inflow, dsa_ext_denominator_1_g_g=self.dsa_ext_denominator_1_g_g, dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars, dsa_ext_real_gdp_growth_in_percent=self.dsa_ext_real_gdp_growth_in_percent, dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent=self.dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent, dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt=self.dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt, dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt_baseline=self.dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt_baseline, dsa_ext_depreciation_of_nc_depreciation=self.dsa_ext_depreciation_of_nc_depreciation, dsa_ext_o_w_interest_baseline=self.dsa_ext_o_w_interest_baseline, dsa_ext_o_w_interest_additional_borrowing=self.dsa_ext_o_w_interest_additional_borrowing, dsa_ext_of_which_public_and_publicly_guaranteed_ppg=self.dsa_ext_of_which_public_and_publicly_guaranteed_ppg, dsa_ext_of_which_private=self.dsa_ext_of_which_private, c4_mkt_fin_gfn_increase=self.c4_mkt_fin_gfn_increase, macro_debt_total_ext_debt_interest_due_include_interest=self.macro_debt_total_ext_debt_interest_due_include_interest, pv_stress_bounds_t_g_0=self.pv_stress_bounds_t_g_0, pv_stress_bounds_t_m_condition=self.pv_stress_bounds_t_m_condition, pv_stress_average_interest_rate_new_debt=self.pv_stress_average_interest_rate_new_debt, pv_stress_average_maturity_of_new_debt=self.pv_stress_average_maturity_of_new_debt, pv_stress_average_grace_period_new_debt=self.pv_stress_average_grace_period_new_debt, pv_stress_t_g_0=self.pv_stress_t_g_0, pv_stress_t_m_condition=self.pv_stress_t_m_condition)
+        return internals.scan_dsa_ext_external_debt_nominal_1(dsa_ext_non_interest_current_account_deficit=self.dsa_ext_non_interest_current_account_deficit, dsa_ext_net_fdi_negative_inflow=self.dsa_ext_net_fdi_negative_inflow, dsa_ext_denominator_1_g_g=self.dsa_ext_denominator_1_g_g, dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars, dsa_ext_real_gdp_growth_in_percent=self.dsa_ext_real_gdp_growth_in_percent, dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent=self.dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent, dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt=self.dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt, dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt_baseline=self.dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt_baseline, dsa_ext_depreciation_of_nc_depreciation=self.dsa_ext_depreciation_of_nc_depreciation, dsa_ext_o_w_interest_baseline=self.dsa_ext_o_w_interest_baseline, dsa_ext_o_w_interest_additional_borrowing=self.dsa_ext_o_w_interest_additional_borrowing, dsa_ext_of_which_public_and_publicly_guaranteed_ppg=self.dsa_ext_of_which_public_and_publicly_guaranteed_ppg, dsa_ext_of_which_private=self.dsa_ext_of_which_private, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service, c4_mkt_fin_gfn_increase=self.c4_mkt_fin_gfn_increase, macro_debt_total_ext_debt_interest_due_include_interest=self.macro_debt_total_ext_debt_interest_due_include_interest, pv_stress_bounds_t_g_0=self.pv_stress_bounds_t_g_0, pv_stress_bounds_t_m_condition=self.pv_stress_bounds_t_m_condition, pv_stress_average_interest_rate_new_debt=self.pv_stress_average_interest_rate_new_debt, pv_stress_average_maturity_of_new_debt=self.pv_stress_average_maturity_of_new_debt, pv_stress_average_grace_period_new_debt=self.pv_stress_average_grace_period_new_debt, pv_stress_t_g_0=self.pv_stress_t_g_0, pv_stress_t_m_condition=self.pv_stress_t_m_condition)
 
     @cached_property
     def dsa_ext_external_debt_nominal_1(self) -> data.Series[float | str | None]:
@@ -545,7 +1055,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def _scan_dsa_ext_non_interest_current_account_deficit(self) -> internals.ScanDsaExtNonInterestCurrentAccountDeficitResult:
-        return internals.scan_dsa_ext_non_interest_current_account_deficit(lookup_ida_terms_old=data.LOOKUP_IDA_TERMS_OLD, input6_standard_size_threshold_option_historical_average_only=data.INPUT6_STANDARD_SIZE_THRESHOLD_OPTION_HISTORICAL_AVERAGE_ONLY, input6_standard_size_threshold_option_whichever_is_lower=data.INPUT6_STANDARD_SIZE_THRESHOLD_OPTION_WHICHEVER_IS_LOWER, dsa_ext_depreciation_of_nc_depreciation=self.dsa_ext_depreciation_of_nc_depreciation, dsa_ext_standard_test_gdp_growth_rule_primary=self.dsa_ext_standard_test_gdp_growth_rule_primary, dsa_ext_standard_test_export_growth_rule=self.dsa_ext_standard_test_export_growth_rule, dsa_ext_standard_test_current_transfers_rule=self.dsa_ext_standard_test_current_transfers_rule, dsa_ext_standard_test_current_transfers_rule_b6_mkt=self.dsa_ext_standard_test_current_transfers_rule_b6_mkt, dsa_ext_standard_test_current_transfers_rule_b6_nonmkt=self.dsa_ext_standard_test_current_transfers_rule_b6_nonmkt, dsa_ext_standard_test_fdi_rule=self.dsa_ext_standard_test_fdi_rule, dsa_ext_standard_test_fdi_rule_b6_mkt=self.dsa_ext_standard_test_fdi_rule_b6_mkt, dsa_ext_standard_test_fdi_rule_b6_nonmkt=self.dsa_ext_standard_test_fdi_rule_b6_nonmkt, dsa_ext_standard_test_gdp_growth_rule=self.dsa_ext_standard_test_gdp_growth_rule, dsa_ext_standard_test_exports_rule=self.dsa_ext_standard_test_exports_rule, input6_standard_size_threshold_mode=self.input6_standard_size_threshold_mode, macro_debt_total_ext_debt_interest_due_include_interest=self.macro_debt_total_ext_debt_interest_due_include_interest, macro_debt_us_dollars_k=self.macro_debt_us_dollars_k, macro_debt_us_dollars_v=self.macro_debt_us_dollars_v, macro_debt_exports_of_goods_services=self.macro_debt_exports_of_goods_services, macro_debt_imports_of_goods_services_use_positive_values=self.macro_debt_imports_of_goods_services_use_positive_values, macro_debt_us_dollars_by_year_k=self.macro_debt_us_dollars_by_year_k, macro_debt_us_dollars_by_year_v=self.macro_debt_us_dollars_by_year_v, macro_debt_main_assumptions_us_dollars_k=self.macro_debt_main_assumptions_us_dollars_k, macro_debt_main_assumptions_us_dollars_v=self.macro_debt_main_assumptions_us_dollars_v, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_gdp_constant_prices=self.macro_debt_gdp_constant_prices, macro_debt_change_in_gdp_deflator_factor=self.macro_debt_change_in_gdp_deflator_factor, macro_debt_change_in_gdp_deflator_factor_by_year=self.macro_debt_change_in_gdp_deflator_factor_by_year, macro_debt_us_gdp_deflator_percent_change=self.macro_debt_us_gdp_deflator_percent_change, leftover_us_gdp_deflator=self.leftover_us_gdp_deflator, leftover_export_growth_usd=self.leftover_export_growth_usd, leftover_fdi_gdp=self.leftover_fdi_gdp, b1_gdp_ext_ii_key_macroeconomic_assumptions=self.b1_gdp_ext_ii_key_macroeconomic_assumptions, b3_exports_ext_iii_averages_standard_deviations=self.b3_exports_ext_iii_averages_standard_deviations, b4_otherflows_ext_ii_key_macroeconomic_assumptions=self.b4_otherflows_ext_ii_key_macroeconomic_assumptions, b6_combo_mkt_ext_ii_key_macroeconomic_assumptions=self.b6_combo_mkt_ext_ii_key_macroeconomic_assumptions, b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_baseline=self.b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_baseline, b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_stress=self.b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_stress, b6_combo_mkt_ext_y1_includes_both_public_private_sector_ext_debt=self.b6_combo_mkt_ext_y1_includes_both_public_private_sector_ext_debt, b6_combo_mkt_ext_y1_includes_both_public_pv_total=self.b6_combo_mkt_ext_y1_includes_both_public_pv_total, b6_combo_nonmkt_ext_ii_key_macroeconomic_assumptions=self.b6_combo_nonmkt_ext_ii_key_macroeconomic_assumptions, b6_combo_nonmkt_ext_increase=self.b6_combo_nonmkt_ext_increase, b6_combo_nonmkt_ext_y7_long_run_constant_balance_that_stabilizes=self.b6_combo_nonmkt_ext_y7_long_run_constant_balance_that_stabilizes, b6_combo_nonmkt_ext_y7_long_run_constant_private_debt_pv=self.b6_combo_nonmkt_ext_y7_long_run_constant_private_debt_pv, b6_combo_nonmkt_ext_y7_long_run_constant_pv_total=self.b6_combo_nonmkt_ext_y7_long_run_constant_pv_total, c3_commodity_ext_ii_key_macroeconomic_assumptions=self.c3_commodity_ext_ii_key_macroeconomic_assumptions, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions=self.c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_2=self.c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_2, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_3=self.c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_3, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_4=self.c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_4, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_5=self.c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_5, leftover_official_transfers_gdp=self.leftover_official_transfers_gdp, leftover_real_gdp_growth_2=self.leftover_real_gdp_growth_2, leftover_us_gdp_deflator_2=self.leftover_us_gdp_deflator_2)
+        return internals.scan_dsa_ext_non_interest_current_account_deficit(lookup_ida_terms_old=data.LOOKUP_IDA_TERMS_OLD, input6_standard_size_threshold_option_historical_average_only=data.INPUT6_STANDARD_SIZE_THRESHOLD_OPTION_HISTORICAL_AVERAGE_ONLY, input6_standard_size_threshold_option_whichever_is_lower=data.INPUT6_STANDARD_SIZE_THRESHOLD_OPTION_WHICHEVER_IS_LOWER, dsa_ext_depreciation_of_nc_depreciation=self.dsa_ext_depreciation_of_nc_depreciation, dsa_ext_standard_test_gdp_growth_rule_primary=self.dsa_ext_standard_test_gdp_growth_rule_primary, dsa_ext_standard_test_export_growth_rule=self.dsa_ext_standard_test_export_growth_rule, dsa_ext_standard_test_current_transfers_rule=self.dsa_ext_standard_test_current_transfers_rule, dsa_ext_standard_test_current_transfers_rule_b6_mkt=self.dsa_ext_standard_test_current_transfers_rule_b6_mkt, dsa_ext_standard_test_current_transfers_rule_b6_nonmkt=self.dsa_ext_standard_test_current_transfers_rule_b6_nonmkt, dsa_ext_standard_test_fdi_rule=self.dsa_ext_standard_test_fdi_rule, dsa_ext_standard_test_fdi_rule_b6_mkt=self.dsa_ext_standard_test_fdi_rule_b6_mkt, dsa_ext_standard_test_fdi_rule_b6_nonmkt=self.dsa_ext_standard_test_fdi_rule_b6_nonmkt, dsa_ext_standard_test_gdp_growth_rule=self.dsa_ext_standard_test_gdp_growth_rule, dsa_ext_standard_test_exports_rule=self.dsa_ext_standard_test_exports_rule, input6_standard_size_threshold_mode=self.input6_standard_size_threshold_mode, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service, macro_debt_total_ext_debt_interest_due_include_interest=self.macro_debt_total_ext_debt_interest_due_include_interest, macro_debt_us_dollars_k=self.macro_debt_us_dollars_k, macro_debt_us_dollars_v=self.macro_debt_us_dollars_v, macro_debt_exports_of_goods_services=self.macro_debt_exports_of_goods_services, macro_debt_imports_of_goods_services_use_positive_values=self.macro_debt_imports_of_goods_services_use_positive_values, macro_debt_us_dollars_by_year_k=self.macro_debt_us_dollars_by_year_k, macro_debt_us_dollars_by_year_v=self.macro_debt_us_dollars_by_year_v, macro_debt_main_assumptions_us_dollars_k=self.macro_debt_main_assumptions_us_dollars_k, macro_debt_main_assumptions_us_dollars_v=self.macro_debt_main_assumptions_us_dollars_v, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_gdp_constant_prices=self.macro_debt_gdp_constant_prices, macro_debt_change_in_gdp_deflator_factor=self.macro_debt_change_in_gdp_deflator_factor, macro_debt_change_in_gdp_deflator_factor_by_year=self.macro_debt_change_in_gdp_deflator_factor_by_year, macro_debt_us_gdp_deflator_percent_change=self.macro_debt_us_gdp_deflator_percent_change, leftover_us_gdp_deflator=self.leftover_us_gdp_deflator, leftover_export_growth_usd=self.leftover_export_growth_usd, leftover_fdi_gdp=self.leftover_fdi_gdp, b1_gdp_ext_ii_key_macroeconomic_assumptions=self.b1_gdp_ext_ii_key_macroeconomic_assumptions, b3_exports_ext_iii_averages_standard_deviations=self.b3_exports_ext_iii_averages_standard_deviations, b4_otherflows_ext_ii_key_macroeconomic_assumptions=self.b4_otherflows_ext_ii_key_macroeconomic_assumptions, b6_combo_mkt_ext_ii_key_macroeconomic_assumptions=self.b6_combo_mkt_ext_ii_key_macroeconomic_assumptions, b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_baseline=self.b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_baseline, b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_stress=self.b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_stress, b6_combo_mkt_ext_y1_includes_both_public_private_sector_ext_debt=self.b6_combo_mkt_ext_y1_includes_both_public_private_sector_ext_debt, b6_combo_mkt_ext_y1_includes_both_public_pv_total=self.b6_combo_mkt_ext_y1_includes_both_public_pv_total, b6_combo_nonmkt_ext_ii_key_macroeconomic_assumptions=self.b6_combo_nonmkt_ext_ii_key_macroeconomic_assumptions, b6_combo_nonmkt_ext_increase=self.b6_combo_nonmkt_ext_increase, b6_combo_nonmkt_ext_y7_long_run_constant_balance_that_stabilizes=self.b6_combo_nonmkt_ext_y7_long_run_constant_balance_that_stabilizes, b6_combo_nonmkt_ext_y7_long_run_constant_private_debt_pv=self.b6_combo_nonmkt_ext_y7_long_run_constant_private_debt_pv, b6_combo_nonmkt_ext_y7_long_run_constant_pv_total=self.b6_combo_nonmkt_ext_y7_long_run_constant_pv_total, c3_commodity_ext_ii_key_macroeconomic_assumptions=self.c3_commodity_ext_ii_key_macroeconomic_assumptions, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions=self.c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_2=self.c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_2, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_3=self.c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_3, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_4=self.c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_4, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_5=self.c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_5, leftover_official_transfers_gdp=self.leftover_official_transfers_gdp, leftover_real_gdp_growth_2=self.leftover_real_gdp_growth_2, leftover_us_gdp_deflator_2=self.leftover_us_gdp_deflator_2)
 
     @cached_property
     def dsa_ext_non_interest_current_account_deficit(self) -> data.Series[float | str | None]:
@@ -617,35 +1127,35 @@ class Model(_BoundInputs):
 
     @cached_property
     def dsa_ext_denominator_1_g_g(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_denominator_1_g_g(dsa_ext_real_gdp_growth_in_percent=self.dsa_ext_real_gdp_growth_in_percent, dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent=self.dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent)
+        return internals.dsa_ext_denominator_1_g_g(dsa_ext_real_gdp_growth_in_percent=self.dsa_ext_real_gdp_growth_in_percent, dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent=self.dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio(dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars, dsa_ext_pv_ppg_stress=self.dsa_ext_pv_ppg_stress, ext_debt_total_pv_of_debt=self.ext_debt_total_pv_of_debt)
+        return internals.dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio(dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars, dsa_ext_pv_ppg_stress=self.dsa_ext_pv_ppg_stress, ext_debt_total_pv_of_debt=self.ext_debt_total_pv_of_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_ext_pv_of_ppg_external_debt_to_exports_ratio(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_pv_of_ppg_external_debt_to_exports_ratio(dsa_ext_exports=self.dsa_ext_exports, dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio=self.dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio)
+        return internals.dsa_ext_pv_of_ppg_external_debt_to_exports_ratio(dsa_ext_exports=self.dsa_ext_exports, dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio=self.dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_ext_ppg_debt_service_to_exports_ratio(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_ppg_debt_service_to_exports_ratio(dsa_ext_ppg_debt_service_stress=self.dsa_ext_ppg_debt_service_stress, dsa_ext_exports_usd_millions=self.dsa_ext_exports_usd_millions, dsa_ext_total_external_debt_service_to_exports_ratio=self.dsa_ext_total_external_debt_service_to_exports_ratio, macro_debt_private_debt_service_pct_exports=self.macro_debt_private_debt_service_pct_exports)
+        return internals.dsa_ext_ppg_debt_service_to_exports_ratio(dsa_ext_ppg_debt_service_stress=self.dsa_ext_ppg_debt_service_stress, dsa_ext_exports_usd_millions=self.dsa_ext_exports_usd_millions, dsa_ext_total_external_debt_service_to_exports_ratio=self.dsa_ext_total_external_debt_service_to_exports_ratio, macro_debt_private_debt_service_pct_exports=self.macro_debt_private_debt_service_pct_exports, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_ext_ppg_debt_service_to_revenue_ratio(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_ppg_debt_service_to_revenue_ratio(dsa_ext_ppg_debt_service_to_exports_ratio=self.dsa_ext_ppg_debt_service_to_exports_ratio, dsa_ext_ppg_debt_service_stress=self.dsa_ext_ppg_debt_service_stress, dsa_ext_revenue=self.dsa_ext_revenue, macro_debt_exports_of_goods_services=self.macro_debt_exports_of_goods_services, macro_debt_national_currency_us_dollars=self.macro_debt_national_currency_us_dollars)
+        return internals.dsa_ext_ppg_debt_service_to_revenue_ratio(dsa_ext_ppg_debt_service_to_exports_ratio=self.dsa_ext_ppg_debt_service_to_exports_ratio, dsa_ext_ppg_debt_service_stress=self.dsa_ext_ppg_debt_service_stress, dsa_ext_revenue=self.dsa_ext_revenue, macro_debt_exports_of_goods_services=self.macro_debt_exports_of_goods_services, macro_debt_national_currency_us_dollars=self.macro_debt_national_currency_us_dollars, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt(dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt_baseline=self.dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt_baseline)
+        return internals.dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt(dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt_baseline=self.dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt_baseline, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt_baseline(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt_baseline(macro_debt_share_of_local_currency_denominated_external=self.macro_debt_share_of_local_currency_denominated_external)
+        return internals.dsa_ext_share_of_local_currency_denominated_external_debt_to_total_external_debt_baseline(macro_debt_share_of_local_currency_denominated_external=self.macro_debt_share_of_local_currency_denominated_external, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def _scan_dsa_ext_depreciation_of_nc_depreciation(self) -> internals.ScanDsaExtDepreciationOfNcDepreciationResult:
-        return internals.scan_dsa_ext_depreciation_of_nc_depreciation(lookup_ida_terms_new=data.LOOKUP_IDA_TERMS_NEW, input6_standard_size_threshold_mode=self.input6_standard_size_threshold_mode, in6opt_standard_nominal_depreciation_close_real_overvaluation=self.in6opt_standard_nominal_depreciation_close_real_overvaluation, macro_debt_depreciation_of_nc_depreciation=self.macro_debt_depreciation_of_nc_depreciation)
+        return internals.scan_dsa_ext_depreciation_of_nc_depreciation(lookup_ida_terms_new=data.LOOKUP_IDA_TERMS_NEW, input6_standard_size_threshold_mode=self.input6_standard_size_threshold_mode, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service, in6opt_standard_nominal_depreciation_close_real_overvaluation=self.in6opt_standard_nominal_depreciation_close_real_overvaluation, macro_debt_depreciation_of_nc_depreciation=self.macro_debt_depreciation_of_nc_depreciation)
 
     @cached_property
     def dsa_ext_depreciation_of_nc_depreciation(self) -> data.Series[float | str | None]:
@@ -665,35 +1175,35 @@ class Model(_BoundInputs):
 
     @cached_property
     def dsa_ext_pv_ppg_baseline(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_pv_ppg_baseline(ext_debt_total_pv_of_debt=self.ext_debt_total_pv_of_debt)
+        return internals.dsa_ext_pv_ppg_baseline(ext_debt_total_pv_of_debt=self.ext_debt_total_pv_of_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_ext_pv_of_additional_borrowing(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_pv_of_additional_borrowing(pv_stress_bounds_pv_of_new_forex_debt_in_usd=self.pv_stress_bounds_pv_of_new_forex_debt_in_usd, pv_stress_pv_of_new_forex_debt=self.pv_stress_pv_of_new_forex_debt)
+        return internals.dsa_ext_pv_of_additional_borrowing(pv_stress_bounds_pv_of_new_forex_debt_in_usd=self.pv_stress_bounds_pv_of_new_forex_debt_in_usd, pv_stress_pv_of_new_forex_debt=self.pv_stress_pv_of_new_forex_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_ext_pv_ppg_stress(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_pv_ppg_stress(dsa_ext_pv_ppg_baseline=self.dsa_ext_pv_ppg_baseline, dsa_ext_pv_of_additional_borrowing=self.dsa_ext_pv_of_additional_borrowing)
+        return internals.dsa_ext_pv_ppg_stress(dsa_ext_pv_ppg_baseline=self.dsa_ext_pv_ppg_baseline, dsa_ext_pv_of_additional_borrowing=self.dsa_ext_pv_of_additional_borrowing, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_ext_o_w_interest_baseline(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_o_w_interest_baseline(macro_debt_total_ext_debt_interest_due_include_interest=self.macro_debt_total_ext_debt_interest_due_include_interest)
+        return internals.dsa_ext_o_w_interest_baseline(macro_debt_total_ext_debt_interest_due_include_interest=self.macro_debt_total_ext_debt_interest_due_include_interest, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_ext_debt_service_ppg_baseline(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_debt_service_ppg_baseline(ext_debt_total_public_debt_service=self.ext_debt_total_public_debt_service)
+        return internals.dsa_ext_debt_service_ppg_baseline(ext_debt_total_public_debt_service=self.ext_debt_total_public_debt_service, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_ext_additional_debt_service_stress(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_additional_debt_service_stress(dsa_ext_debt_services_associated_with_new_external_borrowing=self.dsa_ext_debt_services_associated_with_new_external_borrowing, pv_stress_bounds_total_debt_service_in_usd=self.pv_stress_bounds_total_debt_service_in_usd, pv_stress_total_debt_service=self.pv_stress_total_debt_service)
+        return internals.dsa_ext_additional_debt_service_stress(dsa_ext_debt_services_associated_with_new_external_borrowing=self.dsa_ext_debt_services_associated_with_new_external_borrowing, pv_stress_bounds_total_debt_service_in_usd=self.pv_stress_bounds_total_debt_service_in_usd, pv_stress_total_debt_service=self.pv_stress_total_debt_service, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_ext_ppg_debt_service_stress(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_ppg_debt_service_stress(dsa_ext_debt_service_ppg_baseline=self.dsa_ext_debt_service_ppg_baseline, dsa_ext_additional_debt_service_stress=self.dsa_ext_additional_debt_service_stress)
+        return internals.dsa_ext_ppg_debt_service_stress(dsa_ext_debt_service_ppg_baseline=self.dsa_ext_debt_service_ppg_baseline, dsa_ext_additional_debt_service_stress=self.dsa_ext_additional_debt_service_stress, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_ext_revenue(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_revenue(dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars, dsa_ext_revenue_gdp_stress_stress=self.dsa_ext_revenue_gdp_stress_stress, dsa_ext_government_revenues_excluding_grants_in_percent_of_gdp=self.dsa_ext_government_revenues_excluding_grants_in_percent_of_gdp)
+        return internals.dsa_ext_revenue(dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars, dsa_ext_revenue_gdp_stress_stress=self.dsa_ext_revenue_gdp_stress_stress, dsa_ext_government_revenues_excluding_grants_in_percent_of_gdp=self.dsa_ext_government_revenues_excluding_grants_in_percent_of_gdp, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_ext_standard_test_gdp_growth_rule_primary(self) -> str | int | float | bool:
@@ -729,11 +1239,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def dsa_ext_debt_services_associated_with_new_external_borrowing(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_debt_services_associated_with_new_external_borrowing(pv_base_add_cost_mkt_shock_addition_nominal_interest_payments_on_external_debt=self.pv_base_add_cost_mkt_shock_addition_nominal_interest_payments_on_external_debt)
+        return internals.dsa_ext_debt_services_associated_with_new_external_borrowing(pv_base_add_cost_mkt_shock_addition_nominal_interest_payments_on_external_debt=self.pv_base_add_cost_mkt_shock_addition_nominal_interest_payments_on_external_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_ext_o_w_interest_additional_borrowing(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_o_w_interest_additional_borrowing(pv_base_add_cost_mkt_shock_addition_nominal_interest_payments_on_external_debt=self.pv_base_add_cost_mkt_shock_addition_nominal_interest_payments_on_external_debt)
+        return internals.dsa_ext_o_w_interest_additional_borrowing(pv_base_add_cost_mkt_shock_addition_nominal_interest_payments_on_external_debt=self.pv_base_add_cost_mkt_shock_addition_nominal_interest_payments_on_external_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_ext_standard_test_gdp_growth_rule(self) -> data.Series[str | int | float | bool | None]:
@@ -745,27 +1255,27 @@ class Model(_BoundInputs):
 
     @cached_property
     def dsa_ext_revenue_gdp_stress_stress(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_revenue_gdp_stress_stress(dsa_ext_government_revenues_excluding_grants_in_percent_of_gdp=self.dsa_ext_government_revenues_excluding_grants_in_percent_of_gdp, leftover_us_gdp_deflator=self.leftover_us_gdp_deflator, c3_commodity_ext_ii_key_macroeconomic_assumptions=self.c3_commodity_ext_ii_key_macroeconomic_assumptions)
+        return internals.dsa_ext_revenue_gdp_stress_stress(dsa_ext_government_revenues_excluding_grants_in_percent_of_gdp=self.dsa_ext_government_revenues_excluding_grants_in_percent_of_gdp, leftover_us_gdp_deflator=self.leftover_us_gdp_deflator, c3_commodity_ext_ii_key_macroeconomic_assumptions=self.c3_commodity_ext_ii_key_macroeconomic_assumptions, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_ext_of_which_public_and_publicly_guaranteed_ppg(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_of_which_public_and_publicly_guaranteed_ppg(macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, macro_debt_total_public_ext_debt=self.macro_debt_total_public_ext_debt)
+        return internals.dsa_ext_of_which_public_and_publicly_guaranteed_ppg(macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, macro_debt_total_public_ext_debt=self.macro_debt_total_public_ext_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def dsa_ext_of_which_private(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_of_which_private(macro_debt_private_debt_pct_gdp=self.macro_debt_private_debt_pct_gdp)
+        return internals.dsa_ext_of_which_private(macro_debt_private_debt_pct_gdp=self.macro_debt_private_debt_pct_gdp, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def dsa_ext_total_external_debt_service_to_exports_ratio(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_total_external_debt_service_to_exports_ratio(macro_debt_private_sector_short_term=self.macro_debt_private_sector_short_term, macro_debt_total_ext_debt_interest_due_include_interest=self.macro_debt_total_ext_debt_interest_due_include_interest, macro_debt_total_external_amortization_due_include=self.macro_debt_total_external_amortization_due_include, macro_debt_exports_of_goods_services=self.macro_debt_exports_of_goods_services)
+        return internals.dsa_ext_total_external_debt_service_to_exports_ratio(macro_debt_private_sector_short_term=self.macro_debt_private_sector_short_term, macro_debt_total_ext_debt_interest_due_include_interest=self.macro_debt_total_ext_debt_interest_due_include_interest, macro_debt_total_external_amortization_due_include=self.macro_debt_total_external_amortization_due_include, macro_debt_exports_of_goods_services=self.macro_debt_exports_of_goods_services, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_ext_government_revenues_excluding_grants_in_percent_of_gdp(self) -> data.Series[float | str | None]:
-        return internals.dsa_ext_government_revenues_excluding_grants_in_percent_of_gdp(macro_debt_revenues_pct_gdp=self.macro_debt_revenues_pct_gdp)
+        return internals.dsa_ext_government_revenues_excluding_grants_in_percent_of_gdp(macro_debt_revenues_pct_gdp=self.macro_debt_revenues_pct_gdp, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def _scan_dsa_pub_public_sector_debt_1(self) -> internals.ScanDsaPubPublicSectorDebt1Result:
-        return internals.scan_dsa_pub_public_sector_debt_1(dsa_pub_of_which_external_debt=self.dsa_pub_of_which_external_debt, dsa_pub_primary_deficit=self.dsa_pub_primary_deficit, dsa_pub_contribution_from_real_exchange_rate_depreciation=self.dsa_pub_contribution_from_real_exchange_rate_depreciation, dsa_pub_denominator_1_g=self.dsa_pub_denominator_1_g, dsa_pub_other_identified_debt_creating_flows=self.dsa_pub_other_identified_debt_creating_flows, dsa_pub_residual=self.dsa_pub_residual, dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_real_gdp_growth_in_percent=self.dsa_pub_real_gdp_growth_in_percent, dsa_pub_average_real_interest_rate_on_external_debt_in_percent=self.dsa_pub_average_real_interest_rate_on_external_debt_in_percent, dsa_pub_inflation_rate_gdp_deflator_in_percent=self.dsa_pub_inflation_rate_gdp_deflator_in_percent, dsa_pub_total_public_external_debt=self.dsa_pub_total_public_external_debt, dsa_pub_domestic_debt=self.dsa_pub_domestic_debt, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, macro_debt_total_public_debt_outstanding_year_end=self.macro_debt_total_public_debt_outstanding_year_end, pv_resfin_pub_assumptions_average_interest_rate_on_domestic_debt=self.pv_resfin_pub_assumptions_average_interest_rate_on_domestic_debt)
+        return internals.scan_dsa_pub_public_sector_debt_1(dsa_pub_of_which_external_debt=self.dsa_pub_of_which_external_debt, dsa_pub_primary_deficit=self.dsa_pub_primary_deficit, dsa_pub_contribution_from_real_exchange_rate_depreciation=self.dsa_pub_contribution_from_real_exchange_rate_depreciation, dsa_pub_denominator_1_g=self.dsa_pub_denominator_1_g, dsa_pub_other_identified_debt_creating_flows=self.dsa_pub_other_identified_debt_creating_flows, dsa_pub_residual=self.dsa_pub_residual, dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_real_gdp_growth_in_percent=self.dsa_pub_real_gdp_growth_in_percent, dsa_pub_average_real_interest_rate_on_external_debt_in_percent=self.dsa_pub_average_real_interest_rate_on_external_debt_in_percent, dsa_pub_inflation_rate_gdp_deflator_in_percent=self.dsa_pub_inflation_rate_gdp_deflator_in_percent, dsa_pub_total_public_external_debt=self.dsa_pub_total_public_external_debt, dsa_pub_domestic_debt=self.dsa_pub_domestic_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, macro_debt_total_public_debt_outstanding_year_end=self.macro_debt_total_public_debt_outstanding_year_end, pv_resfin_pub_assumptions_average_interest_rate_on_domestic_debt=self.pv_resfin_pub_assumptions_average_interest_rate_on_domestic_debt)
 
     @cached_property
     def dsa_pub_public_sector_debt_1(self) -> data.Series[float | str | None]:
@@ -817,79 +1327,79 @@ class Model(_BoundInputs):
 
     @cached_property
     def dsa_pub_of_which_external_debt(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_of_which_external_debt(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_total_public_external_debt=self.dsa_pub_total_public_external_debt)
+        return internals.dsa_pub_of_which_external_debt(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_total_public_external_debt=self.dsa_pub_total_public_external_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_pv_of_total_public_debt(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_pv_of_total_public_debt(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_total_public_domestic_debt=self.dsa_pub_total_public_domestic_debt, dsa_pub_pv_of_public_sector_external_debt_end_of_period=self.dsa_pub_pv_of_public_sector_external_debt_end_of_period)
+        return internals.dsa_pub_pv_of_total_public_debt(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_total_public_domestic_debt=self.dsa_pub_total_public_domestic_debt, dsa_pub_pv_of_public_sector_external_debt_end_of_period=self.dsa_pub_pv_of_public_sector_external_debt_end_of_period, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_primary_deficit(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_primary_deficit(b6_combo_non_mkt_pub_gdp_shock_label=data.B6_COMBO_NON_MKT_PUB_GDP_SHOCK_LABEL, input6_standard_size_threshold_option_historical_average_only=data.INPUT6_STANDARD_SIZE_THRESHOLD_OPTION_HISTORICAL_AVERAGE_ONLY, input6_standard_size_threshold_option_whichever_is_lower=data.INPUT6_STANDARD_SIZE_THRESHOLD_OPTION_WHICHEVER_IS_LOWER, dsa_pub_revenue_and_grants=self.dsa_pub_revenue_and_grants, dsa_pub_primary_noninterest_expenditure=self.dsa_pub_primary_noninterest_expenditure, dsa_pub_standard_test_parameter=self.dsa_pub_standard_test_parameter, dsa_pub_b2_pb_non_mkt_pub_standard_test_parameter=self.dsa_pub_b2_pb_non_mkt_pub_standard_test_parameter, dsa_pub_standard_test_pb_rule=self.dsa_pub_standard_test_pb_rule, dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule=self.dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule, a1_hist_pub_historical_statistics=self.a1_hist_pub_historical_statistics, baseline_pub_primary_deficit=self.baseline_pub_primary_deficit, leftover_primary_deficit=self.leftover_primary_deficit, leftover_revenue_gdp=self.leftover_revenue_gdp, b2_pb_mkt_pub_i_baseline_medium_term_projections=self.b2_pb_mkt_pub_i_baseline_medium_term_projections, b2_pb_nonmkt_pub_i_baseline_medium_term_projections=self.b2_pb_nonmkt_pub_i_baseline_medium_term_projections)
+        return internals.dsa_pub_primary_deficit(b6_combo_non_mkt_pub_gdp_shock_label=data.B6_COMBO_NON_MKT_PUB_GDP_SHOCK_LABEL, input6_standard_size_threshold_option_historical_average_only=data.INPUT6_STANDARD_SIZE_THRESHOLD_OPTION_HISTORICAL_AVERAGE_ONLY, input6_standard_size_threshold_option_whichever_is_lower=data.INPUT6_STANDARD_SIZE_THRESHOLD_OPTION_WHICHEVER_IS_LOWER, dsa_pub_revenue_and_grants=self.dsa_pub_revenue_and_grants, dsa_pub_primary_noninterest_expenditure=self.dsa_pub_primary_noninterest_expenditure, dsa_pub_standard_test_parameter=self.dsa_pub_standard_test_parameter, dsa_pub_b2_pb_non_mkt_pub_standard_test_parameter=self.dsa_pub_b2_pb_non_mkt_pub_standard_test_parameter, dsa_pub_standard_test_pb_rule=self.dsa_pub_standard_test_pb_rule, dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule=self.dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule, a1_hist_pub_historical_statistics=self.a1_hist_pub_historical_statistics, baseline_pub_primary_deficit=self.baseline_pub_primary_deficit, leftover_primary_deficit=self.leftover_primary_deficit, leftover_revenue_gdp=self.leftover_revenue_gdp, b2_pb_mkt_pub_i_baseline_medium_term_projections=self.b2_pb_mkt_pub_i_baseline_medium_term_projections, b2_pb_nonmkt_pub_i_baseline_medium_term_projections=self.b2_pb_nonmkt_pub_i_baseline_medium_term_projections, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_revenue_and_grants(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_revenue_and_grants(dsa_pub_of_which_grants=self.dsa_pub_of_which_grants, dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_of_which_grants=self.baseline_pub_of_which_grants, macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants, leftover_real_interest_rate=self.leftover_real_interest_rate, c3_commodity_pub_historical_statistics_key_variables_past_10=self.c3_commodity_pub_historical_statistics_key_variables_past_10)
+        return internals.dsa_pub_revenue_and_grants(dsa_pub_of_which_grants=self.dsa_pub_of_which_grants, dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_of_which_grants=self.baseline_pub_of_which_grants, macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants, leftover_real_interest_rate=self.leftover_real_interest_rate, c3_commodity_pub_historical_statistics_key_variables_past_10=self.c3_commodity_pub_historical_statistics_key_variables_past_10, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_of_which_grants(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_of_which_grants(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, macro_debt_public_sector_grants=self.macro_debt_public_sector_grants)
+        return internals.dsa_pub_of_which_grants(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, macro_debt_public_sector_grants=self.macro_debt_public_sector_grants, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_primary_noninterest_expenditure(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_primary_noninterest_expenditure(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, baseline_pub_primary_noninterest_expenditure=self.baseline_pub_primary_noninterest_expenditure, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc)
+        return internals.dsa_pub_primary_noninterest_expenditure(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, baseline_pub_primary_noninterest_expenditure=self.baseline_pub_primary_noninterest_expenditure, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_contribution_from_real_exchange_rate_depreciation(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_contribution_from_real_exchange_rate_depreciation(dsa_pub_of_which_external_debt=self.dsa_pub_of_which_external_debt, dsa_pub_denominator_1_g=self.dsa_pub_denominator_1_g, dsa_pub_average_real_interest_rate_on_external_debt_in_percent=self.dsa_pub_average_real_interest_rate_on_external_debt_in_percent, dsa_pub_real_exchange_rate_depreciation_in_percent_indicates_depreciation=self.dsa_pub_real_exchange_rate_depreciation_in_percent_indicates_depreciation)
+        return internals.dsa_pub_contribution_from_real_exchange_rate_depreciation(dsa_pub_of_which_external_debt=self.dsa_pub_of_which_external_debt, dsa_pub_denominator_1_g=self.dsa_pub_denominator_1_g, dsa_pub_average_real_interest_rate_on_external_debt_in_percent=self.dsa_pub_average_real_interest_rate_on_external_debt_in_percent, dsa_pub_real_exchange_rate_depreciation_in_percent_indicates_depreciation=self.dsa_pub_real_exchange_rate_depreciation_in_percent_indicates_depreciation, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_denominator_1_g(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_denominator_1_g(dsa_pub_real_gdp_growth_in_percent=self.dsa_pub_real_gdp_growth_in_percent)
+        return internals.dsa_pub_denominator_1_g(dsa_pub_real_gdp_growth_in_percent=self.dsa_pub_real_gdp_growth_in_percent, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_other_identified_debt_creating_flows(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_other_identified_debt_creating_flows(dsa_pub_privatization_receipts_negative=self.dsa_pub_privatization_receipts_negative, dsa_pub_recognition_of_contingent_liabilities_e_g_bank_recapitalization=self.dsa_pub_recognition_of_contingent_liabilities_e_g_bank_recapitalization, dsa_pub_debt_relief_hipc_and_other=self.dsa_pub_debt_relief_hipc_and_other, dsa_pub_other_debt_creating_or_reducing_flow_please_specify=self.dsa_pub_other_debt_creating_or_reducing_flow_please_specify)
+        return internals.dsa_pub_other_identified_debt_creating_flows(dsa_pub_privatization_receipts_negative=self.dsa_pub_privatization_receipts_negative, dsa_pub_recognition_of_contingent_liabilities_e_g_bank_recapitalization=self.dsa_pub_recognition_of_contingent_liabilities_e_g_bank_recapitalization, dsa_pub_debt_relief_hipc_and_other=self.dsa_pub_debt_relief_hipc_and_other, dsa_pub_other_debt_creating_or_reducing_flow_please_specify=self.dsa_pub_other_debt_creating_or_reducing_flow_please_specify, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_privatization_receipts_negative(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_privatization_receipts_negative(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, baseline_pub_privatization_receipts_negative=self.baseline_pub_privatization_receipts_negative, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc)
+        return internals.dsa_pub_privatization_receipts_negative(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, baseline_pub_privatization_receipts_negative=self.baseline_pub_privatization_receipts_negative, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_recognition_of_contingent_liabilities_e_g_bank_recapitalization(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_recognition_of_contingent_liabilities_e_g_bank_recapitalization(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, baseline_pub_recognition_of_contingent_liab_e_g_bank=self.baseline_pub_recognition_of_contingent_liab_e_g_bank, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc)
+        return internals.dsa_pub_recognition_of_contingent_liabilities_e_g_bank_recapitalization(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, baseline_pub_recognition_of_contingent_liab_e_g_bank=self.baseline_pub_recognition_of_contingent_liab_e_g_bank, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_debt_relief_hipc_and_other(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_debt_relief_hipc_and_other(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, baseline_pub_debt_relief_hipc_other=self.baseline_pub_debt_relief_hipc_other, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc)
+        return internals.dsa_pub_debt_relief_hipc_and_other(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, baseline_pub_debt_relief_hipc_other=self.baseline_pub_debt_relief_hipc_other, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_other_debt_creating_or_reducing_flow_please_specify(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_other_debt_creating_or_reducing_flow_please_specify(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_old_new_scenario_total=self.dsa_pub_old_new_scenario_total, baseline_pub_other_debt_creating_reducing_flow_please_specify=self.baseline_pub_other_debt_creating_reducing_flow_please_specify, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, c2_natdisaster_historical_statistics_key_variables_past_10=self.c2_natdisaster_historical_statistics_key_variables_past_10)
+        return internals.dsa_pub_other_debt_creating_or_reducing_flow_please_specify(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_old_new_scenario_total=self.dsa_pub_old_new_scenario_total, baseline_pub_other_debt_creating_reducing_flow_please_specify=self.baseline_pub_other_debt_creating_reducing_flow_please_specify, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, c2_natdisaster_historical_statistics_key_variables_past_10=self.c2_natdisaster_historical_statistics_key_variables_past_10, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_residual(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_residual(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, baseline_pub_residual=self.baseline_pub_residual, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc)
+        return internals.dsa_pub_residual(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, baseline_pub_residual=self.baseline_pub_residual, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_nominal_gdp_local_currency(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_nominal_gdp_local_currency(dsa_pub_real_gdp_growth_in_percent=self.dsa_pub_real_gdp_growth_in_percent, dsa_pub_inflation_rate_gdp_deflator_in_percent=self.dsa_pub_inflation_rate_gdp_deflator_in_percent, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc)
+        return internals.dsa_pub_nominal_gdp_local_currency(dsa_pub_real_gdp_growth_in_percent=self.dsa_pub_real_gdp_growth_in_percent, dsa_pub_inflation_rate_gdp_deflator_in_percent=self.dsa_pub_inflation_rate_gdp_deflator_in_percent, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_real_gdp_growth_in_percent(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_real_gdp_growth_in_percent(a1_hist_pub_historical_statistics=self.a1_hist_pub_historical_statistics, input6_standard_size_threshold_option_historical_average_only=data.INPUT6_STANDARD_SIZE_THRESHOLD_OPTION_HISTORICAL_AVERAGE_ONLY, input6_standard_size_threshold_option_whichever_is_lower=data.INPUT6_STANDARD_SIZE_THRESHOLD_OPTION_WHICHEVER_IS_LOWER, dsa_ext_real_gdp_growth_in_percent=self.dsa_ext_real_gdp_growth_in_percent, dsa_pub_standard_test_parameter=self.dsa_pub_standard_test_parameter, dsa_pub_standard_test_gdp_growth_rule=self.dsa_pub_standard_test_gdp_growth_rule, dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule=self.dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule, baseline_pub_real_gdp_growth=self.baseline_pub_real_gdp_growth, leftover_real_gdp_growth=self.leftover_real_gdp_growth, b1_gdp_pub_key_macroeconomic_fiscal_assumptions=self.b1_gdp_pub_key_macroeconomic_fiscal_assumptions, b6_combo_mkt_pub_i_baseline_medium_term_projections=self.b6_combo_mkt_pub_i_baseline_medium_term_projections, b6_combo_nonmkt_pub_i_baseline_medium_term_projections=self.b6_combo_nonmkt_pub_i_baseline_medium_term_projections, leftover_nominal_interest_rate=self.leftover_nominal_interest_rate)
+        return internals.dsa_pub_real_gdp_growth_in_percent(a1_hist_pub_historical_statistics=self.a1_hist_pub_historical_statistics, input6_standard_size_threshold_option_historical_average_only=data.INPUT6_STANDARD_SIZE_THRESHOLD_OPTION_HISTORICAL_AVERAGE_ONLY, input6_standard_size_threshold_option_whichever_is_lower=data.INPUT6_STANDARD_SIZE_THRESHOLD_OPTION_WHICHEVER_IS_LOWER, dsa_ext_real_gdp_growth_in_percent=self.dsa_ext_real_gdp_growth_in_percent, dsa_pub_standard_test_parameter=self.dsa_pub_standard_test_parameter, dsa_pub_standard_test_gdp_growth_rule=self.dsa_pub_standard_test_gdp_growth_rule, dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule=self.dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule, baseline_pub_real_gdp_growth=self.baseline_pub_real_gdp_growth, leftover_real_gdp_growth=self.leftover_real_gdp_growth, b1_gdp_pub_key_macroeconomic_fiscal_assumptions=self.b1_gdp_pub_key_macroeconomic_fiscal_assumptions, b6_combo_mkt_pub_i_baseline_medium_term_projections=self.b6_combo_mkt_pub_i_baseline_medium_term_projections, b6_combo_nonmkt_pub_i_baseline_medium_term_projections=self.b6_combo_nonmkt_pub_i_baseline_medium_term_projections, leftover_nominal_interest_rate=self.leftover_nominal_interest_rate, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_average_nominal_interest_rate_on_external_debt_in_percent(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_average_nominal_interest_rate_on_external_debt_in_percent(dsa_pub_total_public_external_debt=self.dsa_pub_total_public_external_debt, dsa_pub_external_debt=self.dsa_pub_external_debt, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc)
+        return internals.dsa_pub_average_nominal_interest_rate_on_external_debt_in_percent(dsa_pub_total_public_external_debt=self.dsa_pub_total_public_external_debt, dsa_pub_external_debt=self.dsa_pub_external_debt, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_average_real_interest_rate_on_external_debt_in_percent(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_average_real_interest_rate_on_external_debt_in_percent(dsa_pub_average_nominal_interest_rate_on_external_debt_in_percent=self.dsa_pub_average_nominal_interest_rate_on_external_debt_in_percent, dsa_pub_us_inflation_rate_gdp_deflator_in_percent=self.dsa_pub_us_inflation_rate_gdp_deflator_in_percent)
+        return internals.dsa_pub_average_real_interest_rate_on_external_debt_in_percent(dsa_pub_average_nominal_interest_rate_on_external_debt_in_percent=self.dsa_pub_average_nominal_interest_rate_on_external_debt_in_percent, dsa_pub_us_inflation_rate_gdp_deflator_in_percent=self.dsa_pub_us_inflation_rate_gdp_deflator_in_percent, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def _scan_dsa_pub_exchange_rate_lc_per_us_dollar(self) -> internals.ScanDsaPubExchangeRateLcPerUsDollarResult:
-        return internals.scan_dsa_pub_exchange_rate_lc_per_us_dollar(dsa_pub_b5_depreciation_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent=self.dsa_pub_b5_depreciation_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent, baseline_pub_exchange_rate_lc_per_us_dollar=self.baseline_pub_exchange_rate_lc_per_us_dollar, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar)
+        return internals.scan_dsa_pub_exchange_rate_lc_per_us_dollar(dsa_pub_b5_depreciation_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent=self.dsa_pub_b5_depreciation_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service, baseline_pub_exchange_rate_lc_per_us_dollar=self.baseline_pub_exchange_rate_lc_per_us_dollar, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar)
 
     @cached_property
     def dsa_pub_exchange_rate_lc_per_us_dollar(self) -> data.Series[float | str | None]:
@@ -901,23 +1411,23 @@ class Model(_BoundInputs):
 
     @cached_property
     def dsa_pub_nominal_depreciation_of_local_currency_percentage_change_in_lc_per_dollar(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_nominal_depreciation_of_local_currency_percentage_change_in_lc_per_dollar(dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar)
+        return internals.dsa_pub_nominal_depreciation_of_local_currency_percentage_change_in_lc_per_dollar(dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_real_exchange_rate_depreciation_in_percent_indicates_depreciation(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_real_exchange_rate_depreciation_in_percent_indicates_depreciation(dsa_pub_nominal_depreciation_of_local_currency_percentage_change_in_lc_per_dollar=self.dsa_pub_nominal_depreciation_of_local_currency_percentage_change_in_lc_per_dollar, dsa_pub_inflation_rate_gdp_deflator_in_percent=self.dsa_pub_inflation_rate_gdp_deflator_in_percent, dsa_pub_us_inflation_rate_gdp_deflator_in_percent=self.dsa_pub_us_inflation_rate_gdp_deflator_in_percent)
+        return internals.dsa_pub_real_exchange_rate_depreciation_in_percent_indicates_depreciation(dsa_pub_nominal_depreciation_of_local_currency_percentage_change_in_lc_per_dollar=self.dsa_pub_nominal_depreciation_of_local_currency_percentage_change_in_lc_per_dollar, dsa_pub_inflation_rate_gdp_deflator_in_percent=self.dsa_pub_inflation_rate_gdp_deflator_in_percent, dsa_pub_us_inflation_rate_gdp_deflator_in_percent=self.dsa_pub_us_inflation_rate_gdp_deflator_in_percent, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_inflation_rate_gdp_deflator_in_percent(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_inflation_rate_gdp_deflator_in_percent(a1_hist_pub_historical_statistics=self.a1_hist_pub_historical_statistics, dsa_ext_exports=self.dsa_ext_exports, dsa_pub_real_gdp_growth_in_percent=self.dsa_pub_real_gdp_growth_in_percent, dsa_pub_b5_depreciation_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent=self.dsa_pub_b5_depreciation_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent, dsa_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent=self.dsa_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent, dsa_pub_b6_combo_non_mkt_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent=self.dsa_pub_b6_combo_non_mkt_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent, dsa_pub_c3_commodity_prices_pub_decline_in_gdp_deflator=self.dsa_pub_c3_commodity_prices_pub_decline_in_gdp_deflator, baseline_pub_real_gdp_growth=self.baseline_pub_real_gdp_growth, baseline_pub_inflation_rate_gdp_deflator_pct=self.baseline_pub_inflation_rate_gdp_deflator_pct, leftover_real_interest_rate=self.leftover_real_interest_rate, b6_combo_mkt_pub_i_baseline_medium_term_nominal_debt=self.b6_combo_mkt_pub_i_baseline_medium_term_nominal_debt, b6_combo_nonmkt_pub_in_billions_of_lc=self.b6_combo_nonmkt_pub_in_billions_of_lc, c3_commodity_pub_historical_statistics_key_variables_past_10=self.c3_commodity_pub_historical_statistics_key_variables_past_10)
+        return internals.dsa_pub_inflation_rate_gdp_deflator_in_percent(a1_hist_pub_historical_statistics=self.a1_hist_pub_historical_statistics, dsa_ext_exports=self.dsa_ext_exports, dsa_pub_real_gdp_growth_in_percent=self.dsa_pub_real_gdp_growth_in_percent, dsa_pub_b5_depreciation_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent=self.dsa_pub_b5_depreciation_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent, dsa_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent=self.dsa_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent, dsa_pub_b6_combo_non_mkt_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent=self.dsa_pub_b6_combo_non_mkt_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent, dsa_pub_c3_commodity_prices_pub_decline_in_gdp_deflator=self.dsa_pub_c3_commodity_prices_pub_decline_in_gdp_deflator, baseline_pub_real_gdp_growth=self.baseline_pub_real_gdp_growth, baseline_pub_inflation_rate_gdp_deflator_pct=self.baseline_pub_inflation_rate_gdp_deflator_pct, leftover_real_interest_rate=self.leftover_real_interest_rate, b6_combo_mkt_pub_i_baseline_medium_term_nominal_debt=self.b6_combo_mkt_pub_i_baseline_medium_term_nominal_debt, b6_combo_nonmkt_pub_in_billions_of_lc=self.b6_combo_nonmkt_pub_in_billions_of_lc, c3_commodity_pub_historical_statistics_key_variables_past_10=self.c3_commodity_pub_historical_statistics_key_variables_past_10, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_us_inflation_rate_gdp_deflator_in_percent(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_us_inflation_rate_gdp_deflator_in_percent(macro_debt_us_gdp_deflator_percent_change=self.macro_debt_us_gdp_deflator_percent_change, baseline_pub_us_inflation_rate_gdp_deflator_pct=self.baseline_pub_us_inflation_rate_gdp_deflator_pct)
+        return internals.dsa_pub_us_inflation_rate_gdp_deflator_in_percent(macro_debt_us_gdp_deflator_percent_change=self.macro_debt_us_gdp_deflator_percent_change, baseline_pub_us_inflation_rate_gdp_deflator_pct=self.baseline_pub_us_inflation_rate_gdp_deflator_pct, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def _scan_dsa_pub_of_which_short_term(self) -> internals.ScanDsaPubOfWhichShortTermResult:
-        return internals.scan_dsa_pub_of_which_short_term(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, dsa_pub_primary_deficit_local_currency=self.dsa_pub_primary_deficit_local_currency, dsa_pub_other_debt_creating_flows=self.dsa_pub_other_debt_creating_flows, dsa_pub_old_new_scenario_total=self.dsa_pub_old_new_scenario_total, baseline_pub_gross_financing_need_by_year=self.baseline_pub_gross_financing_need_by_year, macro_debt_short_term=self.macro_debt_short_term, macro_debt_public_domestic_st=self.macro_debt_public_domestic_st, macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_total_public_domestic_debt_interest_due=self.macro_debt_total_public_domestic_debt_interest_due, macro_debt_total_mlt_public_domestic_debt_amortization_debt=self.macro_debt_total_mlt_public_domestic_debt_amortization_debt, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, c2_natdisaster_historical_statistics_key_variables_past_10=self.c2_natdisaster_historical_statistics_key_variables_past_10, pv_resfin_pub_assumptions_share_of_marginal_debt=self.pv_resfin_pub_assumptions_share_of_marginal_debt, pv_resfin_pub_assumptions_avg_nominal_interest_rate_on_new_borrowing_in_usd=self.pv_resfin_pub_assumptions_avg_nominal_interest_rate_on_new_borrowing_in_usd, pv_resfin_pub_assumptions_avg_maturity_incl_grace_period=self.pv_resfin_pub_assumptions_avg_maturity_incl_grace_period, pv_resfin_pub_assumptions_avg_grace_period=self.pv_resfin_pub_assumptions_avg_grace_period, pv_resfin_pub_assumptions_domestic_mlt_debt=self.pv_resfin_pub_assumptions_domestic_mlt_debt, pv_resfin_pub_assumptions_avg_interest_rate=self.pv_resfin_pub_assumptions_avg_interest_rate, pv_resfin_pub_assumptions_exchange_rate_pa=self.pv_resfin_pub_assumptions_exchange_rate_pa, pv_resfin_pub_output_new_borrowing_under_the_external_dsa_in_usd=self.pv_resfin_pub_output_new_borrowing_under_the_external_dsa_in_usd, pv_resfin_pub_output_t_g_0=self.pv_resfin_pub_output_t_g_0, pv_resfin_pub_output_t_m_condition=self.pv_resfin_pub_output_t_m_condition, pv_resfin_add_assumptions_share_of_marginal_debt=self.pv_resfin_add_assumptions_share_of_marginal_debt, pv_resfin_add_assumptions_avg_maturity_incl_grace_period=self.pv_resfin_add_assumptions_avg_maturity_incl_grace_period, pv_resfin_add_assumptions_avg_grace_period=self.pv_resfin_add_assumptions_avg_grace_period, pv_resfin_add_opening_percent_of_face=data.PV_RESFIN_ADD_OPENING_PERCENT_OF_FACE, pv_resfin_add_output_t_g_0=self.pv_resfin_add_output_t_g_0, pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_two_year_average=self.pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_two_year_average, pv_resfin_add_output_t_m_condition=self.pv_resfin_add_output_t_m_condition, pv_resfin_add_int_cost_mkt_additional_domestic_interest_rate_two_year_average=self.pv_resfin_add_int_cost_mkt_additional_domestic_interest_rate_two_year_average)
+        return internals.scan_dsa_pub_of_which_short_term(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, dsa_pub_primary_deficit_local_currency=self.dsa_pub_primary_deficit_local_currency, dsa_pub_other_debt_creating_flows=self.dsa_pub_other_debt_creating_flows, dsa_pub_old_new_scenario_total=self.dsa_pub_old_new_scenario_total, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service, baseline_pub_gross_financing_need_by_year=self.baseline_pub_gross_financing_need_by_year, macro_debt_short_term=self.macro_debt_short_term, macro_debt_public_domestic_st=self.macro_debt_public_domestic_st, macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_total_public_domestic_debt_interest_due=self.macro_debt_total_public_domestic_debt_interest_due, macro_debt_total_mlt_public_domestic_debt_amortization_debt=self.macro_debt_total_mlt_public_domestic_debt_amortization_debt, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, c2_natdisaster_historical_statistics_key_variables_past_10=self.c2_natdisaster_historical_statistics_key_variables_past_10, pv_resfin_pub_assumptions_share_of_marginal_debt=self.pv_resfin_pub_assumptions_share_of_marginal_debt, pv_resfin_pub_assumptions_avg_nominal_interest_rate_on_new_borrowing_in_usd=self.pv_resfin_pub_assumptions_avg_nominal_interest_rate_on_new_borrowing_in_usd, pv_resfin_pub_assumptions_avg_maturity_incl_grace_period=self.pv_resfin_pub_assumptions_avg_maturity_incl_grace_period, pv_resfin_pub_assumptions_avg_grace_period=self.pv_resfin_pub_assumptions_avg_grace_period, pv_resfin_pub_assumptions_domestic_mlt_debt=self.pv_resfin_pub_assumptions_domestic_mlt_debt, pv_resfin_pub_assumptions_avg_interest_rate=self.pv_resfin_pub_assumptions_avg_interest_rate, pv_resfin_pub_assumptions_exchange_rate_pa=self.pv_resfin_pub_assumptions_exchange_rate_pa, pv_resfin_pub_output_new_borrowing_under_the_external_dsa_in_usd=self.pv_resfin_pub_output_new_borrowing_under_the_external_dsa_in_usd, pv_resfin_pub_output_t_g_0=self.pv_resfin_pub_output_t_g_0, pv_resfin_pub_output_t_m_condition=self.pv_resfin_pub_output_t_m_condition, pv_resfin_add_assumptions_share_of_marginal_debt=self.pv_resfin_add_assumptions_share_of_marginal_debt, pv_resfin_add_assumptions_avg_maturity_incl_grace_period=self.pv_resfin_add_assumptions_avg_maturity_incl_grace_period, pv_resfin_add_assumptions_avg_grace_period=self.pv_resfin_add_assumptions_avg_grace_period, pv_resfin_add_opening_percent_of_face=data.PV_RESFIN_ADD_OPENING_PERCENT_OF_FACE, pv_resfin_add_output_t_g_0=self.pv_resfin_add_output_t_g_0, pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_two_year_average=self.pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_two_year_average, pv_resfin_add_output_t_m_condition=self.pv_resfin_add_output_t_m_condition, pv_resfin_add_int_cost_mkt_additional_domestic_interest_rate_two_year_average=self.pv_resfin_add_int_cost_mkt_additional_domestic_interest_rate_two_year_average)
 
     @cached_property
     def dsa_pub_of_which_short_term(self) -> data.Series[float | str | None]:
@@ -1037,31 +1547,31 @@ class Model(_BoundInputs):
 
     @cached_property
     def dsa_pub_total_public_external_debt(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_total_public_external_debt(dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, macro_debt_total_public_ext_debt=self.macro_debt_total_public_ext_debt, pv_resfin_pub_output_stock_of_new_forex_debt_in_usd=self.pv_resfin_pub_output_stock_of_new_forex_debt_in_usd)
+        return internals.dsa_pub_total_public_external_debt(dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, macro_debt_total_public_ext_debt=self.macro_debt_total_public_ext_debt, pv_resfin_pub_output_stock_of_new_forex_debt_in_usd=self.pv_resfin_pub_output_stock_of_new_forex_debt_in_usd, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_primary_deficit_local_currency(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_primary_deficit_local_currency(dsa_pub_primary_deficit=self.dsa_pub_primary_deficit, dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency)
+        return internals.dsa_pub_primary_deficit_local_currency(dsa_pub_primary_deficit=self.dsa_pub_primary_deficit, dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_other_debt_creating_flows(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_other_debt_creating_flows(baseline_pub_other_identified_debt_creating_flows=self.baseline_pub_other_identified_debt_creating_flows, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc)
+        return internals.dsa_pub_other_debt_creating_flows(baseline_pub_other_identified_debt_creating_flows=self.baseline_pub_other_identified_debt_creating_flows, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_pv_of_public_sector_external_debt_end_of_period(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_pv_of_public_sector_external_debt_end_of_period(dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, baseline_pub_exchange_rate_lc_per_us_dollar=self.baseline_pub_exchange_rate_lc_per_us_dollar, macro_debt_pv_of_public_sector_ext_debt_end_of_period=self.macro_debt_pv_of_public_sector_ext_debt_end_of_period, pv_resfin_pub_output_new_forex_borrowing_gross_usd=self.pv_resfin_pub_output_new_forex_borrowing_gross_usd, pv_resfin_pub_output_pv_of_new_forex_debt_in_usd=self.pv_resfin_pub_output_pv_of_new_forex_debt_in_usd, pv_resfin_add_output_pv_of_new_forex_debt_in_usd=self.pv_resfin_add_output_pv_of_new_forex_debt_in_usd)
+        return internals.dsa_pub_pv_of_public_sector_external_debt_end_of_period(dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, baseline_pub_exchange_rate_lc_per_us_dollar=self.baseline_pub_exchange_rate_lc_per_us_dollar, macro_debt_pv_of_public_sector_ext_debt_end_of_period=self.macro_debt_pv_of_public_sector_ext_debt_end_of_period, pv_resfin_pub_output_new_forex_borrowing_gross_usd=self.pv_resfin_pub_output_new_forex_borrowing_gross_usd, pv_resfin_pub_output_pv_of_new_forex_debt_in_usd=self.pv_resfin_pub_output_pv_of_new_forex_debt_in_usd, pv_resfin_add_output_pv_of_new_forex_debt_in_usd=self.pv_resfin_add_output_pv_of_new_forex_debt_in_usd, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_debt_service_to_revenue_and_grants_ratio_in_percent(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_debt_service_to_revenue_and_grants_ratio_in_percent(dsa_pub_revenue_and_grants=self.dsa_pub_revenue_and_grants, dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_of_which_short_term=self.dsa_pub_of_which_short_term, dsa_pub_amortization_excluding_st_domestic_debt=self.dsa_pub_amortization_excluding_st_domestic_debt, dsa_pub_interest_expenditure=self.dsa_pub_interest_expenditure)
+        return internals.dsa_pub_debt_service_to_revenue_and_grants_ratio_in_percent(dsa_pub_revenue_and_grants=self.dsa_pub_revenue_and_grants, dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_of_which_short_term=self.dsa_pub_of_which_short_term, dsa_pub_amortization_excluding_st_domestic_debt=self.dsa_pub_amortization_excluding_st_domestic_debt, dsa_pub_interest_expenditure=self.dsa_pub_interest_expenditure, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_debt_service_to_gdp_ratio_in_percent(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_debt_service_to_gdp_ratio_in_percent(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_of_which_short_term=self.dsa_pub_of_which_short_term, dsa_pub_amortization_excluding_st_domestic_debt=self.dsa_pub_amortization_excluding_st_domestic_debt, dsa_pub_interest_expenditure=self.dsa_pub_interest_expenditure)
+        return internals.dsa_pub_debt_service_to_gdp_ratio_in_percent(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_of_which_short_term=self.dsa_pub_of_which_short_term, dsa_pub_amortization_excluding_st_domestic_debt=self.dsa_pub_amortization_excluding_st_domestic_debt, dsa_pub_interest_expenditure=self.dsa_pub_interest_expenditure, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio(dsa_pub_pv_of_total_public_debt=self.dsa_pub_pv_of_total_public_debt, dsa_pub_revenue_and_grants=self.dsa_pub_revenue_and_grants)
+        return internals.dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio(dsa_pub_pv_of_total_public_debt=self.dsa_pub_pv_of_total_public_debt, dsa_pub_revenue_and_grants=self.dsa_pub_revenue_and_grants, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_standard_test_parameter(self) -> data.Series[str | int | float | bool | None]:
@@ -1069,51 +1579,51 @@ class Model(_BoundInputs):
 
     @cached_property
     def dsa_pub_pv_of_debt_gdp(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_pv_of_debt_gdp(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, dsa_pub_pv_of_public_sector_external_debt_end_of_period=self.dsa_pub_pv_of_public_sector_external_debt_end_of_period, leftover_exchange_rate_pa=self.leftover_exchange_rate_pa)
+        return internals.dsa_pub_pv_of_debt_gdp(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, dsa_pub_pv_of_public_sector_external_debt_end_of_period=self.dsa_pub_pv_of_public_sector_external_debt_end_of_period, leftover_exchange_rate_pa=self.leftover_exchange_rate_pa, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_pv_of_debt_exports(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_pv_of_debt_exports(dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, dsa_pub_pv_of_public_sector_external_debt_end_of_period=self.dsa_pub_pv_of_public_sector_external_debt_end_of_period, dsa_pub_exports_us_baseline=self.dsa_pub_exports_us_baseline)
+        return internals.dsa_pub_pv_of_debt_exports(dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, dsa_pub_pv_of_public_sector_external_debt_end_of_period=self.dsa_pub_pv_of_public_sector_external_debt_end_of_period, dsa_pub_exports_us_baseline=self.dsa_pub_exports_us_baseline, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_debt_service_exports(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_debt_service_exports(dsa_pub_exports_us_baseline=self.dsa_pub_exports_us_baseline, macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, pv_resfin_pub_output_total_debt_service_in_usd=self.pv_resfin_pub_output_total_debt_service_in_usd, pv_resfin_add_output_interest=self.pv_resfin_add_output_interest)
+        return internals.dsa_pub_debt_service_exports(dsa_pub_exports_us_baseline=self.dsa_pub_exports_us_baseline, macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, pv_resfin_pub_output_total_debt_service_in_usd=self.pv_resfin_pub_output_total_debt_service_in_usd, pv_resfin_add_output_interest=self.pv_resfin_add_output_interest, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_debt_service_revenue_excl_grants(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_debt_service_revenue_excl_grants(dsa_pub_revenue=self.dsa_pub_revenue, macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_national_currency_us_dollars=self.macro_debt_national_currency_us_dollars, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, pv_resfin_pub_output_total_debt_service_in_usd=self.pv_resfin_pub_output_total_debt_service_in_usd, pv_resfin_add_output_interest=self.pv_resfin_add_output_interest)
+        return internals.dsa_pub_debt_service_revenue_excl_grants(dsa_pub_revenue=self.dsa_pub_revenue, macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_national_currency_us_dollars=self.macro_debt_national_currency_us_dollars, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, pv_resfin_pub_output_total_debt_service_in_usd=self.pv_resfin_pub_output_total_debt_service_in_usd, pv_resfin_add_output_interest=self.pv_resfin_add_output_interest, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_exports_us_baseline(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_exports_us_baseline(macro_debt_exports_of_goods_services=self.macro_debt_exports_of_goods_services)
+        return internals.dsa_pub_exports_us_baseline(macro_debt_exports_of_goods_services=self.macro_debt_exports_of_goods_services, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_revenue(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_revenue(dsa_pub_revenue_and_grants=self.dsa_pub_revenue_and_grants, dsa_pub_of_which_grants=self.dsa_pub_of_which_grants, dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, leftover_exchange_rate_pa=self.leftover_exchange_rate_pa)
+        return internals.dsa_pub_revenue(dsa_pub_revenue_and_grants=self.dsa_pub_revenue_and_grants, dsa_pub_of_which_grants=self.dsa_pub_of_which_grants, dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, leftover_exchange_rate_pa=self.leftover_exchange_rate_pa, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_gdp(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_gdp(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, dsa_pub_pv_of_public_sector_external_debt_end_of_period=self.dsa_pub_pv_of_public_sector_external_debt_end_of_period, leftover_exchange_rate_pa=self.leftover_exchange_rate_pa)
+        return internals.dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_gdp(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, dsa_pub_pv_of_public_sector_external_debt_end_of_period=self.dsa_pub_pv_of_public_sector_external_debt_end_of_period, leftover_exchange_rate_pa=self.leftover_exchange_rate_pa, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_exports(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_exports(dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, dsa_pub_pv_of_public_sector_external_debt_end_of_period=self.dsa_pub_pv_of_public_sector_external_debt_end_of_period, dsa_pub_b2_pb_non_mkt_pub_exports_us_baseline=self.dsa_pub_b2_pb_non_mkt_pub_exports_us_baseline)
+        return internals.dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_exports(dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, dsa_pub_pv_of_public_sector_external_debt_end_of_period=self.dsa_pub_pv_of_public_sector_external_debt_end_of_period, dsa_pub_b2_pb_non_mkt_pub_exports_us_baseline=self.dsa_pub_b2_pb_non_mkt_pub_exports_us_baseline, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_b2_pb_non_mkt_pub_debt_service_exports(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_b2_pb_non_mkt_pub_debt_service_exports(dsa_pub_b2_pb_non_mkt_pub_exports_us_baseline=self.dsa_pub_b2_pb_non_mkt_pub_exports_us_baseline, macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, pv_resfin_pub_output_total_debt_service_in_usd=self.pv_resfin_pub_output_total_debt_service_in_usd)
+        return internals.dsa_pub_b2_pb_non_mkt_pub_debt_service_exports(dsa_pub_b2_pb_non_mkt_pub_exports_us_baseline=self.dsa_pub_b2_pb_non_mkt_pub_exports_us_baseline, macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, pv_resfin_pub_output_total_debt_service_in_usd=self.pv_resfin_pub_output_total_debt_service_in_usd, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_b2_pb_non_mkt_pub_debt_service_revenue_excl_grants(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_b2_pb_non_mkt_pub_debt_service_revenue_excl_grants(dsa_pub_b2_pb_non_mkt_pub_revenue=self.dsa_pub_b2_pb_non_mkt_pub_revenue, macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, pv_resfin_pub_output_total_debt_service_in_usd=self.pv_resfin_pub_output_total_debt_service_in_usd)
+        return internals.dsa_pub_b2_pb_non_mkt_pub_debt_service_revenue_excl_grants(dsa_pub_b2_pb_non_mkt_pub_revenue=self.dsa_pub_b2_pb_non_mkt_pub_revenue, macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, pv_resfin_pub_output_total_debt_service_in_usd=self.pv_resfin_pub_output_total_debt_service_in_usd, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_b2_pb_non_mkt_pub_exports_us_baseline(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_b2_pb_non_mkt_pub_exports_us_baseline(macro_debt_exports_of_goods_services=self.macro_debt_exports_of_goods_services)
+        return internals.dsa_pub_b2_pb_non_mkt_pub_exports_us_baseline(macro_debt_exports_of_goods_services=self.macro_debt_exports_of_goods_services, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_b2_pb_non_mkt_pub_revenue(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_b2_pb_non_mkt_pub_revenue(dsa_pub_revenue_and_grants=self.dsa_pub_revenue_and_grants, dsa_pub_of_which_grants=self.dsa_pub_of_which_grants, dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, leftover_exchange_rate_pa=self.leftover_exchange_rate_pa)
+        return internals.dsa_pub_b2_pb_non_mkt_pub_revenue(dsa_pub_revenue_and_grants=self.dsa_pub_revenue_and_grants, dsa_pub_of_which_grants=self.dsa_pub_of_which_grants, dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, leftover_exchange_rate_pa=self.leftover_exchange_rate_pa, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_b2_pb_non_mkt_pub_standard_test_parameter(self) -> str | int | float | bool:
@@ -1121,7 +1631,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def dsa_pub_b5_depreciation_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_b5_depreciation_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent(dsa_pub_b5_depreciation_pub_standard_test_fx_depreciation=self.dsa_pub_b5_depreciation_pub_standard_test_fx_depreciation, baseline_pub_nominal_appreciation_increase_in_us_dollar=self.baseline_pub_nominal_appreciation_increase_in_us_dollar)
+        return internals.dsa_pub_b5_depreciation_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent(dsa_pub_b5_depreciation_pub_standard_test_fx_depreciation=self.dsa_pub_b5_depreciation_pub_standard_test_fx_depreciation, baseline_pub_nominal_appreciation_increase_in_us_dollar=self.baseline_pub_nominal_appreciation_increase_in_us_dollar, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_b5_depreciation_pub_standard_test_fx_depreciation(self) -> float | str:
@@ -1129,7 +1639,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def dsa_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent(dsa_pub_standard_test_fx_depreciation=self.dsa_pub_standard_test_fx_depreciation)
+        return internals.dsa_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent(dsa_pub_standard_test_fx_depreciation=self.dsa_pub_standard_test_fx_depreciation, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_standard_test_gdp_growth_rule(self) -> str | int | float | bool:
@@ -1145,7 +1655,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def dsa_pub_b6_combo_non_mkt_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_b6_combo_non_mkt_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent(dsa_pub_b6_combo_non_mkt_pub_standard_test_fx_depreciation=self.dsa_pub_b6_combo_non_mkt_pub_standard_test_fx_depreciation)
+        return internals.dsa_pub_b6_combo_non_mkt_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_in_percent(dsa_pub_b6_combo_non_mkt_pub_standard_test_fx_depreciation=self.dsa_pub_b6_combo_non_mkt_pub_standard_test_fx_depreciation, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule(self) -> str | int | float | bool:
@@ -1169,31 +1679,31 @@ class Model(_BoundInputs):
 
     @cached_property
     def dsa_pub_c2_natural_disaster_pv_of_debt_gdp(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_c2_natural_disaster_pv_of_debt_gdp(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, dsa_pub_pv_of_public_sector_external_debt_end_of_period=self.dsa_pub_pv_of_public_sector_external_debt_end_of_period, leftover_exchange_rate_pa=self.leftover_exchange_rate_pa)
+        return internals.dsa_pub_c2_natural_disaster_pv_of_debt_gdp(dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, dsa_pub_pv_of_public_sector_external_debt_end_of_period=self.dsa_pub_pv_of_public_sector_external_debt_end_of_period, leftover_exchange_rate_pa=self.leftover_exchange_rate_pa, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_c2_natural_disaster_pv_of_debt_exports(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_c2_natural_disaster_pv_of_debt_exports(dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, dsa_pub_pv_of_public_sector_external_debt_end_of_period=self.dsa_pub_pv_of_public_sector_external_debt_end_of_period, dsa_pub_c2_natural_disaster_exports_us_baseline=self.dsa_pub_c2_natural_disaster_exports_us_baseline)
+        return internals.dsa_pub_c2_natural_disaster_pv_of_debt_exports(dsa_pub_exchange_rate_lc_per_us_dollar=self.dsa_pub_exchange_rate_lc_per_us_dollar, dsa_pub_pv_of_public_sector_external_debt_end_of_period=self.dsa_pub_pv_of_public_sector_external_debt_end_of_period, dsa_pub_c2_natural_disaster_exports_us_baseline=self.dsa_pub_c2_natural_disaster_exports_us_baseline, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_c2_natural_disaster_debt_service_exports(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_c2_natural_disaster_debt_service_exports(dsa_pub_c2_natural_disaster_exports_us_baseline=self.dsa_pub_c2_natural_disaster_exports_us_baseline, macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, pv_resfin_pub_output_total_debt_service_in_usd=self.pv_resfin_pub_output_total_debt_service_in_usd)
+        return internals.dsa_pub_c2_natural_disaster_debt_service_exports(dsa_pub_c2_natural_disaster_exports_us_baseline=self.dsa_pub_c2_natural_disaster_exports_us_baseline, macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, pv_resfin_pub_output_total_debt_service_in_usd=self.pv_resfin_pub_output_total_debt_service_in_usd, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_c2_natural_disaster_debt_service_revenue_excl_grants(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_c2_natural_disaster_debt_service_revenue_excl_grants(dsa_pub_c2_natural_disaster_revenue=self.dsa_pub_c2_natural_disaster_revenue, macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, pv_resfin_pub_output_total_debt_service_in_usd=self.pv_resfin_pub_output_total_debt_service_in_usd)
+        return internals.dsa_pub_c2_natural_disaster_debt_service_revenue_excl_grants(dsa_pub_c2_natural_disaster_revenue=self.dsa_pub_c2_natural_disaster_revenue, macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, pv_resfin_pub_output_total_debt_service_in_usd=self.pv_resfin_pub_output_total_debt_service_in_usd, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_c2_natural_disaster_exports_us_baseline(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_c2_natural_disaster_exports_us_baseline(macro_debt_exports_of_goods_services=self.macro_debt_exports_of_goods_services, dsa_pub_c2_natural_disaster_exports_growth_rate=self.dsa_pub_c2_natural_disaster_exports_growth_rate)
+        return internals.dsa_pub_c2_natural_disaster_exports_us_baseline(macro_debt_exports_of_goods_services=self.macro_debt_exports_of_goods_services, dsa_pub_c2_natural_disaster_exports_growth_rate=self.dsa_pub_c2_natural_disaster_exports_growth_rate, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_c2_natural_disaster_exports_growth_rate(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_c2_natural_disaster_exports_growth_rate(dsa_ext_growth_of_exports_of_g_s_us_dollar_terms_in_percent=self.dsa_ext_growth_of_exports_of_g_s_us_dollar_terms_in_percent, leftover_real_interest_rate=self.leftover_real_interest_rate)
+        return internals.dsa_pub_c2_natural_disaster_exports_growth_rate(dsa_ext_growth_of_exports_of_g_s_us_dollar_terms_in_percent=self.dsa_ext_growth_of_exports_of_g_s_us_dollar_terms_in_percent, leftover_real_interest_rate=self.leftover_real_interest_rate, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_c2_natural_disaster_revenue(self) -> data.Series[float | str | None]:
-        return internals.dsa_pub_c2_natural_disaster_revenue(dsa_pub_revenue_and_grants=self.dsa_pub_revenue_and_grants, dsa_pub_of_which_grants=self.dsa_pub_of_which_grants, dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, leftover_exchange_rate_pa=self.leftover_exchange_rate_pa)
+        return internals.dsa_pub_c2_natural_disaster_revenue(dsa_pub_revenue_and_grants=self.dsa_pub_revenue_and_grants, dsa_pub_of_which_grants=self.dsa_pub_of_which_grants, dsa_pub_nominal_gdp_local_currency=self.dsa_pub_nominal_gdp_local_currency, leftover_exchange_rate_pa=self.leftover_exchange_rate_pa, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def dsa_pub_c3_commodity_prices_pub_decline_in_gdp_deflator(self) -> float | str:
@@ -1217,19 +1727,19 @@ class Model(_BoundInputs):
 
     @cached_property
     def input4_terms_ida_and_lc(self) -> data.Series[float | str | None]:
-        return internals.input4_terms_ida_and_lc(input5_internal_grace_period=self.input5_internal_grace_period, blend_ida_new_fixed_interest_rate=data.BLEND_IDA_NEW_FIXED_INTEREST_RATE, blend_ida_new_fixed_name=data.BLEND_IDA_NEW_FIXED_NAME, blend_ida_new_floating_name=data.BLEND_IDA_NEW_FLOATING_NAME, input4_instrument_names=self.input4_instrument_names, input4_blend_variant=self.input4_blend_variant, input4_blend_scale_key=self.input4_blend_scale_key, input4_ida_scale_name=data.INPUT4_IDA_SCALE_NAME, input4_ida_scale_service_fee=data.INPUT4_IDA_SCALE_SERVICE_FEE, input4_ida_scale_grace=data.INPUT4_IDA_SCALE_GRACE, input4_ida_scale_maturity=data.INPUT4_IDA_SCALE_MATURITY, input4_ida_scale_blend_fixed=data.INPUT4_IDA_SCALE_BLEND_FIXED, input4_ida_scale_blend_fixed_interest=self.input4_ida_scale_blend_fixed_interest, input5_internal_interest_rate_on_domestic_debt=self.input5_internal_interest_rate_on_domestic_debt, input5_internal_maturity=self.input5_internal_maturity, blend_ida_new_floating_currency=self.blend_ida_new_floating_currency, blend_ida_new_floating_interest_rate=self.blend_ida_new_floating_interest_rate)
+        return internals.input4_terms_ida_and_lc(input5_internal_grace_period=self.input5_internal_grace_period, blend_ida_new_fixed_interest_rate=data.BLEND_IDA_NEW_FIXED_INTEREST_RATE, blend_ida_new_fixed_name=data.BLEND_IDA_NEW_FIXED_NAME, blend_ida_new_floating_name=data.BLEND_IDA_NEW_FLOATING_NAME, input4_instrument_names=self.input4_instrument_names, input4_blend_variant=self.input4_blend_variant, input4_blend_scale_key=self.input4_blend_scale_key, input4_ida_scale_name=data.INPUT4_IDA_SCALE_NAME, input4_ida_scale_service_fee=data.INPUT4_IDA_SCALE_SERVICE_FEE, input4_ida_scale_grace=data.INPUT4_IDA_SCALE_GRACE, input4_ida_scale_maturity=data.INPUT4_IDA_SCALE_MATURITY, input4_ida_scale_blend_fixed=data.INPUT4_IDA_SCALE_BLEND_FIXED, input4_ida_scale_blend_fixed_interest=self.input4_ida_scale_blend_fixed_interest, input5_internal_interest_rate_on_domestic_debt=self.input5_internal_interest_rate_on_domestic_debt, input5_internal_maturity=self.input5_internal_maturity, blend_ida_new_floating_currency=self.blend_ida_new_floating_currency, blend_ida_new_floating_interest_rate=self.blend_ida_new_floating_interest_rate, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input4_terms_bonds_fx_non_residents(self) -> data.Series[float | str | None]:
-        return internals.input4_terms_bonds_fx_non_residents(input5_internal_grace_period=self.input5_internal_grace_period, input5_internal_interest_rate_on_domestic_debt=self.input5_internal_interest_rate_on_domestic_debt, input5_internal_maturity=self.input5_internal_maturity)
+        return internals.input4_terms_bonds_fx_non_residents(input5_internal_grace_period=self.input5_internal_grace_period, input5_internal_interest_rate_on_domestic_debt=self.input5_internal_interest_rate_on_domestic_debt, input5_internal_maturity=self.input5_internal_maturity, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input4_terms_bonds_fx_residents(self) -> data.Series[float | str | None]:
-        return internals.input4_terms_bonds_fx_residents(input5_grace_period=self.input5_grace_period, input5_interest_rate_on_domestic_debt=self.input5_interest_rate_on_domestic_debt, input5_interest_rate_on_domestic_debt_fx_long=self.input5_interest_rate_on_domestic_debt_fx_long, input5_internal_interest_rate_on_domestic_debt=self.input5_internal_interest_rate_on_domestic_debt, input5_maturity=self.input5_maturity)
+        return internals.input4_terms_bonds_fx_residents(input5_grace_period=self.input5_grace_period, input5_interest_rate_on_domestic_debt=self.input5_interest_rate_on_domestic_debt, input5_interest_rate_on_domestic_debt_fx_long=self.input5_interest_rate_on_domestic_debt_fx_long, input5_internal_interest_rate_on_domestic_debt=self.input5_internal_interest_rate_on_domestic_debt, input5_maturity=self.input5_maturity, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input4_disbursements_internal(self) -> data.Series[float | str | None]:
-        return internals.input4_disbursements_internal(input3_new_disbursements=self.input3_new_disbursements)
+        return internals.input4_disbursements_internal(input3_new_disbursements=self.input3_new_disbursements, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input4_ida_scale_principal_internal(self) -> data.Series[float | str | None]:
@@ -1241,7 +1751,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def input4_disbursement_totals(self) -> data.Series[float | str | None]:
-        return internals.input4_disbursement_totals(input4_disbursements=self.input4_disbursements, input4_disbursements_internal=self.input4_disbursements_internal)
+        return internals.input4_disbursement_totals(input4_disbursements=self.input4_disbursements, input4_disbursements_internal=self.input4_disbursements_internal, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input4_grace_period_column_header(self) -> str | int | float | bool:
@@ -1261,7 +1771,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def input5_projection_years(self) -> data.Series[int | str | None]:
-        return internals.input5_projection_years(macro_debt_data=self.macro_debt_data)
+        return internals.input5_projection_years(macro_debt_data=self.macro_debt_data, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def input5_instrument_terms_assumptions_on_domestic_financial_instruments_header(self) -> str | int | float | bool:
@@ -1285,7 +1795,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def input5_internal_interest_rate_on_domestic_debt(self) -> data.Series[float | str | None]:
-        return internals.input5_internal_interest_rate_on_domestic_debt(input5_interest_rate_on_domestic_debt=self.input5_interest_rate_on_domestic_debt, input5_interest_rate_on_domestic_debt_fx_long=self.input5_interest_rate_on_domestic_debt_fx_long)
+        return internals.input5_internal_interest_rate_on_domestic_debt(input5_interest_rate_on_domestic_debt=self.input5_interest_rate_on_domestic_debt, input5_interest_rate_on_domestic_debt_fx_long=self.input5_interest_rate_on_domestic_debt_fx_long, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_internal_grace_period(self) -> data.Series[float | str | None]:
@@ -1297,27 +1807,27 @@ class Model(_BoundInputs):
 
     @cached_property
     def input5_public_gfns_1_primary_deficit(self) -> data.Series[float | str | None]:
-        return internals.input5_public_gfns_1_primary_deficit(macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants, macro_debt_public_sector_primary_expenditure=self.macro_debt_public_sector_primary_expenditure)
+        return internals.input5_public_gfns_1_primary_deficit(macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants, macro_debt_public_sector_primary_expenditure=self.macro_debt_public_sector_primary_expenditure, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_public_gfns_2_debt_services_from_existing_debt(self) -> data.Series[float | str | None]:
-        return internals.input5_public_gfns_2_debt_services_from_existing_debt(input5_public_gfns_2_debt_services_from_existing_debt_domestic_including_st_debt_from_previous_year=self.input5_public_gfns_2_debt_services_from_existing_debt_domestic_including_st_debt_from_previous_year, input5_public_gfns_2_debt_services_from_existing_debt_external_debt_mlt=self.input5_public_gfns_2_debt_services_from_existing_debt_external_debt_mlt)
+        return internals.input5_public_gfns_2_debt_services_from_existing_debt(input5_public_gfns_2_debt_services_from_existing_debt_domestic_including_st_debt_from_previous_year=self.input5_public_gfns_2_debt_services_from_existing_debt_domestic_including_st_debt_from_previous_year, input5_public_gfns_2_debt_services_from_existing_debt_external_debt_mlt=self.input5_public_gfns_2_debt_services_from_existing_debt_external_debt_mlt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_public_gfns_2_debt_services_from_existing_debt_domestic_including_st_debt_from_previous_year(self) -> data.Series[float | str | None]:
-        return internals.input5_public_gfns_2_debt_services_from_existing_debt_domestic_including_st_debt_from_previous_year(input5_old_debt_debt_service_from_old_debt_residency_based=self.input5_old_debt_debt_service_from_old_debt_residency_based)
+        return internals.input5_public_gfns_2_debt_services_from_existing_debt_domestic_including_st_debt_from_previous_year(input5_old_debt_debt_service_from_old_debt_residency_based=self.input5_old_debt_debt_service_from_old_debt_residency_based, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_public_gfns_2_debt_services_from_existing_debt_external_debt_mlt(self) -> data.Series[float | str | None]:
-        return internals.input5_public_gfns_2_debt_services_from_existing_debt_external_debt_mlt(input5_macro_nominal_exchange_rate_average_lcu_usd=self.input5_macro_nominal_exchange_rate_average_lcu_usd, ext_debt_total_including_locally_issued=self.ext_debt_total_including_locally_issued)
+        return internals.input5_public_gfns_2_debt_services_from_existing_debt_external_debt_mlt(input5_macro_nominal_exchange_rate_average_lcu_usd=self.input5_macro_nominal_exchange_rate_average_lcu_usd, ext_debt_total_including_locally_issued=self.ext_debt_total_including_locally_issued, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_public_gfns_2_debt_services_from_existing_debt_ow_imf(self) -> data.Series[float | str | None]:
-        return internals.input5_public_gfns_2_debt_services_from_existing_debt_ow_imf(ext_debt_old_mlt_debt_service=self.ext_debt_old_mlt_debt_service, input5_macro_nominal_exchange_rate_average_lcu_usd=self.input5_macro_nominal_exchange_rate_average_lcu_usd)
+        return internals.input5_public_gfns_2_debt_services_from_existing_debt_ow_imf(ext_debt_old_mlt_debt_service=self.ext_debt_old_mlt_debt_service, input5_macro_nominal_exchange_rate_average_lcu_usd=self.input5_macro_nominal_exchange_rate_average_lcu_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def _scan_input5_public_gfns_3_debt_services_from_new_debt(self) -> internals.ScanInput5PublicGfns3DebtServicesFromNewDebtResult:
-        return internals.scan_input5_public_gfns_3_debt_services_from_new_debt(ext_debt_st_principal_first_year=data.EXT_DEBT_ST_PRINCIPAL_FIRST_YEAR, ext_debt_st_interest_first_year=data.EXT_DEBT_ST_INTEREST_FIRST_YEAR, input5_public_gfns_1_primary_deficit=self.input5_public_gfns_1_primary_deficit, input5_public_gfns_2_debt_services_from_existing_debt=self.input5_public_gfns_2_debt_services_from_existing_debt, input5_public_gfns_5_other_debt_creating_or_reducing_flows=self.input5_public_gfns_5_other_debt_creating_or_reducing_flows, input5_public_gfns_7_external_financing_mlt_excluding_locally_issued_debt=self.input5_public_gfns_7_external_financing_mlt_excluding_locally_issued_debt, input5_public_gfns_8_external_financing_st_excluding_locally_issued_debt=self.input5_public_gfns_8_external_financing_st_excluding_locally_issued_debt, input5_public_gfns_9_changes_in_liquid_assets=self.input5_public_gfns_9_changes_in_liquid_assets, input5_public_gfns_10_drawdown_of_reserves_to_repay_the_imf=self.input5_public_gfns_10_drawdown_of_reserves_to_repay_the_imf, input5_public_gfns_other_adjustment=self.input5_public_gfns_other_adjustment, input5_domestic_financing_source=self.input5_domestic_financing_source, input5_gfn_share=self.input5_gfn_share, input5_new_issuance_financing_strategy_share=self.input5_new_issuance_financing_strategy_share, input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, input5_macro_nominal_exchange_rate_average_lcu_usd=self.input5_macro_nominal_exchange_rate_average_lcu_usd, input5_vintage_projection_years_interest=self.input5_vintage_projection_years_interest, input5_vintage_projection_years_principal=self.input5_vintage_projection_years_principal, input5_vintage_issuance_year=self.input5_vintage_issuance_year, input5_vintage_terms=self.input5_vintage_terms, input3_domestic_new_gross_disbursement=self.input3_domestic_new_gross_disbursement, ext_debt_definition_external_domestic=self.ext_debt_definition_external_domestic, ext_debt_new_interest_external=self.ext_debt_new_interest_external, ext_debt_new_amortization_external=self.ext_debt_new_amortization_external, ext_debt_st_external_nominal=self.ext_debt_st_external_nominal, ext_debt_st_external_interest=self.ext_debt_st_external_interest, ext_debt_exchange_rate_period_average=self.ext_debt_exchange_rate_period_average, lookup_afg=self.lookup_afg, pv_base_block_grace_fx=self.pv_base_block_grace_fx, pv_base_block_maturity_fx=self.pv_base_block_maturity_fx, pv_base_block_interest_fx=self.pv_base_block_interest_fx, pv_base_discount_t_g_0_fx=self.pv_base_discount_t_g_0_fx, pv_base_discount_t_m_condition_fx=self.pv_base_discount_t_m_condition_fx, pv_lc_nr1_terms_projection_year=self.pv_lc_nr1_terms_projection_year, pv_lc_nr1_terms_fx_pa=self.pv_lc_nr1_terms_fx_pa, pv_lc_nr1_terms_fx_eop=self.pv_lc_nr1_terms_fx_eop, pv_lc_terms_interest_rate_local_currency=self.pv_lc_terms_interest_rate_local_currency, pv_lc_output_issuance_year=self.pv_lc_output_issuance_year, pv_lc_output_projection_year=self.pv_lc_output_projection_year, pv_lc_labels_stock_of_debt_in_lc=data.PV_LC_LABELS_STOCK_OF_DEBT_IN_LC, pv_lc_output_grace=self.pv_lc_output_grace, pv_lc_output_maturity=self.pv_lc_output_maturity, pv_lc_output_t_g_0=self.pv_lc_output_t_g_0, pv_lc_output_t_m_condition=self.pv_lc_output_t_m_condition, pv_lc_terms_projection_year=self.pv_lc_terms_projection_year, pv_lc_terms_fx_pa=self.pv_lc_terms_fx_pa, pv_lc_terms_fx_eop=self.pv_lc_terms_fx_eop)
+        return internals.scan_input5_public_gfns_3_debt_services_from_new_debt(ext_debt_st_principal_first_year=data.EXT_DEBT_ST_PRINCIPAL_FIRST_YEAR, ext_debt_st_interest_first_year=data.EXT_DEBT_ST_INTEREST_FIRST_YEAR, input5_public_gfns_1_primary_deficit=self.input5_public_gfns_1_primary_deficit, input5_public_gfns_2_debt_services_from_existing_debt=self.input5_public_gfns_2_debt_services_from_existing_debt, input5_public_gfns_5_other_debt_creating_or_reducing_flows=self.input5_public_gfns_5_other_debt_creating_or_reducing_flows, input5_public_gfns_7_external_financing_mlt_excluding_locally_issued_debt=self.input5_public_gfns_7_external_financing_mlt_excluding_locally_issued_debt, input5_public_gfns_8_external_financing_st_excluding_locally_issued_debt=self.input5_public_gfns_8_external_financing_st_excluding_locally_issued_debt, input5_public_gfns_9_changes_in_liquid_assets=self.input5_public_gfns_9_changes_in_liquid_assets, input5_public_gfns_10_drawdown_of_reserves_to_repay_the_imf=self.input5_public_gfns_10_drawdown_of_reserves_to_repay_the_imf, input5_public_gfns_other_adjustment=self.input5_public_gfns_other_adjustment, input5_domestic_financing_source=self.input5_domestic_financing_source, input5_gfn_share=self.input5_gfn_share, input5_new_issuance_financing_strategy_share=self.input5_new_issuance_financing_strategy_share, input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, input5_macro_nominal_exchange_rate_average_lcu_usd=self.input5_macro_nominal_exchange_rate_average_lcu_usd, input5_vintage_projection_years_interest=self.input5_vintage_projection_years_interest, input5_vintage_projection_years_principal=self.input5_vintage_projection_years_principal, input5_vintage_issuance_year=self.input5_vintage_issuance_year, input5_constant_vintage_principal=data.INPUT5_CONSTANT_VINTAGE_PRINCIPAL, input5_vintage_terms=self.input5_vintage_terms, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service, input3_domestic_new_gross_disbursement=self.input3_domestic_new_gross_disbursement, ext_debt_definition_external_domestic=self.ext_debt_definition_external_domestic, ext_debt_new_interest_external=self.ext_debt_new_interest_external, ext_debt_new_amortization_external=self.ext_debt_new_amortization_external, ext_debt_st_external_nominal=self.ext_debt_st_external_nominal, ext_debt_st_external_interest=self.ext_debt_st_external_interest, ext_debt_exchange_rate_period_average=self.ext_debt_exchange_rate_period_average, lookup_afg=self.lookup_afg, pv_base_block_grace_fx=self.pv_base_block_grace_fx, pv_base_block_maturity_fx=self.pv_base_block_maturity_fx, pv_base_block_interest_fx=self.pv_base_block_interest_fx, pv_base_discount_t_g_0_fx=self.pv_base_discount_t_g_0_fx, pv_base_discount_t_m_condition_fx=self.pv_base_discount_t_m_condition_fx, pv_lc_nr1_terms_projection_year=self.pv_lc_nr1_terms_projection_year, pv_lc_nr1_terms_fx_pa=self.pv_lc_nr1_terms_fx_pa, pv_lc_nr1_terms_fx_eop=self.pv_lc_nr1_terms_fx_eop, pv_lc_terms_interest_rate_local_currency=self.pv_lc_terms_interest_rate_local_currency, pv_lc_output_issuance_year=self.pv_lc_output_issuance_year, pv_lc_output_projection_year=self.pv_lc_output_projection_year, pv_lc_labels_stock_of_debt_in_lc=data.PV_LC_LABELS_STOCK_OF_DEBT_IN_LC, pv_lc_constant_output_stock_of_debt_in_lc=data.PV_LC_CONSTANT_OUTPUT_STOCK_OF_DEBT_IN_LC, pv_lc_output_grace=self.pv_lc_output_grace, pv_lc_output_maturity=self.pv_lc_output_maturity, pv_lc_output_t_g_0=self.pv_lc_output_t_g_0, pv_lc_output_t_m_condition=self.pv_lc_output_t_m_condition, pv_lc_terms_projection_year=self.pv_lc_terms_projection_year, pv_lc_terms_fx_pa=self.pv_lc_terms_fx_pa, pv_lc_terms_fx_eop=self.pv_lc_terms_fx_eop)
 
     @cached_property
     def input5_public_gfns_3_debt_services_from_new_debt(self) -> data.Series[float | str | None]:
@@ -1565,31 +2075,31 @@ class Model(_BoundInputs):
 
     @cached_property
     def input5_public_gfns_3_debt_services_from_new_debt_ow_imf(self) -> data.Series[float | str | None]:
-        return internals.input5_public_gfns_3_debt_services_from_new_debt_ow_imf(input5_macro_nominal_exchange_rate_average_lcu_usd=self.input5_macro_nominal_exchange_rate_average_lcu_usd, ext_debt_new_interest_external=self.ext_debt_new_interest_external, ext_debt_new_amortization_external=self.ext_debt_new_amortization_external)
+        return internals.input5_public_gfns_3_debt_services_from_new_debt_ow_imf(input5_macro_nominal_exchange_rate_average_lcu_usd=self.input5_macro_nominal_exchange_rate_average_lcu_usd, ext_debt_new_interest_external=self.ext_debt_new_interest_external, ext_debt_new_amortization_external=self.ext_debt_new_amortization_external, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_public_gfns_5_other_debt_creating_or_reducing_flows(self) -> data.Series[float | str | None]:
-        return internals.input5_public_gfns_5_other_debt_creating_or_reducing_flows(baseline_pub_other_identified_debt_creating_flows=self.baseline_pub_other_identified_debt_creating_flows, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc)
+        return internals.input5_public_gfns_5_other_debt_creating_or_reducing_flows(baseline_pub_other_identified_debt_creating_flows=self.baseline_pub_other_identified_debt_creating_flows, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_public_gfns_7_external_financing_mlt_excluding_locally_issued_debt(self) -> data.Series[float | str | None]:
-        return internals.input5_public_gfns_7_external_financing_mlt_excluding_locally_issued_debt(input4_disbursement_totals=self.input4_disbursement_totals, input5_macro_nominal_exchange_rate_average_lcu_usd=self.input5_macro_nominal_exchange_rate_average_lcu_usd)
+        return internals.input5_public_gfns_7_external_financing_mlt_excluding_locally_issued_debt(input4_disbursement_totals=self.input4_disbursement_totals, input5_macro_nominal_exchange_rate_average_lcu_usd=self.input5_macro_nominal_exchange_rate_average_lcu_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_public_gfns_7_external_financing_mlt_ow_imf(self) -> data.Series[float | str | None]:
-        return internals.input5_public_gfns_7_external_financing_mlt_ow_imf(ext_debt_new_disbursements_external=self.ext_debt_new_disbursements_external, input5_macro_nominal_exchange_rate_average_lcu_usd=self.input5_macro_nominal_exchange_rate_average_lcu_usd)
+        return internals.input5_public_gfns_7_external_financing_mlt_ow_imf(ext_debt_new_disbursements_external=self.ext_debt_new_disbursements_external, input5_macro_nominal_exchange_rate_average_lcu_usd=self.input5_macro_nominal_exchange_rate_average_lcu_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_public_gfns_8_external_financing_st_excluding_locally_issued_debt(self) -> data.Series[float | str | None]:
-        return internals.input5_public_gfns_8_external_financing_st_excluding_locally_issued_debt(input5_macro_nominal_exchange_rate_average_lcu_usd=self.input5_macro_nominal_exchange_rate_average_lcu_usd, ext_debt_st_external_nominal=self.ext_debt_st_external_nominal)
+        return internals.input5_public_gfns_8_external_financing_st_excluding_locally_issued_debt(input5_macro_nominal_exchange_rate_average_lcu_usd=self.input5_macro_nominal_exchange_rate_average_lcu_usd, ext_debt_st_external_nominal=self.ext_debt_st_external_nominal, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_public_gfns_9_changes_in_liquid_assets(self) -> data.Series[float | str | None]:
-        return internals.input5_public_gfns_9_changes_in_liquid_assets(in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g=self.in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g)
+        return internals.input5_public_gfns_9_changes_in_liquid_assets(in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g=self.in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_public_gfns_10_drawdown_of_reserves_to_repay_the_imf(self) -> data.Series[float | str | None]:
-        return internals.input5_public_gfns_10_drawdown_of_reserves_to_repay_the_imf(input5_public_gfns_2_debt_services_from_existing_debt_ow_imf=self.input5_public_gfns_2_debt_services_from_existing_debt_ow_imf, input5_public_gfns_3_debt_services_from_new_debt_ow_imf=self.input5_public_gfns_3_debt_services_from_new_debt_ow_imf, input5_public_gfns_7_external_financing_mlt_ow_imf=self.input5_public_gfns_7_external_financing_mlt_ow_imf)
+        return internals.input5_public_gfns_10_drawdown_of_reserves_to_repay_the_imf(input5_public_gfns_2_debt_services_from_existing_debt_ow_imf=self.input5_public_gfns_2_debt_services_from_existing_debt_ow_imf, input5_public_gfns_3_debt_services_from_new_debt_ow_imf=self.input5_public_gfns_3_debt_services_from_new_debt_ow_imf, input5_public_gfns_7_external_financing_mlt_ow_imf=self.input5_public_gfns_7_external_financing_mlt_ow_imf, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_new_issuance_financing_strategy_share(self) -> data.Series[float | str | None]:
@@ -1601,31 +2111,31 @@ class Model(_BoundInputs):
 
     @cached_property
     def input5_disbursements_public_domestic_st_disbursements_residency_based(self) -> data.Series[float | str | None]:
-        return internals.input5_disbursements_public_domestic_st_disbursements_residency_based(input5_maturity_central_bank=self.input5_maturity_central_bank, input5_new_issuance=self.input5_new_issuance, input5_new_issuance_short_term_debt=self.input5_new_issuance_short_term_debt, input5_new_issuance_domestic_residual_financing_to_close_gap=self.input5_new_issuance_domestic_residual_financing_to_close_gap, input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, lookup_afg=self.lookup_afg)
+        return internals.input5_disbursements_public_domestic_st_disbursements_residency_based(input5_maturity_central_bank=self.input5_maturity_central_bank, input5_new_issuance=self.input5_new_issuance, input5_new_issuance_short_term_debt=self.input5_new_issuance_short_term_debt, input5_new_issuance_domestic_residual_financing_to_close_gap=self.input5_new_issuance_domestic_residual_financing_to_close_gap, input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, lookup_afg=self.lookup_afg, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_disbursements_public_domestic_mlt_disbursements_residency_based(self) -> data.Series[float | str | None]:
-        return internals.input5_disbursements_public_domestic_mlt_disbursements_residency_based(input5_maturity_central_bank=self.input5_maturity_central_bank, input5_new_issuance=self.input5_new_issuance, input5_new_issuance_mlt_debt=self.input5_new_issuance_mlt_debt, input5_new_issuance_denominated_in_local_currency_lc=self.input5_new_issuance_denominated_in_local_currency_lc, input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, lookup_afg=self.lookup_afg)
+        return internals.input5_disbursements_public_domestic_mlt_disbursements_residency_based(input5_maturity_central_bank=self.input5_maturity_central_bank, input5_new_issuance=self.input5_new_issuance, input5_new_issuance_mlt_debt=self.input5_new_issuance_mlt_debt, input5_new_issuance_denominated_in_local_currency_lc=self.input5_new_issuance_denominated_in_local_currency_lc, input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, lookup_afg=self.lookup_afg, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_disbursements_total_public_new_domestic_disbursements_residency_based(self) -> data.Series[float | str | None]:
-        return internals.input5_disbursements_total_public_new_domestic_disbursements_residency_based(input5_new_issuance_locally_issued_debt=self.input5_new_issuance_locally_issued_debt, input5_new_issuance=self.input5_new_issuance, input5_new_issuance_denominated_in_local_currency_lc=self.input5_new_issuance_denominated_in_local_currency_lc, input5_new_issuance_domestic_residual_financing_to_close_gap=self.input5_new_issuance_domestic_residual_financing_to_close_gap, input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, lookup_afg=self.lookup_afg)
+        return internals.input5_disbursements_total_public_new_domestic_disbursements_residency_based(input5_new_issuance_locally_issued_debt=self.input5_new_issuance_locally_issued_debt, input5_new_issuance=self.input5_new_issuance, input5_new_issuance_denominated_in_local_currency_lc=self.input5_new_issuance_denominated_in_local_currency_lc, input5_new_issuance_domestic_residual_financing_to_close_gap=self.input5_new_issuance_domestic_residual_financing_to_close_gap, input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, lookup_afg=self.lookup_afg, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_residual_terms_average_nominal_interest_rate_on_new_debt(self) -> data.Series[float | str | None]:
-        return internals.input5_residual_terms_average_nominal_interest_rate_on_new_debt(input5_interest_rate_on_domestic_debt=self.input5_interest_rate_on_domestic_debt, input5_interest_rate_on_domestic_debt_fx_long=self.input5_interest_rate_on_domestic_debt_fx_long, input5_internal_interest_rate_on_domestic_debt=self.input5_internal_interest_rate_on_domestic_debt, input5_maturity_central_bank=self.input5_maturity_central_bank, input5_new_issuance=self.input5_new_issuance, input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, input5_disbursements_public_domestic_st_disbursements_residency_based=self.input5_disbursements_public_domestic_st_disbursements_residency_based, input5_disbursements_public_domestic_mlt_disbursements_residency_based=self.input5_disbursements_public_domestic_mlt_disbursements_residency_based, lookup_afg=self.lookup_afg)
+        return internals.input5_residual_terms_average_nominal_interest_rate_on_new_debt(input5_interest_rate_on_domestic_debt=self.input5_interest_rate_on_domestic_debt, input5_interest_rate_on_domestic_debt_fx_long=self.input5_interest_rate_on_domestic_debt_fx_long, input5_internal_interest_rate_on_domestic_debt=self.input5_internal_interest_rate_on_domestic_debt, input5_maturity_central_bank=self.input5_maturity_central_bank, input5_new_issuance=self.input5_new_issuance, input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, input5_disbursements_public_domestic_st_disbursements_residency_based=self.input5_disbursements_public_domestic_st_disbursements_residency_based, input5_disbursements_public_domestic_mlt_disbursements_residency_based=self.input5_disbursements_public_domestic_mlt_disbursements_residency_based, lookup_afg=self.lookup_afg, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_residual_terms_gdp_deflator(self) -> data.Series[float | str | None]:
-        return internals.input5_residual_terms_gdp_deflator(macro_debt_change_in_gdp_deflator_factor=self.macro_debt_change_in_gdp_deflator_factor)
+        return internals.input5_residual_terms_gdp_deflator(macro_debt_change_in_gdp_deflator_factor=self.macro_debt_change_in_gdp_deflator_factor, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_residual_terms_average_real_interest_rate_on_new_debt(self) -> data.Series[float | str | None]:
-        return internals.input5_residual_terms_average_real_interest_rate_on_new_debt(input5_residual_terms_average_nominal_interest_rate_on_new_debt=self.input5_residual_terms_average_nominal_interest_rate_on_new_debt, input5_residual_terms_gdp_deflator=self.input5_residual_terms_gdp_deflator)
+        return internals.input5_residual_terms_average_real_interest_rate_on_new_debt(input5_residual_terms_average_nominal_interest_rate_on_new_debt=self.input5_residual_terms_average_nominal_interest_rate_on_new_debt, input5_residual_terms_gdp_deflator=self.input5_residual_terms_gdp_deflator, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_residual_terms_average_real_interest_rate_on_new_debt_average(self) -> data.Series[float | str | None]:
-        return internals.input5_residual_terms_average_real_interest_rate_on_new_debt_average(input5_residual_terms_average_real_interest_rate_on_new_debt=self.input5_residual_terms_average_real_interest_rate_on_new_debt)
+        return internals.input5_residual_terms_average_real_interest_rate_on_new_debt_average(input5_residual_terms_average_real_interest_rate_on_new_debt=self.input5_residual_terms_average_real_interest_rate_on_new_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_residual_terms_average_real_interest_rate_on_new_debt_rounded_average(self) -> data.Series[float | str | None]:
@@ -1633,11 +2143,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def input5_residual_terms_average_grace_period_on_new_debt(self) -> data.Series[float | str | None]:
-        return internals.input5_residual_terms_average_grace_period_on_new_debt(input5_grace_period=self.input5_grace_period, input5_maturity_central_bank=self.input5_maturity_central_bank, input5_new_issuance=self.input5_new_issuance, input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, input5_disbursements_public_domestic_mlt_disbursements_residency_based=self.input5_disbursements_public_domestic_mlt_disbursements_residency_based, lookup_afg=self.lookup_afg)
+        return internals.input5_residual_terms_average_grace_period_on_new_debt(input5_grace_period=self.input5_grace_period, input5_maturity_central_bank=self.input5_maturity_central_bank, input5_new_issuance=self.input5_new_issuance, input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, input5_disbursements_public_domestic_mlt_disbursements_residency_based=self.input5_disbursements_public_domestic_mlt_disbursements_residency_based, lookup_afg=self.lookup_afg, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_residual_terms_average_grace_period_on_new_debt_average(self) -> float | str:
-        return internals.input5_residual_terms_average_grace_period_on_new_debt_average(input5_residual_terms_average_grace_period_on_new_debt=self.input5_residual_terms_average_grace_period_on_new_debt)
+        return internals.input5_residual_terms_average_grace_period_on_new_debt_average(input5_residual_terms_average_grace_period_on_new_debt=self.input5_residual_terms_average_grace_period_on_new_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_residual_terms_average_grace_period_on_new_debt_rounded_average(self) -> int | str:
@@ -1645,11 +2155,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def input5_residual_terms_average_maturity_of_new_debt(self) -> data.Series[float | str | None]:
-        return internals.input5_residual_terms_average_maturity_of_new_debt(input5_maturity=self.input5_maturity, input5_maturity_central_bank=self.input5_maturity_central_bank, input5_new_issuance=self.input5_new_issuance, input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, input5_disbursements_public_domestic_mlt_disbursements_residency_based=self.input5_disbursements_public_domestic_mlt_disbursements_residency_based, lookup_afg=self.lookup_afg)
+        return internals.input5_residual_terms_average_maturity_of_new_debt(input5_maturity=self.input5_maturity, input5_maturity_central_bank=self.input5_maturity_central_bank, input5_new_issuance=self.input5_new_issuance, input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, input5_disbursements_public_domestic_mlt_disbursements_residency_based=self.input5_disbursements_public_domestic_mlt_disbursements_residency_based, lookup_afg=self.lookup_afg, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_residual_terms_average_maturity_of_new_debt_average(self) -> float | str:
-        return internals.input5_residual_terms_average_maturity_of_new_debt_average(input5_residual_terms_average_maturity_of_new_debt=self.input5_residual_terms_average_maturity_of_new_debt)
+        return internals.input5_residual_terms_average_maturity_of_new_debt_average(input5_residual_terms_average_maturity_of_new_debt=self.input5_residual_terms_average_maturity_of_new_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_residual_terms_average_maturity_of_new_debt_rounded_average(self) -> int | str:
@@ -1657,103 +2167,103 @@ class Model(_BoundInputs):
 
     @cached_property
     def input5_old_debt_debt_service_from_old_debt_residency_based(self) -> data.Series[float | str | None]:
-        return internals.input5_old_debt_debt_service_from_old_debt_residency_based(input5_old_debt_interest_payment_on_old_debt_residency_based=self.input5_old_debt_interest_payment_on_old_debt_residency_based, input5_old_debt_principal_payment_on_old_debt_residency_based=self.input5_old_debt_principal_payment_on_old_debt_residency_based)
+        return internals.input5_old_debt_debt_service_from_old_debt_residency_based(input5_old_debt_interest_payment_on_old_debt_residency_based=self.input5_old_debt_interest_payment_on_old_debt_residency_based, input5_old_debt_principal_payment_on_old_debt_residency_based=self.input5_old_debt_principal_payment_on_old_debt_residency_based, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_old_debt_interest_payment_on_old_debt_residency_based(self) -> data.Series[float | str | None]:
-        return internals.input5_old_debt_interest_payment_on_old_debt_residency_based(input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, input5_old_debt_interest_payment_on_old_debt_denominated_in_local_currency=self.input5_old_debt_interest_payment_on_old_debt_denominated_in_local_currency, input5_old_debt_interest_payment_on_old_debt_denominated_in_foreign_currency=self.input5_old_debt_interest_payment_on_old_debt_denominated_in_foreign_currency, lookup_afg=self.lookup_afg)
+        return internals.input5_old_debt_interest_payment_on_old_debt_residency_based(input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, input5_old_debt_interest_payment_on_old_debt_denominated_in_local_currency=self.input5_old_debt_interest_payment_on_old_debt_denominated_in_local_currency, input5_old_debt_interest_payment_on_old_debt_denominated_in_foreign_currency=self.input5_old_debt_interest_payment_on_old_debt_denominated_in_foreign_currency, lookup_afg=self.lookup_afg, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_old_debt_interest_payment_on_old_debt_denominated_in_local_currency(self) -> data.Series[float | str | None]:
-        return internals.input5_old_debt_interest_payment_on_old_debt_denominated_in_local_currency(input3_domestic_interest_payment_from_existing_debt=self.input3_domestic_interest_payment_from_existing_debt)
+        return internals.input5_old_debt_interest_payment_on_old_debt_denominated_in_local_currency(input3_domestic_interest_payment_from_existing_debt=self.input3_domestic_interest_payment_from_existing_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_old_debt_interest_payment_on_old_debt_denominated_in_foreign_currency(self) -> data.Series[float | str | None]:
-        return internals.input5_old_debt_interest_payment_on_old_debt_denominated_in_foreign_currency(input5_macro_nominal_exchange_rate_average_lcu_usd=self.input5_macro_nominal_exchange_rate_average_lcu_usd, input3_domestic_interest_payment_from_existing_debt=self.input3_domestic_interest_payment_from_existing_debt)
+        return internals.input5_old_debt_interest_payment_on_old_debt_denominated_in_foreign_currency(input5_macro_nominal_exchange_rate_average_lcu_usd=self.input5_macro_nominal_exchange_rate_average_lcu_usd, input3_domestic_interest_payment_from_existing_debt=self.input3_domestic_interest_payment_from_existing_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_old_debt_principal_payment_on_old_debt_residency_based(self) -> data.Series[float | str | None]:
-        return internals.input5_old_debt_principal_payment_on_old_debt_residency_based(input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency, input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency, lookup_afg=self.lookup_afg)
+        return internals.input5_old_debt_principal_payment_on_old_debt_residency_based(input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency, input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency, lookup_afg=self.lookup_afg, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency(self) -> data.Series[float | str | None]:
-        return internals.input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency(input3_domestic_principal_payment_from_existing_debt=self.input3_domestic_principal_payment_from_existing_debt)
+        return internals.input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency(input3_domestic_principal_payment_from_existing_debt=self.input3_domestic_principal_payment_from_existing_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency(self) -> data.Series[float | str | None]:
-        return internals.input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency(input5_macro_nominal_exchange_rate_average_lcu_usd=self.input5_macro_nominal_exchange_rate_average_lcu_usd, input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency_usd=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency_usd)
+        return internals.input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency(input5_macro_nominal_exchange_rate_average_lcu_usd=self.input5_macro_nominal_exchange_rate_average_lcu_usd, input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency_usd=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency_usd(self) -> data.Series[float | str | None]:
-        return internals.input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency_usd(input3_domestic_principal_payment_from_existing_debt=self.input3_domestic_principal_payment_from_existing_debt)
+        return internals.input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency_usd(input3_domestic_principal_payment_from_existing_debt=self.input3_domestic_principal_payment_from_existing_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_old_debt_outstanding_of_old_debt_residency_based(self) -> data.Series[float | str | None]:
-        return internals.input5_old_debt_outstanding_of_old_debt_residency_based(input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, input5_old_debt_outstanding_from_old_debt_in_local_currency=self.input5_old_debt_outstanding_from_old_debt_in_local_currency, input5_old_debt_outstanding_from_old_debt_in_foreign_currency=self.input5_old_debt_outstanding_from_old_debt_in_foreign_currency, lookup_afg=self.lookup_afg)
+        return internals.input5_old_debt_outstanding_of_old_debt_residency_based(input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, input5_old_debt_outstanding_from_old_debt_in_local_currency=self.input5_old_debt_outstanding_from_old_debt_in_local_currency, input5_old_debt_outstanding_from_old_debt_in_foreign_currency=self.input5_old_debt_outstanding_from_old_debt_in_foreign_currency, lookup_afg=self.lookup_afg, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_old_debt_outstanding_from_old_debt_in_local_currency(self) -> data.Series[float | str | None]:
-        return internals.input5_old_debt_outstanding_from_old_debt_in_local_currency(input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency, input3_domestic_outstanding_of_existing_debt=self.input3_domestic_outstanding_of_existing_debt)
+        return internals.input5_old_debt_outstanding_from_old_debt_in_local_currency(input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency, input3_domestic_outstanding_of_existing_debt=self.input3_domestic_outstanding_of_existing_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_old_debt_outstanding_from_old_debt_in_foreign_currency(self) -> data.Series[float | str | None]:
-        return internals.input5_old_debt_outstanding_from_old_debt_in_foreign_currency(input5_macro_nominal_exchange_rate_end_of_period_lcu_usd=self.input5_macro_nominal_exchange_rate_end_of_period_lcu_usd, input5_old_debt_outstanding_from_old_debt_in_foreign_currency_usd=self.input5_old_debt_outstanding_from_old_debt_in_foreign_currency_usd)
+        return internals.input5_old_debt_outstanding_from_old_debt_in_foreign_currency(input5_macro_nominal_exchange_rate_end_of_period_lcu_usd=self.input5_macro_nominal_exchange_rate_end_of_period_lcu_usd, input5_old_debt_outstanding_from_old_debt_in_foreign_currency_usd=self.input5_old_debt_outstanding_from_old_debt_in_foreign_currency_usd, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def input5_old_debt_outstanding_from_old_debt_in_foreign_currency_usd(self) -> data.Series[float | str | None]:
-        return internals.input5_old_debt_outstanding_from_old_debt_in_foreign_currency_usd(input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency_usd=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency_usd, input3_domestic_outstanding_of_existing_debt=self.input3_domestic_outstanding_of_existing_debt)
+        return internals.input5_old_debt_outstanding_from_old_debt_in_foreign_currency_usd(input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency_usd=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency_usd, input3_domestic_outstanding_of_existing_debt=self.input3_domestic_outstanding_of_existing_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_new_debt_outstanding_of_new_debt_residency_based(self) -> data.Series[float | str | None]:
-        return internals.input5_new_debt_outstanding_of_new_debt_residency_based(input5_new_debt_debt_stock_on_new_debt_denominated_in_foreign_currency=self.input5_new_debt_debt_stock_on_new_debt_denominated_in_foreign_currency, input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, input5_new_debt_debt_stock_on_new_debt_denominated_in_local_currency=self.input5_new_debt_debt_stock_on_new_debt_denominated_in_local_currency, lookup_afg=self.lookup_afg)
+        return internals.input5_new_debt_outstanding_of_new_debt_residency_based(input5_new_debt_debt_stock_on_new_debt_denominated_in_foreign_currency=self.input5_new_debt_debt_stock_on_new_debt_denominated_in_foreign_currency, input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, input5_new_debt_debt_stock_on_new_debt_denominated_in_local_currency=self.input5_new_debt_debt_stock_on_new_debt_denominated_in_local_currency, lookup_afg=self.lookup_afg, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_new_debt_debt_stock_on_new_debt_denominated_in_local_currency(self) -> data.Series[float | str | None]:
-        return internals.input5_new_debt_debt_stock_on_new_debt_denominated_in_local_currency(input5_vintage_stock=self.input5_vintage_stock)
+        return internals.input5_new_debt_debt_stock_on_new_debt_denominated_in_local_currency(input5_vintage_stock=self.input5_vintage_stock, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_new_debt_debt_stock_on_new_debt_denominated_in_foreign_currency(self) -> data.Series[float | str | None]:
-        return internals.input5_new_debt_debt_stock_on_new_debt_denominated_in_foreign_currency(input5_macro_nominal_exchange_rate_end_of_period_lcu_usd=self.input5_macro_nominal_exchange_rate_end_of_period_lcu_usd, input5_vintage_stock=self.input5_vintage_stock)
+        return internals.input5_new_debt_debt_stock_on_new_debt_denominated_in_foreign_currency(input5_macro_nominal_exchange_rate_end_of_period_lcu_usd=self.input5_macro_nominal_exchange_rate_end_of_period_lcu_usd, input5_vintage_stock=self.input5_vintage_stock, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_summary_outstanding_stock(self) -> data.Series[float | str | None]:
-        return internals.input5_summary_outstanding_stock(input5_old_debt_outstanding_of_old_debt_residency_based=self.input5_old_debt_outstanding_of_old_debt_residency_based, input5_new_debt_outstanding_of_new_debt_residency_based=self.input5_new_debt_outstanding_of_new_debt_residency_based)
+        return internals.input5_summary_outstanding_stock(input5_old_debt_outstanding_of_old_debt_residency_based=self.input5_old_debt_outstanding_of_old_debt_residency_based, input5_new_debt_outstanding_of_new_debt_residency_based=self.input5_new_debt_outstanding_of_new_debt_residency_based, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_summary_mlt(self) -> data.Series[float | str | None]:
-        return internals.input5_summary_mlt(input5_summary_outstanding_stock=self.input5_summary_outstanding_stock, input5_summary_short_term=self.input5_summary_short_term)
+        return internals.input5_summary_mlt(input5_summary_outstanding_stock=self.input5_summary_outstanding_stock, input5_summary_short_term=self.input5_summary_short_term, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_summary_short_term(self) -> data.Series[float | str | None]:
-        return internals.input5_summary_short_term(input5_maturity_central_bank=self.input5_maturity_central_bank, input5_new_issuance=self.input5_new_issuance, input5_new_issuance_short_term_debt=self.input5_new_issuance_short_term_debt, input5_new_issuance_domestic_residual_financing_to_close_gap=self.input5_new_issuance_domestic_residual_financing_to_close_gap, input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, lookup_afg=self.lookup_afg)
+        return internals.input5_summary_short_term(input5_maturity_central_bank=self.input5_maturity_central_bank, input5_new_issuance=self.input5_new_issuance, input5_new_issuance_short_term_debt=self.input5_new_issuance_short_term_debt, input5_new_issuance_domestic_residual_financing_to_close_gap=self.input5_new_issuance_domestic_residual_financing_to_close_gap, input5_definition_of_external_domestic_debt=self.input5_definition_of_external_domestic_debt, lookup_afg=self.lookup_afg, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_summary_interest_payment(self) -> data.Series[float | str | None]:
-        return internals.input5_summary_interest_payment(input5_old_debt_interest_payment_on_old_debt_residency_based=self.input5_old_debt_interest_payment_on_old_debt_residency_based, input5_new_debt_interest_payment_on_new_debt_residency_based=self.input5_new_debt_interest_payment_on_new_debt_residency_based)
+        return internals.input5_summary_interest_payment(input5_old_debt_interest_payment_on_old_debt_residency_based=self.input5_old_debt_interest_payment_on_old_debt_residency_based, input5_new_debt_interest_payment_on_new_debt_residency_based=self.input5_new_debt_interest_payment_on_new_debt_residency_based, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_summary_principal_payment(self) -> data.Series[float | str | None]:
-        return internals.input5_summary_principal_payment(input5_old_debt_principal_payment_on_old_debt_residency_based=self.input5_old_debt_principal_payment_on_old_debt_residency_based, input5_new_debt_principal_payment_on_new_debt_residency_based=self.input5_new_debt_principal_payment_on_new_debt_residency_based)
+        return internals.input5_summary_principal_payment(input5_old_debt_principal_payment_on_old_debt_residency_based=self.input5_old_debt_principal_payment_on_old_debt_residency_based, input5_new_debt_principal_payment_on_new_debt_residency_based=self.input5_new_debt_principal_payment_on_new_debt_residency_based, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_macro_nominal_exchange_rate_average_lcu_usd(self) -> data.Series[float | str | None]:
-        return internals.input5_macro_nominal_exchange_rate_average_lcu_usd(macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc)
+        return internals.input5_macro_nominal_exchange_rate_average_lcu_usd(macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_macro_nominal_exchange_rate_end_of_period_lcu_usd(self) -> data.Series[float | str | None]:
-        return internals.input5_macro_nominal_exchange_rate_end_of_period_lcu_usd(macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar)
+        return internals.input5_macro_nominal_exchange_rate_end_of_period_lcu_usd(macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def input5_vintage_projection_years_stock(self) -> data.Series[int | str | None]:
-        return internals.input5_vintage_projection_years_stock(input5_projection_years=self.input5_projection_years)
+        return internals.input5_vintage_projection_years_stock(input5_projection_years=self.input5_projection_years, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_vintage_projection_years_interest(self) -> data.Series[int | str | None]:
-        return internals.input5_vintage_projection_years_interest(input5_vintage_projection_years_principal=self.input5_vintage_projection_years_principal)
+        return internals.input5_vintage_projection_years_interest(input5_vintage_projection_years_principal=self.input5_vintage_projection_years_principal, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_vintage_projection_years_principal(self) -> data.Series[int | str | None]:
-        return internals.input5_vintage_projection_years_principal(input5_vintage_projection_years_stock=self.input5_vintage_projection_years_stock)
+        return internals.input5_vintage_projection_years_principal(input5_vintage_projection_years_stock=self.input5_vintage_projection_years_stock, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_vintage_instrument_title(self) -> data.Series[str | int | float | bool | None]:
@@ -1761,11 +2271,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def input5_vintage_issuance_year(self) -> data.Series[int | str | None]:
-        return internals.input5_vintage_issuance_year(input5_projection_years=self.input5_projection_years)
+        return internals.input5_vintage_issuance_year(input5_projection_years=self.input5_projection_years, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def input5_vintage_terms(self) -> data.Series[float | str | None]:
-        return internals.input5_vintage_terms(input5_grace_period=self.input5_grace_period, input5_blue_cells_note=self.input5_blue_cells_note, input5_projection_years=self.input5_projection_years, input5_instrument_terms_assumptions_on_domestic_financial_instruments_header=self.input5_instrument_terms_assumptions_on_domestic_financial_instruments_header, input5_instrument_terms_grace_period_header=self.input5_instrument_terms_grace_period_header, input5_instrument_terms_interest_rate_on_domestic_debt_header=self.input5_instrument_terms_interest_rate_on_domestic_debt_header, input5_instrument_terms_maturity_header=self.input5_instrument_terms_maturity_header, input5_instrument_terms_instrument_label=self.input5_instrument_terms_instrument_label, input5_interest_rate_on_domestic_debt=self.input5_interest_rate_on_domestic_debt, input5_interest_rate_on_domestic_debt_fx_long=self.input5_interest_rate_on_domestic_debt_fx_long, input5_internal_interest_rate_on_domestic_debt=self.input5_internal_interest_rate_on_domestic_debt, input5_maturity=self.input5_maturity, input5_maturity_central_bank=self.input5_maturity_central_bank, input5_constant_grace_period=data.INPUT5_CONSTANT_GRACE_PERIOD, input5_constant_maturity=data.INPUT5_CONSTANT_MATURITY, input5_internal_grace_period=self.input5_internal_grace_period, input5_internal_maturity=self.input5_internal_maturity, input5_vintage_instrument_title=self.input5_vintage_instrument_title, input5_vintage_issuance_year=self.input5_vintage_issuance_year, input5_vintage_instrument_label=self.input5_vintage_instrument_label)
+        return internals.input5_vintage_terms(input5_grace_period=self.input5_grace_period, input5_blue_cells_note=self.input5_blue_cells_note, input5_projection_years=self.input5_projection_years, input5_instrument_terms_assumptions_on_domestic_financial_instruments_header=self.input5_instrument_terms_assumptions_on_domestic_financial_instruments_header, input5_instrument_terms_grace_period_header=self.input5_instrument_terms_grace_period_header, input5_instrument_terms_interest_rate_on_domestic_debt_header=self.input5_instrument_terms_interest_rate_on_domestic_debt_header, input5_instrument_terms_maturity_header=self.input5_instrument_terms_maturity_header, input5_instrument_terms_instrument_label=self.input5_instrument_terms_instrument_label, input5_interest_rate_on_domestic_debt=self.input5_interest_rate_on_domestic_debt, input5_interest_rate_on_domestic_debt_fx_long=self.input5_interest_rate_on_domestic_debt_fx_long, input5_internal_interest_rate_on_domestic_debt=self.input5_internal_interest_rate_on_domestic_debt, input5_maturity=self.input5_maturity, input5_maturity_central_bank=self.input5_maturity_central_bank, input5_constant_grace_period=data.INPUT5_CONSTANT_GRACE_PERIOD, input5_constant_maturity=data.INPUT5_CONSTANT_MATURITY, input5_internal_grace_period=self.input5_internal_grace_period, input5_internal_maturity=self.input5_internal_maturity, input5_vintage_instrument_title=self.input5_vintage_instrument_title, input5_vintage_issuance_year=self.input5_vintage_issuance_year, input5_vintage_instrument_label=self.input5_vintage_instrument_label, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def input5_vintage_instrument_label(self) -> data.Series[str | int | float | bool | None]:
@@ -1829,7 +2339,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def _scan_chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank(self) -> internals.ScanChartChartDataPvDebtToGdpMostExtremeShockRankResult:
-        return internals.scan_chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio=self.dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio, dsa_pub_pv_of_debt_gdp=self.dsa_pub_pv_of_debt_gdp, dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_gdp=self.dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_gdp, dsa_pub_c2_natural_disaster_pv_of_debt_gdp=self.dsa_pub_c2_natural_disaster_pv_of_debt_gdp, chart_chart_data_pv_debt_to_gdp_c2_natural_disaster_stress_path_applic=self.chart_chart_data_pv_debt_to_gdp_c2_natural_disaster_stress_path_applic, chart_chart_data_pv_debt_to_gdp_c3_commodity_price_stress_path_applica=self.chart_chart_data_pv_debt_to_gdp_c3_commodity_price_stress_path_applica, chart_chart_data_pv_debt_to_gdp_c4_market_financing_stress_path_applic=self.chart_chart_data_pv_debt_to_gdp_c4_market_financing_stress_path_applic, chart_pv_debt_to_gdp_applicable_flag_b2_1_primary_balance_market=self.chart_pv_debt_to_gdp_applicable_flag_b2_1_primary_balance_market, chart_pv_debt_to_gdp_applicable_flag_combined_market_financing_stress=self.chart_pv_debt_to_gdp_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, c4_mkt_fin_revised_pv_debt_pct_gdp=self.c4_mkt_fin_revised_pv_debt_pct_gdp, ci_summary_pv_gdp_applicable=self.ci_summary_pv_gdp_applicable, in6opt_standard_scenario=self.in6opt_standard_scenario)
+        return internals.scan_chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio=self.dsa_ext_pv_of_ppg_external_debt_to_gdp_ratio, dsa_pub_pv_of_debt_gdp=self.dsa_pub_pv_of_debt_gdp, dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_gdp=self.dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_gdp, dsa_pub_c2_natural_disaster_pv_of_debt_gdp=self.dsa_pub_c2_natural_disaster_pv_of_debt_gdp, input3_old_debt_service=self.input3_old_debt_service, chart_chart_data_pv_debt_to_gdp_c2_natural_disaster_stress_path_applic=self.chart_chart_data_pv_debt_to_gdp_c2_natural_disaster_stress_path_applic, chart_chart_data_pv_debt_to_gdp_c3_commodity_price_stress_path_applica=self.chart_chart_data_pv_debt_to_gdp_c3_commodity_price_stress_path_applica, chart_chart_data_pv_debt_to_gdp_c4_market_financing_stress_path_applic=self.chart_chart_data_pv_debt_to_gdp_c4_market_financing_stress_path_applic, chart_pv_debt_to_gdp_applicable_flag_b2_1_primary_balance_market=self.chart_pv_debt_to_gdp_applicable_flag_b2_1_primary_balance_market, chart_pv_debt_to_gdp_applicable_flag_combined_market_financing_stress=self.chart_pv_debt_to_gdp_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, c4_mkt_fin_revised_pv_debt_pct_gdp=self.c4_mkt_fin_revised_pv_debt_pct_gdp, ci_summary_pv_gdp_applicable=self.ci_summary_pv_gdp_applicable, in6opt_standard_scenario=self.in6opt_standard_scenario)
 
     @cached_property
     def chart_chart_data_pv_debt_to_gdp_most_extreme_shock_rank(self) -> data.Series[int | str | None]:
@@ -1853,7 +2363,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def _scan_chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank(self) -> internals.ScanChartChartDataPvDebtToExportsMostExtremeShockRankResult:
-        return internals.scan_chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_ext_pv_of_ppg_external_debt_to_exports_ratio=self.dsa_ext_pv_of_ppg_external_debt_to_exports_ratio, dsa_pub_pv_of_debt_exports=self.dsa_pub_pv_of_debt_exports, dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_exports=self.dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_exports, dsa_pub_c2_natural_disaster_pv_of_debt_exports=self.dsa_pub_c2_natural_disaster_pv_of_debt_exports, chart_chart_data_pv_debt_to_exports_c2_natural_disaster_stress_path_ap=self.chart_chart_data_pv_debt_to_exports_c2_natural_disaster_stress_path_ap, chart_chart_data_pv_debt_to_exports_c3_commodity_price_stress_path_app=self.chart_chart_data_pv_debt_to_exports_c3_commodity_price_stress_path_app, chart_chart_data_pv_debt_to_exports_c4_market_financing_stress_path_ap=self.chart_chart_data_pv_debt_to_exports_c4_market_financing_stress_path_ap, chart_pv_debt_to_exports_applicable_flag_b2_1_primary_balance_market=self.chart_pv_debt_to_exports_applicable_flag_b2_1_primary_balance_market, chart_pv_debt_to_exports_applicable_flag_combined_market_financing_stress=self.chart_pv_debt_to_exports_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, c4_mkt_fin_revised_pv_debt_to_exports=self.c4_mkt_fin_revised_pv_debt_to_exports, ci_summary_pv_exports_applicable=self.ci_summary_pv_exports_applicable, in6opt_standard_scenario=self.in6opt_standard_scenario, c4_market_path_revised_pv_debt_exports=self.c4_market_path_revised_pv_debt_exports)
+        return internals.scan_chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_ext_pv_of_ppg_external_debt_to_exports_ratio=self.dsa_ext_pv_of_ppg_external_debt_to_exports_ratio, dsa_pub_pv_of_debt_exports=self.dsa_pub_pv_of_debt_exports, dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_exports=self.dsa_pub_b2_pb_non_mkt_pub_pv_of_debt_exports, dsa_pub_c2_natural_disaster_pv_of_debt_exports=self.dsa_pub_c2_natural_disaster_pv_of_debt_exports, input3_old_debt_service=self.input3_old_debt_service, chart_chart_data_pv_debt_to_exports_c2_natural_disaster_stress_path_ap=self.chart_chart_data_pv_debt_to_exports_c2_natural_disaster_stress_path_ap, chart_chart_data_pv_debt_to_exports_c3_commodity_price_stress_path_app=self.chart_chart_data_pv_debt_to_exports_c3_commodity_price_stress_path_app, chart_chart_data_pv_debt_to_exports_c4_market_financing_stress_path_ap=self.chart_chart_data_pv_debt_to_exports_c4_market_financing_stress_path_ap, chart_pv_debt_to_exports_applicable_flag_b2_1_primary_balance_market=self.chart_pv_debt_to_exports_applicable_flag_b2_1_primary_balance_market, chart_pv_debt_to_exports_applicable_flag_combined_market_financing_stress=self.chart_pv_debt_to_exports_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, c4_mkt_fin_revised_pv_debt_to_exports=self.c4_mkt_fin_revised_pv_debt_to_exports, ci_summary_pv_exports_applicable=self.ci_summary_pv_exports_applicable, in6opt_standard_scenario=self.in6opt_standard_scenario, c4_market_path_revised_pv_debt_exports=self.c4_market_path_revised_pv_debt_exports)
 
     @cached_property
     def chart_chart_data_pv_debt_to_exports_most_extreme_shock_rank(self) -> data.Series[int | str | None]:
@@ -1877,7 +2387,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def _scan_chart_chart_data_debt_service_to_exports_most_extreme_shock_rank(self) -> internals.ScanChartChartDataDebtServiceToExportsMostExtremeShockRankResult:
-        return internals.scan_chart_chart_data_debt_service_to_exports_most_extreme_shock_rank(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_ext_ppg_debt_service_to_exports_ratio=self.dsa_ext_ppg_debt_service_to_exports_ratio, dsa_pub_debt_service_exports=self.dsa_pub_debt_service_exports, dsa_pub_b2_pb_non_mkt_pub_debt_service_exports=self.dsa_pub_b2_pb_non_mkt_pub_debt_service_exports, dsa_pub_c2_natural_disaster_debt_service_exports=self.dsa_pub_c2_natural_disaster_debt_service_exports, chart_debt_service_to_exports_applicable_flag_c2_natdisaster=self.chart_debt_service_to_exports_applicable_flag_c2_natdisaster, chart_debt_service_to_exports_applicable_flag_c3_commodity_price=self.chart_debt_service_to_exports_applicable_flag_c3_commodity_price, chart_debt_service_to_exports_applicable_flag_c4_mkt_financing=self.chart_debt_service_to_exports_applicable_flag_c4_mkt_financing, chart_debt_service_to_exports_applicable_flag_b2_1_primary_balance_market=self.chart_debt_service_to_exports_applicable_flag_b2_1_primary_balance_market, chart_debt_service_to_exports_applicable_flag_combined_market_financing_stress=self.chart_debt_service_to_exports_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, c4_mkt_fin_dsr_exports_stress=self.c4_mkt_fin_dsr_exports_stress, ci_summary_ds_exports_applicable=self.ci_summary_ds_exports_applicable, in6opt_standard_scenario=self.in6opt_standard_scenario)
+        return internals.scan_chart_chart_data_debt_service_to_exports_most_extreme_shock_rank(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_ext_ppg_debt_service_to_exports_ratio=self.dsa_ext_ppg_debt_service_to_exports_ratio, dsa_pub_debt_service_exports=self.dsa_pub_debt_service_exports, dsa_pub_b2_pb_non_mkt_pub_debt_service_exports=self.dsa_pub_b2_pb_non_mkt_pub_debt_service_exports, dsa_pub_c2_natural_disaster_debt_service_exports=self.dsa_pub_c2_natural_disaster_debt_service_exports, input3_old_debt_service=self.input3_old_debt_service, chart_debt_service_to_exports_applicable_flag_c2_natdisaster=self.chart_debt_service_to_exports_applicable_flag_c2_natdisaster, chart_debt_service_to_exports_applicable_flag_c3_commodity_price=self.chart_debt_service_to_exports_applicable_flag_c3_commodity_price, chart_debt_service_to_exports_applicable_flag_c4_mkt_financing=self.chart_debt_service_to_exports_applicable_flag_c4_mkt_financing, chart_debt_service_to_exports_applicable_flag_b2_1_primary_balance_market=self.chart_debt_service_to_exports_applicable_flag_b2_1_primary_balance_market, chart_debt_service_to_exports_applicable_flag_combined_market_financing_stress=self.chart_debt_service_to_exports_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, c4_mkt_fin_dsr_exports_stress=self.c4_mkt_fin_dsr_exports_stress, ci_summary_ds_exports_applicable=self.ci_summary_ds_exports_applicable, in6opt_standard_scenario=self.in6opt_standard_scenario)
 
     @cached_property
     def chart_chart_data_debt_service_to_exports_most_extreme_shock_rank(self) -> data.Series[int | str | None]:
@@ -1901,7 +2411,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def _scan_chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank(self) -> internals.ScanChartChartDataDebtServiceToRevenueMostExtremeShockRankResult:
-        return internals.scan_chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_ext_ppg_debt_service_to_revenue_ratio=self.dsa_ext_ppg_debt_service_to_revenue_ratio, dsa_pub_debt_service_revenue_excl_grants=self.dsa_pub_debt_service_revenue_excl_grants, dsa_pub_b2_pb_non_mkt_pub_debt_service_revenue_excl_grants=self.dsa_pub_b2_pb_non_mkt_pub_debt_service_revenue_excl_grants, dsa_pub_c2_natural_disaster_debt_service_revenue_excl_grants=self.dsa_pub_c2_natural_disaster_debt_service_revenue_excl_grants, chart_debt_service_to_revenue_applicable_flag_c2_natdisaster=self.chart_debt_service_to_revenue_applicable_flag_c2_natdisaster, chart_debt_service_to_revenue_applicable_flag_c3_commodity_price=self.chart_debt_service_to_revenue_applicable_flag_c3_commodity_price, chart_debt_service_to_revenue_applicable_flag_c4_mkt_financing=self.chart_debt_service_to_revenue_applicable_flag_c4_mkt_financing, chart_debt_service_to_revenue_applicable_flag_b2_1_primary_balance_market=self.chart_debt_service_to_revenue_applicable_flag_b2_1_primary_balance_market, chart_debt_service_to_revenue_applicable_flag_combined_market_financing_stress=self.chart_debt_service_to_revenue_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, c4_mkt_fin_dsr_revenue_stress=self.c4_mkt_fin_dsr_revenue_stress, ci_summary_ds_revenue_applicable=self.ci_summary_ds_revenue_applicable, in6opt_standard_scenario=self.in6opt_standard_scenario)
+        return internals.scan_chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_ext_ppg_debt_service_to_revenue_ratio=self.dsa_ext_ppg_debt_service_to_revenue_ratio, dsa_pub_debt_service_revenue_excl_grants=self.dsa_pub_debt_service_revenue_excl_grants, dsa_pub_b2_pb_non_mkt_pub_debt_service_revenue_excl_grants=self.dsa_pub_b2_pb_non_mkt_pub_debt_service_revenue_excl_grants, dsa_pub_c2_natural_disaster_debt_service_revenue_excl_grants=self.dsa_pub_c2_natural_disaster_debt_service_revenue_excl_grants, input3_old_debt_service=self.input3_old_debt_service, chart_debt_service_to_revenue_applicable_flag_c2_natdisaster=self.chart_debt_service_to_revenue_applicable_flag_c2_natdisaster, chart_debt_service_to_revenue_applicable_flag_c3_commodity_price=self.chart_debt_service_to_revenue_applicable_flag_c3_commodity_price, chart_debt_service_to_revenue_applicable_flag_c4_mkt_financing=self.chart_debt_service_to_revenue_applicable_flag_c4_mkt_financing, chart_debt_service_to_revenue_applicable_flag_b2_1_primary_balance_market=self.chart_debt_service_to_revenue_applicable_flag_b2_1_primary_balance_market, chart_debt_service_to_revenue_applicable_flag_combined_market_financing_stress=self.chart_debt_service_to_revenue_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, c4_mkt_fin_dsr_revenue_stress=self.c4_mkt_fin_dsr_revenue_stress, ci_summary_ds_revenue_applicable=self.ci_summary_ds_revenue_applicable, in6opt_standard_scenario=self.in6opt_standard_scenario)
 
     @cached_property
     def chart_chart_data_debt_service_to_revenue_most_extreme_shock_rank(self) -> data.Series[int | str | None]:
@@ -1925,7 +2435,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def _scan_chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank(self) -> internals.ScanChartChartDataPvOfDebtToGdpRatioMostExtremeShockRankResult:
-        return internals.scan_chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_pub_pv_of_total_public_debt=self.dsa_pub_pv_of_total_public_debt, customized_public_include_scenario=self.customized_public_include_scenario, chart_chart_data_pv_of_debt_to_gdp_ratio_c2_natural_disaster_stress_pa=self.chart_chart_data_pv_of_debt_to_gdp_ratio_c2_natural_disaster_stress_pa, chart_chart_data_pv_of_debt_to_gdp_ratio_c3_commodity_price_stress_pat=self.chart_chart_data_pv_of_debt_to_gdp_ratio_c3_commodity_price_stress_pat, chart_chart_data_pv_of_debt_to_gdp_ratio_c4_market_financing_stress_pa=self.chart_chart_data_pv_of_debt_to_gdp_ratio_c4_market_financing_stress_pa, chart_pv_of_debt_to_gdp_ratio_applicable_flag_b2_1_primary_balance_market=self.chart_pv_of_debt_to_gdp_ratio_applicable_flag_b2_1_primary_balance_market, chart_pv_of_debt_to_gdp_ratio_applicable_flag_combined_market_financing_stress=self.chart_pv_of_debt_to_gdp_ratio_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path=self.chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path, ci_summary_public_pv_medium_cutoff=self.ci_summary_public_pv_medium_cutoff, baseline_pub_pv_of_public_debt_gdp_ratio=self.baseline_pub_pv_of_public_debt_gdp_ratio, baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports=self.baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports, baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows=self.baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows, baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin=self.baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin, custom_pub_pv_of_public_debt_gdp_ratio=self.custom_pub_pv_of_public_debt_gdp_ratio, in6opt_standard_scenario=self.in6opt_standard_scenario)
+        return internals.scan_chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_pub_pv_of_total_public_debt=self.dsa_pub_pv_of_total_public_debt, customized_public_include_scenario=self.customized_public_include_scenario, input3_old_debt_service=self.input3_old_debt_service, chart_chart_data_pv_of_debt_to_gdp_ratio_c2_natural_disaster_stress_pa=self.chart_chart_data_pv_of_debt_to_gdp_ratio_c2_natural_disaster_stress_pa, chart_chart_data_pv_of_debt_to_gdp_ratio_c3_commodity_price_stress_pat=self.chart_chart_data_pv_of_debt_to_gdp_ratio_c3_commodity_price_stress_pat, chart_chart_data_pv_of_debt_to_gdp_ratio_c4_market_financing_stress_pa=self.chart_chart_data_pv_of_debt_to_gdp_ratio_c4_market_financing_stress_pa, chart_pv_of_debt_to_gdp_ratio_applicable_flag_b2_1_primary_balance_market=self.chart_pv_of_debt_to_gdp_ratio_applicable_flag_b2_1_primary_balance_market, chart_pv_of_debt_to_gdp_ratio_applicable_flag_combined_market_financing_stress=self.chart_pv_of_debt_to_gdp_ratio_applicable_flag_combined_market_financing_stress, chart_projection_years=self.chart_projection_years, chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path=self.chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path, ci_summary_public_pv_medium_cutoff=self.ci_summary_public_pv_medium_cutoff, baseline_pub_pv_of_public_debt_gdp_ratio=self.baseline_pub_pv_of_public_debt_gdp_ratio, baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports=self.baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports, baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows=self.baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows, baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin=self.baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin, custom_pub_pv_of_public_debt_gdp_ratio=self.custom_pub_pv_of_public_debt_gdp_ratio, in6opt_standard_scenario=self.in6opt_standard_scenario)
 
     @cached_property
     def chart_chart_data_pv_of_debt_to_gdp_ratio_most_extreme_shock_rank(self) -> data.Series[int | str | None]:
@@ -1973,11 +2483,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def chart_chart_data_pv_debt_to_gdp_baseline_breach_count(self) -> int | str:
-        return internals.chart_chart_data_pv_debt_to_gdp_baseline_breach_count(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure=self.chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure)
+        return internals.chart_chart_data_pv_debt_to_gdp_baseline_breach_count(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure=self.chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_chart_data_pv_debt_to_gdp_shock_breach_count(self) -> int | str:
-        return internals.chart_chart_data_pv_debt_to_gdp_shock_breach_count(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure=self.chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure)
+        return internals.chart_chart_data_pv_debt_to_gdp_shock_breach_count(chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure=self.chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_figure, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_chart_data_pv_debt_to_exports_c2_natural_disaster_stress_path_ap(self) -> int | str:
@@ -2005,11 +2515,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def chart_chart_data_pv_debt_to_exports_baseline_breach_count(self) -> int | str:
-        return internals.chart_chart_data_pv_debt_to_exports_baseline_breach_count(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure=self.chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure)
+        return internals.chart_chart_data_pv_debt_to_exports_baseline_breach_count(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure=self.chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_chart_data_pv_debt_to_exports_shock_breach_count(self) -> int | str:
-        return internals.chart_chart_data_pv_debt_to_exports_shock_breach_count(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure=self.chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure)
+        return internals.chart_chart_data_pv_debt_to_exports_shock_breach_count(chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure=self.chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_figure, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_debt_service_to_exports_applicable_flag_c2_natdisaster(self) -> int | str:
@@ -2037,11 +2547,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def chart_chart_data_debt_service_to_exports_baseline_breach_count(self) -> int | str:
-        return internals.chart_chart_data_debt_service_to_exports_baseline_breach_count(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure=self.chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure)
+        return internals.chart_chart_data_debt_service_to_exports_baseline_breach_count(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure=self.chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_chart_data_debt_service_to_exports_shock_breach_count(self) -> int | str:
-        return internals.chart_chart_data_debt_service_to_exports_shock_breach_count(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure=self.chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure)
+        return internals.chart_chart_data_debt_service_to_exports_shock_breach_count(chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure=self.chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_figure, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_debt_service_to_revenue_applicable_flag_c2_natdisaster(self) -> int | str:
@@ -2069,11 +2579,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def chart_chart_data_debt_service_to_revenue_baseline_breach_count(self) -> int | str:
-        return internals.chart_chart_data_debt_service_to_revenue_baseline_breach_count(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure=self.chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure)
+        return internals.chart_chart_data_debt_service_to_revenue_baseline_breach_count(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure=self.chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_chart_data_debt_service_to_revenue_shock_breach_count(self) -> int | str:
-        return internals.chart_chart_data_debt_service_to_revenue_shock_breach_count(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure=self.chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure)
+        return internals.chart_chart_data_debt_service_to_revenue_shock_breach_count(chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure=self.chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_figure, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_chart_data_pv_of_debt_to_gdp_ratio_c2_natural_disaster_stress_pa(self) -> int | str:
@@ -2101,11 +2611,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def chart_chart_data_pv_of_debt_to_gdp_ratio_baseline_breach_count(self) -> int | str:
-        return internals.chart_chart_data_pv_of_debt_to_gdp_ratio_baseline_breach_count(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure=self.chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure)
+        return internals.chart_chart_data_pv_of_debt_to_gdp_ratio_baseline_breach_count(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure=self.chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_chart_data_pv_of_debt_to_gdp_ratio_shock_breach_count(self) -> int | str:
-        return internals.chart_chart_data_pv_of_debt_to_gdp_ratio_shock_breach_count(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure=self.chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure)
+        return internals.chart_chart_data_pv_of_debt_to_gdp_ratio_shock_breach_count(chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure=self.chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_figure, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_chart_data_pv_of_debt_to_revenue_ratio_c2_natural_disaster_stres(self) -> int | str:
@@ -2169,75 +2679,75 @@ class Model(_BoundInputs):
 
     @cached_property
     def chart_fiscal_space_pv_of_debt_to_gdp_max_baseline_breach(self) -> int | str:
-        return internals.chart_fiscal_space_pv_of_debt_to_gdp_max_baseline_breach(chart_internal_chart_data_fiscal_space_pv_debt_gdp_moderate_space=self.chart_internal_chart_data_fiscal_space_pv_debt_gdp_moderate_space)
+        return internals.chart_fiscal_space_pv_of_debt_to_gdp_max_baseline_breach(chart_internal_chart_data_fiscal_space_pv_debt_gdp_moderate_space=self.chart_internal_chart_data_fiscal_space_pv_debt_gdp_moderate_space, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_fiscal_space_pv_of_debt_to_exports_max_baseline_breach(self) -> int | str:
-        return internals.chart_fiscal_space_pv_of_debt_to_exports_max_baseline_breach(chart_internal_chart_data_fiscal_space_pv_debt_exports_moderate_space=self.chart_internal_chart_data_fiscal_space_pv_debt_exports_moderate_space)
+        return internals.chart_fiscal_space_pv_of_debt_to_exports_max_baseline_breach(chart_internal_chart_data_fiscal_space_pv_debt_exports_moderate_space=self.chart_internal_chart_data_fiscal_space_pv_debt_exports_moderate_space, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_fiscal_space_debt_service_to_exports_max_baseline_breach(self) -> int | str:
-        return internals.chart_fiscal_space_debt_service_to_exports_max_baseline_breach(chart_internal_chart_data_fiscal_space_debt_service_exports_moderate_space=self.chart_internal_chart_data_fiscal_space_debt_service_exports_moderate_space)
+        return internals.chart_fiscal_space_debt_service_to_exports_max_baseline_breach(chart_internal_chart_data_fiscal_space_debt_service_exports_moderate_space=self.chart_internal_chart_data_fiscal_space_debt_service_exports_moderate_space, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_fiscal_space_debt_service_to_revenue_max_baseline_breach(self) -> int | str:
-        return internals.chart_fiscal_space_debt_service_to_revenue_max_baseline_breach(chart_internal_chart_data_fiscal_space_debt_service_revenue_moderate_space=self.chart_internal_chart_data_fiscal_space_debt_service_revenue_moderate_space)
+        return internals.chart_fiscal_space_debt_service_to_revenue_max_baseline_breach(chart_internal_chart_data_fiscal_space_debt_service_revenue_moderate_space=self.chart_internal_chart_data_fiscal_space_debt_service_revenue_moderate_space, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_projection_years(self) -> data.Series[int | str | None]:
-        return internals.chart_projection_years(macro_debt_main_assumptions_further_details=self.macro_debt_main_assumptions_further_details, macro_debt_further_details=self.macro_debt_further_details)
+        return internals.chart_projection_years(macro_debt_main_assumptions_further_details=self.macro_debt_main_assumptions_further_details, macro_debt_further_details=self.macro_debt_further_details, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path(self) -> data.Series[float | str | None]:
-        return internals.chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path(dsa_pub_pv_of_total_public_debt=self.dsa_pub_pv_of_total_public_debt)
+        return internals.chart_internal_chart_data_pv_of_debt_to_gdp_ratio_pv_debt_to_gdp_stress_path(dsa_pub_pv_of_total_public_debt=self.dsa_pub_pv_of_total_public_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue(self) -> data.Series[float | str | None]:
-        return internals.chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue(chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue=self.chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue)
+        return internals.chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue(chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue=self.chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue_stress_path(self) -> data.Series[float | str | None]:
-        return internals.chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue_stress_path(dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio=self.dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio)
+        return internals.chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue_stress_path(dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio=self.dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue_figure(self) -> data.Series[float | str | None]:
-        return internals.chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue_figure(dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio=self.dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio, baseline_pub_pv_of_public_debt_revenue_grants_ratio_c4_mkt=self.baseline_pub_pv_of_public_debt_revenue_grants_ratio_c4_mkt)
+        return internals.chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue_figure(dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio=self.dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio, baseline_pub_pv_of_public_debt_revenue_grants_ratio_c4_mkt=self.baseline_pub_pv_of_public_debt_revenue_grants_ratio_c4_mkt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue(self) -> data.Series[float | str | None]:
-        return internals.chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue(chart_output_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue=self.chart_output_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue)
+        return internals.chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue(chart_output_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue=self.chart_output_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue_stress_path(self) -> data.Series[float | str | None]:
-        return internals.chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue_stress_path(dsa_pub_debt_service_to_revenue_and_grants_ratio_in_percent=self.dsa_pub_debt_service_to_revenue_and_grants_ratio_in_percent)
+        return internals.chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue_stress_path(dsa_pub_debt_service_to_revenue_and_grants_ratio_in_percent=self.dsa_pub_debt_service_to_revenue_and_grants_ratio_in_percent, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue_figure(self) -> data.Series[float | str | None]:
-        return internals.chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue_figure(dsa_pub_debt_service_to_revenue_and_grants_ratio_in_percent=self.dsa_pub_debt_service_to_revenue_and_grants_ratio_in_percent, baseline_pub_debt_service_revenue_grants_ratio_c4_mkt_fin=self.baseline_pub_debt_service_revenue_grants_ratio_c4_mkt_fin)
+        return internals.chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue_figure(dsa_pub_debt_service_to_revenue_and_grants_ratio_in_percent=self.dsa_pub_debt_service_to_revenue_and_grants_ratio_in_percent, baseline_pub_debt_service_revenue_grants_ratio_c4_mkt_fin=self.baseline_pub_debt_service_revenue_grants_ratio_c4_mkt_fin, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_internal_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio_stress_path(self) -> data.Series[float | str | None]:
-        return internals.chart_internal_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio_stress_path(dsa_pub_debt_service_to_gdp_ratio_in_percent=self.dsa_pub_debt_service_to_gdp_ratio_in_percent)
+        return internals.chart_internal_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio_stress_path(dsa_pub_debt_service_to_gdp_ratio_in_percent=self.dsa_pub_debt_service_to_gdp_ratio_in_percent, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_internal_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio_figure(self) -> data.Series[float | str | None]:
-        return internals.chart_internal_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio_figure(dsa_pub_debt_service_to_gdp_ratio_in_percent=self.dsa_pub_debt_service_to_gdp_ratio_in_percent, baseline_pub_debt_service_gdp_ratio_c4_mkt_fin=self.baseline_pub_debt_service_gdp_ratio_c4_mkt_fin)
+        return internals.chart_internal_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio_figure(dsa_pub_debt_service_to_gdp_ratio_in_percent=self.dsa_pub_debt_service_to_gdp_ratio_in_percent, baseline_pub_debt_service_gdp_ratio_c4_mkt_fin=self.baseline_pub_debt_service_gdp_ratio_c4_mkt_fin, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_internal_chart_data_fiscal_space_pv_debt_gdp_moderate_space(self) -> data.Series[float | str | None]:
-        return internals.chart_internal_chart_data_fiscal_space_pv_debt_gdp_moderate_space(fiscal_space_moderate_assessment_flag=self.fiscal_space_moderate_assessment_flag, fiscal_space_stock_band=self.fiscal_space_stock_band, chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path=self.chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, chart_output_pv_debt_gdp_ratio=self.chart_output_pv_debt_gdp_ratio)
+        return internals.chart_internal_chart_data_fiscal_space_pv_debt_gdp_moderate_space(fiscal_space_moderate_assessment_flag=self.fiscal_space_moderate_assessment_flag, fiscal_space_stock_band=self.fiscal_space_stock_band, chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path=self.chart_internal_chart_data_pv_debt_to_gdp_pv_debt_gdp_ratio_stress_path, chart_output_pv_debt_gdp_ratio=self.chart_output_pv_debt_gdp_ratio, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_internal_chart_data_fiscal_space_pv_debt_exports_moderate_space(self) -> data.Series[float | str | None]:
-        return internals.chart_internal_chart_data_fiscal_space_pv_debt_exports_moderate_space(fiscal_space_moderate_assessment_flag=self.fiscal_space_moderate_assessment_flag, fiscal_space_stock_band=self.fiscal_space_stock_band, chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path=self.chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, chart_output_pv_debt_to_exports=self.chart_output_pv_debt_to_exports)
+        return internals.chart_internal_chart_data_fiscal_space_pv_debt_exports_moderate_space(fiscal_space_moderate_assessment_flag=self.fiscal_space_moderate_assessment_flag, fiscal_space_stock_band=self.fiscal_space_stock_band, chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path=self.chart_internal_chart_data_pv_debt_to_exports_pv_debt_to_exports_stress_path, chart_output_pv_debt_to_exports=self.chart_output_pv_debt_to_exports, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_internal_chart_data_fiscal_space_debt_service_exports_moderate_space(self) -> data.Series[float | str | None]:
-        return internals.chart_internal_chart_data_fiscal_space_debt_service_exports_moderate_space(fiscal_space_moderate_assessment_flag=self.fiscal_space_moderate_assessment_flag, fiscal_space_flow_band=self.fiscal_space_flow_band, chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path=self.chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, chart_output_debt_service_to_exports=self.chart_output_debt_service_to_exports)
+        return internals.chart_internal_chart_data_fiscal_space_debt_service_exports_moderate_space(fiscal_space_moderate_assessment_flag=self.fiscal_space_moderate_assessment_flag, fiscal_space_flow_band=self.fiscal_space_flow_band, chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path=self.chart_internal_chart_data_debt_service_to_exports_debt_service_to_exports_stress_path, chart_output_debt_service_to_exports=self.chart_output_debt_service_to_exports, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_internal_chart_data_fiscal_space_debt_service_revenue_moderate_space(self) -> data.Series[float | str | None]:
-        return internals.chart_internal_chart_data_fiscal_space_debt_service_revenue_moderate_space(fiscal_space_moderate_assessment_flag=self.fiscal_space_moderate_assessment_flag, fiscal_space_flow_band=self.fiscal_space_flow_band, chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path=self.chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, chart_output_debt_service_to_revenue=self.chart_output_debt_service_to_revenue)
+        return internals.chart_internal_chart_data_fiscal_space_debt_service_revenue_moderate_space(fiscal_space_moderate_assessment_flag=self.fiscal_space_moderate_assessment_flag, fiscal_space_flow_band=self.fiscal_space_flow_band, chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path=self.chart_internal_chart_data_debt_service_to_revenue_debt_service_to_revenue_stress_path, chart_output_debt_service_to_revenue=self.chart_output_debt_service_to_revenue, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_old_mlt_debt_service(self) -> data.Series[float | str | None]:
@@ -2245,55 +2755,55 @@ class Model(_BoundInputs):
 
     @cached_property
     def ext_debt_old_mlt_total(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_old_mlt_total(ext_debt_old_mlt_debt_service=self.ext_debt_old_mlt_debt_service)
+        return internals.ext_debt_old_mlt_total(ext_debt_old_mlt_debt_service=self.ext_debt_old_mlt_debt_service, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_old_mlt_principal(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_old_mlt_principal(input3_input_3_old_debt_service_total_principal_payment=self.input3_input_3_old_debt_service_total_principal_payment)
+        return internals.ext_debt_old_mlt_principal(input3_input_3_old_debt_service_total_principal_payment=self.input3_input_3_old_debt_service_total_principal_payment, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_old_mlt_evolution(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_old_mlt_evolution(input3_input_3_external_debt_ppg_mlt_external_debt_outstanding=self.input3_input_3_external_debt_ppg_mlt_external_debt_outstanding, ext_debt_old_mlt_principal=self.ext_debt_old_mlt_principal)
+        return internals.ext_debt_old_mlt_evolution(input3_input_3_external_debt_ppg_mlt_external_debt_outstanding=self.input3_input_3_external_debt_ppg_mlt_external_debt_outstanding, ext_debt_old_mlt_principal=self.ext_debt_old_mlt_principal, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_locally_issued_service_non_residents(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_locally_issued_service_non_residents(input5_old_debt_interest_payment_on_old_debt_denominated_in_local_currency=self.input5_old_debt_interest_payment_on_old_debt_denominated_in_local_currency, input5_old_debt_interest_payment_on_old_debt_denominated_in_foreign_currency=self.input5_old_debt_interest_payment_on_old_debt_denominated_in_foreign_currency, input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency, input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency, ext_debt_definition_external_domestic=self.ext_debt_definition_external_domestic, ext_debt_exchange_rate_period_average=self.ext_debt_exchange_rate_period_average, lookup_afg=self.lookup_afg)
+        return internals.ext_debt_locally_issued_service_non_residents(input5_old_debt_interest_payment_on_old_debt_denominated_in_local_currency=self.input5_old_debt_interest_payment_on_old_debt_denominated_in_local_currency, input5_old_debt_interest_payment_on_old_debt_denominated_in_foreign_currency=self.input5_old_debt_interest_payment_on_old_debt_denominated_in_foreign_currency, input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency, input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency, ext_debt_definition_external_domestic=self.ext_debt_definition_external_domestic, ext_debt_exchange_rate_period_average=self.ext_debt_exchange_rate_period_average, lookup_afg=self.lookup_afg, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_locally_issued_service_residents(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_locally_issued_service_residents(input5_old_debt_interest_payment_on_old_debt_denominated_in_foreign_currency=self.input5_old_debt_interest_payment_on_old_debt_denominated_in_foreign_currency, input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency, ext_debt_definition_external_domestic=self.ext_debt_definition_external_domestic, ext_debt_exchange_rate_period_average=self.ext_debt_exchange_rate_period_average, lookup_afg=self.lookup_afg)
+        return internals.ext_debt_locally_issued_service_residents(input5_old_debt_interest_payment_on_old_debt_denominated_in_foreign_currency=self.input5_old_debt_interest_payment_on_old_debt_denominated_in_foreign_currency, input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency, ext_debt_definition_external_domestic=self.ext_debt_definition_external_domestic, ext_debt_exchange_rate_period_average=self.ext_debt_exchange_rate_period_average, lookup_afg=self.lookup_afg, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_locally_issued_service_total(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_locally_issued_service_total(ext_debt_locally_issued_service_non_residents=self.ext_debt_locally_issued_service_non_residents, ext_debt_locally_issued_service_residents=self.ext_debt_locally_issued_service_residents)
+        return internals.ext_debt_locally_issued_service_total(ext_debt_locally_issued_service_non_residents=self.ext_debt_locally_issued_service_non_residents, ext_debt_locally_issued_service_residents=self.ext_debt_locally_issued_service_residents, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_locally_issued_principal(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_locally_issued_principal(input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency, input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency, ext_debt_definition_external_domestic=self.ext_debt_definition_external_domestic, ext_debt_exchange_rate_period_average=self.ext_debt_exchange_rate_period_average, lookup_afg=self.lookup_afg)
+        return internals.ext_debt_locally_issued_principal(input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_local_currency, input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency=self.input5_old_debt_principal_payments_on_old_debt_denominated_in_foreign_currency, ext_debt_definition_external_domestic=self.ext_debt_definition_external_domestic, ext_debt_exchange_rate_period_average=self.ext_debt_exchange_rate_period_average, lookup_afg=self.lookup_afg, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_locally_issued_evolution(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_locally_issued_evolution(input5_old_debt_outstanding_from_old_debt_in_local_currency=self.input5_old_debt_outstanding_from_old_debt_in_local_currency, input5_old_debt_outstanding_from_old_debt_in_foreign_currency=self.input5_old_debt_outstanding_from_old_debt_in_foreign_currency, ext_debt_definition_external_domestic=self.ext_debt_definition_external_domestic, ext_debt_exchange_rate_eop=self.ext_debt_exchange_rate_eop, lookup_afg=self.lookup_afg)
+        return internals.ext_debt_locally_issued_evolution(input5_old_debt_outstanding_from_old_debt_in_local_currency=self.input5_old_debt_outstanding_from_old_debt_in_local_currency, input5_old_debt_outstanding_from_old_debt_in_foreign_currency=self.input5_old_debt_outstanding_from_old_debt_in_foreign_currency, ext_debt_definition_external_domestic=self.ext_debt_definition_external_domestic, ext_debt_exchange_rate_eop=self.ext_debt_exchange_rate_eop, lookup_afg=self.lookup_afg, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def ext_debt_total_including_locally_issued(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_total_including_locally_issued(ext_debt_old_mlt_total=self.ext_debt_old_mlt_total, ext_debt_locally_issued_service_total=self.ext_debt_locally_issued_service_total)
+        return internals.ext_debt_total_including_locally_issued(ext_debt_old_mlt_total=self.ext_debt_old_mlt_total, ext_debt_locally_issued_service_total=self.ext_debt_locally_issued_service_total, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_total_principal(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_total_principal(ext_debt_old_mlt_principal=self.ext_debt_old_mlt_principal, ext_debt_locally_issued_principal=self.ext_debt_locally_issued_principal)
+        return internals.ext_debt_total_principal(ext_debt_old_mlt_principal=self.ext_debt_old_mlt_principal, ext_debt_locally_issued_principal=self.ext_debt_locally_issued_principal, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_total_interest(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_total_interest(ext_debt_total_including_locally_issued=self.ext_debt_total_including_locally_issued, ext_debt_total_principal=self.ext_debt_total_principal)
+        return internals.ext_debt_total_interest(ext_debt_total_including_locally_issued=self.ext_debt_total_including_locally_issued, ext_debt_total_principal=self.ext_debt_total_principal, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_stock_of_outstanding_arrears(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_stock_of_outstanding_arrears(input3_input_3_external_debt_ppg_external_arrears=self.input3_input_3_external_debt_ppg_external_arrears)
+        return internals.ext_debt_stock_of_outstanding_arrears(input3_input_3_external_debt_ppg_external_arrears=self.input3_input_3_external_debt_ppg_external_arrears, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def _scan_ext_debt_old_mlt_stock_evolution(self) -> internals.ScanExtDebtOldMltStockEvolutionResult:
-        return internals.scan_ext_debt_old_mlt_stock_evolution(input3_ppg_external_debt_stock=data.INPUT3_PPG_EXTERNAL_DEBT_STOCK, input3_input_3_external_debt_ppg_mlt_external_debt_outstanding=self.input3_input_3_external_debt_ppg_mlt_external_debt_outstanding, ext_debt_old_mlt_principal=self.ext_debt_old_mlt_principal, ext_debt_locally_issued_evolution=self.ext_debt_locally_issued_evolution, ext_debt_stock_of_outstanding_arrears=self.ext_debt_stock_of_outstanding_arrears, ext_debt_nominal_new_mlt_total=self.ext_debt_nominal_new_mlt_total, in3_macro_transition_formula_these_o_w_medium_long_term=self.in3_macro_transition_formula_these_o_w_medium_long_term, input3_local_currency_external_debt=self.input3_local_currency_external_debt)
+        return internals.scan_ext_debt_old_mlt_stock_evolution(input3_ppg_external_debt_stock=data.INPUT3_PPG_EXTERNAL_DEBT_STOCK, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_input_3_external_debt_ppg_mlt_external_debt_outstanding=self.input3_input_3_external_debt_ppg_mlt_external_debt_outstanding, input3_old_debt_service=self.input3_old_debt_service, ext_debt_old_mlt_principal=self.ext_debt_old_mlt_principal, ext_debt_locally_issued_evolution=self.ext_debt_locally_issued_evolution, ext_debt_stock_of_outstanding_arrears=self.ext_debt_stock_of_outstanding_arrears, ext_debt_nominal_new_mlt_total=self.ext_debt_nominal_new_mlt_total, in3_macro_transition_formula_these_o_w_medium_long_term=self.in3_macro_transition_formula_these_o_w_medium_long_term, input3_local_currency_external_debt=self.input3_local_currency_external_debt)
 
     @cached_property
     def ext_debt_old_mlt_stock_evolution(self) -> data.Series[float | str | None]:
@@ -2305,23 +2815,23 @@ class Model(_BoundInputs):
 
     @cached_property
     def ext_debt_new_disbursements_external(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_new_disbursements_external(input4_disbursements=self.input4_disbursements, input4_disbursements_internal=self.input4_disbursements_internal)
+        return internals.ext_debt_new_disbursements_external(input4_disbursements=self.input4_disbursements, input4_disbursements_internal=self.input4_disbursements_internal, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_new_disbursements_external_total(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_new_disbursements_external_total(ext_debt_new_disbursements_external=self.ext_debt_new_disbursements_external, ext_debt_new_disbursements_non_residents=self.ext_debt_new_disbursements_non_residents, ext_debt_new_disbursements_residents=self.ext_debt_new_disbursements_residents)
+        return internals.ext_debt_new_disbursements_external_total(ext_debt_new_disbursements_external=self.ext_debt_new_disbursements_external, ext_debt_new_disbursements_non_residents=self.ext_debt_new_disbursements_non_residents, ext_debt_new_disbursements_residents=self.ext_debt_new_disbursements_residents, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_new_disbursements_public_total(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_new_disbursements_public_total(input5_disbursements_total_public_new_domestic_disbursements_residency_based=self.input5_disbursements_total_public_new_domestic_disbursements_residency_based, ext_debt_new_disbursements_external_total=self.ext_debt_new_disbursements_external_total, ext_debt_st_total=self.ext_debt_st_total, ext_debt_exchange_rate_period_average=self.ext_debt_exchange_rate_period_average)
+        return internals.ext_debt_new_disbursements_public_total(input5_disbursements_total_public_new_domestic_disbursements_residency_based=self.input5_disbursements_total_public_new_domestic_disbursements_residency_based, ext_debt_new_disbursements_external_total=self.ext_debt_new_disbursements_external_total, ext_debt_st_total=self.ext_debt_st_total, ext_debt_exchange_rate_period_average=self.ext_debt_exchange_rate_period_average, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_marginal_share_external_ppg_mlt(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_marginal_share_external_ppg_mlt(ext_debt_new_disbursements_external_total=self.ext_debt_new_disbursements_external_total, ext_debt_new_disbursements_public_total=self.ext_debt_new_disbursements_public_total)
+        return internals.ext_debt_marginal_share_external_ppg_mlt(ext_debt_new_disbursements_external_total=self.ext_debt_new_disbursements_external_total, ext_debt_new_disbursements_public_total=self.ext_debt_new_disbursements_public_total, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_marginal_share_external_ppg_mlt_average(self) -> float | str:
-        return internals.ext_debt_marginal_share_external_ppg_mlt_average(ext_debt_marginal_share_external_ppg_mlt=self.ext_debt_marginal_share_external_ppg_mlt)
+        return internals.ext_debt_marginal_share_external_ppg_mlt_average(ext_debt_marginal_share_external_ppg_mlt=self.ext_debt_marginal_share_external_ppg_mlt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_marginal_share_external_ppg_mlt_residual_financing(self) -> float | str:
@@ -2329,11 +2839,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def ext_debt_marginal_share_domestic_mlt(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_marginal_share_domestic_mlt(input5_disbursements_public_domestic_mlt_disbursements_residency_based=self.input5_disbursements_public_domestic_mlt_disbursements_residency_based, ext_debt_new_disbursements_public_total=self.ext_debt_new_disbursements_public_total, ext_debt_exchange_rate_period_average=self.ext_debt_exchange_rate_period_average)
+        return internals.ext_debt_marginal_share_domestic_mlt(input5_disbursements_public_domestic_mlt_disbursements_residency_based=self.input5_disbursements_public_domestic_mlt_disbursements_residency_based, ext_debt_new_disbursements_public_total=self.ext_debt_new_disbursements_public_total, ext_debt_exchange_rate_period_average=self.ext_debt_exchange_rate_period_average, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_marginal_share_domestic_mlt_average(self) -> float | str:
-        return internals.ext_debt_marginal_share_domestic_mlt_average(ext_debt_marginal_share_domestic_mlt=self.ext_debt_marginal_share_domestic_mlt)
+        return internals.ext_debt_marginal_share_domestic_mlt_average(ext_debt_marginal_share_domestic_mlt=self.ext_debt_marginal_share_domestic_mlt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_marginal_share_domestic_mlt_residual_financing(self) -> float | str:
@@ -2341,11 +2851,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def ext_debt_marginal_share_domestic_st(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_marginal_share_domestic_st(input5_disbursements_public_domestic_st_disbursements_residency_based=self.input5_disbursements_public_domestic_st_disbursements_residency_based, ext_debt_new_disbursements_public_total=self.ext_debt_new_disbursements_public_total, ext_debt_exchange_rate_period_average=self.ext_debt_exchange_rate_period_average)
+        return internals.ext_debt_marginal_share_domestic_st(input5_disbursements_public_domestic_st_disbursements_residency_based=self.input5_disbursements_public_domestic_st_disbursements_residency_based, ext_debt_new_disbursements_public_total=self.ext_debt_new_disbursements_public_total, ext_debt_exchange_rate_period_average=self.ext_debt_exchange_rate_period_average, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_marginal_share_domestic_st_average(self) -> float | str:
-        return internals.ext_debt_marginal_share_domestic_st_average(ext_debt_marginal_share_domestic_st=self.ext_debt_marginal_share_domestic_st)
+        return internals.ext_debt_marginal_share_domestic_st_average(ext_debt_marginal_share_domestic_st=self.ext_debt_marginal_share_domestic_st, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_marginal_share_domestic_st_residual_financing(self) -> float | str:
@@ -2353,27 +2863,27 @@ class Model(_BoundInputs):
 
     @cached_property
     def ext_debt_residual_interest_rate(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_residual_interest_rate(input4_interest_rate=self.input4_interest_rate, input4_terms_ida_regular=self.input4_terms_ida_regular, input4_terms_ida_and_lc=self.input4_terms_ida_and_lc, input4_terms_bonds_fx_non_residents=self.input4_terms_bonds_fx_non_residents, input4_terms_bonds_fx_residents=self.input4_terms_bonds_fx_residents, ext_debt_new_disbursements_external=self.ext_debt_new_disbursements_external, ext_debt_new_disbursements_non_residents=self.ext_debt_new_disbursements_non_residents, ext_debt_new_disbursements_residents=self.ext_debt_new_disbursements_residents, ext_debt_new_disbursements_external_total=self.ext_debt_new_disbursements_external_total)
+        return internals.ext_debt_residual_interest_rate(input4_interest_rate=self.input4_interest_rate, input4_terms_ida_regular=self.input4_terms_ida_regular, input4_terms_ida_and_lc=self.input4_terms_ida_and_lc, input4_terms_bonds_fx_non_residents=self.input4_terms_bonds_fx_non_residents, input4_terms_bonds_fx_residents=self.input4_terms_bonds_fx_residents, ext_debt_new_disbursements_external=self.ext_debt_new_disbursements_external, ext_debt_new_disbursements_non_residents=self.ext_debt_new_disbursements_non_residents, ext_debt_new_disbursements_residents=self.ext_debt_new_disbursements_residents, ext_debt_new_disbursements_external_total=self.ext_debt_new_disbursements_external_total, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_residual_interest_rate_summary(self) -> float | str:
-        return internals.ext_debt_residual_interest_rate_summary(ext_debt_residual_interest_rate=self.ext_debt_residual_interest_rate)
+        return internals.ext_debt_residual_interest_rate_summary(ext_debt_residual_interest_rate=self.ext_debt_residual_interest_rate, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_residual_grace_period(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_residual_grace_period(input4_grace_period=self.input4_grace_period, input4_terms_ida_regular=self.input4_terms_ida_regular, input4_terms_ida_and_lc=self.input4_terms_ida_and_lc, input4_terms_bonds_fx_non_residents=self.input4_terms_bonds_fx_non_residents, input4_terms_bonds_fx_residents=self.input4_terms_bonds_fx_residents, ext_debt_new_disbursements_external=self.ext_debt_new_disbursements_external, ext_debt_new_disbursements_non_residents=self.ext_debt_new_disbursements_non_residents, ext_debt_new_disbursements_residents=self.ext_debt_new_disbursements_residents, ext_debt_new_disbursements_external_total=self.ext_debt_new_disbursements_external_total)
+        return internals.ext_debt_residual_grace_period(input4_grace_period=self.input4_grace_period, input4_terms_ida_regular=self.input4_terms_ida_regular, input4_terms_ida_and_lc=self.input4_terms_ida_and_lc, input4_terms_bonds_fx_non_residents=self.input4_terms_bonds_fx_non_residents, input4_terms_bonds_fx_residents=self.input4_terms_bonds_fx_residents, ext_debt_new_disbursements_external=self.ext_debt_new_disbursements_external, ext_debt_new_disbursements_non_residents=self.ext_debt_new_disbursements_non_residents, ext_debt_new_disbursements_residents=self.ext_debt_new_disbursements_residents, ext_debt_new_disbursements_external_total=self.ext_debt_new_disbursements_external_total, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_residual_grace_period_summary(self) -> float | str:
-        return internals.ext_debt_residual_grace_period_summary(ext_debt_residual_grace_period=self.ext_debt_residual_grace_period)
+        return internals.ext_debt_residual_grace_period_summary(ext_debt_residual_grace_period=self.ext_debt_residual_grace_period, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_residual_maturity(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_residual_maturity(input4_loan_maturity=self.input4_loan_maturity, input4_terms_ida_regular=self.input4_terms_ida_regular, input4_terms_ida_and_lc=self.input4_terms_ida_and_lc, input4_terms_bonds_fx_non_residents=self.input4_terms_bonds_fx_non_residents, input4_terms_bonds_fx_residents=self.input4_terms_bonds_fx_residents, ext_debt_new_disbursements_external=self.ext_debt_new_disbursements_external, ext_debt_new_disbursements_non_residents=self.ext_debt_new_disbursements_non_residents, ext_debt_new_disbursements_residents=self.ext_debt_new_disbursements_residents, ext_debt_new_disbursements_external_total=self.ext_debt_new_disbursements_external_total)
+        return internals.ext_debt_residual_maturity(input4_loan_maturity=self.input4_loan_maturity, input4_terms_ida_regular=self.input4_terms_ida_regular, input4_terms_ida_and_lc=self.input4_terms_ida_and_lc, input4_terms_bonds_fx_non_residents=self.input4_terms_bonds_fx_non_residents, input4_terms_bonds_fx_residents=self.input4_terms_bonds_fx_residents, ext_debt_new_disbursements_external=self.ext_debt_new_disbursements_external, ext_debt_new_disbursements_non_residents=self.ext_debt_new_disbursements_non_residents, ext_debt_new_disbursements_residents=self.ext_debt_new_disbursements_residents, ext_debt_new_disbursements_external_total=self.ext_debt_new_disbursements_external_total, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_residual_maturity_summary(self) -> float | str:
-        return internals.ext_debt_residual_maturity_summary(ext_debt_residual_maturity=self.ext_debt_residual_maturity)
+        return internals.ext_debt_residual_maturity_summary(ext_debt_residual_maturity=self.ext_debt_residual_maturity, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_residual_grace_period_rounded_summary(self) -> float | str:
@@ -2401,111 +2911,111 @@ class Model(_BoundInputs):
 
     @cached_property
     def ext_debt_new_interest_external(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_new_interest_external(pv_base_output_interest=self.pv_base_output_interest)
+        return internals.ext_debt_new_interest_external(pv_base_output_interest=self.pv_base_output_interest, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_new_amortization_external(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_new_amortization_external(pv_base_output_amortization=self.pv_base_output_amortization)
+        return internals.ext_debt_new_amortization_external(pv_base_output_amortization=self.pv_base_output_amortization, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_pv_old_mlt_total(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_pv_old_mlt_total(ext_debt_pv_old_mlt_by_instrument=self.ext_debt_pv_old_mlt_by_instrument, ext_debt_pv_old_locally_issued=self.ext_debt_pv_old_locally_issued)
+        return internals.ext_debt_pv_old_mlt_total(ext_debt_pv_old_mlt_by_instrument=self.ext_debt_pv_old_mlt_by_instrument, ext_debt_pv_old_locally_issued=self.ext_debt_pv_old_locally_issued, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_pv_old_mlt_by_instrument(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_pv_old_mlt_by_instrument(input4_discount_rate=self.input4_discount_rate, ext_debt_old_mlt_debt_service=self.ext_debt_old_mlt_debt_service)
+        return internals.ext_debt_pv_old_mlt_by_instrument(input4_discount_rate=self.input4_discount_rate, ext_debt_old_mlt_debt_service=self.ext_debt_old_mlt_debt_service, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def ext_debt_pv_old_locally_issued(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_pv_old_locally_issued(ext_debt_locally_issued_evolution=self.ext_debt_locally_issued_evolution)
+        return internals.ext_debt_pv_old_locally_issued(ext_debt_locally_issued_evolution=self.ext_debt_locally_issued_evolution, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_pv_existing_arrears(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_pv_existing_arrears(ext_debt_stock_of_outstanding_arrears=self.ext_debt_stock_of_outstanding_arrears)
+        return internals.ext_debt_pv_existing_arrears(ext_debt_stock_of_outstanding_arrears=self.ext_debt_stock_of_outstanding_arrears, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_pv_new_mlt_total(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_pv_new_mlt_total(ext_debt_pv_new_mlt_external=self.ext_debt_pv_new_mlt_external, ext_debt_pv_new_mlt_non_residents=self.ext_debt_pv_new_mlt_non_residents, ext_debt_pv_new_mlt_residents=self.ext_debt_pv_new_mlt_residents)
+        return internals.ext_debt_pv_new_mlt_total(ext_debt_pv_new_mlt_external=self.ext_debt_pv_new_mlt_external, ext_debt_pv_new_mlt_non_residents=self.ext_debt_pv_new_mlt_non_residents, ext_debt_pv_new_mlt_residents=self.ext_debt_pv_new_mlt_residents, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_pv_new_mlt_external(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_pv_new_mlt_external(pv_base_output_pv_of_debt=self.pv_base_output_pv_of_debt)
+        return internals.ext_debt_pv_new_mlt_external(pv_base_output_pv_of_debt=self.pv_base_output_pv_of_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_pv_new_mlt_non_residents(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_pv_new_mlt_non_residents(pv_base_output_pv_of_debt_fx=self.pv_base_output_pv_of_debt_fx, pv_lc_summary_pv_of_debt_in_usd=self.pv_lc_summary_pv_of_debt_in_usd)
+        return internals.ext_debt_pv_new_mlt_non_residents(pv_base_output_pv_of_debt_fx=self.pv_base_output_pv_of_debt_fx, pv_lc_summary_pv_of_debt_in_usd=self.pv_lc_summary_pv_of_debt_in_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_pv_new_mlt_residents(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_pv_new_mlt_residents(pv_base_output_pv_of_debt_fx=self.pv_base_output_pv_of_debt_fx)
+        return internals.ext_debt_pv_new_mlt_residents(pv_base_output_pv_of_debt_fx=self.pv_base_output_pv_of_debt_fx, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_nominal_new_mlt_total(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_nominal_new_mlt_total(ext_debt_nominal_new_mlt_external=self.ext_debt_nominal_new_mlt_external, ext_debt_nominal_new_mlt_non_residents=self.ext_debt_nominal_new_mlt_non_residents, ext_debt_nominal_new_mlt_residents=self.ext_debt_nominal_new_mlt_residents)
+        return internals.ext_debt_nominal_new_mlt_total(ext_debt_nominal_new_mlt_external=self.ext_debt_nominal_new_mlt_external, ext_debt_nominal_new_mlt_non_residents=self.ext_debt_nominal_new_mlt_non_residents, ext_debt_nominal_new_mlt_residents=self.ext_debt_nominal_new_mlt_residents, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_nominal_new_mlt_external(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_nominal_new_mlt_external(pv_base_output_stock_of_new_forex_debt_in_usd=self.pv_base_output_stock_of_new_forex_debt_in_usd)
+        return internals.ext_debt_nominal_new_mlt_external(pv_base_output_stock_of_new_forex_debt_in_usd=self.pv_base_output_stock_of_new_forex_debt_in_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_nominal_new_mlt_non_residents(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_nominal_new_mlt_non_residents(pv_base_output_stock_of_new_forex_debt_in_usd_fx=self.pv_base_output_stock_of_new_forex_debt_in_usd_fx, pv_lc_summary_stock_of_debt_in_usd=self.pv_lc_summary_stock_of_debt_in_usd)
+        return internals.ext_debt_nominal_new_mlt_non_residents(pv_base_output_stock_of_new_forex_debt_in_usd_fx=self.pv_base_output_stock_of_new_forex_debt_in_usd_fx, pv_lc_summary_stock_of_debt_in_usd=self.pv_lc_summary_stock_of_debt_in_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_nominal_new_mlt_residents(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_nominal_new_mlt_residents(pv_base_output_stock_of_new_forex_debt_in_usd_fx=self.pv_base_output_stock_of_new_forex_debt_in_usd_fx)
+        return internals.ext_debt_nominal_new_mlt_residents(pv_base_output_stock_of_new_forex_debt_in_usd_fx=self.pv_base_output_stock_of_new_forex_debt_in_usd_fx, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_st_external_nominal(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_st_external_nominal(input3_input_3_external_debt_ppg_st_external_debt_outstanding=self.input3_input_3_external_debt_ppg_st_external_debt_outstanding)
+        return internals.ext_debt_st_external_nominal(input3_input_3_external_debt_ppg_st_external_debt_outstanding=self.input3_input_3_external_debt_ppg_st_external_debt_outstanding, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def ext_debt_st_external_interest(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_st_external_interest(input4_interest_rate=self.input4_interest_rate, ext_debt_st_external_nominal=self.ext_debt_st_external_nominal)
+        return internals.ext_debt_st_external_interest(input4_interest_rate=self.input4_interest_rate, ext_debt_st_external_nominal=self.ext_debt_st_external_nominal, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_st_locally_issued_nominal(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_st_locally_issued_nominal(input5_new_debt_principal_payments_on_new_debt_denominated_in_foreign_currency_ow_short_term=self.input5_new_debt_principal_payments_on_new_debt_denominated_in_foreign_currency_ow_short_term, input5_new_debt_principal_payments_on_new_debt_denominated_in_local_currency_ow_short_term=self.input5_new_debt_principal_payments_on_new_debt_denominated_in_local_currency_ow_short_term, ext_debt_definition_external_domestic=self.ext_debt_definition_external_domestic, ext_debt_exchange_rate_eop=self.ext_debt_exchange_rate_eop, lookup_afg=self.lookup_afg)
+        return internals.ext_debt_st_locally_issued_nominal(input5_new_debt_principal_payments_on_new_debt_denominated_in_foreign_currency_ow_short_term=self.input5_new_debt_principal_payments_on_new_debt_denominated_in_foreign_currency_ow_short_term, input5_new_debt_principal_payments_on_new_debt_denominated_in_local_currency_ow_short_term=self.input5_new_debt_principal_payments_on_new_debt_denominated_in_local_currency_ow_short_term, ext_debt_definition_external_domestic=self.ext_debt_definition_external_domestic, ext_debt_exchange_rate_eop=self.ext_debt_exchange_rate_eop, lookup_afg=self.lookup_afg, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_st_total(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_st_total(ext_debt_st_external_nominal=self.ext_debt_st_external_nominal, ext_debt_st_locally_issued_nominal=self.ext_debt_st_locally_issued_nominal)
+        return internals.ext_debt_st_total(ext_debt_st_external_nominal=self.ext_debt_st_external_nominal, ext_debt_st_locally_issued_nominal=self.ext_debt_st_locally_issued_nominal, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_pv_net_use_of_sdrs(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_pv_net_use_of_sdrs(in8_sdr_pv_of_interest_payments_in_million_of_usd=self.in8_sdr_pv_of_interest_payments_in_million_of_usd)
+        return internals.ext_debt_pv_net_use_of_sdrs(in8_sdr_pv_of_interest_payments_in_million_of_usd=self.in8_sdr_pv_of_interest_payments_in_million_of_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_total_pv_of_debt(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_total_pv_of_debt(ext_debt_pv_old_mlt_total=self.ext_debt_pv_old_mlt_total, ext_debt_pv_existing_arrears=self.ext_debt_pv_existing_arrears, ext_debt_pv_new_mlt_total=self.ext_debt_pv_new_mlt_total, ext_debt_st_total=self.ext_debt_st_total, ext_debt_pv_net_use_of_sdrs=self.ext_debt_pv_net_use_of_sdrs)
+        return internals.ext_debt_total_pv_of_debt(ext_debt_pv_old_mlt_total=self.ext_debt_pv_old_mlt_total, ext_debt_pv_existing_arrears=self.ext_debt_pv_existing_arrears, ext_debt_pv_new_mlt_total=self.ext_debt_pv_new_mlt_total, ext_debt_st_total=self.ext_debt_st_total, ext_debt_pv_net_use_of_sdrs=self.ext_debt_pv_net_use_of_sdrs, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_total_public_debt_service(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_total_public_debt_service(ext_debt_public_debt_service_principal=self.ext_debt_public_debt_service_principal, ext_debt_public_debt_service_interest=self.ext_debt_public_debt_service_interest)
+        return internals.ext_debt_total_public_debt_service(ext_debt_public_debt_service_principal=self.ext_debt_public_debt_service_principal, ext_debt_public_debt_service_interest=self.ext_debt_public_debt_service_interest, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_public_debt_service_principal(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_public_debt_service_principal(ext_debt_total_principal=self.ext_debt_total_principal, ext_debt_new_amortization_total=self.ext_debt_new_amortization_total, ext_debt_st_total_principal=self.ext_debt_st_total_principal)
+        return internals.ext_debt_public_debt_service_principal(ext_debt_total_principal=self.ext_debt_total_principal, ext_debt_new_amortization_total=self.ext_debt_new_amortization_total, ext_debt_st_total_principal=self.ext_debt_st_total_principal, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_public_debt_service_interest(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_public_debt_service_interest(ext_debt_total_interest=self.ext_debt_total_interest, ext_debt_new_interest_total=self.ext_debt_new_interest_total, ext_debt_st_total_interest=self.ext_debt_st_total_interest, in8_sdr_interest_payments_in_million_of_usd=self.in8_sdr_interest_payments_in_million_of_usd)
+        return internals.ext_debt_public_debt_service_interest(ext_debt_total_interest=self.ext_debt_total_interest, ext_debt_new_interest_total=self.ext_debt_new_interest_total, ext_debt_st_total_interest=self.ext_debt_st_total_interest, in8_sdr_interest_payments_in_million_of_usd=self.in8_sdr_interest_payments_in_million_of_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_external_debt_outstanding(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_external_debt_outstanding(ext_debt_stock_of_outstanding_arrears=self.ext_debt_stock_of_outstanding_arrears, ext_debt_old_mlt_stock_evolution=self.ext_debt_old_mlt_stock_evolution, ext_debt_nominal_new_mlt_total=self.ext_debt_nominal_new_mlt_total)
+        return internals.ext_debt_external_debt_outstanding(ext_debt_stock_of_outstanding_arrears=self.ext_debt_stock_of_outstanding_arrears, ext_debt_old_mlt_stock_evolution=self.ext_debt_old_mlt_stock_evolution, ext_debt_nominal_new_mlt_total=self.ext_debt_nominal_new_mlt_total, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_fx_denominated_debt_outstanding(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_fx_denominated_debt_outstanding(input5_old_debt_outstanding_from_old_debt_in_foreign_currency_usd=self.input5_old_debt_outstanding_from_old_debt_in_foreign_currency_usd, input5_new_debt_debt_stock_on_new_debt_denominated_in_foreign_currency=self.input5_new_debt_debt_stock_on_new_debt_denominated_in_foreign_currency, ext_debt_old_mlt_evolution=self.ext_debt_old_mlt_evolution, ext_debt_stock_of_outstanding_arrears=self.ext_debt_stock_of_outstanding_arrears, ext_debt_definition_external_domestic=self.ext_debt_definition_external_domestic, ext_debt_nominal_new_mlt_external=self.ext_debt_nominal_new_mlt_external, ext_debt_nominal_new_mlt_non_residents=self.ext_debt_nominal_new_mlt_non_residents, ext_debt_st_external_nominal=self.ext_debt_st_external_nominal, ext_debt_external_debt_outstanding=self.ext_debt_external_debt_outstanding, ext_debt_exchange_rate_eop=self.ext_debt_exchange_rate_eop, lookup_afg=self.lookup_afg)
+        return internals.ext_debt_fx_denominated_debt_outstanding(input5_old_debt_outstanding_from_old_debt_in_foreign_currency_usd=self.input5_old_debt_outstanding_from_old_debt_in_foreign_currency_usd, input5_new_debt_debt_stock_on_new_debt_denominated_in_foreign_currency=self.input5_new_debt_debt_stock_on_new_debt_denominated_in_foreign_currency, ext_debt_old_mlt_evolution=self.ext_debt_old_mlt_evolution, ext_debt_stock_of_outstanding_arrears=self.ext_debt_stock_of_outstanding_arrears, ext_debt_definition_external_domestic=self.ext_debt_definition_external_domestic, ext_debt_nominal_new_mlt_external=self.ext_debt_nominal_new_mlt_external, ext_debt_nominal_new_mlt_non_residents=self.ext_debt_nominal_new_mlt_non_residents, ext_debt_st_external_nominal=self.ext_debt_st_external_nominal, ext_debt_external_debt_outstanding=self.ext_debt_external_debt_outstanding, ext_debt_exchange_rate_eop=self.ext_debt_exchange_rate_eop, lookup_afg=self.lookup_afg, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ext_debt_exchange_rate_eop(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_exchange_rate_eop(macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar)
+        return internals.ext_debt_exchange_rate_eop(macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def ext_debt_exchange_rate_period_average(self) -> data.Series[float | str | None]:
-        return internals.ext_debt_exchange_rate_period_average(macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc)
+        return internals.ext_debt_exchange_rate_period_average(macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def imported_country_code(self) -> int | str:
@@ -2513,23 +3023,23 @@ class Model(_BoundInputs):
 
     @cached_property
     def imported_classification_years(self) -> data.Series[int | str | None]:
-        return internals.imported_classification_years(classification_cpia_reported_years=data.CLASSIFICATION_CPIA_REPORTED_YEARS)
+        return internals.imported_classification_years(classification_cpia_reported_years=data.CLASSIFICATION_CPIA_REPORTED_YEARS, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def imported_classification_values(self) -> data.Series[float | str | None]:
-        return internals.imported_classification_values(classification_cpia_reported_codes=data.CLASSIFICATION_CPIA_REPORTED_CODES, classification_cpia_reported_years=data.CLASSIFICATION_CPIA_REPORTED_YEARS, classification_cpia_reported_values=data.CLASSIFICATION_CPIA_REPORTED_VALUES, classification_growth_reported_codes=data.CLASSIFICATION_GROWTH_REPORTED_CODES, classification_growth_reported_years=data.CLASSIFICATION_GROWTH_REPORTED_YEARS, classification_growth_reported_values=data.CLASSIFICATION_GROWTH_REPORTED_VALUES, classification_growth_actual_codes=data.CLASSIFICATION_GROWTH_ACTUAL_CODES, classification_growth_actual_years=data.CLASSIFICATION_GROWTH_ACTUAL_YEARS, classification_growth_actual_values=data.CLASSIFICATION_GROWTH_ACTUAL_VALUES, classification_reserves_reported_codes=data.CLASSIFICATION_RESERVES_REPORTED_CODES, classification_reserves_reported_years=data.CLASSIFICATION_RESERVES_REPORTED_YEARS, classification_reserves_reported_values=data.CLASSIFICATION_RESERVES_REPORTED_VALUES, classification_reserves_actual_codes=data.CLASSIFICATION_RESERVES_ACTUAL_CODES, classification_reserves_actual_years=data.CLASSIFICATION_RESERVES_ACTUAL_YEARS, classification_reserves_actual_values=data.CLASSIFICATION_RESERVES_ACTUAL_VALUES, classification_remittances_reported_codes=data.CLASSIFICATION_REMITTANCES_REPORTED_CODES, classification_remittances_reported_years=data.CLASSIFICATION_REMITTANCES_REPORTED_YEARS, classification_remittances_reported_values=data.CLASSIFICATION_REMITTANCES_REPORTED_VALUES, classification_remittances_actual_codes=data.CLASSIFICATION_REMITTANCES_ACTUAL_CODES, classification_remittances_actual_years=data.CLASSIFICATION_REMITTANCES_ACTUAL_YEARS, classification_remittances_actual_values=data.CLASSIFICATION_REMITTANCES_ACTUAL_VALUES, classification_world_growth_reported_codes=data.CLASSIFICATION_WORLD_GROWTH_REPORTED_CODES, classification_world_growth_reported_years=data.CLASSIFICATION_WORLD_GROWTH_REPORTED_YEARS, classification_world_growth_reported_values=data.CLASSIFICATION_WORLD_GROWTH_REPORTED_VALUES, classification_lookup_year_id_note=data.CLASSIFICATION_LOOKUP_YEAR_ID_NOTE, classification_classification_prior_vintage_header=data.CLASSIFICATION_CLASSIFICATION_PRIOR_VINTAGE_HEADER, classification_classification_two_vintages_ago_header=data.CLASSIFICATION_CLASSIFICATION_TWO_VINTAGES_AGO_HEADER, classification_ci_score_prior_vintage_header=data.CLASSIFICATION_CI_SCORE_PRIOR_VINTAGE_HEADER, classification_ci_score_two_vintages_ago_column_header=data.CLASSIFICATION_CI_SCORE_TWO_VINTAGES_AGO_COLUMN_HEADER, classification_column_headers=data.CLASSIFICATION_COLUMN_HEADERS, classification_ifs_code=data.CLASSIFICATION_IFS_CODE, classification_iso_alpha3=data.CLASSIFICATION_ISO_ALPHA3, classification_country_name=data.CLASSIFICATION_COUNTRY_NAME, classification_classification_final=data.CLASSIFICATION_CLASSIFICATION_FINAL, classification_classification_current_vintage=data.CLASSIFICATION_CLASSIFICATION_CURRENT_VINTAGE, classification_classification_previous_vintage=data.CLASSIFICATION_CLASSIFICATION_PREVIOUS_VINTAGE, classification_classification_final_previous=data.CLASSIFICATION_CLASSIFICATION_FINAL_PREVIOUS, classification_current_ci_score_current_vintage=data.CLASSIFICATION_CURRENT_CI_SCORE_CURRENT_VINTAGE, classification_current_ci_score_previous_vintage=data.CLASSIFICATION_CURRENT_CI_SCORE_PREVIOUS_VINTAGE, classification_current_ci_score_2_vintages_ago=data.CLASSIFICATION_CURRENT_CI_SCORE_2_VINTAGES_AGO, classification_current_cpia=data.CLASSIFICATION_CURRENT_CPIA, classification_current_growth=data.CLASSIFICATION_CURRENT_GROWTH, classification_current_reserves=data.CLASSIFICATION_CURRENT_RESERVES, classification_current_remittances=data.CLASSIFICATION_CURRENT_REMITTANCES, classification_current_world_growth=data.CLASSIFICATION_CURRENT_WORLD_GROWTH, classification_growth_memo_primary=data.CLASSIFICATION_GROWTH_MEMO_PRIMARY, classification_growth_memo_secondary=data.CLASSIFICATION_GROWTH_MEMO_SECONDARY, classification_reserves_memo=data.CLASSIFICATION_RESERVES_MEMO, classification_remittances_memo=data.CLASSIFICATION_REMITTANCES_MEMO, classification_ci_score_2018_oct_header=data.CLASSIFICATION_CI_SCORE_2018_OCT_HEADER, classification_ci_class_2018_oct_header=data.CLASSIFICATION_CI_CLASS_2018_OCT_HEADER, classification_ci_score_2018_oct_label=data.CLASSIFICATION_CI_SCORE_2018_OCT_LABEL, classification_ci_class_2018_oct_label=data.CLASSIFICATION_CI_CLASS_2018_OCT_LABEL, classification_ci_score_2018_oct=data.CLASSIFICATION_CI_SCORE_2018_OCT, classification_ci_class_2018_oct=data.CLASSIFICATION_CI_CLASS_2018_OCT, classification_ci_components_share_headers=data.CLASSIFICATION_CI_COMPONENTS_SHARE_HEADERS, classification_ci_components_share=data.CLASSIFICATION_CI_COMPONENTS_SHARE, classification_ci_components_contribution_headers=data.CLASSIFICATION_CI_COMPONENTS_CONTRIBUTION_HEADERS, classification_ci_components_contribution=data.CLASSIFICATION_CI_COMPONENTS_CONTRIBUTION, data_rem_headers=data.DATA_REM_HEADERS, data_rem_notes_header=data.DATA_REM_NOTES_HEADER, data_rem_metadata=data.DATA_REM_METADATA, data_gdpusd_headers=data.DATA_GDPUSD_HEADERS, data_gdpusd_country_code_note=data.DATA_GDPUSD_COUNTRY_CODE_NOTE, data_gdpusd_metadata=data.DATA_GDPUSD_METADATA, data_gdpusd_ifs_code=data.DATA_GDPUSD_IFS_CODE, imported_country_code=self.imported_country_code, imported_classification_years=self.imported_classification_years, imported_classification_ids=self.imported_classification_ids)
+        return internals.imported_classification_values(classification_cpia_reported_codes=data.CLASSIFICATION_CPIA_REPORTED_CODES, classification_cpia_reported_years=data.CLASSIFICATION_CPIA_REPORTED_YEARS, classification_cpia_reported_values=data.CLASSIFICATION_CPIA_REPORTED_VALUES, classification_growth_reported_codes=data.CLASSIFICATION_GROWTH_REPORTED_CODES, classification_growth_reported_years=data.CLASSIFICATION_GROWTH_REPORTED_YEARS, classification_growth_reported_values=data.CLASSIFICATION_GROWTH_REPORTED_VALUES, classification_growth_actual_codes=data.CLASSIFICATION_GROWTH_ACTUAL_CODES, classification_growth_actual_years=data.CLASSIFICATION_GROWTH_ACTUAL_YEARS, classification_growth_actual_values=data.CLASSIFICATION_GROWTH_ACTUAL_VALUES, classification_reserves_reported_codes=data.CLASSIFICATION_RESERVES_REPORTED_CODES, classification_reserves_reported_years=data.CLASSIFICATION_RESERVES_REPORTED_YEARS, classification_reserves_reported_values=data.CLASSIFICATION_RESERVES_REPORTED_VALUES, classification_reserves_actual_codes=data.CLASSIFICATION_RESERVES_ACTUAL_CODES, classification_reserves_actual_years=data.CLASSIFICATION_RESERVES_ACTUAL_YEARS, classification_reserves_actual_values=data.CLASSIFICATION_RESERVES_ACTUAL_VALUES, classification_remittances_reported_codes=data.CLASSIFICATION_REMITTANCES_REPORTED_CODES, classification_remittances_reported_years=data.CLASSIFICATION_REMITTANCES_REPORTED_YEARS, classification_remittances_reported_values=data.CLASSIFICATION_REMITTANCES_REPORTED_VALUES, classification_remittances_actual_codes=data.CLASSIFICATION_REMITTANCES_ACTUAL_CODES, classification_remittances_actual_years=data.CLASSIFICATION_REMITTANCES_ACTUAL_YEARS, classification_remittances_actual_values=data.CLASSIFICATION_REMITTANCES_ACTUAL_VALUES, classification_world_growth_reported_codes=data.CLASSIFICATION_WORLD_GROWTH_REPORTED_CODES, classification_world_growth_reported_years=data.CLASSIFICATION_WORLD_GROWTH_REPORTED_YEARS, classification_world_growth_reported_values=data.CLASSIFICATION_WORLD_GROWTH_REPORTED_VALUES, classification_lookup_year_id_note=data.CLASSIFICATION_LOOKUP_YEAR_ID_NOTE, classification_classification_prior_vintage_header=data.CLASSIFICATION_CLASSIFICATION_PRIOR_VINTAGE_HEADER, classification_classification_two_vintages_ago_header=data.CLASSIFICATION_CLASSIFICATION_TWO_VINTAGES_AGO_HEADER, classification_ci_score_prior_vintage_header=data.CLASSIFICATION_CI_SCORE_PRIOR_VINTAGE_HEADER, classification_ci_score_two_vintages_ago_column_header=data.CLASSIFICATION_CI_SCORE_TWO_VINTAGES_AGO_COLUMN_HEADER, classification_column_headers=data.CLASSIFICATION_COLUMN_HEADERS, classification_ifs_code=data.CLASSIFICATION_IFS_CODE, classification_iso_alpha3=data.CLASSIFICATION_ISO_ALPHA3, classification_country_name=data.CLASSIFICATION_COUNTRY_NAME, classification_classification_final=data.CLASSIFICATION_CLASSIFICATION_FINAL, classification_classification_current_vintage=data.CLASSIFICATION_CLASSIFICATION_CURRENT_VINTAGE, classification_classification_previous_vintage=data.CLASSIFICATION_CLASSIFICATION_PREVIOUS_VINTAGE, classification_classification_final_previous=data.CLASSIFICATION_CLASSIFICATION_FINAL_PREVIOUS, classification_current_ci_score_current_vintage=data.CLASSIFICATION_CURRENT_CI_SCORE_CURRENT_VINTAGE, classification_current_ci_score_previous_vintage=data.CLASSIFICATION_CURRENT_CI_SCORE_PREVIOUS_VINTAGE, classification_current_ci_score_2_vintages_ago=data.CLASSIFICATION_CURRENT_CI_SCORE_2_VINTAGES_AGO, classification_current_cpia=data.CLASSIFICATION_CURRENT_CPIA, classification_current_growth=data.CLASSIFICATION_CURRENT_GROWTH, classification_current_reserves=data.CLASSIFICATION_CURRENT_RESERVES, classification_current_remittances=data.CLASSIFICATION_CURRENT_REMITTANCES, classification_current_world_growth=data.CLASSIFICATION_CURRENT_WORLD_GROWTH, classification_growth_memo_primary=data.CLASSIFICATION_GROWTH_MEMO_PRIMARY, classification_growth_memo_secondary=data.CLASSIFICATION_GROWTH_MEMO_SECONDARY, classification_reserves_memo=data.CLASSIFICATION_RESERVES_MEMO, classification_remittances_memo=data.CLASSIFICATION_REMITTANCES_MEMO, classification_ci_score_2018_oct_header=data.CLASSIFICATION_CI_SCORE_2018_OCT_HEADER, classification_ci_class_2018_oct_header=data.CLASSIFICATION_CI_CLASS_2018_OCT_HEADER, classification_ci_score_2018_oct_label=data.CLASSIFICATION_CI_SCORE_2018_OCT_LABEL, classification_ci_class_2018_oct_label=data.CLASSIFICATION_CI_CLASS_2018_OCT_LABEL, classification_ci_score_2018_oct=data.CLASSIFICATION_CI_SCORE_2018_OCT, classification_ci_class_2018_oct=data.CLASSIFICATION_CI_CLASS_2018_OCT, classification_ci_components_share_headers=data.CLASSIFICATION_CI_COMPONENTS_SHARE_HEADERS, classification_ci_components_share=data.CLASSIFICATION_CI_COMPONENTS_SHARE, classification_ci_components_contribution_headers=data.CLASSIFICATION_CI_COMPONENTS_CONTRIBUTION_HEADERS, classification_ci_components_contribution=data.CLASSIFICATION_CI_COMPONENTS_CONTRIBUTION, data_rem_headers=data.DATA_REM_HEADERS, data_rem_notes_header=data.DATA_REM_NOTES_HEADER, data_rem_metadata=data.DATA_REM_METADATA, data_gdpusd_headers=data.DATA_GDPUSD_HEADERS, data_gdpusd_country_code_note=data.DATA_GDPUSD_COUNTRY_CODE_NOTE, data_gdpusd_metadata=data.DATA_GDPUSD_METADATA, data_gdpusd_ifs_code=data.DATA_GDPUSD_IFS_CODE, imported_country_code=self.imported_country_code, imported_classification_years=self.imported_classification_years, imported_classification_ids=self.imported_classification_ids, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def imported_classification_ids(self) -> data.Series[str | int | float | bool | None]:
-        return internals.imported_classification_ids(imported_series_stub_cpia=data.IMPORTED_SERIES_STUB_CPIA, imported_series_stub_gr_a=data.IMPORTED_SERIES_STUB_GR_A, imported_series_stub_res_a=data.IMPORTED_SERIES_STUB_RES_A, imported_series_stub_wgr=data.IMPORTED_SERIES_STUB_WGR, imported_components=self.imported_components)
+        return internals.imported_classification_ids(imported_series_stub_cpia=data.IMPORTED_SERIES_STUB_CPIA, imported_series_stub_gr_a=data.IMPORTED_SERIES_STUB_GR_A, imported_series_stub_res_a=data.IMPORTED_SERIES_STUB_RES_A, imported_series_stub_wgr=data.IMPORTED_SERIES_STUB_WGR, imported_components=self.imported_components, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def imported_cpia_rating(self) -> data.Series[str | int | float | bool | None]:
-        return internals.imported_cpia_rating(imported_classification_prior_vintage=data.IMPORTED_CLASSIFICATION_PRIOR_VINTAGE, imported_classification_two_vintages_ago=data.IMPORTED_CLASSIFICATION_TWO_VINTAGES_AGO, classification_cpia_reported_codes=data.CLASSIFICATION_CPIA_REPORTED_CODES, classification_cpia_reported_years=data.CLASSIFICATION_CPIA_REPORTED_YEARS, classification_cpia_reported_values=data.CLASSIFICATION_CPIA_REPORTED_VALUES, classification_growth_reported_codes=data.CLASSIFICATION_GROWTH_REPORTED_CODES, classification_growth_reported_years=data.CLASSIFICATION_GROWTH_REPORTED_YEARS, classification_growth_reported_values=data.CLASSIFICATION_GROWTH_REPORTED_VALUES, classification_growth_actual_codes=data.CLASSIFICATION_GROWTH_ACTUAL_CODES, classification_growth_actual_years=data.CLASSIFICATION_GROWTH_ACTUAL_YEARS, classification_growth_actual_values=data.CLASSIFICATION_GROWTH_ACTUAL_VALUES, classification_reserves_reported_codes=data.CLASSIFICATION_RESERVES_REPORTED_CODES, classification_reserves_reported_years=data.CLASSIFICATION_RESERVES_REPORTED_YEARS, classification_reserves_reported_values=data.CLASSIFICATION_RESERVES_REPORTED_VALUES, classification_reserves_actual_codes=data.CLASSIFICATION_RESERVES_ACTUAL_CODES, classification_reserves_actual_years=data.CLASSIFICATION_RESERVES_ACTUAL_YEARS, classification_reserves_actual_values=data.CLASSIFICATION_RESERVES_ACTUAL_VALUES, classification_remittances_reported_codes=data.CLASSIFICATION_REMITTANCES_REPORTED_CODES, classification_remittances_reported_years=data.CLASSIFICATION_REMITTANCES_REPORTED_YEARS, classification_remittances_reported_values=data.CLASSIFICATION_REMITTANCES_REPORTED_VALUES, classification_remittances_actual_codes=data.CLASSIFICATION_REMITTANCES_ACTUAL_CODES, classification_remittances_actual_years=data.CLASSIFICATION_REMITTANCES_ACTUAL_YEARS, classification_remittances_actual_values=data.CLASSIFICATION_REMITTANCES_ACTUAL_VALUES, classification_world_growth_reported_codes=data.CLASSIFICATION_WORLD_GROWTH_REPORTED_CODES, classification_world_growth_reported_years=data.CLASSIFICATION_WORLD_GROWTH_REPORTED_YEARS, classification_world_growth_reported_values=data.CLASSIFICATION_WORLD_GROWTH_REPORTED_VALUES, classification_lookup_year_id_note=data.CLASSIFICATION_LOOKUP_YEAR_ID_NOTE, classification_classification_prior_vintage_header=data.CLASSIFICATION_CLASSIFICATION_PRIOR_VINTAGE_HEADER, classification_classification_two_vintages_ago_header=data.CLASSIFICATION_CLASSIFICATION_TWO_VINTAGES_AGO_HEADER, classification_ci_score_prior_vintage_header=data.CLASSIFICATION_CI_SCORE_PRIOR_VINTAGE_HEADER, classification_ci_score_two_vintages_ago_column_header=data.CLASSIFICATION_CI_SCORE_TWO_VINTAGES_AGO_COLUMN_HEADER, classification_column_headers=data.CLASSIFICATION_COLUMN_HEADERS, classification_ifs_code=data.CLASSIFICATION_IFS_CODE, classification_iso_alpha3=data.CLASSIFICATION_ISO_ALPHA3, classification_country_name=data.CLASSIFICATION_COUNTRY_NAME, classification_classification_final=data.CLASSIFICATION_CLASSIFICATION_FINAL, classification_classification_current_vintage=data.CLASSIFICATION_CLASSIFICATION_CURRENT_VINTAGE, classification_classification_previous_vintage=data.CLASSIFICATION_CLASSIFICATION_PREVIOUS_VINTAGE, classification_classification_final_previous=data.CLASSIFICATION_CLASSIFICATION_FINAL_PREVIOUS, classification_current_ci_score_current_vintage=data.CLASSIFICATION_CURRENT_CI_SCORE_CURRENT_VINTAGE, classification_current_ci_score_previous_vintage=data.CLASSIFICATION_CURRENT_CI_SCORE_PREVIOUS_VINTAGE, classification_current_ci_score_2_vintages_ago=data.CLASSIFICATION_CURRENT_CI_SCORE_2_VINTAGES_AGO, classification_current_cpia=data.CLASSIFICATION_CURRENT_CPIA, classification_current_growth=data.CLASSIFICATION_CURRENT_GROWTH, classification_current_reserves=data.CLASSIFICATION_CURRENT_RESERVES, classification_current_remittances=data.CLASSIFICATION_CURRENT_REMITTANCES, classification_current_world_growth=data.CLASSIFICATION_CURRENT_WORLD_GROWTH, classification_growth_memo_primary=data.CLASSIFICATION_GROWTH_MEMO_PRIMARY, classification_growth_memo_secondary=data.CLASSIFICATION_GROWTH_MEMO_SECONDARY, classification_reserves_memo=data.CLASSIFICATION_RESERVES_MEMO, classification_remittances_memo=data.CLASSIFICATION_REMITTANCES_MEMO, classification_ci_score_2018_oct_header=data.CLASSIFICATION_CI_SCORE_2018_OCT_HEADER, classification_ci_class_2018_oct_header=data.CLASSIFICATION_CI_CLASS_2018_OCT_HEADER, classification_ci_score_2018_oct_label=data.CLASSIFICATION_CI_SCORE_2018_OCT_LABEL, classification_ci_class_2018_oct_label=data.CLASSIFICATION_CI_CLASS_2018_OCT_LABEL, classification_ci_score_2018_oct=data.CLASSIFICATION_CI_SCORE_2018_OCT, classification_ci_class_2018_oct=data.CLASSIFICATION_CI_CLASS_2018_OCT, classification_ci_components_share_headers=data.CLASSIFICATION_CI_COMPONENTS_SHARE_HEADERS, classification_ci_components_share=data.CLASSIFICATION_CI_COMPONENTS_SHARE, classification_ci_components_contribution_headers=data.CLASSIFICATION_CI_COMPONENTS_CONTRIBUTION_HEADERS, classification_ci_components_contribution=data.CLASSIFICATION_CI_COMPONENTS_CONTRIBUTION, imported_country_code=self.imported_country_code)
+        return internals.imported_cpia_rating(imported_classification_prior_vintage=data.IMPORTED_CLASSIFICATION_PRIOR_VINTAGE, imported_classification_two_vintages_ago=data.IMPORTED_CLASSIFICATION_TWO_VINTAGES_AGO, classification_cpia_reported_codes=data.CLASSIFICATION_CPIA_REPORTED_CODES, classification_cpia_reported_years=data.CLASSIFICATION_CPIA_REPORTED_YEARS, classification_cpia_reported_values=data.CLASSIFICATION_CPIA_REPORTED_VALUES, classification_growth_reported_codes=data.CLASSIFICATION_GROWTH_REPORTED_CODES, classification_growth_reported_years=data.CLASSIFICATION_GROWTH_REPORTED_YEARS, classification_growth_reported_values=data.CLASSIFICATION_GROWTH_REPORTED_VALUES, classification_growth_actual_codes=data.CLASSIFICATION_GROWTH_ACTUAL_CODES, classification_growth_actual_years=data.CLASSIFICATION_GROWTH_ACTUAL_YEARS, classification_growth_actual_values=data.CLASSIFICATION_GROWTH_ACTUAL_VALUES, classification_reserves_reported_codes=data.CLASSIFICATION_RESERVES_REPORTED_CODES, classification_reserves_reported_years=data.CLASSIFICATION_RESERVES_REPORTED_YEARS, classification_reserves_reported_values=data.CLASSIFICATION_RESERVES_REPORTED_VALUES, classification_reserves_actual_codes=data.CLASSIFICATION_RESERVES_ACTUAL_CODES, classification_reserves_actual_years=data.CLASSIFICATION_RESERVES_ACTUAL_YEARS, classification_reserves_actual_values=data.CLASSIFICATION_RESERVES_ACTUAL_VALUES, classification_remittances_reported_codes=data.CLASSIFICATION_REMITTANCES_REPORTED_CODES, classification_remittances_reported_years=data.CLASSIFICATION_REMITTANCES_REPORTED_YEARS, classification_remittances_reported_values=data.CLASSIFICATION_REMITTANCES_REPORTED_VALUES, classification_remittances_actual_codes=data.CLASSIFICATION_REMITTANCES_ACTUAL_CODES, classification_remittances_actual_years=data.CLASSIFICATION_REMITTANCES_ACTUAL_YEARS, classification_remittances_actual_values=data.CLASSIFICATION_REMITTANCES_ACTUAL_VALUES, classification_world_growth_reported_codes=data.CLASSIFICATION_WORLD_GROWTH_REPORTED_CODES, classification_world_growth_reported_years=data.CLASSIFICATION_WORLD_GROWTH_REPORTED_YEARS, classification_world_growth_reported_values=data.CLASSIFICATION_WORLD_GROWTH_REPORTED_VALUES, classification_lookup_year_id_note=data.CLASSIFICATION_LOOKUP_YEAR_ID_NOTE, classification_classification_prior_vintage_header=data.CLASSIFICATION_CLASSIFICATION_PRIOR_VINTAGE_HEADER, classification_classification_two_vintages_ago_header=data.CLASSIFICATION_CLASSIFICATION_TWO_VINTAGES_AGO_HEADER, classification_ci_score_prior_vintage_header=data.CLASSIFICATION_CI_SCORE_PRIOR_VINTAGE_HEADER, classification_ci_score_two_vintages_ago_column_header=data.CLASSIFICATION_CI_SCORE_TWO_VINTAGES_AGO_COLUMN_HEADER, classification_column_headers=data.CLASSIFICATION_COLUMN_HEADERS, classification_ifs_code=data.CLASSIFICATION_IFS_CODE, classification_iso_alpha3=data.CLASSIFICATION_ISO_ALPHA3, classification_country_name=data.CLASSIFICATION_COUNTRY_NAME, classification_classification_final=data.CLASSIFICATION_CLASSIFICATION_FINAL, classification_classification_current_vintage=data.CLASSIFICATION_CLASSIFICATION_CURRENT_VINTAGE, classification_classification_previous_vintage=data.CLASSIFICATION_CLASSIFICATION_PREVIOUS_VINTAGE, classification_classification_final_previous=data.CLASSIFICATION_CLASSIFICATION_FINAL_PREVIOUS, classification_current_ci_score_current_vintage=data.CLASSIFICATION_CURRENT_CI_SCORE_CURRENT_VINTAGE, classification_current_ci_score_previous_vintage=data.CLASSIFICATION_CURRENT_CI_SCORE_PREVIOUS_VINTAGE, classification_current_ci_score_2_vintages_ago=data.CLASSIFICATION_CURRENT_CI_SCORE_2_VINTAGES_AGO, classification_current_cpia=data.CLASSIFICATION_CURRENT_CPIA, classification_current_growth=data.CLASSIFICATION_CURRENT_GROWTH, classification_current_reserves=data.CLASSIFICATION_CURRENT_RESERVES, classification_current_remittances=data.CLASSIFICATION_CURRENT_REMITTANCES, classification_current_world_growth=data.CLASSIFICATION_CURRENT_WORLD_GROWTH, classification_growth_memo_primary=data.CLASSIFICATION_GROWTH_MEMO_PRIMARY, classification_growth_memo_secondary=data.CLASSIFICATION_GROWTH_MEMO_SECONDARY, classification_reserves_memo=data.CLASSIFICATION_RESERVES_MEMO, classification_remittances_memo=data.CLASSIFICATION_REMITTANCES_MEMO, classification_ci_score_2018_oct_header=data.CLASSIFICATION_CI_SCORE_2018_OCT_HEADER, classification_ci_class_2018_oct_header=data.CLASSIFICATION_CI_CLASS_2018_OCT_HEADER, classification_ci_score_2018_oct_label=data.CLASSIFICATION_CI_SCORE_2018_OCT_LABEL, classification_ci_class_2018_oct_label=data.CLASSIFICATION_CI_CLASS_2018_OCT_LABEL, classification_ci_score_2018_oct=data.CLASSIFICATION_CI_SCORE_2018_OCT, classification_ci_class_2018_oct=data.CLASSIFICATION_CI_CLASS_2018_OCT, classification_ci_components_share_headers=data.CLASSIFICATION_CI_COMPONENTS_SHARE_HEADERS, classification_ci_components_share=data.CLASSIFICATION_CI_COMPONENTS_SHARE, classification_ci_components_contribution_headers=data.CLASSIFICATION_CI_COMPONENTS_CONTRIBUTION_HEADERS, classification_ci_components_contribution=data.CLASSIFICATION_CI_COMPONENTS_CONTRIBUTION, imported_country_code=self.imported_country_code, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def imported_composite_indicator(self) -> data.Series[str | int | float | bool | None]:
-        return internals.imported_composite_indicator(imported_class_code_weak=data.IMPORTED_CLASS_CODE_WEAK, imported_class_label_weak=data.IMPORTED_CLASS_LABEL_WEAK, imported_class_code_medium=data.IMPORTED_CLASS_CODE_MEDIUM, imported_class_label_medium=data.IMPORTED_CLASS_LABEL_MEDIUM, imported_class_code_strong=data.IMPORTED_CLASS_CODE_STRONG, imported_class_label_strong=data.IMPORTED_CLASS_LABEL_STRONG, imported_cpia_rating=self.imported_cpia_rating)
+        return internals.imported_composite_indicator(imported_class_code_weak=data.IMPORTED_CLASS_CODE_WEAK, imported_class_label_weak=data.IMPORTED_CLASS_LABEL_WEAK, imported_class_code_medium=data.IMPORTED_CLASS_CODE_MEDIUM, imported_class_label_medium=data.IMPORTED_CLASS_LABEL_MEDIUM, imported_class_code_strong=data.IMPORTED_CLASS_CODE_STRONG, imported_class_label_strong=data.IMPORTED_CLASS_LABEL_STRONG, imported_cpia_rating=self.imported_cpia_rating, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def imported_commodity_ids(self) -> data.Series[str | int | float | bool | None]:
@@ -2565,27 +3075,27 @@ class Model(_BoundInputs):
 
     @cached_property
     def imported_prev_dsa_external_2019(self) -> data.Series[float | str | None]:
-        return internals.imported_prev_dsa_external_2019(imported_prev_dsa_match_keys=self.imported_prev_dsa_match_keys, imported_prev_dsa_history_year_headers=self.imported_prev_dsa_history_year_headers, imported_prev_dsa_unit_scales=data.IMPORTED_PREV_DSA_UNIT_SCALES, data_all_prev_dsa_field_headers=data.DATA_ALL_PREV_DSA_FIELD_HEADERS, data_all_prev_dsa_year_headers=data.DATA_ALL_PREV_DSA_YEAR_HEADERS, data_all_prev_dsa_series_codes=data.DATA_ALL_PREV_DSA_SERIES_CODES, data_all_prev_dsa_text_attributes=data.DATA_ALL_PREV_DSA_TEXT_ATTRIBUTES, data_all_prev_dsa_imf_country_codes=data.DATA_ALL_PREV_DSA_IMF_COUNTRY_CODES, data_all_prev_dsa_issuance_dates=data.DATA_ALL_PREV_DSA_ISSUANCE_DATES, data_all_prev_dsa_first_projection_years=data.DATA_ALL_PREV_DSA_FIRST_PROJECTION_YEARS, data_all_prev_dsa_observations=data.DATA_ALL_PREV_DSA_OBSERVATIONS)
+        return internals.imported_prev_dsa_external_2019(imported_prev_dsa_match_keys=self.imported_prev_dsa_match_keys, imported_prev_dsa_history_year_headers=self.imported_prev_dsa_history_year_headers, imported_prev_dsa_unit_scales=data.IMPORTED_PREV_DSA_UNIT_SCALES, data_all_prev_dsa_field_headers=data.DATA_ALL_PREV_DSA_FIELD_HEADERS, data_all_prev_dsa_year_headers=data.DATA_ALL_PREV_DSA_YEAR_HEADERS, data_all_prev_dsa_series_codes=data.DATA_ALL_PREV_DSA_SERIES_CODES, data_all_prev_dsa_text_attributes=data.DATA_ALL_PREV_DSA_TEXT_ATTRIBUTES, data_all_prev_dsa_imf_country_codes=data.DATA_ALL_PREV_DSA_IMF_COUNTRY_CODES, data_all_prev_dsa_issuance_dates=data.DATA_ALL_PREV_DSA_ISSUANCE_DATES, data_all_prev_dsa_first_projection_years=data.DATA_ALL_PREV_DSA_FIRST_PROJECTION_YEARS, data_all_prev_dsa_observations=data.DATA_ALL_PREV_DSA_OBSERVATIONS, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def imported_prev_dsa_external_2024(self) -> data.Series[float | str | None]:
-        return internals.imported_prev_dsa_external_2024(imported_prev_dsa_match_keys=self.imported_prev_dsa_match_keys, imported_prev_dsa_history_year_headers=self.imported_prev_dsa_history_year_headers, imported_prev_dsa_unit_scales=data.IMPORTED_PREV_DSA_UNIT_SCALES, data_all_prev_dsa_field_headers=data.DATA_ALL_PREV_DSA_FIELD_HEADERS, data_all_prev_dsa_year_headers=data.DATA_ALL_PREV_DSA_YEAR_HEADERS, data_all_prev_dsa_series_codes=data.DATA_ALL_PREV_DSA_SERIES_CODES, data_all_prev_dsa_text_attributes=data.DATA_ALL_PREV_DSA_TEXT_ATTRIBUTES, data_all_prev_dsa_imf_country_codes=data.DATA_ALL_PREV_DSA_IMF_COUNTRY_CODES, data_all_prev_dsa_issuance_dates=data.DATA_ALL_PREV_DSA_ISSUANCE_DATES, data_all_prev_dsa_first_projection_years=data.DATA_ALL_PREV_DSA_FIRST_PROJECTION_YEARS, data_all_prev_dsa_observations=data.DATA_ALL_PREV_DSA_OBSERVATIONS)
+        return internals.imported_prev_dsa_external_2024(imported_prev_dsa_match_keys=self.imported_prev_dsa_match_keys, imported_prev_dsa_history_year_headers=self.imported_prev_dsa_history_year_headers, imported_prev_dsa_unit_scales=data.IMPORTED_PREV_DSA_UNIT_SCALES, data_all_prev_dsa_field_headers=data.DATA_ALL_PREV_DSA_FIELD_HEADERS, data_all_prev_dsa_year_headers=data.DATA_ALL_PREV_DSA_YEAR_HEADERS, data_all_prev_dsa_series_codes=data.DATA_ALL_PREV_DSA_SERIES_CODES, data_all_prev_dsa_text_attributes=data.DATA_ALL_PREV_DSA_TEXT_ATTRIBUTES, data_all_prev_dsa_imf_country_codes=data.DATA_ALL_PREV_DSA_IMF_COUNTRY_CODES, data_all_prev_dsa_issuance_dates=data.DATA_ALL_PREV_DSA_ISSUANCE_DATES, data_all_prev_dsa_first_projection_years=data.DATA_ALL_PREV_DSA_FIRST_PROJECTION_YEARS, data_all_prev_dsa_observations=data.DATA_ALL_PREV_DSA_OBSERVATIONS, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def imported_prev_dsa_public_2019(self) -> data.Series[float | str | None]:
-        return internals.imported_prev_dsa_public_2019(imported_prev_dsa_match_keys=self.imported_prev_dsa_match_keys, imported_prev_dsa_history_year_headers=self.imported_prev_dsa_history_year_headers, imported_prev_dsa_unit_scales=data.IMPORTED_PREV_DSA_UNIT_SCALES, data_all_prev_dsa_field_headers=data.DATA_ALL_PREV_DSA_FIELD_HEADERS, data_all_prev_dsa_year_headers=data.DATA_ALL_PREV_DSA_YEAR_HEADERS, data_all_prev_dsa_series_codes=data.DATA_ALL_PREV_DSA_SERIES_CODES, data_all_prev_dsa_text_attributes=data.DATA_ALL_PREV_DSA_TEXT_ATTRIBUTES, data_all_prev_dsa_imf_country_codes=data.DATA_ALL_PREV_DSA_IMF_COUNTRY_CODES, data_all_prev_dsa_issuance_dates=data.DATA_ALL_PREV_DSA_ISSUANCE_DATES, data_all_prev_dsa_first_projection_years=data.DATA_ALL_PREV_DSA_FIRST_PROJECTION_YEARS, data_all_prev_dsa_observations=data.DATA_ALL_PREV_DSA_OBSERVATIONS)
+        return internals.imported_prev_dsa_public_2019(imported_prev_dsa_match_keys=self.imported_prev_dsa_match_keys, imported_prev_dsa_history_year_headers=self.imported_prev_dsa_history_year_headers, imported_prev_dsa_unit_scales=data.IMPORTED_PREV_DSA_UNIT_SCALES, data_all_prev_dsa_field_headers=data.DATA_ALL_PREV_DSA_FIELD_HEADERS, data_all_prev_dsa_year_headers=data.DATA_ALL_PREV_DSA_YEAR_HEADERS, data_all_prev_dsa_series_codes=data.DATA_ALL_PREV_DSA_SERIES_CODES, data_all_prev_dsa_text_attributes=data.DATA_ALL_PREV_DSA_TEXT_ATTRIBUTES, data_all_prev_dsa_imf_country_codes=data.DATA_ALL_PREV_DSA_IMF_COUNTRY_CODES, data_all_prev_dsa_issuance_dates=data.DATA_ALL_PREV_DSA_ISSUANCE_DATES, data_all_prev_dsa_first_projection_years=data.DATA_ALL_PREV_DSA_FIRST_PROJECTION_YEARS, data_all_prev_dsa_observations=data.DATA_ALL_PREV_DSA_OBSERVATIONS, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def imported_prev_dsa_public_2024(self) -> data.Series[float | str | None]:
-        return internals.imported_prev_dsa_public_2024(imported_prev_dsa_match_keys=self.imported_prev_dsa_match_keys, imported_prev_dsa_history_year_headers=self.imported_prev_dsa_history_year_headers, imported_prev_dsa_unit_scales=data.IMPORTED_PREV_DSA_UNIT_SCALES, data_all_prev_dsa_field_headers=data.DATA_ALL_PREV_DSA_FIELD_HEADERS, data_all_prev_dsa_year_headers=data.DATA_ALL_PREV_DSA_YEAR_HEADERS, data_all_prev_dsa_series_codes=data.DATA_ALL_PREV_DSA_SERIES_CODES, data_all_prev_dsa_text_attributes=data.DATA_ALL_PREV_DSA_TEXT_ATTRIBUTES, data_all_prev_dsa_imf_country_codes=data.DATA_ALL_PREV_DSA_IMF_COUNTRY_CODES, data_all_prev_dsa_issuance_dates=data.DATA_ALL_PREV_DSA_ISSUANCE_DATES, data_all_prev_dsa_first_projection_years=data.DATA_ALL_PREV_DSA_FIRST_PROJECTION_YEARS, data_all_prev_dsa_observations=data.DATA_ALL_PREV_DSA_OBSERVATIONS)
+        return internals.imported_prev_dsa_public_2024(imported_prev_dsa_match_keys=self.imported_prev_dsa_match_keys, imported_prev_dsa_history_year_headers=self.imported_prev_dsa_history_year_headers, imported_prev_dsa_unit_scales=data.IMPORTED_PREV_DSA_UNIT_SCALES, data_all_prev_dsa_field_headers=data.DATA_ALL_PREV_DSA_FIELD_HEADERS, data_all_prev_dsa_year_headers=data.DATA_ALL_PREV_DSA_YEAR_HEADERS, data_all_prev_dsa_series_codes=data.DATA_ALL_PREV_DSA_SERIES_CODES, data_all_prev_dsa_text_attributes=data.DATA_ALL_PREV_DSA_TEXT_ATTRIBUTES, data_all_prev_dsa_imf_country_codes=data.DATA_ALL_PREV_DSA_IMF_COUNTRY_CODES, data_all_prev_dsa_issuance_dates=data.DATA_ALL_PREV_DSA_ISSUANCE_DATES, data_all_prev_dsa_first_projection_years=data.DATA_ALL_PREV_DSA_FIRST_PROJECTION_YEARS, data_all_prev_dsa_observations=data.DATA_ALL_PREV_DSA_OBSERVATIONS, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def imported_investment_growth(self) -> data.Series[float | str | None]:
-        return internals.imported_investment_growth(imported_fad_capital_stock_indicator=data.IMPORTED_FAD_CAPITAL_STOCK_INDICATOR, imported_prev_dsa_match_keys=self.imported_prev_dsa_match_keys, imported_prev_dsa_investment_year_headers=self.imported_prev_dsa_investment_year_headers, imported_prev_dsa_unit_scales=data.IMPORTED_PREV_DSA_UNIT_SCALES, data_all_prev_dsa_field_headers=data.DATA_ALL_PREV_DSA_FIELD_HEADERS, data_all_prev_dsa_year_headers=data.DATA_ALL_PREV_DSA_YEAR_HEADERS, data_all_prev_dsa_series_codes=data.DATA_ALL_PREV_DSA_SERIES_CODES, data_all_prev_dsa_text_attributes=data.DATA_ALL_PREV_DSA_TEXT_ATTRIBUTES, data_all_prev_dsa_imf_country_codes=data.DATA_ALL_PREV_DSA_IMF_COUNTRY_CODES, data_all_prev_dsa_issuance_dates=data.DATA_ALL_PREV_DSA_ISSUANCE_DATES, data_all_prev_dsa_first_projection_years=data.DATA_ALL_PREV_DSA_FIRST_PROJECTION_YEARS, data_all_prev_dsa_observations=data.DATA_ALL_PREV_DSA_OBSERVATIONS, fad_column_headers=data.FAD_COLUMN_HEADERS, fad_years=data.FAD_YEARS, fad_text_attributes=data.FAD_TEXT_ATTRIBUTES, fad_dsa_template_ids=data.FAD_DSA_TEMPLATE_IDS, fad_numeric_attributes=data.FAD_NUMERIC_ATTRIBUTES, imported_country_code=self.imported_country_code)
+        return internals.imported_investment_growth(imported_fad_capital_stock_indicator=data.IMPORTED_FAD_CAPITAL_STOCK_INDICATOR, imported_prev_dsa_match_keys=self.imported_prev_dsa_match_keys, imported_prev_dsa_investment_year_headers=self.imported_prev_dsa_investment_year_headers, imported_prev_dsa_unit_scales=data.IMPORTED_PREV_DSA_UNIT_SCALES, data_all_prev_dsa_field_headers=data.DATA_ALL_PREV_DSA_FIELD_HEADERS, data_all_prev_dsa_year_headers=data.DATA_ALL_PREV_DSA_YEAR_HEADERS, data_all_prev_dsa_series_codes=data.DATA_ALL_PREV_DSA_SERIES_CODES, data_all_prev_dsa_text_attributes=data.DATA_ALL_PREV_DSA_TEXT_ATTRIBUTES, data_all_prev_dsa_imf_country_codes=data.DATA_ALL_PREV_DSA_IMF_COUNTRY_CODES, data_all_prev_dsa_issuance_dates=data.DATA_ALL_PREV_DSA_ISSUANCE_DATES, data_all_prev_dsa_first_projection_years=data.DATA_ALL_PREV_DSA_FIRST_PROJECTION_YEARS, data_all_prev_dsa_observations=data.DATA_ALL_PREV_DSA_OBSERVATIONS, fad_column_headers=data.FAD_COLUMN_HEADERS, fad_years=data.FAD_YEARS, fad_text_attributes=data.FAD_TEXT_ATTRIBUTES, fad_dsa_template_ids=data.FAD_DSA_TEMPLATE_IDS, fad_numeric_attributes=data.FAD_NUMERIC_ATTRIBUTES, imported_country_code=self.imported_country_code, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def imported_cpia_by_year(self) -> data.Series[float | str | None]:
-        return internals.imported_cpia_by_year(cpia_column_headers=data.CPIA_COLUMN_HEADERS, cpia_record_fields=data.CPIA_RECORD_FIELDS, cpia_score_by_year=data.CPIA_SCORE_BY_YEAR, imported_country_code=self.imported_country_code, imported_cpia_year_headers=self.imported_cpia_year_headers)
+        return internals.imported_cpia_by_year(cpia_column_headers=data.CPIA_COLUMN_HEADERS, cpia_record_fields=data.CPIA_RECORD_FIELDS, cpia_score_by_year=data.CPIA_SCORE_BY_YEAR, imported_country_code=self.imported_country_code, imported_cpia_year_headers=self.imported_cpia_year_headers, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def imported_selected_vintage_keys(self) -> data.Series[str | int | float | bool | None]:
@@ -2601,39 +3111,39 @@ class Model(_BoundInputs):
 
     @cached_property
     def imported_cpia_year_headers(self) -> data.Series[int | str | None]:
-        return internals.imported_cpia_year_headers(probability_scenario_years=self.probability_scenario_years)
+        return internals.imported_cpia_year_headers(probability_scenario_years=self.probability_scenario_years, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def probability_debt_carrying_capacity_paths(self) -> data.Series[float | str | None]:
-        return internals.probability_debt_carrying_capacity_paths(probability_background_macro=self.probability_background_macro)
+        return internals.probability_debt_carrying_capacity_paths(probability_background_macro=self.probability_background_macro, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def probability_background_macro(self) -> data.Series[float | str | None]:
-        return internals.probability_background_macro(input3_imports=data.INPUT3_IMPORTS, input3_remittances=data.INPUT3_REMITTANCES, input3_world_growth_and_reserves=data.INPUT3_WORLD_GROWTH_AND_RESERVES, input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number=self.input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number, imported_cpia_by_year=self.imported_cpia_by_year, imported_cpia_year_headers=self.imported_cpia_year_headers, imported_cpia_row_label=data.IMPORTED_CPIA_ROW_LABEL, probability_background_years=self.probability_background_years, probability_background_cpia_label=data.PROBABILITY_BACKGROUND_CPIA_LABEL, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_real_gdp_growth=self.macro_debt_real_gdp_growth)
+        return internals.probability_background_macro(input3_imports=data.INPUT3_IMPORTS, input3_remittances=data.INPUT3_REMITTANCES, input3_world_growth_and_reserves=data.INPUT3_WORLD_GROWTH_AND_RESERVES, input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number=self.input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number, imported_cpia_by_year=self.imported_cpia_by_year, imported_cpia_year_headers=self.imported_cpia_year_headers, imported_cpia_row_label=data.IMPORTED_CPIA_ROW_LABEL, probability_background_years=self.probability_background_years, probability_background_cpia_label=data.PROBABILITY_BACKGROUND_CPIA_LABEL, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_real_gdp_growth=self.macro_debt_real_gdp_growth, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def probability_scenario_years(self) -> data.Series[int | str | None]:
-        return internals.probability_scenario_years(macro_debt_data=self.macro_debt_data)
+        return internals.probability_scenario_years(macro_debt_data=self.macro_debt_data, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def probability_carrying_capacity_years(self) -> data.Series[int | str | None]:
-        return internals.probability_carrying_capacity_years(probability_scenario_years=self.probability_scenario_years)
+        return internals.probability_carrying_capacity_years(probability_scenario_years=self.probability_scenario_years, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def probability_background_years(self) -> data.Series[int | str | None]:
-        return internals.probability_background_years(probability_carrying_capacity_years=self.probability_carrying_capacity_years)
+        return internals.probability_background_years(probability_carrying_capacity_years=self.probability_carrying_capacity_years, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism1_external_current_vintage_projection(self) -> data.Series[float | str | None]:
-        return internals.realism1_external_current_vintage_projection(display_scale=data.DISPLAY_SCALE, dsa_ext_external_debt_nominal_1=self.dsa_ext_external_debt_nominal_1, dsa_ext_change_in_external_debt=self.dsa_ext_change_in_external_debt, dsa_ext_net_fdi_negative_inflow=self.dsa_ext_net_fdi_negative_inflow, dsa_ext_contribution_from_nominal_interest_rate=self.dsa_ext_contribution_from_nominal_interest_rate, dsa_ext_contribution_from_real_gdp_growth=self.dsa_ext_contribution_from_real_gdp_growth, dsa_ext_contribution_from_price_and_exchange_rate_changes=self.dsa_ext_contribution_from_price_and_exchange_rate_changes, dsa_ext_residual_3=self.dsa_ext_residual_3, dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars, dsa_ext_deficit_in_balance_of_goods_and_services=self.dsa_ext_deficit_in_balance_of_goods_and_services, dsa_ext_net_current_transfers_negative_inflow=self.dsa_ext_net_current_transfers_negative_inflow, dsa_ext_other_current_account_flows_negative_net_inflow=self.dsa_ext_other_current_account_flows_negative_net_inflow, dsa_ext_of_which_public_and_publicly_guaranteed_ppg=self.dsa_ext_of_which_public_and_publicly_guaranteed_ppg, baseline_ext_historical_indicators=self.baseline_ext_historical_indicators, baseline_ext_year_before_projection=self.baseline_ext_year_before_projection, lookup_country_scale_phrase=self.lookup_country_scale_phrase)
+        return internals.realism1_external_current_vintage_projection(display_scale=data.DISPLAY_SCALE, dsa_ext_external_debt_nominal_1=self.dsa_ext_external_debt_nominal_1, dsa_ext_change_in_external_debt=self.dsa_ext_change_in_external_debt, dsa_ext_net_fdi_negative_inflow=self.dsa_ext_net_fdi_negative_inflow, dsa_ext_contribution_from_nominal_interest_rate=self.dsa_ext_contribution_from_nominal_interest_rate, dsa_ext_contribution_from_real_gdp_growth=self.dsa_ext_contribution_from_real_gdp_growth, dsa_ext_contribution_from_price_and_exchange_rate_changes=self.dsa_ext_contribution_from_price_and_exchange_rate_changes, dsa_ext_residual_3=self.dsa_ext_residual_3, dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars, dsa_ext_deficit_in_balance_of_goods_and_services=self.dsa_ext_deficit_in_balance_of_goods_and_services, dsa_ext_net_current_transfers_negative_inflow=self.dsa_ext_net_current_transfers_negative_inflow, dsa_ext_other_current_account_flows_negative_net_inflow=self.dsa_ext_other_current_account_flows_negative_net_inflow, dsa_ext_of_which_public_and_publicly_guaranteed_ppg=self.dsa_ext_of_which_public_and_publicly_guaranteed_ppg, baseline_ext_historical_indicators=self.baseline_ext_historical_indicators, baseline_ext_year_before_projection=self.baseline_ext_year_before_projection, lookup_country_scale_phrase=self.lookup_country_scale_phrase, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism1_external_five_years_ago_projection(self) -> data.Series[float | str | None]:
-        return internals.realism1_external_five_years_ago_projection(imported_prev_dsa_external_2019=self.imported_prev_dsa_external_2019)
+        return internals.realism1_external_five_years_ago_projection(imported_prev_dsa_external_2019=self.imported_prev_dsa_external_2019, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def _scan_realism1_external_five_years_ago_rebased_projection(self) -> internals.ScanRealism1ExternalFiveYearsAgoRebasedProjectionResult:
-        return internals.scan_realism1_external_five_years_ago_rebased_projection(realism1_external_current_vintage_projection=self.realism1_external_current_vintage_projection, realism1_external_five_years_ago_projection=self.realism1_external_five_years_ago_projection)
+        return internals.scan_realism1_external_five_years_ago_rebased_projection(input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, realism1_external_current_vintage_projection=self.realism1_external_current_vintage_projection, realism1_external_five_years_ago_projection=self.realism1_external_five_years_ago_projection)
 
     @cached_property
     def realism1_external_five_years_ago_rebased_projection(self) -> data.Series[float | str | None]:
@@ -2645,11 +3155,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def realism1_external_last_vintage_projection(self) -> data.Series[float | str | None]:
-        return internals.realism1_external_last_vintage_projection(imported_prev_dsa_external_2024=self.imported_prev_dsa_external_2024)
+        return internals.realism1_external_last_vintage_projection(imported_prev_dsa_external_2024=self.imported_prev_dsa_external_2024, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def _scan_realism1_external_last_vintage_rebased_projection(self) -> internals.ScanRealism1ExternalLastVintageRebasedProjectionResult:
-        return internals.scan_realism1_external_last_vintage_rebased_projection(realism1_external_current_vintage_projection=self.realism1_external_current_vintage_projection, realism1_external_last_vintage_projection=self.realism1_external_last_vintage_projection)
+        return internals.scan_realism1_external_last_vintage_rebased_projection(input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, realism1_external_current_vintage_projection=self.realism1_external_current_vintage_projection, realism1_external_last_vintage_projection=self.realism1_external_last_vintage_projection)
 
     @cached_property
     def realism1_external_last_vintage_rebased_projection(self) -> data.Series[float | str | None]:
@@ -2661,15 +3171,15 @@ class Model(_BoundInputs):
 
     @cached_property
     def realism1_public_current_vintage_projection(self) -> data.Series[float | str | None]:
-        return internals.realism1_public_current_vintage_projection(display_scale=data.DISPLAY_SCALE, baseline_pub_historical_indicators=self.baseline_pub_historical_indicators, baseline_pub_year_before_projection=self.baseline_pub_year_before_projection, baseline_pub_public_sector_debt=self.baseline_pub_public_sector_debt, baseline_pub_change_in_public_sector_debt=self.baseline_pub_change_in_public_sector_debt, baseline_pub_primary_deficit=self.baseline_pub_primary_deficit, baseline_pub_of_which_contribution_from_average_real=self.baseline_pub_of_which_contribution_from_average_real, baseline_pub_of_which_contribution_from_real_gdp_growth=self.baseline_pub_of_which_contribution_from_real_gdp_growth, baseline_pub_contribution_from_real_exchange_rate=self.baseline_pub_contribution_from_real_exchange_rate, baseline_pub_other_identified_debt_creating_flows=self.baseline_pub_other_identified_debt_creating_flows, baseline_pub_residual=self.baseline_pub_residual, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, lookup_country_scale_phrase=self.lookup_country_scale_phrase)
+        return internals.realism1_public_current_vintage_projection(display_scale=data.DISPLAY_SCALE, baseline_pub_historical_indicators=self.baseline_pub_historical_indicators, baseline_pub_year_before_projection=self.baseline_pub_year_before_projection, baseline_pub_public_sector_debt=self.baseline_pub_public_sector_debt, baseline_pub_change_in_public_sector_debt=self.baseline_pub_change_in_public_sector_debt, baseline_pub_primary_deficit=self.baseline_pub_primary_deficit, baseline_pub_of_which_contribution_from_average_real=self.baseline_pub_of_which_contribution_from_average_real, baseline_pub_of_which_contribution_from_real_gdp_growth=self.baseline_pub_of_which_contribution_from_real_gdp_growth, baseline_pub_contribution_from_real_exchange_rate=self.baseline_pub_contribution_from_real_exchange_rate, baseline_pub_other_identified_debt_creating_flows=self.baseline_pub_other_identified_debt_creating_flows, baseline_pub_residual=self.baseline_pub_residual, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, lookup_country_scale_phrase=self.lookup_country_scale_phrase, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism1_public_five_years_ago_projection(self) -> data.Series[float | str | None]:
-        return internals.realism1_public_five_years_ago_projection(imported_prev_dsa_public_2019=self.imported_prev_dsa_public_2019)
+        return internals.realism1_public_five_years_ago_projection(imported_prev_dsa_public_2019=self.imported_prev_dsa_public_2019, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def _scan_realism1_public_five_years_ago_rebased_projection(self) -> internals.ScanRealism1PublicFiveYearsAgoRebasedProjectionResult:
-        return internals.scan_realism1_public_five_years_ago_rebased_projection(realism1_public_current_vintage_projection=self.realism1_public_current_vintage_projection, realism1_public_five_years_ago_projection=self.realism1_public_five_years_ago_projection)
+        return internals.scan_realism1_public_five_years_ago_rebased_projection(input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, realism1_public_current_vintage_projection=self.realism1_public_current_vintage_projection, realism1_public_five_years_ago_projection=self.realism1_public_five_years_ago_projection)
 
     @cached_property
     def realism1_public_five_years_ago_rebased_projection(self) -> data.Series[float | str | None]:
@@ -2681,11 +3191,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def realism1_public_last_vintage_projection(self) -> data.Series[float | str | None]:
-        return internals.realism1_public_last_vintage_projection(imported_prev_dsa_public_2024=self.imported_prev_dsa_public_2024)
+        return internals.realism1_public_last_vintage_projection(imported_prev_dsa_public_2024=self.imported_prev_dsa_public_2024, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def _scan_realism1_public_last_vintage_lc_rebase_factors(self) -> internals.ScanRealism1PublicLastVintageLcRebaseFactorsResult:
-        return internals.scan_realism1_public_last_vintage_lc_rebase_factors(realism1_public_current_vintage_projection=self.realism1_public_current_vintage_projection, realism1_public_last_vintage_projection=self.realism1_public_last_vintage_projection)
+        return internals.scan_realism1_public_last_vintage_lc_rebase_factors(input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, realism1_public_current_vintage_projection=self.realism1_public_current_vintage_projection, realism1_public_last_vintage_projection=self.realism1_public_last_vintage_projection)
 
     @cached_property
     def realism1_public_last_vintage_lc_rebase_factors(self) -> data.Series[float | str | None]:
@@ -2697,43 +3207,43 @@ class Model(_BoundInputs):
 
     @cached_property
     def realism3_real_growth_by_vintage(self) -> data.Series[float | str | None]:
-        return internals.realism3_real_growth_by_vintage(dsa_ext_real_gdp_growth_in_percent=self.dsa_ext_real_gdp_growth_in_percent, imported_investment_growth=self.imported_investment_growth)
+        return internals.realism3_real_growth_by_vintage(dsa_ext_real_gdp_growth_in_percent=self.dsa_ext_real_gdp_growth_in_percent, imported_investment_growth=self.imported_investment_growth, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism3_public_investment_ratio_by_vintage(self) -> data.Series[float | str | None]:
-        return internals.realism3_public_investment_ratio_by_vintage(macro_debt_gdp_constant_prices=self.macro_debt_gdp_constant_prices, imported_investment_growth=self.imported_investment_growth, macro_debt_previous_vintage_investment=self.macro_debt_previous_vintage_investment)
+        return internals.realism3_public_investment_ratio_by_vintage(macro_debt_gdp_constant_prices=self.macro_debt_gdp_constant_prices, imported_investment_growth=self.imported_investment_growth, macro_debt_previous_vintage_investment=self.macro_debt_previous_vintage_investment, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism3_private_investment_ratio_by_vintage(self) -> data.Series[float | str | None]:
-        return internals.realism3_private_investment_ratio_by_vintage(macro_debt_gdp_constant_prices=self.macro_debt_gdp_constant_prices, imported_investment_growth=self.imported_investment_growth, macro_debt_previous_vintage_investment=self.macro_debt_previous_vintage_investment)
+        return internals.realism3_private_investment_ratio_by_vintage(macro_debt_gdp_constant_prices=self.macro_debt_gdp_constant_prices, imported_investment_growth=self.imported_investment_growth, macro_debt_previous_vintage_investment=self.macro_debt_previous_vintage_investment, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism3_baseline_real_gdp_index_by_vintage(self) -> data.Series[float | str | None]:
-        return internals.realism3_baseline_real_gdp_index_by_vintage(realism3_real_growth_by_vintage=self.realism3_real_growth_by_vintage)
+        return internals.realism3_baseline_real_gdp_index_by_vintage(realism3_constant_baseline_real_gdp_index=data.REALISM3_CONSTANT_BASELINE_REAL_GDP_INDEX, realism3_real_growth_by_vintage=self.realism3_real_growth_by_vintage, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism3_government_capital_actual(self) -> data.Series[float | str | None]:
-        return internals.realism3_government_capital_actual(imported_prev_dsa_match_keys=self.imported_prev_dsa_match_keys, imported_prev_dsa_investment_year_headers=self.imported_prev_dsa_investment_year_headers, imported_investment_growth=self.imported_investment_growth, imported_fad_capital_stock_note=self.imported_fad_capital_stock_note, realism3_baseline_real_gdp_index_by_vintage=self.realism3_baseline_real_gdp_index_by_vintage, realism3_contribution_years=self.realism3_contribution_years, realism3_government_capital_actual_label=self.realism3_government_capital_actual_label)
+        return internals.realism3_government_capital_actual(imported_prev_dsa_match_keys=self.imported_prev_dsa_match_keys, imported_prev_dsa_investment_year_headers=self.imported_prev_dsa_investment_year_headers, imported_investment_growth=self.imported_investment_growth, imported_fad_capital_stock_note=self.imported_fad_capital_stock_note, realism3_constant_baseline_real_gdp_index=data.REALISM3_CONSTANT_BASELINE_REAL_GDP_INDEX, realism3_baseline_real_gdp_index_by_vintage=self.realism3_baseline_real_gdp_index_by_vintage, realism3_contribution_years=self.realism3_contribution_years, realism3_government_capital_actual_label=self.realism3_government_capital_actual_label, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism3_government_capital_projected_by_vintage(self) -> data.Series[float | str | None]:
-        return internals.realism3_government_capital_projected_by_vintage(imported_fad_capital_stock_year=data.IMPORTED_FAD_CAPITAL_STOCK_YEAR, realism3_public_investment_ratio_by_vintage=self.realism3_public_investment_ratio_by_vintage, realism3_baseline_real_gdp_index_by_vintage=self.realism3_baseline_real_gdp_index_by_vintage, realism3_government_capital_actual=self.realism3_government_capital_actual, realism3_current_vintage_year=self.realism3_current_vintage_year, realism3_latest_vintage_year=self.realism3_latest_vintage_year, realism3_depreciation_rate=data.REALISM3_DEPRECIATION_RATE, realism3_efficiency_public=data.REALISM3_EFFICIENCY_PUBLIC, realism3_efficiency_private=data.REALISM3_EFFICIENCY_PRIVATE, realism3_contribution_years=self.realism3_contribution_years)
+        return internals.realism3_government_capital_projected_by_vintage(imported_fad_capital_stock_year=data.IMPORTED_FAD_CAPITAL_STOCK_YEAR, realism3_public_investment_ratio_by_vintage=self.realism3_public_investment_ratio_by_vintage, realism3_constant_baseline_real_gdp_index=data.REALISM3_CONSTANT_BASELINE_REAL_GDP_INDEX, realism3_baseline_real_gdp_index_by_vintage=self.realism3_baseline_real_gdp_index_by_vintage, realism3_government_capital_actual=self.realism3_government_capital_actual, realism3_current_vintage_year=self.realism3_current_vintage_year, realism3_latest_vintage_year=self.realism3_latest_vintage_year, realism3_depreciation_rate=data.REALISM3_DEPRECIATION_RATE, realism3_efficiency_public=data.REALISM3_EFFICIENCY_PUBLIC, realism3_efficiency_private=data.REALISM3_EFFICIENCY_PRIVATE, realism3_contribution_years=self.realism3_contribution_years, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def baseline_pub_historical_indicators(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_historical_indicators(baseline_pub_primary_deficit=self.baseline_pub_primary_deficit, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, baseline_pub_real_gdp_growth=self.baseline_pub_real_gdp_growth, baseline_pub_inflation_rate_gdp_deflator_pct=self.baseline_pub_inflation_rate_gdp_deflator_pct, macro_debt_privatization_receipts=self.macro_debt_privatization_receipts, macro_debt_public_sector_interest_expenditure=self.macro_debt_public_sector_interest_expenditure, macro_debt_recognition_of_contingent_liab_e_g_bank=self.macro_debt_recognition_of_contingent_liab_e_g_bank, macro_debt_other_debt_creating_reducing_flow_please_specify=self.macro_debt_other_debt_creating_reducing_flow_please_specify, macro_debt_debt_relief=self.macro_debt_debt_relief, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, macro_debt_total_public_debt_outstanding_year_end=self.macro_debt_total_public_debt_outstanding_year_end, macro_debt_fx_denominated_public_debt_end_of_period=self.macro_debt_fx_denominated_public_debt_end_of_period, macro_debt_interest_rate_ext_debt=self.macro_debt_interest_rate_ext_debt, macro_debt_interest_rate_domestic_debt=self.macro_debt_interest_rate_domestic_debt, macro_debt_us_gdp_deflator_percent_change=self.macro_debt_us_gdp_deflator_percent_change)
+        return internals.baseline_pub_historical_indicators(baseline_pub_primary_deficit=self.baseline_pub_primary_deficit, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, baseline_pub_real_gdp_growth=self.baseline_pub_real_gdp_growth, baseline_pub_inflation_rate_gdp_deflator_pct=self.baseline_pub_inflation_rate_gdp_deflator_pct, macro_debt_privatization_receipts=self.macro_debt_privatization_receipts, macro_debt_public_sector_interest_expenditure=self.macro_debt_public_sector_interest_expenditure, macro_debt_recognition_of_contingent_liab_e_g_bank=self.macro_debt_recognition_of_contingent_liab_e_g_bank, macro_debt_other_debt_creating_reducing_flow_please_specify=self.macro_debt_other_debt_creating_reducing_flow_please_specify, macro_debt_debt_relief=self.macro_debt_debt_relief, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, macro_debt_total_public_debt_outstanding_year_end=self.macro_debt_total_public_debt_outstanding_year_end, macro_debt_fx_denominated_public_debt_end_of_period=self.macro_debt_fx_denominated_public_debt_end_of_period, macro_debt_interest_rate_ext_debt=self.macro_debt_interest_rate_ext_debt, macro_debt_interest_rate_domestic_debt=self.macro_debt_interest_rate_domestic_debt, macro_debt_us_gdp_deflator_percent_change=self.macro_debt_us_gdp_deflator_percent_change, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def baseline_ext_historical_indicators(self) -> data.Series[float | str | None]:
-        return internals.baseline_ext_historical_indicators(dsa_ext_external_debt_nominal_1=self.dsa_ext_external_debt_nominal_1, dsa_ext_non_interest_current_account_deficit=self.dsa_ext_non_interest_current_account_deficit, dsa_ext_exports=self.dsa_ext_exports, dsa_ext_net_fdi_negative_inflow=self.dsa_ext_net_fdi_negative_inflow, dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars, dsa_ext_real_gdp_growth_in_percent=self.dsa_ext_real_gdp_growth_in_percent, dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent=self.dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent, dsa_ext_net_current_transfers_negative_inflow=self.dsa_ext_net_current_transfers_negative_inflow, macro_debt_total_ext_debt_interest_due_include_interest=self.macro_debt_total_ext_debt_interest_due_include_interest, macro_debt_exports_of_goods_services=self.macro_debt_exports_of_goods_services, macro_debt_imports_of_goods_services_use_positive_values=self.macro_debt_imports_of_goods_services_use_positive_values, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, macro_debt_private_debt_pct_gdp=self.macro_debt_private_debt_pct_gdp, macro_debt_total_public_ext_debt=self.macro_debt_total_public_ext_debt, macro_debt_share_of_local_currency_denominated_external=self.macro_debt_share_of_local_currency_denominated_external, macro_debt_depreciation_of_nc_depreciation=self.macro_debt_depreciation_of_nc_depreciation)
+        return internals.baseline_ext_historical_indicators(dsa_ext_external_debt_nominal_1=self.dsa_ext_external_debt_nominal_1, dsa_ext_non_interest_current_account_deficit=self.dsa_ext_non_interest_current_account_deficit, dsa_ext_exports=self.dsa_ext_exports, dsa_ext_net_fdi_negative_inflow=self.dsa_ext_net_fdi_negative_inflow, dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars, dsa_ext_real_gdp_growth_in_percent=self.dsa_ext_real_gdp_growth_in_percent, dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent=self.dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent, dsa_ext_net_current_transfers_negative_inflow=self.dsa_ext_net_current_transfers_negative_inflow, macro_debt_total_ext_debt_interest_due_include_interest=self.macro_debt_total_ext_debt_interest_due_include_interest, macro_debt_exports_of_goods_services=self.macro_debt_exports_of_goods_services, macro_debt_imports_of_goods_services_use_positive_values=self.macro_debt_imports_of_goods_services_use_positive_values, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, macro_debt_private_debt_pct_gdp=self.macro_debt_private_debt_pct_gdp, macro_debt_total_public_ext_debt=self.macro_debt_total_public_ext_debt, macro_debt_share_of_local_currency_denominated_external=self.macro_debt_share_of_local_currency_denominated_external, macro_debt_depreciation_of_nc_depreciation=self.macro_debt_depreciation_of_nc_depreciation, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def baseline_pub_year_before_projection(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_year_before_projection(baseline_pub_historical_indicators=self.baseline_pub_historical_indicators, baseline_pub_public_sector_debt=self.baseline_pub_public_sector_debt, baseline_pub_primary_deficit=self.baseline_pub_primary_deficit, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, baseline_pub_real_gdp_growth=self.baseline_pub_real_gdp_growth, baseline_pub_exchange_rate_lc_per_us_dollar=self.baseline_pub_exchange_rate_lc_per_us_dollar, baseline_pub_inflation_rate_gdp_deflator_pct=self.baseline_pub_inflation_rate_gdp_deflator_pct, macro_debt_privatization_receipts=self.macro_debt_privatization_receipts, macro_debt_public_sector_interest_expenditure=self.macro_debt_public_sector_interest_expenditure, macro_debt_recognition_of_contingent_liab_e_g_bank=self.macro_debt_recognition_of_contingent_liab_e_g_bank, macro_debt_other_debt_creating_reducing_flow_please_specify=self.macro_debt_other_debt_creating_reducing_flow_please_specify, macro_debt_debt_relief=self.macro_debt_debt_relief, macro_debt_total_public_debt_outstanding_year_end=self.macro_debt_total_public_debt_outstanding_year_end, macro_debt_interest_rate_ext_debt=self.macro_debt_interest_rate_ext_debt, macro_debt_interest_rate_domestic_debt=self.macro_debt_interest_rate_domestic_debt, macro_debt_us_gdp_deflator_percent_change=self.macro_debt_us_gdp_deflator_percent_change)
+        return internals.baseline_pub_year_before_projection(baseline_pub_historical_indicators=self.baseline_pub_historical_indicators, baseline_pub_public_sector_debt=self.baseline_pub_public_sector_debt, baseline_pub_primary_deficit=self.baseline_pub_primary_deficit, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, baseline_pub_real_gdp_growth=self.baseline_pub_real_gdp_growth, baseline_pub_exchange_rate_lc_per_us_dollar=self.baseline_pub_exchange_rate_lc_per_us_dollar, baseline_pub_inflation_rate_gdp_deflator_pct=self.baseline_pub_inflation_rate_gdp_deflator_pct, macro_debt_privatization_receipts=self.macro_debt_privatization_receipts, macro_debt_public_sector_interest_expenditure=self.macro_debt_public_sector_interest_expenditure, macro_debt_recognition_of_contingent_liab_e_g_bank=self.macro_debt_recognition_of_contingent_liab_e_g_bank, macro_debt_other_debt_creating_reducing_flow_please_specify=self.macro_debt_other_debt_creating_reducing_flow_please_specify, macro_debt_debt_relief=self.macro_debt_debt_relief, macro_debt_total_public_debt_outstanding_year_end=self.macro_debt_total_public_debt_outstanding_year_end, macro_debt_interest_rate_ext_debt=self.macro_debt_interest_rate_ext_debt, macro_debt_interest_rate_domestic_debt=self.macro_debt_interest_rate_domestic_debt, macro_debt_us_gdp_deflator_percent_change=self.macro_debt_us_gdp_deflator_percent_change, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def baseline_ext_year_before_projection(self) -> data.Series[float | str | None]:
-        return internals.baseline_ext_year_before_projection(dsa_ext_external_debt_nominal_1=self.dsa_ext_external_debt_nominal_1, dsa_ext_non_interest_current_account_deficit=self.dsa_ext_non_interest_current_account_deficit, dsa_ext_exports=self.dsa_ext_exports, dsa_ext_net_fdi_negative_inflow=self.dsa_ext_net_fdi_negative_inflow, dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars, dsa_ext_real_gdp_growth_in_percent=self.dsa_ext_real_gdp_growth_in_percent, dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent=self.dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent, dsa_ext_net_current_transfers_negative_inflow=self.dsa_ext_net_current_transfers_negative_inflow, baseline_ext_historical_indicators=self.baseline_ext_historical_indicators, macro_debt_total_ext_debt_interest_due_include_interest=self.macro_debt_total_ext_debt_interest_due_include_interest, macro_debt_imports_of_goods_services_use_positive_values=self.macro_debt_imports_of_goods_services_use_positive_values, macro_debt_depreciation_of_nc_depreciation=self.macro_debt_depreciation_of_nc_depreciation)
+        return internals.baseline_ext_year_before_projection(dsa_ext_external_debt_nominal_1=self.dsa_ext_external_debt_nominal_1, dsa_ext_non_interest_current_account_deficit=self.dsa_ext_non_interest_current_account_deficit, dsa_ext_exports=self.dsa_ext_exports, dsa_ext_net_fdi_negative_inflow=self.dsa_ext_net_fdi_negative_inflow, dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars, dsa_ext_real_gdp_growth_in_percent=self.dsa_ext_real_gdp_growth_in_percent, dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent=self.dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent, dsa_ext_net_current_transfers_negative_inflow=self.dsa_ext_net_current_transfers_negative_inflow, baseline_ext_historical_indicators=self.baseline_ext_historical_indicators, macro_debt_total_ext_debt_interest_due_include_interest=self.macro_debt_total_ext_debt_interest_due_include_interest, macro_debt_imports_of_goods_services_use_positive_values=self.macro_debt_imports_of_goods_services_use_positive_values, macro_debt_depreciation_of_nc_depreciation=self.macro_debt_depreciation_of_nc_depreciation, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism1_current_vintage_year(self) -> int | str:
@@ -2749,11 +3259,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def realism1_external_year_headers(self) -> data.Series[int | str | None]:
-        return internals.realism1_external_year_headers(output_submit_first_projection_year=self.output_submit_first_projection_year)
+        return internals.realism1_external_year_headers(output_submit_first_projection_year=self.output_submit_first_projection_year, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism1_public_year_headers(self) -> data.Series[int | str | None]:
-        return internals.realism1_public_year_headers(realism1_current_vintage_year=self.realism1_current_vintage_year)
+        return internals.realism1_public_year_headers(realism1_current_vintage_year=self.realism1_current_vintage_year, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism1_public_rebased_weo_codes(self) -> data.Series[str | int | float | bool | None]:
@@ -2765,7 +3275,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def realism1_external_five_year_flow_changes(self) -> data.Series[float | str | None]:
-        return internals.realism1_external_five_year_flow_changes(realism1_external_five_years_ago_rebased_projection=self.realism1_external_five_years_ago_rebased_projection, realism1_external_private_debt_rebased_change=self.realism1_external_private_debt_rebased_change, realism1_external_debt_creating_flows=self.realism1_external_debt_creating_flows)
+        return internals.realism1_external_five_year_flow_changes(realism1_external_five_years_ago_rebased_projection=self.realism1_external_five_years_ago_rebased_projection, realism1_external_private_debt_rebased_change=self.realism1_external_private_debt_rebased_change, realism1_external_debt_creating_flows=self.realism1_external_debt_creating_flows, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism1_public_forecast_error_component_names(self) -> data.Series[str | int | float | bool | None]:
@@ -2773,7 +3283,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def realism1_public_five_year_flow_changes(self) -> data.Series[float | str | None]:
-        return internals.realism1_public_five_year_flow_changes(realism1_public_five_years_ago_rebased_projection=self.realism1_public_five_years_ago_rebased_projection, realism1_public_debt_creating_flows=self.realism1_public_debt_creating_flows)
+        return internals.realism1_public_five_year_flow_changes(realism1_public_five_years_ago_rebased_projection=self.realism1_public_five_years_ago_rebased_projection, realism1_public_debt_creating_flows=self.realism1_public_debt_creating_flows, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism1_external_median_label(self) -> str | int | float | bool:
@@ -2793,79 +3303,79 @@ class Model(_BoundInputs):
 
     @cached_property
     def realism1_external_private_debt_rebased_change(self) -> data.Series[float | str | None]:
-        return internals.realism1_external_private_debt_rebased_change(realism1_external_five_years_ago_rebased_projection=self.realism1_external_five_years_ago_rebased_projection, realism1_external_last_vintage_usd_rebase_factors=self.realism1_external_last_vintage_usd_rebase_factors)
+        return internals.realism1_external_private_debt_rebased_change(realism1_external_five_years_ago_rebased_projection=self.realism1_external_five_years_ago_rebased_projection, realism1_external_last_vintage_usd_rebase_factors=self.realism1_external_last_vintage_usd_rebase_factors, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism2_history_years(self) -> data.Series[int | str | None]:
-        return internals.realism2_history_years(input3_projection_year_header=self.input3_projection_year_header)
+        return internals.realism2_history_years(input3_projection_year_header=self.input3_projection_year_header, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism2_primary_balance(self) -> data.Series[float | str | None]:
-        return internals.realism2_primary_balance(macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants, macro_debt_public_sector_primary_expenditure=self.macro_debt_public_sector_primary_expenditure, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc)
+        return internals.realism2_primary_balance(macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants, macro_debt_public_sector_primary_expenditure=self.macro_debt_public_sector_primary_expenditure, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism2_fiscal_adjustment(self) -> data.Series[float | str | None]:
-        return internals.realism2_fiscal_adjustment(realism2_primary_balance=self.realism2_primary_balance)
+        return internals.realism2_fiscal_adjustment(realism2_primary_balance=self.realism2_primary_balance, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism2_real_gdp_growth(self) -> data.Series[float | str | None]:
-        return internals.realism2_real_gdp_growth(macro_debt_real_gdp_growth=self.macro_debt_real_gdp_growth)
+        return internals.realism2_real_gdp_growth(macro_debt_real_gdp_growth=self.macro_debt_real_gdp_growth, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism2_persistence_values(self) -> data.Series[float | str | None]:
-        return internals.realism2_persistence_values()
+        return internals.realism2_persistence_values(realism2_constant_persistence=data.REALISM2_CONSTANT_PERSISTENCE)
 
     @cached_property
     def realism2_shock_year_index(self) -> data.Series[float | str | None]:
-        return internals.realism2_shock_year_index()
+        return internals.realism2_shock_year_index(realism2_constant_shock_year_index=data.REALISM2_CONSTANT_SHOCK_YEAR_INDEX, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism2_growth_shock(self) -> data.Series[float | str | None]:
-        return internals.realism2_growth_shock(realism2_multiplier_values=data.REALISM2_MULTIPLIER_VALUES, realism2_persistence_values=self.realism2_persistence_values, realism2_shock_year_index=self.realism2_shock_year_index)
+        return internals.realism2_growth_shock(realism2_multiplier_values=data.REALISM2_MULTIPLIER_VALUES, realism2_constant_persistence=data.REALISM2_CONSTANT_PERSISTENCE, realism2_persistence_values=self.realism2_persistence_values, realism2_constant_shock_year_index=data.REALISM2_CONSTANT_SHOCK_YEAR_INDEX, realism2_shock_year_index=self.realism2_shock_year_index, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism2_adjustment_size(self) -> data.Series[float | str | None]:
-        return internals.realism2_adjustment_size(realism2_fiscal_adjustment=self.realism2_fiscal_adjustment)
+        return internals.realism2_adjustment_size(realism2_fiscal_adjustment=self.realism2_fiscal_adjustment, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism2_growth_impact_multiplier_0_2(self) -> data.Series[float | str | None]:
-        return internals.realism2_growth_impact_multiplier_0_2(realism2_growth_shock=self.realism2_growth_shock, realism2_adjustment_size=self.realism2_adjustment_size)
+        return internals.realism2_growth_impact_multiplier_0_2(realism2_growth_shock=self.realism2_growth_shock, realism2_adjustment_size=self.realism2_adjustment_size, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism2_growth_impact_multiplier_0_2_cumulative(self) -> data.Series[float | str | None]:
-        return internals.realism2_growth_impact_multiplier_0_2_cumulative(realism2_growth_impact_multiplier_0_2=self.realism2_growth_impact_multiplier_0_2)
+        return internals.realism2_growth_impact_multiplier_0_2_cumulative(realism2_growth_impact_multiplier_0_2=self.realism2_growth_impact_multiplier_0_2, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism2_growth_impact_multiplier_0_4(self) -> data.Series[float | str | None]:
-        return internals.realism2_growth_impact_multiplier_0_4(realism2_growth_shock=self.realism2_growth_shock, realism2_adjustment_size=self.realism2_adjustment_size)
+        return internals.realism2_growth_impact_multiplier_0_4(realism2_growth_shock=self.realism2_growth_shock, realism2_adjustment_size=self.realism2_adjustment_size, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism2_growth_impact_multiplier_0_4_cumulative(self) -> data.Series[float | str | None]:
-        return internals.realism2_growth_impact_multiplier_0_4_cumulative(realism2_growth_impact_multiplier_0_4=self.realism2_growth_impact_multiplier_0_4)
+        return internals.realism2_growth_impact_multiplier_0_4_cumulative(realism2_growth_impact_multiplier_0_4=self.realism2_growth_impact_multiplier_0_4, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism2_growth_impact_multiplier_0_6(self) -> data.Series[float | str | None]:
-        return internals.realism2_growth_impact_multiplier_0_6(realism2_growth_shock=self.realism2_growth_shock, realism2_adjustment_size=self.realism2_adjustment_size)
+        return internals.realism2_growth_impact_multiplier_0_6(realism2_growth_shock=self.realism2_growth_shock, realism2_adjustment_size=self.realism2_adjustment_size, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism2_growth_impact_multiplier_0_6_cumulative(self) -> data.Series[float | str | None]:
-        return internals.realism2_growth_impact_multiplier_0_6_cumulative(realism2_growth_impact_multiplier_0_6=self.realism2_growth_impact_multiplier_0_6)
+        return internals.realism2_growth_impact_multiplier_0_6_cumulative(realism2_growth_impact_multiplier_0_6=self.realism2_growth_impact_multiplier_0_6, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism2_growth_impact_multiplier_0_8(self) -> data.Series[float | str | None]:
-        return internals.realism2_growth_impact_multiplier_0_8(realism2_growth_shock=self.realism2_growth_shock, realism2_adjustment_size=self.realism2_adjustment_size)
+        return internals.realism2_growth_impact_multiplier_0_8(realism2_growth_shock=self.realism2_growth_shock, realism2_adjustment_size=self.realism2_adjustment_size, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism2_growth_impact_multiplier_0_8_cumulative(self) -> data.Series[float | str | None]:
-        return internals.realism2_growth_impact_multiplier_0_8_cumulative(realism2_growth_impact_multiplier_0_8=self.realism2_growth_impact_multiplier_0_8)
+        return internals.realism2_growth_impact_multiplier_0_8_cumulative(realism2_growth_impact_multiplier_0_8=self.realism2_growth_impact_multiplier_0_8, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism2_growth_impact_multiplier_1_0(self) -> data.Series[float | str | None]:
-        return internals.realism2_growth_impact_multiplier_1_0(realism2_growth_shock=self.realism2_growth_shock, realism2_adjustment_size=self.realism2_adjustment_size)
+        return internals.realism2_growth_impact_multiplier_1_0(realism2_growth_shock=self.realism2_growth_shock, realism2_adjustment_size=self.realism2_adjustment_size, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism2_growth_impact_multiplier_1_0_cumulative(self) -> data.Series[float | str | None]:
-        return internals.realism2_growth_impact_multiplier_1_0_cumulative(realism2_growth_impact_multiplier_1_0=self.realism2_growth_impact_multiplier_1_0)
+        return internals.realism2_growth_impact_multiplier_1_0_cumulative(realism2_growth_impact_multiplier_1_0=self.realism2_growth_impact_multiplier_1_0, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism3_current_vintage_year(self) -> int | str:
@@ -2881,11 +3391,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def realism3_contribution_years(self) -> data.Series[int | str | None]:
-        return internals.realism3_contribution_years(realism3_first_projection_year=self.realism3_first_projection_year)
+        return internals.realism3_contribution_years(realism3_first_projection_year=self.realism3_first_projection_year, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism3_growth_contributions(self) -> data.Series[float | str | None]:
-        return internals.realism3_growth_contributions(realism3_capital_growth_contribution=self.realism3_capital_growth_contribution, realism3_growth_residual=self.realism3_growth_residual)
+        return internals.realism3_growth_contributions(realism3_capital_growth_contribution=self.realism3_capital_growth_contribution, realism3_growth_residual=self.realism3_growth_residual, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism3_government_capital_actual_label(self) -> str | int | float | bool:
@@ -2893,43 +3403,43 @@ class Model(_BoundInputs):
 
     @cached_property
     def realism3_government_capital_growth(self) -> data.Series[float | str | None]:
-        return internals.realism3_government_capital_growth(realism3_government_capital_projected_by_vintage=self.realism3_government_capital_projected_by_vintage)
+        return internals.realism3_government_capital_growth(realism3_government_capital_projected_by_vintage=self.realism3_government_capital_projected_by_vintage, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism3_capital_growth_contribution(self) -> data.Series[float | str | None]:
-        return internals.realism3_capital_growth_contribution(realism3_output_elasticity=data.REALISM3_OUTPUT_ELASTICITY, realism3_government_capital_growth=self.realism3_government_capital_growth)
+        return internals.realism3_capital_growth_contribution(realism3_output_elasticity=data.REALISM3_OUTPUT_ELASTICITY, realism3_government_capital_growth=self.realism3_government_capital_growth, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism3_growth_residual(self) -> data.Series[float | str | None]:
-        return internals.realism3_growth_residual(realism3_real_growth_by_vintage=self.realism3_real_growth_by_vintage, realism3_capital_growth_contribution=self.realism3_capital_growth_contribution)
+        return internals.realism3_growth_residual(realism3_real_growth_by_vintage=self.realism3_real_growth_by_vintage, realism3_capital_growth_contribution=self.realism3_capital_growth_contribution, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism4_primary_deficit(self) -> data.Series[float | str | None]:
-        return internals.realism4_primary_deficit(baseline_pub_primary_deficit=self.baseline_pub_primary_deficit)
+        return internals.realism4_primary_deficit(baseline_pub_primary_deficit=self.baseline_pub_primary_deficit, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism4_three_year_adjustment(self) -> data.Series[float | str | None]:
-        return internals.realism4_three_year_adjustment(realism4_primary_deficit=self.realism4_primary_deficit)
+        return internals.realism4_three_year_adjustment(realism4_primary_deficit=self.realism4_primary_deficit, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def in8_sdr_sdr_interest(self) -> data.Series[int | str | None]:
-        return internals.in8_sdr_sdr_interest(in8_sdr_sdr_allocation_holdings_in_million_of_usd=self.in8_sdr_sdr_allocation_holdings_in_million_of_usd, discount_rate=self.discount_rate, input8_sdr_interest_historical=self.input8_sdr_interest_historical, input8_sdr_interest=self.input8_sdr_interest, input8_sdr_interest_rate=self.input8_sdr_interest_rate)
+        return internals.in8_sdr_sdr_interest(in8_sdr_sdr_allocation_holdings_in_million_of_usd=self.in8_sdr_sdr_allocation_holdings_in_million_of_usd, discount_rate=self.discount_rate, input8_sdr_interest_historical=self.input8_sdr_interest_historical, input8_sdr_interest=self.input8_sdr_interest, input8_sdr_interest_rate=self.input8_sdr_interest_rate, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def in8_sdr_of_end_2044(self) -> int | str:
-        return internals.in8_sdr_of_end_2044(discount_rate=self.discount_rate, input8_sdr_interest_rate=self.input8_sdr_interest_rate, in8_sdr_sdr_allocation_holdings_in_million_of_usd=self.in8_sdr_sdr_allocation_holdings_in_million_of_usd)
+        return internals.in8_sdr_of_end_2044(discount_rate=self.discount_rate, input8_sdr_interest_rate=self.input8_sdr_interest_rate, in8_sdr_sdr_allocation_holdings_in_million_of_usd=self.in8_sdr_sdr_allocation_holdings_in_million_of_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_nominal_gdp(self) -> data.Series[float | str | None]:
-        return internals.c4_mkt_fin_nominal_gdp(c4_market_path_nominal_gdp=self.c4_market_path_nominal_gdp, c4_mkt_fin_gdp_deflator=self.c4_mkt_fin_gdp_deflator, c4_market_path_real_gdp_growth=self.c4_market_path_real_gdp_growth)
+        return internals.c4_mkt_fin_nominal_gdp(c4_market_path_nominal_gdp=self.c4_market_path_nominal_gdp, c4_mkt_fin_gdp_deflator=self.c4_mkt_fin_gdp_deflator, c4_market_path_real_gdp_growth=self.c4_market_path_real_gdp_growth, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_gdp_deflator(self) -> data.Series[float | str | None]:
-        return internals.c4_mkt_fin_gdp_deflator(dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent=self.dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent, c4_mkt_fin_nc_depreciation=self.c4_mkt_fin_nc_depreciation, c4_mkt_fin_historical_flag=self.c4_mkt_fin_historical_flag, c4_market_path_non_interest_ca_pct_gdp=self.c4_market_path_non_interest_ca_pct_gdp)
+        return internals.c4_mkt_fin_gdp_deflator(dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent=self.dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent, c4_mkt_fin_nc_depreciation=self.c4_mkt_fin_nc_depreciation, c4_mkt_fin_historical_flag=self.c4_mkt_fin_historical_flag, c4_market_path_non_interest_ca_pct_gdp=self.c4_market_path_non_interest_ca_pct_gdp, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_nc_depreciation(self) -> float | str:
-        return internals.c4_mkt_fin_nc_depreciation(c4_mkt_fin_i_macro_indicators=self.c4_mkt_fin_i_macro_indicators, dsa_ext_depreciation_of_nc_depreciation=self.dsa_ext_depreciation_of_nc_depreciation)
+        return internals.c4_mkt_fin_nc_depreciation(c4_mkt_fin_i_macro_indicators=self.c4_mkt_fin_i_macro_indicators, dsa_ext_depreciation_of_nc_depreciation=self.dsa_ext_depreciation_of_nc_depreciation, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_historical_flag(self) -> float | str:
@@ -2937,7 +3447,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def c4_mkt_fin_stressed_lending_terms(self) -> data.Series[float | str | None]:
-        return internals.c4_mkt_fin_stressed_lending_terms(c4_market_instruments=self.c4_market_instruments, c4_mkt_fin_net_non_debt_creating_flows_fdi_gdp_ratio_by_row=self.c4_mkt_fin_net_non_debt_creating_flows_fdi_gdp_ratio_by_row)
+        return internals.c4_mkt_fin_stressed_lending_terms(c4_market_instruments=self.c4_market_instruments, c4_mkt_fin_net_non_debt_creating_flows_fdi_gdp_ratio_by_row=self.c4_mkt_fin_net_non_debt_creating_flows_fdi_gdp_ratio_by_row, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def c4_mkt_fin_average_residual_terms(self) -> data.Series[float | str | None]:
@@ -2949,67 +3459,67 @@ class Model(_BoundInputs):
 
     @cached_property
     def c4_mkt_fin_total_commercial_borrowing(self) -> data.Series[float | str | None]:
-        return internals.c4_mkt_fin_total_commercial_borrowing(c4_mkt_fin_new_borrowing=self.c4_mkt_fin_new_borrowing)
+        return internals.c4_mkt_fin_total_commercial_borrowing(c4_mkt_fin_new_borrowing=self.c4_mkt_fin_new_borrowing, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_total_commercial_borrowing_total(self) -> float | str:
-        return internals.c4_mkt_fin_total_commercial_borrowing_total(c4_mkt_fin_total_commercial_borrowing=self.c4_mkt_fin_total_commercial_borrowing)
+        return internals.c4_mkt_fin_total_commercial_borrowing_total(c4_mkt_fin_total_commercial_borrowing=self.c4_mkt_fin_total_commercial_borrowing, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_new_borrowing(self) -> data.Series[float | str | None]:
-        return internals.c4_mkt_fin_new_borrowing(ext_debt_new_disbursements_external=self.ext_debt_new_disbursements_external)
+        return internals.c4_mkt_fin_new_borrowing(ext_debt_new_disbursements_external=self.ext_debt_new_disbursements_external, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_new_borrowing_total(self) -> data.Series[float | str | None]:
-        return internals.c4_mkt_fin_new_borrowing_total(c4_mkt_fin_new_borrowing=self.c4_mkt_fin_new_borrowing)
+        return internals.c4_mkt_fin_new_borrowing_total(c4_mkt_fin_new_borrowing=self.c4_mkt_fin_new_borrowing, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_gfn_increase(self) -> data.Series[float | str | None]:
-        return internals.c4_mkt_fin_gfn_increase(c4_market_path_total_debt_service=self.c4_market_path_total_debt_service, c4_market_path_total_debt_service_alt=self.c4_market_path_total_debt_service_alt)
+        return internals.c4_mkt_fin_gfn_increase(c4_market_path_total_debt_service=self.c4_market_path_total_debt_service, c4_market_path_total_debt_service_alt=self.c4_market_path_total_debt_service_alt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_pv_residual_financing(self) -> data.Series[float | str | None]:
-        return internals.c4_mkt_fin_pv_residual_financing(pv_stress_pv_of_new_forex_debt=self.pv_stress_pv_of_new_forex_debt)
+        return internals.c4_mkt_fin_pv_residual_financing(pv_stress_pv_of_new_forex_debt=self.pv_stress_pv_of_new_forex_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_pv_debt_adjustments(self) -> data.Series[float | str | None]:
-        return internals.c4_mkt_fin_pv_debt_adjustments(c4_mkt_fin_pv_residual_financing=self.c4_mkt_fin_pv_residual_financing, c4_market_path_pv_of_debt=self.c4_market_path_pv_of_debt, c4_market_path_pv_of_debt_alt=self.c4_market_path_pv_of_debt_alt)
+        return internals.c4_mkt_fin_pv_debt_adjustments(c4_mkt_fin_pv_residual_financing=self.c4_mkt_fin_pv_residual_financing, c4_market_path_pv_of_debt=self.c4_market_path_pv_of_debt, c4_market_path_pv_of_debt_alt=self.c4_market_path_pv_of_debt_alt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_revised_pv_debt(self) -> data.Series[float | str | None]:
-        return internals.c4_mkt_fin_revised_pv_debt(c4_market_path_baseline_pv_of_debt=self.c4_market_path_baseline_pv_of_debt, c4_mkt_fin_pv_debt_adjustments=self.c4_mkt_fin_pv_debt_adjustments)
+        return internals.c4_mkt_fin_revised_pv_debt(c4_market_path_baseline_pv_of_debt=self.c4_market_path_baseline_pv_of_debt, c4_mkt_fin_pv_debt_adjustments=self.c4_mkt_fin_pv_debt_adjustments, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_revised_pv_debt_pct_gdp(self) -> data.Series[float | str | None]:
-        return internals.c4_mkt_fin_revised_pv_debt_pct_gdp(c4_market_path_nominal_gdp_stress=self.c4_market_path_nominal_gdp_stress, c4_mkt_fin_revised_pv_debt=self.c4_mkt_fin_revised_pv_debt)
+        return internals.c4_mkt_fin_revised_pv_debt_pct_gdp(c4_market_path_nominal_gdp_stress=self.c4_market_path_nominal_gdp_stress, c4_mkt_fin_revised_pv_debt=self.c4_mkt_fin_revised_pv_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_baseline_debt_service(self) -> data.Series[float | str | None]:
-        return internals.c4_mkt_fin_baseline_debt_service(macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6)
+        return internals.c4_mkt_fin_baseline_debt_service(macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_debt_service_adjustment(self) -> data.Series[float | str | None]:
-        return internals.c4_mkt_fin_debt_service_adjustment(c4_market_path_total_debt_service=self.c4_market_path_total_debt_service, c4_market_path_total_debt_service_alt=self.c4_market_path_total_debt_service_alt, pv_stress_total_debt_service=self.pv_stress_total_debt_service)
+        return internals.c4_mkt_fin_debt_service_adjustment(c4_market_path_total_debt_service=self.c4_market_path_total_debt_service, c4_market_path_total_debt_service_alt=self.c4_market_path_total_debt_service_alt, pv_stress_total_debt_service=self.pv_stress_total_debt_service, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_adjusted_debt_service(self) -> data.Series[float | str | None]:
-        return internals.c4_mkt_fin_adjusted_debt_service(c4_mkt_fin_baseline_debt_service=self.c4_mkt_fin_baseline_debt_service, c4_mkt_fin_debt_service_adjustment=self.c4_mkt_fin_debt_service_adjustment)
+        return internals.c4_mkt_fin_adjusted_debt_service(c4_mkt_fin_baseline_debt_service=self.c4_mkt_fin_baseline_debt_service, c4_mkt_fin_debt_service_adjustment=self.c4_mkt_fin_debt_service_adjustment, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_revenue_ex_grants(self) -> data.Series[float | str | None]:
-        return internals.c4_mkt_fin_revenue_ex_grants(dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars, dsa_ext_government_revenues_excluding_grants_in_percent_of_gdp=self.dsa_ext_government_revenues_excluding_grants_in_percent_of_gdp)
+        return internals.c4_mkt_fin_revenue_ex_grants(dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars, dsa_ext_government_revenues_excluding_grants_in_percent_of_gdp=self.dsa_ext_government_revenues_excluding_grants_in_percent_of_gdp, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_revised_pv_debt_to_exports(self) -> data.Series[float | str | None]:
-        return internals.c4_mkt_fin_revised_pv_debt_to_exports(c4_mkt_fin_pv_debt_adjustments=self.c4_mkt_fin_pv_debt_adjustments, c4_market_path_baseline_pv_of_debt=self.c4_market_path_baseline_pv_of_debt, c4_market_path_exports=self.c4_market_path_exports)
+        return internals.c4_mkt_fin_revised_pv_debt_to_exports(c4_mkt_fin_pv_debt_adjustments=self.c4_mkt_fin_pv_debt_adjustments, c4_market_path_baseline_pv_of_debt=self.c4_market_path_baseline_pv_of_debt, c4_market_path_exports=self.c4_market_path_exports, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_dsr_exports_stress(self) -> data.Series[float | str | None]:
-        return internals.c4_mkt_fin_dsr_exports_stress(c4_market_path_exports=self.c4_market_path_exports, c4_mkt_fin_adjusted_debt_service=self.c4_mkt_fin_adjusted_debt_service)
+        return internals.c4_mkt_fin_dsr_exports_stress(c4_market_path_exports=self.c4_market_path_exports, c4_mkt_fin_adjusted_debt_service=self.c4_mkt_fin_adjusted_debt_service, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_mkt_fin_dsr_revenue_stress(self) -> data.Series[float | str | None]:
-        return internals.c4_mkt_fin_dsr_revenue_stress(c4_mkt_fin_adjusted_debt_service=self.c4_mkt_fin_adjusted_debt_service, c4_mkt_fin_revenue_ex_grants=self.c4_mkt_fin_revenue_ex_grants)
+        return internals.c4_mkt_fin_dsr_revenue_stress(c4_mkt_fin_adjusted_debt_service=self.c4_mkt_fin_adjusted_debt_service, c4_mkt_fin_revenue_ex_grants=self.c4_mkt_fin_revenue_ex_grants, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ci_summary_debt_carrying_capacity(self) -> str | int | float | bool:
@@ -3069,7 +3579,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def ci_summary_index_components(self) -> data.Series[float | str | None]:
-        return internals.ci_summary_index_components(ci_probit_coefficients=data.CI_PROBIT_COEFFICIENTS, ci_summary_components_by_year=self.ci_summary_components_by_year)
+        return internals.ci_summary_index_components(ci_probit_coefficients=data.CI_PROBIT_COEFFICIENTS, ci_summary_components_by_year=self.ci_summary_components_by_year, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def ci_summary_ci_score(self) -> float | str:
@@ -3081,7 +3591,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def ci_summary_components_by_year(self) -> data.Series[float | str | None]:
-        return internals.ci_summary_components_by_year(ci_remittances_higher_cutoff=data.CI_REMITTANCES_HIGHER_CUTOFF, imported_classification_values=self.imported_classification_values, ci_summary_gdp_us_dollars_billions=self.ci_summary_gdp_us_dollars_billions, ci_summary_remittances_gross_us_dollars_billions=self.ci_summary_remittances_gross_us_dollars_billions)
+        return internals.ci_summary_components_by_year(ci_remittances_higher_cutoff=data.CI_REMITTANCES_HIGHER_CUTOFF, imported_classification_values=self.imported_classification_values, ci_summary_gdp_us_dollars_billions=self.ci_summary_gdp_us_dollars_billions, ci_summary_remittances_gross_us_dollars_billions=self.ci_summary_remittances_gross_us_dollars_billions, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def ci_summary_cpia_rating(self) -> float | str:
@@ -3089,7 +3599,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def ci_summary_performance_policy(self) -> str | int | float | bool:
-        return internals.ci_summary_performance_policy(imported_composite_indicator=self.imported_composite_indicator)
+        return internals.ci_summary_performance_policy(imported_composite_indicator=self.imported_composite_indicator, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def ci_summary_old_policy_exports_threshold(self) -> float | str:
@@ -3213,291 +3723,291 @@ class Model(_BoundInputs):
 
     @cached_property
     def baseline_pub_public_sector_debt(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_public_sector_debt(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_total_public_debt_outstanding_year_end=self.macro_debt_total_public_debt_outstanding_year_end)
+        return internals.baseline_pub_public_sector_debt(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_total_public_debt_outstanding_year_end=self.macro_debt_total_public_debt_outstanding_year_end, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def baseline_pub_of_which_fx_denominated(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_of_which_fx_denominated(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_fx_denominated_public_debt_end_of_period=self.macro_debt_fx_denominated_public_debt_end_of_period)
+        return internals.baseline_pub_of_which_fx_denominated(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_fx_denominated_public_debt_end_of_period=self.macro_debt_fx_denominated_public_debt_end_of_period, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def baseline_pub_change_in_public_sector_debt(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_change_in_public_sector_debt(baseline_pub_public_sector_debt=self.baseline_pub_public_sector_debt)
+        return internals.baseline_pub_change_in_public_sector_debt(baseline_pub_public_sector_debt=self.baseline_pub_public_sector_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_identified_debt_creating_flows(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_identified_debt_creating_flows(baseline_pub_primary_deficit=self.baseline_pub_primary_deficit, baseline_pub_automatic_debt_dynamics=self.baseline_pub_automatic_debt_dynamics, baseline_pub_other_identified_debt_creating_flows=self.baseline_pub_other_identified_debt_creating_flows)
+        return internals.baseline_pub_identified_debt_creating_flows(baseline_pub_primary_deficit=self.baseline_pub_primary_deficit, baseline_pub_automatic_debt_dynamics=self.baseline_pub_automatic_debt_dynamics, baseline_pub_other_identified_debt_creating_flows=self.baseline_pub_other_identified_debt_creating_flows, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_primary_deficit(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_primary_deficit(baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_primary_noninterest_expenditure=self.baseline_pub_primary_noninterest_expenditure)
+        return internals.baseline_pub_primary_deficit(baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_primary_noninterest_expenditure=self.baseline_pub_primary_noninterest_expenditure, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def baseline_pub_primary_deficit_by_indicator(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_primary_deficit_by_indicator(baseline_pub_primary_deficit=self.baseline_pub_primary_deficit)
+        return internals.baseline_pub_primary_deficit_by_indicator(baseline_pub_primary_deficit=self.baseline_pub_primary_deficit, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def baseline_pub_revenue_grants(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_revenue_grants(macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc)
+        return internals.baseline_pub_revenue_grants(macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def baseline_pub_of_which_grants(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_of_which_grants(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_public_sector_grants=self.macro_debt_public_sector_grants)
+        return internals.baseline_pub_of_which_grants(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_public_sector_grants=self.macro_debt_public_sector_grants, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_primary_noninterest_expenditure(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_primary_noninterest_expenditure(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_public_sector_primary_expenditure=self.macro_debt_public_sector_primary_expenditure)
+        return internals.baseline_pub_primary_noninterest_expenditure(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_public_sector_primary_expenditure=self.macro_debt_public_sector_primary_expenditure, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def baseline_pub_automatic_debt_dynamics(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_automatic_debt_dynamics(baseline_pub_contribution_from_interest_rate_growth=self.baseline_pub_contribution_from_interest_rate_growth, baseline_pub_contribution_from_real_exchange_rate=self.baseline_pub_contribution_from_real_exchange_rate)
+        return internals.baseline_pub_automatic_debt_dynamics(baseline_pub_contribution_from_interest_rate_growth=self.baseline_pub_contribution_from_interest_rate_growth, baseline_pub_contribution_from_real_exchange_rate=self.baseline_pub_contribution_from_real_exchange_rate, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_contribution_from_interest_rate_growth(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_contribution_from_interest_rate_growth(baseline_pub_of_which_contribution_from_average_real=self.baseline_pub_of_which_contribution_from_average_real, baseline_pub_of_which_contribution_from_real_gdp_growth=self.baseline_pub_of_which_contribution_from_real_gdp_growth)
+        return internals.baseline_pub_contribution_from_interest_rate_growth(baseline_pub_of_which_contribution_from_average_real=self.baseline_pub_of_which_contribution_from_average_real, baseline_pub_of_which_contribution_from_real_gdp_growth=self.baseline_pub_of_which_contribution_from_real_gdp_growth, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_of_which_contribution_from_average_real(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_of_which_contribution_from_average_real(baseline_pub_public_sector_debt=self.baseline_pub_public_sector_debt, baseline_pub_hide=self.baseline_pub_hide, baseline_pub_average_real_interest_rate=self.baseline_pub_average_real_interest_rate)
+        return internals.baseline_pub_of_which_contribution_from_average_real(baseline_pub_public_sector_debt=self.baseline_pub_public_sector_debt, baseline_pub_hide=self.baseline_pub_hide, baseline_pub_average_real_interest_rate=self.baseline_pub_average_real_interest_rate, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_of_which_contribution_from_real_gdp_growth(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_of_which_contribution_from_real_gdp_growth(baseline_pub_public_sector_debt=self.baseline_pub_public_sector_debt, baseline_pub_hide=self.baseline_pub_hide, baseline_pub_real_gdp_growth=self.baseline_pub_real_gdp_growth)
+        return internals.baseline_pub_of_which_contribution_from_real_gdp_growth(baseline_pub_public_sector_debt=self.baseline_pub_public_sector_debt, baseline_pub_hide=self.baseline_pub_hide, baseline_pub_real_gdp_growth=self.baseline_pub_real_gdp_growth, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_contribution_from_real_exchange_rate(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_contribution_from_real_exchange_rate(baseline_pub_of_which_fx_denominated=self.baseline_pub_of_which_fx_denominated, baseline_pub_hide=self.baseline_pub_hide, baseline_pub_average_real_interest_rate_ext_debt=self.baseline_pub_average_real_interest_rate_ext_debt, baseline_pub_real_exchange_rate_depreciation_pct_indicates=self.baseline_pub_real_exchange_rate_depreciation_pct_indicates)
+        return internals.baseline_pub_contribution_from_real_exchange_rate(baseline_pub_of_which_fx_denominated=self.baseline_pub_of_which_fx_denominated, baseline_pub_hide=self.baseline_pub_hide, baseline_pub_average_real_interest_rate_ext_debt=self.baseline_pub_average_real_interest_rate_ext_debt, baseline_pub_real_exchange_rate_depreciation_pct_indicates=self.baseline_pub_real_exchange_rate_depreciation_pct_indicates, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_hide(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_hide(baseline_pub_real_gdp_growth=self.baseline_pub_real_gdp_growth)
+        return internals.baseline_pub_hide(baseline_pub_real_gdp_growth=self.baseline_pub_real_gdp_growth, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_other_identified_debt_creating_flows(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_other_identified_debt_creating_flows(baseline_pub_privatization_receipts_negative=self.baseline_pub_privatization_receipts_negative, baseline_pub_recognition_of_contingent_liab_e_g_bank=self.baseline_pub_recognition_of_contingent_liab_e_g_bank, baseline_pub_debt_relief_hipc_other=self.baseline_pub_debt_relief_hipc_other, baseline_pub_other_debt_creating_reducing_flow_please_specify=self.baseline_pub_other_debt_creating_reducing_flow_please_specify)
+        return internals.baseline_pub_other_identified_debt_creating_flows(baseline_pub_privatization_receipts_negative=self.baseline_pub_privatization_receipts_negative, baseline_pub_recognition_of_contingent_liab_e_g_bank=self.baseline_pub_recognition_of_contingent_liab_e_g_bank, baseline_pub_debt_relief_hipc_other=self.baseline_pub_debt_relief_hipc_other, baseline_pub_other_debt_creating_reducing_flow_please_specify=self.baseline_pub_other_debt_creating_reducing_flow_please_specify, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_privatization_receipts_negative(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_privatization_receipts_negative(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_privatization_receipts=self.macro_debt_privatization_receipts)
+        return internals.baseline_pub_privatization_receipts_negative(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_privatization_receipts=self.macro_debt_privatization_receipts, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_recognition_of_contingent_liab_e_g_bank(self) -> data.Series[int | str | None]:
-        return internals.baseline_pub_recognition_of_contingent_liab_e_g_bank(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_recognition_of_contingent_liab_e_g_bank=self.macro_debt_recognition_of_contingent_liab_e_g_bank)
+        return internals.baseline_pub_recognition_of_contingent_liab_e_g_bank(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_recognition_of_contingent_liab_e_g_bank=self.macro_debt_recognition_of_contingent_liab_e_g_bank, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_debt_relief_hipc_other(self) -> data.Series[int | str | None]:
-        return internals.baseline_pub_debt_relief_hipc_other(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_debt_relief=self.macro_debt_debt_relief)
+        return internals.baseline_pub_debt_relief_hipc_other(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_debt_relief=self.macro_debt_debt_relief, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_other_debt_creating_reducing_flow_please_specify(self) -> data.Series[int | str | None]:
-        return internals.baseline_pub_other_debt_creating_reducing_flow_please_specify(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_other_debt_creating_reducing_flow_please_specify=self.macro_debt_other_debt_creating_reducing_flow_please_specify)
+        return internals.baseline_pub_other_debt_creating_reducing_flow_please_specify(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_other_debt_creating_reducing_flow_please_specify=self.macro_debt_other_debt_creating_reducing_flow_please_specify, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_residual(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_residual(baseline_pub_change_in_public_sector_debt=self.baseline_pub_change_in_public_sector_debt, baseline_pub_identified_debt_creating_flows=self.baseline_pub_identified_debt_creating_flows)
+        return internals.baseline_pub_residual(baseline_pub_change_in_public_sector_debt=self.baseline_pub_change_in_public_sector_debt, baseline_pub_identified_debt_creating_flows=self.baseline_pub_identified_debt_creating_flows, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_pv_of_public_debt_gdp_ratio(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_pv_of_public_debt_gdp_ratio(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_total_public_domestic_debt=self.macro_debt_total_public_domestic_debt, macro_debt_pv_of_public_sector_ext_debt_end_of_period=self.macro_debt_pv_of_public_sector_ext_debt_end_of_period)
+        return internals.baseline_pub_pv_of_public_debt_gdp_ratio(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_total_public_domestic_debt=self.macro_debt_total_public_domestic_debt, macro_debt_pv_of_public_sector_ext_debt_end_of_period=self.macro_debt_pv_of_public_sector_ext_debt_end_of_period, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_pv_of_public_debt_revenue_grants_ratio(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_pv_of_public_debt_revenue_grants_ratio(baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_pv_of_public_debt_gdp_ratio=self.baseline_pub_pv_of_public_debt_gdp_ratio)
+        return internals.baseline_pub_pv_of_public_debt_revenue_grants_ratio(baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_pv_of_public_debt_gdp_ratio=self.baseline_pub_pv_of_public_debt_gdp_ratio, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_debt_service_revenue_grants_ratio(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_debt_service_revenue_grants_ratio(macro_debt_public_domestic_st=self.macro_debt_public_domestic_st, macro_debt_total_mlt_public_domestic_debt_amortization_debt=self.macro_debt_total_mlt_public_domestic_debt_amortization_debt, macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants, macro_debt_public_sector_interest_expenditure=self.macro_debt_public_sector_interest_expenditure, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6)
+        return internals.baseline_pub_debt_service_revenue_grants_ratio(macro_debt_public_domestic_st=self.macro_debt_public_domestic_st, macro_debt_total_mlt_public_domestic_debt_amortization_debt=self.macro_debt_total_mlt_public_domestic_debt_amortization_debt, macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants, macro_debt_public_sector_interest_expenditure=self.macro_debt_public_sector_interest_expenditure, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_gross_financing_need(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_gross_financing_need(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_gross_financing_need=self.macro_debt_gross_financing_need)
+        return internals.baseline_pub_gross_financing_need(baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, macro_debt_gross_financing_need=self.macro_debt_gross_financing_need, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_nominal_gdp_lc(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_nominal_gdp_lc(macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc)
+        return internals.baseline_pub_nominal_gdp_lc(macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def baseline_pub_real_gdp_growth(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_real_gdp_growth(macro_debt_real_gdp_growth=self.macro_debt_real_gdp_growth)
+        return internals.baseline_pub_real_gdp_growth(macro_debt_real_gdp_growth=self.macro_debt_real_gdp_growth, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def baseline_pub_real_gdp_growth_by_indicator(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_real_gdp_growth_by_indicator(baseline_pub_real_gdp_growth=self.baseline_pub_real_gdp_growth)
+        return internals.baseline_pub_real_gdp_growth_by_indicator(baseline_pub_real_gdp_growth=self.baseline_pub_real_gdp_growth, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def baseline_pub_average_nominal_interest_rate_public_debt(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_average_nominal_interest_rate_public_debt(macro_debt_public_sector_interest_expenditure=self.macro_debt_public_sector_interest_expenditure, macro_debt_total_public_debt_outstanding_year_end=self.macro_debt_total_public_debt_outstanding_year_end)
+        return internals.baseline_pub_average_nominal_interest_rate_public_debt(macro_debt_public_sector_interest_expenditure=self.macro_debt_public_sector_interest_expenditure, macro_debt_total_public_debt_outstanding_year_end=self.macro_debt_total_public_debt_outstanding_year_end, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_average_nominal_interest_rate_ext_debt(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_average_nominal_interest_rate_ext_debt(baseline_pub_average_nominal_interest_rate_public_debt=self.baseline_pub_average_nominal_interest_rate_public_debt, macro_debt_interest_rate_ext_debt=self.macro_debt_interest_rate_ext_debt)
+        return internals.baseline_pub_average_nominal_interest_rate_ext_debt(baseline_pub_average_nominal_interest_rate_public_debt=self.baseline_pub_average_nominal_interest_rate_public_debt, macro_debt_interest_rate_ext_debt=self.macro_debt_interest_rate_ext_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_average_nominal_interest_rate_domestic_debt(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_average_nominal_interest_rate_domestic_debt(baseline_pub_average_nominal_interest_rate_public_debt=self.baseline_pub_average_nominal_interest_rate_public_debt, macro_debt_interest_rate_domestic_debt=self.macro_debt_interest_rate_domestic_debt)
+        return internals.baseline_pub_average_nominal_interest_rate_domestic_debt(baseline_pub_average_nominal_interest_rate_public_debt=self.baseline_pub_average_nominal_interest_rate_public_debt, macro_debt_interest_rate_domestic_debt=self.macro_debt_interest_rate_domestic_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_average_real_interest_rate(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_average_real_interest_rate(baseline_pub_public_sector_debt=self.baseline_pub_public_sector_debt, baseline_pub_of_which_fx_denominated=self.baseline_pub_of_which_fx_denominated, baseline_pub_average_real_interest_rate_domestic_debt=self.baseline_pub_average_real_interest_rate_domestic_debt, baseline_pub_average_real_interest_rate_ext_debt=self.baseline_pub_average_real_interest_rate_ext_debt)
+        return internals.baseline_pub_average_real_interest_rate(baseline_pub_public_sector_debt=self.baseline_pub_public_sector_debt, baseline_pub_of_which_fx_denominated=self.baseline_pub_of_which_fx_denominated, baseline_pub_average_real_interest_rate_domestic_debt=self.baseline_pub_average_real_interest_rate_domestic_debt, baseline_pub_average_real_interest_rate_ext_debt=self.baseline_pub_average_real_interest_rate_ext_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_average_real_interest_rate_domestic_debt(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_average_real_interest_rate_domestic_debt(baseline_pub_average_nominal_interest_rate_domestic_debt=self.baseline_pub_average_nominal_interest_rate_domestic_debt, baseline_pub_inflation_rate_gdp_deflator_pct=self.baseline_pub_inflation_rate_gdp_deflator_pct)
+        return internals.baseline_pub_average_real_interest_rate_domestic_debt(baseline_pub_average_nominal_interest_rate_domestic_debt=self.baseline_pub_average_nominal_interest_rate_domestic_debt, baseline_pub_inflation_rate_gdp_deflator_pct=self.baseline_pub_inflation_rate_gdp_deflator_pct, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_average_real_interest_rate_ext_debt(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_average_real_interest_rate_ext_debt(baseline_pub_average_nominal_interest_rate_ext_debt=self.baseline_pub_average_nominal_interest_rate_ext_debt, baseline_pub_us_inflation_rate_gdp_deflator_pct=self.baseline_pub_us_inflation_rate_gdp_deflator_pct)
+        return internals.baseline_pub_average_real_interest_rate_ext_debt(baseline_pub_average_nominal_interest_rate_ext_debt=self.baseline_pub_average_nominal_interest_rate_ext_debt, baseline_pub_us_inflation_rate_gdp_deflator_pct=self.baseline_pub_us_inflation_rate_gdp_deflator_pct, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_exchange_rate_lc_per_us_dollar(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_exchange_rate_lc_per_us_dollar(macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar)
+        return internals.baseline_pub_exchange_rate_lc_per_us_dollar(macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def baseline_pub_nominal_depreciation_of_lc_percentage_change_lc(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_nominal_depreciation_of_lc_percentage_change_lc(baseline_pub_exchange_rate_lc_per_us_dollar=self.baseline_pub_exchange_rate_lc_per_us_dollar)
+        return internals.baseline_pub_nominal_depreciation_of_lc_percentage_change_lc(baseline_pub_exchange_rate_lc_per_us_dollar=self.baseline_pub_exchange_rate_lc_per_us_dollar, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_exchange_rate_us_dollar_per_lc(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_exchange_rate_us_dollar_per_lc(baseline_pub_exchange_rate_lc_per_us_dollar=self.baseline_pub_exchange_rate_lc_per_us_dollar)
+        return internals.baseline_pub_exchange_rate_us_dollar_per_lc(baseline_pub_exchange_rate_lc_per_us_dollar=self.baseline_pub_exchange_rate_lc_per_us_dollar, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_nominal_appreciation_increase_in_us_dollar(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_nominal_appreciation_increase_in_us_dollar(baseline_pub_exchange_rate_us_dollar_per_lc=self.baseline_pub_exchange_rate_us_dollar_per_lc)
+        return internals.baseline_pub_nominal_appreciation_increase_in_us_dollar(baseline_pub_exchange_rate_us_dollar_per_lc=self.baseline_pub_exchange_rate_us_dollar_per_lc, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_real_exchange_rate_depreciation_pct_indicates(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_real_exchange_rate_depreciation_pct_indicates(baseline_pub_nominal_depreciation_of_lc_percentage_change_lc=self.baseline_pub_nominal_depreciation_of_lc_percentage_change_lc, baseline_pub_inflation_rate_gdp_deflator_pct=self.baseline_pub_inflation_rate_gdp_deflator_pct, baseline_pub_us_inflation_rate_gdp_deflator_pct=self.baseline_pub_us_inflation_rate_gdp_deflator_pct)
+        return internals.baseline_pub_real_exchange_rate_depreciation_pct_indicates(baseline_pub_nominal_depreciation_of_lc_percentage_change_lc=self.baseline_pub_nominal_depreciation_of_lc_percentage_change_lc, baseline_pub_inflation_rate_gdp_deflator_pct=self.baseline_pub_inflation_rate_gdp_deflator_pct, baseline_pub_us_inflation_rate_gdp_deflator_pct=self.baseline_pub_us_inflation_rate_gdp_deflator_pct, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_inflation_rate_gdp_deflator_pct(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_inflation_rate_gdp_deflator_pct(macro_debt_change_in_gdp_deflator_factor=self.macro_debt_change_in_gdp_deflator_factor)
+        return internals.baseline_pub_inflation_rate_gdp_deflator_pct(macro_debt_change_in_gdp_deflator_factor=self.macro_debt_change_in_gdp_deflator_factor, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def baseline_pub_inflation_rate_gdp_deflator_pct_al(self) -> float | str:
-        return internals.baseline_pub_inflation_rate_gdp_deflator_pct_al(baseline_pub_inflation_rate_gdp_deflator_pct=self.baseline_pub_inflation_rate_gdp_deflator_pct)
+        return internals.baseline_pub_inflation_rate_gdp_deflator_pct_al(baseline_pub_inflation_rate_gdp_deflator_pct=self.baseline_pub_inflation_rate_gdp_deflator_pct, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def baseline_pub_us_inflation_rate_gdp_deflator_pct(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_us_inflation_rate_gdp_deflator_pct(macro_debt_us_gdp_deflator_percent_change=self.macro_debt_us_gdp_deflator_percent_change)
+        return internals.baseline_pub_us_inflation_rate_gdp_deflator_pct(macro_debt_us_gdp_deflator_percent_change=self.macro_debt_us_gdp_deflator_percent_change, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_gross_financing_need_by_year(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_gross_financing_need_by_year(baseline_pub_gross_financing_need=self.baseline_pub_gross_financing_need, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc)
+        return internals.baseline_pub_gross_financing_need_by_year(baseline_pub_gross_financing_need=self.baseline_pub_gross_financing_need, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_debt_service_in_lcu_baseline(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_debt_service_in_lcu_baseline(macro_debt_public_domestic_st=self.macro_debt_public_domestic_st, macro_debt_total_mlt_public_domestic_debt_amortization_debt=self.macro_debt_total_mlt_public_domestic_debt_amortization_debt, macro_debt_public_sector_interest_expenditure=self.macro_debt_public_sector_interest_expenditure, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6)
+        return internals.baseline_pub_debt_service_in_lcu_baseline(macro_debt_public_domestic_st=self.macro_debt_public_domestic_st, macro_debt_total_mlt_public_domestic_debt_amortization_debt=self.macro_debt_total_mlt_public_domestic_debt_amortization_debt, macro_debt_public_sector_interest_expenditure=self.macro_debt_public_sector_interest_expenditure, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_pv_of_public_debt_level_in_lcu_baseline(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_pv_of_public_debt_level_in_lcu_baseline(baseline_pub_pv_of_public_debt_gdp_ratio=self.baseline_pub_pv_of_public_debt_gdp_ratio, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc)
+        return internals.baseline_pub_pv_of_public_debt_level_in_lcu_baseline(baseline_pub_pv_of_public_debt_gdp_ratio=self.baseline_pub_pv_of_public_debt_gdp_ratio, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports(dsa_ext_pv_of_additional_borrowing=self.dsa_ext_pv_of_additional_borrowing, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, baseline_pub_exchange_rate_lc_per_us_dollar=self.baseline_pub_exchange_rate_lc_per_us_dollar, baseline_pub_pv_of_public_debt_level_in_lcu_baseline=self.baseline_pub_pv_of_public_debt_level_in_lcu_baseline)
+        return internals.baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports(dsa_ext_pv_of_additional_borrowing=self.dsa_ext_pv_of_additional_borrowing, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, baseline_pub_exchange_rate_lc_per_us_dollar=self.baseline_pub_exchange_rate_lc_per_us_dollar, baseline_pub_pv_of_public_debt_level_in_lcu_baseline=self.baseline_pub_pv_of_public_debt_level_in_lcu_baseline, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows(dsa_ext_pv_of_additional_borrowing=self.dsa_ext_pv_of_additional_borrowing, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, baseline_pub_exchange_rate_lc_per_us_dollar=self.baseline_pub_exchange_rate_lc_per_us_dollar, baseline_pub_pv_of_public_debt_level_in_lcu_baseline=self.baseline_pub_pv_of_public_debt_level_in_lcu_baseline)
+        return internals.baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows(dsa_ext_pv_of_additional_borrowing=self.dsa_ext_pv_of_additional_borrowing, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, baseline_pub_exchange_rate_lc_per_us_dollar=self.baseline_pub_exchange_rate_lc_per_us_dollar, baseline_pub_pv_of_public_debt_level_in_lcu_baseline=self.baseline_pub_pv_of_public_debt_level_in_lcu_baseline, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin(c4_mkt_fin_pv_debt_adjustments=self.c4_mkt_fin_pv_debt_adjustments, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, baseline_pub_exchange_rate_lc_per_us_dollar=self.baseline_pub_exchange_rate_lc_per_us_dollar, baseline_pub_pv_of_public_debt_level_in_lcu_baseline=self.baseline_pub_pv_of_public_debt_level_in_lcu_baseline)
+        return internals.baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin(c4_mkt_fin_pv_debt_adjustments=self.c4_mkt_fin_pv_debt_adjustments, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, baseline_pub_exchange_rate_lc_per_us_dollar=self.baseline_pub_exchange_rate_lc_per_us_dollar, baseline_pub_pv_of_public_debt_level_in_lcu_baseline=self.baseline_pub_pv_of_public_debt_level_in_lcu_baseline, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_pv_of_public_debt_revenue_grants_ratio_exports_shock(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_pv_of_public_debt_revenue_grants_ratio_exports_shock(baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports=self.baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports)
+        return internals.baseline_pub_pv_of_public_debt_revenue_grants_ratio_exports_shock(baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports=self.baseline_pub_pv_of_public_debt_gdp_ratio_b3_exports, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_pv_of_public_debt_revenue_grants_ratio_b4_other(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_pv_of_public_debt_revenue_grants_ratio_b4_other(baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows=self.baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows)
+        return internals.baseline_pub_pv_of_public_debt_revenue_grants_ratio_b4_other(baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows=self.baseline_pub_pv_of_public_debt_gdp_ratio_b4_other_flows, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_pv_of_public_debt_revenue_grants_ratio_c4_mkt(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_pv_of_public_debt_revenue_grants_ratio_c4_mkt(baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin=self.baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin)
+        return internals.baseline_pub_pv_of_public_debt_revenue_grants_ratio_c4_mkt(baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin=self.baseline_pub_pv_of_public_debt_gdp_ratio_c4_mkt_fin, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_debt_service_in_lcu_b3_export_stress_test(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_debt_service_in_lcu_b3_export_stress_test(dsa_ext_additional_debt_service_stress=self.dsa_ext_additional_debt_service_stress, baseline_pub_debt_service_in_lcu_baseline=self.baseline_pub_debt_service_in_lcu_baseline, leftover_exchange_rate_pa=self.leftover_exchange_rate_pa)
+        return internals.baseline_pub_debt_service_in_lcu_b3_export_stress_test(dsa_ext_additional_debt_service_stress=self.dsa_ext_additional_debt_service_stress, baseline_pub_debt_service_in_lcu_baseline=self.baseline_pub_debt_service_in_lcu_baseline, leftover_exchange_rate_pa=self.leftover_exchange_rate_pa, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_debt_service_in_lcu_b4_other_flows_stress_test(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_debt_service_in_lcu_b4_other_flows_stress_test(leftover_exchange_rate_pa=self.leftover_exchange_rate_pa, dsa_ext_additional_debt_service_stress=self.dsa_ext_additional_debt_service_stress, baseline_pub_debt_service_in_lcu_baseline=self.baseline_pub_debt_service_in_lcu_baseline)
+        return internals.baseline_pub_debt_service_in_lcu_b4_other_flows_stress_test(leftover_exchange_rate_pa=self.leftover_exchange_rate_pa, dsa_ext_additional_debt_service_stress=self.dsa_ext_additional_debt_service_stress, baseline_pub_debt_service_in_lcu_baseline=self.baseline_pub_debt_service_in_lcu_baseline, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_debt_service_in_lcu_c4_market_stress_test(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_debt_service_in_lcu_c4_market_stress_test(leftover_exchange_rate_pa=self.leftover_exchange_rate_pa, c4_mkt_fin_debt_service_adjustment=self.c4_mkt_fin_debt_service_adjustment, baseline_pub_debt_service_in_lcu_baseline=self.baseline_pub_debt_service_in_lcu_baseline)
+        return internals.baseline_pub_debt_service_in_lcu_c4_market_stress_test(leftover_exchange_rate_pa=self.leftover_exchange_rate_pa, c4_mkt_fin_debt_service_adjustment=self.c4_mkt_fin_debt_service_adjustment, baseline_pub_debt_service_in_lcu_baseline=self.baseline_pub_debt_service_in_lcu_baseline, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_debt_service_revenue_grants_ratio_bseline(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_debt_service_revenue_grants_ratio_bseline(baseline_pub_debt_service_in_lcu_baseline=self.baseline_pub_debt_service_in_lcu_baseline, macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants)
+        return internals.baseline_pub_debt_service_revenue_grants_ratio_bseline(baseline_pub_debt_service_in_lcu_baseline=self.baseline_pub_debt_service_in_lcu_baseline, macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_debt_service_revenue_grants_ratio_b3_exports(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_debt_service_revenue_grants_ratio_b3_exports(baseline_pub_debt_service_in_lcu_b3_export_stress_test=self.baseline_pub_debt_service_in_lcu_b3_export_stress_test, macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants)
+        return internals.baseline_pub_debt_service_revenue_grants_ratio_b3_exports(baseline_pub_debt_service_in_lcu_b3_export_stress_test=self.baseline_pub_debt_service_in_lcu_b3_export_stress_test, macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_debt_service_revenue_grants_ratio_b4_other_flows(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_debt_service_revenue_grants_ratio_b4_other_flows(baseline_pub_debt_service_in_lcu_b4_other_flows_stress_test=self.baseline_pub_debt_service_in_lcu_b4_other_flows_stress_test, macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants)
+        return internals.baseline_pub_debt_service_revenue_grants_ratio_b4_other_flows(baseline_pub_debt_service_in_lcu_b4_other_flows_stress_test=self.baseline_pub_debt_service_in_lcu_b4_other_flows_stress_test, macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_debt_service_revenue_grants_ratio_c4_mkt_fin(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_debt_service_revenue_grants_ratio_c4_mkt_fin(baseline_pub_debt_service_in_lcu_c4_market_stress_test=self.baseline_pub_debt_service_in_lcu_c4_market_stress_test, macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants)
+        return internals.baseline_pub_debt_service_revenue_grants_ratio_c4_mkt_fin(baseline_pub_debt_service_in_lcu_c4_market_stress_test=self.baseline_pub_debt_service_in_lcu_c4_market_stress_test, macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_debt_service_gdp_ratio_baseline(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_debt_service_gdp_ratio_baseline(baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_debt_service_revenue_grants_ratio_bseline=self.baseline_pub_debt_service_revenue_grants_ratio_bseline)
+        return internals.baseline_pub_debt_service_gdp_ratio_baseline(baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_debt_service_revenue_grants_ratio_bseline=self.baseline_pub_debt_service_revenue_grants_ratio_bseline, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_debt_service_gdp_ratio_b3_exports(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_debt_service_gdp_ratio_b3_exports(baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_debt_service_revenue_grants_ratio_b3_exports=self.baseline_pub_debt_service_revenue_grants_ratio_b3_exports)
+        return internals.baseline_pub_debt_service_gdp_ratio_b3_exports(baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_debt_service_revenue_grants_ratio_b3_exports=self.baseline_pub_debt_service_revenue_grants_ratio_b3_exports, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_debt_service_gdp_ratio_b4_other_flows(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_debt_service_gdp_ratio_b4_other_flows(baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_debt_service_revenue_grants_ratio_b4_other_flows=self.baseline_pub_debt_service_revenue_grants_ratio_b4_other_flows)
+        return internals.baseline_pub_debt_service_gdp_ratio_b4_other_flows(baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_debt_service_revenue_grants_ratio_b4_other_flows=self.baseline_pub_debt_service_revenue_grants_ratio_b4_other_flows, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def baseline_pub_debt_service_gdp_ratio_c4_mkt_fin(self) -> data.Series[float | str | None]:
-        return internals.baseline_pub_debt_service_gdp_ratio_c4_mkt_fin(baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_debt_service_revenue_grants_ratio_c4_mkt_fin=self.baseline_pub_debt_service_revenue_grants_ratio_c4_mkt_fin)
+        return internals.baseline_pub_debt_service_gdp_ratio_c4_mkt_fin(baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, baseline_pub_debt_service_revenue_grants_ratio_c4_mkt_fin=self.baseline_pub_debt_service_revenue_grants_ratio_c4_mkt_fin, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_please_do_not_change_these_numbers(self) -> data.Series[int | str | None]:
-        return internals.custom_pub_please_do_not_change_these_numbers(customized_public_template_anchor=self.customized_public_template_anchor)
+        return internals.custom_pub_please_do_not_change_these_numbers(customized_public_template_anchor=self.customized_public_template_anchor, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_revenue_grants(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_revenue_grants(customized_public_delta=self.customized_public_delta, baseline_pub_revenue_grants=self.baseline_pub_revenue_grants)
+        return internals.custom_pub_revenue_grants(customized_public_delta=self.customized_public_delta, baseline_pub_revenue_grants=self.baseline_pub_revenue_grants, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_primary_noninterest_expenditure(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_primary_noninterest_expenditure(customized_public_delta=self.customized_public_delta, baseline_pub_primary_noninterest_expenditure=self.baseline_pub_primary_noninterest_expenditure)
+        return internals.custom_pub_primary_noninterest_expenditure(customized_public_delta=self.customized_public_delta, baseline_pub_primary_noninterest_expenditure=self.baseline_pub_primary_noninterest_expenditure, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_grants(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_grants(customized_public_delta=self.customized_public_delta, baseline_pub_of_which_grants=self.baseline_pub_of_which_grants)
+        return internals.custom_pub_grants(customized_public_delta=self.customized_public_delta, baseline_pub_of_which_grants=self.baseline_pub_of_which_grants, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_public_sector_assets_e_g_deposits(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_public_sector_assets_e_g_deposits(customized_public_delta=self.customized_public_delta, macro_debt_public_sector_assets_e_g_deposits=self.macro_debt_public_sector_assets_e_g_deposits)
+        return internals.custom_pub_public_sector_assets_e_g_deposits(customized_public_delta=self.customized_public_delta, macro_debt_public_sector_assets_e_g_deposits=self.macro_debt_public_sector_assets_e_g_deposits, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_real_gdp_growth(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_real_gdp_growth(customized_public_delta=self.customized_public_delta, baseline_pub_real_gdp_growth=self.baseline_pub_real_gdp_growth)
+        return internals.custom_pub_real_gdp_growth(customized_public_delta=self.customized_public_delta, baseline_pub_real_gdp_growth=self.baseline_pub_real_gdp_growth, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_inflation_rate_gdp_deflator_pct(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_inflation_rate_gdp_deflator_pct(customized_public_delta=self.customized_public_delta, baseline_pub_inflation_rate_gdp_deflator_pct=self.baseline_pub_inflation_rate_gdp_deflator_pct)
+        return internals.custom_pub_inflation_rate_gdp_deflator_pct(customized_public_delta=self.customized_public_delta, baseline_pub_inflation_rate_gdp_deflator_pct=self.baseline_pub_inflation_rate_gdp_deflator_pct, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_nominal_depreciation_of_lc_percentage_change_lc(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_nominal_depreciation_of_lc_percentage_change_lc(customized_public_delta=self.customized_public_delta, baseline_pub_nominal_depreciation_of_lc_percentage_change_lc=self.baseline_pub_nominal_depreciation_of_lc_percentage_change_lc)
+        return internals.custom_pub_nominal_depreciation_of_lc_percentage_change_lc(customized_public_delta=self.customized_public_delta, baseline_pub_nominal_depreciation_of_lc_percentage_change_lc=self.baseline_pub_nominal_depreciation_of_lc_percentage_change_lc, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_exports(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_exports(dsa_ext_exports=self.dsa_ext_exports, customized_public_delta=self.customized_public_delta)
+        return internals.custom_pub_exports(dsa_ext_exports=self.dsa_ext_exports, customized_public_delta=self.customized_public_delta, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_gdp_deflator_in_us_dollar_terms_change_pct(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_gdp_deflator_in_us_dollar_terms_change_pct(dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent=self.dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent, customized_public_delta=self.customized_public_delta)
+        return internals.custom_pub_gdp_deflator_in_us_dollar_terms_change_pct(dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent=self.dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent, customized_public_delta=self.customized_public_delta, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_usd_discount_rate_by_year(self) -> data.Series[int | str | None]:
@@ -3521,19 +4031,19 @@ class Model(_BoundInputs):
 
     @cached_property
     def custom_pub_domestic_mlt_debt(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_domestic_mlt_debt(custom_pub_inflation_gdp_deflator=self.custom_pub_inflation_gdp_deflator, custom_pub_avg_real_interest_rate_new_borrowing_by_year=self.custom_pub_avg_real_interest_rate_new_borrowing_by_year)
+        return internals.custom_pub_domestic_mlt_debt(custom_pub_inflation_gdp_deflator=self.custom_pub_inflation_gdp_deflator, custom_pub_avg_real_interest_rate_new_borrowing_by_year=self.custom_pub_avg_real_interest_rate_new_borrowing_by_year, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_avg_interest_rate(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_avg_interest_rate(custom_pub_inflation_gdp_deflator=self.custom_pub_inflation_gdp_deflator, custom_pub_avg_real_interest_rate_by_year=self.custom_pub_avg_real_interest_rate_by_year)
+        return internals.custom_pub_avg_interest_rate(custom_pub_inflation_gdp_deflator=self.custom_pub_inflation_gdp_deflator, custom_pub_avg_real_interest_rate_by_year=self.custom_pub_avg_real_interest_rate_by_year, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_inflation_gdp_deflator(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_inflation_gdp_deflator(custom_pub_inflation_rate_gdp_deflator_pct_by_year=self.custom_pub_inflation_rate_gdp_deflator_pct_by_year)
+        return internals.custom_pub_inflation_gdp_deflator(custom_pub_inflation_rate_gdp_deflator_pct_by_year=self.custom_pub_inflation_rate_gdp_deflator_pct_by_year, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def _scan_custom_pub_new_borrowing_gross_in_lcu(self) -> internals.ScanCustomPubNewBorrowingGrossInLcuResult:
-        return internals.scan_custom_pub_new_borrowing_gross_in_lcu(customized_public_template_anchor=self.customized_public_template_anchor, customized_public_natural_disaster_year=self.customized_public_natural_disaster_year, customized_public_new_forex_borrowing_cumulative_overflow=self.customized_public_new_forex_borrowing_cumulative_overflow, customized_public_new_domestic_mlt_cumulative_overflow=self.customized_public_new_domestic_mlt_cumulative_overflow, customized_public_residual_overflow=self.customized_public_residual_overflow, customized_public_new_forex_debt_stock_initial=self.customized_public_new_forex_debt_stock_initial, customized_public_domestic_mlt_interest_initial=self.customized_public_domestic_mlt_interest_initial, customized_public_domestic_st_interest_initial=self.customized_public_domestic_st_interest_initial, baseline_pub_gross_financing_need_by_year=self.baseline_pub_gross_financing_need_by_year, custom_pub_please_do_not_change_these_numbers=self.custom_pub_please_do_not_change_these_numbers, custom_pub_domestic_mlt_debt=self.custom_pub_domestic_mlt_debt, custom_pub_avg_interest_rate=self.custom_pub_avg_interest_rate, custom_pub_t_g_0=self.custom_pub_t_g_0, custom_pub_t_m_condition=self.custom_pub_t_m_condition, custom_pub_t_g_0_by_year=self.custom_pub_t_g_0_by_year, custom_pub_t_m_condition_by_year=self.custom_pub_t_m_condition_by_year, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, custom_pub_exchange_rate_us_dollar_per_lc=self.custom_pub_exchange_rate_us_dollar_per_lc, custom_pub_primary_deficit_by_year=self.custom_pub_primary_deficit_by_year, custom_pub_other_debt_creating_flows=self.custom_pub_other_debt_creating_flows, macro_debt_public_domestic_st=self.macro_debt_public_domestic_st, macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_total_public_domestic_debt_interest_due=self.macro_debt_total_public_domestic_debt_interest_due, macro_debt_total_mlt_public_domestic_debt_amortization_debt=self.macro_debt_total_mlt_public_domestic_debt_amortization_debt, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, customized_scenario_spec=self.customized_scenario_spec, custom_pub_avg_grace_period=self.custom_pub_avg_grace_period, custom_pub_avg_maturity_incl_grace_period=self.custom_pub_avg_maturity_incl_grace_period, custom_pub_avg_nominal_interest_rate_new_borrowing_usd=self.custom_pub_avg_nominal_interest_rate_new_borrowing_usd, custom_pub_domestic_mlt=self.custom_pub_domestic_mlt, custom_pub_domestic_st=self.custom_pub_domestic_st, custom_pub_external_ppg_mlt=self.custom_pub_external_ppg_mlt, custom_pub_in_billions_of_lc_of_which_short_term=self.custom_pub_in_billions_of_lc_of_which_short_term, custom_pub_shares_of_marginal_debt_avg_grace_period=self.custom_pub_shares_of_marginal_debt_avg_grace_period, custom_pub_shares_of_marginal_debt_avg_maturity_incl_grace_period=self.custom_pub_shares_of_marginal_debt_avg_maturity_incl_grace_period)
+        return internals.scan_custom_pub_new_borrowing_gross_in_lcu(input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, customized_public_template_anchor=self.customized_public_template_anchor, customized_public_natural_disaster_year=self.customized_public_natural_disaster_year, customized_public_new_forex_borrowing_cumulative_overflow=self.customized_public_new_forex_borrowing_cumulative_overflow, customized_public_new_domestic_mlt_cumulative_overflow=self.customized_public_new_domestic_mlt_cumulative_overflow, customized_public_residual_overflow=self.customized_public_residual_overflow, customized_public_new_forex_debt_stock_initial=self.customized_public_new_forex_debt_stock_initial, customized_public_domestic_mlt_interest_initial=self.customized_public_domestic_mlt_interest_initial, customized_public_domestic_st_interest_initial=self.customized_public_domestic_st_interest_initial, input3_old_debt_service=self.input3_old_debt_service, baseline_pub_gross_financing_need_by_year=self.baseline_pub_gross_financing_need_by_year, custom_pub_please_do_not_change_these_numbers=self.custom_pub_please_do_not_change_these_numbers, custom_pub_domestic_mlt_debt=self.custom_pub_domestic_mlt_debt, custom_pub_avg_interest_rate=self.custom_pub_avg_interest_rate, custom_pub_t_g_0=self.custom_pub_t_g_0, custom_pub_t_m_condition=self.custom_pub_t_m_condition, custom_pub_t_g_0_by_year=self.custom_pub_t_g_0_by_year, custom_pub_t_m_condition_by_year=self.custom_pub_t_m_condition_by_year, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, custom_pub_exchange_rate_us_dollar_per_lc=self.custom_pub_exchange_rate_us_dollar_per_lc, custom_pub_primary_deficit_by_year=self.custom_pub_primary_deficit_by_year, custom_pub_other_debt_creating_flows=self.custom_pub_other_debt_creating_flows, macro_debt_public_domestic_st=self.macro_debt_public_domestic_st, macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_total_public_domestic_debt_interest_due=self.macro_debt_total_public_domestic_debt_interest_due, macro_debt_total_mlt_public_domestic_debt_amortization_debt=self.macro_debt_total_mlt_public_domestic_debt_amortization_debt, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, customized_scenario_spec=self.customized_scenario_spec, custom_pub_avg_grace_period=self.custom_pub_avg_grace_period, custom_pub_avg_maturity_incl_grace_period=self.custom_pub_avg_maturity_incl_grace_period, custom_pub_avg_nominal_interest_rate_new_borrowing_usd=self.custom_pub_avg_nominal_interest_rate_new_borrowing_usd, custom_pub_domestic_mlt=self.custom_pub_domestic_mlt, custom_pub_domestic_st=self.custom_pub_domestic_st, custom_pub_external_ppg_mlt=self.custom_pub_external_ppg_mlt, custom_pub_in_billions_of_lc_of_which_short_term=self.custom_pub_in_billions_of_lc_of_which_short_term, custom_pub_shares_of_marginal_debt_avg_grace_period=self.custom_pub_shares_of_marginal_debt_avg_grace_period, custom_pub_shares_of_marginal_debt_avg_maturity_incl_grace_period=self.custom_pub_shares_of_marginal_debt_avg_maturity_incl_grace_period)
 
     @cached_property
     def custom_pub_new_borrowing_gross_in_lcu(self) -> data.Series[float | str | None]:
@@ -3629,31 +4139,31 @@ class Model(_BoundInputs):
 
     @cached_property
     def custom_pub_pv_of_new_forex_debt(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_pv_of_new_forex_debt(custom_pub_pv_debt=self.custom_pub_pv_debt, custom_pub_new_forex_borrowing_gross_usd=self.custom_pub_new_forex_borrowing_gross_usd, custom_pub_total_debt_service_by_year=self.custom_pub_total_debt_service_by_year, custom_pub_amortization=self.custom_pub_amortization, custom_pub_avg_nominal_interest_rate_new_borrowing_usd=self.custom_pub_avg_nominal_interest_rate_new_borrowing_usd, custom_pub_usd_discount_rate=self.custom_pub_usd_discount_rate)
+        return internals.custom_pub_pv_of_new_forex_debt(custom_pub_pv_debt=self.custom_pub_pv_debt, custom_pub_new_forex_borrowing_gross_usd=self.custom_pub_new_forex_borrowing_gross_usd, custom_pub_total_debt_service_by_year=self.custom_pub_total_debt_service_by_year, custom_pub_amortization=self.custom_pub_amortization, custom_pub_avg_nominal_interest_rate_new_borrowing_usd=self.custom_pub_avg_nominal_interest_rate_new_borrowing_usd, custom_pub_usd_discount_rate=self.custom_pub_usd_discount_rate, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_total_debt_service_by_year(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_total_debt_service_by_year(custom_pub_interest=self.custom_pub_interest, custom_pub_amortization=self.custom_pub_amortization)
+        return internals.custom_pub_total_debt_service_by_year(custom_pub_interest=self.custom_pub_interest, custom_pub_amortization=self.custom_pub_amortization, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_t_g_0(self) -> data.Series[int | str | None]:
-        return internals.custom_pub_t_g_0(custom_pub_avg_grace_period=self.custom_pub_avg_grace_period, custom_pub_period=self.custom_pub_period)
+        return internals.custom_pub_t_g_0(custom_pub_avg_grace_period=self.custom_pub_avg_grace_period, custom_pub_period=self.custom_pub_period, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_t_m_condition(self) -> data.Series[int | str | None]:
-        return internals.custom_pub_t_m_condition(custom_pub_avg_maturity_incl_grace_period=self.custom_pub_avg_maturity_incl_grace_period, custom_pub_period=self.custom_pub_period)
+        return internals.custom_pub_t_m_condition(custom_pub_avg_maturity_incl_grace_period=self.custom_pub_avg_maturity_incl_grace_period, custom_pub_period=self.custom_pub_period, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_t_g_0_by_year(self) -> data.Series[int | str | None]:
-        return internals.custom_pub_t_g_0_by_year(custom_pub_shares_of_marginal_debt_avg_grace_period=self.custom_pub_shares_of_marginal_debt_avg_grace_period, custom_pub_period=self.custom_pub_period)
+        return internals.custom_pub_t_g_0_by_year(custom_pub_shares_of_marginal_debt_avg_grace_period=self.custom_pub_shares_of_marginal_debt_avg_grace_period, custom_pub_period=self.custom_pub_period, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_t_m_condition_by_year(self) -> data.Series[int | str | None]:
-        return internals.custom_pub_t_m_condition_by_year(custom_pub_shares_of_marginal_debt_avg_maturity_incl_grace_period=self.custom_pub_shares_of_marginal_debt_avg_maturity_incl_grace_period, custom_pub_period=self.custom_pub_period)
+        return internals.custom_pub_t_m_condition_by_year(custom_pub_shares_of_marginal_debt_avg_maturity_incl_grace_period=self.custom_pub_shares_of_marginal_debt_avg_maturity_incl_grace_period, custom_pub_period=self.custom_pub_period, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def _scan_custom_pub_public_sector_debt(self) -> internals.ScanCustomPubPublicSectorDebtResult:
-        return internals.scan_custom_pub_public_sector_debt(custom_pub_public_sector_assets_e_g_deposits=self.custom_pub_public_sector_assets_e_g_deposits, custom_pub_of_which_fx_denominated=self.custom_pub_of_which_fx_denominated, custom_pub_primary_deficit=self.custom_pub_primary_deficit, custom_pub_contribution_from_real_exchange_rate=self.custom_pub_contribution_from_real_exchange_rate, custom_pub_denominator_1_g=self.custom_pub_denominator_1_g, custom_pub_other_identified_debt_creating_flows=self.custom_pub_other_identified_debt_creating_flows, custom_pub_residual=self.custom_pub_residual, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, custom_pub_real_gdp_growth_by_year=self.custom_pub_real_gdp_growth_by_year, custom_pub_average_real_interest_rate_ext_debt=self.custom_pub_average_real_interest_rate_ext_debt, custom_pub_total_public_ext_debt=self.custom_pub_total_public_ext_debt, custom_pub_domestic_debt=self.custom_pub_domestic_debt, macro_debt_public_sector_assets_e_g_deposits=self.macro_debt_public_sector_assets_e_g_deposits, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, macro_debt_total_public_debt_outstanding_year_end=self.macro_debt_total_public_debt_outstanding_year_end, custom_pub_inflation_rate_gdp_deflator_pct_by_year=self.custom_pub_inflation_rate_gdp_deflator_pct_by_year, custom_pub_variables_needed_public_public_sector_assets_e_g_deposits=self.custom_pub_variables_needed_public_public_sector_assets_e_g_deposits, pv_resfin_pub_assumptions_average_interest_rate_on_domestic_debt=self.pv_resfin_pub_assumptions_average_interest_rate_on_domestic_debt)
+        return internals.scan_custom_pub_public_sector_debt(input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service, custom_pub_public_sector_assets_e_g_deposits=self.custom_pub_public_sector_assets_e_g_deposits, custom_pub_of_which_fx_denominated=self.custom_pub_of_which_fx_denominated, custom_pub_primary_deficit=self.custom_pub_primary_deficit, custom_pub_contribution_from_real_exchange_rate=self.custom_pub_contribution_from_real_exchange_rate, custom_pub_denominator_1_g=self.custom_pub_denominator_1_g, custom_pub_other_identified_debt_creating_flows=self.custom_pub_other_identified_debt_creating_flows, custom_pub_residual=self.custom_pub_residual, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, custom_pub_real_gdp_growth_by_year=self.custom_pub_real_gdp_growth_by_year, custom_pub_average_real_interest_rate_ext_debt=self.custom_pub_average_real_interest_rate_ext_debt, custom_pub_total_public_ext_debt=self.custom_pub_total_public_ext_debt, custom_pub_domestic_debt=self.custom_pub_domestic_debt, macro_debt_public_sector_assets_e_g_deposits=self.macro_debt_public_sector_assets_e_g_deposits, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, macro_debt_total_public_debt_outstanding_year_end=self.macro_debt_total_public_debt_outstanding_year_end, custom_pub_inflation_rate_gdp_deflator_pct_by_year=self.custom_pub_inflation_rate_gdp_deflator_pct_by_year, custom_pub_variables_needed_public_public_sector_assets_e_g_deposits=self.custom_pub_variables_needed_public_public_sector_assets_e_g_deposits, pv_resfin_pub_assumptions_average_interest_rate_on_domestic_debt=self.pv_resfin_pub_assumptions_average_interest_rate_on_domestic_debt)
 
     @cached_property
     def custom_pub_public_sector_debt(self) -> data.Series[float | str | None]:
@@ -3705,119 +4215,119 @@ class Model(_BoundInputs):
 
     @cached_property
     def custom_pub_of_which_fx_denominated(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_of_which_fx_denominated(custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, custom_pub_total_public_ext_debt=self.custom_pub_total_public_ext_debt)
+        return internals.custom_pub_of_which_fx_denominated(custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, custom_pub_total_public_ext_debt=self.custom_pub_total_public_ext_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def custom_pub_pv_of_public_debt_gdp_ratio(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_pv_of_public_debt_gdp_ratio(custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, custom_pub_total_public_domestic_debt=self.custom_pub_total_public_domestic_debt, custom_pub_pv_of_public_sector_ext_debt_end_of_period=self.custom_pub_pv_of_public_sector_ext_debt_end_of_period)
+        return internals.custom_pub_pv_of_public_debt_gdp_ratio(custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, custom_pub_total_public_domestic_debt=self.custom_pub_total_public_domestic_debt, custom_pub_pv_of_public_sector_ext_debt_end_of_period=self.custom_pub_pv_of_public_sector_ext_debt_end_of_period, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_primary_deficit(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_primary_deficit(custom_pub_revenue_grants_by_year=self.custom_pub_revenue_grants_by_year, custom_pub_primary_noninterest_expenditure_by_year=self.custom_pub_primary_noninterest_expenditure_by_year)
+        return internals.custom_pub_primary_deficit(custom_pub_revenue_grants_by_year=self.custom_pub_revenue_grants_by_year, custom_pub_primary_noninterest_expenditure_by_year=self.custom_pub_primary_noninterest_expenditure_by_year, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_revenue_grants_by_year(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_revenue_grants_by_year(custom_pub_revenue_grants=self.custom_pub_revenue_grants, custom_pub_grants=self.custom_pub_grants, custom_pub_of_which_grants=self.custom_pub_of_which_grants)
+        return internals.custom_pub_revenue_grants_by_year(custom_pub_revenue_grants=self.custom_pub_revenue_grants, custom_pub_grants=self.custom_pub_grants, custom_pub_of_which_grants=self.custom_pub_of_which_grants, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_of_which_grants(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_of_which_grants(custom_pub_grants=self.custom_pub_grants, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, custom_pub_nominal_gdp_lc_custom=self.custom_pub_nominal_gdp_lc_custom)
+        return internals.custom_pub_of_which_grants(custom_pub_grants=self.custom_pub_grants, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, custom_pub_nominal_gdp_lc_custom=self.custom_pub_nominal_gdp_lc_custom, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_primary_noninterest_expenditure_by_year(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_primary_noninterest_expenditure_by_year(custom_pub_primary_noninterest_expenditure=self.custom_pub_primary_noninterest_expenditure, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, custom_pub_nominal_gdp_lc_custom=self.custom_pub_nominal_gdp_lc_custom)
+        return internals.custom_pub_primary_noninterest_expenditure_by_year(custom_pub_primary_noninterest_expenditure=self.custom_pub_primary_noninterest_expenditure, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, custom_pub_nominal_gdp_lc_custom=self.custom_pub_nominal_gdp_lc_custom, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_contribution_from_real_exchange_rate(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_contribution_from_real_exchange_rate(custom_pub_of_which_fx_denominated=self.custom_pub_of_which_fx_denominated, custom_pub_denominator_1_g=self.custom_pub_denominator_1_g, custom_pub_average_real_interest_rate_ext_debt=self.custom_pub_average_real_interest_rate_ext_debt, custom_pub_real_exchange_rate_depreciation_pct_indicates=self.custom_pub_real_exchange_rate_depreciation_pct_indicates)
+        return internals.custom_pub_contribution_from_real_exchange_rate(custom_pub_of_which_fx_denominated=self.custom_pub_of_which_fx_denominated, custom_pub_denominator_1_g=self.custom_pub_denominator_1_g, custom_pub_average_real_interest_rate_ext_debt=self.custom_pub_average_real_interest_rate_ext_debt, custom_pub_real_exchange_rate_depreciation_pct_indicates=self.custom_pub_real_exchange_rate_depreciation_pct_indicates, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_denominator_1_g(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_denominator_1_g(custom_pub_real_gdp_growth_by_year=self.custom_pub_real_gdp_growth_by_year)
+        return internals.custom_pub_denominator_1_g(custom_pub_real_gdp_growth_by_year=self.custom_pub_real_gdp_growth_by_year, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_other_identified_debt_creating_flows(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_other_identified_debt_creating_flows(custom_pub_privatization_receipts_negative=self.custom_pub_privatization_receipts_negative, custom_pub_recognition_of_contingent_liab_e_g_bank=self.custom_pub_recognition_of_contingent_liab_e_g_bank, custom_pub_debt_relief_hipc_other=self.custom_pub_debt_relief_hipc_other, custom_pub_other_debt_creating_reducing_flow_please_specify=self.custom_pub_other_debt_creating_reducing_flow_please_specify)
+        return internals.custom_pub_other_identified_debt_creating_flows(custom_pub_privatization_receipts_negative=self.custom_pub_privatization_receipts_negative, custom_pub_recognition_of_contingent_liab_e_g_bank=self.custom_pub_recognition_of_contingent_liab_e_g_bank, custom_pub_debt_relief_hipc_other=self.custom_pub_debt_relief_hipc_other, custom_pub_other_debt_creating_reducing_flow_please_specify=self.custom_pub_other_debt_creating_reducing_flow_please_specify, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_privatization_receipts_negative(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_privatization_receipts_negative(baseline_pub_privatization_receipts_negative=self.baseline_pub_privatization_receipts_negative, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc)
+        return internals.custom_pub_privatization_receipts_negative(baseline_pub_privatization_receipts_negative=self.baseline_pub_privatization_receipts_negative, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_recognition_of_contingent_liab_e_g_bank(self) -> data.Series[int | str | None]:
-        return internals.custom_pub_recognition_of_contingent_liab_e_g_bank(baseline_pub_recognition_of_contingent_liab_e_g_bank=self.baseline_pub_recognition_of_contingent_liab_e_g_bank, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc)
+        return internals.custom_pub_recognition_of_contingent_liab_e_g_bank(baseline_pub_recognition_of_contingent_liab_e_g_bank=self.baseline_pub_recognition_of_contingent_liab_e_g_bank, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_debt_relief_hipc_other(self) -> data.Series[int | str | None]:
-        return internals.custom_pub_debt_relief_hipc_other(baseline_pub_debt_relief_hipc_other=self.baseline_pub_debt_relief_hipc_other, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc)
+        return internals.custom_pub_debt_relief_hipc_other(baseline_pub_debt_relief_hipc_other=self.baseline_pub_debt_relief_hipc_other, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_other_debt_creating_reducing_flow_please_specify(self) -> data.Series[int | str | None]:
-        return internals.custom_pub_other_debt_creating_reducing_flow_please_specify(customized_public_template_anchor=self.customized_public_template_anchor, customized_public_natural_disaster_year=self.customized_public_natural_disaster_year, baseline_pub_other_debt_creating_reducing_flow_please_specify=self.baseline_pub_other_debt_creating_reducing_flow_please_specify, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, custom_pub_please_do_not_change_these_numbers=self.custom_pub_please_do_not_change_these_numbers, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, customized_scenario_spec=self.customized_scenario_spec)
+        return internals.custom_pub_other_debt_creating_reducing_flow_please_specify(customized_public_template_anchor=self.customized_public_template_anchor, customized_public_natural_disaster_year=self.customized_public_natural_disaster_year, baseline_pub_other_debt_creating_reducing_flow_please_specify=self.baseline_pub_other_debt_creating_reducing_flow_please_specify, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, custom_pub_please_do_not_change_these_numbers=self.custom_pub_please_do_not_change_these_numbers, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, customized_scenario_spec=self.customized_scenario_spec, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_residual(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_residual(baseline_pub_residual=self.baseline_pub_residual, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc)
+        return internals.custom_pub_residual(baseline_pub_residual=self.baseline_pub_residual, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_nominal_gdp_lc(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_nominal_gdp_lc(custom_pub_real_gdp_growth_by_year=self.custom_pub_real_gdp_growth_by_year, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, custom_pub_inflation_rate_gdp_deflator_pct_by_year=self.custom_pub_inflation_rate_gdp_deflator_pct_by_year)
+        return internals.custom_pub_nominal_gdp_lc(custom_pub_real_gdp_growth_by_year=self.custom_pub_real_gdp_growth_by_year, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, custom_pub_inflation_rate_gdp_deflator_pct_by_year=self.custom_pub_inflation_rate_gdp_deflator_pct_by_year, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_real_gdp_growth_by_year(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_real_gdp_growth_by_year(customized_public_template_anchor=self.customized_public_template_anchor, customized_public_natural_disaster_year=self.customized_public_natural_disaster_year, custom_pub_please_do_not_change_these_numbers=self.custom_pub_please_do_not_change_these_numbers, custom_pub_real_gdp_growth=self.custom_pub_real_gdp_growth, customized_scenario_spec=self.customized_scenario_spec)
+        return internals.custom_pub_real_gdp_growth_by_year(customized_public_template_anchor=self.customized_public_template_anchor, customized_public_natural_disaster_year=self.customized_public_natural_disaster_year, custom_pub_please_do_not_change_these_numbers=self.custom_pub_please_do_not_change_these_numbers, custom_pub_real_gdp_growth=self.custom_pub_real_gdp_growth, customized_scenario_spec=self.customized_scenario_spec, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_average_nominal_interest_rate_ext_debt(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_average_nominal_interest_rate_ext_debt(custom_pub_total_public_ext_debt=self.custom_pub_total_public_ext_debt, custom_pub_ext_debt=self.custom_pub_ext_debt, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc)
+        return internals.custom_pub_average_nominal_interest_rate_ext_debt(custom_pub_total_public_ext_debt=self.custom_pub_total_public_ext_debt, custom_pub_ext_debt=self.custom_pub_ext_debt, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_average_real_interest_rate_ext_debt(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_average_real_interest_rate_ext_debt(custom_pub_average_nominal_interest_rate_ext_debt=self.custom_pub_average_nominal_interest_rate_ext_debt, custom_pub_us_inflation_rate_gdp_deflator_pct=self.custom_pub_us_inflation_rate_gdp_deflator_pct)
+        return internals.custom_pub_average_real_interest_rate_ext_debt(custom_pub_average_nominal_interest_rate_ext_debt=self.custom_pub_average_nominal_interest_rate_ext_debt, custom_pub_us_inflation_rate_gdp_deflator_pct=self.custom_pub_us_inflation_rate_gdp_deflator_pct, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_exchange_rate_lc_per_us_dollar(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_exchange_rate_lc_per_us_dollar(custom_pub_key_macroeconomic_fiscal_exchange_rate_lc_per_us_dollar=self.custom_pub_key_macroeconomic_fiscal_exchange_rate_lc_per_us_dollar, custom_pub_nominal_depreciation_of_lc_percentage_change_lc_by_year=self.custom_pub_nominal_depreciation_of_lc_percentage_change_lc_by_year)
+        return internals.custom_pub_exchange_rate_lc_per_us_dollar(custom_pub_key_macroeconomic_fiscal_exchange_rate_lc_per_us_dollar=self.custom_pub_key_macroeconomic_fiscal_exchange_rate_lc_per_us_dollar, custom_pub_nominal_depreciation_of_lc_percentage_change_lc_by_year=self.custom_pub_nominal_depreciation_of_lc_percentage_change_lc_by_year, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_exchange_rate_us_dollar_per_lc(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_exchange_rate_us_dollar_per_lc(custom_pub_key_macroeconomic_fiscal_exchange_rate_lc_per_us_dollar=self.custom_pub_key_macroeconomic_fiscal_exchange_rate_lc_per_us_dollar, custom_pub_exchange_rate_lc_per_us_dollar=self.custom_pub_exchange_rate_lc_per_us_dollar)
+        return internals.custom_pub_exchange_rate_us_dollar_per_lc(custom_pub_key_macroeconomic_fiscal_exchange_rate_lc_per_us_dollar=self.custom_pub_key_macroeconomic_fiscal_exchange_rate_lc_per_us_dollar, custom_pub_exchange_rate_lc_per_us_dollar=self.custom_pub_exchange_rate_lc_per_us_dollar, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_real_exchange_rate_depreciation_pct_indicates(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_real_exchange_rate_depreciation_pct_indicates(custom_pub_inflation_rate_gdp_deflator_pct_by_year=self.custom_pub_inflation_rate_gdp_deflator_pct_by_year, custom_pub_nominal_depreciation_of_lc_percentage_change_lc_by_year=self.custom_pub_nominal_depreciation_of_lc_percentage_change_lc_by_year, custom_pub_us_inflation_rate_gdp_deflator_pct=self.custom_pub_us_inflation_rate_gdp_deflator_pct)
+        return internals.custom_pub_real_exchange_rate_depreciation_pct_indicates(custom_pub_inflation_rate_gdp_deflator_pct_by_year=self.custom_pub_inflation_rate_gdp_deflator_pct_by_year, custom_pub_nominal_depreciation_of_lc_percentage_change_lc_by_year=self.custom_pub_nominal_depreciation_of_lc_percentage_change_lc_by_year, custom_pub_us_inflation_rate_gdp_deflator_pct=self.custom_pub_us_inflation_rate_gdp_deflator_pct, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_total_public_ext_debt(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_total_public_ext_debt(custom_pub_key_macroeconomic_fiscal_exchange_rate_lc_per_us_dollar=self.custom_pub_key_macroeconomic_fiscal_exchange_rate_lc_per_us_dollar, custom_pub_stock_of_new_forex_debt=self.custom_pub_stock_of_new_forex_debt, custom_pub_exchange_rate_lc_per_us_dollar=self.custom_pub_exchange_rate_lc_per_us_dollar, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, macro_debt_total_public_ext_debt=self.macro_debt_total_public_ext_debt)
+        return internals.custom_pub_total_public_ext_debt(custom_pub_key_macroeconomic_fiscal_exchange_rate_lc_per_us_dollar=self.custom_pub_key_macroeconomic_fiscal_exchange_rate_lc_per_us_dollar, custom_pub_stock_of_new_forex_debt=self.custom_pub_stock_of_new_forex_debt, custom_pub_exchange_rate_lc_per_us_dollar=self.custom_pub_exchange_rate_lc_per_us_dollar, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, macro_debt_total_public_ext_debt=self.macro_debt_total_public_ext_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_primary_deficit_by_year(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_primary_deficit_by_year(custom_pub_primary_deficit=self.custom_pub_primary_deficit, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc)
+        return internals.custom_pub_primary_deficit_by_year(custom_pub_primary_deficit=self.custom_pub_primary_deficit, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_pv_of_public_sector_ext_debt_end_of_period(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_pv_of_public_sector_ext_debt_end_of_period(baseline_pub_exchange_rate_lc_per_us_dollar=self.baseline_pub_exchange_rate_lc_per_us_dollar, custom_pub_pv_of_new_forex_debt=self.custom_pub_pv_of_new_forex_debt, custom_pub_exchange_rate_lc_per_us_dollar=self.custom_pub_exchange_rate_lc_per_us_dollar, macro_debt_pv_of_public_sector_ext_debt_end_of_period=self.macro_debt_pv_of_public_sector_ext_debt_end_of_period)
+        return internals.custom_pub_pv_of_public_sector_ext_debt_end_of_period(baseline_pub_exchange_rate_lc_per_us_dollar=self.baseline_pub_exchange_rate_lc_per_us_dollar, custom_pub_pv_of_new_forex_debt=self.custom_pub_pv_of_new_forex_debt, custom_pub_exchange_rate_lc_per_us_dollar=self.custom_pub_exchange_rate_lc_per_us_dollar, macro_debt_pv_of_public_sector_ext_debt_end_of_period=self.macro_debt_pv_of_public_sector_ext_debt_end_of_period, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_other_debt_creating_flows(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_other_debt_creating_flows(baseline_pub_other_identified_debt_creating_flows=self.baseline_pub_other_identified_debt_creating_flows, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc)
+        return internals.custom_pub_other_debt_creating_flows(baseline_pub_other_identified_debt_creating_flows=self.baseline_pub_other_identified_debt_creating_flows, baseline_pub_nominal_gdp_lc=self.baseline_pub_nominal_gdp_lc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_debt_service_revenue_grants_ratio(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_debt_service_revenue_grants_ratio(custom_pub_in_billions_of_lc_of_which_short_term=self.custom_pub_in_billions_of_lc_of_which_short_term, custom_pub_revenue_grants_by_year=self.custom_pub_revenue_grants_by_year, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, custom_pub_of_which_short_term=self.custom_pub_of_which_short_term, custom_pub_amortization_excluding_st_domestic_debt=self.custom_pub_amortization_excluding_st_domestic_debt, custom_pub_interest_expenditure=self.custom_pub_interest_expenditure)
+        return internals.custom_pub_debt_service_revenue_grants_ratio(custom_pub_in_billions_of_lc_of_which_short_term=self.custom_pub_in_billions_of_lc_of_which_short_term, custom_pub_revenue_grants_by_year=self.custom_pub_revenue_grants_by_year, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, custom_pub_of_which_short_term=self.custom_pub_of_which_short_term, custom_pub_amortization_excluding_st_domestic_debt=self.custom_pub_amortization_excluding_st_domestic_debt, custom_pub_interest_expenditure=self.custom_pub_interest_expenditure, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_debt_service_gdp_ratio(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_debt_service_gdp_ratio(custom_pub_in_billions_of_lc_of_which_short_term=self.custom_pub_in_billions_of_lc_of_which_short_term, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, custom_pub_of_which_short_term=self.custom_pub_of_which_short_term, custom_pub_amortization_excluding_st_domestic_debt=self.custom_pub_amortization_excluding_st_domestic_debt, custom_pub_interest_expenditure=self.custom_pub_interest_expenditure)
+        return internals.custom_pub_debt_service_gdp_ratio(custom_pub_in_billions_of_lc_of_which_short_term=self.custom_pub_in_billions_of_lc_of_which_short_term, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, custom_pub_of_which_short_term=self.custom_pub_of_which_short_term, custom_pub_amortization_excluding_st_domestic_debt=self.custom_pub_amortization_excluding_st_domestic_debt, custom_pub_interest_expenditure=self.custom_pub_interest_expenditure, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_pv_of_public_debt_revenue_grants_ratio(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_pv_of_public_debt_revenue_grants_ratio(custom_pub_pv_of_public_debt_gdp_ratio=self.custom_pub_pv_of_public_debt_gdp_ratio, custom_pub_revenue_grants_by_year=self.custom_pub_revenue_grants_by_year)
+        return internals.custom_pub_pv_of_public_debt_revenue_grants_ratio(custom_pub_pv_of_public_debt_gdp_ratio=self.custom_pub_pv_of_public_debt_gdp_ratio, custom_pub_revenue_grants_by_year=self.custom_pub_revenue_grants_by_year, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_nominal_gdp_lc_custom(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_nominal_gdp_lc_custom(custom_pub_real_gdp_growth=self.custom_pub_real_gdp_growth, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, custom_pub_inflation_rate_gdp_deflator_pct_by_year=self.custom_pub_inflation_rate_gdp_deflator_pct_by_year)
+        return internals.custom_pub_nominal_gdp_lc_custom(custom_pub_real_gdp_growth=self.custom_pub_real_gdp_growth, custom_pub_nominal_gdp_lc=self.custom_pub_nominal_gdp_lc, custom_pub_inflation_rate_gdp_deflator_pct_by_year=self.custom_pub_inflation_rate_gdp_deflator_pct_by_year, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_period(self) -> data.Series[int | str | None]:
@@ -3845,111 +4355,111 @@ class Model(_BoundInputs):
 
     @cached_property
     def custom_ext_new_forex_borrowing_gross_usd(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_new_forex_borrowing_gross_usd(custom_pub_amortization=self.custom_pub_amortization, custom_ext_residual_gross_borrowing=self.custom_ext_residual_gross_borrowing)
+        return internals.custom_ext_new_forex_borrowing_gross_usd(custom_pub_amortization=self.custom_pub_amortization, custom_ext_residual_gross_borrowing=self.custom_ext_residual_gross_borrowing, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_cumulative(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_cumulative(custom_ext_new_forex_borrowing_gross_usd=self.custom_ext_new_forex_borrowing_gross_usd)
+        return internals.custom_ext_cumulative(custom_ext_new_forex_borrowing_gross_usd=self.custom_ext_new_forex_borrowing_gross_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_stock_of_new_forex_debt(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_stock_of_new_forex_debt(custom_ext_new_forex_borrowing_gross_usd=self.custom_ext_new_forex_borrowing_gross_usd, custom_ext_amortization_by_year=self.custom_ext_amortization_by_year)
+        return internals.custom_ext_stock_of_new_forex_debt(custom_ext_new_forex_borrowing_gross_usd=self.custom_ext_new_forex_borrowing_gross_usd, custom_ext_amortization_by_year=self.custom_ext_amortization_by_year, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_pv_of_new_forex_debt(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_pv_of_new_forex_debt(custom_ext_pv_debt=self.custom_ext_pv_debt, custom_ext_new_forex_borrowing_gross_usd=self.custom_ext_new_forex_borrowing_gross_usd, custom_ext_total_debt_service_by_year=self.custom_ext_total_debt_service_by_year, custom_ext_amortization_by_year=self.custom_ext_amortization_by_year, custom_ext_average_interest_rate_new_debt_by_row=self.custom_ext_average_interest_rate_new_debt_by_row)
+        return internals.custom_ext_pv_of_new_forex_debt(custom_ext_pv_debt=self.custom_ext_pv_debt, custom_ext_new_forex_borrowing_gross_usd=self.custom_ext_new_forex_borrowing_gross_usd, custom_ext_total_debt_service_by_year=self.custom_ext_total_debt_service_by_year, custom_ext_amortization_by_year=self.custom_ext_amortization_by_year, custom_ext_average_interest_rate_new_debt_by_row=self.custom_ext_average_interest_rate_new_debt_by_row, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_total_debt_service_by_year(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_total_debt_service_by_year(custom_ext_interest_by_year=self.custom_ext_interest_by_year, custom_ext_amortization_by_year=self.custom_ext_amortization_by_year)
+        return internals.custom_ext_total_debt_service_by_year(custom_ext_interest_by_year=self.custom_ext_interest_by_year, custom_ext_amortization_by_year=self.custom_ext_amortization_by_year, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_interest_by_year(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_interest_by_year(custom_ext_average_interest_rate_new_debt_by_row=self.custom_ext_average_interest_rate_new_debt_by_row, custom_ext_new_forex_borrowing_gross_usd=self.custom_ext_new_forex_borrowing_gross_usd, custom_ext_stock_of_new_forex_debt=self.custom_ext_stock_of_new_forex_debt)
+        return internals.custom_ext_interest_by_year(custom_ext_average_interest_rate_new_debt_by_row=self.custom_ext_average_interest_rate_new_debt_by_row, custom_ext_new_forex_borrowing_gross_usd=self.custom_ext_new_forex_borrowing_gross_usd, custom_ext_stock_of_new_forex_debt=self.custom_ext_stock_of_new_forex_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_amortization_by_year(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_amortization_by_year(custom_ext_short_name=self.custom_ext_short_name, custom_ext_short_name_by_year=self.custom_ext_short_name_by_year, custom_ext_average_interest_rate_new_debt_by_row=self.custom_ext_average_interest_rate_new_debt_by_row)
+        return internals.custom_ext_amortization_by_year(custom_ext_short_name=self.custom_ext_short_name, custom_ext_short_name_by_year=self.custom_ext_short_name_by_year, custom_ext_average_interest_rate_new_debt_by_row=self.custom_ext_average_interest_rate_new_debt_by_row, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_t_g_0(self) -> data.Series[int | str | None]:
-        return internals.custom_ext_t_g_0(customized_external_debt_profile_period=self.customized_external_debt_profile_period, custom_ext_period=self.custom_ext_period, custom_ext_average_interest_rate_new_debt_by_row=self.custom_ext_average_interest_rate_new_debt_by_row)
+        return internals.custom_ext_t_g_0(customized_external_debt_profile_period=self.customized_external_debt_profile_period, custom_ext_period=self.custom_ext_period, custom_ext_average_interest_rate_new_debt_by_row=self.custom_ext_average_interest_rate_new_debt_by_row, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_short_name(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_short_name(custom_ext_short_name_cumulative=self.custom_ext_short_name_cumulative, customized_external_new_forex_borrowing_cumulative_overflow=self.customized_external_new_forex_borrowing_cumulative_overflow, custom_ext_cumulative=self.custom_ext_cumulative, custom_ext_t_g_0=self.custom_ext_t_g_0)
+        return internals.custom_ext_short_name(custom_ext_short_name_cumulative=self.custom_ext_short_name_cumulative, customized_external_new_forex_borrowing_cumulative_overflow=self.customized_external_new_forex_borrowing_cumulative_overflow, custom_ext_cumulative=self.custom_ext_cumulative, custom_ext_t_g_0=self.custom_ext_t_g_0, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_t_m_condition(self) -> data.Series[int | str | None]:
-        return internals.custom_ext_t_m_condition(customized_external_debt_profile_period=self.customized_external_debt_profile_period, custom_ext_period=self.custom_ext_period, custom_ext_average_interest_rate_new_debt_by_row=self.custom_ext_average_interest_rate_new_debt_by_row)
+        return internals.custom_ext_t_m_condition(customized_external_debt_profile_period=self.customized_external_debt_profile_period, custom_ext_period=self.custom_ext_period, custom_ext_average_interest_rate_new_debt_by_row=self.custom_ext_average_interest_rate_new_debt_by_row, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_short_name_by_year(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_short_name_by_year(custom_ext_short_name_cumulative=self.custom_ext_short_name_cumulative, custom_ext_cumulative=self.custom_ext_cumulative, custom_ext_t_m_condition=self.custom_ext_t_m_condition)
+        return internals.custom_ext_short_name_by_year(custom_ext_short_name_cumulative=self.custom_ext_short_name_cumulative, custom_ext_cumulative=self.custom_ext_cumulative, custom_ext_t_m_condition=self.custom_ext_t_m_condition, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_pv_ppg_ext_debt_gdp_ratio(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_pv_ppg_ext_debt_gdp_ratio(custom_ext_nominal_gdp_million_of_us_dollars=self.custom_ext_nominal_gdp_million_of_us_dollars, custom_ext_pv_ppg_stress=self.custom_ext_pv_ppg_stress)
+        return internals.custom_ext_pv_ppg_ext_debt_gdp_ratio(custom_ext_nominal_gdp_million_of_us_dollars=self.custom_ext_nominal_gdp_million_of_us_dollars, custom_ext_pv_ppg_stress=self.custom_ext_pv_ppg_stress, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_pv_ppg_ext_debt_exports_ratio(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_pv_ppg_ext_debt_exports_ratio(custom_ext_pv_ppg_ext_debt_gdp_ratio=self.custom_ext_pv_ppg_ext_debt_gdp_ratio, custom_ext_exports_by_year=self.custom_ext_exports_by_year)
+        return internals.custom_ext_pv_ppg_ext_debt_exports_ratio(custom_ext_pv_ppg_ext_debt_gdp_ratio=self.custom_ext_pv_ppg_ext_debt_gdp_ratio, custom_ext_exports_by_year=self.custom_ext_exports_by_year, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_ppg_debt_service_to_exports(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_ppg_debt_service_to_exports(custom_ext_ppg_debt_service_stress=self.custom_ext_ppg_debt_service_stress, custom_ext_y7_long_run_constant_exports=self.custom_ext_y7_long_run_constant_exports)
+        return internals.custom_ext_ppg_debt_service_to_exports(custom_ext_ppg_debt_service_stress=self.custom_ext_ppg_debt_service_stress, custom_ext_y7_long_run_constant_exports=self.custom_ext_y7_long_run_constant_exports, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_ppg_debt_service_to_revenue(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_ppg_debt_service_to_revenue(custom_ext_ppg_debt_service_stress=self.custom_ext_ppg_debt_service_stress, custom_ext_revenue=self.custom_ext_revenue)
+        return internals.custom_ext_ppg_debt_service_to_revenue(custom_ext_ppg_debt_service_stress=self.custom_ext_ppg_debt_service_stress, custom_ext_revenue=self.custom_ext_revenue, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_nominal_gdp_million_of_us_dollars(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_nominal_gdp_million_of_us_dollars(custom_ext_ii_key_macroeconomic_nominal_gdp_million_of_us_dollars=self.custom_ext_ii_key_macroeconomic_nominal_gdp_million_of_us_dollars, custom_ext_real_gdp_growth_by_year=self.custom_ext_real_gdp_growth_by_year, custom_ext_gdp_deflator_in_us_dollar_terms_change_pct_by_year=self.custom_ext_gdp_deflator_in_us_dollar_terms_change_pct_by_year)
+        return internals.custom_ext_nominal_gdp_million_of_us_dollars(custom_ext_ii_key_macroeconomic_nominal_gdp_million_of_us_dollars=self.custom_ext_ii_key_macroeconomic_nominal_gdp_million_of_us_dollars, custom_ext_real_gdp_growth_by_year=self.custom_ext_real_gdp_growth_by_year, custom_ext_gdp_deflator_in_us_dollar_terms_change_pct_by_year=self.custom_ext_gdp_deflator_in_us_dollar_terms_change_pct_by_year, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_real_gdp_growth_by_year(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_real_gdp_growth_by_year(customized_public_template_anchor=self.customized_public_template_anchor, customized_public_natural_disaster_year=self.customized_public_natural_disaster_year, custom_pub_please_do_not_change_these_numbers=self.custom_pub_please_do_not_change_these_numbers, custom_ext_real_gdp_growth=self.custom_ext_real_gdp_growth, customized_scenario_spec=self.customized_scenario_spec)
+        return internals.custom_ext_real_gdp_growth_by_year(customized_public_template_anchor=self.customized_public_template_anchor, customized_public_natural_disaster_year=self.customized_public_natural_disaster_year, custom_pub_please_do_not_change_these_numbers=self.custom_pub_please_do_not_change_these_numbers, custom_ext_real_gdp_growth=self.custom_ext_real_gdp_growth, customized_scenario_spec=self.customized_scenario_spec, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_pv_ppg_stress(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_pv_ppg_stress(custom_ext_pv_of_additional_borrowing=self.custom_ext_pv_of_additional_borrowing, custom_ext_pv_ppg_baseline=self.custom_ext_pv_ppg_baseline)
+        return internals.custom_ext_pv_ppg_stress(custom_ext_pv_of_additional_borrowing=self.custom_ext_pv_of_additional_borrowing, custom_ext_pv_ppg_baseline=self.custom_ext_pv_ppg_baseline, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_ppg_debt_service_stress(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_ppg_debt_service_stress(custom_ext_additional_debt_service_stress=self.custom_ext_additional_debt_service_stress, custom_ext_debt_service_ppg_baseline=self.custom_ext_debt_service_ppg_baseline)
+        return internals.custom_ext_ppg_debt_service_stress(custom_ext_additional_debt_service_stress=self.custom_ext_additional_debt_service_stress, custom_ext_debt_service_ppg_baseline=self.custom_ext_debt_service_ppg_baseline, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_y7_long_run_constant_exports(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_y7_long_run_constant_exports(custom_ext_nominal_gdp_million_of_us_dollars=self.custom_ext_nominal_gdp_million_of_us_dollars, custom_ext_exports_by_year=self.custom_ext_exports_by_year)
+        return internals.custom_ext_y7_long_run_constant_exports(custom_ext_nominal_gdp_million_of_us_dollars=self.custom_ext_nominal_gdp_million_of_us_dollars, custom_ext_exports_by_year=self.custom_ext_exports_by_year, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_revenue(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_revenue(custom_pub_revenue_grants=self.custom_pub_revenue_grants, custom_pub_grants=self.custom_pub_grants, custom_ext_nominal_gdp_million_of_us_dollars=self.custom_ext_nominal_gdp_million_of_us_dollars)
+        return internals.custom_ext_revenue(custom_pub_revenue_grants=self.custom_pub_revenue_grants, custom_pub_grants=self.custom_pub_grants, custom_ext_nominal_gdp_million_of_us_dollars=self.custom_ext_nominal_gdp_million_of_us_dollars, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_ppg_nominal_debt_baseline(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_ppg_nominal_debt_baseline(dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars, dsa_ext_of_which_public_and_publicly_guaranteed_ppg=self.dsa_ext_of_which_public_and_publicly_guaranteed_ppg)
+        return internals.custom_ext_ppg_nominal_debt_baseline(dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars, dsa_ext_of_which_public_and_publicly_guaranteed_ppg=self.dsa_ext_of_which_public_and_publicly_guaranteed_ppg, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def custom_ext_increase(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_increase(custom_ext_ppg_nominal_debt_baseline=self.custom_ext_ppg_nominal_debt_baseline)
+        return internals.custom_ext_increase(custom_ext_ppg_nominal_debt_baseline=self.custom_ext_ppg_nominal_debt_baseline, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_ppg_nominal_debt_stress(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_ppg_nominal_debt_stress(custom_ext_ii_key_macroeconomic_nominal_gdp_million_of_us_dollars=self.custom_ext_ii_key_macroeconomic_nominal_gdp_million_of_us_dollars, custom_ext_nominal_gdp_million_of_us_dollars=self.custom_ext_nominal_gdp_million_of_us_dollars, custom_ext_of_which_public_publicly_guaranteed_ppg=self.custom_ext_of_which_public_publicly_guaranteed_ppg)
+        return internals.custom_ext_ppg_nominal_debt_stress(custom_ext_ii_key_macroeconomic_nominal_gdp_million_of_us_dollars=self.custom_ext_ii_key_macroeconomic_nominal_gdp_million_of_us_dollars, custom_ext_nominal_gdp_million_of_us_dollars=self.custom_ext_nominal_gdp_million_of_us_dollars, custom_ext_of_which_public_publicly_guaranteed_ppg=self.custom_ext_of_which_public_publicly_guaranteed_ppg, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_increase_by_year(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_increase_by_year(custom_ext_ppg_nominal_debt_stress=self.custom_ext_ppg_nominal_debt_stress)
+        return internals.custom_ext_increase_by_year(custom_ext_ppg_nominal_debt_stress=self.custom_ext_ppg_nominal_debt_stress, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_residual_gross_borrowing(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_residual_gross_borrowing(custom_ext_increase=self.custom_ext_increase, custom_ext_increase_by_year=self.custom_ext_increase_by_year)
+        return internals.custom_ext_residual_gross_borrowing(custom_ext_increase=self.custom_ext_increase, custom_ext_increase_by_year=self.custom_ext_increase_by_year, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def _scan_custom_ext_exports_usd(self) -> internals.ScanCustomExtExportsUsdResult:
-        return internals.scan_custom_ext_exports_usd(dsa_ext_exports=self.dsa_ext_exports, customized_public_template_anchor=self.customized_public_template_anchor, customized_public_natural_disaster_year=self.customized_public_natural_disaster_year, custom_pub_please_do_not_change_these_numbers=self.custom_pub_please_do_not_change_these_numbers, custom_ext_nominal_gdp_million_of_us_dollars=self.custom_ext_nominal_gdp_million_of_us_dollars, custom_ext_nominal_gdp_million_of_us_dollars_by_year=self.custom_ext_nominal_gdp_million_of_us_dollars_by_year, custom_ext_exports=self.custom_ext_exports, customized_scenario_spec=self.customized_scenario_spec, custom_ext_ii_key_macroeconomic_nominal_gdp_million_of_us_dollars=self.custom_ext_ii_key_macroeconomic_nominal_gdp_million_of_us_dollars)
+        return internals.scan_custom_ext_exports_usd(dsa_ext_exports=self.dsa_ext_exports, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, customized_public_template_anchor=self.customized_public_template_anchor, customized_public_natural_disaster_year=self.customized_public_natural_disaster_year, input3_old_debt_service=self.input3_old_debt_service, custom_pub_please_do_not_change_these_numbers=self.custom_pub_please_do_not_change_these_numbers, custom_ext_nominal_gdp_million_of_us_dollars=self.custom_ext_nominal_gdp_million_of_us_dollars, custom_ext_nominal_gdp_million_of_us_dollars_by_year=self.custom_ext_nominal_gdp_million_of_us_dollars_by_year, custom_ext_exports=self.custom_ext_exports, customized_scenario_spec=self.customized_scenario_spec, custom_ext_ii_key_macroeconomic_nominal_gdp_million_of_us_dollars=self.custom_ext_ii_key_macroeconomic_nominal_gdp_million_of_us_dollars)
 
     @cached_property
     def custom_ext_exports_usd(self) -> data.Series[float | str | None]:
@@ -3973,7 +4483,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def custom_ext_nominal_gdp_million_of_us_dollars_by_year(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_nominal_gdp_million_of_us_dollars_by_year(custom_ext_y7_long_run_constant_nominal_gdp_million_of_us_dollars=self.custom_ext_y7_long_run_constant_nominal_gdp_million_of_us_dollars, custom_ext_gdp_deflator_in_us_dollar_terms_change_pct_by_year=self.custom_ext_gdp_deflator_in_us_dollar_terms_change_pct_by_year, custom_ext_real_gdp_growth=self.custom_ext_real_gdp_growth)
+        return internals.custom_ext_nominal_gdp_million_of_us_dollars_by_year(custom_ext_y7_long_run_constant_nominal_gdp_million_of_us_dollars=self.custom_ext_y7_long_run_constant_nominal_gdp_million_of_us_dollars, custom_ext_gdp_deflator_in_us_dollar_terms_change_pct_by_year=self.custom_ext_gdp_deflator_in_us_dollar_terms_change_pct_by_year, custom_ext_real_gdp_growth=self.custom_ext_real_gdp_growth, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def in1_basics_autofill_note(self) -> str | int | float | bool:
@@ -3997,19 +4507,19 @@ class Model(_BoundInputs):
 
     @cached_property
     def in3_macro_outstanding(self) -> float | str:
-        return internals.in3_macro_outstanding(external_domestic_debt_definition=self.external_domestic_debt_definition, input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p=self.input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p, input3_domestic_outstanding_of_existing_debt=self.input3_domestic_outstanding_of_existing_debt, lookup_afg=self.lookup_afg)
+        return internals.in3_macro_outstanding(external_domestic_debt_definition=self.external_domestic_debt_definition, input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p=self.input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p, input3_domestic_outstanding_of_existing_debt=self.input3_domestic_outstanding_of_existing_debt, lookup_afg=self.lookup_afg, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def in3_macro_o_w_medium_long_term(self) -> float | str:
-        return internals.in3_macro_o_w_medium_long_term(in3_macro_outstanding=self.in3_macro_outstanding, in3_macro_o_w_st=self.in3_macro_o_w_st)
+        return internals.in3_macro_o_w_medium_long_term(in3_macro_outstanding=self.in3_macro_outstanding, in3_macro_o_w_st=self.in3_macro_o_w_st, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def in3_macro_o_w_st(self) -> data.Series[float | str | None]:
-        return internals.in3_macro_o_w_st(external_domestic_debt_definition=self.external_domestic_debt_definition, input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p=self.input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p, input3_domestic_o_w_st=self.input3_domestic_o_w_st, lookup_afg=self.lookup_afg)
+        return internals.in3_macro_o_w_st(external_domestic_debt_definition=self.external_domestic_debt_definition, input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p=self.input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p, input3_domestic_o_w_st=self.input3_domestic_o_w_st, lookup_afg=self.lookup_afg, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def in3_macro_transition_formula_these_outstanding(self) -> float | str:
-        return internals.in3_macro_transition_formula_these_outstanding(external_domestic_debt_definition=self.external_domestic_debt_definition, input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p=self.input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p, input3_domestic_outstanding_of_existing_debt=self.input3_domestic_outstanding_of_existing_debt, lookup_afg=self.lookup_afg)
+        return internals.in3_macro_transition_formula_these_outstanding(external_domestic_debt_definition=self.external_domestic_debt_definition, input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p=self.input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p, input3_domestic_outstanding_of_existing_debt=self.input3_domestic_outstanding_of_existing_debt, lookup_afg=self.lookup_afg, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def in3_macro_transition_formula_these_o_w_medium_long_term(self) -> float | str:
@@ -4017,15 +4527,15 @@ class Model(_BoundInputs):
 
     @cached_property
     def in3_macro_transition_formula_these_o_w_st(self) -> int | str:
-        return internals.in3_macro_transition_formula_these_o_w_st(external_domestic_debt_definition=self.external_domestic_debt_definition, input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p=self.input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p, input3_domestic_o_w_st=self.input3_domestic_o_w_st, lookup_afg=self.lookup_afg)
+        return internals.in3_macro_transition_formula_these_o_w_st(external_domestic_debt_definition=self.external_domestic_debt_definition, input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p=self.input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p, input3_domestic_o_w_st=self.input3_domestic_o_w_st, lookup_afg=self.lookup_afg, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def in3_macro_interest(self) -> data.Series[float | str | None]:
-        return internals.in3_macro_interest(external_domestic_debt_definition=self.external_domestic_debt_definition, input3_input_3_macro_national_currency_per_u_s_dollar_p_a=self.input3_input_3_macro_national_currency_per_u_s_dollar_p_a, input3_domestic_interest_payment_from_existing_debt=self.input3_domestic_interest_payment_from_existing_debt, lookup_afg=self.lookup_afg)
+        return internals.in3_macro_interest(external_domestic_debt_definition=self.external_domestic_debt_definition, input3_input_3_macro_national_currency_per_u_s_dollar_p_a=self.input3_input_3_macro_national_currency_per_u_s_dollar_p_a, input3_domestic_interest_payment_from_existing_debt=self.input3_domestic_interest_payment_from_existing_debt, lookup_afg=self.lookup_afg, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def in3_macro_fx_denominated_debt_including_locally_issued(self) -> float | str:
-        return internals.in3_macro_fx_denominated_debt_including_locally_issued(input3_input_3_external_debt_ppg_mlt_external_debt_outstanding=self.input3_input_3_external_debt_ppg_mlt_external_debt_outstanding, input3_input_3_external_debt_ppg_st_external_debt_outstanding=self.input3_input_3_external_debt_ppg_st_external_debt_outstanding, input3_domestic_outstanding_of_existing_debt=self.input3_domestic_outstanding_of_existing_debt)
+        return internals.in3_macro_fx_denominated_debt_including_locally_issued(input3_input_3_external_debt_ppg_mlt_external_debt_outstanding=self.input3_input_3_external_debt_ppg_mlt_external_debt_outstanding, input3_input_3_external_debt_ppg_st_external_debt_outstanding=self.input3_input_3_external_debt_ppg_st_external_debt_outstanding, input3_domestic_outstanding_of_existing_debt=self.input3_domestic_outstanding_of_existing_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def in6_tailored_natdisaster(self) -> str | int | float | bool:
@@ -4069,7 +4579,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def in6_tailored_price_shock_non_fuel(self) -> data.Series[float | str | None]:
-        return internals.in6_tailored_price_shock_non_fuel(in6_tailored_commodity_group_price_shock=self.in6_tailored_commodity_group_price_shock)
+        return internals.in6_tailored_price_shock_non_fuel(in6_tailored_commodity_group_price_shock=self.in6_tailored_commodity_group_price_shock, input6_commodity_group_relevant=self.input6_commodity_group_relevant)
 
     @cached_property
     def in6_tailored_commodity_group_price_shock(self) -> data.Series[float | str | None]:
@@ -4093,19 +4603,19 @@ class Model(_BoundInputs):
 
     @cached_property
     def in6_tailored_share_of_fuel_in_exports_of_g_s_default(self) -> float | str:
-        return internals.in6_tailored_share_of_fuel_in_exports_of_g_s_default(macro_debt_share_of_commodity_exports_fuel_of_exports_of_g=self.macro_debt_share_of_commodity_exports_fuel_of_exports_of_g)
+        return internals.in6_tailored_share_of_fuel_in_exports_of_g_s_default(macro_debt_share_of_commodity_exports_fuel_of_exports_of_g=self.macro_debt_share_of_commodity_exports_fuel_of_exports_of_g, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def in6_tailored_share_of_non_fuel_in_exports_of_g_s_default(self) -> float | str:
-        return internals.in6_tailored_share_of_non_fuel_in_exports_of_g_s_default(macro_debt_share_of_commodity_exports_non_fuel_of_exports=self.macro_debt_share_of_commodity_exports_non_fuel_of_exports)
+        return internals.in6_tailored_share_of_non_fuel_in_exports_of_g_s_default(macro_debt_share_of_commodity_exports_non_fuel_of_exports=self.macro_debt_share_of_commodity_exports_non_fuel_of_exports, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def in6_tailored_mitigating_factor_fuel_default(self) -> float | str:
-        return internals.in6_tailored_mitigating_factor_fuel_default(macro_debt_share_of_commodity_imports_fuel_of_exports_of_g=self.macro_debt_share_of_commodity_imports_fuel_of_exports_of_g)
+        return internals.in6_tailored_mitigating_factor_fuel_default(macro_debt_share_of_commodity_imports_fuel_of_exports_of_g=self.macro_debt_share_of_commodity_imports_fuel_of_exports_of_g, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def in6_tailored_mitigating_factor_non_fuel_default(self) -> float | str:
-        return internals.in6_tailored_mitigating_factor_non_fuel_default(macro_debt_share_of_commodity_imports_non_fuel_of_exports=self.macro_debt_share_of_commodity_imports_non_fuel_of_exports)
+        return internals.in6_tailored_mitigating_factor_non_fuel_default(macro_debt_share_of_commodity_imports_non_fuel_of_exports=self.macro_debt_share_of_commodity_imports_non_fuel_of_exports, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def in6_tailored_mkt_fin_borrowing_cost_default(self) -> float | str:
@@ -4153,7 +4663,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def in6opt_standard_nominal_depreciation_close_real_overvaluation(self) -> data.Series[float | str | None]:
-        return internals.in6opt_standard_nominal_depreciation_close_real_overvaluation(input6_standard_size_threshold_mode=self.input6_standard_size_threshold_mode, baseline_pub_inflation_rate_gdp_deflator_pct=self.baseline_pub_inflation_rate_gdp_deflator_pct, in6opt_standard_one_time_30_percent_nominal_depreciation_of=self.in6opt_standard_one_time_30_percent_nominal_depreciation_of, in6opt_standard_us_inflation_default=self.in6opt_standard_us_inflation_default, input6_standard_params_2=self.input6_standard_params_2)
+        return internals.in6opt_standard_nominal_depreciation_close_real_overvaluation(input6_standard_size_threshold_mode=self.input6_standard_size_threshold_mode, baseline_pub_inflation_rate_gdp_deflator_pct=self.baseline_pub_inflation_rate_gdp_deflator_pct, in6opt_standard_one_time_30_percent_nominal_depreciation_of=self.in6opt_standard_one_time_30_percent_nominal_depreciation_of, in6opt_standard_us_inflation_default=self.in6opt_standard_us_inflation_default, input6_standard_params_2=self.input6_standard_params_2, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def in6opt_standard_apply_all_individual_shocks_b1_through_b5_half(self) -> float | str:
@@ -4217,7 +4727,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def in6opt_standard_us_inflation_default(self) -> float | str:
-        return internals.in6opt_standard_us_inflation_default(baseline_pub_us_inflation_rate_gdp_deflator_pct=self.baseline_pub_us_inflation_rate_gdp_deflator_pct, input6_standard_interactions=self.input6_standard_interactions)
+        return internals.in6opt_standard_us_inflation_default(baseline_pub_us_inflation_rate_gdp_deflator_pct=self.baseline_pub_us_inflation_rate_gdp_deflator_pct, input6_standard_interactions=self.input6_standard_interactions, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def in7_resfin_domestic_st(self) -> data.Series[float | str | None]:
@@ -4265,83 +4775,83 @@ class Model(_BoundInputs):
 
     @cached_property
     def in8_sdr_sdr_allocation_holdings_in_million_of_usd(self) -> data.Series[int | str | None]:
-        return internals.in8_sdr_sdr_allocation_holdings_in_million_of_usd(input8_sdr_stock=self.input8_sdr_stock)
+        return internals.in8_sdr_sdr_allocation_holdings_in_million_of_usd(input8_sdr_stock=self.input8_sdr_stock, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def in8_sdr_interest_payments_in_million_of_usd(self) -> data.Series[int | str | None]:
-        return internals.in8_sdr_interest_payments_in_million_of_usd(input8_sdr_interest_historical=self.input8_sdr_interest_historical, input8_sdr_interest=self.input8_sdr_interest, input8_sdr_interest_rate=self.input8_sdr_interest_rate, input8_sdr_stock=self.input8_sdr_stock, in8_sdr_sdr_allocation_holdings_in_million_of_usd=self.in8_sdr_sdr_allocation_holdings_in_million_of_usd)
+        return internals.in8_sdr_interest_payments_in_million_of_usd(input8_sdr_interest_historical=self.input8_sdr_interest_historical, input8_sdr_interest=self.input8_sdr_interest, input8_sdr_interest_rate=self.input8_sdr_interest_rate, input8_sdr_stock=self.input8_sdr_stock, in8_sdr_sdr_allocation_holdings_in_million_of_usd=self.in8_sdr_sdr_allocation_holdings_in_million_of_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def in8_sdr_pv_of_interest_payments_in_million_of_usd(self) -> data.Series[int | str | None]:
-        return internals.in8_sdr_pv_of_interest_payments_in_million_of_usd(discount_rate=self.discount_rate, in8_sdr_sdr_interest=self.in8_sdr_sdr_interest, in8_sdr_of_end_2044=self.in8_sdr_of_end_2044)
+        return internals.in8_sdr_pv_of_interest_payments_in_million_of_usd(discount_rate=self.discount_rate, in8_sdr_sdr_interest=self.in8_sdr_sdr_interest, in8_sdr_of_end_2044=self.in8_sdr_of_end_2044, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_further_details(self) -> data.Series[int | str | None]:
-        return internals.macro_debt_further_details(macro_debt_main_assumptions_further_details=self.macro_debt_main_assumptions_further_details)
+        return internals.macro_debt_further_details(macro_debt_main_assumptions_further_details=self.macro_debt_main_assumptions_further_details, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_us_dollars(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_us_dollars(macro_debt_us_dollars_by_year=self.macro_debt_us_dollars_by_year, macro_debt_private_sector_ext_debt=self.macro_debt_private_sector_ext_debt)
+        return internals.macro_debt_us_dollars(macro_debt_us_dollars_by_year=self.macro_debt_us_dollars_by_year, macro_debt_private_sector_ext_debt=self.macro_debt_private_sector_ext_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_us_dollars_by_year(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_us_dollars_by_year(macro_debt_main_assumptions_us_dollars=self.macro_debt_main_assumptions_us_dollars, macro_debt_short_term=self.macro_debt_short_term)
+        return internals.macro_debt_us_dollars_by_year(macro_debt_main_assumptions_us_dollars=self.macro_debt_main_assumptions_us_dollars, macro_debt_short_term=self.macro_debt_short_term, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_short_term(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_short_term(input3_ppg_external_debt_stock=data.INPUT3_PPG_EXTERNAL_DEBT_STOCK, input3_input_3_external_debt_ppg_st_external_debt_outstanding=self.input3_input_3_external_debt_ppg_st_external_debt_outstanding, ext_debt_st_total=self.ext_debt_st_total, in3_macro_transition_formula_these_o_w_st=self.in3_macro_transition_formula_these_o_w_st, input3_local_currency_external_debt=self.input3_local_currency_external_debt)
+        return internals.macro_debt_short_term(input3_ppg_external_debt_stock=data.INPUT3_PPG_EXTERNAL_DEBT_STOCK, input3_input_3_external_debt_ppg_st_external_debt_outstanding=self.input3_input_3_external_debt_ppg_st_external_debt_outstanding, ext_debt_st_total=self.ext_debt_st_total, in3_macro_transition_formula_these_o_w_st=self.in3_macro_transition_formula_these_o_w_st, input3_local_currency_external_debt=self.input3_local_currency_external_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_private_sector_ext_debt(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_private_sector_ext_debt(macro_debt_private_sector_mlt_external=self.macro_debt_private_sector_mlt_external, macro_debt_private_sector_short_term=self.macro_debt_private_sector_short_term)
+        return internals.macro_debt_private_sector_ext_debt(macro_debt_private_sector_mlt_external=self.macro_debt_private_sector_mlt_external, macro_debt_private_sector_short_term=self.macro_debt_private_sector_short_term, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_private_sector_mlt_external(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_private_sector_mlt_external(input3_private_external_debt_stock=data.INPUT3_PRIVATE_EXTERNAL_DEBT_STOCK, input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding=self.input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding)
+        return internals.macro_debt_private_sector_mlt_external(input3_private_external_debt_stock=data.INPUT3_PRIVATE_EXTERNAL_DEBT_STOCK, input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding=self.input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_private_sector_short_term(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_private_sector_short_term(input3_private_external_debt_stock=data.INPUT3_PRIVATE_EXTERNAL_DEBT_STOCK, input3_input_3_external_debt_private_sector_st_external_debt_outstanding=self.input3_input_3_external_debt_private_sector_st_external_debt_outstanding)
+        return internals.macro_debt_private_sector_short_term(input3_private_external_debt_stock=data.INPUT3_PRIVATE_EXTERNAL_DEBT_STOCK, input3_input_3_external_debt_private_sector_st_external_debt_outstanding=self.input3_input_3_external_debt_private_sector_st_external_debt_outstanding, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_national_currency(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_national_currency(macro_debt_public_domestic_mlt=self.macro_debt_public_domestic_mlt, macro_debt_public_domestic_st=self.macro_debt_public_domestic_st)
+        return internals.macro_debt_national_currency(macro_debt_public_domestic_mlt=self.macro_debt_public_domestic_mlt, macro_debt_public_domestic_st=self.macro_debt_public_domestic_st, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_public_domestic_mlt(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_public_domestic_mlt(input5_summary_mlt=self.input5_summary_mlt, in3_macro_o_w_medium_long_term=self.in3_macro_o_w_medium_long_term, input3_local_currency_domestic_debt=self.input3_local_currency_domestic_debt)
+        return internals.macro_debt_public_domestic_mlt(input5_summary_mlt=self.input5_summary_mlt, in3_macro_o_w_medium_long_term=self.in3_macro_o_w_medium_long_term, input3_local_currency_domestic_debt=self.input3_local_currency_domestic_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_public_domestic_st(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_public_domestic_st(input5_summary_short_term=self.input5_summary_short_term, in3_macro_o_w_st=self.in3_macro_o_w_st, input3_local_currency_domestic_debt=self.input3_local_currency_domestic_debt)
+        return internals.macro_debt_public_domestic_st(input5_summary_short_term=self.input5_summary_short_term, in3_macro_o_w_st=self.in3_macro_o_w_st, input3_local_currency_domestic_debt=self.input3_local_currency_domestic_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_total_ext_debt_interest_due_include_interest(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_total_ext_debt_interest_due_include_interest(macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_private_external_interest_due=self.macro_debt_private_external_interest_due)
+        return internals.macro_debt_total_ext_debt_interest_due_include_interest(macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_private_external_interest_due=self.macro_debt_private_external_interest_due, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_ppg_interest_due(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_ppg_interest_due(input3_input_3_external_debt_ppg_external_debt_interest_due=self.input3_input_3_external_debt_ppg_external_debt_interest_due, ext_debt_public_debt_service_interest=self.ext_debt_public_debt_service_interest, in3_macro_interest=self.in3_macro_interest)
+        return internals.macro_debt_ppg_interest_due(input3_input_3_external_debt_ppg_external_debt_interest_due=self.input3_input_3_external_debt_ppg_external_debt_interest_due, ext_debt_public_debt_service_interest=self.ext_debt_public_debt_service_interest, in3_macro_interest=self.in3_macro_interest, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_private_external_interest_due(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_private_external_interest_due(input3_input_3_external_debt_private_external_debt_interest_due=self.input3_input_3_external_debt_private_external_debt_interest_due)
+        return internals.macro_debt_private_external_interest_due(input3_input_3_external_debt_private_external_debt_interest_due=self.input3_input_3_external_debt_private_external_debt_interest_due, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_total_public_domestic_debt_interest_due(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_total_public_domestic_debt_interest_due(input5_summary_interest_payment=self.input5_summary_interest_payment, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, input3_local_currency_domestic_debt=self.input3_local_currency_domestic_debt)
+        return internals.macro_debt_total_public_domestic_debt_interest_due(input5_summary_interest_payment=self.input5_summary_interest_payment, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, input3_local_currency_domestic_debt=self.input3_local_currency_domestic_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_total_external_amortization_due_include(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_total_external_amortization_due_include(macro_debt_mlt_private_ext_debt_amortization=self.macro_debt_mlt_private_ext_debt_amortization, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6)
+        return internals.macro_debt_total_external_amortization_due_include(macro_debt_mlt_private_ext_debt_amortization=self.macro_debt_mlt_private_ext_debt_amortization, macro_debt_main_assumptions_us_dollars_by_year_6=self.macro_debt_main_assumptions_us_dollars_by_year_6, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_mlt_private_ext_debt_amortization(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_mlt_private_ext_debt_amortization(input3_input_3_external_debt_private_mlt_external_debt_amortization_due=self.input3_input_3_external_debt_private_mlt_external_debt_amortization_due)
+        return internals.macro_debt_mlt_private_ext_debt_amortization(input3_input_3_external_debt_private_mlt_external_debt_amortization_due=self.input3_input_3_external_debt_private_mlt_external_debt_amortization_due, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_total_mlt_public_domestic_debt_amortization_debt(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_total_mlt_public_domestic_debt_amortization_debt(input5_summary_principal_payment=self.input5_summary_principal_payment, macro_debt_public_domestic_st=self.macro_debt_public_domestic_st, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc)
+        return internals.macro_debt_total_mlt_public_domestic_debt_amortization_debt(input5_summary_principal_payment=self.input5_summary_principal_payment, macro_debt_public_domestic_st=self.macro_debt_public_domestic_st, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_us_dollars_k(self) -> data.Series[float | str | None]:
@@ -4349,183 +4859,183 @@ class Model(_BoundInputs):
 
     @cached_property
     def macro_debt_us_dollars_v(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_us_dollars_v(input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
+        return internals.macro_debt_us_dollars_v(input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_exports_of_goods_services(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_exports_of_goods_services(input3_input_3_macro_exports_of_goods_and_services=self.input3_input_3_macro_exports_of_goods_and_services)
+        return internals.macro_debt_exports_of_goods_services(input3_input_3_macro_exports_of_goods_and_services=self.input3_input_3_macro_exports_of_goods_and_services, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_imports_of_goods_services_use_positive_values(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_imports_of_goods_services_use_positive_values(input3_imports=data.INPUT3_IMPORTS, input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number=self.input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number)
+        return internals.macro_debt_imports_of_goods_services_use_positive_values(input3_imports=data.INPUT3_IMPORTS, input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number=self.input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_us_dollars_by_year_k(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_us_dollars_by_year_k(input3_input_3_macro_current_transfers_net=self.input3_input_3_macro_current_transfers_net)
+        return internals.macro_debt_us_dollars_by_year_k(input3_input_3_macro_current_transfers_net=self.input3_input_3_macro_current_transfers_net, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_us_dollars_by_year_v(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_us_dollars_by_year_v(input3_input_3_macro_current_transfers_net=self.input3_input_3_macro_current_transfers_net)
+        return internals.macro_debt_us_dollars_by_year_v(input3_input_3_macro_current_transfers_net=self.input3_input_3_macro_current_transfers_net, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_main_assumptions_us_dollars_k(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_main_assumptions_us_dollars_k(input3_input_3_macro_foreign_direct_investment=self.input3_input_3_macro_foreign_direct_investment)
+        return internals.macro_debt_main_assumptions_us_dollars_k(input3_input_3_macro_foreign_direct_investment=self.input3_input_3_macro_foreign_direct_investment, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_main_assumptions_us_dollars_v(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_main_assumptions_us_dollars_v(input3_input_3_macro_foreign_direct_investment=self.input3_input_3_macro_foreign_direct_investment)
+        return internals.macro_debt_main_assumptions_us_dollars_v(input3_input_3_macro_foreign_direct_investment=self.input3_input_3_macro_foreign_direct_investment, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_share_of_commodity_exports_fuel_of_exports_of_g(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_share_of_commodity_exports_fuel_of_exports_of_g(input3_input_3_macro_exports_of_goods_and_services=self.input3_input_3_macro_exports_of_goods_and_services, input3_input_3_macro_exports_commodity_fuel=self.input3_input_3_macro_exports_commodity_fuel)
+        return internals.macro_debt_share_of_commodity_exports_fuel_of_exports_of_g(input3_input_3_macro_exports_of_goods_and_services=self.input3_input_3_macro_exports_of_goods_and_services, input3_input_3_macro_exports_commodity_fuel=self.input3_input_3_macro_exports_commodity_fuel, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_share_of_commodity_exports_non_fuel_of_exports(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_share_of_commodity_exports_non_fuel_of_exports(input3_input_3_macro_exports_of_goods_and_services=self.input3_input_3_macro_exports_of_goods_and_services, input3_input_3_macro_exports_commodity_non_fuel=self.input3_input_3_macro_exports_commodity_non_fuel)
+        return internals.macro_debt_share_of_commodity_exports_non_fuel_of_exports(input3_input_3_macro_exports_of_goods_and_services=self.input3_input_3_macro_exports_of_goods_and_services, input3_input_3_macro_exports_commodity_non_fuel=self.input3_input_3_macro_exports_commodity_non_fuel, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_share_of_commodity_imports_fuel_of_exports_of_g(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_share_of_commodity_imports_fuel_of_exports_of_g(input3_input_3_macro_exports_of_goods_and_services=self.input3_input_3_macro_exports_of_goods_and_services, input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number=self.input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number)
+        return internals.macro_debt_share_of_commodity_imports_fuel_of_exports_of_g(input3_input_3_macro_exports_of_goods_and_services=self.input3_input_3_macro_exports_of_goods_and_services, input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number=self.input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_share_of_commodity_imports_non_fuel_of_exports(self) -> data.Series[int | str | None]:
-        return internals.macro_debt_share_of_commodity_imports_non_fuel_of_exports(input3_input_3_macro_exports_of_goods_and_services=self.input3_input_3_macro_exports_of_goods_and_services, input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number=self.input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number)
+        return internals.macro_debt_share_of_commodity_imports_non_fuel_of_exports(input3_input_3_macro_exports_of_goods_and_services=self.input3_input_3_macro_exports_of_goods_and_services, input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number=self.input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_public_sector_revenues_including_grants(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_public_sector_revenues_including_grants(input3_input_3_macro_government_revenue_and_grants=self.input3_input_3_macro_government_revenue_and_grants)
+        return internals.macro_debt_public_sector_revenues_including_grants(input3_input_3_macro_government_revenue_and_grants=self.input3_input_3_macro_government_revenue_and_grants, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_public_sector_grants(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_public_sector_grants(input3_input_3_macro_government_grants=self.input3_input_3_macro_government_grants)
+        return internals.macro_debt_public_sector_grants(input3_input_3_macro_government_grants=self.input3_input_3_macro_government_grants, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_privatization_receipts(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_privatization_receipts(input3_other_debt_flows=data.INPUT3_OTHER_DEBT_FLOWS, input3_input_3_macro_privatization_proceeds=self.input3_input_3_macro_privatization_proceeds)
+        return internals.macro_debt_privatization_receipts(input3_other_debt_flows=data.INPUT3_OTHER_DEBT_FLOWS, input3_input_3_macro_privatization_proceeds=self.input3_input_3_macro_privatization_proceeds, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_public_sector_primary_expenditure(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_public_sector_primary_expenditure(in3_macro_government_primary_expenditures_this_used_be=self.in3_macro_government_primary_expenditures_this_used_be)
+        return internals.macro_debt_public_sector_primary_expenditure(in3_macro_government_primary_expenditures_this_used_be=self.in3_macro_government_primary_expenditures_this_used_be, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_public_sector_interest_expenditure(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_public_sector_interest_expenditure(macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_total_public_domestic_debt_interest_due=self.macro_debt_total_public_domestic_debt_interest_due, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc)
+        return internals.macro_debt_public_sector_interest_expenditure(macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, macro_debt_total_public_domestic_debt_interest_due=self.macro_debt_total_public_domestic_debt_interest_due, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_public_sector_assets_e_g_deposits(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_public_sector_assets_e_g_deposits(in3_macro_public_sector_liquid_assets_stock_e_g_cash=self.in3_macro_public_sector_liquid_assets_stock_e_g_cash)
+        return internals.macro_debt_public_sector_assets_e_g_deposits(in3_macro_public_sector_liquid_assets_stock_e_g_cash=self.in3_macro_public_sector_liquid_assets_stock_e_g_cash, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_recognition_of_contingent_liab_e_g_bank(self) -> data.Series[int | str | None]:
-        return internals.macro_debt_recognition_of_contingent_liab_e_g_bank(input3_other_debt_flows=data.INPUT3_OTHER_DEBT_FLOWS, in3_macro_recognition_of_contingent_liab_e_g_bank=self.in3_macro_recognition_of_contingent_liab_e_g_bank)
+        return internals.macro_debt_recognition_of_contingent_liab_e_g_bank(input3_other_debt_flows=data.INPUT3_OTHER_DEBT_FLOWS, in3_macro_recognition_of_contingent_liab_e_g_bank=self.in3_macro_recognition_of_contingent_liab_e_g_bank, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_other_debt_creating_reducing_flow_please_specify(self) -> data.Series[int | str | None]:
-        return internals.macro_debt_other_debt_creating_reducing_flow_please_specify(input3_other_debt_flows=data.INPUT3_OTHER_DEBT_FLOWS, input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify=self.input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify)
+        return internals.macro_debt_other_debt_creating_reducing_flow_please_specify(input3_other_debt_flows=data.INPUT3_OTHER_DEBT_FLOWS, input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify=self.input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_debt_relief(self) -> data.Series[int | str | None]:
-        return internals.macro_debt_debt_relief(input3_other_debt_flows=data.INPUT3_OTHER_DEBT_FLOWS, input3_input_3_macro_debt_relief_non_multilateral_hipc=self.input3_input_3_macro_debt_relief_non_multilateral_hipc)
+        return internals.macro_debt_debt_relief(input3_other_debt_flows=data.INPUT3_OTHER_DEBT_FLOWS, input3_input_3_macro_debt_relief_non_multilateral_hipc=self.input3_input_3_macro_debt_relief_non_multilateral_hipc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_gdp_current_prices_u_s_dollars(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_gdp_current_prices_u_s_dollars(input3_input_3_macro_gross_domestic_product_us_dollars=self.input3_input_3_macro_gross_domestic_product_us_dollars)
+        return internals.macro_debt_gdp_current_prices_u_s_dollars(input3_input_3_macro_gross_domestic_product_us_dollars=self.input3_input_3_macro_gross_domestic_product_us_dollars, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_gdp_constant_prices(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_gdp_constant_prices(input3_input_3_macro_real_gross_domestic_product=self.input3_input_3_macro_real_gross_domestic_product)
+        return internals.macro_debt_gdp_constant_prices(input3_input_3_macro_real_gross_domestic_product=self.input3_input_3_macro_real_gross_domestic_product, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_none(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_none(input3_us_deflator=data.INPUT3_US_DEFLATOR, input3_input_3_macro_u_s_deflator=self.input3_input_3_macro_u_s_deflator)
+        return internals.macro_debt_none(input3_us_deflator=data.INPUT3_US_DEFLATOR, input3_input_3_macro_u_s_deflator=self.input3_input_3_macro_u_s_deflator, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_exchange_rate_national_currency_per_u_s_dollar(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_exchange_rate_national_currency_per_u_s_dollar(input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p=self.input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p)
+        return internals.macro_debt_exchange_rate_national_currency_per_u_s_dollar(input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p=self.input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc(input3_input_3_macro_national_currency_per_u_s_dollar_p_a=self.input3_input_3_macro_national_currency_per_u_s_dollar_p_a)
+        return internals.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc(input3_input_3_macro_national_currency_per_u_s_dollar_p_a=self.input3_input_3_macro_national_currency_per_u_s_dollar_p_a, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_private_debt_pct_gdp(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_private_debt_pct_gdp(macro_debt_private_sector_ext_debt=self.macro_debt_private_sector_ext_debt, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars)
+        return internals.macro_debt_private_debt_pct_gdp(macro_debt_private_sector_ext_debt=self.macro_debt_private_sector_ext_debt, macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_private_debt_service_pct_exports(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_private_debt_service_pct_exports(macro_debt_private_sector_short_term=self.macro_debt_private_sector_short_term, macro_debt_private_external_interest_due=self.macro_debt_private_external_interest_due, macro_debt_mlt_private_ext_debt_amortization=self.macro_debt_mlt_private_ext_debt_amortization, macro_debt_exports_of_goods_services=self.macro_debt_exports_of_goods_services)
+        return internals.macro_debt_private_debt_service_pct_exports(macro_debt_private_sector_short_term=self.macro_debt_private_sector_short_term, macro_debt_private_external_interest_due=self.macro_debt_private_external_interest_due, macro_debt_mlt_private_ext_debt_amortization=self.macro_debt_mlt_private_ext_debt_amortization, macro_debt_exports_of_goods_services=self.macro_debt_exports_of_goods_services, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_total_public_debt_outstanding_year_end(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_total_public_debt_outstanding_year_end(macro_debt_total_public_ext_debt=self.macro_debt_total_public_ext_debt, macro_debt_total_public_domestic_debt=self.macro_debt_total_public_domestic_debt)
+        return internals.macro_debt_total_public_debt_outstanding_year_end(macro_debt_total_public_ext_debt=self.macro_debt_total_public_ext_debt, macro_debt_total_public_domestic_debt=self.macro_debt_total_public_domestic_debt, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_total_public_ext_debt(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_total_public_ext_debt(macro_debt_us_dollars_by_year=self.macro_debt_us_dollars_by_year, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar)
+        return internals.macro_debt_total_public_ext_debt(macro_debt_us_dollars_by_year=self.macro_debt_us_dollars_by_year, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_total_public_domestic_debt(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_total_public_domestic_debt(macro_debt_national_currency=self.macro_debt_national_currency)
+        return internals.macro_debt_total_public_domestic_debt(macro_debt_national_currency=self.macro_debt_national_currency, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_fx_denominated_public_debt_end_of_period(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_fx_denominated_public_debt_end_of_period(input3_local_currency_external_debt=self.input3_local_currency_external_debt, ext_debt_fx_denominated_debt_outstanding=self.ext_debt_fx_denominated_debt_outstanding, in3_macro_fx_denominated_debt_including_locally_issued=self.in3_macro_fx_denominated_debt_including_locally_issued, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar)
+        return internals.macro_debt_fx_denominated_public_debt_end_of_period(input3_local_currency_external_debt=self.input3_local_currency_external_debt, ext_debt_fx_denominated_debt_outstanding=self.ext_debt_fx_denominated_debt_outstanding, in3_macro_fx_denominated_debt_including_locally_issued=self.in3_macro_fx_denominated_debt_including_locally_issued, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_share_of_local_currency_denominated_external(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_share_of_local_currency_denominated_external(input3_local_currency_external_debt=self.input3_local_currency_external_debt, input5_old_debt_outstanding_from_old_debt_in_local_currency=self.input5_old_debt_outstanding_from_old_debt_in_local_currency, input5_new_debt_debt_stock_on_new_debt_denominated_in_local_currency=self.input5_new_debt_debt_stock_on_new_debt_denominated_in_local_currency, external_domestic_debt_definition=self.external_domestic_debt_definition, in3_macro_transition_formula_these_outstanding=self.in3_macro_transition_formula_these_outstanding, macro_debt_us_dollars=self.macro_debt_us_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, lookup_afg=self.lookup_afg)
+        return internals.macro_debt_share_of_local_currency_denominated_external(input3_local_currency_external_debt=self.input3_local_currency_external_debt, input5_old_debt_outstanding_from_old_debt_in_local_currency=self.input5_old_debt_outstanding_from_old_debt_in_local_currency, input5_new_debt_debt_stock_on_new_debt_denominated_in_local_currency=self.input5_new_debt_debt_stock_on_new_debt_denominated_in_local_currency, external_domestic_debt_definition=self.external_domestic_debt_definition, in3_macro_transition_formula_these_outstanding=self.in3_macro_transition_formula_these_outstanding, macro_debt_us_dollars=self.macro_debt_us_dollars, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, lookup_afg=self.lookup_afg, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_interest_rate_ext_debt(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_interest_rate_ext_debt(macro_debt_us_dollars_by_year=self.macro_debt_us_dollars_by_year, macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due)
+        return internals.macro_debt_interest_rate_ext_debt(macro_debt_us_dollars_by_year=self.macro_debt_us_dollars_by_year, macro_debt_ppg_interest_due=self.macro_debt_ppg_interest_due, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_interest_rate_domestic_debt(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_interest_rate_domestic_debt(macro_debt_national_currency=self.macro_debt_national_currency, macro_debt_total_public_domestic_debt_interest_due=self.macro_debt_total_public_domestic_debt_interest_due, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc)
+        return internals.macro_debt_interest_rate_domestic_debt(macro_debt_national_currency=self.macro_debt_national_currency, macro_debt_total_public_domestic_debt_interest_due=self.macro_debt_total_public_domestic_debt_interest_due, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_pv_of_public_sector_ext_debt_end_of_period(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_pv_of_public_sector_ext_debt_end_of_period(ext_debt_total_pv_of_debt=self.ext_debt_total_pv_of_debt, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar)
+        return internals.macro_debt_pv_of_public_sector_ext_debt_end_of_period(ext_debt_total_pv_of_debt=self.ext_debt_total_pv_of_debt, macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_national_currency_us_dollars(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_national_currency_us_dollars(macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants, macro_debt_public_sector_grants=self.macro_debt_public_sector_grants, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc)
+        return internals.macro_debt_national_currency_us_dollars(macro_debt_public_sector_revenues_including_grants=self.macro_debt_public_sector_revenues_including_grants, macro_debt_public_sector_grants=self.macro_debt_public_sector_grants, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_revenues_pct_gdp(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_revenues_pct_gdp(macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_national_currency_us_dollars=self.macro_debt_national_currency_us_dollars)
+        return internals.macro_debt_revenues_pct_gdp(macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_national_currency_us_dollars=self.macro_debt_national_currency_us_dollars, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_real_gdp_growth(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_real_gdp_growth(macro_debt_gdp_constant_prices=self.macro_debt_gdp_constant_prices)
+        return internals.macro_debt_real_gdp_growth(macro_debt_gdp_constant_prices=self.macro_debt_gdp_constant_prices, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_gdp_deflator_index_national_currency(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_gdp_deflator_index_national_currency(macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_gdp_constant_prices=self.macro_debt_gdp_constant_prices, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc)
+        return internals.macro_debt_gdp_deflator_index_national_currency(macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_gdp_constant_prices=self.macro_debt_gdp_constant_prices, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_change_in_gdp_deflator_factor(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_change_in_gdp_deflator_factor(macro_debt_gdp_deflator_index_national_currency=self.macro_debt_gdp_deflator_index_national_currency)
+        return internals.macro_debt_change_in_gdp_deflator_factor(macro_debt_gdp_deflator_index_national_currency=self.macro_debt_gdp_deflator_index_national_currency, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_gdp_deflator_index_dollars(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_gdp_deflator_index_dollars(macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_gdp_constant_prices=self.macro_debt_gdp_constant_prices)
+        return internals.macro_debt_gdp_deflator_index_dollars(macro_debt_gdp_current_prices_u_s_dollars=self.macro_debt_gdp_current_prices_u_s_dollars, macro_debt_gdp_constant_prices=self.macro_debt_gdp_constant_prices, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_change_in_gdp_deflator_factor_by_year(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_change_in_gdp_deflator_factor_by_year(macro_debt_gdp_deflator_index_dollars=self.macro_debt_gdp_deflator_index_dollars)
+        return internals.macro_debt_change_in_gdp_deflator_factor_by_year(macro_debt_gdp_deflator_index_dollars=self.macro_debt_gdp_deflator_index_dollars, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_us_gdp_deflator_percent_change(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_us_gdp_deflator_percent_change(macro_debt_none=self.macro_debt_none)
+        return internals.macro_debt_us_gdp_deflator_percent_change(macro_debt_none=self.macro_debt_none, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_exchange_rate_dollar_nc(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_exchange_rate_dollar_nc(macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc)
+        return internals.macro_debt_exchange_rate_dollar_nc(macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def macro_debt_depreciation_of_nc_depreciation(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_depreciation_of_nc_depreciation(macro_debt_exchange_rate_dollar_nc=self.macro_debt_exchange_rate_dollar_nc)
+        return internals.macro_debt_depreciation_of_nc_depreciation(macro_debt_exchange_rate_dollar_nc=self.macro_debt_exchange_rate_dollar_nc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def start_debt_sustainability_analysis(self) -> str | int | float | bool:
@@ -4557,7 +5067,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def macro_debt_previous_vintage_investment(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_previous_vintage_investment(input3_investment=data.INPUT3_INVESTMENT)
+        return internals.macro_debt_previous_vintage_investment(input3_investment=data.INPUT3_INVESTMENT, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def input3_projection_year_header(self) -> int | str:
@@ -4565,11 +5075,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def input3_local_currency_domestic_debt(self) -> data.Series[float | str | None]:
-        return internals.input3_local_currency_domestic_debt(input3_domestic_local_currency_stock=data.INPUT3_DOMESTIC_LOCAL_CURRENCY_STOCK, input3_domestic_foreign_currency_stock=data.INPUT3_DOMESTIC_FOREIGN_CURRENCY_STOCK, input3_domestic_local_currency_interest=data.INPUT3_DOMESTIC_LOCAL_CURRENCY_INTEREST, external_domestic_debt_definition=self.external_domestic_debt_definition, input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p=self.input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p, input3_input_3_macro_national_currency_per_u_s_dollar_p_a=self.input3_input_3_macro_national_currency_per_u_s_dollar_p_a, input3_domestic_interest_payment_from_existing_debt=self.input3_domestic_interest_payment_from_existing_debt, in3_macro_o_w_st=self.in3_macro_o_w_st, lookup_afg=self.lookup_afg)
+        return internals.input3_local_currency_domestic_debt(input3_domestic_local_currency_stock=data.INPUT3_DOMESTIC_LOCAL_CURRENCY_STOCK, input3_domestic_foreign_currency_stock=data.INPUT3_DOMESTIC_FOREIGN_CURRENCY_STOCK, input3_domestic_local_currency_interest=data.INPUT3_DOMESTIC_LOCAL_CURRENCY_INTEREST, external_domestic_debt_definition=self.external_domestic_debt_definition, input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p=self.input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p, input3_input_3_macro_national_currency_per_u_s_dollar_p_a=self.input3_input_3_macro_national_currency_per_u_s_dollar_p_a, input3_domestic_interest_payment_from_existing_debt=self.input3_domestic_interest_payment_from_existing_debt, in3_macro_o_w_st=self.in3_macro_o_w_st, lookup_afg=self.lookup_afg, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def input3_local_currency_external_debt(self) -> data.Series[float | str | None]:
-        return internals.input3_local_currency_external_debt(input3_ppg_external_debt_stock=data.INPUT3_PPG_EXTERNAL_DEBT_STOCK, input3_domestic_foreign_currency_stock=data.INPUT3_DOMESTIC_FOREIGN_CURRENCY_STOCK, input3_nonresident_local_currency_stock=data.INPUT3_NONRESIDENT_LOCAL_CURRENCY_STOCK, input3_nonresident_foreign_currency_stock=data.INPUT3_NONRESIDENT_FOREIGN_CURRENCY_STOCK, external_domestic_debt_definition=self.external_domestic_debt_definition, input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p=self.input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p, input3_domestic_o_w_st=self.input3_domestic_o_w_st, lookup_afg=self.lookup_afg)
+        return internals.input3_local_currency_external_debt(input3_ppg_external_debt_stock=data.INPUT3_PPG_EXTERNAL_DEBT_STOCK, input3_domestic_foreign_currency_stock=data.INPUT3_DOMESTIC_FOREIGN_CURRENCY_STOCK, input3_nonresident_local_currency_stock=data.INPUT3_NONRESIDENT_LOCAL_CURRENCY_STOCK, input3_nonresident_foreign_currency_stock=data.INPUT3_NONRESIDENT_FOREIGN_CURRENCY_STOCK, external_domestic_debt_definition=self.external_domestic_debt_definition, input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p=self.input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p, input3_domestic_o_w_st=self.input3_domestic_o_w_st, lookup_afg=self.lookup_afg, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def output_submit_first_projection_year(self) -> int | str:
@@ -4581,7 +5091,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def leftover_exchange_rate_pa(self) -> data.Series[float | str | None]:
-        return internals.leftover_exchange_rate_pa(macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc)
+        return internals.leftover_exchange_rate_pa(macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_period(self) -> data.Series[int | str | None]:
@@ -4589,115 +5099,115 @@ class Model(_BoundInputs):
 
     @cached_property
     def custom_ext_of_which_public_publicly_guaranteed_ppg(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_of_which_public_publicly_guaranteed_ppg(custom_pub_of_which_fx_denominated=self.custom_pub_of_which_fx_denominated)
+        return internals.custom_ext_of_which_public_publicly_guaranteed_ppg(custom_pub_of_which_fx_denominated=self.custom_pub_of_which_fx_denominated, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def c4_market_path_baseline_pv_of_debt(self) -> data.Series[float | str | None]:
-        return internals.c4_market_path_baseline_pv_of_debt(ext_debt_total_pv_of_debt=self.ext_debt_total_pv_of_debt)
+        return internals.c4_market_path_baseline_pv_of_debt(ext_debt_total_pv_of_debt=self.ext_debt_total_pv_of_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_market_path_exports(self) -> data.Series[float | str | None]:
-        return internals.c4_market_path_exports(macro_debt_exports_of_goods_services=self.macro_debt_exports_of_goods_services)
+        return internals.c4_market_path_exports(macro_debt_exports_of_goods_services=self.macro_debt_exports_of_goods_services, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_market_path_nominal_gdp_stress(self) -> data.Series[float | str | None]:
-        return internals.c4_market_path_nominal_gdp_stress(c4_market_path_nominal_gdp=self.c4_market_path_nominal_gdp, c4_mkt_fin_nominal_gdp=self.c4_mkt_fin_nominal_gdp)
+        return internals.c4_market_path_nominal_gdp_stress(c4_market_path_nominal_gdp=self.c4_market_path_nominal_gdp, c4_mkt_fin_nominal_gdp=self.c4_mkt_fin_nominal_gdp, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_additional_debt_service_stress(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_additional_debt_service_stress(custom_ext_total_debt_service_by_year=self.custom_ext_total_debt_service_by_year)
+        return internals.custom_ext_additional_debt_service_stress(custom_ext_total_debt_service_by_year=self.custom_ext_total_debt_service_by_year, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_debt_service_ppg_baseline(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_debt_service_ppg_baseline(ext_debt_total_public_debt_service=self.ext_debt_total_public_debt_service)
+        return internals.custom_ext_debt_service_ppg_baseline(ext_debt_total_public_debt_service=self.ext_debt_total_public_debt_service, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_exports(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_exports(custom_pub_exports=self.custom_pub_exports)
+        return internals.custom_ext_exports(custom_pub_exports=self.custom_pub_exports, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_gdp_deflator_in_us_dollar_terms_change_pct(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_gdp_deflator_in_us_dollar_terms_change_pct(custom_pub_gdp_deflator_in_us_dollar_terms_change_pct=self.custom_pub_gdp_deflator_in_us_dollar_terms_change_pct)
+        return internals.custom_ext_gdp_deflator_in_us_dollar_terms_change_pct(custom_pub_gdp_deflator_in_us_dollar_terms_change_pct=self.custom_pub_gdp_deflator_in_us_dollar_terms_change_pct, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_gdp_deflator_in_us_dollar_terms_change_pct_by_year(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_gdp_deflator_in_us_dollar_terms_change_pct_by_year(custom_ext_gdp_deflator_in_us_dollar_terms_change_pct=self.custom_ext_gdp_deflator_in_us_dollar_terms_change_pct)
+        return internals.custom_ext_gdp_deflator_in_us_dollar_terms_change_pct_by_year(custom_ext_gdp_deflator_in_us_dollar_terms_change_pct=self.custom_ext_gdp_deflator_in_us_dollar_terms_change_pct, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_pv_of_additional_borrowing(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_pv_of_additional_borrowing(custom_ext_pv_of_new_forex_debt=self.custom_ext_pv_of_new_forex_debt)
+        return internals.custom_ext_pv_of_additional_borrowing(custom_ext_pv_of_new_forex_debt=self.custom_ext_pv_of_new_forex_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_pv_ppg_baseline(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_pv_ppg_baseline(ext_debt_total_pv_of_debt=self.ext_debt_total_pv_of_debt)
+        return internals.custom_ext_pv_ppg_baseline(ext_debt_total_pv_of_debt=self.ext_debt_total_pv_of_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_real_gdp_growth(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_real_gdp_growth(custom_pub_real_gdp_growth=self.custom_pub_real_gdp_growth)
+        return internals.custom_ext_real_gdp_growth(custom_pub_real_gdp_growth=self.custom_pub_real_gdp_growth, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_inflation_rate_gdp_deflator_pct_by_year(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_inflation_rate_gdp_deflator_pct_by_year(custom_pub_inflation_rate_gdp_deflator_pct=self.custom_pub_inflation_rate_gdp_deflator_pct)
+        return internals.custom_pub_inflation_rate_gdp_deflator_pct_by_year(custom_pub_inflation_rate_gdp_deflator_pct=self.custom_pub_inflation_rate_gdp_deflator_pct, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_nominal_depreciation_of_lc_percentage_change_lc_by_year(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_nominal_depreciation_of_lc_percentage_change_lc_by_year(custom_pub_nominal_depreciation_of_lc_percentage_change_lc=self.custom_pub_nominal_depreciation_of_lc_percentage_change_lc)
+        return internals.custom_pub_nominal_depreciation_of_lc_percentage_change_lc_by_year(custom_pub_nominal_depreciation_of_lc_percentage_change_lc=self.custom_pub_nominal_depreciation_of_lc_percentage_change_lc, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_us_inflation_rate_gdp_deflator_pct(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_us_inflation_rate_gdp_deflator_pct(macro_debt_us_gdp_deflator_percent_change=self.macro_debt_us_gdp_deflator_percent_change)
+        return internals.custom_pub_us_inflation_rate_gdp_deflator_pct(macro_debt_us_gdp_deflator_percent_change=self.macro_debt_us_gdp_deflator_percent_change, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_gross_financing_need(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_gross_financing_need(input5_public_gfns_6_public_gfns=self.input5_public_gfns_6_public_gfns)
+        return internals.macro_debt_gross_financing_need(input5_public_gfns_6_public_gfns=self.input5_public_gfns_6_public_gfns, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def macro_debt_main_assumptions_us_dollars_by_year_6(self) -> data.Series[float | str | None]:
-        return internals.macro_debt_main_assumptions_us_dollars_by_year_6(ext_debt_public_debt_service_principal=self.ext_debt_public_debt_service_principal)
+        return internals.macro_debt_main_assumptions_us_dollars_by_year_6(ext_debt_public_debt_service_principal=self.ext_debt_public_debt_service_principal, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_market_path_pv_of_debt(self) -> data.Series[float | str | None]:
-        return internals.c4_market_path_pv_of_debt(pv_baseline_com_pv_debt=self.pv_baseline_com_pv_debt)
+        return internals.c4_market_path_pv_of_debt(pv_baseline_com_pv_debt=self.pv_baseline_com_pv_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_market_path_pv_of_debt_alt(self) -> data.Series[float | str | None]:
-        return internals.c4_market_path_pv_of_debt_alt(pv_stress_com_pv_debt=self.pv_stress_com_pv_debt)
+        return internals.c4_market_path_pv_of_debt_alt(pv_stress_com_pv_debt=self.pv_stress_com_pv_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_market_path_real_gdp_growth(self) -> data.Series[float | str | None]:
-        return internals.c4_market_path_real_gdp_growth(dsa_ext_real_gdp_growth_in_percent=self.dsa_ext_real_gdp_growth_in_percent)
+        return internals.c4_market_path_real_gdp_growth(dsa_ext_real_gdp_growth_in_percent=self.dsa_ext_real_gdp_growth_in_percent, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_market_path_total_debt_service(self) -> data.Series[float | str | None]:
-        return internals.c4_market_path_total_debt_service(pv_baseline_com_total_debt_service=self.pv_baseline_com_total_debt_service)
+        return internals.c4_market_path_total_debt_service(pv_baseline_com_total_debt_service=self.pv_baseline_com_total_debt_service, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_market_path_total_debt_service_alt(self) -> data.Series[float | str | None]:
-        return internals.c4_market_path_total_debt_service_alt(pv_stress_com_total_debt_service=self.pv_stress_com_total_debt_service)
+        return internals.c4_market_path_total_debt_service_alt(pv_stress_com_total_debt_service=self.pv_stress_com_total_debt_service, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_avg_real_interest_rate_by_year(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_avg_real_interest_rate_by_year(custom_pub_avg_real_interest_rate=self.custom_pub_avg_real_interest_rate)
+        return internals.custom_pub_avg_real_interest_rate_by_year(custom_pub_avg_real_interest_rate=self.custom_pub_avg_real_interest_rate, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_pub_avg_real_interest_rate_new_borrowing_by_year(self) -> data.Series[float | str | None]:
-        return internals.custom_pub_avg_real_interest_rate_new_borrowing_by_year(custom_pub_avg_real_interest_rate_new_borrowing=self.custom_pub_avg_real_interest_rate_new_borrowing)
+        return internals.custom_pub_avg_real_interest_rate_new_borrowing_by_year(custom_pub_avg_real_interest_rate_new_borrowing=self.custom_pub_avg_real_interest_rate_new_borrowing, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_market_instruments(self) -> data.Series[int | str | None]:
-        return internals.c4_market_instruments(input4_grace_period=self.input4_grace_period, input4_loan_maturity=self.input4_loan_maturity)
+        return internals.c4_market_instruments(input4_grace_period=self.input4_grace_period, input4_loan_maturity=self.input4_loan_maturity, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def ci_summary_gdp_us_dollars_billions(self) -> data.Series[float | str | None]:
-        return internals.ci_summary_gdp_us_dollars_billions(imported_classification_values=self.imported_classification_values)
+        return internals.ci_summary_gdp_us_dollars_billions(imported_classification_values=self.imported_classification_values, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def ci_summary_remittances_gross_us_dollars_billions(self) -> data.Series[float | str | None]:
-        return internals.ci_summary_remittances_gross_us_dollars_billions(imported_classification_values=self.imported_classification_values)
+        return internals.ci_summary_remittances_gross_us_dollars_billions(imported_classification_values=self.imported_classification_values, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def imported_components(self) -> data.Series[int | str | None]:
-        return internals.imported_components(imported_classification_years=self.imported_classification_years)
+        return internals.imported_components(imported_classification_years=self.imported_classification_years, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def input5_instrument_titles(self) -> data.Series[str | int | float | bool | None]:
@@ -4709,15 +5219,15 @@ class Model(_BoundInputs):
 
     @cached_property
     def leftover_primary_deficit(self) -> data.Series[float | str | None]:
-        return internals.leftover_primary_deficit(a1_hist_pub_historical_statistics=self.a1_hist_pub_historical_statistics, baseline_pub_primary_deficit_by_indicator=self.baseline_pub_primary_deficit_by_indicator)
+        return internals.leftover_primary_deficit(a1_hist_pub_historical_statistics=self.a1_hist_pub_historical_statistics, baseline_pub_primary_deficit_by_indicator=self.baseline_pub_primary_deficit_by_indicator, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def customized_scenario_spec(self) -> data.Series[float | str | None]:
-        return internals.customized_scenario_spec(input6_tailored_params_2=self.input6_tailored_params_2, input6_tailored_params_3=self.input6_tailored_params_3)
+        return internals.customized_scenario_spec(input6_tailored_params_2=self.input6_tailored_params_2, input6_tailored_params_3=self.input6_tailored_params_3, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def leftover_real_gdp_growth(self) -> data.Series[float | str | None]:
-        return internals.leftover_real_gdp_growth(a1_hist_pub_historical_statistics=self.a1_hist_pub_historical_statistics, baseline_pub_real_gdp_growth_by_indicator=self.baseline_pub_real_gdp_growth_by_indicator)
+        return internals.leftover_real_gdp_growth(a1_hist_pub_historical_statistics=self.a1_hist_pub_historical_statistics, baseline_pub_real_gdp_growth_by_indicator=self.baseline_pub_real_gdp_growth_by_indicator, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def c4_market_instruments_k(self) -> data.Series[float | str | None]:
@@ -4753,7 +5263,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def ci_summary_medium(self) -> data.Series[str | int | float | bool | None]:
-        return internals.ci_summary_medium(imported_composite_indicator=self.imported_composite_indicator)
+        return internals.ci_summary_medium(imported_composite_indicator=self.imported_composite_indicator, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def leftover_export_growth_usd(self) -> data.Series[float | str | None]:
@@ -4889,7 +5399,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def c4_market_path_nominal_gdp(self) -> float | str:
-        return internals.c4_market_path_nominal_gdp(dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars)
+        return internals.c4_market_path_nominal_gdp(dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def c4_market_path_non_interest_ca_pct_gdp(self) -> float | str:
@@ -4897,7 +5407,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def c4_market_path_revised_pv_debt_exports(self) -> float | str:
-        return internals.c4_market_path_revised_pv_debt_exports(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio=self.dsa_ext_pv_of_ppg_external_debt_to_exports_ratio)
+        return internals.c4_market_path_revised_pv_debt_exports(dsa_ext_pv_of_ppg_external_debt_to_exports_ratio=self.dsa_ext_pv_of_ppg_external_debt_to_exports_ratio, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def c4_market_path_us_gdp_deflator(self) -> int | str:
@@ -4909,7 +5419,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def custom_ext_ii_key_macroeconomic_nominal_gdp_million_of_us_dollars(self) -> float | str:
-        return internals.custom_ext_ii_key_macroeconomic_nominal_gdp_million_of_us_dollars(dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars)
+        return internals.custom_ext_ii_key_macroeconomic_nominal_gdp_million_of_us_dollars(dsa_ext_nominal_gdp_million_of_us_dollars=self.dsa_ext_nominal_gdp_million_of_us_dollars, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def custom_ext_include_external_customized_scenario_in_charts(self) -> str | int | float | bool:
@@ -4917,7 +5427,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def custom_ext_short_name_cumulative(self) -> float | str:
-        return internals.custom_ext_short_name_cumulative(custom_ext_new_forex_borrowing_gross_usd=self.custom_ext_new_forex_borrowing_gross_usd)
+        return internals.custom_ext_short_name_cumulative(custom_ext_new_forex_borrowing_gross_usd=self.custom_ext_new_forex_borrowing_gross_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def custom_ext_y7_long_run_constant_nominal_gdp_million_of_us_dollars(self) -> float | str:
@@ -4957,11 +5467,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def custom_pub_in_billions_of_lc_of_which_short_term(self) -> float | str:
-        return internals.custom_pub_in_billions_of_lc_of_which_short_term(macro_debt_public_domestic_st=self.macro_debt_public_domestic_st)
+        return internals.custom_pub_in_billions_of_lc_of_which_short_term(macro_debt_public_domestic_st=self.macro_debt_public_domestic_st, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def custom_pub_key_macroeconomic_fiscal_exchange_rate_lc_per_us_dollar(self) -> float | str:
-        return internals.custom_pub_key_macroeconomic_fiscal_exchange_rate_lc_per_us_dollar(macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar)
+        return internals.custom_pub_key_macroeconomic_fiscal_exchange_rate_lc_per_us_dollar(macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def custom_pub_shares_of_marginal_debt_avg_grace_period(self) -> int | str:
@@ -4977,7 +5487,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def custom_pub_variables_needed_public_public_sector_assets_e_g_deposits(self) -> float | str:
-        return internals.custom_pub_variables_needed_public_public_sector_assets_e_g_deposits(macro_debt_public_sector_assets_e_g_deposits=self.macro_debt_public_sector_assets_e_g_deposits)
+        return internals.custom_pub_variables_needed_public_public_sector_assets_e_g_deposits(macro_debt_public_sector_assets_e_g_deposits=self.macro_debt_public_sector_assets_e_g_deposits, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def imported_of(self) -> float | str:
@@ -5041,7 +5551,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def realism1_external_debt_creating_flows(self) -> data.Realism1ExternalDebtCreatingFlows:
-        return internals.realism1_external_debt_creating_flows(realism1_external_current_vintage_projection=self.realism1_external_current_vintage_projection)
+        return internals.realism1_external_debt_creating_flows(realism1_external_current_vintage_projection=self.realism1_external_current_vintage_projection, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism1_external_forecast_error_component_labels(self) -> data.Realism1ExternalForecastErrorComponentLabels:
@@ -5057,15 +5567,15 @@ class Model(_BoundInputs):
 
     @cached_property
     def realism1_external_forecast_error_distribution(self) -> data.Realism1ExternalForecastErrorDistribution:
-        return internals.realism1_external_forecast_error_distribution(realism1_external_projected_change_callouts=self.realism1_external_projected_change_callouts)
+        return internals.realism1_external_forecast_error_distribution(realism1_constant_external_projected_change_callout=data.REALISM1_CONSTANT_EXTERNAL_PROJECTED_CHANGE_CALLOUT, realism1_external_projected_change_callouts=self.realism1_external_projected_change_callouts)
 
     @cached_property
     def realism1_external_vintage_years(self) -> data.Realism1ExternalVintageYears:
-        return internals.realism1_external_vintage_years(realism1_external_year_headers=self.realism1_external_year_headers)
+        return internals.realism1_external_vintage_years(realism1_external_year_headers=self.realism1_external_year_headers, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism1_external_vintage_debt_paths(self) -> data.Realism1ExternalVintageDebtPaths:
-        return internals.realism1_external_vintage_debt_paths(realism1_external_current_vintage_projection=self.realism1_external_current_vintage_projection, realism1_external_five_years_ago_rebased_projection=self.realism1_external_five_years_ago_rebased_projection, realism1_external_last_vintage_rebased_projection=self.realism1_external_last_vintage_rebased_projection)
+        return internals.realism1_external_vintage_debt_paths(realism1_external_current_vintage_projection=self.realism1_external_current_vintage_projection, realism1_external_five_years_ago_rebased_projection=self.realism1_external_five_years_ago_rebased_projection, realism1_external_last_vintage_rebased_projection=self.realism1_external_last_vintage_rebased_projection, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism1_public_debt_flow_components(self) -> data.Realism1PublicDebtFlowComponents:
@@ -5073,7 +5583,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def realism1_public_debt_creating_flows(self) -> data.Realism1PublicDebtCreatingFlows:
-        return internals.realism1_public_debt_creating_flows(realism1_public_current_vintage_projection=self.realism1_public_current_vintage_projection)
+        return internals.realism1_public_debt_creating_flows(realism1_public_current_vintage_projection=self.realism1_public_current_vintage_projection, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism1_public_forecast_error_component_labels(self) -> data.Realism1PublicForecastErrorComponentLabels:
@@ -5093,15 +5603,15 @@ class Model(_BoundInputs):
 
     @cached_property
     def realism1_public_forecast_error_distribution(self) -> data.Realism1PublicForecastErrorDistribution:
-        return internals.realism1_public_forecast_error_distribution(realism1_public_projected_change_callouts=self.realism1_public_projected_change_callouts)
+        return internals.realism1_public_forecast_error_distribution(realism1_constant_public_projected_change_callout=data.REALISM1_CONSTANT_PUBLIC_PROJECTED_CHANGE_CALLOUT, realism1_public_projected_change_callouts=self.realism1_public_projected_change_callouts)
 
     @cached_property
     def realism1_public_vintage_years(self) -> data.Realism1PublicVintageYears:
-        return internals.realism1_public_vintage_years(realism1_public_year_headers=self.realism1_public_year_headers)
+        return internals.realism1_public_vintage_years(realism1_public_year_headers=self.realism1_public_year_headers, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism1_public_vintage_debt_paths(self) -> data.Realism1PublicVintageDebtPaths:
-        return internals.realism1_public_vintage_debt_paths(realism1_public_current_vintage_projection=self.realism1_public_current_vintage_projection, realism1_public_five_years_ago_rebased_projection=self.realism1_public_five_years_ago_rebased_projection, realism1_public_last_vintage_stock_copies=self.realism1_public_last_vintage_stock_copies)
+        return internals.realism1_public_vintage_debt_paths(realism1_public_current_vintage_projection=self.realism1_public_current_vintage_projection, realism1_public_five_years_ago_rebased_projection=self.realism1_public_five_years_ago_rebased_projection, realism1_public_last_vintage_stock_copies=self.realism1_public_last_vintage_stock_copies, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism2_fiscal_adjustment_multiplier_labels(self) -> data.Realism2FiscalAdjustmentMultiplierLabels:
@@ -5113,31 +5623,31 @@ class Model(_BoundInputs):
 
     @cached_property
     def realism2_fiscal_adjustment_years(self) -> data.Realism2FiscalAdjustmentYears:
-        return internals.realism2_fiscal_adjustment_years(realism2_history_years=self.realism2_history_years)
+        return internals.realism2_fiscal_adjustment_years(realism2_history_years=self.realism2_history_years, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism2_underlying_growth_years(self) -> data.Realism2UnderlyingGrowthYears:
-        return internals.realism2_underlying_growth_years(realism2_fiscal_adjustment_years=self.realism2_fiscal_adjustment_years)
+        return internals.realism2_underlying_growth_years(realism2_fiscal_adjustment_years=self.realism2_fiscal_adjustment_years, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism2_baseline_growth(self) -> data.Realism2BaselineGrowth:
-        return internals.realism2_baseline_growth(realism2_real_gdp_growth=self.realism2_real_gdp_growth)
+        return internals.realism2_baseline_growth(realism2_real_gdp_growth=self.realism2_real_gdp_growth, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism2_growth_t_minus_1(self) -> data.Realism2GrowthTMinus1:
-        return internals.realism2_growth_t_minus_1(realism2_baseline_growth=self.realism2_baseline_growth)
+        return internals.realism2_growth_t_minus_1(realism2_baseline_growth=self.realism2_baseline_growth, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism2_fiscal_adjustment_growth_impact(self) -> data.Realism2FiscalAdjustmentGrowthImpact:
-        return internals.realism2_fiscal_adjustment_growth_impact(realism2_growth_impact_multiplier_0_2_cumulative=self.realism2_growth_impact_multiplier_0_2_cumulative, realism2_growth_impact_multiplier_0_4_cumulative=self.realism2_growth_impact_multiplier_0_4_cumulative, realism2_growth_impact_multiplier_0_6_cumulative=self.realism2_growth_impact_multiplier_0_6_cumulative, realism2_growth_impact_multiplier_0_8_cumulative=self.realism2_growth_impact_multiplier_0_8_cumulative, realism2_growth_impact_multiplier_1_0_cumulative=self.realism2_growth_impact_multiplier_1_0_cumulative)
+        return internals.realism2_fiscal_adjustment_growth_impact(realism2_growth_impact_multiplier_0_2_cumulative=self.realism2_growth_impact_multiplier_0_2_cumulative, realism2_growth_impact_multiplier_0_4_cumulative=self.realism2_growth_impact_multiplier_0_4_cumulative, realism2_growth_impact_multiplier_0_6_cumulative=self.realism2_growth_impact_multiplier_0_6_cumulative, realism2_growth_impact_multiplier_0_8_cumulative=self.realism2_growth_impact_multiplier_0_8_cumulative, realism2_growth_impact_multiplier_1_0_cumulative=self.realism2_growth_impact_multiplier_1_0_cumulative, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism2_underlying_growth(self) -> data.Realism2UnderlyingGrowth:
-        return internals.realism2_underlying_growth(realism2_growth_t_minus_1=self.realism2_growth_t_minus_1, realism2_fiscal_adjustment_growth_impact=self.realism2_fiscal_adjustment_growth_impact)
+        return internals.realism2_underlying_growth(realism2_growth_t_minus_1=self.realism2_growth_t_minus_1, realism2_fiscal_adjustment_growth_impact=self.realism2_fiscal_adjustment_growth_impact, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism3_investment_years(self) -> data.Realism3InvestmentYears:
-        return internals.realism3_investment_years(realism3_first_projection_year=self.realism3_first_projection_year)
+        return internals.realism3_investment_years(realism3_first_projection_year=self.realism3_first_projection_year, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism3_investment_path_labels(self) -> data.Realism3InvestmentPathLabels:
@@ -5145,7 +5655,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def realism3_public_private_investment_paths(self) -> data.Realism3PublicPrivateInvestmentPaths:
-        return internals.realism3_public_private_investment_paths(realism3_public_investment_ratio_by_vintage=self.realism3_public_investment_ratio_by_vintage, realism3_private_investment_ratio_by_vintage=self.realism3_private_investment_ratio_by_vintage)
+        return internals.realism3_public_private_investment_paths(realism3_public_investment_ratio_by_vintage=self.realism3_public_investment_ratio_by_vintage, realism3_private_investment_ratio_by_vintage=self.realism3_private_investment_ratio_by_vintage, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism3_growth_accounting_vintages(self) -> data.Realism3GrowthAccountingVintages:
@@ -5153,7 +5663,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def realism3_growth_accounting_contributions(self) -> data.Realism3GrowthAccountingContributions:
-        return internals.realism3_growth_accounting_contributions(realism3_growth_contributions=self.realism3_growth_contributions)
+        return internals.realism3_growth_accounting_contributions(realism3_growth_contributions=self.realism3_growth_contributions, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def realism4_projected_3yr_adjustment_label(self) -> str | int | float | bool:
@@ -5161,7 +5671,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def realism4_projected_3yr_adjustment(self) -> float | str:
-        return internals.realism4_projected_3yr_adjustment(realism4_three_year_adjustment=self.realism4_three_year_adjustment)
+        return internals.realism4_projected_3yr_adjustment(realism4_three_year_adjustment=self.realism4_three_year_adjustment, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def realism4_projected_3yr_adjustment_bin(self) -> float | str:
@@ -5189,35 +5699,35 @@ class Model(_BoundInputs):
 
     @cached_property
     def probability_pv_debt_to_gdp(self) -> data.ProbabilityPvDebtToGdp:
-        return internals.probability_pv_debt_to_gdp(probability_borderline_bandwidth=data.PROBABILITY_BORDERLINE_BANDWIDTH, chart_output_pv_debt_gdp_ratio=self.chart_output_pv_debt_gdp_ratio)
+        return internals.probability_pv_debt_to_gdp(probability_borderline_bandwidth=data.PROBABILITY_BORDERLINE_BANDWIDTH, chart_output_pv_debt_gdp_ratio=self.chart_output_pv_debt_gdp_ratio, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def probability_pv_debt_to_exports(self) -> data.ProbabilityPvDebtToExports:
-        return internals.probability_pv_debt_to_exports(probability_borderline_bandwidth=data.PROBABILITY_BORDERLINE_BANDWIDTH, chart_output_pv_debt_to_exports=self.chart_output_pv_debt_to_exports)
+        return internals.probability_pv_debt_to_exports(probability_borderline_bandwidth=data.PROBABILITY_BORDERLINE_BANDWIDTH, chart_output_pv_debt_to_exports=self.chart_output_pv_debt_to_exports, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def probability_debt_service_to_exports(self) -> data.ProbabilityDebtServiceToExports:
-        return internals.probability_debt_service_to_exports(probability_borderline_bandwidth=data.PROBABILITY_BORDERLINE_BANDWIDTH, chart_output_debt_service_to_exports=self.chart_output_debt_service_to_exports)
+        return internals.probability_debt_service_to_exports(probability_borderline_bandwidth=data.PROBABILITY_BORDERLINE_BANDWIDTH, chart_output_debt_service_to_exports=self.chart_output_debt_service_to_exports, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def probability_debt_service_to_revenue(self) -> data.ProbabilityDebtServiceToRevenue:
-        return internals.probability_debt_service_to_revenue(probability_borderline_bandwidth=data.PROBABILITY_BORDERLINE_BANDWIDTH, chart_output_debt_service_to_revenue=self.chart_output_debt_service_to_revenue)
+        return internals.probability_debt_service_to_revenue(probability_borderline_bandwidth=data.PROBABILITY_BORDERLINE_BANDWIDTH, chart_output_debt_service_to_revenue=self.chart_output_debt_service_to_revenue, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def probability_pv_debt_to_gdp_distress(self) -> data.ProbabilityPvDebtToGdpDistress:
-        return internals.probability_pv_debt_to_gdp_distress(probability_debt_carrying_capacity_paths=self.probability_debt_carrying_capacity_paths, probability_regression_diagonal=data.PROBABILITY_REGRESSION_DIAGONAL, probability_distress_thresholds=data.PROBABILITY_DISTRESS_THRESHOLDS, probability_regression_coefficients=data.PROBABILITY_REGRESSION_COEFFICIENTS, probability_pv_debt_to_gdp=self.probability_pv_debt_to_gdp)
+        return internals.probability_pv_debt_to_gdp_distress(probability_debt_carrying_capacity_paths=self.probability_debt_carrying_capacity_paths, probability_regression_diagonal=data.PROBABILITY_REGRESSION_DIAGONAL, probability_distress_thresholds=data.PROBABILITY_DISTRESS_THRESHOLDS, probability_regression_coefficients=data.PROBABILITY_REGRESSION_COEFFICIENTS, probability_pv_debt_to_gdp=self.probability_pv_debt_to_gdp, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def probability_pv_debt_to_exports_distress(self) -> data.ProbabilityPvDebtToExportsDistress:
-        return internals.probability_pv_debt_to_exports_distress(probability_debt_carrying_capacity_paths=self.probability_debt_carrying_capacity_paths, probability_regression_diagonal=data.PROBABILITY_REGRESSION_DIAGONAL, probability_distress_thresholds=data.PROBABILITY_DISTRESS_THRESHOLDS, probability_regression_coefficients=data.PROBABILITY_REGRESSION_COEFFICIENTS, probability_pv_debt_to_exports=self.probability_pv_debt_to_exports)
+        return internals.probability_pv_debt_to_exports_distress(probability_debt_carrying_capacity_paths=self.probability_debt_carrying_capacity_paths, probability_regression_diagonal=data.PROBABILITY_REGRESSION_DIAGONAL, probability_distress_thresholds=data.PROBABILITY_DISTRESS_THRESHOLDS, probability_regression_coefficients=data.PROBABILITY_REGRESSION_COEFFICIENTS, probability_pv_debt_to_exports=self.probability_pv_debt_to_exports, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def probability_debt_service_to_exports_distress(self) -> data.ProbabilityDebtServiceToExportsDistress:
-        return internals.probability_debt_service_to_exports_distress(probability_debt_carrying_capacity_paths=self.probability_debt_carrying_capacity_paths, probability_regression_diagonal=data.PROBABILITY_REGRESSION_DIAGONAL, probability_distress_thresholds=data.PROBABILITY_DISTRESS_THRESHOLDS, probability_regression_coefficients=data.PROBABILITY_REGRESSION_COEFFICIENTS, probability_debt_service_to_exports=self.probability_debt_service_to_exports)
+        return internals.probability_debt_service_to_exports_distress(probability_debt_carrying_capacity_paths=self.probability_debt_carrying_capacity_paths, probability_regression_diagonal=data.PROBABILITY_REGRESSION_DIAGONAL, probability_distress_thresholds=data.PROBABILITY_DISTRESS_THRESHOLDS, probability_regression_coefficients=data.PROBABILITY_REGRESSION_COEFFICIENTS, probability_debt_service_to_exports=self.probability_debt_service_to_exports, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def probability_debt_service_to_revenue_distress(self) -> data.ProbabilityDebtServiceToRevenueDistress:
-        return internals.probability_debt_service_to_revenue_distress(probability_debt_carrying_capacity_paths=self.probability_debt_carrying_capacity_paths, probability_regression_diagonal=data.PROBABILITY_REGRESSION_DIAGONAL, probability_distress_thresholds=data.PROBABILITY_DISTRESS_THRESHOLDS, probability_regression_coefficients=data.PROBABILITY_REGRESSION_COEFFICIENTS, probability_debt_service_to_revenue=self.probability_debt_service_to_revenue)
+        return internals.probability_debt_service_to_revenue_distress(probability_debt_carrying_capacity_paths=self.probability_debt_carrying_capacity_paths, probability_regression_diagonal=data.PROBABILITY_REGRESSION_DIAGONAL, probability_distress_thresholds=data.PROBABILITY_DISTRESS_THRESHOLDS, probability_regression_coefficients=data.PROBABILITY_REGRESSION_COEFFICIENTS, probability_debt_service_to_revenue=self.probability_debt_service_to_revenue, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def external_dsa_risk_rating_signal(self) -> str | int | float | bool:
@@ -5297,39 +5807,39 @@ class Model(_BoundInputs):
 
     @cached_property
     def chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue(self) -> data.ChartOutputChartDataPvOfDebtToRevenueRatioPvDebtToRevenue:
-        return internals.chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio=self.dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio, customized_public_include_scenario=self.customized_public_include_scenario, chart_chart_data_pv_of_debt_to_revenue_ratio_c2_natural_disaster_stres=self.chart_chart_data_pv_of_debt_to_revenue_ratio_c2_natural_disaster_stres, chart_chart_data_pv_of_debt_to_revenue_ratio_c3_commodity_price_stress=self.chart_chart_data_pv_of_debt_to_revenue_ratio_c3_commodity_price_stress, chart_chart_data_pv_of_debt_to_revenue_ratio_c4_market_financing_stres=self.chart_chart_data_pv_of_debt_to_revenue_ratio_c4_market_financing_stres, chart_pv_of_debt_to_revenue_ratio_applicable_flag_b2_1_primary_balance_market=self.chart_pv_of_debt_to_revenue_ratio_applicable_flag_b2_1_primary_balance_market, chart_pv_of_debt_to_revenue_ratio_applicable_flag_combined_market_financing_stress=self.chart_pv_of_debt_to_revenue_ratio_applicable_flag_combined_market_financing_stress, chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue_stress_path=self.chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue_stress_path, chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue_figure=self.chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue_figure, baseline_pub_pv_of_public_debt_revenue_grants_ratio=self.baseline_pub_pv_of_public_debt_revenue_grants_ratio, baseline_pub_pv_of_public_debt_revenue_grants_ratio_exports_shock=self.baseline_pub_pv_of_public_debt_revenue_grants_ratio_exports_shock, baseline_pub_pv_of_public_debt_revenue_grants_ratio_b4_other=self.baseline_pub_pv_of_public_debt_revenue_grants_ratio_b4_other, custom_pub_pv_of_public_debt_revenue_grants_ratio=self.custom_pub_pv_of_public_debt_revenue_grants_ratio, in6opt_standard_scenario=self.in6opt_standard_scenario)
+        return internals.chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio=self.dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio, customized_public_include_scenario=self.customized_public_include_scenario, chart_chart_data_pv_of_debt_to_revenue_ratio_c2_natural_disaster_stres=self.chart_chart_data_pv_of_debt_to_revenue_ratio_c2_natural_disaster_stres, chart_chart_data_pv_of_debt_to_revenue_ratio_c3_commodity_price_stress=self.chart_chart_data_pv_of_debt_to_revenue_ratio_c3_commodity_price_stress, chart_chart_data_pv_of_debt_to_revenue_ratio_c4_market_financing_stres=self.chart_chart_data_pv_of_debt_to_revenue_ratio_c4_market_financing_stres, chart_pv_of_debt_to_revenue_ratio_applicable_flag_b2_1_primary_balance_market=self.chart_pv_of_debt_to_revenue_ratio_applicable_flag_b2_1_primary_balance_market, chart_pv_of_debt_to_revenue_ratio_applicable_flag_combined_market_financing_stress=self.chart_pv_of_debt_to_revenue_ratio_applicable_flag_combined_market_financing_stress, chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue_stress_path=self.chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue_stress_path, chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue_figure=self.chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue_figure, baseline_pub_pv_of_public_debt_revenue_grants_ratio=self.baseline_pub_pv_of_public_debt_revenue_grants_ratio, baseline_pub_pv_of_public_debt_revenue_grants_ratio_exports_shock=self.baseline_pub_pv_of_public_debt_revenue_grants_ratio_exports_shock, baseline_pub_pv_of_public_debt_revenue_grants_ratio_b4_other=self.baseline_pub_pv_of_public_debt_revenue_grants_ratio_b4_other, custom_pub_pv_of_public_debt_revenue_grants_ratio=self.custom_pub_pv_of_public_debt_revenue_grants_ratio, in6opt_standard_scenario=self.in6opt_standard_scenario, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_output_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue(self) -> data.ChartOutputChartDataDebtServiceToRevenueRatioDebtServiceToRevenue:
-        return internals.chart_output_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_pub_debt_service_to_revenue_and_grants_ratio_in_percent=self.dsa_pub_debt_service_to_revenue_and_grants_ratio_in_percent, customized_public_include_scenario=self.customized_public_include_scenario, chart_chart_data_debt_service_to_revenue_ratio_c2_natural_disaster_str=self.chart_chart_data_debt_service_to_revenue_ratio_c2_natural_disaster_str, chart_chart_data_debt_service_to_revenue_ratio_c3_commodity_price_stre=self.chart_chart_data_debt_service_to_revenue_ratio_c3_commodity_price_stre, chart_chart_data_debt_service_to_revenue_ratio_c4_market_financing_str=self.chart_chart_data_debt_service_to_revenue_ratio_c4_market_financing_str, chart_applicable_flag_b2_1_primary_balance_market=self.chart_applicable_flag_b2_1_primary_balance_market, chart_applicable_flag_combined_market_financing_stress=self.chart_applicable_flag_combined_market_financing_stress, chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue_stress_path=self.chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue_stress_path, chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue_figure=self.chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue_figure, baseline_pub_debt_service_revenue_grants_ratio=self.baseline_pub_debt_service_revenue_grants_ratio, baseline_pub_debt_service_revenue_grants_ratio_b3_exports=self.baseline_pub_debt_service_revenue_grants_ratio_b3_exports, baseline_pub_debt_service_revenue_grants_ratio_b4_other_flows=self.baseline_pub_debt_service_revenue_grants_ratio_b4_other_flows, custom_pub_debt_service_revenue_grants_ratio=self.custom_pub_debt_service_revenue_grants_ratio, in6opt_standard_scenario=self.in6opt_standard_scenario)
+        return internals.chart_output_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_pub_debt_service_to_revenue_and_grants_ratio_in_percent=self.dsa_pub_debt_service_to_revenue_and_grants_ratio_in_percent, customized_public_include_scenario=self.customized_public_include_scenario, chart_chart_data_debt_service_to_revenue_ratio_c2_natural_disaster_str=self.chart_chart_data_debt_service_to_revenue_ratio_c2_natural_disaster_str, chart_chart_data_debt_service_to_revenue_ratio_c3_commodity_price_stre=self.chart_chart_data_debt_service_to_revenue_ratio_c3_commodity_price_stre, chart_chart_data_debt_service_to_revenue_ratio_c4_market_financing_str=self.chart_chart_data_debt_service_to_revenue_ratio_c4_market_financing_str, chart_applicable_flag_b2_1_primary_balance_market=self.chart_applicable_flag_b2_1_primary_balance_market, chart_applicable_flag_combined_market_financing_stress=self.chart_applicable_flag_combined_market_financing_stress, chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue_stress_path=self.chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue_stress_path, chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue_figure=self.chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue_figure, baseline_pub_debt_service_revenue_grants_ratio=self.baseline_pub_debt_service_revenue_grants_ratio, baseline_pub_debt_service_revenue_grants_ratio_b3_exports=self.baseline_pub_debt_service_revenue_grants_ratio_b3_exports, baseline_pub_debt_service_revenue_grants_ratio_b4_other_flows=self.baseline_pub_debt_service_revenue_grants_ratio_b4_other_flows, custom_pub_debt_service_revenue_grants_ratio=self.custom_pub_debt_service_revenue_grants_ratio, in6opt_standard_scenario=self.in6opt_standard_scenario, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_output_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio(self) -> data.ChartOutputChartDataDebtServiceToGdpRatioDebtServiceGdpRatio:
-        return internals.chart_output_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_pub_debt_service_to_gdp_ratio_in_percent=self.dsa_pub_debt_service_to_gdp_ratio_in_percent, customized_public_include_scenario=self.customized_public_include_scenario, chart_chart_data_debt_service_to_gdp_ratio_c2_natural_disaster_stress_=self.chart_chart_data_debt_service_to_gdp_ratio_c2_natural_disaster_stress_, chart_chart_data_debt_service_to_gdp_ratio_c3_commodity_price_stress_p=self.chart_chart_data_debt_service_to_gdp_ratio_c3_commodity_price_stress_p, chart_chart_data_debt_service_to_gdp_ratio_c4_market_financing_stress_=self.chart_chart_data_debt_service_to_gdp_ratio_c4_market_financing_stress_, chart_debt_service_to_gdp_ratio_applicable_flag_b2_1_primary_balance_market=self.chart_debt_service_to_gdp_ratio_applicable_flag_b2_1_primary_balance_market, chart_debt_service_to_gdp_ratio_applicable_flag_combined_market_financing_stress=self.chart_debt_service_to_gdp_ratio_applicable_flag_combined_market_financing_stress, chart_internal_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio_stress_path=self.chart_internal_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio_stress_path, chart_internal_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio_figure=self.chart_internal_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio_figure, baseline_pub_debt_service_gdp_ratio_baseline=self.baseline_pub_debt_service_gdp_ratio_baseline, baseline_pub_debt_service_gdp_ratio_b3_exports=self.baseline_pub_debt_service_gdp_ratio_b3_exports, baseline_pub_debt_service_gdp_ratio_b4_other_flows=self.baseline_pub_debt_service_gdp_ratio_b4_other_flows, custom_pub_debt_service_gdp_ratio=self.custom_pub_debt_service_gdp_ratio, in6opt_standard_scenario=self.in6opt_standard_scenario)
+        return internals.chart_output_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio(chart_tailored_test_marker=data.CHART_TAILORED_TEST_MARKER, dsa_pub_debt_service_to_gdp_ratio_in_percent=self.dsa_pub_debt_service_to_gdp_ratio_in_percent, customized_public_include_scenario=self.customized_public_include_scenario, chart_chart_data_debt_service_to_gdp_ratio_c2_natural_disaster_stress_=self.chart_chart_data_debt_service_to_gdp_ratio_c2_natural_disaster_stress_, chart_chart_data_debt_service_to_gdp_ratio_c3_commodity_price_stress_p=self.chart_chart_data_debt_service_to_gdp_ratio_c3_commodity_price_stress_p, chart_chart_data_debt_service_to_gdp_ratio_c4_market_financing_stress_=self.chart_chart_data_debt_service_to_gdp_ratio_c4_market_financing_stress_, chart_debt_service_to_gdp_ratio_applicable_flag_b2_1_primary_balance_market=self.chart_debt_service_to_gdp_ratio_applicable_flag_b2_1_primary_balance_market, chart_debt_service_to_gdp_ratio_applicable_flag_combined_market_financing_stress=self.chart_debt_service_to_gdp_ratio_applicable_flag_combined_market_financing_stress, chart_internal_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio_stress_path=self.chart_internal_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio_stress_path, chart_internal_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio_figure=self.chart_internal_chart_data_debt_service_to_gdp_ratio_debt_service_gdp_ratio_figure, baseline_pub_debt_service_gdp_ratio_baseline=self.baseline_pub_debt_service_gdp_ratio_baseline, baseline_pub_debt_service_gdp_ratio_b3_exports=self.baseline_pub_debt_service_gdp_ratio_b3_exports, baseline_pub_debt_service_gdp_ratio_b4_other_flows=self.baseline_pub_debt_service_gdp_ratio_b4_other_flows, custom_pub_debt_service_gdp_ratio=self.custom_pub_debt_service_gdp_ratio, in6opt_standard_scenario=self.in6opt_standard_scenario, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_pv_debt_gdp_ratio_custom_alternative_scenario(self) -> data.ChartPvDebtGdpRatioCustomAlternativeScenario:
-        return internals.chart_pv_debt_gdp_ratio_custom_alternative_scenario(custom_ext_pv_ppg_ext_debt_gdp_ratio=self.custom_ext_pv_ppg_ext_debt_gdp_ratio, custom_ext_include_external_customized_scenario_in_charts=self.custom_ext_include_external_customized_scenario_in_charts)
+        return internals.chart_pv_debt_gdp_ratio_custom_alternative_scenario(custom_ext_pv_ppg_ext_debt_gdp_ratio=self.custom_ext_pv_ppg_ext_debt_gdp_ratio, custom_ext_include_external_customized_scenario_in_charts=self.custom_ext_include_external_customized_scenario_in_charts, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_pv_debt_to_exports_custom_alternative_scenario(self) -> data.ChartPvDebtToExportsCustomAlternativeScenario:
-        return internals.chart_pv_debt_to_exports_custom_alternative_scenario(custom_ext_pv_ppg_ext_debt_exports_ratio=self.custom_ext_pv_ppg_ext_debt_exports_ratio, custom_ext_include_external_customized_scenario_in_charts=self.custom_ext_include_external_customized_scenario_in_charts)
+        return internals.chart_pv_debt_to_exports_custom_alternative_scenario(custom_ext_pv_ppg_ext_debt_exports_ratio=self.custom_ext_pv_ppg_ext_debt_exports_ratio, custom_ext_include_external_customized_scenario_in_charts=self.custom_ext_include_external_customized_scenario_in_charts, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_debt_service_to_exports_custom_alternative_scenario(self) -> data.ChartDebtServiceToExportsCustomAlternativeScenario:
-        return internals.chart_debt_service_to_exports_custom_alternative_scenario(custom_ext_ppg_debt_service_to_exports=self.custom_ext_ppg_debt_service_to_exports, custom_ext_include_external_customized_scenario_in_charts=self.custom_ext_include_external_customized_scenario_in_charts)
+        return internals.chart_debt_service_to_exports_custom_alternative_scenario(custom_ext_ppg_debt_service_to_exports=self.custom_ext_ppg_debt_service_to_exports, custom_ext_include_external_customized_scenario_in_charts=self.custom_ext_include_external_customized_scenario_in_charts, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_debt_service_to_revenue_custom_alternative_scenario(self) -> data.ChartDebtServiceToRevenueCustomAlternativeScenario:
-        return internals.chart_debt_service_to_revenue_custom_alternative_scenario(custom_ext_ppg_debt_service_to_revenue=self.custom_ext_ppg_debt_service_to_revenue, custom_ext_include_external_customized_scenario_in_charts=self.custom_ext_include_external_customized_scenario_in_charts)
+        return internals.chart_debt_service_to_revenue_custom_alternative_scenario(custom_ext_ppg_debt_service_to_revenue=self.custom_ext_ppg_debt_service_to_revenue, custom_ext_include_external_customized_scenario_in_charts=self.custom_ext_include_external_customized_scenario_in_charts, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_pv_debt_to_revenue_mx_shock_standard_tailored(self) -> data.ChartPvDebtToRevenueMxShockStandardTailored:
-        return internals.chart_pv_debt_to_revenue_mx_shock_standard_tailored(chart_projection_years=self.chart_projection_years, chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue=self.chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue, chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue=self.chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue)
+        return internals.chart_pv_debt_to_revenue_mx_shock_standard_tailored(chart_projection_years=self.chart_projection_years, chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue=self.chart_internal_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue, chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue=self.chart_output_chart_data_pv_of_debt_to_revenue_ratio_pv_debt_to_revenue, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def chart_output_debt_service_to_revenue_fiscal(self) -> data.ChartOutputDebtServiceToRevenueFiscal:
-        return internals.chart_output_debt_service_to_revenue_fiscal(chart_projection_years=self.chart_projection_years, chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue=self.chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue, chart_output_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue=self.chart_output_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue)
+        return internals.chart_output_debt_service_to_revenue_fiscal(chart_projection_years=self.chart_projection_years, chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue=self.chart_internal_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue, chart_output_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue=self.chart_output_chart_data_debt_service_to_revenue_ratio_debt_service_to_revenue, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_multilaterals(self) -> data.Series[int | str | None]:
@@ -5385,23 +5895,23 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_base_discount_pv_of_debt(self) -> data.Series[float | str | None]:
-        return internals.pv_base_discount_pv_of_debt(pv_base_block_interest=self.pv_base_block_interest, pv_base_block_discount=self.pv_base_block_discount, pv_base_discount_debt_stock=self.pv_base_discount_debt_stock, pv_base_discount_total_debt_service=self.pv_base_discount_total_debt_service)
+        return internals.pv_base_discount_pv_of_debt(pv_base_block_interest=self.pv_base_block_interest, pv_base_block_discount=self.pv_base_block_discount, pv_base_discount_debt_stock=self.pv_base_discount_debt_stock, pv_base_discount_total_debt_service=self.pv_base_discount_total_debt_service, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_discount_t_g_0(self) -> data.Series[int | str | None]:
-        return internals.pv_base_discount_t_g_0(pv_base_constant_discount_schedule_period=data.PV_BASE_CONSTANT_DISCOUNT_SCHEDULE_PERIOD, pv_base_block_grace=self.pv_base_block_grace, pv_base_discount_schedule_period=self.pv_base_discount_schedule_period, pv_base_block_index=self.pv_base_block_index)
+        return internals.pv_base_discount_t_g_0(pv_base_constant_discount_schedule_period=data.PV_BASE_CONSTANT_DISCOUNT_SCHEDULE_PERIOD, pv_base_block_grace=self.pv_base_block_grace, pv_base_discount_schedule_period=self.pv_base_discount_schedule_period, pv_base_block_index=self.pv_base_block_index, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_discount_post_grace_cumulative(self) -> data.Series[float | str | None]:
-        return internals.pv_base_discount_post_grace_cumulative(pv_base_discount_t_g_0=self.pv_base_discount_t_g_0, pv_base_output_cumulative=self.pv_base_output_cumulative, pv_base_input_output_cumulative=self.pv_base_input_output_cumulative)
+        return internals.pv_base_discount_post_grace_cumulative(pv_base_discount_t_g_0=self.pv_base_discount_t_g_0, pv_base_output_cumulative=self.pv_base_output_cumulative, pv_base_input_output_cumulative=self.pv_base_input_output_cumulative, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_discount_t_m_condition(self) -> data.Series[int | str | None]:
-        return internals.pv_base_discount_t_m_condition(pv_base_constant_discount_schedule_period=data.PV_BASE_CONSTANT_DISCOUNT_SCHEDULE_PERIOD, pv_base_block_maturity=self.pv_base_block_maturity, pv_base_discount_schedule_period=self.pv_base_discount_schedule_period, pv_base_block_index=self.pv_base_block_index)
+        return internals.pv_base_discount_t_m_condition(pv_base_constant_discount_schedule_period=data.PV_BASE_CONSTANT_DISCOUNT_SCHEDULE_PERIOD, pv_base_block_maturity=self.pv_base_block_maturity, pv_base_discount_schedule_period=self.pv_base_discount_schedule_period, pv_base_block_index=self.pv_base_block_index, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_discount_post_maturity_cumulative(self) -> data.Series[float | str | None]:
-        return internals.pv_base_discount_post_maturity_cumulative(pv_base_discount_t_m_condition=self.pv_base_discount_t_m_condition, pv_base_output_cumulative=self.pv_base_output_cumulative, pv_base_input_output_cumulative=self.pv_base_input_output_cumulative)
+        return internals.pv_base_discount_post_maturity_cumulative(pv_base_discount_t_m_condition=self.pv_base_discount_t_m_condition, pv_base_output_cumulative=self.pv_base_output_cumulative, pv_base_input_output_cumulative=self.pv_base_input_output_cumulative, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_output_new_forex_borrowing_gross_usd(self) -> data.Series[float | str | None]:
@@ -5413,23 +5923,23 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_base_output_stock_of_new_forex_debt_in_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_base_output_stock_of_new_forex_debt_in_usd(pv_base_output_new_forex_borrowing_gross_usd=self.pv_base_output_new_forex_borrowing_gross_usd, pv_base_output_amortization=self.pv_base_output_amortization)
+        return internals.pv_base_output_stock_of_new_forex_debt_in_usd(pv_base_output_new_forex_borrowing_gross_usd=self.pv_base_output_new_forex_borrowing_gross_usd, pv_base_output_amortization=self.pv_base_output_amortization, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_output_pv_of_debt(self) -> data.Series[float | str | None]:
-        return internals.pv_base_output_pv_of_debt(pv_base_block_interest=self.pv_base_block_interest, pv_base_block_discount=self.pv_base_block_discount, pv_base_discount_pv_of_debt=self.pv_base_discount_pv_of_debt, pv_base_output_new_forex_borrowing_gross_usd=self.pv_base_output_new_forex_borrowing_gross_usd, pv_base_output_total_debt_service_in_usd=self.pv_base_output_total_debt_service_in_usd, pv_base_output_amortization=self.pv_base_output_amortization)
+        return internals.pv_base_output_pv_of_debt(pv_base_block_interest=self.pv_base_block_interest, pv_base_block_discount=self.pv_base_block_discount, pv_base_discount_pv_of_debt=self.pv_base_discount_pv_of_debt, pv_base_output_new_forex_borrowing_gross_usd=self.pv_base_output_new_forex_borrowing_gross_usd, pv_base_output_total_debt_service_in_usd=self.pv_base_output_total_debt_service_in_usd, pv_base_output_amortization=self.pv_base_output_amortization, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_output_total_debt_service_in_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_base_output_total_debt_service_in_usd(pv_base_output_interest=self.pv_base_output_interest, pv_base_output_amortization=self.pv_base_output_amortization)
+        return internals.pv_base_output_total_debt_service_in_usd(pv_base_output_interest=self.pv_base_output_interest, pv_base_output_amortization=self.pv_base_output_amortization, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_output_interest(self) -> data.Series[float | str | None]:
-        return internals.pv_base_output_interest(pv_base_block_interest=self.pv_base_block_interest, pv_base_output_stock_of_new_forex_debt_in_usd=self.pv_base_output_stock_of_new_forex_debt_in_usd)
+        return internals.pv_base_output_interest(pv_base_block_interest=self.pv_base_block_interest, pv_base_output_stock_of_new_forex_debt_in_usd=self.pv_base_output_stock_of_new_forex_debt_in_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_output_amortization(self) -> data.Series[float | str | None]:
-        return internals.pv_base_output_amortization(pv_base_block_grace=self.pv_base_block_grace, pv_base_block_maturity=self.pv_base_block_maturity, pv_base_discount_post_grace_cumulative=self.pv_base_discount_post_grace_cumulative, pv_base_discount_post_maturity_cumulative=self.pv_base_discount_post_maturity_cumulative)
+        return internals.pv_base_output_amortization(pv_base_block_grace=self.pv_base_block_grace, pv_base_block_maturity=self.pv_base_block_maturity, pv_base_discount_post_grace_cumulative=self.pv_base_discount_post_grace_cumulative, pv_base_discount_post_maturity_cumulative=self.pv_base_discount_post_maturity_cumulative, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_ida_terms_repayment_schedule(self) -> data.Series[float | str | None]:
@@ -5461,7 +5971,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_base_block_index_fx(self) -> data.Series[int | str | None]:
-        return internals.pv_base_block_index_fx(pv_base_constant_discount_schedule_period=data.PV_BASE_CONSTANT_DISCOUNT_SCHEDULE_PERIOD, pv_base_discount_schedule_period=self.pv_base_discount_schedule_period)
+        return internals.pv_base_block_index_fx(pv_base_constant_discount_schedule_period=data.PV_BASE_CONSTANT_DISCOUNT_SCHEDULE_PERIOD, pv_base_discount_schedule_period=self.pv_base_discount_schedule_period, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_block_grace_fx(self) -> data.Series[float | str | None]:
@@ -5481,43 +5991,43 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_base_discount_debt_stock_fx(self) -> data.Series[float | str | None]:
-        return internals.pv_base_discount_debt_stock_fx(pv_base_opening_percent_of_face_fx=data.PV_BASE_OPENING_PERCENT_OF_FACE_FX, pv_base_discount_amortization_fx=self.pv_base_discount_amortization_fx)
+        return internals.pv_base_discount_debt_stock_fx(pv_base_opening_percent_of_face_fx=data.PV_BASE_OPENING_PERCENT_OF_FACE_FX, pv_base_discount_amortization_fx=self.pv_base_discount_amortization_fx, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_discount_amortization_fx(self) -> data.Series[float | str | None]:
-        return internals.pv_base_discount_amortization_fx(pv_base_block_index_fx=self.pv_base_block_index_fx, pv_base_block_grace_fx=self.pv_base_block_grace_fx, pv_base_block_maturity_fx=self.pv_base_block_maturity_fx, pv_base_opening_percent_of_face_fx=data.PV_BASE_OPENING_PERCENT_OF_FACE_FX)
+        return internals.pv_base_discount_amortization_fx(pv_base_block_index_fx=self.pv_base_block_index_fx, pv_base_block_grace_fx=self.pv_base_block_grace_fx, pv_base_block_maturity_fx=self.pv_base_block_maturity_fx, pv_base_opening_percent_of_face_fx=data.PV_BASE_OPENING_PERCENT_OF_FACE_FX, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_discount_interest_fx(self) -> data.Series[float | str | None]:
-        return internals.pv_base_discount_interest_fx(pv_base_block_interest_fx=self.pv_base_block_interest_fx, pv_base_discount_debt_stock_fx=self.pv_base_discount_debt_stock_fx)
+        return internals.pv_base_discount_interest_fx(pv_base_block_interest_fx=self.pv_base_block_interest_fx, pv_base_discount_debt_stock_fx=self.pv_base_discount_debt_stock_fx, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_discount_total_debt_service_fx(self) -> data.Series[float | str | None]:
-        return internals.pv_base_discount_total_debt_service_fx(pv_base_discount_amortization_fx=self.pv_base_discount_amortization_fx, pv_base_discount_interest_fx=self.pv_base_discount_interest_fx)
+        return internals.pv_base_discount_total_debt_service_fx(pv_base_discount_amortization_fx=self.pv_base_discount_amortization_fx, pv_base_discount_interest_fx=self.pv_base_discount_interest_fx, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_discount_pv_of_debt_fx(self) -> data.Series[float | str | None]:
-        return internals.pv_base_discount_pv_of_debt_fx(pv_base_block_interest_fx=self.pv_base_block_interest_fx, pv_base_block_discount_fx=self.pv_base_block_discount_fx, pv_base_discount_debt_stock_fx=self.pv_base_discount_debt_stock_fx, pv_base_discount_total_debt_service_fx=self.pv_base_discount_total_debt_service_fx)
+        return internals.pv_base_discount_pv_of_debt_fx(pv_base_block_interest_fx=self.pv_base_block_interest_fx, pv_base_block_discount_fx=self.pv_base_block_discount_fx, pv_base_discount_debt_stock_fx=self.pv_base_discount_debt_stock_fx, pv_base_discount_total_debt_service_fx=self.pv_base_discount_total_debt_service_fx, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_discount_t_g_0_fx(self) -> data.Series[int | str | None]:
-        return internals.pv_base_discount_t_g_0_fx(pv_base_block_index_fx=self.pv_base_block_index_fx, pv_base_block_grace_fx=self.pv_base_block_grace_fx)
+        return internals.pv_base_discount_t_g_0_fx(pv_base_block_index_fx=self.pv_base_block_index_fx, pv_base_block_grace_fx=self.pv_base_block_grace_fx, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_discount_t_m_condition_fx(self) -> data.Series[int | str | None]:
-        return internals.pv_base_discount_t_m_condition_fx(pv_base_block_index_fx=self.pv_base_block_index_fx, pv_base_block_maturity_fx=self.pv_base_block_maturity_fx)
+        return internals.pv_base_discount_t_m_condition_fx(pv_base_block_index_fx=self.pv_base_block_index_fx, pv_base_block_maturity_fx=self.pv_base_block_maturity_fx, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_output_pv_of_debt_fx(self) -> data.Series[float | str | None]:
-        return internals.pv_base_output_pv_of_debt_fx(pv_base_block_interest_fx=self.pv_base_block_interest_fx, pv_base_block_discount_fx=self.pv_base_block_discount_fx, pv_base_discount_pv_of_debt_fx=self.pv_base_discount_pv_of_debt_fx, pv_base_output_new_forex_borrowing_gross_usd_fx=self.pv_base_output_new_forex_borrowing_gross_usd_fx, pv_base_output_total_debt_service_in_usd_fx=self.pv_base_output_total_debt_service_in_usd_fx, pv_base_output_amortization_fx=self.pv_base_output_amortization_fx)
+        return internals.pv_base_output_pv_of_debt_fx(pv_base_block_interest_fx=self.pv_base_block_interest_fx, pv_base_block_discount_fx=self.pv_base_block_discount_fx, pv_base_discount_pv_of_debt_fx=self.pv_base_discount_pv_of_debt_fx, pv_base_output_new_forex_borrowing_gross_usd_fx=self.pv_base_output_new_forex_borrowing_gross_usd_fx, pv_base_output_total_debt_service_in_usd_fx=self.pv_base_output_total_debt_service_in_usd_fx, pv_base_output_amortization_fx=self.pv_base_output_amortization_fx, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_output_total_debt_service_in_usd_fx(self) -> data.Series[float | str | None]:
-        return internals.pv_base_output_total_debt_service_in_usd_fx(pv_base_output_interest_fx=self.pv_base_output_interest_fx, pv_base_output_amortization_fx=self.pv_base_output_amortization_fx)
+        return internals.pv_base_output_total_debt_service_in_usd_fx(pv_base_output_interest_fx=self.pv_base_output_interest_fx, pv_base_output_amortization_fx=self.pv_base_output_amortization_fx, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_add_cost_mkt_shock_schedule_period(self) -> data.Series[int | str | None]:
-        return internals.pv_base_add_cost_mkt_shock_schedule_period(pv_base_add_cost_mkt_opening_stock_percent_of_face=data.PV_BASE_ADD_COST_MKT_OPENING_STOCK_PERCENT_OF_FACE)
+        return internals.pv_base_add_cost_mkt_shock_schedule_period(pv_base_add_cost_mkt_opening_stock_percent_of_face=data.PV_BASE_ADD_COST_MKT_OPENING_STOCK_PERCENT_OF_FACE, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_add_cost_mkt_whichever_lower(self) -> str | int | float | bool:
@@ -5529,27 +6039,27 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_base_add_cost_mkt_pb_baseline(self) -> data.Series[float | str | None]:
-        return internals.pv_base_add_cost_mkt_pb_baseline(baseline_pub_primary_deficit=self.baseline_pub_primary_deficit)
+        return internals.pv_base_add_cost_mkt_pb_baseline(baseline_pub_primary_deficit=self.baseline_pub_primary_deficit, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_add_cost_mkt_shock(self) -> data.Series[float | str | None]:
-        return internals.pv_base_add_cost_mkt_shock(dsa_pub_primary_deficit=self.dsa_pub_primary_deficit)
+        return internals.pv_base_add_cost_mkt_shock(dsa_pub_primary_deficit=self.dsa_pub_primary_deficit, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_add_cost_mkt_shock_deviation_from_baseline(self) -> data.Series[float | str | None]:
-        return internals.pv_base_add_cost_mkt_shock_deviation_from_baseline(pv_base_add_cost_mkt_pb_baseline=self.pv_base_add_cost_mkt_pb_baseline, pv_base_add_cost_mkt_shock=self.pv_base_add_cost_mkt_shock)
+        return internals.pv_base_add_cost_mkt_shock_deviation_from_baseline(pv_base_add_cost_mkt_pb_baseline=self.pv_base_add_cost_mkt_pb_baseline, pv_base_add_cost_mkt_shock=self.pv_base_add_cost_mkt_shock, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_add_cost_mkt_shock_increase_in_borrowing_costs(self) -> data.Series[float | str | None]:
-        return internals.pv_base_add_cost_mkt_shock_increase_in_borrowing_costs(pv_base_add_cost_mkt_opening_percent_of_face=data.PV_BASE_ADD_COST_MKT_OPENING_PERCENT_OF_FACE, pv_base_add_cost_mkt_whichever_lower=self.pv_base_add_cost_mkt_whichever_lower, pv_base_add_cost_mkt_or=self.pv_base_add_cost_mkt_or, pv_base_add_cost_mkt_shock_deviation_from_baseline=self.pv_base_add_cost_mkt_shock_deviation_from_baseline)
+        return internals.pv_base_add_cost_mkt_shock_increase_in_borrowing_costs(pv_base_add_cost_mkt_opening_percent_of_face=data.PV_BASE_ADD_COST_MKT_OPENING_PERCENT_OF_FACE, pv_base_add_cost_mkt_whichever_lower=self.pv_base_add_cost_mkt_whichever_lower, pv_base_add_cost_mkt_or=self.pv_base_add_cost_mkt_or, pv_base_add_cost_mkt_shock_deviation_from_baseline=self.pv_base_add_cost_mkt_shock_deviation_from_baseline, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_add_cost_mkt_shock_average(self) -> float | str:
-        return internals.pv_base_add_cost_mkt_shock_average(pv_base_add_cost_mkt_shock_increase_in_borrowing_costs=self.pv_base_add_cost_mkt_shock_increase_in_borrowing_costs)
+        return internals.pv_base_add_cost_mkt_shock_average(pv_base_add_cost_mkt_shock_increase_in_borrowing_costs=self.pv_base_add_cost_mkt_shock_increase_in_borrowing_costs, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_add_cost_mkt_shock_addition_nominal_interest_payments_on_external_debt(self) -> data.Series[float | str | None]:
-        return internals.pv_base_add_cost_mkt_shock_addition_nominal_interest_payments_on_external_debt(pv_base_add_cost_mkt_output_interest=self.pv_base_add_cost_mkt_output_interest)
+        return internals.pv_base_add_cost_mkt_shock_addition_nominal_interest_payments_on_external_debt(pv_base_add_cost_mkt_output_interest=self.pv_base_add_cost_mkt_output_interest, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_add_cost_mkt_grace(self) -> data.Series[int | str | None]:
@@ -5565,43 +6075,43 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_base_add_cost_mkt_discount_t_g_0(self) -> data.Series[int | str | None]:
-        return internals.pv_base_add_cost_mkt_discount_t_g_0(pv_base_add_cost_mkt_opening_stock_percent_of_face=data.PV_BASE_ADD_COST_MKT_OPENING_STOCK_PERCENT_OF_FACE, pv_base_add_cost_mkt_shock_schedule_period=self.pv_base_add_cost_mkt_shock_schedule_period, pv_base_add_cost_mkt_grace=self.pv_base_add_cost_mkt_grace)
+        return internals.pv_base_add_cost_mkt_discount_t_g_0(pv_base_add_cost_mkt_opening_stock_percent_of_face=data.PV_BASE_ADD_COST_MKT_OPENING_STOCK_PERCENT_OF_FACE, pv_base_add_cost_mkt_shock_schedule_period=self.pv_base_add_cost_mkt_shock_schedule_period, pv_base_add_cost_mkt_grace=self.pv_base_add_cost_mkt_grace, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_add_cost_mkt_discount_post_grace_cumulative(self) -> data.Series[float | str | None]:
-        return internals.pv_base_add_cost_mkt_discount_post_grace_cumulative(pv_base_add_cost_mkt_discount_t_g_0=self.pv_base_add_cost_mkt_discount_t_g_0, pv_base_add_cost_mkt_output_cumulative=self.pv_base_add_cost_mkt_output_cumulative)
+        return internals.pv_base_add_cost_mkt_discount_post_grace_cumulative(pv_base_add_cost_mkt_discount_t_g_0=self.pv_base_add_cost_mkt_discount_t_g_0, pv_base_add_cost_mkt_output_cumulative=self.pv_base_add_cost_mkt_output_cumulative, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_add_cost_mkt_discount_t_m_condition(self) -> data.Series[int | str | None]:
-        return internals.pv_base_add_cost_mkt_discount_t_m_condition(pv_base_add_cost_mkt_opening_stock_percent_of_face=data.PV_BASE_ADD_COST_MKT_OPENING_STOCK_PERCENT_OF_FACE, pv_base_add_cost_mkt_shock_schedule_period=self.pv_base_add_cost_mkt_shock_schedule_period, pv_base_add_cost_mkt_maturity=self.pv_base_add_cost_mkt_maturity, pv_base_add_cost_mkt_discount_t_g_0=self.pv_base_add_cost_mkt_discount_t_g_0)
+        return internals.pv_base_add_cost_mkt_discount_t_m_condition(pv_base_add_cost_mkt_opening_stock_percent_of_face=data.PV_BASE_ADD_COST_MKT_OPENING_STOCK_PERCENT_OF_FACE, pv_base_add_cost_mkt_shock_schedule_period=self.pv_base_add_cost_mkt_shock_schedule_period, pv_base_add_cost_mkt_maturity=self.pv_base_add_cost_mkt_maturity, pv_base_add_cost_mkt_discount_t_g_0=self.pv_base_add_cost_mkt_discount_t_g_0, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_add_cost_mkt_discount_post_maturity_cumulative(self) -> data.Series[float | str | None]:
-        return internals.pv_base_add_cost_mkt_discount_post_maturity_cumulative(pv_base_add_cost_mkt_discount_t_m_condition=self.pv_base_add_cost_mkt_discount_t_m_condition, pv_base_add_cost_mkt_output_cumulative=self.pv_base_add_cost_mkt_output_cumulative)
+        return internals.pv_base_add_cost_mkt_discount_post_maturity_cumulative(pv_base_add_cost_mkt_discount_t_m_condition=self.pv_base_add_cost_mkt_discount_t_m_condition, pv_base_add_cost_mkt_output_cumulative=self.pv_base_add_cost_mkt_output_cumulative, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_add_cost_mkt_output_new_forex_borrowing_gross_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_base_add_cost_mkt_output_new_forex_borrowing_gross_usd(ext_debt_new_disbursements_external=self.ext_debt_new_disbursements_external)
+        return internals.pv_base_add_cost_mkt_output_new_forex_borrowing_gross_usd(ext_debt_new_disbursements_external=self.ext_debt_new_disbursements_external, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_add_cost_mkt_output_cumulative(self) -> data.Series[float | str | None]:
-        return internals.pv_base_add_cost_mkt_output_cumulative(pv_base_add_cost_mkt_output_new_forex_borrowing_gross_usd=self.pv_base_add_cost_mkt_output_new_forex_borrowing_gross_usd)
+        return internals.pv_base_add_cost_mkt_output_cumulative(pv_base_add_cost_mkt_output_new_forex_borrowing_gross_usd=self.pv_base_add_cost_mkt_output_new_forex_borrowing_gross_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_add_cost_mkt_output_stock_of_new_forex_debt_in_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_base_add_cost_mkt_output_stock_of_new_forex_debt_in_usd(pv_base_add_cost_mkt_output_new_forex_borrowing_gross_usd=self.pv_base_add_cost_mkt_output_new_forex_borrowing_gross_usd, pv_base_add_cost_mkt_output_amortization=self.pv_base_add_cost_mkt_output_amortization)
+        return internals.pv_base_add_cost_mkt_output_stock_of_new_forex_debt_in_usd(pv_base_add_cost_mkt_output_new_forex_borrowing_gross_usd=self.pv_base_add_cost_mkt_output_new_forex_borrowing_gross_usd, pv_base_add_cost_mkt_output_amortization=self.pv_base_add_cost_mkt_output_amortization, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_add_cost_mkt_output_interest(self) -> data.Series[float | str | None]:
-        return internals.pv_base_add_cost_mkt_output_interest(pv_base_add_cost_mkt_discount_interest_rate=self.pv_base_add_cost_mkt_discount_interest_rate, pv_base_add_cost_mkt_output_stock_of_new_forex_debt_in_usd=self.pv_base_add_cost_mkt_output_stock_of_new_forex_debt_in_usd)
+        return internals.pv_base_add_cost_mkt_output_interest(pv_base_add_cost_mkt_discount_interest_rate=self.pv_base_add_cost_mkt_discount_interest_rate, pv_base_add_cost_mkt_output_stock_of_new_forex_debt_in_usd=self.pv_base_add_cost_mkt_output_stock_of_new_forex_debt_in_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_base_add_cost_mkt_output_amortization(self) -> data.Series[float | str | None]:
-        return internals.pv_base_add_cost_mkt_output_amortization(pv_base_add_cost_mkt_grace=self.pv_base_add_cost_mkt_grace, pv_base_add_cost_mkt_maturity=self.pv_base_add_cost_mkt_maturity, pv_base_add_cost_mkt_discount_post_grace_cumulative=self.pv_base_add_cost_mkt_discount_post_grace_cumulative, pv_base_add_cost_mkt_discount_post_maturity_cumulative=self.pv_base_add_cost_mkt_discount_post_maturity_cumulative)
+        return internals.pv_base_add_cost_mkt_output_amortization(pv_base_add_cost_mkt_grace=self.pv_base_add_cost_mkt_grace, pv_base_add_cost_mkt_maturity=self.pv_base_add_cost_mkt_maturity, pv_base_add_cost_mkt_discount_post_grace_cumulative=self.pv_base_add_cost_mkt_discount_post_grace_cumulative, pv_base_add_cost_mkt_discount_post_maturity_cumulative=self.pv_base_add_cost_mkt_discount_post_maturity_cumulative, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def _scan_pv_lc_nr1_terms_fx_pa_growth(self) -> internals.ScanPvLcNr1TermsFxPaGrowthResult:
-        return internals.scan_pv_lc_nr1_terms_fx_pa_growth(macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc)
+        return internals.scan_pv_lc_nr1_terms_fx_pa_growth(input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service, macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar_nc)
 
     @cached_property
     def pv_lc_nr1_terms_fx_pa_growth(self) -> data.Series[float | str | None]:
@@ -5621,19 +6131,19 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_lc_nr1_terms_fx_eop(self) -> data.Series[float | str | None]:
-        return internals.pv_lc_nr1_terms_fx_eop(macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar)
+        return internals.pv_lc_nr1_terms_fx_eop(macro_debt_exchange_rate_national_currency_per_u_s_dollar=self.macro_debt_exchange_rate_national_currency_per_u_s_dollar, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account)
 
     @cached_property
     def pv_lc_terms_interest_rate_local_currency(self) -> data.Series[float | str | None]:
-        return internals.pv_lc_terms_interest_rate_local_currency(input5_internal_interest_rate_on_domestic_debt=self.input5_internal_interest_rate_on_domestic_debt)
+        return internals.pv_lc_terms_interest_rate_local_currency(input5_internal_interest_rate_on_domestic_debt=self.input5_internal_interest_rate_on_domestic_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_lc_summary_stock_of_debt_in_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_lc_summary_stock_of_debt_in_usd(pv_lc_output_stock_of_debt_in_usd=self.pv_lc_output_stock_of_debt_in_usd)
+        return internals.pv_lc_summary_stock_of_debt_in_usd(pv_lc_output_stock_of_debt_in_usd=self.pv_lc_output_stock_of_debt_in_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_lc_summary_pv_of_debt_in_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_lc_summary_pv_of_debt_in_usd(pv_lc_output_pv_of_debt_in_usd=self.pv_lc_output_pv_of_debt_in_usd)
+        return internals.pv_lc_summary_pv_of_debt_in_usd(pv_lc_output_pv_of_debt_in_usd=self.pv_lc_output_pv_of_debt_in_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_lc_terms_grace(self) -> data.Series[float | str | None]:
@@ -5653,19 +6163,19 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_lc_output_period_index(self) -> data.Series[int | str | None]:
-        return internals.pv_lc_output_period_index(pv_lc_constant_output_period_index=data.PV_LC_CONSTANT_OUTPUT_PERIOD_INDEX)
+        return internals.pv_lc_output_period_index(pv_lc_constant_output_period_index=data.PV_LC_CONSTANT_OUTPUT_PERIOD_INDEX, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_lc_output_projection_year(self) -> data.Series[int | str | None]:
-        return internals.pv_lc_output_projection_year(pv_lc_nr1_terms_projection_year=self.pv_lc_nr1_terms_projection_year, pv_lc_terms_projection_year=self.pv_lc_terms_projection_year)
+        return internals.pv_lc_output_projection_year(pv_lc_nr1_terms_projection_year=self.pv_lc_nr1_terms_projection_year, pv_lc_terms_projection_year=self.pv_lc_terms_projection_year, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_lc_output_stock_of_debt_in_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_lc_output_stock_of_debt_in_usd(pv_lc_nr1_terms_fx_eop=self.pv_lc_nr1_terms_fx_eop, pv_lc_output_stock_of_debt_in_lc=self.pv_lc_output_stock_of_debt_in_lc, pv_lc_terms_fx_eop=self.pv_lc_terms_fx_eop)
+        return internals.pv_lc_output_stock_of_debt_in_usd(pv_lc_nr1_terms_fx_eop=self.pv_lc_nr1_terms_fx_eop, pv_lc_constant_output_stock_of_debt_in_lc=data.PV_LC_CONSTANT_OUTPUT_STOCK_OF_DEBT_IN_LC, pv_lc_output_stock_of_debt_in_lc=self.pv_lc_output_stock_of_debt_in_lc, pv_lc_terms_fx_eop=self.pv_lc_terms_fx_eop, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_lc_output_pv_of_debt_in_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_lc_output_pv_of_debt_in_usd(pv_lc_output_issuance_year=self.pv_lc_output_issuance_year, pv_lc_output_projection_year=self.pv_lc_output_projection_year, pv_lc_output_stock_of_debt_in_usd=self.pv_lc_output_stock_of_debt_in_usd, pv_lc_output_total_debt_service_in_usd=self.pv_lc_output_total_debt_service_in_usd, pv_lc_output_discount=self.pv_lc_output_discount)
+        return internals.pv_lc_output_pv_of_debt_in_usd(pv_lc_output_issuance_year=self.pv_lc_output_issuance_year, pv_lc_output_projection_year=self.pv_lc_output_projection_year, pv_lc_output_stock_of_debt_in_usd=self.pv_lc_output_stock_of_debt_in_usd, pv_lc_output_total_debt_service_in_usd=self.pv_lc_output_total_debt_service_in_usd, pv_lc_output_discount=self.pv_lc_output_discount, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_lc_output_grace(self) -> data.Series[float | str | None]:
@@ -5673,7 +6183,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_lc_output_total_debt_service_in_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_lc_output_total_debt_service_in_usd(pv_lc_output_interest_in_usd=self.pv_lc_output_interest_in_usd, pv_lc_output_amortization_in_usd=self.pv_lc_output_amortization_in_usd)
+        return internals.pv_lc_output_total_debt_service_in_usd(pv_lc_output_interest_in_usd=self.pv_lc_output_interest_in_usd, pv_lc_output_amortization_in_usd=self.pv_lc_output_amortization_in_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_lc_output_maturity(self) -> data.Series[int | str | None]:
@@ -5685,11 +6195,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_lc_output_t_g_0(self) -> data.Series[int | str | None]:
-        return internals.pv_lc_output_t_g_0(pv_lc_constant_output_period_index=data.PV_LC_CONSTANT_OUTPUT_PERIOD_INDEX, pv_lc_output_period_index=self.pv_lc_output_period_index, pv_lc_output_grace=self.pv_lc_output_grace)
+        return internals.pv_lc_output_t_g_0(pv_lc_constant_output_period_index=data.PV_LC_CONSTANT_OUTPUT_PERIOD_INDEX, pv_lc_output_period_index=self.pv_lc_output_period_index, pv_lc_output_grace=self.pv_lc_output_grace, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_lc_output_t_m_condition(self) -> data.Series[int | str | None]:
-        return internals.pv_lc_output_t_m_condition(pv_lc_constant_output_period_index=data.PV_LC_CONSTANT_OUTPUT_PERIOD_INDEX, pv_lc_output_period_index=self.pv_lc_output_period_index, pv_lc_output_maturity=self.pv_lc_output_maturity)
+        return internals.pv_lc_output_t_m_condition(pv_lc_constant_output_period_index=data.PV_LC_CONSTANT_OUTPUT_PERIOD_INDEX, pv_lc_output_period_index=self.pv_lc_output_period_index, pv_lc_output_maturity=self.pv_lc_output_maturity, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_lc_terms_projection_year(self) -> data.Series[int | str | None]:
@@ -5709,11 +6219,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_stress_discount_debt_stock(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_discount_debt_stock(pv_stress_discount_amortization=self.pv_stress_discount_amortization, pv_stress_historical_average_disbursement=data.PV_STRESS_HISTORICAL_AVERAGE_DISBURSEMENT)
+        return internals.pv_stress_discount_debt_stock(pv_stress_discount_amortization=self.pv_stress_discount_amortization, pv_stress_historical_average_disbursement=data.PV_STRESS_HISTORICAL_AVERAGE_DISBURSEMENT, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_discount_amortization(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_discount_amortization(pv_stress_calendar_period=self.pv_stress_calendar_period, pv_stress_historical_average_disbursement=data.PV_STRESS_HISTORICAL_AVERAGE_DISBURSEMENT, pv_stress_average_maturity_of_new_debt=self.pv_stress_average_maturity_of_new_debt, pv_stress_average_grace_period_new_debt=self.pv_stress_average_grace_period_new_debt)
+        return internals.pv_stress_discount_amortization(pv_stress_calendar_period=self.pv_stress_calendar_period, pv_stress_historical_average_disbursement=data.PV_STRESS_HISTORICAL_AVERAGE_DISBURSEMENT, pv_stress_average_maturity_of_new_debt=self.pv_stress_average_maturity_of_new_debt, pv_stress_average_grace_period_new_debt=self.pv_stress_average_grace_period_new_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_discount_interest(self) -> data.Series[float | str | None]:
@@ -5725,23 +6235,23 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_stress_discount_pv_of_debt(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_discount_pv_of_debt(pv_stress_discount_debt_stock=self.pv_stress_discount_debt_stock, pv_stress_discount_total_debt_service=self.pv_stress_discount_total_debt_service, pv_stress_average_interest_rate_new_debt=self.pv_stress_average_interest_rate_new_debt, pv_stress_usd_discount_rate=self.pv_stress_usd_discount_rate)
+        return internals.pv_stress_discount_pv_of_debt(pv_stress_discount_debt_stock=self.pv_stress_discount_debt_stock, pv_stress_discount_total_debt_service=self.pv_stress_discount_total_debt_service, pv_stress_average_interest_rate_new_debt=self.pv_stress_average_interest_rate_new_debt, pv_stress_usd_discount_rate=self.pv_stress_usd_discount_rate, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_bounds_pv_of_new_forex_debt_in_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_bounds_pv_of_new_forex_debt_in_usd(pv_stress_discount_pv_of_debt=self.pv_stress_discount_pv_of_debt, pv_stress_bounds_new_forex_borrowing_gross_usd=self.pv_stress_bounds_new_forex_borrowing_gross_usd, pv_stress_bounds_total_debt_service_in_usd=self.pv_stress_bounds_total_debt_service_in_usd, pv_stress_bounds_amortization=self.pv_stress_bounds_amortization, pv_stress_average_interest_rate_new_debt=self.pv_stress_average_interest_rate_new_debt, pv_stress_usd_discount_rate=self.pv_stress_usd_discount_rate)
+        return internals.pv_stress_bounds_pv_of_new_forex_debt_in_usd(pv_stress_discount_pv_of_debt=self.pv_stress_discount_pv_of_debt, pv_stress_bounds_new_forex_borrowing_gross_usd=self.pv_stress_bounds_new_forex_borrowing_gross_usd, pv_stress_bounds_total_debt_service_in_usd=self.pv_stress_bounds_total_debt_service_in_usd, pv_stress_bounds_amortization=self.pv_stress_bounds_amortization, pv_stress_average_interest_rate_new_debt=self.pv_stress_average_interest_rate_new_debt, pv_stress_usd_discount_rate=self.pv_stress_usd_discount_rate, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_bounds_total_debt_service_in_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_bounds_total_debt_service_in_usd(pv_stress_opening_stock_percent_of_face=data.PV_STRESS_OPENING_STOCK_PERCENT_OF_FACE, pv_stress_bounds_interest=self.pv_stress_bounds_interest, pv_stress_bounds_amortization=self.pv_stress_bounds_amortization)
+        return internals.pv_stress_bounds_total_debt_service_in_usd(pv_stress_opening_stock_percent_of_face=data.PV_STRESS_OPENING_STOCK_PERCENT_OF_FACE, pv_stress_bounds_interest=self.pv_stress_bounds_interest, pv_stress_bounds_amortization=self.pv_stress_bounds_amortization, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_bounds_t_g_0(self) -> data.Series[int | str | None]:
-        return internals.pv_stress_bounds_t_g_0(pv_stress_calendar_period=self.pv_stress_calendar_period, pv_stress_average_grace_period_new_debt=self.pv_stress_average_grace_period_new_debt)
+        return internals.pv_stress_bounds_t_g_0(pv_stress_calendar_period=self.pv_stress_calendar_period, pv_stress_average_grace_period_new_debt=self.pv_stress_average_grace_period_new_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_bounds_t_m_condition(self) -> data.Series[int | str | None]:
-        return internals.pv_stress_bounds_t_m_condition(pv_stress_calendar_period=self.pv_stress_calendar_period, pv_stress_average_maturity_of_new_debt=self.pv_stress_average_maturity_of_new_debt)
+        return internals.pv_stress_bounds_t_m_condition(pv_stress_calendar_period=self.pv_stress_calendar_period, pv_stress_average_maturity_of_new_debt=self.pv_stress_average_maturity_of_new_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_pub_assumptions_share_of_marginal_debt(self) -> data.Series[float | str | None]:
@@ -5785,11 +6295,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_resfin_pub_discount_pv_of_debt(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_pub_discount_pv_of_debt(pv_resfin_pub_assumptions_avg_nominal_interest_rate_on_new_borrowing_in_usd=self.pv_resfin_pub_assumptions_avg_nominal_interest_rate_on_new_borrowing_in_usd, pv_resfin_pub_assumptions_usd_discount_rate=self.pv_resfin_pub_assumptions_usd_discount_rate, pv_resfin_pub_discount_debt_stock=self.pv_resfin_pub_discount_debt_stock, pv_resfin_pub_discount_total_debt_service=self.pv_resfin_pub_discount_total_debt_service)
+        return internals.pv_resfin_pub_discount_pv_of_debt(pv_resfin_pub_assumptions_avg_nominal_interest_rate_on_new_borrowing_in_usd=self.pv_resfin_pub_assumptions_avg_nominal_interest_rate_on_new_borrowing_in_usd, pv_resfin_pub_assumptions_usd_discount_rate=self.pv_resfin_pub_assumptions_usd_discount_rate, pv_resfin_pub_discount_debt_stock=self.pv_resfin_pub_discount_debt_stock, pv_resfin_pub_discount_total_debt_service=self.pv_resfin_pub_discount_total_debt_service, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_pub_assumptions_domestic_mlt_debt(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_pub_assumptions_domestic_mlt_debt(pv_resfin_pub_assumptions_inflation_gdp_deflator=self.pv_resfin_pub_assumptions_inflation_gdp_deflator, pv_resfin_pub_avg_real_interest_rate_new_borrowing=self.pv_resfin_pub_avg_real_interest_rate_new_borrowing)
+        return internals.pv_resfin_pub_assumptions_domestic_mlt_debt(pv_resfin_pub_assumptions_inflation_gdp_deflator=self.pv_resfin_pub_assumptions_inflation_gdp_deflator, pv_resfin_pub_avg_real_interest_rate_new_borrowing=self.pv_resfin_pub_avg_real_interest_rate_new_borrowing, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_pub_assumptions_avg_real_interest_rate_on_new_borrowing(self) -> float | str:
@@ -5797,11 +6307,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_resfin_pub_avg_real_interest_rate_new_borrowing(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_pub_avg_real_interest_rate_new_borrowing(pv_resfin_pub_assumptions_avg_real_interest_rate_on_new_borrowing=self.pv_resfin_pub_assumptions_avg_real_interest_rate_on_new_borrowing)
+        return internals.pv_resfin_pub_avg_real_interest_rate_new_borrowing(pv_resfin_pub_assumptions_avg_real_interest_rate_on_new_borrowing=self.pv_resfin_pub_assumptions_avg_real_interest_rate_on_new_borrowing, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_pub_assumptions_avg_interest_rate(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_pub_assumptions_avg_interest_rate(pv_resfin_pub_assumptions_inflation_gdp_deflator=self.pv_resfin_pub_assumptions_inflation_gdp_deflator, pv_resfin_pub_avg_real_interest_rate=self.pv_resfin_pub_avg_real_interest_rate)
+        return internals.pv_resfin_pub_assumptions_avg_interest_rate(pv_resfin_pub_assumptions_inflation_gdp_deflator=self.pv_resfin_pub_assumptions_inflation_gdp_deflator, pv_resfin_pub_avg_real_interest_rate=self.pv_resfin_pub_avg_real_interest_rate, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_pub_assumptions_avg_real_interest_rate(self) -> float | str:
@@ -5809,39 +6319,39 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_resfin_pub_avg_real_interest_rate(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_pub_avg_real_interest_rate(pv_resfin_pub_assumptions_avg_real_interest_rate=self.pv_resfin_pub_assumptions_avg_real_interest_rate)
+        return internals.pv_resfin_pub_avg_real_interest_rate(pv_resfin_pub_assumptions_avg_real_interest_rate=self.pv_resfin_pub_assumptions_avg_real_interest_rate, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_pub_assumptions_inflation_gdp_deflator(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_pub_assumptions_inflation_gdp_deflator(macro_debt_change_in_gdp_deflator_factor=self.macro_debt_change_in_gdp_deflator_factor)
+        return internals.pv_resfin_pub_assumptions_inflation_gdp_deflator(macro_debt_change_in_gdp_deflator_factor=self.macro_debt_change_in_gdp_deflator_factor, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_pub_assumptions_average_interest_rate_on_domestic_debt(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_pub_assumptions_average_interest_rate_on_domestic_debt(pv_resfin_pub_assumptions_share_of_marginal_debt=self.pv_resfin_pub_assumptions_share_of_marginal_debt, pv_resfin_pub_assumptions_domestic_mlt_debt=self.pv_resfin_pub_assumptions_domestic_mlt_debt, pv_resfin_pub_assumptions_avg_interest_rate=self.pv_resfin_pub_assumptions_avg_interest_rate)
+        return internals.pv_resfin_pub_assumptions_average_interest_rate_on_domestic_debt(pv_resfin_pub_assumptions_share_of_marginal_debt=self.pv_resfin_pub_assumptions_share_of_marginal_debt, pv_resfin_pub_assumptions_domestic_mlt_debt=self.pv_resfin_pub_assumptions_domestic_mlt_debt, pv_resfin_pub_assumptions_avg_interest_rate=self.pv_resfin_pub_assumptions_avg_interest_rate, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_pub_assumptions_exchange_rate_pa(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_pub_assumptions_exchange_rate_pa(input3_input_3_macro_national_currency_per_u_s_dollar_p_a=self.input3_input_3_macro_national_currency_per_u_s_dollar_p_a)
+        return internals.pv_resfin_pub_assumptions_exchange_rate_pa(input3_input_3_macro_national_currency_per_u_s_dollar_p_a=self.input3_input_3_macro_national_currency_per_u_s_dollar_p_a, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_pub_output_new_borrowing_under_the_external_dsa_in_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_pub_output_new_borrowing_under_the_external_dsa_in_usd(dsa_ext_residual_gross_borrowing=self.dsa_ext_residual_gross_borrowing)
+        return internals.pv_resfin_pub_output_new_borrowing_under_the_external_dsa_in_usd(dsa_ext_residual_gross_borrowing=self.dsa_ext_residual_gross_borrowing, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_pub_output_pv_of_new_forex_debt_in_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_pub_output_pv_of_new_forex_debt_in_usd(pv_resfin_pub_assumptions_avg_nominal_interest_rate_on_new_borrowing_in_usd=self.pv_resfin_pub_assumptions_avg_nominal_interest_rate_on_new_borrowing_in_usd, pv_resfin_pub_assumptions_usd_discount_rate=self.pv_resfin_pub_assumptions_usd_discount_rate, pv_resfin_pub_discount_pv_of_debt=self.pv_resfin_pub_discount_pv_of_debt, pv_resfin_pub_output_new_forex_borrowing_gross_usd=self.pv_resfin_pub_output_new_forex_borrowing_gross_usd, pv_resfin_pub_output_total_debt_service_in_usd=self.pv_resfin_pub_output_total_debt_service_in_usd, pv_resfin_pub_output_amortization=self.pv_resfin_pub_output_amortization)
+        return internals.pv_resfin_pub_output_pv_of_new_forex_debt_in_usd(pv_resfin_pub_assumptions_avg_nominal_interest_rate_on_new_borrowing_in_usd=self.pv_resfin_pub_assumptions_avg_nominal_interest_rate_on_new_borrowing_in_usd, pv_resfin_pub_assumptions_usd_discount_rate=self.pv_resfin_pub_assumptions_usd_discount_rate, pv_resfin_pub_discount_pv_of_debt=self.pv_resfin_pub_discount_pv_of_debt, pv_resfin_pub_output_new_forex_borrowing_gross_usd=self.pv_resfin_pub_output_new_forex_borrowing_gross_usd, pv_resfin_pub_output_total_debt_service_in_usd=self.pv_resfin_pub_output_total_debt_service_in_usd, pv_resfin_pub_output_amortization=self.pv_resfin_pub_output_amortization, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_pub_output_total_debt_service_in_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_pub_output_total_debt_service_in_usd(pv_resfin_pub_output_interest=self.pv_resfin_pub_output_interest, pv_resfin_pub_output_amortization=self.pv_resfin_pub_output_amortization)
+        return internals.pv_resfin_pub_output_total_debt_service_in_usd(pv_resfin_pub_output_interest=self.pv_resfin_pub_output_interest, pv_resfin_pub_output_amortization=self.pv_resfin_pub_output_amortization, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_pub_output_t_g_0(self) -> data.Series[int | str | None]:
-        return internals.pv_resfin_pub_output_t_g_0(pv_resfin_pub_opening_stock_period=data.PV_RESFIN_PUB_OPENING_STOCK_PERIOD, pv_resfin_pub_discount_period=self.pv_resfin_pub_discount_period, pv_resfin_pub_assumptions_avg_grace_period=self.pv_resfin_pub_assumptions_avg_grace_period)
+        return internals.pv_resfin_pub_output_t_g_0(pv_resfin_pub_opening_stock_period=data.PV_RESFIN_PUB_OPENING_STOCK_PERIOD, pv_resfin_pub_discount_period=self.pv_resfin_pub_discount_period, pv_resfin_pub_assumptions_avg_grace_period=self.pv_resfin_pub_assumptions_avg_grace_period, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_pub_output_t_m_condition(self) -> data.Series[int | str | None]:
-        return internals.pv_resfin_pub_output_t_m_condition(pv_resfin_pub_opening_stock_period=data.PV_RESFIN_PUB_OPENING_STOCK_PERIOD, pv_resfin_pub_discount_period=self.pv_resfin_pub_discount_period, pv_resfin_pub_assumptions_avg_maturity_incl_grace_period=self.pv_resfin_pub_assumptions_avg_maturity_incl_grace_period)
+        return internals.pv_resfin_pub_output_t_m_condition(pv_resfin_pub_opening_stock_period=data.PV_RESFIN_PUB_OPENING_STOCK_PERIOD, pv_resfin_pub_discount_period=self.pv_resfin_pub_discount_period, pv_resfin_pub_assumptions_avg_maturity_incl_grace_period=self.pv_resfin_pub_assumptions_avg_maturity_incl_grace_period, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_add_assumptions_additional_borrowing_costs_domestic(self) -> float | str:
@@ -5869,19 +6379,19 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_resfin_add_int_cost_mkt_stock_of_new_forex_debt_beyond_projection_window(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_add_int_cost_mkt_stock_of_new_forex_debt_beyond_projection_window(pv_resfin_add_output_stock_of_new_forex_debt_in_usd=self.pv_resfin_add_output_stock_of_new_forex_debt_in_usd, pv_resfin_add_int_cost_mkt_amortization_beyond_projection_window=self.pv_resfin_add_int_cost_mkt_amortization_beyond_projection_window)
+        return internals.pv_resfin_add_int_cost_mkt_stock_of_new_forex_debt_beyond_projection_window(pv_resfin_add_output_stock_of_new_forex_debt_in_usd=self.pv_resfin_add_output_stock_of_new_forex_debt_in_usd, pv_resfin_add_int_cost_mkt_amortization_beyond_projection_window=self.pv_resfin_add_int_cost_mkt_amortization_beyond_projection_window, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_add_output_pv_of_new_forex_debt_in_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_add_output_pv_of_new_forex_debt_in_usd(pv_resfin_add_assumptions_usd_discount_rate=self.pv_resfin_add_assumptions_usd_discount_rate, pv_resfin_add_output_interest=self.pv_resfin_add_output_interest, pv_resfin_add_int_cost_mkt_interest_beyond_projection_window=self.pv_resfin_add_int_cost_mkt_interest_beyond_projection_window, pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_two_year_average=self.pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_two_year_average)
+        return internals.pv_resfin_add_output_pv_of_new_forex_debt_in_usd(pv_resfin_add_assumptions_usd_discount_rate=self.pv_resfin_add_assumptions_usd_discount_rate, pv_resfin_add_output_interest=self.pv_resfin_add_output_interest, pv_resfin_add_int_cost_mkt_interest_beyond_projection_window=self.pv_resfin_add_int_cost_mkt_interest_beyond_projection_window, pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_two_year_average=self.pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_two_year_average, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_add_int_cost_mkt_interest_beyond_projection_window(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_add_int_cost_mkt_interest_beyond_projection_window(pv_resfin_add_output_stock_of_new_forex_debt_in_usd=self.pv_resfin_add_output_stock_of_new_forex_debt_in_usd, pv_resfin_add_int_cost_mkt_stock_of_new_forex_debt_beyond_projection_window=self.pv_resfin_add_int_cost_mkt_stock_of_new_forex_debt_beyond_projection_window, pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_two_year_average=self.pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_two_year_average)
+        return internals.pv_resfin_add_int_cost_mkt_interest_beyond_projection_window(pv_resfin_add_output_stock_of_new_forex_debt_in_usd=self.pv_resfin_add_output_stock_of_new_forex_debt_in_usd, pv_resfin_add_int_cost_mkt_stock_of_new_forex_debt_beyond_projection_window=self.pv_resfin_add_int_cost_mkt_stock_of_new_forex_debt_beyond_projection_window, pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_two_year_average=self.pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_two_year_average, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_add_assumptions_deviation_in_pb_ppt(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_add_assumptions_deviation_in_pb_ppt(dsa_pub_primary_deficit=self.dsa_pub_primary_deficit, baseline_pub_primary_deficit=self.baseline_pub_primary_deficit)
+        return internals.pv_resfin_add_assumptions_deviation_in_pb_ppt(dsa_pub_primary_deficit=self.dsa_pub_primary_deficit, baseline_pub_primary_deficit=self.baseline_pub_primary_deficit, input3_input_3_macro_current_account=self.input3_input_3_macro_current_account, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_add_int_cost_mkt_amortization_beyond_projection_window(self) -> data.Series[float | str | None]:
@@ -5889,11 +6399,11 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_shock_years(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_shock_years(pv_resfin_add_assumptions_deviation_in_pb_ppt=self.pv_resfin_add_assumptions_deviation_in_pb_ppt, pv_resfin_add_assumptions_additional_borrowing_costs_external=data.PV_RESFIN_ADD_ASSUMPTIONS_ADDITIONAL_BORROWING_COSTS_EXTERNAL)
+        return internals.pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_shock_years(pv_resfin_add_assumptions_deviation_in_pb_ppt=self.pv_resfin_add_assumptions_deviation_in_pb_ppt, pv_resfin_add_assumptions_additional_borrowing_costs_external=data.PV_RESFIN_ADD_ASSUMPTIONS_ADDITIONAL_BORROWING_COSTS_EXTERNAL, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_add_output_t_g_0(self) -> data.Series[int | str | None]:
-        return internals.pv_resfin_add_output_t_g_0(pv_resfin_add_assumptions_avg_grace_period=self.pv_resfin_add_assumptions_avg_grace_period, pv_resfin_add_opening_stock_period_seed=data.PV_RESFIN_ADD_OPENING_STOCK_PERIOD_SEED, pv_resfin_add_projection_years_period_index=self.pv_resfin_add_projection_years_period_index)
+        return internals.pv_resfin_add_output_t_g_0(pv_resfin_add_assumptions_avg_grace_period=self.pv_resfin_add_assumptions_avg_grace_period, pv_resfin_add_opening_stock_period_seed=data.PV_RESFIN_ADD_OPENING_STOCK_PERIOD_SEED, pv_resfin_add_projection_years_period_index=self.pv_resfin_add_projection_years_period_index, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_add_int_cost_mkt_t_g_0_beyond_projection_window(self) -> data.Series[int | str | None]:
@@ -5901,19 +6411,19 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_two_year_average(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_two_year_average(pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_shock_years=self.pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_shock_years)
+        return internals.pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_two_year_average(pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_shock_years=self.pv_resfin_add_int_cost_mkt_avg_nominal_interest_rate_new_borrowing_usd_shock_years, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_add_int_cost_mkt_cumulative_selected_t_g_0_beyond_projection_window(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_add_int_cost_mkt_cumulative_selected_t_g_0_beyond_projection_window(pv_resfin_add_output_cumulative=self.pv_resfin_add_output_cumulative, pv_resfin_add_int_cost_mkt_cumulative_beyond_projection_window=self.pv_resfin_add_int_cost_mkt_cumulative_beyond_projection_window, pv_resfin_add_int_cost_mkt_t_g_0_beyond_projection_window=self.pv_resfin_add_int_cost_mkt_t_g_0_beyond_projection_window)
+        return internals.pv_resfin_add_int_cost_mkt_cumulative_selected_t_g_0_beyond_projection_window(pv_resfin_add_output_cumulative=self.pv_resfin_add_output_cumulative, pv_resfin_add_int_cost_mkt_cumulative_beyond_projection_window=self.pv_resfin_add_int_cost_mkt_cumulative_beyond_projection_window, pv_resfin_add_int_cost_mkt_t_g_0_beyond_projection_window=self.pv_resfin_add_int_cost_mkt_t_g_0_beyond_projection_window, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_add_int_cost_mkt_additional_domestic_interest_rate_shock_years(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_add_int_cost_mkt_additional_domestic_interest_rate_shock_years(pv_resfin_add_assumptions_deviation_in_pb_ppt=self.pv_resfin_add_assumptions_deviation_in_pb_ppt, pv_resfin_add_assumptions_additional_borrowing_costs_domestic=self.pv_resfin_add_assumptions_additional_borrowing_costs_domestic)
+        return internals.pv_resfin_add_int_cost_mkt_additional_domestic_interest_rate_shock_years(pv_resfin_add_assumptions_deviation_in_pb_ppt=self.pv_resfin_add_assumptions_deviation_in_pb_ppt, pv_resfin_add_assumptions_additional_borrowing_costs_domestic=self.pv_resfin_add_assumptions_additional_borrowing_costs_domestic, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_add_output_t_m_condition(self) -> data.Series[int | str | None]:
-        return internals.pv_resfin_add_output_t_m_condition(pv_resfin_add_assumptions_avg_maturity_incl_grace_period=self.pv_resfin_add_assumptions_avg_maturity_incl_grace_period, pv_resfin_add_opening_stock_period_seed=data.PV_RESFIN_ADD_OPENING_STOCK_PERIOD_SEED, pv_resfin_add_projection_years_period_index=self.pv_resfin_add_projection_years_period_index)
+        return internals.pv_resfin_add_output_t_m_condition(pv_resfin_add_assumptions_avg_maturity_incl_grace_period=self.pv_resfin_add_assumptions_avg_maturity_incl_grace_period, pv_resfin_add_opening_stock_period_seed=data.PV_RESFIN_ADD_OPENING_STOCK_PERIOD_SEED, pv_resfin_add_projection_years_period_index=self.pv_resfin_add_projection_years_period_index, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_add_int_cost_mkt_t_m_condition_beyond_projection_window(self) -> data.Series[int | str | None]:
@@ -5921,23 +6431,23 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_resfin_add_int_cost_mkt_additional_domestic_interest_rate_two_year_average(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_add_int_cost_mkt_additional_domestic_interest_rate_two_year_average(pv_resfin_add_int_cost_mkt_additional_domestic_interest_rate_shock_years=self.pv_resfin_add_int_cost_mkt_additional_domestic_interest_rate_shock_years)
+        return internals.pv_resfin_add_int_cost_mkt_additional_domestic_interest_rate_two_year_average(pv_resfin_add_int_cost_mkt_additional_domestic_interest_rate_shock_years=self.pv_resfin_add_int_cost_mkt_additional_domestic_interest_rate_shock_years, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_resfin_add_int_cost_mkt_cumulative_selected_t_m_condition_beyond_projection_window(self) -> data.Series[float | str | None]:
-        return internals.pv_resfin_add_int_cost_mkt_cumulative_selected_t_m_condition_beyond_projection_window(pv_resfin_add_output_cumulative=self.pv_resfin_add_output_cumulative, pv_resfin_add_int_cost_mkt_cumulative_beyond_projection_window=self.pv_resfin_add_int_cost_mkt_cumulative_beyond_projection_window, pv_resfin_add_int_cost_mkt_t_m_condition_beyond_projection_window=self.pv_resfin_add_int_cost_mkt_t_m_condition_beyond_projection_window)
+        return internals.pv_resfin_add_int_cost_mkt_cumulative_selected_t_m_condition_beyond_projection_window(pv_resfin_add_output_cumulative=self.pv_resfin_add_output_cumulative, pv_resfin_add_int_cost_mkt_cumulative_beyond_projection_window=self.pv_resfin_add_int_cost_mkt_cumulative_beyond_projection_window, pv_resfin_add_int_cost_mkt_t_m_condition_beyond_projection_window=self.pv_resfin_add_int_cost_mkt_t_m_condition_beyond_projection_window, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_pv_debt(self) -> data.Series[float | str | None]:
-        return internals.pv_baseline_com_pv_debt(pv_baseline_com_output_pv_of_debt=self.pv_baseline_com_output_pv_of_debt)
+        return internals.pv_baseline_com_pv_debt(pv_baseline_com_output_pv_of_debt=self.pv_baseline_com_output_pv_of_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_total_debt_service(self) -> data.Series[float | str | None]:
-        return internals.pv_baseline_com_total_debt_service(pv_baseline_com_output_total_debt_service_in_usd=self.pv_baseline_com_output_total_debt_service_in_usd)
+        return internals.pv_baseline_com_total_debt_service(pv_baseline_com_output_total_debt_service_in_usd=self.pv_baseline_com_output_total_debt_service_in_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_discount_period(self) -> data.Series[int | str | None]:
-        return internals.pv_baseline_com_discount_period(pv_baseline_com_discount_schedule_period=data.PV_BASELINE_COM_DISCOUNT_SCHEDULE_PERIOD)
+        return internals.pv_baseline_com_discount_period(pv_baseline_com_discount_schedule_period=data.PV_BASELINE_COM_DISCOUNT_SCHEDULE_PERIOD, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_grace(self) -> data.Series[int | str | None]:
@@ -5949,7 +6459,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_baseline_com_discount_debt_stock(self) -> data.Series[float | str | None]:
-        return internals.pv_baseline_com_discount_debt_stock(pv_baseline_com_opening_percent_of_face=data.PV_BASELINE_COM_OPENING_PERCENT_OF_FACE, pv_baseline_com_discount_amortization=self.pv_baseline_com_discount_amortization)
+        return internals.pv_baseline_com_discount_debt_stock(pv_baseline_com_opening_percent_of_face=data.PV_BASELINE_COM_OPENING_PERCENT_OF_FACE, pv_baseline_com_discount_amortization=self.pv_baseline_com_discount_amortization, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_discount_interest_rate(self) -> data.Series[float | str | None]:
@@ -5957,7 +6467,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_baseline_com_discount_amortization(self) -> data.Series[float | str | None]:
-        return internals.pv_baseline_com_discount_amortization(pv_baseline_com_discount_period=self.pv_baseline_com_discount_period, pv_baseline_com_grace=self.pv_baseline_com_grace, pv_baseline_com_maturity=self.pv_baseline_com_maturity, pv_baseline_com_opening_percent_of_face=data.PV_BASELINE_COM_OPENING_PERCENT_OF_FACE)
+        return internals.pv_baseline_com_discount_amortization(pv_baseline_com_discount_period=self.pv_baseline_com_discount_period, pv_baseline_com_grace=self.pv_baseline_com_grace, pv_baseline_com_maturity=self.pv_baseline_com_maturity, pv_baseline_com_opening_percent_of_face=data.PV_BASELINE_COM_OPENING_PERCENT_OF_FACE, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_discount_discount_rate(self) -> data.Series[float | str | None]:
@@ -5965,59 +6475,59 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_baseline_com_discount_interest(self) -> data.Series[float | str | None]:
-        return internals.pv_baseline_com_discount_interest(pv_baseline_com_discount_debt_stock=self.pv_baseline_com_discount_debt_stock, pv_baseline_com_discount_interest_rate=self.pv_baseline_com_discount_interest_rate)
+        return internals.pv_baseline_com_discount_interest(pv_baseline_com_discount_debt_stock=self.pv_baseline_com_discount_debt_stock, pv_baseline_com_discount_interest_rate=self.pv_baseline_com_discount_interest_rate, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_discount_total_debt_service(self) -> data.Series[float | str | None]:
-        return internals.pv_baseline_com_discount_total_debt_service(pv_baseline_com_discount_amortization=self.pv_baseline_com_discount_amortization, pv_baseline_com_discount_interest=self.pv_baseline_com_discount_interest)
+        return internals.pv_baseline_com_discount_total_debt_service(pv_baseline_com_discount_amortization=self.pv_baseline_com_discount_amortization, pv_baseline_com_discount_interest=self.pv_baseline_com_discount_interest, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_discount_pv_of_debt(self) -> data.Series[float | str | None]:
-        return internals.pv_baseline_com_discount_pv_of_debt(pv_baseline_com_discount_debt_stock=self.pv_baseline_com_discount_debt_stock, pv_baseline_com_discount_interest_rate=self.pv_baseline_com_discount_interest_rate, pv_baseline_com_discount_discount_rate=self.pv_baseline_com_discount_discount_rate, pv_baseline_com_discount_total_debt_service=self.pv_baseline_com_discount_total_debt_service)
+        return internals.pv_baseline_com_discount_pv_of_debt(pv_baseline_com_discount_debt_stock=self.pv_baseline_com_discount_debt_stock, pv_baseline_com_discount_interest_rate=self.pv_baseline_com_discount_interest_rate, pv_baseline_com_discount_discount_rate=self.pv_baseline_com_discount_discount_rate, pv_baseline_com_discount_total_debt_service=self.pv_baseline_com_discount_total_debt_service, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_discount_t_g_0(self) -> data.Series[int | str | None]:
-        return internals.pv_baseline_com_discount_t_g_0(pv_baseline_com_discount_period=self.pv_baseline_com_discount_period, pv_baseline_com_grace=self.pv_baseline_com_grace)
+        return internals.pv_baseline_com_discount_t_g_0(pv_baseline_com_discount_period=self.pv_baseline_com_discount_period, pv_baseline_com_grace=self.pv_baseline_com_grace, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_discount_cumulative_selected_by_t_g_0(self) -> data.Series[float | str | None]:
-        return internals.pv_baseline_com_discount_cumulative_selected_by_t_g_0(pv_baseline_com_discount_t_g_0=self.pv_baseline_com_discount_t_g_0, pv_baseline_com_output_cumulative=self.pv_baseline_com_output_cumulative)
+        return internals.pv_baseline_com_discount_cumulative_selected_by_t_g_0(pv_baseline_com_discount_t_g_0=self.pv_baseline_com_discount_t_g_0, pv_baseline_com_output_cumulative=self.pv_baseline_com_output_cumulative, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_discount_t_m_condition(self) -> data.Series[int | str | None]:
-        return internals.pv_baseline_com_discount_t_m_condition(pv_baseline_com_discount_period=self.pv_baseline_com_discount_period, pv_baseline_com_maturity=self.pv_baseline_com_maturity)
+        return internals.pv_baseline_com_discount_t_m_condition(pv_baseline_com_discount_period=self.pv_baseline_com_discount_period, pv_baseline_com_maturity=self.pv_baseline_com_maturity, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_discount_cumulative_selected_by_t_m_condition(self) -> data.Series[float | str | None]:
-        return internals.pv_baseline_com_discount_cumulative_selected_by_t_m_condition(pv_baseline_com_discount_t_m_condition=self.pv_baseline_com_discount_t_m_condition, pv_baseline_com_output_cumulative=self.pv_baseline_com_output_cumulative)
+        return internals.pv_baseline_com_discount_cumulative_selected_by_t_m_condition(pv_baseline_com_discount_t_m_condition=self.pv_baseline_com_discount_t_m_condition, pv_baseline_com_output_cumulative=self.pv_baseline_com_output_cumulative, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_output_new_forex_borrowing_gross_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_baseline_com_output_new_forex_borrowing_gross_usd(ext_debt_new_disbursements_external=self.ext_debt_new_disbursements_external)
+        return internals.pv_baseline_com_output_new_forex_borrowing_gross_usd(ext_debt_new_disbursements_external=self.ext_debt_new_disbursements_external, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_output_cumulative(self) -> data.Series[float | str | None]:
-        return internals.pv_baseline_com_output_cumulative(pv_baseline_com_output_new_forex_borrowing_gross_usd=self.pv_baseline_com_output_new_forex_borrowing_gross_usd)
+        return internals.pv_baseline_com_output_cumulative(pv_baseline_com_output_new_forex_borrowing_gross_usd=self.pv_baseline_com_output_new_forex_borrowing_gross_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_output_stock_of_new_forex_debt_in_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_baseline_com_output_stock_of_new_forex_debt_in_usd(pv_baseline_com_output_new_forex_borrowing_gross_usd=self.pv_baseline_com_output_new_forex_borrowing_gross_usd, pv_baseline_com_output_amortization=self.pv_baseline_com_output_amortization)
+        return internals.pv_baseline_com_output_stock_of_new_forex_debt_in_usd(pv_baseline_com_output_new_forex_borrowing_gross_usd=self.pv_baseline_com_output_new_forex_borrowing_gross_usd, pv_baseline_com_output_amortization=self.pv_baseline_com_output_amortization, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_output_pv_of_debt(self) -> data.Series[float | str | None]:
-        return internals.pv_baseline_com_output_pv_of_debt(pv_baseline_com_discount_interest_rate=self.pv_baseline_com_discount_interest_rate, pv_baseline_com_discount_discount_rate=self.pv_baseline_com_discount_discount_rate, pv_baseline_com_discount_pv_of_debt=self.pv_baseline_com_discount_pv_of_debt, pv_baseline_com_output_new_forex_borrowing_gross_usd=self.pv_baseline_com_output_new_forex_borrowing_gross_usd, pv_baseline_com_output_total_debt_service_in_usd=self.pv_baseline_com_output_total_debt_service_in_usd, pv_baseline_com_output_amortization=self.pv_baseline_com_output_amortization)
+        return internals.pv_baseline_com_output_pv_of_debt(pv_baseline_com_discount_interest_rate=self.pv_baseline_com_discount_interest_rate, pv_baseline_com_discount_discount_rate=self.pv_baseline_com_discount_discount_rate, pv_baseline_com_discount_pv_of_debt=self.pv_baseline_com_discount_pv_of_debt, pv_baseline_com_output_new_forex_borrowing_gross_usd=self.pv_baseline_com_output_new_forex_borrowing_gross_usd, pv_baseline_com_output_total_debt_service_in_usd=self.pv_baseline_com_output_total_debt_service_in_usd, pv_baseline_com_output_amortization=self.pv_baseline_com_output_amortization, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_output_total_debt_service_in_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_baseline_com_output_total_debt_service_in_usd(pv_baseline_com_output_interest=self.pv_baseline_com_output_interest, pv_baseline_com_output_amortization=self.pv_baseline_com_output_amortization)
+        return internals.pv_baseline_com_output_total_debt_service_in_usd(pv_baseline_com_output_interest=self.pv_baseline_com_output_interest, pv_baseline_com_output_amortization=self.pv_baseline_com_output_amortization, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_output_interest(self) -> data.Series[float | str | None]:
-        return internals.pv_baseline_com_output_interest(pv_baseline_com_discount_interest_rate=self.pv_baseline_com_discount_interest_rate, pv_baseline_com_output_stock_of_new_forex_debt_in_usd=self.pv_baseline_com_output_stock_of_new_forex_debt_in_usd)
+        return internals.pv_baseline_com_output_interest(pv_baseline_com_discount_interest_rate=self.pv_baseline_com_discount_interest_rate, pv_baseline_com_output_stock_of_new_forex_debt_in_usd=self.pv_baseline_com_output_stock_of_new_forex_debt_in_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_baseline_com_output_amortization(self) -> data.Series[float | str | None]:
-        return internals.pv_baseline_com_output_amortization(pv_baseline_com_grace=self.pv_baseline_com_grace, pv_baseline_com_maturity=self.pv_baseline_com_maturity, pv_baseline_com_discount_cumulative_selected_by_t_g_0=self.pv_baseline_com_discount_cumulative_selected_by_t_g_0, pv_baseline_com_discount_cumulative_selected_by_t_m_condition=self.pv_baseline_com_discount_cumulative_selected_by_t_m_condition)
+        return internals.pv_baseline_com_output_amortization(pv_baseline_com_grace=self.pv_baseline_com_grace, pv_baseline_com_maturity=self.pv_baseline_com_maturity, pv_baseline_com_discount_cumulative_selected_by_t_g_0=self.pv_baseline_com_discount_cumulative_selected_by_t_g_0, pv_baseline_com_discount_cumulative_selected_by_t_m_condition=self.pv_baseline_com_discount_cumulative_selected_by_t_m_condition, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_assumptions_increase_in_external_borrowing_costs(self) -> float | str:
@@ -6025,15 +6535,15 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_stress_com_pv_debt(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_com_pv_debt(pv_stress_com_output_pv_of_debt=self.pv_stress_com_output_pv_of_debt)
+        return internals.pv_stress_com_pv_debt(pv_stress_com_output_pv_of_debt=self.pv_stress_com_output_pv_of_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_total_debt_service(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_com_total_debt_service(pv_stress_com_output_total_debt_service_in_usd=self.pv_stress_com_output_total_debt_service_in_usd)
+        return internals.pv_stress_com_total_debt_service(pv_stress_com_output_total_debt_service_in_usd=self.pv_stress_com_output_total_debt_service_in_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_discount_period(self) -> data.Series[int | str | None]:
-        return internals.pv_stress_com_discount_period(pv_stress_com_opening_stock_percent_of_face=data.PV_STRESS_COM_OPENING_STOCK_PERCENT_OF_FACE)
+        return internals.pv_stress_com_discount_period(pv_stress_com_opening_stock_percent_of_face=data.PV_STRESS_COM_OPENING_STOCK_PERCENT_OF_FACE, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_grace(self) -> data.Series[int | str | None]:
@@ -6045,7 +6555,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_stress_com_discount_debt_stock(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_com_discount_debt_stock(pv_stress_com_opening_percent_of_face=data.PV_STRESS_COM_OPENING_PERCENT_OF_FACE, pv_stress_com_discount_amortization=self.pv_stress_com_discount_amortization)
+        return internals.pv_stress_com_discount_debt_stock(pv_stress_com_opening_percent_of_face=data.PV_STRESS_COM_OPENING_PERCENT_OF_FACE, pv_stress_com_discount_amortization=self.pv_stress_com_discount_amortization, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_discount_interest_rate(self) -> data.Series[float | str | None]:
@@ -6053,7 +6563,7 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_stress_com_discount_amortization(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_com_discount_amortization(pv_stress_com_opening_percent_of_face=data.PV_STRESS_COM_OPENING_PERCENT_OF_FACE, pv_stress_com_discount_period=self.pv_stress_com_discount_period, pv_stress_com_grace=self.pv_stress_com_grace, pv_stress_com_maturity=self.pv_stress_com_maturity)
+        return internals.pv_stress_com_discount_amortization(pv_stress_com_opening_percent_of_face=data.PV_STRESS_COM_OPENING_PERCENT_OF_FACE, pv_stress_com_discount_period=self.pv_stress_com_discount_period, pv_stress_com_grace=self.pv_stress_com_grace, pv_stress_com_maturity=self.pv_stress_com_maturity, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_discount_discount_rate(self) -> data.Series[float | str | None]:
@@ -6061,59 +6571,59 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_stress_com_discount_interest(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_com_discount_interest(pv_stress_com_discount_debt_stock=self.pv_stress_com_discount_debt_stock, pv_stress_com_discount_interest_rate=self.pv_stress_com_discount_interest_rate)
+        return internals.pv_stress_com_discount_interest(pv_stress_com_discount_debt_stock=self.pv_stress_com_discount_debt_stock, pv_stress_com_discount_interest_rate=self.pv_stress_com_discount_interest_rate, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_discount_total_debt_service(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_com_discount_total_debt_service(pv_stress_com_discount_amortization=self.pv_stress_com_discount_amortization, pv_stress_com_discount_interest=self.pv_stress_com_discount_interest)
+        return internals.pv_stress_com_discount_total_debt_service(pv_stress_com_discount_amortization=self.pv_stress_com_discount_amortization, pv_stress_com_discount_interest=self.pv_stress_com_discount_interest, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_discount_pv_of_debt(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_com_discount_pv_of_debt(pv_stress_com_discount_debt_stock=self.pv_stress_com_discount_debt_stock, pv_stress_com_discount_interest_rate=self.pv_stress_com_discount_interest_rate, pv_stress_com_discount_discount_rate=self.pv_stress_com_discount_discount_rate, pv_stress_com_discount_total_debt_service=self.pv_stress_com_discount_total_debt_service)
+        return internals.pv_stress_com_discount_pv_of_debt(pv_stress_com_discount_debt_stock=self.pv_stress_com_discount_debt_stock, pv_stress_com_discount_interest_rate=self.pv_stress_com_discount_interest_rate, pv_stress_com_discount_discount_rate=self.pv_stress_com_discount_discount_rate, pv_stress_com_discount_total_debt_service=self.pv_stress_com_discount_total_debt_service, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_discount_t_g_0(self) -> data.Series[int | str | None]:
-        return internals.pv_stress_com_discount_t_g_0(pv_stress_com_discount_period=self.pv_stress_com_discount_period, pv_stress_com_grace=self.pv_stress_com_grace)
+        return internals.pv_stress_com_discount_t_g_0(pv_stress_com_discount_period=self.pv_stress_com_discount_period, pv_stress_com_grace=self.pv_stress_com_grace, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_discount_cumulative_selected_by_t_g_0(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_com_discount_cumulative_selected_by_t_g_0(pv_stress_com_discount_t_g_0=self.pv_stress_com_discount_t_g_0, pv_stress_com_output_cumulative=self.pv_stress_com_output_cumulative)
+        return internals.pv_stress_com_discount_cumulative_selected_by_t_g_0(pv_stress_com_discount_t_g_0=self.pv_stress_com_discount_t_g_0, pv_stress_com_output_cumulative=self.pv_stress_com_output_cumulative, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_discount_t_m_condition(self) -> data.Series[int | str | None]:
-        return internals.pv_stress_com_discount_t_m_condition(pv_stress_com_discount_period=self.pv_stress_com_discount_period, pv_stress_com_maturity=self.pv_stress_com_maturity)
+        return internals.pv_stress_com_discount_t_m_condition(pv_stress_com_discount_period=self.pv_stress_com_discount_period, pv_stress_com_maturity=self.pv_stress_com_maturity, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_discount_cumulative_selected_by_t_m_condition(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_com_discount_cumulative_selected_by_t_m_condition(pv_stress_com_discount_t_m_condition=self.pv_stress_com_discount_t_m_condition, pv_stress_com_output_cumulative=self.pv_stress_com_output_cumulative)
+        return internals.pv_stress_com_discount_cumulative_selected_by_t_m_condition(pv_stress_com_discount_t_m_condition=self.pv_stress_com_discount_t_m_condition, pv_stress_com_output_cumulative=self.pv_stress_com_output_cumulative, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_output_new_forex_borrowing_gross_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_com_output_new_forex_borrowing_gross_usd(ext_debt_new_disbursements_external=self.ext_debt_new_disbursements_external)
+        return internals.pv_stress_com_output_new_forex_borrowing_gross_usd(ext_debt_new_disbursements_external=self.ext_debt_new_disbursements_external, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_output_cumulative(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_com_output_cumulative(pv_stress_com_output_new_forex_borrowing_gross_usd=self.pv_stress_com_output_new_forex_borrowing_gross_usd)
+        return internals.pv_stress_com_output_cumulative(pv_stress_com_output_new_forex_borrowing_gross_usd=self.pv_stress_com_output_new_forex_borrowing_gross_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_output_stock_of_new_forex_debt_in_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_com_output_stock_of_new_forex_debt_in_usd(pv_stress_com_output_new_forex_borrowing_gross_usd=self.pv_stress_com_output_new_forex_borrowing_gross_usd, pv_stress_com_output_amortization=self.pv_stress_com_output_amortization)
+        return internals.pv_stress_com_output_stock_of_new_forex_debt_in_usd(pv_stress_com_output_new_forex_borrowing_gross_usd=self.pv_stress_com_output_new_forex_borrowing_gross_usd, pv_stress_com_output_amortization=self.pv_stress_com_output_amortization, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_output_pv_of_debt(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_com_output_pv_of_debt(pv_stress_com_discount_interest_rate=self.pv_stress_com_discount_interest_rate, pv_stress_com_discount_discount_rate=self.pv_stress_com_discount_discount_rate, pv_stress_com_discount_pv_of_debt=self.pv_stress_com_discount_pv_of_debt, pv_stress_com_output_new_forex_borrowing_gross_usd=self.pv_stress_com_output_new_forex_borrowing_gross_usd, pv_stress_com_output_total_debt_service_in_usd=self.pv_stress_com_output_total_debt_service_in_usd, pv_stress_com_output_amortization=self.pv_stress_com_output_amortization)
+        return internals.pv_stress_com_output_pv_of_debt(pv_stress_com_discount_interest_rate=self.pv_stress_com_discount_interest_rate, pv_stress_com_discount_discount_rate=self.pv_stress_com_discount_discount_rate, pv_stress_com_discount_pv_of_debt=self.pv_stress_com_discount_pv_of_debt, pv_stress_com_output_new_forex_borrowing_gross_usd=self.pv_stress_com_output_new_forex_borrowing_gross_usd, pv_stress_com_output_total_debt_service_in_usd=self.pv_stress_com_output_total_debt_service_in_usd, pv_stress_com_output_amortization=self.pv_stress_com_output_amortization, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_output_total_debt_service_in_usd(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_com_output_total_debt_service_in_usd(pv_stress_com_output_interest=self.pv_stress_com_output_interest, pv_stress_com_output_amortization=self.pv_stress_com_output_amortization)
+        return internals.pv_stress_com_output_total_debt_service_in_usd(pv_stress_com_output_interest=self.pv_stress_com_output_interest, pv_stress_com_output_amortization=self.pv_stress_com_output_amortization, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_output_interest(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_com_output_interest(pv_stress_com_discount_interest_rate=self.pv_stress_com_discount_interest_rate, pv_stress_com_output_stock_of_new_forex_debt_in_usd=self.pv_stress_com_output_stock_of_new_forex_debt_in_usd)
+        return internals.pv_stress_com_output_interest(pv_stress_com_discount_interest_rate=self.pv_stress_com_discount_interest_rate, pv_stress_com_output_stock_of_new_forex_debt_in_usd=self.pv_stress_com_output_stock_of_new_forex_debt_in_usd, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_com_output_amortization(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_com_output_amortization(pv_stress_com_grace=self.pv_stress_com_grace, pv_stress_com_maturity=self.pv_stress_com_maturity, pv_stress_com_discount_cumulative_selected_by_t_g_0=self.pv_stress_com_discount_cumulative_selected_by_t_g_0, pv_stress_com_discount_cumulative_selected_by_t_m_condition=self.pv_stress_com_discount_cumulative_selected_by_t_m_condition)
+        return internals.pv_stress_com_output_amortization(pv_stress_com_grace=self.pv_stress_com_grace, pv_stress_com_maturity=self.pv_stress_com_maturity, pv_stress_com_discount_cumulative_selected_by_t_g_0=self.pv_stress_com_discount_cumulative_selected_by_t_g_0, pv_stress_com_discount_cumulative_selected_by_t_m_condition=self.pv_stress_com_discount_cumulative_selected_by_t_m_condition, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_average_interest_rate_new_debt(self) -> data.Series[float | str | None]:
@@ -6133,26 +6643,26 @@ class Model(_BoundInputs):
 
     @cached_property
     def pv_stress_pv_of_new_forex_debt(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_pv_of_new_forex_debt(pv_stress_discount_pv_of_debt=self.pv_stress_discount_pv_of_debt, pv_stress_average_interest_rate_new_debt=self.pv_stress_average_interest_rate_new_debt, pv_stress_usd_discount_rate=self.pv_stress_usd_discount_rate, pv_stress_new_forex_borrowing_gross_usd=self.pv_stress_new_forex_borrowing_gross_usd, pv_stress_total_debt_service=self.pv_stress_total_debt_service, pv_stress_amortization=self.pv_stress_amortization)
+        return internals.pv_stress_pv_of_new_forex_debt(pv_stress_discount_pv_of_debt=self.pv_stress_discount_pv_of_debt, pv_stress_average_interest_rate_new_debt=self.pv_stress_average_interest_rate_new_debt, pv_stress_usd_discount_rate=self.pv_stress_usd_discount_rate, pv_stress_new_forex_borrowing_gross_usd=self.pv_stress_new_forex_borrowing_gross_usd, pv_stress_total_debt_service=self.pv_stress_total_debt_service, pv_stress_amortization=self.pv_stress_amortization, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_total_debt_service(self) -> data.Series[float | str | None]:
-        return internals.pv_stress_total_debt_service(pv_stress_interest=self.pv_stress_interest, pv_stress_amortization=self.pv_stress_amortization, pv_stress_interest_scenario=data.PV_STRESS_INTEREST_SCENARIO)
+        return internals.pv_stress_total_debt_service(pv_stress_interest=self.pv_stress_interest, pv_stress_amortization=self.pv_stress_amortization, pv_stress_interest_scenario=data.PV_STRESS_INTEREST_SCENARIO, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_t_g_0(self) -> data.Series[int | str | None]:
-        return internals.pv_stress_t_g_0(pv_stress_calendar_period=self.pv_stress_calendar_period, pv_stress_average_grace_period_new_debt=self.pv_stress_average_grace_period_new_debt)
+        return internals.pv_stress_t_g_0(pv_stress_calendar_period=self.pv_stress_calendar_period, pv_stress_average_grace_period_new_debt=self.pv_stress_average_grace_period_new_debt, input3_old_debt_service=self.input3_old_debt_service)
 
     @cached_property
     def pv_stress_t_m_condition(self) -> data.Series[int | str | None]:
-        return internals.pv_stress_t_m_condition(pv_stress_calendar_period=self.pv_stress_calendar_period, pv_stress_average_maturity_of_new_debt=self.pv_stress_average_maturity_of_new_debt)
+        return internals.pv_stress_t_m_condition(pv_stress_calendar_period=self.pv_stress_calendar_period, pv_stress_average_maturity_of_new_debt=self.pv_stress_average_maturity_of_new_debt, input3_old_debt_service=self.input3_old_debt_service)
 
 
 @dataclass(frozen=True, kw_only=True)
 class Realism1ExternalDebtFlowComponentsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_external_debt_flow_components`."""
 
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -6206,7 +6716,7 @@ class Realism1ExternalDebtCreatingFlowsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     first_projection_year: int | str = _field(
@@ -6236,10 +6746,10 @@ class Realism1ExternalDebtCreatingFlowsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -6380,7 +6890,7 @@ class Realism1ExternalDebtCreatingFlowsInputs(_SnapshotInputs):
 class Realism1ExternalForecastErrorComponentLabelsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_external_forecast_error_component_labels`."""
 
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -6434,7 +6944,7 @@ class Realism1ExternalForecastErrorComponentsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -6467,10 +6977,10 @@ class Realism1ExternalForecastErrorComponentsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -6611,7 +7121,7 @@ class Realism1ExternalForecastErrorComponentsInputs(_SnapshotInputs):
 class Realism1ExternalForecastErrorDistributionLabelsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_external_forecast_error_distribution_labels`."""
 
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -6665,7 +7175,7 @@ class Realism1ExternalForecastErrorDistributionInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -6698,10 +7208,10 @@ class Realism1ExternalForecastErrorDistributionInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -6845,6 +7355,9 @@ class Realism1ExternalVintageYearsInputs(_SnapshotInputs):
     first_projection_year: int | str = _field(
         metadata={"default": data.FIRST_PROJECTION_YEAR_DEFAULT, "cells": data.FIRST_PROJECTION_YEAR_CELLS},
     )
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
+    )
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -6896,7 +7409,7 @@ class Realism1ExternalVintageDebtPathsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -6929,10 +7442,10 @@ class Realism1ExternalVintageDebtPathsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -7073,7 +7586,7 @@ class Realism1ExternalVintageDebtPathsInputs(_SnapshotInputs):
 class Realism1PublicDebtFlowComponentsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_public_debt_flow_components`."""
 
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -7127,7 +7640,7 @@ class Realism1PublicDebtCreatingFlowsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     first_projection_year: int | str = _field(
@@ -7184,6 +7697,9 @@ class Realism1PublicDebtCreatingFlowsInputs(_SnapshotInputs):
     input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify: data.Input3Input3MacroOtherDebtCreatingOrReducingFlowPleaseSpecify = _field(
         metadata={"default": data.INPUT3_INPUT_3_MACRO_OTHER_DEBT_CREATING_OR_REDUCING_FLOW_PLEASE_SPECIFY_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_OTHER_DEBT_CREATING_OR_REDUCING_FLOW_PLEASE_SPECIFY.cells},
     )
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
+    )
     input3_input_3_external_debt_ppg_mlt_external_debt_outstanding: data.Input3Input3ExternalDebtPpgMltExternalDebtOutstanding = _field(
         metadata={"default": data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_MLT_EXTERNAL_DEBT_OUTSTANDING_DEFAULT, "cells": data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_MLT_EXTERNAL_DEBT_OUTSTANDING.cells},
     )
@@ -7232,7 +7748,7 @@ class Realism1PublicDebtCreatingFlowsInputs(_SnapshotInputs):
 class Realism1PublicForecastErrorComponentLabelsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_public_forecast_error_component_labels`."""
 
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -7286,7 +7802,7 @@ class Realism1PublicForecastErrorComponentsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -7345,6 +7861,9 @@ class Realism1PublicForecastErrorComponentsInputs(_SnapshotInputs):
     )
     input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify: data.Input3Input3MacroOtherDebtCreatingOrReducingFlowPleaseSpecify = _field(
         metadata={"default": data.INPUT3_INPUT_3_MACRO_OTHER_DEBT_CREATING_OR_REDUCING_FLOW_PLEASE_SPECIFY_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_OTHER_DEBT_CREATING_OR_REDUCING_FLOW_PLEASE_SPECIFY.cells},
+    )
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
     )
     input3_input_3_external_debt_ppg_mlt_external_debt_outstanding: data.Input3Input3ExternalDebtPpgMltExternalDebtOutstanding = _field(
         metadata={"default": data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_MLT_EXTERNAL_DEBT_OUTSTANDING_DEFAULT, "cells": data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_MLT_EXTERNAL_DEBT_OUTSTANDING.cells},
@@ -7400,7 +7919,7 @@ class Realism1PublicForecastErrorLowerQuartileInputs(_SnapshotInputs):
 class Realism1PublicForecastErrorDistributionLabelsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_public_forecast_error_distribution_labels`."""
 
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -7454,7 +7973,7 @@ class Realism1PublicForecastErrorDistributionInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -7514,6 +8033,9 @@ class Realism1PublicForecastErrorDistributionInputs(_SnapshotInputs):
     input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify: data.Input3Input3MacroOtherDebtCreatingOrReducingFlowPleaseSpecify = _field(
         metadata={"default": data.INPUT3_INPUT_3_MACRO_OTHER_DEBT_CREATING_OR_REDUCING_FLOW_PLEASE_SPECIFY_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_OTHER_DEBT_CREATING_OR_REDUCING_FLOW_PLEASE_SPECIFY.cells},
     )
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
+    )
     input3_input_3_external_debt_ppg_mlt_external_debt_outstanding: data.Input3Input3ExternalDebtPpgMltExternalDebtOutstanding = _field(
         metadata={"default": data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_MLT_EXTERNAL_DEBT_OUTSTANDING_DEFAULT, "cells": data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_MLT_EXTERNAL_DEBT_OUTSTANDING.cells},
     )
@@ -7562,6 +8084,9 @@ class Realism1PublicForecastErrorDistributionInputs(_SnapshotInputs):
 class Realism1PublicVintageYearsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_public_vintage_years`."""
 
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
+    )
     current_year: int | str = _field(
         metadata={"default": data.CURRENT_YEAR_DEFAULT, "cells": data.CURRENT_YEAR_CELLS},
     )
@@ -7616,7 +8141,7 @@ class Realism1PublicVintageDebtPathsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -7675,6 +8200,9 @@ class Realism1PublicVintageDebtPathsInputs(_SnapshotInputs):
     )
     input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify: data.Input3Input3MacroOtherDebtCreatingOrReducingFlowPleaseSpecify = _field(
         metadata={"default": data.INPUT3_INPUT_3_MACRO_OTHER_DEBT_CREATING_OR_REDUCING_FLOW_PLEASE_SPECIFY_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_OTHER_DEBT_CREATING_OR_REDUCING_FLOW_PLEASE_SPECIFY.cells},
+    )
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
     )
     input3_input_3_external_debt_ppg_mlt_external_debt_outstanding: data.Input3Input3ExternalDebtPpgMltExternalDebtOutstanding = _field(
         metadata={"default": data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_MLT_EXTERNAL_DEBT_OUTSTANDING_DEFAULT, "cells": data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_MLT_EXTERNAL_DEBT_OUTSTANDING.cells},
@@ -7739,6 +8267,9 @@ class Realism2FiscalAdjustmentYearsInputs(_SnapshotInputs):
     first_projection_year: int | str = _field(
         metadata={"default": data.FIRST_PROJECTION_YEAR_DEFAULT, "cells": data.FIRST_PROJECTION_YEAR_CELLS},
     )
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
+    )
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -7747,6 +8278,9 @@ class Realism2UnderlyingGrowthYearsInputs(_SnapshotInputs):
 
     first_projection_year: int | str = _field(
         metadata={"default": data.FIRST_PROJECTION_YEAR_DEFAULT, "cells": data.FIRST_PROJECTION_YEAR_CELLS},
+    )
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
     )
 
 
@@ -7757,6 +8291,9 @@ class Realism2BaselineGrowthInputs(_SnapshotInputs):
     input3_input_3_macro_real_gross_domestic_product: data.Input3Input3MacroRealGrossDomesticProduct = _field(
         metadata={"default": data.INPUT3_INPUT_3_MACRO_REAL_GROSS_DOMESTIC_PRODUCT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_REAL_GROSS_DOMESTIC_PRODUCT.cells},
     )
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
+    )
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -7765,6 +8302,9 @@ class Realism2GrowthTMinus1Inputs(_SnapshotInputs):
 
     input3_input_3_macro_real_gross_domestic_product: data.Input3Input3MacroRealGrossDomesticProduct = _field(
         metadata={"default": data.INPUT3_INPUT_3_MACRO_REAL_GROSS_DOMESTIC_PRODUCT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_REAL_GROSS_DOMESTIC_PRODUCT.cells},
+    )
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
     )
 
 
@@ -7783,6 +8323,12 @@ class Realism2FiscalAdjustmentGrowthImpactInputs(_SnapshotInputs):
     )
     in3_macro_government_primary_expenditures_this_used_be: data.In3MacroGovernmentPrimaryExpendituresThisUsedBe = _field(
         metadata={"default": data.IN3_MACRO_GOVERNMENT_PRIMARY_EXPENDITURES_THIS_USED_BE_DEFAULT, "cells": data.IN3_MACRO_GOVERNMENT_PRIMARY_EXPENDITURES_THIS_USED_BE.cells},
+    )
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
+    )
+    input3_old_debt_service: data.Input3OldDebtService = _field(
+        metadata={"default": data.INPUT3_OLD_DEBT_SERVICE_DEFAULT, "cells": data.INPUT3_OLD_DEBT_SERVICE.cells},
     )
 
 
@@ -7805,6 +8351,12 @@ class Realism2UnderlyingGrowthInputs(_SnapshotInputs):
     in3_macro_government_primary_expenditures_this_used_be: data.In3MacroGovernmentPrimaryExpendituresThisUsedBe = _field(
         metadata={"default": data.IN3_MACRO_GOVERNMENT_PRIMARY_EXPENDITURES_THIS_USED_BE_DEFAULT, "cells": data.IN3_MACRO_GOVERNMENT_PRIMARY_EXPENDITURES_THIS_USED_BE.cells},
     )
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
+    )
+    input3_old_debt_service: data.Input3OldDebtService = _field(
+        metadata={"default": data.INPUT3_OLD_DEBT_SERVICE_DEFAULT, "cells": data.INPUT3_OLD_DEBT_SERVICE.cells},
+    )
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -7814,13 +8366,16 @@ class Realism3InvestmentYearsInputs(_SnapshotInputs):
     first_projection_year: int | str = _field(
         metadata={"default": data.FIRST_PROJECTION_YEAR_DEFAULT, "cells": data.FIRST_PROJECTION_YEAR_CELLS},
     )
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
+    )
 
 
 @dataclass(frozen=True, kw_only=True)
 class Realism3InvestmentPathLabelsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism3_investment_path_labels`."""
 
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -7838,13 +8393,16 @@ class Realism3PublicPrivateInvestmentPathsInputs(_SnapshotInputs):
     input3_input_3_macro_real_gross_domestic_product: data.Input3Input3MacroRealGrossDomesticProduct = _field(
         metadata={"default": data.INPUT3_INPUT_3_MACRO_REAL_GROSS_DOMESTIC_PRODUCT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_REAL_GROSS_DOMESTIC_PRODUCT.cells},
     )
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
+    )
 
 
 @dataclass(frozen=True, kw_only=True)
 class Realism3GrowthAccountingVintagesInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism3_growth_accounting_vintages`."""
 
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -7898,7 +8456,7 @@ class Realism3GrowthAccountingContributionsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -7928,10 +8486,10 @@ class Realism3GrowthAccountingContributionsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -8054,7 +8612,7 @@ class Realism3GrowthAccountingContributionsInputs(_SnapshotInputs):
 class Realism4Projected3yrAdjustmentLabelInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism4_projected_3yr_adjustment_label`."""
 
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -8078,6 +8636,12 @@ class Realism4Projected3yrAdjustmentInputs(_SnapshotInputs):
     in3_macro_government_primary_expenditures_this_used_be: data.In3MacroGovernmentPrimaryExpendituresThisUsedBe = _field(
         metadata={"default": data.IN3_MACRO_GOVERNMENT_PRIMARY_EXPENDITURES_THIS_USED_BE_DEFAULT, "cells": data.IN3_MACRO_GOVERNMENT_PRIMARY_EXPENDITURES_THIS_USED_BE.cells},
     )
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
+    )
+    input3_old_debt_service: data.Input3OldDebtService = _field(
+        metadata={"default": data.INPUT3_OLD_DEBT_SERVICE_DEFAULT, "cells": data.INPUT3_OLD_DEBT_SERVICE.cells},
+    )
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -8098,6 +8662,12 @@ class Realism4Projected3yrAdjustmentBinInputs(_SnapshotInputs):
     )
     in3_macro_government_primary_expenditures_this_used_be: data.In3MacroGovernmentPrimaryExpendituresThisUsedBe = _field(
         metadata={"default": data.IN3_MACRO_GOVERNMENT_PRIMARY_EXPENDITURES_THIS_USED_BE_DEFAULT, "cells": data.IN3_MACRO_GOVERNMENT_PRIMARY_EXPENDITURES_THIS_USED_BE.cells},
+    )
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
+    )
+    input3_old_debt_service: data.Input3OldDebtService = _field(
+        metadata={"default": data.INPUT3_OLD_DEBT_SERVICE_DEFAULT, "cells": data.INPUT3_OLD_DEBT_SERVICE.cells},
     )
 
 
@@ -8120,6 +8690,12 @@ class Realism4Projected3yrAdjustmentCategoryInputs(_SnapshotInputs):
     in3_macro_government_primary_expenditures_this_used_be: data.In3MacroGovernmentPrimaryExpendituresThisUsedBe = _field(
         metadata={"default": data.IN3_MACRO_GOVERNMENT_PRIMARY_EXPENDITURES_THIS_USED_BE_DEFAULT, "cells": data.IN3_MACRO_GOVERNMENT_PRIMARY_EXPENDITURES_THIS_USED_BE.cells},
     )
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
+    )
+    input3_old_debt_service: data.Input3OldDebtService = _field(
+        metadata={"default": data.INPUT3_OLD_DEBT_SERVICE_DEFAULT, "cells": data.INPUT3_OLD_DEBT_SERVICE.cells},
+    )
 
 
 @dataclass(frozen=True, kw_only=True)
@@ -8141,13 +8717,19 @@ class Realism4Projected3yrAdjustmentSampleShareInputs(_SnapshotInputs):
     in3_macro_government_primary_expenditures_this_used_be: data.In3MacroGovernmentPrimaryExpendituresThisUsedBe = _field(
         metadata={"default": data.IN3_MACRO_GOVERNMENT_PRIMARY_EXPENDITURES_THIS_USED_BE_DEFAULT, "cells": data.IN3_MACRO_GOVERNMENT_PRIMARY_EXPENDITURES_THIS_USED_BE.cells},
     )
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
+    )
+    input3_old_debt_service: data.Input3OldDebtService = _field(
+        metadata={"default": data.INPUT3_OLD_DEBT_SERVICE_DEFAULT, "cells": data.INPUT3_OLD_DEBT_SERVICE.cells},
+    )
 
 
 @dataclass(frozen=True, kw_only=True)
 class Realism4FiscalAdjustmentTopBinLabelInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism4_fiscal_adjustment_top_bin_label`."""
 
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -8213,7 +8795,7 @@ class ProbabilityPvDebtToGdpInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -8258,10 +8840,10 @@ class ProbabilityPvDebtToGdpInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -8447,7 +9029,7 @@ class ProbabilityPvDebtToExportsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -8492,10 +9074,10 @@ class ProbabilityPvDebtToExportsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -8681,7 +9263,7 @@ class ProbabilityDebtServiceToExportsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -8726,10 +9308,10 @@ class ProbabilityDebtServiceToExportsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -8918,7 +9500,7 @@ class ProbabilityDebtServiceToRevenueInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -8963,10 +9545,10 @@ class ProbabilityDebtServiceToRevenueInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -9155,7 +9737,7 @@ class ProbabilityPvDebtToGdpDistressInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -9200,10 +9782,10 @@ class ProbabilityPvDebtToGdpDistressInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -9389,7 +9971,7 @@ class ProbabilityPvDebtToExportsDistressInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -9434,10 +10016,10 @@ class ProbabilityPvDebtToExportsDistressInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -9623,7 +10205,7 @@ class ProbabilityDebtServiceToExportsDistressInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -9668,10 +10250,10 @@ class ProbabilityDebtServiceToExportsDistressInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -9860,7 +10442,7 @@ class ProbabilityDebtServiceToRevenueDistressInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -9905,10 +10487,10 @@ class ProbabilityDebtServiceToRevenueDistressInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -10097,7 +10679,7 @@ class ExternalDsaRiskRatingSignalInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -10142,10 +10724,10 @@ class ExternalDsaRiskRatingSignalInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -10334,7 +10916,7 @@ class ExternalDsaRiskRatingNumericInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -10379,10 +10961,10 @@ class ExternalDsaRiskRatingNumericInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -10571,7 +11153,7 @@ class ExternalBaselineBreachInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -10616,10 +11198,10 @@ class ExternalBaselineBreachInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -10808,7 +11390,7 @@ class ExternalShockBreachInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -10853,10 +11435,10 @@ class ExternalShockBreachInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -11045,7 +11627,7 @@ class ExternalPvDebtToGdpMxShockInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -11090,10 +11672,10 @@ class ExternalPvDebtToGdpMxShockInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -11279,7 +11861,7 @@ class ExternalPvDebtToExportsMxShockInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -11324,10 +11906,10 @@ class ExternalPvDebtToExportsMxShockInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -11513,7 +12095,7 @@ class ExternalDebtServiceToExportsMxShockInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -11558,10 +12140,10 @@ class ExternalDebtServiceToExportsMxShockInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -11750,7 +12332,7 @@ class ExternalDebtServiceToRevenueMxShockInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -11795,10 +12377,10 @@ class ExternalDebtServiceToRevenueMxShockInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -11987,7 +12569,7 @@ class FiscalRiskRatingSignalInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -12038,10 +12620,10 @@ class FiscalRiskRatingSignalInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -12257,7 +12839,7 @@ class FiscalRiskRatingNumericInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -12308,10 +12890,10 @@ class FiscalRiskRatingNumericInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -12527,7 +13109,7 @@ class FiscalBaselineBreachInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -12578,10 +13160,10 @@ class FiscalBaselineBreachInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -12797,7 +13379,7 @@ class FiscalShockBreachInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -12848,10 +13430,10 @@ class FiscalShockBreachInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -13067,7 +13649,7 @@ class FiscalPvDebtToGdpMxShockInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -13118,10 +13700,10 @@ class FiscalPvDebtToGdpMxShockInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -13304,8 +13886,11 @@ class TailoredStressCommodityPriceApplicableInputs(_SnapshotInputs):
     input6_commodity_group_relevant: data.Input6CommodityGroupRelevant = _field(
         metadata={"default": data.INPUT6_COMMODITY_GROUP_RELEVANT_DEFAULT, "cells": data.INPUT6_COMMODITY_GROUP_RELEVANT.cells},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
+    )
+    input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
+        metadata={"default": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.cells},
     )
     input3_input_3_macro_exports_of_goods_and_services: data.Input3Input3MacroExportsOfGoodsAndServices = _field(
         metadata={"default": data.INPUT3_INPUT_3_MACRO_EXPORTS_OF_GOODS_AND_SERVICES_DEFAULT, "cells": data.INPUT3_INPUT_3_MACRO_EXPORTS_OF_GOODS_AND_SERVICES.cells},
@@ -13331,7 +13916,7 @@ class TailoredStressMarketFinancingApplicableInputs(_SnapshotInputs):
     country: str = _field(
         metadata={"default": data.COUNTRY_DEFAULT, "cells": data.COUNTRY_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
 
@@ -13385,7 +13970,7 @@ class FiscalSpaceModerateRiskSignalInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -13439,10 +14024,10 @@ class FiscalSpaceModerateRiskSignalInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -13631,7 +14216,7 @@ class OverallRiskRatingSignalInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -13682,10 +14267,10 @@ class OverallRiskRatingSignalInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -13904,7 +14489,7 @@ class OverallRiskRatingNumericInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -13955,10 +14540,10 @@ class OverallRiskRatingNumericInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -14177,7 +14762,7 @@ class ChartOutputChartDataPvOfDebtToGdpRatioPvDebtToGdpInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -14228,10 +14813,10 @@ class ChartOutputChartDataPvOfDebtToGdpRatioPvDebtToGdpInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -14447,7 +15032,7 @@ class ChartOutputChartDataPvOfDebtToRevenueRatioPvDebtToRevenueInputs(_SnapshotI
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -14498,10 +15083,10 @@ class ChartOutputChartDataPvOfDebtToRevenueRatioPvDebtToRevenueInputs(_SnapshotI
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -14717,7 +15302,7 @@ class ChartOutputChartDataDebtServiceToRevenueRatioDebtServiceToRevenueInputs(_S
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -14768,10 +15353,10 @@ class ChartOutputChartDataDebtServiceToRevenueRatioDebtServiceToRevenueInputs(_S
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -14981,7 +15566,7 @@ class ChartOutputChartDataDebtServiceToGdpRatioDebtServiceGdpRatioInputs(_Snapsh
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -15032,10 +15617,10 @@ class ChartOutputChartDataDebtServiceToGdpRatioDebtServiceGdpRatioInputs(_Snapsh
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -15245,7 +15830,7 @@ class ChartPvDebtGdpRatioCustomAlternativeScenarioInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     first_projection_year: int | str = _field(
@@ -15281,10 +15866,10 @@ class ChartPvDebtGdpRatioCustomAlternativeScenarioInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -15497,7 +16082,7 @@ class ChartOutputPvDebtGdpRatioInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -15542,10 +16127,10 @@ class ChartOutputPvDebtGdpRatioInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -15731,7 +16316,7 @@ class ChartPvDebtToExportsCustomAlternativeScenarioInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     first_projection_year: int | str = _field(
@@ -15767,10 +16352,10 @@ class ChartPvDebtToExportsCustomAlternativeScenarioInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -15983,7 +16568,7 @@ class ChartOutputPvDebtToExportsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -16028,10 +16613,10 @@ class ChartOutputPvDebtToExportsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -16217,7 +16802,7 @@ class ChartDebtServiceToExportsCustomAlternativeScenarioInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     first_projection_year: int | str = _field(
@@ -16253,10 +16838,10 @@ class ChartDebtServiceToExportsCustomAlternativeScenarioInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -16466,7 +17051,7 @@ class ChartOutputDebtServiceToExportsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -16511,10 +17096,10 @@ class ChartOutputDebtServiceToExportsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -16703,7 +17288,7 @@ class ChartDebtServiceToRevenueCustomAlternativeScenarioInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     first_projection_year: int | str = _field(
@@ -16739,10 +17324,10 @@ class ChartDebtServiceToRevenueCustomAlternativeScenarioInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -16952,7 +17537,7 @@ class ChartOutputDebtServiceToRevenueInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -16997,10 +17582,10 @@ class ChartOutputDebtServiceToRevenueInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -17189,7 +17774,7 @@ class ChartOutputPvDebtToGdpInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -17240,10 +17825,10 @@ class ChartOutputPvDebtToGdpInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -17459,7 +18044,7 @@ class ChartPvDebtToRevenueMxShockStandardTailoredInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -17510,10 +18095,10 @@ class ChartPvDebtToRevenueMxShockStandardTailoredInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -17729,7 +18314,7 @@ class ChartOutputDebtServiceToRevenueFiscalInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: str = _field(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -17780,10 +18365,10 @@ class ChartOutputDebtServiceToRevenueFiscalInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: str = _field(
+    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: str = _field(
+    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(

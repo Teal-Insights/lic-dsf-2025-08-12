@@ -612,9 +612,45 @@ series:
   series_context:
     TABLE: realism3.investment_growth
   notes: Real private investment to GDP under the previous and current DSA vintages.
+- id: realism3_constant_baseline_real_gdp_index
+  sheet: Realism 3 - Invest-Growth
+  data_range: '''Realism 3 - Invest-Growth''!C65:C66'
+  layout: matrix
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: string
+        normalize: strip
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 49
+        read: int
+  key:
+  - INDICATOR
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism3.investment_growth
+  notes: Baseline real GDP index set to 100. Later years compound this cell.
 - id: realism3_baseline_real_gdp_index_by_vintage
   sheet: Realism 3 - Invest-Growth
-  data_range: '''Realism 3 - Invest-Growth''!C65:Q66'
+  data_range: '''Realism 3 - Invest-Growth''!D65:Q66'
   layout: matrix
   internal: {}
   domain:
@@ -649,7 +685,7 @@ series:
   - TIME_PERIOD
   series_context:
     TABLE: realism3.investment_growth
-  notes: Baseline real GDP index, prior tenth year set to 100, for both DSA vintages.
+  notes: Baseline real GDP index after the base year of 100, for both DSA vintages.
 - id: realism3_government_capital_actual
   sheet: Realism 3 - Invest-Growth
   data_range: '''Realism 3 - Invest-Growth''!C70:Q71'
@@ -1218,9 +1254,37 @@ series:
     PARAMETER: median_label
   notes: 'Median marker on the external forecast-error chart.'
 
+- id: realism1_constant_external_projected_change_callout
+  sheet: 'Realism 1 - Forecast Error'
+  data_range: '''Realism 1 - Forecast Error''!AF65'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: AD
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: realism1.external_forecast_error
+  notes: Typed projected-change callout beside the external forecast-error chart.
+
 - id: realism1_external_projected_change_callouts
   sheet: 'Realism 1 - Forecast Error'
-  data_range: '''Realism 1 - Forecast Error''!AF65:AF66'
+  data_range: '''Realism 1 - Forecast Error''!AF66'
   layout: series
   internal: {}
   domain:
@@ -1246,7 +1310,7 @@ series:
   - INDICATOR
   series_context:
     TABLE: realism1.external_forecast_error
-  notes: 'Projected-change callouts beside the external forecast-error chart.'
+  notes: Formula projected-change callout beside the external forecast-error chart.
 
 - id: realism1_public_last_vintage_projected_change
   sheet: 'Realism 1 - Forecast Error'
@@ -1267,9 +1331,37 @@ series:
     PARAMETER: last_vintage_projected_change
   notes: 'Projected change for the last public-debt vintage.'
 
+- id: realism1_constant_public_projected_change_callout
+  sheet: 'Realism 1 - Forecast Error'
+  data_range: '''Realism 1 - Forecast Error''!AF145'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INDICATOR
+      concept: INDICATOR
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: AD
+        read: string
+        normalize: strip
+  key:
+  - INDICATOR
+  series_context:
+    TABLE: realism1.public_forecast_error
+  notes: Typed projected-change callout for the rebased public-debt vintage.
+
 - id: realism1_public_projected_change_callouts
   sheet: 'Realism 1 - Forecast Error'
-  data_range: '''Realism 1 - Forecast Error''!AF145:AF146'
+  data_range: '''Realism 1 - Forecast Error''!AF146'
   layout: series
   internal: {}
   domain:
@@ -1295,7 +1387,7 @@ series:
   - INDICATOR
   series_context:
     TABLE: realism1.public_forecast_error
-  notes: 'Projected-change callouts for the rebased public-debt vintage.'
+  notes: Formula projected-change callout for the rebased public-debt vintage.
 
 - id: realism1_public_projected_change_callout_labels
   sheet: 'Realism 1 - Forecast Error'
@@ -1528,9 +1620,37 @@ series:
     INDICATOR: 'Multiplier (m)'
   notes: 'Fiscal multipliers m.'
 
+- id: realism2_constant_persistence
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range: '''Realism 2 - Fiscal multiplier''!D16'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: SCENARIO
+      concept: SCENARIO
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 44
+        read: string
+  key:
+  - SCENARIO
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    INDICATOR: 'Persistence (p)'
+  notes: Typed shock persistence p. The other multiplier scenarios copy this cell.
+
 - id: realism2_persistence_values
   sheet: 'Realism 2 - Fiscal multiplier'
-  data_range: '''Realism 2 - Fiscal multiplier''!D16:H16'
+  data_range: '''Realism 2 - Fiscal multiplier''!E16:H16'
   layout: series
   internal: {}
   domain:
@@ -1556,11 +1676,40 @@ series:
   series_context:
     TABLE: realism2.fiscal_multiplier
     INDICATOR: 'Persistence (p)'
-  notes: 'Shock persistence p for each multiplier.'
+  notes: Shock persistence p copied from the typed base scenario.
+
+- id: realism2_constant_shock_year_index
+  sheet: 'Realism 2 - Fiscal multiplier'
+  data_range: '''Realism 2 - Fiscal multiplier''!B21'
+  layout: series
+  constant: {}
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: row_label
+        label_column: A
+        read: int
+        normalize: strip
+  key:
+  - TIME_PERIOD
+  series_context:
+    TABLE: realism2.fiscal_multiplier
+    INDICATOR: 'Shock year index'
+  notes: Shock-year index origin, typed 0. The next year adds 1.
 
 - id: realism2_shock_year_index
   sheet: 'Realism 2 - Fiscal multiplier'
-  data_range: '''Realism 2 - Fiscal multiplier''!B21:B22'
+  data_range: '''Realism 2 - Fiscal multiplier''!B22'
   layout: series
   internal: {}
   domain:
@@ -1587,7 +1736,7 @@ series:
   series_context:
     TABLE: realism2.fiscal_multiplier
     INDICATOR: 'Shock year index'
-  notes: 'Years since the first projection year for the multiplier shock.'
+  notes: Shock-year index after the typed origin.
 
 - id: realism2_growth_shock
   sheet: 'Realism 2 - Fiscal multiplier'

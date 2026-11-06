@@ -18,17 +18,17 @@ dependencies = [
 packages = ["lic_dsf_2025_08_12"]
 
 [tool.uv]
+constraint-dependencies = ["certifi>=2026.10.19"]
 default-groups = ["dev"]
 
 [dependency-groups]
 dev = [
     "quarto>=0.1.0",
     "great-docs>=0.12.0",
-    "ipykernel<7",
     "pandas",
     "polars",
     "matplotlib",
 ]
 validation = [
-    "excel-grapher[fast]>=24.1.3",
+    "excel-grapher[fast]>=24.1.15",
 ]

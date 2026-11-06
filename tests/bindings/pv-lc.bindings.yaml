@@ -1450,15 +1450,121 @@ series:
     TABLE: pv_lc.labels
     INDICATOR: Stock of debt (in LC)
   notes: Stock of debt (in LC) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+- id: pv_lc_constant_output_stock_of_debt_in_lc
+  sheet:
+  - PV_LC_NR1
+  - PV_LC_NR2
+  - PV_LC_NR3
+  data_range:
+  - PV_LC_NR1!D47:D408
+  - PV_LC_NR2!D47:D408
+  - PV_LC_NR3!D47:D408
+  layout: series
+  constant: {}
+  exclude_rows:
+  - '29:46'
+  - 48:65
+  - 67:84
+  - 86:103
+  - 105:122
+  - 124:141
+  - 143:160
+  - 162:179
+  - 181:198
+  - 200:217
+  - 219:236
+  - 238:255
+  - 257:274
+  - 276:293
+  - 295:312
+  - 314:331
+  - 333:350
+  - 352:369
+  - 371:388
+  - 390:407
+  structure:
+    measure:
+      concept: OBS_VALUE
+      dtype: float
+      bind:
+        kind: data_cell
+        read: float
+    dimensions:
+    - id: INSTRUMENT
+      concept: INSTRUMENT
+      role: key
+      scope: cell
+      bind:
+        kind: sheet_name
+        values:
+          PV_LC_NR1: Bonds (1 to 3 years)-LC
+          PV_LC_NR2: Bonds (4 to 7 years)-LC
+          PV_LC_NR3: Bonds (beyond 7 years)-LC
+    - id: HOLDER
+      concept: HOLDER
+      role: key
+      scope: cell
+      bind:
+        kind: constant
+        value: non-residents
+    - id: ISSUANCE_YEAR
+      concept: ISSUANCE_YEAR
+      role: key
+      scope: cell
+      bind:
+        kind: value_map
+        values:
+          2025: 47
+          2026: 66
+          2027: 85
+          2028: 104
+          2029: 123
+          2030: 142
+          2031: 161
+          2032: 180
+          2033: 199
+          2034: 218
+          2035: 237
+          2036: 256
+          2037: 275
+          2038: 294
+          2039: 313
+          2040: 332
+          2041: 351
+          2042: 370
+          2043: 389
+          2044: 408
+        read: int
+    - id: TIME_PERIOD
+      concept: TIME_PERIOD
+      role: key
+      scope: cell
+      bind:
+        kind: column_header
+        header_row: 24
+        read: int
+  key:
+  - INSTRUMENT
+  - HOLDER
+  - ISSUANCE_YEAR
+  - TIME_PERIOD
+  series_context:
+    TABLE: pv_lc.output
+    INDICATOR: Stock of debt (in LC)
+    VARIANT: output
+  notes: Typed opening stock of debt (in LC), 0 in column D for each issuance vintage after 2024. The next projection year reads this cell.
 - id: pv_lc_output_stock_of_debt_in_lc
   sheet:
   - PV_LC_NR1
   - PV_LC_NR2
   - PV_LC_NR3
   data_range:
-  - PV_LC_NR1!D28:AD408
-  - PV_LC_NR2!D28:AD408
-  - PV_LC_NR3!D28:AD408
+  - PV_LC_NR1!D28
+  - PV_LC_NR1!E28:AD408
+  - PV_LC_NR2!D28
+  - PV_LC_NR2!E28:AD408
+  - PV_LC_NR3!D28
+  - PV_LC_NR3!E28:AD408
   layout: series
   internal: {}
   domain:
@@ -1557,7 +1663,7 @@ series:
     TABLE: pv_lc.output
     INDICATOR: Stock of debt (in LC)
     VARIANT: output
-  notes: Stock of debt (in LC) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3.
+  notes: Stock of debt (in LC) on PV_LC, keyed by INSTRUMENT across PV_LC_NR1, PV_LC_NR2, PV_LC_NR3. Column D of later issuance vintages is pv_lc_constant_output_stock_of_debt_in_lc.
 - id: pv_lc_output_pv_of_debt_in_usd
   sheet:
   - PV_LC_NR1
