@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
+from typing import Literal
+
 from . import data
 from .excel import coerce_input_measure, require_input_domain
+from .runtime import require_annotated_domain
 
 
 def _check_input4_interest_rate(
@@ -41,11 +44,13 @@ def _check_input4_loan_maturity(
 
 def _check_input4_disbursements(
     input4_disbursements: data.Input4Disbursements,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.Input4Disbursements:
     """Validate `input4_disbursements` before the model reads it."""
-    data.INPUT4_DISBURSEMENTS.schema.validate(input4_disbursements)
+    data.INPUT4_DISBURSEMENTS.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input4_disbursements)
     input4_disbursements = coerce_input_measure(input4_disbursements, dtype="float", series_id="input4_disbursements")
-    for coordinate in data.INPUT4_DISBURSEMENTS.required:
+    for coordinate in data.INPUT4_DISBURSEMENTS.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input4_disbursements[coordinate], {"real_between": {"min": 0, "max": 1000000000000000.0}}, series_id="input4_disbursements" + repr(coordinate))
     return input4_disbursements
 
@@ -90,22 +95,26 @@ def _check_input5_grace_period(
 
 def _check_input5_interest_rate_on_domestic_debt(
     input5_interest_rate_on_domestic_debt: data.Input5InterestRateOnDomesticDebt,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.Input5InterestRateOnDomesticDebt:
     """Validate `input5_interest_rate_on_domestic_debt` before the model reads it."""
-    data.INPUT5_INTEREST_RATE_ON_DOMESTIC_DEBT.schema.validate(input5_interest_rate_on_domestic_debt)
+    data.INPUT5_INTEREST_RATE_ON_DOMESTIC_DEBT.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input5_interest_rate_on_domestic_debt)
     input5_interest_rate_on_domestic_debt = coerce_input_measure(input5_interest_rate_on_domestic_debt, dtype="float", series_id="input5_interest_rate_on_domestic_debt")
-    for coordinate in data.INPUT5_INTEREST_RATE_ON_DOMESTIC_DEBT.required:
+    for coordinate in data.INPUT5_INTEREST_RATE_ON_DOMESTIC_DEBT.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input5_interest_rate_on_domestic_debt[coordinate], {"real_between": {"min": 0, "max": 1000000000000000.0}}, series_id="input5_interest_rate_on_domestic_debt" + repr(coordinate))
     return input5_interest_rate_on_domestic_debt
 
 
 def _check_input5_interest_rate_on_domestic_debt_fx_long(
     input5_interest_rate_on_domestic_debt_fx_long: data.Input5InterestRateOnDomesticDebtFxLong,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.Input5InterestRateOnDomesticDebtFxLong:
     """Validate `input5_interest_rate_on_domestic_debt_fx_long` before the model reads it."""
-    data.INPUT5_INTEREST_RATE_ON_DOMESTIC_DEBT_FX_LONG.schema.validate(input5_interest_rate_on_domestic_debt_fx_long)
+    data.INPUT5_INTEREST_RATE_ON_DOMESTIC_DEBT_FX_LONG.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input5_interest_rate_on_domestic_debt_fx_long)
     input5_interest_rate_on_domestic_debt_fx_long = coerce_input_measure(input5_interest_rate_on_domestic_debt_fx_long, dtype="float", series_id="input5_interest_rate_on_domestic_debt_fx_long")
-    for coordinate in data.INPUT5_INTEREST_RATE_ON_DOMESTIC_DEBT_FX_LONG.required:
+    for coordinate in data.INPUT5_INTEREST_RATE_ON_DOMESTIC_DEBT_FX_LONG.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input5_interest_rate_on_domestic_debt_fx_long[coordinate], {"real_between": {"min": 0, "max": 1}}, series_id="input5_interest_rate_on_domestic_debt_fx_long" + repr(coordinate))
     return input5_interest_rate_on_domestic_debt_fx_long
 
@@ -128,11 +137,13 @@ def _check_input5_maturity_central_bank(input5_maturity_central_bank: int | str)
 
 def _check_input5_public_gfns_other_adjustment(
     input5_public_gfns_other_adjustment: data.Input5PublicGfnsOtherAdjustment,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.Input5PublicGfnsOtherAdjustment:
     """Validate `input5_public_gfns_other_adjustment` before the model reads it."""
-    data.INPUT5_PUBLIC_GFNS_OTHER_ADJUSTMENT.schema.validate(input5_public_gfns_other_adjustment)
+    data.INPUT5_PUBLIC_GFNS_OTHER_ADJUSTMENT.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input5_public_gfns_other_adjustment)
     input5_public_gfns_other_adjustment = coerce_input_measure(input5_public_gfns_other_adjustment, dtype="float", series_id="input5_public_gfns_other_adjustment")
-    for coordinate in data.INPUT5_PUBLIC_GFNS_OTHER_ADJUSTMENT.required:
+    for coordinate in data.INPUT5_PUBLIC_GFNS_OTHER_ADJUSTMENT.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input5_public_gfns_other_adjustment[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input5_public_gfns_other_adjustment" + repr(coordinate))
     return input5_public_gfns_other_adjustment
 
@@ -150,15 +161,21 @@ def _check_input5_gfn_share(input5_gfn_share: data.Input5GfnShare) -> data.Input
     """Validate `input5_gfn_share` before the model reads it."""
     data.INPUT5_GFN_SHARE.schema.validate(input5_gfn_share)
     input5_gfn_share = coerce_input_measure(input5_gfn_share, dtype="float", series_id="input5_gfn_share")
-    for coordinate in data.INPUT5_GFN_SHARE.required:
+    for coordinate in data.INPUT5_GFN_SHARE.required.bind(VARIANT=input5_gfn_share):
         require_input_domain(input5_gfn_share[coordinate], {"real_between": {"min": 0, "max": 1}}, series_id="input5_gfn_share" + repr(coordinate))
     return input5_gfn_share
 
 
-def _check_start_working_language(start_working_language: str) -> str:
+def _check_start_working_language(
+    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"],
+) -> Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"]:
     """Validate `start_working_language` before the model reads it."""
     start_working_language = coerce_input_measure(start_working_language, dtype="string", series_id="start_working_language")
-    require_input_domain(start_working_language, {"enum": frozenset({"English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"})}, series_id="start_working_language")
+    require_annotated_domain(
+        start_working_language,
+        Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"],
+        series_id="start_working_language",
+    )
     return start_working_language
 
 
@@ -257,12 +274,14 @@ def _check_ppp_capital_stock_shock_pct(ppp_capital_stock_shock_pct: float | str)
 
 def _check_customized_public_delta(
     customized_public_delta: data.CustomizedPublicDelta,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.CustomizedPublicDelta:
     """Validate `customized_public_delta` before the model reads it."""
-    data.CUSTOMIZED_PUBLIC_DELTA.schema.validate(customized_public_delta)
+    data.CUSTOMIZED_PUBLIC_DELTA.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(customized_public_delta)
     customized_public_delta = coerce_input_measure(customized_public_delta, dtype="float", series_id="customized_public_delta")
-    for coordinate in data.CUSTOMIZED_PUBLIC_DELTA.required:
-        require_input_domain(customized_public_delta[coordinate], {"real_between": {"min": 0, "max": 1000000000000000.0}}, series_id="customized_public_delta" + repr(coordinate))
+    for coordinate in data.CUSTOMIZED_PUBLIC_DELTA.required.bind(TIME_PERIOD=TIME_PERIOD):
+        require_input_domain(customized_public_delta[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="customized_public_delta" + repr(coordinate))
     return customized_public_delta
 
 
@@ -293,29 +312,33 @@ def _check_input6_commodity_group_relevant(
     """Validate `input6_commodity_group_relevant` before the model reads it."""
     data.INPUT6_COMMODITY_GROUP_RELEVANT.schema.validate(input6_commodity_group_relevant)
     input6_commodity_group_relevant = coerce_input_measure(input6_commodity_group_relevant, dtype="string", series_id="input6_commodity_group_relevant")
-    for coordinate in data.INPUT6_COMMODITY_GROUP_RELEVANT.required:
+    for coordinate in data.INPUT6_COMMODITY_GROUP_RELEVANT.required.bind(COMMODITY=input6_commodity_group_relevant):
         require_input_domain(input6_commodity_group_relevant[coordinate], {"enum": frozenset({"No", "Yes"})}, series_id="input6_commodity_group_relevant" + repr(coordinate))
     return input6_commodity_group_relevant
 
 
 def _check_input8_sdr_interest_historical(
     input8_sdr_interest_historical: data.Input8SdrInterestHistorical,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.Input8SdrInterestHistorical:
     """Validate `input8_sdr_interest_historical` before the model reads it."""
-    data.INPUT8_SDR_INTEREST_HISTORICAL.schema.validate(input8_sdr_interest_historical)
+    data.INPUT8_SDR_INTEREST_HISTORICAL.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input8_sdr_interest_historical)
     input8_sdr_interest_historical = coerce_input_measure(input8_sdr_interest_historical, dtype="float", series_id="input8_sdr_interest_historical")
-    for coordinate in data.INPUT8_SDR_INTEREST_HISTORICAL.required:
+    for coordinate in data.INPUT8_SDR_INTEREST_HISTORICAL.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input8_sdr_interest_historical[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input8_sdr_interest_historical" + repr(coordinate))
     return input8_sdr_interest_historical
 
 
 def _check_input8_sdr_interest(
     input8_sdr_interest: data.Input8SdrInterest,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.Input8SdrInterest:
     """Validate `input8_sdr_interest` before the model reads it."""
-    data.INPUT8_SDR_INTEREST.schema.validate(input8_sdr_interest)
+    data.INPUT8_SDR_INTEREST.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input8_sdr_interest)
     input8_sdr_interest = coerce_input_measure(input8_sdr_interest, dtype="float", series_id="input8_sdr_interest")
-    for coordinate in data.INPUT8_SDR_INTEREST.required:
+    for coordinate in data.INPUT8_SDR_INTEREST.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input8_sdr_interest[coordinate], {"real_between": {"min": 0, "max": 1000000000000000.0}}, series_id="input8_sdr_interest" + repr(coordinate))
     return input8_sdr_interest
 
@@ -327,17 +350,29 @@ def _check_input8_sdr_interest_rate(input8_sdr_interest_rate: float | str) -> fl
     return input8_sdr_interest_rate
 
 
-def _check_input6_tailored_tests_enabled(input6_tailored_tests_enabled: str) -> str:
+def _check_input6_tailored_tests_enabled(
+    input6_tailored_tests_enabled: Literal["Off", "On"],
+) -> Literal["Off", "On"]:
     """Validate `input6_tailored_tests_enabled` before the model reads it."""
     input6_tailored_tests_enabled = coerce_input_measure(input6_tailored_tests_enabled, dtype="string", series_id="input6_tailored_tests_enabled")
-    require_input_domain(input6_tailored_tests_enabled, {"enum": frozenset({"Off", "On"})}, series_id="input6_tailored_tests_enabled")
+    require_annotated_domain(
+        input6_tailored_tests_enabled,
+        Literal["Off", "On"],
+        series_id="input6_tailored_tests_enabled",
+    )
     return input6_tailored_tests_enabled
 
 
-def _check_input6_standard_size_threshold_mode(input6_standard_size_threshold_mode: str) -> str:
+def _check_input6_standard_size_threshold_mode(
+    input6_standard_size_threshold_mode: Literal["New", "Old"],
+) -> Literal["New", "Old"]:
     """Validate `input6_standard_size_threshold_mode` before the model reads it."""
     input6_standard_size_threshold_mode = coerce_input_measure(input6_standard_size_threshold_mode, dtype="string", series_id="input6_standard_size_threshold_mode")
-    require_input_domain(input6_standard_size_threshold_mode, {"enum": frozenset({"New", "Old"})}, series_id="input6_standard_size_threshold_mode")
+    require_annotated_domain(
+        input6_standard_size_threshold_mode,
+        Literal["New", "Old"],
+        series_id="input6_standard_size_threshold_mode",
+    )
     return input6_standard_size_threshold_mode
 
 
@@ -361,159 +396,187 @@ def _check_input6_standard_user_defined_threshold(
 
 def _check_input3_input_3_macro_gross_domestic_product_us_dollars(
     input3_input_3_macro_gross_domestic_product_us_dollars: data.Input3Input3MacroGrossDomesticProductUsDollars,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3MacroGrossDomesticProductUsDollars:
     """Validate `input3_input_3_macro_gross_domestic_product_us_dollars` before the model reads it."""
-    data.INPUT3_INPUT_3_MACRO_GROSS_DOMESTIC_PRODUCT_US_DOLLARS.schema.validate(input3_input_3_macro_gross_domestic_product_us_dollars)
+    data.INPUT3_INPUT_3_MACRO_GROSS_DOMESTIC_PRODUCT_US_DOLLARS.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_macro_gross_domestic_product_us_dollars)
     input3_input_3_macro_gross_domestic_product_us_dollars = coerce_input_measure(input3_input_3_macro_gross_domestic_product_us_dollars, dtype="float", series_id="input3_input_3_macro_gross_domestic_product_us_dollars")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_GROSS_DOMESTIC_PRODUCT_US_DOLLARS.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_GROSS_DOMESTIC_PRODUCT_US_DOLLARS.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_macro_gross_domestic_product_us_dollars[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_gross_domestic_product_us_dollars" + repr(coordinate))
     return input3_input_3_macro_gross_domestic_product_us_dollars
 
 
 def _check_input3_input_3_macro_real_gross_domestic_product(
     input3_input_3_macro_real_gross_domestic_product: data.Input3Input3MacroRealGrossDomesticProduct,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3MacroRealGrossDomesticProduct:
     """Validate `input3_input_3_macro_real_gross_domestic_product` before the model reads it."""
-    data.INPUT3_INPUT_3_MACRO_REAL_GROSS_DOMESTIC_PRODUCT.schema.validate(input3_input_3_macro_real_gross_domestic_product)
+    data.INPUT3_INPUT_3_MACRO_REAL_GROSS_DOMESTIC_PRODUCT.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_macro_real_gross_domestic_product)
     input3_input_3_macro_real_gross_domestic_product = coerce_input_measure(input3_input_3_macro_real_gross_domestic_product, dtype="float", series_id="input3_input_3_macro_real_gross_domestic_product")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_REAL_GROSS_DOMESTIC_PRODUCT.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_REAL_GROSS_DOMESTIC_PRODUCT.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_macro_real_gross_domestic_product[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_real_gross_domestic_product" + repr(coordinate))
     return input3_input_3_macro_real_gross_domestic_product
 
 
 def _check_input3_input_3_macro_u_s_deflator(
     input3_input_3_macro_u_s_deflator: data.Input3Input3MacroUSDeflator,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3MacroUSDeflator:
     """Validate `input3_input_3_macro_u_s_deflator` before the model reads it."""
-    data.INPUT3_INPUT_3_MACRO_U_S_DEFLATOR.schema.validate(input3_input_3_macro_u_s_deflator)
+    data.INPUT3_INPUT_3_MACRO_U_S_DEFLATOR.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_macro_u_s_deflator)
     input3_input_3_macro_u_s_deflator = coerce_input_measure(input3_input_3_macro_u_s_deflator, dtype="float", series_id="input3_input_3_macro_u_s_deflator")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_U_S_DEFLATOR.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_U_S_DEFLATOR.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_macro_u_s_deflator[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_u_s_deflator" + repr(coordinate))
     return input3_input_3_macro_u_s_deflator
 
 
 def _check_input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p(
     input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p: data.Input3Input3MacroNationalCurrencyPerUSDollarEOP,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3MacroNationalCurrencyPerUSDollarEOP:
     """Validate `input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p` before the model reads it."""
-    data.INPUT3_INPUT_3_MACRO_NATIONAL_CURRENCY_PER_U_S_DOLLAR_E_O_P.schema.validate(input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p)
+    data.INPUT3_INPUT_3_MACRO_NATIONAL_CURRENCY_PER_U_S_DOLLAR_E_O_P.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p)
     input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p = coerce_input_measure(input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p, dtype="float", series_id="input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_NATIONAL_CURRENCY_PER_U_S_DOLLAR_E_O_P.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_NATIONAL_CURRENCY_PER_U_S_DOLLAR_E_O_P.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p" + repr(coordinate))
     return input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p
 
 
 def _check_input3_input_3_macro_national_currency_per_u_s_dollar_p_a(
     input3_input_3_macro_national_currency_per_u_s_dollar_p_a: data.Input3Input3MacroNationalCurrencyPerUSDollarPA,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3MacroNationalCurrencyPerUSDollarPA:
     """Validate `input3_input_3_macro_national_currency_per_u_s_dollar_p_a` before the model reads it."""
-    data.INPUT3_INPUT_3_MACRO_NATIONAL_CURRENCY_PER_U_S_DOLLAR_P_A.schema.validate(input3_input_3_macro_national_currency_per_u_s_dollar_p_a)
+    data.INPUT3_INPUT_3_MACRO_NATIONAL_CURRENCY_PER_U_S_DOLLAR_P_A.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_macro_national_currency_per_u_s_dollar_p_a)
     input3_input_3_macro_national_currency_per_u_s_dollar_p_a = coerce_input_measure(input3_input_3_macro_national_currency_per_u_s_dollar_p_a, dtype="float", series_id="input3_input_3_macro_national_currency_per_u_s_dollar_p_a")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_NATIONAL_CURRENCY_PER_U_S_DOLLAR_P_A.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_NATIONAL_CURRENCY_PER_U_S_DOLLAR_P_A.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_macro_national_currency_per_u_s_dollar_p_a[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_national_currency_per_u_s_dollar_p_a" + repr(coordinate))
     return input3_input_3_macro_national_currency_per_u_s_dollar_p_a
 
 
 def _check_input3_input_3_macro_government_revenue_and_grants(
     input3_input_3_macro_government_revenue_and_grants: data.Input3Input3MacroGovernmentRevenueAndGrants,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3MacroGovernmentRevenueAndGrants:
     """Validate `input3_input_3_macro_government_revenue_and_grants` before the model reads it."""
-    data.INPUT3_INPUT_3_MACRO_GOVERNMENT_REVENUE_AND_GRANTS.schema.validate(input3_input_3_macro_government_revenue_and_grants)
+    data.INPUT3_INPUT_3_MACRO_GOVERNMENT_REVENUE_AND_GRANTS.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_macro_government_revenue_and_grants)
     input3_input_3_macro_government_revenue_and_grants = coerce_input_measure(input3_input_3_macro_government_revenue_and_grants, dtype="float", series_id="input3_input_3_macro_government_revenue_and_grants")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_GOVERNMENT_REVENUE_AND_GRANTS.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_GOVERNMENT_REVENUE_AND_GRANTS.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_macro_government_revenue_and_grants[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_government_revenue_and_grants" + repr(coordinate))
     return input3_input_3_macro_government_revenue_and_grants
 
 
 def _check_input3_input_3_macro_government_grants(
     input3_input_3_macro_government_grants: data.Input3Input3MacroGovernmentGrants,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.Input3Input3MacroGovernmentGrants:
     """Validate `input3_input_3_macro_government_grants` before the model reads it."""
-    data.INPUT3_INPUT_3_MACRO_GOVERNMENT_GRANTS.schema.validate(input3_input_3_macro_government_grants)
+    data.INPUT3_INPUT_3_MACRO_GOVERNMENT_GRANTS.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_macro_government_grants)
     input3_input_3_macro_government_grants = coerce_input_measure(input3_input_3_macro_government_grants, dtype="float", series_id="input3_input_3_macro_government_grants")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_GOVERNMENT_GRANTS.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_GOVERNMENT_GRANTS.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_macro_government_grants[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_government_grants" + repr(coordinate))
     return input3_input_3_macro_government_grants
 
 
 def _check_in3_macro_government_primary_expenditures_this_used_be(
     in3_macro_government_primary_expenditures_this_used_be: data.In3MacroGovernmentPrimaryExpendituresThisUsedBe,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.In3MacroGovernmentPrimaryExpendituresThisUsedBe:
     """Validate `in3_macro_government_primary_expenditures_this_used_be` before the model reads it."""
-    data.IN3_MACRO_GOVERNMENT_PRIMARY_EXPENDITURES_THIS_USED_BE.schema.validate(in3_macro_government_primary_expenditures_this_used_be)
+    data.IN3_MACRO_GOVERNMENT_PRIMARY_EXPENDITURES_THIS_USED_BE.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(in3_macro_government_primary_expenditures_this_used_be)
     in3_macro_government_primary_expenditures_this_used_be = coerce_input_measure(in3_macro_government_primary_expenditures_this_used_be, dtype="float", series_id="in3_macro_government_primary_expenditures_this_used_be")
-    for coordinate in data.IN3_MACRO_GOVERNMENT_PRIMARY_EXPENDITURES_THIS_USED_BE.required:
+    for coordinate in data.IN3_MACRO_GOVERNMENT_PRIMARY_EXPENDITURES_THIS_USED_BE.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(in3_macro_government_primary_expenditures_this_used_be[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="in3_macro_government_primary_expenditures_this_used_be" + repr(coordinate))
     return in3_macro_government_primary_expenditures_this_used_be
 
 
 def _check_in3_macro_public_sector_liquid_assets_stock_e_g_cash(
     in3_macro_public_sector_liquid_assets_stock_e_g_cash: data.In3MacroPublicSectorLiquidAssetsStockEGCash,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.In3MacroPublicSectorLiquidAssetsStockEGCash:
     """Validate `in3_macro_public_sector_liquid_assets_stock_e_g_cash` before the model reads it."""
-    data.IN3_MACRO_PUBLIC_SECTOR_LIQUID_ASSETS_STOCK_E_G_CASH.schema.validate(in3_macro_public_sector_liquid_assets_stock_e_g_cash)
+    data.IN3_MACRO_PUBLIC_SECTOR_LIQUID_ASSETS_STOCK_E_G_CASH.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(in3_macro_public_sector_liquid_assets_stock_e_g_cash)
     in3_macro_public_sector_liquid_assets_stock_e_g_cash = coerce_input_measure(
         in3_macro_public_sector_liquid_assets_stock_e_g_cash,
         dtype="float",
         series_id="in3_macro_public_sector_liquid_assets_stock_e_g_cash",
         enum=frozenset({"n.a."}),
     )
-    for coordinate in data.IN3_MACRO_PUBLIC_SECTOR_LIQUID_ASSETS_STOCK_E_G_CASH.required:
+    for coordinate in data.IN3_MACRO_PUBLIC_SECTOR_LIQUID_ASSETS_STOCK_E_G_CASH.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(in3_macro_public_sector_liquid_assets_stock_e_g_cash[coordinate], {"enum": frozenset({"n.a."}), "real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="in3_macro_public_sector_liquid_assets_stock_e_g_cash" + repr(coordinate))
     return in3_macro_public_sector_liquid_assets_stock_e_g_cash
 
 
 def _check_in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g(
     in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g: data.In3MacroLiquidFinancialAssetsUsedMeetGfnsFlowEG,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.In3MacroLiquidFinancialAssetsUsedMeetGfnsFlowEG:
     """Validate `in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g` before the model reads it."""
-    data.IN3_MACRO_LIQUID_FINANCIAL_ASSETS_USED_MEET_GFNS_FLOW_E_G.schema.validate(in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g)
+    data.IN3_MACRO_LIQUID_FINANCIAL_ASSETS_USED_MEET_GFNS_FLOW_E_G.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g)
     in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g = coerce_input_measure(in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g, dtype="float", series_id="in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g")
-    for coordinate in data.IN3_MACRO_LIQUID_FINANCIAL_ASSETS_USED_MEET_GFNS_FLOW_E_G.required:
+    for coordinate in data.IN3_MACRO_LIQUID_FINANCIAL_ASSETS_USED_MEET_GFNS_FLOW_E_G.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g" + repr(coordinate))
     return in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g
 
 
 def _check_input3_input_3_macro_privatization_proceeds(
     input3_input_3_macro_privatization_proceeds: data.Input3Input3MacroPrivatizationProceeds,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.Input3Input3MacroPrivatizationProceeds:
     """Validate `input3_input_3_macro_privatization_proceeds` before the model reads it."""
-    data.INPUT3_INPUT_3_MACRO_PRIVATIZATION_PROCEEDS.schema.validate(input3_input_3_macro_privatization_proceeds)
+    data.INPUT3_INPUT_3_MACRO_PRIVATIZATION_PROCEEDS.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_macro_privatization_proceeds)
     input3_input_3_macro_privatization_proceeds = coerce_input_measure(input3_input_3_macro_privatization_proceeds, dtype="float", series_id="input3_input_3_macro_privatization_proceeds")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_PRIVATIZATION_PROCEEDS.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_PRIVATIZATION_PROCEEDS.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_macro_privatization_proceeds[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_privatization_proceeds" + repr(coordinate))
     return input3_input_3_macro_privatization_proceeds
 
 
 def _check_in3_macro_recognition_of_contingent_liab_e_g_bank(
     in3_macro_recognition_of_contingent_liab_e_g_bank: data.In3MacroRecognitionOfContingentLiabEGBank,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.In3MacroRecognitionOfContingentLiabEGBank:
     """Validate `in3_macro_recognition_of_contingent_liab_e_g_bank` before the model reads it."""
-    data.IN3_MACRO_RECOGNITION_OF_CONTINGENT_LIAB_E_G_BANK.schema.validate(in3_macro_recognition_of_contingent_liab_e_g_bank)
+    data.IN3_MACRO_RECOGNITION_OF_CONTINGENT_LIAB_E_G_BANK.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(in3_macro_recognition_of_contingent_liab_e_g_bank)
     in3_macro_recognition_of_contingent_liab_e_g_bank = coerce_input_measure(in3_macro_recognition_of_contingent_liab_e_g_bank, dtype="float", series_id="in3_macro_recognition_of_contingent_liab_e_g_bank")
-    for coordinate in data.IN3_MACRO_RECOGNITION_OF_CONTINGENT_LIAB_E_G_BANK.required:
+    for coordinate in data.IN3_MACRO_RECOGNITION_OF_CONTINGENT_LIAB_E_G_BANK.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(in3_macro_recognition_of_contingent_liab_e_g_bank[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="in3_macro_recognition_of_contingent_liab_e_g_bank" + repr(coordinate))
     return in3_macro_recognition_of_contingent_liab_e_g_bank
 
 
 def _check_input3_input_3_macro_debt_relief_non_multilateral_hipc(
     input3_input_3_macro_debt_relief_non_multilateral_hipc: data.Input3Input3MacroDebtReliefNonMultilateralHipc,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.Input3Input3MacroDebtReliefNonMultilateralHipc:
     """Validate `input3_input_3_macro_debt_relief_non_multilateral_hipc` before the model reads it."""
-    data.INPUT3_INPUT_3_MACRO_DEBT_RELIEF_NON_MULTILATERAL_HIPC.schema.validate(input3_input_3_macro_debt_relief_non_multilateral_hipc)
+    data.INPUT3_INPUT_3_MACRO_DEBT_RELIEF_NON_MULTILATERAL_HIPC.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_macro_debt_relief_non_multilateral_hipc)
     input3_input_3_macro_debt_relief_non_multilateral_hipc = coerce_input_measure(input3_input_3_macro_debt_relief_non_multilateral_hipc, dtype="float", series_id="input3_input_3_macro_debt_relief_non_multilateral_hipc")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_DEBT_RELIEF_NON_MULTILATERAL_HIPC.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_DEBT_RELIEF_NON_MULTILATERAL_HIPC.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_macro_debt_relief_non_multilateral_hipc[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_debt_relief_non_multilateral_hipc" + repr(coordinate))
     return input3_input_3_macro_debt_relief_non_multilateral_hipc
 
 
 def _check_input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify(
     input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify: data.Input3Input3MacroOtherDebtCreatingOrReducingFlowPleaseSpecify,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.Input3Input3MacroOtherDebtCreatingOrReducingFlowPleaseSpecify:
     """Validate `input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify` before the model reads it."""
-    data.INPUT3_INPUT_3_MACRO_OTHER_DEBT_CREATING_OR_REDUCING_FLOW_PLEASE_SPECIFY.schema.validate(input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify)
+    data.INPUT3_INPUT_3_MACRO_OTHER_DEBT_CREATING_OR_REDUCING_FLOW_PLEASE_SPECIFY.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify)
     input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify = coerce_input_measure(input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify, dtype="float", series_id="input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_OTHER_DEBT_CREATING_OR_REDUCING_FLOW_PLEASE_SPECIFY.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_OTHER_DEBT_CREATING_OR_REDUCING_FLOW_PLEASE_SPECIFY.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify" + repr(coordinate))
     return input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify
 
@@ -524,199 +587,233 @@ def _check_input3_input_3_macro_current_account(
     """Validate `input3_input_3_macro_current_account` before the model reads it."""
     data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.schema.validate(input3_input_3_macro_current_account)
     input3_input_3_macro_current_account = coerce_input_measure(input3_input_3_macro_current_account, dtype="float", series_id="input3_input_3_macro_current_account")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.required.bind(TIME_PERIOD=input3_input_3_macro_current_account):
         require_input_domain(input3_input_3_macro_current_account[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_current_account" + repr(coordinate))
     return input3_input_3_macro_current_account
 
 
 def _check_input3_input_3_macro_exports_of_goods_and_services(
     input3_input_3_macro_exports_of_goods_and_services: data.Input3Input3MacroExportsOfGoodsAndServices,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3MacroExportsOfGoodsAndServices:
     """Validate `input3_input_3_macro_exports_of_goods_and_services` before the model reads it."""
-    data.INPUT3_INPUT_3_MACRO_EXPORTS_OF_GOODS_AND_SERVICES.schema.validate(input3_input_3_macro_exports_of_goods_and_services)
+    data.INPUT3_INPUT_3_MACRO_EXPORTS_OF_GOODS_AND_SERVICES.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_macro_exports_of_goods_and_services)
     input3_input_3_macro_exports_of_goods_and_services = coerce_input_measure(input3_input_3_macro_exports_of_goods_and_services, dtype="float", series_id="input3_input_3_macro_exports_of_goods_and_services")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_EXPORTS_OF_GOODS_AND_SERVICES.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_EXPORTS_OF_GOODS_AND_SERVICES.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_macro_exports_of_goods_and_services[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_exports_of_goods_and_services" + repr(coordinate))
     return input3_input_3_macro_exports_of_goods_and_services
 
 
 def _check_input3_input_3_macro_exports_commodity_fuel(
     input3_input_3_macro_exports_commodity_fuel: data.Input3Input3MacroExportsCommodityFuel,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3MacroExportsCommodityFuel:
     """Validate `input3_input_3_macro_exports_commodity_fuel` before the model reads it."""
-    data.INPUT3_INPUT_3_MACRO_EXPORTS_COMMODITY_FUEL.schema.validate(input3_input_3_macro_exports_commodity_fuel)
+    data.INPUT3_INPUT_3_MACRO_EXPORTS_COMMODITY_FUEL.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_macro_exports_commodity_fuel)
     input3_input_3_macro_exports_commodity_fuel = coerce_input_measure(input3_input_3_macro_exports_commodity_fuel, dtype="float", series_id="input3_input_3_macro_exports_commodity_fuel")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_EXPORTS_COMMODITY_FUEL.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_EXPORTS_COMMODITY_FUEL.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_macro_exports_commodity_fuel[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_exports_commodity_fuel" + repr(coordinate))
     return input3_input_3_macro_exports_commodity_fuel
 
 
 def _check_input3_input_3_macro_exports_commodity_non_fuel(
     input3_input_3_macro_exports_commodity_non_fuel: data.Input3Input3MacroExportsCommodityNonFuel,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3MacroExportsCommodityNonFuel:
     """Validate `input3_input_3_macro_exports_commodity_non_fuel` before the model reads it."""
-    data.INPUT3_INPUT_3_MACRO_EXPORTS_COMMODITY_NON_FUEL.schema.validate(input3_input_3_macro_exports_commodity_non_fuel)
+    data.INPUT3_INPUT_3_MACRO_EXPORTS_COMMODITY_NON_FUEL.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_macro_exports_commodity_non_fuel)
     input3_input_3_macro_exports_commodity_non_fuel = coerce_input_measure(input3_input_3_macro_exports_commodity_non_fuel, dtype="float", series_id="input3_input_3_macro_exports_commodity_non_fuel")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_EXPORTS_COMMODITY_NON_FUEL.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_EXPORTS_COMMODITY_NON_FUEL.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_macro_exports_commodity_non_fuel[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_exports_commodity_non_fuel" + repr(coordinate))
     return input3_input_3_macro_exports_commodity_non_fuel
 
 
 def _check_input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number(
     input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number: data.Input3Input3MacroImportsOfGoodsAndServicesEnterAsAPositiveNumber,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.Input3Input3MacroImportsOfGoodsAndServicesEnterAsAPositiveNumber:
     """Validate `input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number` before the model reads it."""
-    data.INPUT3_INPUT_3_MACRO_IMPORTS_OF_GOODS_AND_SERVICES_ENTER_AS_A_POSITIVE_NUMBER.schema.validate(input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number)
+    data.INPUT3_INPUT_3_MACRO_IMPORTS_OF_GOODS_AND_SERVICES_ENTER_AS_A_POSITIVE_NUMBER.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number)
     input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number = coerce_input_measure(input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number, dtype="float", series_id="input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_IMPORTS_OF_GOODS_AND_SERVICES_ENTER_AS_A_POSITIVE_NUMBER.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_IMPORTS_OF_GOODS_AND_SERVICES_ENTER_AS_A_POSITIVE_NUMBER.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number" + repr(coordinate))
     return input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number
 
 
 def _check_input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number(
     input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number: data.Input3Input3MacroImportsCommodityFuelEnterAsAPositiveNumber,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3MacroImportsCommodityFuelEnterAsAPositiveNumber:
     """Validate `input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number` before the model reads it."""
-    data.INPUT3_INPUT_3_MACRO_IMPORTS_COMMODITY_FUEL_ENTER_AS_A_POSITIVE_NUMBER.schema.validate(input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number)
+    data.INPUT3_INPUT_3_MACRO_IMPORTS_COMMODITY_FUEL_ENTER_AS_A_POSITIVE_NUMBER.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number)
     input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number = coerce_input_measure(input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number, dtype="float", series_id="input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_IMPORTS_COMMODITY_FUEL_ENTER_AS_A_POSITIVE_NUMBER.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_IMPORTS_COMMODITY_FUEL_ENTER_AS_A_POSITIVE_NUMBER.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number" + repr(coordinate))
     return input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number
 
 
 def _check_input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number(
     input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number: data.Input3Input3MacroImportsCommodityNonFuelEnterAsAPositiveNumber,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3MacroImportsCommodityNonFuelEnterAsAPositiveNumber:
     """Validate `input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number` before the model reads it."""
-    data.INPUT3_INPUT_3_MACRO_IMPORTS_COMMODITY_NON_FUEL_ENTER_AS_A_POSITIVE_NUMBER.schema.validate(input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number)
+    data.INPUT3_INPUT_3_MACRO_IMPORTS_COMMODITY_NON_FUEL_ENTER_AS_A_POSITIVE_NUMBER.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number)
     input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number = coerce_input_measure(input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number, dtype="float", series_id="input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_IMPORTS_COMMODITY_NON_FUEL_ENTER_AS_A_POSITIVE_NUMBER.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_IMPORTS_COMMODITY_NON_FUEL_ENTER_AS_A_POSITIVE_NUMBER.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number" + repr(coordinate))
     return input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number
 
 
 def _check_input3_input_3_macro_current_transfers_net(
     input3_input_3_macro_current_transfers_net: data.Input3Input3MacroCurrentTransfersNet,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3MacroCurrentTransfersNet:
     """Validate `input3_input_3_macro_current_transfers_net` before the model reads it."""
-    data.INPUT3_INPUT_3_MACRO_CURRENT_TRANSFERS_NET.schema.validate(input3_input_3_macro_current_transfers_net)
+    data.INPUT3_INPUT_3_MACRO_CURRENT_TRANSFERS_NET.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_macro_current_transfers_net)
     input3_input_3_macro_current_transfers_net = coerce_input_measure(input3_input_3_macro_current_transfers_net, dtype="float", series_id="input3_input_3_macro_current_transfers_net")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_CURRENT_TRANSFERS_NET.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_CURRENT_TRANSFERS_NET.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_macro_current_transfers_net[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_current_transfers_net" + repr(coordinate))
     return input3_input_3_macro_current_transfers_net
 
 
 def _check_input3_input_3_macro_foreign_direct_investment(
     input3_input_3_macro_foreign_direct_investment: data.Input3Input3MacroForeignDirectInvestment,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3MacroForeignDirectInvestment:
     """Validate `input3_input_3_macro_foreign_direct_investment` before the model reads it."""
-    data.INPUT3_INPUT_3_MACRO_FOREIGN_DIRECT_INVESTMENT.schema.validate(input3_input_3_macro_foreign_direct_investment)
+    data.INPUT3_INPUT_3_MACRO_FOREIGN_DIRECT_INVESTMENT.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_macro_foreign_direct_investment)
     input3_input_3_macro_foreign_direct_investment = coerce_input_measure(input3_input_3_macro_foreign_direct_investment, dtype="float", series_id="input3_input_3_macro_foreign_direct_investment")
-    for coordinate in data.INPUT3_INPUT_3_MACRO_FOREIGN_DIRECT_INVESTMENT.required:
+    for coordinate in data.INPUT3_INPUT_3_MACRO_FOREIGN_DIRECT_INVESTMENT.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_macro_foreign_direct_investment[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_macro_foreign_direct_investment" + repr(coordinate))
     return input3_input_3_macro_foreign_direct_investment
 
 
 def _check_input3_input_3_external_debt_ppg_mlt_external_debt_outstanding(
     input3_input_3_external_debt_ppg_mlt_external_debt_outstanding: data.Input3Input3ExternalDebtPpgMltExternalDebtOutstanding,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3ExternalDebtPpgMltExternalDebtOutstanding:
     """Validate `input3_input_3_external_debt_ppg_mlt_external_debt_outstanding` before the model reads it."""
-    data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_MLT_EXTERNAL_DEBT_OUTSTANDING.schema.validate(input3_input_3_external_debt_ppg_mlt_external_debt_outstanding)
+    data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_MLT_EXTERNAL_DEBT_OUTSTANDING.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_external_debt_ppg_mlt_external_debt_outstanding)
     input3_input_3_external_debt_ppg_mlt_external_debt_outstanding = coerce_input_measure(input3_input_3_external_debt_ppg_mlt_external_debt_outstanding, dtype="float", series_id="input3_input_3_external_debt_ppg_mlt_external_debt_outstanding")
-    for coordinate in data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_MLT_EXTERNAL_DEBT_OUTSTANDING.required:
+    for coordinate in data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_MLT_EXTERNAL_DEBT_OUTSTANDING.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_external_debt_ppg_mlt_external_debt_outstanding[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_external_debt_ppg_mlt_external_debt_outstanding" + repr(coordinate))
     return input3_input_3_external_debt_ppg_mlt_external_debt_outstanding
 
 
 def _check_input3_input_3_external_debt_ppg_st_external_debt_outstanding(
     input3_input_3_external_debt_ppg_st_external_debt_outstanding: data.Input3Input3ExternalDebtPpgStExternalDebtOutstanding,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3ExternalDebtPpgStExternalDebtOutstanding:
     """Validate `input3_input_3_external_debt_ppg_st_external_debt_outstanding` before the model reads it."""
-    data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_ST_EXTERNAL_DEBT_OUTSTANDING.schema.validate(input3_input_3_external_debt_ppg_st_external_debt_outstanding)
+    data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_ST_EXTERNAL_DEBT_OUTSTANDING.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_external_debt_ppg_st_external_debt_outstanding)
     input3_input_3_external_debt_ppg_st_external_debt_outstanding = coerce_input_measure(input3_input_3_external_debt_ppg_st_external_debt_outstanding, dtype="float", series_id="input3_input_3_external_debt_ppg_st_external_debt_outstanding")
-    for coordinate in data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_ST_EXTERNAL_DEBT_OUTSTANDING.required:
+    for coordinate in data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_ST_EXTERNAL_DEBT_OUTSTANDING.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_external_debt_ppg_st_external_debt_outstanding[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_external_debt_ppg_st_external_debt_outstanding" + repr(coordinate))
     return input3_input_3_external_debt_ppg_st_external_debt_outstanding
 
 
 def _check_input3_input_3_external_debt_ppg_external_debt_interest_due(
     input3_input_3_external_debt_ppg_external_debt_interest_due: data.Input3Input3ExternalDebtPpgExternalDebtInterestDue,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3ExternalDebtPpgExternalDebtInterestDue:
     """Validate `input3_input_3_external_debt_ppg_external_debt_interest_due` before the model reads it."""
-    data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_EXTERNAL_DEBT_INTEREST_DUE.schema.validate(input3_input_3_external_debt_ppg_external_debt_interest_due)
+    data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_EXTERNAL_DEBT_INTEREST_DUE.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_external_debt_ppg_external_debt_interest_due)
     input3_input_3_external_debt_ppg_external_debt_interest_due = coerce_input_measure(input3_input_3_external_debt_ppg_external_debt_interest_due, dtype="float", series_id="input3_input_3_external_debt_ppg_external_debt_interest_due")
-    for coordinate in data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_EXTERNAL_DEBT_INTEREST_DUE.required:
+    for coordinate in data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_EXTERNAL_DEBT_INTEREST_DUE.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_external_debt_ppg_external_debt_interest_due[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_external_debt_ppg_external_debt_interest_due" + repr(coordinate))
     return input3_input_3_external_debt_ppg_external_debt_interest_due
 
 
 def _check_input3_input_3_external_debt_ppg_external_arrears(
     input3_input_3_external_debt_ppg_external_arrears: data.Input3Input3ExternalDebtPpgExternalArrears,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3ExternalDebtPpgExternalArrears:
     """Validate `input3_input_3_external_debt_ppg_external_arrears` before the model reads it."""
-    data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_EXTERNAL_ARREARS.schema.validate(input3_input_3_external_debt_ppg_external_arrears)
+    data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_EXTERNAL_ARREARS.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_external_debt_ppg_external_arrears)
     input3_input_3_external_debt_ppg_external_arrears = coerce_input_measure(
         input3_input_3_external_debt_ppg_external_arrears,
         dtype="float",
         series_id="input3_input_3_external_debt_ppg_external_arrears",
         enum=frozenset({"n.a."}),
     )
-    for coordinate in data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_EXTERNAL_ARREARS.required:
+    for coordinate in data.INPUT3_INPUT_3_EXTERNAL_DEBT_PPG_EXTERNAL_ARREARS.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_external_debt_ppg_external_arrears[coordinate], {"enum": frozenset({"n.a."}), "real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_external_debt_ppg_external_arrears" + repr(coordinate))
     return input3_input_3_external_debt_ppg_external_arrears
 
 
 def _check_input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding(
     input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding: data.Input3Input3ExternalDebtPrivateSectorMltExternalDebtOutstanding,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3ExternalDebtPrivateSectorMltExternalDebtOutstanding:
     """Validate `input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding` before the model reads it."""
-    data.INPUT3_INPUT_3_EXTERNAL_DEBT_PRIVATE_SECTOR_MLT_EXTERNAL_DEBT_OUTSTANDING.schema.validate(input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding)
+    data.INPUT3_INPUT_3_EXTERNAL_DEBT_PRIVATE_SECTOR_MLT_EXTERNAL_DEBT_OUTSTANDING.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding)
     input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding = coerce_input_measure(input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding, dtype="float", series_id="input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding")
-    for coordinate in data.INPUT3_INPUT_3_EXTERNAL_DEBT_PRIVATE_SECTOR_MLT_EXTERNAL_DEBT_OUTSTANDING.required:
+    for coordinate in data.INPUT3_INPUT_3_EXTERNAL_DEBT_PRIVATE_SECTOR_MLT_EXTERNAL_DEBT_OUTSTANDING.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding" + repr(coordinate))
     return input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding
 
 
 def _check_input3_input_3_external_debt_private_sector_st_external_debt_outstanding(
     input3_input_3_external_debt_private_sector_st_external_debt_outstanding: data.Input3Input3ExternalDebtPrivateSectorStExternalDebtOutstanding,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3ExternalDebtPrivateSectorStExternalDebtOutstanding:
     """Validate `input3_input_3_external_debt_private_sector_st_external_debt_outstanding` before the model reads it."""
-    data.INPUT3_INPUT_3_EXTERNAL_DEBT_PRIVATE_SECTOR_ST_EXTERNAL_DEBT_OUTSTANDING.schema.validate(input3_input_3_external_debt_private_sector_st_external_debt_outstanding)
+    data.INPUT3_INPUT_3_EXTERNAL_DEBT_PRIVATE_SECTOR_ST_EXTERNAL_DEBT_OUTSTANDING.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_external_debt_private_sector_st_external_debt_outstanding)
     input3_input_3_external_debt_private_sector_st_external_debt_outstanding = coerce_input_measure(input3_input_3_external_debt_private_sector_st_external_debt_outstanding, dtype="float", series_id="input3_input_3_external_debt_private_sector_st_external_debt_outstanding")
-    for coordinate in data.INPUT3_INPUT_3_EXTERNAL_DEBT_PRIVATE_SECTOR_ST_EXTERNAL_DEBT_OUTSTANDING.required:
+    for coordinate in data.INPUT3_INPUT_3_EXTERNAL_DEBT_PRIVATE_SECTOR_ST_EXTERNAL_DEBT_OUTSTANDING.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_external_debt_private_sector_st_external_debt_outstanding[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_external_debt_private_sector_st_external_debt_outstanding" + repr(coordinate))
     return input3_input_3_external_debt_private_sector_st_external_debt_outstanding
 
 
 def _check_input3_input_3_external_debt_private_external_debt_interest_due(
     input3_input_3_external_debt_private_external_debt_interest_due: data.Input3Input3ExternalDebtPrivateExternalDebtInterestDue,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3Input3ExternalDebtPrivateExternalDebtInterestDue:
     """Validate `input3_input_3_external_debt_private_external_debt_interest_due` before the model reads it."""
-    data.INPUT3_INPUT_3_EXTERNAL_DEBT_PRIVATE_EXTERNAL_DEBT_INTEREST_DUE.schema.validate(input3_input_3_external_debt_private_external_debt_interest_due)
+    data.INPUT3_INPUT_3_EXTERNAL_DEBT_PRIVATE_EXTERNAL_DEBT_INTEREST_DUE.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_external_debt_private_external_debt_interest_due)
     input3_input_3_external_debt_private_external_debt_interest_due = coerce_input_measure(input3_input_3_external_debt_private_external_debt_interest_due, dtype="float", series_id="input3_input_3_external_debt_private_external_debt_interest_due")
-    for coordinate in data.INPUT3_INPUT_3_EXTERNAL_DEBT_PRIVATE_EXTERNAL_DEBT_INTEREST_DUE.required:
+    for coordinate in data.INPUT3_INPUT_3_EXTERNAL_DEBT_PRIVATE_EXTERNAL_DEBT_INTEREST_DUE.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_external_debt_private_external_debt_interest_due[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_external_debt_private_external_debt_interest_due" + repr(coordinate))
     return input3_input_3_external_debt_private_external_debt_interest_due
 
 
 def _check_input3_input_3_external_debt_private_mlt_external_debt_amortization_due(
     input3_input_3_external_debt_private_mlt_external_debt_amortization_due: data.Input3Input3ExternalDebtPrivateMltExternalDebtAmortizationDue,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.Input3Input3ExternalDebtPrivateMltExternalDebtAmortizationDue:
     """Validate `input3_input_3_external_debt_private_mlt_external_debt_amortization_due` before the model reads it."""
-    data.INPUT3_INPUT_3_EXTERNAL_DEBT_PRIVATE_MLT_EXTERNAL_DEBT_AMORTIZATION_DUE.schema.validate(input3_input_3_external_debt_private_mlt_external_debt_amortization_due)
+    data.INPUT3_INPUT_3_EXTERNAL_DEBT_PRIVATE_MLT_EXTERNAL_DEBT_AMORTIZATION_DUE.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_external_debt_private_mlt_external_debt_amortization_due)
     input3_input_3_external_debt_private_mlt_external_debt_amortization_due = coerce_input_measure(input3_input_3_external_debt_private_mlt_external_debt_amortization_due, dtype="float", series_id="input3_input_3_external_debt_private_mlt_external_debt_amortization_due")
-    for coordinate in data.INPUT3_INPUT_3_EXTERNAL_DEBT_PRIVATE_MLT_EXTERNAL_DEBT_AMORTIZATION_DUE.required:
+    for coordinate in data.INPUT3_INPUT_3_EXTERNAL_DEBT_PRIVATE_MLT_EXTERNAL_DEBT_AMORTIZATION_DUE.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_external_debt_private_mlt_external_debt_amortization_due[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_external_debt_private_mlt_external_debt_amortization_due" + repr(coordinate))
     return input3_input_3_external_debt_private_mlt_external_debt_amortization_due
 
 
 def _check_input3_input_3_old_debt_service_total_principal_payment(
     input3_input_3_old_debt_service_total_principal_payment: data.Input3Input3OldDebtServiceTotalPrincipalPayment,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.Input3Input3OldDebtServiceTotalPrincipalPayment:
     """Validate `input3_input_3_old_debt_service_total_principal_payment` before the model reads it."""
-    data.INPUT3_INPUT_3_OLD_DEBT_SERVICE_TOTAL_PRINCIPAL_PAYMENT.schema.validate(input3_input_3_old_debt_service_total_principal_payment)
+    data.INPUT3_INPUT_3_OLD_DEBT_SERVICE_TOTAL_PRINCIPAL_PAYMENT.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_input_3_old_debt_service_total_principal_payment)
     input3_input_3_old_debt_service_total_principal_payment = coerce_input_measure(input3_input_3_old_debt_service_total_principal_payment, dtype="float", series_id="input3_input_3_old_debt_service_total_principal_payment")
-    for coordinate in data.INPUT3_INPUT_3_OLD_DEBT_SERVICE_TOTAL_PRINCIPAL_PAYMENT.required:
+    for coordinate in data.INPUT3_INPUT_3_OLD_DEBT_SERVICE_TOTAL_PRINCIPAL_PAYMENT.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_input_3_old_debt_service_total_principal_payment[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_input_3_old_debt_service_total_principal_payment" + repr(coordinate))
     return input3_input_3_old_debt_service_total_principal_payment
 
@@ -750,33 +847,39 @@ def _check_customized_public_external_mlt_disbursement_profile(
 
 def _check_customized_public_new_forex_borrowing_cumulative_overflow(
     customized_public_new_forex_borrowing_cumulative_overflow: data.CustomizedPublicNewForexBorrowingCumulativeOverflow,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.CustomizedPublicNewForexBorrowingCumulativeOverflow:
     """Validate `customized_public_new_forex_borrowing_cumulative_overflow` before the model reads it."""
-    data.CUSTOMIZED_PUBLIC_NEW_FOREX_BORROWING_CUMULATIVE_OVERFLOW.schema.validate(customized_public_new_forex_borrowing_cumulative_overflow)
+    data.CUSTOMIZED_PUBLIC_NEW_FOREX_BORROWING_CUMULATIVE_OVERFLOW.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(customized_public_new_forex_borrowing_cumulative_overflow)
     customized_public_new_forex_borrowing_cumulative_overflow = coerce_input_measure(customized_public_new_forex_borrowing_cumulative_overflow, dtype="float", series_id="customized_public_new_forex_borrowing_cumulative_overflow")
-    for coordinate in data.CUSTOMIZED_PUBLIC_NEW_FOREX_BORROWING_CUMULATIVE_OVERFLOW.required:
+    for coordinate in data.CUSTOMIZED_PUBLIC_NEW_FOREX_BORROWING_CUMULATIVE_OVERFLOW.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(customized_public_new_forex_borrowing_cumulative_overflow[coordinate], {"real_between": {"min": 0, "max": 1000000000000000.0}}, series_id="customized_public_new_forex_borrowing_cumulative_overflow" + repr(coordinate))
     return customized_public_new_forex_borrowing_cumulative_overflow
 
 
 def _check_customized_public_new_domestic_mlt_cumulative_overflow(
     customized_public_new_domestic_mlt_cumulative_overflow: data.CustomizedPublicNewDomesticMltCumulativeOverflow,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.CustomizedPublicNewDomesticMltCumulativeOverflow:
     """Validate `customized_public_new_domestic_mlt_cumulative_overflow` before the model reads it."""
-    data.CUSTOMIZED_PUBLIC_NEW_DOMESTIC_MLT_CUMULATIVE_OVERFLOW.schema.validate(customized_public_new_domestic_mlt_cumulative_overflow)
+    data.CUSTOMIZED_PUBLIC_NEW_DOMESTIC_MLT_CUMULATIVE_OVERFLOW.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(customized_public_new_domestic_mlt_cumulative_overflow)
     customized_public_new_domestic_mlt_cumulative_overflow = coerce_input_measure(customized_public_new_domestic_mlt_cumulative_overflow, dtype="float", series_id="customized_public_new_domestic_mlt_cumulative_overflow")
-    for coordinate in data.CUSTOMIZED_PUBLIC_NEW_DOMESTIC_MLT_CUMULATIVE_OVERFLOW.required:
+    for coordinate in data.CUSTOMIZED_PUBLIC_NEW_DOMESTIC_MLT_CUMULATIVE_OVERFLOW.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(customized_public_new_domestic_mlt_cumulative_overflow[coordinate], {"real_between": {"min": 0, "max": 1000000000000000.0}}, series_id="customized_public_new_domestic_mlt_cumulative_overflow" + repr(coordinate))
     return customized_public_new_domestic_mlt_cumulative_overflow
 
 
 def _check_customized_public_residual_overflow(
     customized_public_residual_overflow: data.CustomizedPublicResidualOverflow,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.CustomizedPublicResidualOverflow:
     """Validate `customized_public_residual_overflow` before the model reads it."""
-    data.CUSTOMIZED_PUBLIC_RESIDUAL_OVERFLOW.schema.validate(customized_public_residual_overflow)
+    data.CUSTOMIZED_PUBLIC_RESIDUAL_OVERFLOW.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(customized_public_residual_overflow)
     customized_public_residual_overflow = coerce_input_measure(customized_public_residual_overflow, dtype="float", series_id="customized_public_residual_overflow")
-    for coordinate in data.CUSTOMIZED_PUBLIC_RESIDUAL_OVERFLOW.required:
+    for coordinate in data.CUSTOMIZED_PUBLIC_RESIDUAL_OVERFLOW.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(customized_public_residual_overflow[coordinate], {"real_between": {"min": 0, "max": 1000000000000000.0}}, series_id="customized_public_residual_overflow" + repr(coordinate))
     return customized_public_residual_overflow
 
@@ -828,11 +931,13 @@ def _check_customized_external_debt_profile_disbursement(
 
 def _check_customized_external_new_forex_borrowing_cumulative_overflow(
     customized_external_new_forex_borrowing_cumulative_overflow: data.CustomizedExternalNewForexBorrowingCumulativeOverflow,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.CustomizedExternalNewForexBorrowingCumulativeOverflow:
     """Validate `customized_external_new_forex_borrowing_cumulative_overflow` before the model reads it."""
-    data.CUSTOMIZED_EXTERNAL_NEW_FOREX_BORROWING_CUMULATIVE_OVERFLOW.schema.validate(customized_external_new_forex_borrowing_cumulative_overflow)
+    data.CUSTOMIZED_EXTERNAL_NEW_FOREX_BORROWING_CUMULATIVE_OVERFLOW.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(customized_external_new_forex_borrowing_cumulative_overflow)
     customized_external_new_forex_borrowing_cumulative_overflow = coerce_input_measure(customized_external_new_forex_borrowing_cumulative_overflow, dtype="float", series_id="customized_external_new_forex_borrowing_cumulative_overflow")
-    for coordinate in data.CUSTOMIZED_EXTERNAL_NEW_FOREX_BORROWING_CUMULATIVE_OVERFLOW.required:
+    for coordinate in data.CUSTOMIZED_EXTERNAL_NEW_FOREX_BORROWING_CUMULATIVE_OVERFLOW.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(customized_external_new_forex_borrowing_cumulative_overflow[coordinate], {"real_between": {"min": 0, "max": 1000000000000000.0}}, series_id="customized_external_new_forex_borrowing_cumulative_overflow" + repr(coordinate))
     return customized_external_new_forex_borrowing_cumulative_overflow
 
@@ -841,7 +946,7 @@ def _check_input8_sdr_stock(input8_sdr_stock: data.Input8SdrStock) -> data.Input
     """Validate `input8_sdr_stock` before the model reads it."""
     data.INPUT8_SDR_STOCK.schema.validate(input8_sdr_stock)
     input8_sdr_stock = coerce_input_measure(input8_sdr_stock, dtype="float", series_id="input8_sdr_stock")
-    for coordinate in data.INPUT8_SDR_STOCK.required:
+    for coordinate in data.INPUT8_SDR_STOCK.required.bind(INDICATOR=input8_sdr_stock):
         require_input_domain(input8_sdr_stock[coordinate], {"real_between": {"min": 0, "max": 1000000000000000.0}}, series_id="input8_sdr_stock" + repr(coordinate))
     return input8_sdr_stock
 
@@ -852,73 +957,85 @@ def _check_input3_old_debt_service(
     """Validate `input3_old_debt_service` before the model reads it."""
     data.INPUT3_OLD_DEBT_SERVICE.schema.validate(input3_old_debt_service)
     input3_old_debt_service = coerce_input_measure(input3_old_debt_service, dtype="float", series_id="input3_old_debt_service")
-    for coordinate in data.INPUT3_OLD_DEBT_SERVICE.required:
+    for coordinate in data.INPUT3_OLD_DEBT_SERVICE.required.bind(TIME_PERIOD=input3_old_debt_service):
         require_input_domain(input3_old_debt_service[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_old_debt_service" + repr(coordinate))
     return input3_old_debt_service
 
 
 def _check_input3_new_disbursements(
     input3_new_disbursements: data.Input3NewDisbursements,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.Input3NewDisbursements:
     """Validate `input3_new_disbursements` before the model reads it."""
-    data.INPUT3_NEW_DISBURSEMENTS.schema.validate(input3_new_disbursements)
+    data.INPUT3_NEW_DISBURSEMENTS.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_new_disbursements)
     input3_new_disbursements = coerce_input_measure(input3_new_disbursements, dtype="float", series_id="input3_new_disbursements")
-    for coordinate in data.INPUT3_NEW_DISBURSEMENTS.required:
+    for coordinate in data.INPUT3_NEW_DISBURSEMENTS.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_new_disbursements[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_new_disbursements" + repr(coordinate))
     return input3_new_disbursements
 
 
 def _check_input3_domestic_outstanding_of_existing_debt(
     input3_domestic_outstanding_of_existing_debt: data.Input3DomesticOutstandingOfExistingDebt,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3DomesticOutstandingOfExistingDebt:
     """Validate `input3_domestic_outstanding_of_existing_debt` before the model reads it."""
-    data.INPUT3_DOMESTIC_OUTSTANDING_OF_EXISTING_DEBT.schema.validate(input3_domestic_outstanding_of_existing_debt)
+    data.INPUT3_DOMESTIC_OUTSTANDING_OF_EXISTING_DEBT.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_domestic_outstanding_of_existing_debt)
     input3_domestic_outstanding_of_existing_debt = coerce_input_measure(input3_domestic_outstanding_of_existing_debt, dtype="float", series_id="input3_domestic_outstanding_of_existing_debt")
-    for coordinate in data.INPUT3_DOMESTIC_OUTSTANDING_OF_EXISTING_DEBT.required:
+    for coordinate in data.INPUT3_DOMESTIC_OUTSTANDING_OF_EXISTING_DEBT.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_domestic_outstanding_of_existing_debt[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_domestic_outstanding_of_existing_debt" + repr(coordinate))
     return input3_domestic_outstanding_of_existing_debt
 
 
 def _check_input3_domestic_o_w_st(
     input3_domestic_o_w_st: data.Input3DomesticOWSt,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3DomesticOWSt:
     """Validate `input3_domestic_o_w_st` before the model reads it."""
-    data.INPUT3_DOMESTIC_O_W_ST.schema.validate(input3_domestic_o_w_st)
+    data.INPUT3_DOMESTIC_O_W_ST.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_domestic_o_w_st)
     input3_domestic_o_w_st = coerce_input_measure(input3_domestic_o_w_st, dtype="float", series_id="input3_domestic_o_w_st")
-    for coordinate in data.INPUT3_DOMESTIC_O_W_ST.required:
+    for coordinate in data.INPUT3_DOMESTIC_O_W_ST.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_domestic_o_w_st[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_domestic_o_w_st" + repr(coordinate))
     return input3_domestic_o_w_st
 
 
 def _check_input3_domestic_interest_payment_from_existing_debt(
     input3_domestic_interest_payment_from_existing_debt: data.Input3DomesticInterestPaymentFromExistingDebt,
+    *,
+    TIME_PERIOD: data.Input3Input3MacroCurrentAccount,
 ) -> data.Input3DomesticInterestPaymentFromExistingDebt:
     """Validate `input3_domestic_interest_payment_from_existing_debt` before the model reads it."""
-    data.INPUT3_DOMESTIC_INTEREST_PAYMENT_FROM_EXISTING_DEBT.schema.validate(input3_domestic_interest_payment_from_existing_debt)
+    data.INPUT3_DOMESTIC_INTEREST_PAYMENT_FROM_EXISTING_DEBT.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_domestic_interest_payment_from_existing_debt)
     input3_domestic_interest_payment_from_existing_debt = coerce_input_measure(input3_domestic_interest_payment_from_existing_debt, dtype="float", series_id="input3_domestic_interest_payment_from_existing_debt")
-    for coordinate in data.INPUT3_DOMESTIC_INTEREST_PAYMENT_FROM_EXISTING_DEBT.required:
+    for coordinate in data.INPUT3_DOMESTIC_INTEREST_PAYMENT_FROM_EXISTING_DEBT.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_domestic_interest_payment_from_existing_debt[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_domestic_interest_payment_from_existing_debt" + repr(coordinate))
     return input3_domestic_interest_payment_from_existing_debt
 
 
 def _check_input3_domestic_principal_payment_from_existing_debt(
     input3_domestic_principal_payment_from_existing_debt: data.Input3DomesticPrincipalPaymentFromExistingDebt,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.Input3DomesticPrincipalPaymentFromExistingDebt:
     """Validate `input3_domestic_principal_payment_from_existing_debt` before the model reads it."""
-    data.INPUT3_DOMESTIC_PRINCIPAL_PAYMENT_FROM_EXISTING_DEBT.schema.validate(input3_domestic_principal_payment_from_existing_debt)
+    data.INPUT3_DOMESTIC_PRINCIPAL_PAYMENT_FROM_EXISTING_DEBT.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_domestic_principal_payment_from_existing_debt)
     input3_domestic_principal_payment_from_existing_debt = coerce_input_measure(input3_domestic_principal_payment_from_existing_debt, dtype="float", series_id="input3_domestic_principal_payment_from_existing_debt")
-    for coordinate in data.INPUT3_DOMESTIC_PRINCIPAL_PAYMENT_FROM_EXISTING_DEBT.required:
+    for coordinate in data.INPUT3_DOMESTIC_PRINCIPAL_PAYMENT_FROM_EXISTING_DEBT.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_domestic_principal_payment_from_existing_debt[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_domestic_principal_payment_from_existing_debt" + repr(coordinate))
     return input3_domestic_principal_payment_from_existing_debt
 
 
 def _check_input3_domestic_new_gross_disbursement(
     input3_domestic_new_gross_disbursement: data.Input3DomesticNewGrossDisbursement,
+    *,
+    TIME_PERIOD: data.Input3OldDebtService,
 ) -> data.Input3DomesticNewGrossDisbursement:
     """Validate `input3_domestic_new_gross_disbursement` before the model reads it."""
-    data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.schema.validate(input3_domestic_new_gross_disbursement)
+    data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.schema.bind(TIME_PERIOD=TIME_PERIOD).validate(input3_domestic_new_gross_disbursement)
     input3_domestic_new_gross_disbursement = coerce_input_measure(input3_domestic_new_gross_disbursement, dtype="float", series_id="input3_domestic_new_gross_disbursement")
-    for coordinate in data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.required:
+    for coordinate in data.INPUT3_DOMESTIC_NEW_GROSS_DISBURSEMENT.required.bind(TIME_PERIOD=TIME_PERIOD):
         require_input_domain(input3_domestic_new_gross_disbursement[coordinate], {"real_between": {"min": -1000000000000000.0, "max": 1000000000000000.0}}, series_id="input3_domestic_new_gross_disbursement" + repr(coordinate))
     return input3_domestic_new_gross_disbursement
 
@@ -963,7 +1080,7 @@ def _check_pv_base_input_output_cumulative(
     """Validate `pv_base_input_output_cumulative` before the model reads it."""
     data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.schema.validate(pv_base_input_output_cumulative)
     pv_base_input_output_cumulative = coerce_input_measure(pv_base_input_output_cumulative, dtype="float", series_id="pv_base_input_output_cumulative")
-    for coordinate in data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.required:
+    for coordinate in data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.required.bind(TIME_PERIOD=pv_base_input_output_cumulative):
         require_input_domain(pv_base_input_output_cumulative[coordinate], {"real_between": {"min": 0, "max": 1000000000000000.0}}, series_id="pv_base_input_output_cumulative" + repr(coordinate))
     return pv_base_input_output_cumulative
 

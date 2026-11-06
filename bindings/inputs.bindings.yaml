@@ -414,7 +414,7 @@ series:
   input: {}
   domain:
     real_between:
-      min: 0
+      min: -1.0e+15
       max: 1.0e+15
   structure:
     measure:
@@ -455,8 +455,9 @@ series:
   series_context:
     TABLE: customized_public.a2_path
     VARIANT: Delta
-  notes: A2 customized-scenario deltas on the public and external-debt path variables,
-    keyed by indicator.
+  notes: Signed A2 customized-scenario deltas on the public and external-debt path
+    variables, keyed by indicator. A revenue cut and the other shocks on this
+    block may be negative.
 - id: blend_ida_new_floating_currency
   sheet: BLEND floating calculations WB
   data_range: '''BLEND floating calculations WB''!C6'

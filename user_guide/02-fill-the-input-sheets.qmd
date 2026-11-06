@@ -23,10 +23,20 @@ The function takes one argument, `inputs`, whose type is `ExternalDsaRiskRatingS
 
 ## Discover fields with `describe()`
 
-You do not need to guess field names, allowed values, or source cells. Every `*Inputs` bundle has a `describe()` class method. It returns a dictionary from field name to an `InputField` with four things on it: the allowed values (`Literal` choices or `Annotated` bounds, or a plain type when the workbook list is checked at construction), the axes and keys of a series, the template default, and the worksheet cell behind each value. Call it before you write any overrides:
+You do not need to guess field names, allowed values, or source cells. Every `*Inputs` bundle has a `describe()` class method. It returns a dictionary from field name to an `InputField` with four things on it: the allowed values (`Literal` choices or `Annotated` bounds, or a plain type when the workbook list is checked at construction), the axes and keys of a series, the template default, and the worksheet cells keyed by coordinate. Call it before you write any overrides.
+
+Year-labelled Input 3 series keep `cells` as a template until the snapshot years are attached. `worksheet_cells` does that with the field's own default, so the same lookup works for a scalar, a creditor row, and a year:
 
 ```{python}
 fields = api.ExternalDsaRiskRatingSignalInputs.describe()
+
+
+def worksheet_cells(field):
+    cells = field.cells
+    if hasattr(cells, "bind"):
+        return cells.bind(**{axis.name: field.default for axis in field.axes})
+    return cells
+
 
 names = [
     "country",
@@ -43,7 +53,7 @@ pd.DataFrame(
             fields[name].values,
             ", ".join(axis.name for axis in fields[name].axes) or "scalar",
             fields[name].default if not fields[name].is_series else f"{fields[name].size} values",
-            next(iter(fields[name].cells.values())),
+            next(iter(worksheet_cells(fields[name]).values())),
         ]
         for name in names
     ],
@@ -62,11 +72,12 @@ print("cell:", tailored.cells[()])
 
 `values` is the type annotation of one value. A `Literal[...]` lists the only choices the model accepts; an `Annotated` bound (for example a closed interval) is the numeric range. On this vintage many fields show a plain type (`str`, `float | str`) instead — those closed lists and intervals are still enforced when the bundle is built. Scalar fields have one cell, keyed by the empty coordinate `()`.
 
-For a series, `axes` gives the axis names and their keys, and `cells` maps each coordinate to its worksheet cell. This is how you find the cell to edit in Excel for one creditor or one year:
+For a series, `axes` gives the axis names and their keys. Creditor rows on Input 4 are a fixed list, so `rates.cells[("IMF",)]` is already the yellow cell. Input 3 years follow the projection vintage, so bind the snapshot from the same field's `default` and then index by year:
 
 ```{python}
 rates = fields["input4_interest_rate"]
 gdp = fields["input3_input_3_macro_gross_domestic_product_us_dollars"]
+gdp_cells = gdp.cells.bind(TIME_PERIOD=gdp.default)
 pd.DataFrame(
     [
         ["input4_interest_rate", "INSTRUMENT", rates.axes[0].keys[:4], rates.cells[("IMF",)]],
@@ -74,7 +85,7 @@ pd.DataFrame(
             "input3_input_3_macro_gross_domestic_product_us_dollars",
             "TIME_PERIOD",
             gdp.axes[0].keys[:4],
-            gdp.cells[(2024,)],
+            gdp_cells[(2024,)],
         ],
     ],
     columns=["Field", "Axis", "First keys", "Cell for IMF / 2024"],
