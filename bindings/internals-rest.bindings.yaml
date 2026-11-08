@@ -8277,7 +8277,7 @@ series:
     TABLE: input_7.residual_financing
     INSTRUMENT: External MLT debt
   notes: Public-DSA external-MLT residual terms by indicator. A typed literal replaces the template formula for that default or user-defined cell.
-- id: in7_resfin_ext_mlt_default
+- id: in7_resfin_ext_mlt_copied
   sheet: Input 7 - Residual Financing
   data_range: '''Input 7 - Residual Financing''!C14:C17'
   layout: series

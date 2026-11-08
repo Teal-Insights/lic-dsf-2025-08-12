@@ -2,7 +2,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
-from typing import Literal, cast
+from typing import cast
 from . import data
 from .tensor import Domain, Series, Unset
 from .excel import XlError, as_measure, xl_add, xl_and, xl_average, xl_bool, xl_choose_lazy, xl_choose_range, xl_concat, xl_count, xl_countif, xl_div, xl_eq, xl_ge, xl_gt, xl_hlookup, xl_iferror, xl_ifna, xl_index, xl_isblank, xl_iserror, xl_isna, xl_isnumber, xl_large, xl_le, xl_left, xl_lookup, xl_lookup_cell, xl_lt, xl_match, xl_max, xl_min, xl_mul, xl_ne, xl_neg, xl_normdist, xl_npv, xl_numbervalue, xl_or, xl_pow, xl_raise, xl_rank, xl_round, xl_rounddown, xl_stdev, xl_sub, xl_sum, xl_sumproduct, xl_typed_range, xl_value, xl_vlookup, xl_xlookup
@@ -531,7 +531,7 @@ class ScanDsaExtNonInterestCurrentAccountDeficitResult:
     dsa_ext_export_shock_sign_flags: data.Series[float | str | None]
     dsa_ext_real_depreciation_identity: data.Series[float | str | None]
 
-def scan_dsa_ext_non_interest_current_account_deficit(*, lookup_ida_terms_old: str, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, dsa_ext_depreciation_of_nc_depreciation: data.Series[float | str | None], dsa_ext_standard_test_gdp_growth_rule_primary: str | int | float | bool, dsa_ext_standard_test_export_growth_rule: str | int | float | bool, dsa_ext_standard_test_current_transfers_rule: str | int | float | bool, dsa_ext_standard_test_current_transfers_rule_b6_mkt: str | int | float | bool, dsa_ext_standard_test_current_transfers_rule_b6_nonmkt: str | int | float | bool, dsa_ext_standard_test_fdi_rule: str | int | float | bool, dsa_ext_standard_test_fdi_rule_b6_mkt: str | int | float | bool, dsa_ext_standard_test_fdi_rule_b6_nonmkt: str | int | float | bool, dsa_ext_standard_test_gdp_growth_rule: data.Series[str | int | float | bool | None], dsa_ext_standard_test_exports_rule: data.Series[str | int | float | bool | None], input6_standard_size_threshold_mode: Literal["New", "Old"], input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount, input3_old_debt_service: data.Input3OldDebtService, macro_debt_total_ext_debt_interest_due_include_interest: data.Series[float | str | None], macro_debt_us_dollars_k: data.Series[float | str | None], macro_debt_us_dollars_v: data.Series[float | str | None], macro_debt_exports_of_goods_services: data.Series[float | str | None], macro_debt_imports_of_goods_services_use_positive_values: data.Series[float | str | None], macro_debt_us_dollars_by_year_k: data.Series[float | str | None], macro_debt_us_dollars_by_year_v: data.Series[float | str | None], macro_debt_main_assumptions_us_dollars_k: data.Series[float | str | None], macro_debt_main_assumptions_us_dollars_v: data.Series[float | str | None], macro_debt_gdp_current_prices_u_s_dollars: data.Series[float | str | None], macro_debt_gdp_constant_prices: data.Series[float | str | None], macro_debt_change_in_gdp_deflator_factor: data.Series[float | str | None], macro_debt_change_in_gdp_deflator_factor_by_year: data.Series[float | str | None], macro_debt_us_gdp_deflator_percent_change: data.Series[float | str | None], leftover_us_gdp_deflator: data.Series[float | str | None], leftover_export_growth_usd: data.Series[float | str | None], leftover_fdi_gdp: data.Series[float | str | None], b1_gdp_ext_ii_key_macroeconomic_assumptions: float | str, b3_exports_ext_iii_averages_standard_deviations: float | str, b4_otherflows_ext_ii_key_macroeconomic_assumptions: int | str, b6_combo_mkt_ext_ii_key_macroeconomic_assumptions: float | str, b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_baseline: float | str, b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_stress: float | str, b6_combo_mkt_ext_y1_includes_both_public_private_sector_ext_debt: float | str, b6_combo_mkt_ext_y1_includes_both_public_pv_total: float | str, b6_combo_nonmkt_ext_ii_key_macroeconomic_assumptions: float | str, b6_combo_nonmkt_ext_increase: float | str, b6_combo_nonmkt_ext_y7_long_run_constant_balance_that_stabilizes: float | str, b6_combo_nonmkt_ext_y7_long_run_constant_private_debt_pv: float | str, b6_combo_nonmkt_ext_y7_long_run_constant_pv_total: float | str, c3_commodity_ext_ii_key_macroeconomic_assumptions: int | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_2: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_3: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_4: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_5: float | str, leftover_official_transfers_gdp: float | str, leftover_real_gdp_growth_2: float | str, leftover_us_gdp_deflator_2: int | str) -> ScanDsaExtNonInterestCurrentAccountDeficitResult:
+def scan_dsa_ext_non_interest_current_account_deficit(*, lookup_ida_terms_old: str, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, dsa_ext_depreciation_of_nc_depreciation: data.Series[float | str | None], dsa_ext_standard_test_gdp_growth_rule_primary: str | int | float | bool, dsa_ext_standard_test_export_growth_rule: str | int | float | bool, dsa_ext_standard_test_current_transfers_rule: str | int | float | bool, dsa_ext_standard_test_current_transfers_rule_b6_mkt: str | int | float | bool, dsa_ext_standard_test_current_transfers_rule_b6_nonmkt: str | int | float | bool, dsa_ext_standard_test_fdi_rule: str | int | float | bool, dsa_ext_standard_test_fdi_rule_b6_mkt: str | int | float | bool, dsa_ext_standard_test_fdi_rule_b6_nonmkt: str | int | float | bool, dsa_ext_standard_test_gdp_growth_rule: data.Series[str | int | float | bool | None], dsa_ext_standard_test_exports_rule: data.Series[str | int | float | bool | None], input6_standard_size_threshold_mode: str, input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount, input3_old_debt_service: data.Input3OldDebtService, macro_debt_total_ext_debt_interest_due_include_interest: data.Series[float | str | None], macro_debt_us_dollars_k: data.Series[float | str | None], macro_debt_us_dollars_v: data.Series[float | str | None], macro_debt_exports_of_goods_services: data.Series[float | str | None], macro_debt_imports_of_goods_services_use_positive_values: data.Series[float | str | None], macro_debt_us_dollars_by_year_k: data.Series[float | str | None], macro_debt_us_dollars_by_year_v: data.Series[float | str | None], macro_debt_main_assumptions_us_dollars_k: data.Series[float | str | None], macro_debt_main_assumptions_us_dollars_v: data.Series[float | str | None], macro_debt_gdp_current_prices_u_s_dollars: data.Series[float | str | None], macro_debt_gdp_constant_prices: data.Series[float | str | None], macro_debt_change_in_gdp_deflator_factor: data.Series[float | str | None], macro_debt_change_in_gdp_deflator_factor_by_year: data.Series[float | str | None], macro_debt_us_gdp_deflator_percent_change: data.Series[float | str | None], leftover_us_gdp_deflator: data.Series[float | str | None], leftover_export_growth_usd: data.Series[float | str | None], leftover_fdi_gdp: data.Series[float | str | None], b1_gdp_ext_ii_key_macroeconomic_assumptions: float | str, b3_exports_ext_iii_averages_standard_deviations: float | str, b4_otherflows_ext_ii_key_macroeconomic_assumptions: int | str, b6_combo_mkt_ext_ii_key_macroeconomic_assumptions: float | str, b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_baseline: float | str, b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_stress: float | str, b6_combo_mkt_ext_y1_includes_both_public_private_sector_ext_debt: float | str, b6_combo_mkt_ext_y1_includes_both_public_pv_total: float | str, b6_combo_nonmkt_ext_ii_key_macroeconomic_assumptions: float | str, b6_combo_nonmkt_ext_increase: float | str, b6_combo_nonmkt_ext_y7_long_run_constant_balance_that_stabilizes: float | str, b6_combo_nonmkt_ext_y7_long_run_constant_private_debt_pv: float | str, b6_combo_nonmkt_ext_y7_long_run_constant_pv_total: float | str, c3_commodity_ext_ii_key_macroeconomic_assumptions: int | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_2: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_3: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_4: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_5: float | str, leftover_official_transfers_gdp: float | str, leftover_real_gdp_growth_2: float | str, leftover_us_gdp_deflator_2: int | str) -> ScanDsaExtNonInterestCurrentAccountDeficitResult:
     """Evaluate the recurrence group `dsa_ext_non_interest_current_account_deficit`, `dsa_ext_exports`, `dsa_ext_net_fdi_negative_inflow`, `dsa_ext_nominal_gdp_million_of_us_dollars`, `dsa_ext_real_gdp_growth_in_percent`, `dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent`, `dsa_ext_exports_usd_millions`, `dsa_ext_reference_historical_statistics`, `dsa_ext_historical_statistics`, `dsa_ext_historical_statistics_baseline`, `dsa_ext_deficit_in_balance_of_goods_and_services`, `dsa_ext_imports`, `dsa_ext_net_current_transfers_negative_inflow`, `dsa_ext_other_current_account_flows_negative_net_inflow`, `dsa_ext_growth_of_exports_of_g_s_us_dollar_terms_in_percent`, `dsa_ext_export_shock_sign_flags`, `dsa_ext_real_depreciation_identity` and publish complete tensors."""
     data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.schema.validate(input3_input_3_macro_current_account)
     data.INPUT3_OLD_DEBT_SERVICE.schema.validate(input3_old_debt_service)
@@ -957,7 +957,7 @@ class ScanDsaExtDepreciationOfNcDepreciationResult:
     in6opt_standard_size_of_fx_depreciation_shock: data.Series[float | str | None]
     in6opt_standard_b6_combination_size_of_fx_depreciation_shock: data.Series[float | str | None]
 
-def scan_dsa_ext_depreciation_of_nc_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount, input3_old_debt_service: data.Input3OldDebtService, in6opt_standard_nominal_depreciation_close_real_overvaluation: data.Series[float | str | None], macro_debt_depreciation_of_nc_depreciation: data.Series[float | str | None]) -> ScanDsaExtDepreciationOfNcDepreciationResult:
+def scan_dsa_ext_depreciation_of_nc_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount, input3_old_debt_service: data.Input3OldDebtService, in6opt_standard_nominal_depreciation_close_real_overvaluation: data.Series[float | str | None], macro_debt_depreciation_of_nc_depreciation: data.Series[float | str | None]) -> ScanDsaExtDepreciationOfNcDepreciationResult:
     """Evaluate the recurrence group `dsa_ext_depreciation_of_nc_depreciation`, `dsa_ext_standard_test_fx_depreciation`, `in6opt_standard_size_of_fx_depreciation_shock`, `in6opt_standard_b6_combination_size_of_fx_depreciation_shock` and publish complete tensors."""
     data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.schema.validate(input3_input_3_macro_current_account)
     data.INPUT3_OLD_DEBT_SERVICE.schema.validate(input3_old_debt_service)
@@ -1117,7 +1117,7 @@ def dsa_ext_revenue(*, dsa_ext_nominal_gdp_million_of_us_dollars: data.Series[fl
     return data.DSA_EXT_REVENUE.collect(evaluate(formula, data.DSA_EXT_REVENUE.required.bind(TIME_PERIOD=input3_old_debt_service)), domain=data.DSA_EXT_REVENUE.required.bind(TIME_PERIOD=input3_old_debt_service))
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_GDP_GROWTH_RULE_PRIMARY_CELLS)
-def dsa_ext_standard_test_gdp_growth_rule_primary(*, in6opt_standard_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+def dsa_ext_standard_test_gdp_growth_rule_primary(*, in6opt_standard_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
     """Compute `dsa_ext_standard_test_gdp_growth_rule_primary` using authored coordinate identities."""
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1126,7 +1126,7 @@ def dsa_ext_standard_test_gdp_growth_rule_primary(*, in6opt_standard_historical_
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_EXPORT_GROWTH_RULE_CELLS)
-def dsa_ext_standard_test_export_growth_rule(*, in6opt_standard_b3_exports_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+def dsa_ext_standard_test_export_growth_rule(*, in6opt_standard_b3_exports_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
     """Compute `dsa_ext_standard_test_export_growth_rule` using authored coordinate identities."""
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1135,7 +1135,7 @@ def dsa_ext_standard_test_export_growth_rule(*, in6opt_standard_b3_exports_histo
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_CURRENT_TRANSFERS_RULE_CELLS)
-def dsa_ext_standard_test_current_transfers_rule(*, in6opt_standard_historical_average_baseline_projection_current_transfers_b4_other_non_debt_creating_flows: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+def dsa_ext_standard_test_current_transfers_rule(*, in6opt_standard_historical_average_baseline_projection_current_transfers_b4_other_non_debt_creating_flows: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
     """Compute `dsa_ext_standard_test_current_transfers_rule` using authored coordinate identities."""
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1144,7 +1144,7 @@ def dsa_ext_standard_test_current_transfers_rule(*, in6opt_standard_historical_a
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_CURRENT_TRANSFERS_RULE_B6_MKT_CELLS)
-def dsa_ext_standard_test_current_transfers_rule_b6_mkt(*, in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+def dsa_ext_standard_test_current_transfers_rule_b6_mkt(*, in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
     """Compute `dsa_ext_standard_test_current_transfers_rule_b6_mkt` using authored coordinate identities."""
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1153,7 +1153,7 @@ def dsa_ext_standard_test_current_transfers_rule_b6_mkt(*, in6opt_standard_histo
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_CURRENT_TRANSFERS_RULE_B6_NONMKT_CELLS)
-def dsa_ext_standard_test_current_transfers_rule_b6_nonmkt(*, in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+def dsa_ext_standard_test_current_transfers_rule_b6_nonmkt(*, in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
     """Compute `dsa_ext_standard_test_current_transfers_rule_b6_nonmkt` using authored coordinate identities."""
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1162,7 +1162,7 @@ def dsa_ext_standard_test_current_transfers_rule_b6_nonmkt(*, in6opt_standard_hi
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_FDI_RULE_CELLS)
-def dsa_ext_standard_test_fdi_rule(*, in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt_creating_flows: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+def dsa_ext_standard_test_fdi_rule(*, in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt_creating_flows: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
     """Compute `dsa_ext_standard_test_fdi_rule` using authored coordinate identities."""
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1171,7 +1171,7 @@ def dsa_ext_standard_test_fdi_rule(*, in6opt_standard_historical_average_baselin
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_FDI_RULE_B6_MKT_CELLS)
-def dsa_ext_standard_test_fdi_rule_b6_mkt(*, in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+def dsa_ext_standard_test_fdi_rule_b6_mkt(*, in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
     """Compute `dsa_ext_standard_test_fdi_rule_b6_mkt` using authored coordinate identities."""
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1180,7 +1180,7 @@ def dsa_ext_standard_test_fdi_rule_b6_mkt(*, in6opt_standard_historical_average_
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_FDI_RULE_B6_NONMKT_CELLS)
-def dsa_ext_standard_test_fdi_rule_b6_nonmkt(*, in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+def dsa_ext_standard_test_fdi_rule_b6_nonmkt(*, in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
     """Compute `dsa_ext_standard_test_fdi_rule_b6_nonmkt` using authored coordinate identities."""
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1211,7 +1211,7 @@ def dsa_ext_o_w_interest_additional_borrowing(*, pv_base_add_cost_mkt_shock_addi
     return data.DSA_EXT_O_W_INTEREST_ADDITIONAL_BORROWING.collect(evaluate(formula, data.DSA_EXT_O_W_INTEREST_ADDITIONAL_BORROWING.required.bind(TIME_PERIOD=input3_old_debt_service)), domain=data.DSA_EXT_O_W_INTEREST_ADDITIONAL_BORROWING.required.bind(TIME_PERIOD=input3_old_debt_service))
 
 @publish(data.DSA_EXT_STANDARD_TEST_GDP_GROWTH_RULE.schema, cells=data.DSA_EXT_STANDARD_TEST_GDP_GROWTH_RULE.cells)
-def dsa_ext_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> data.Series[str | int | float | bool | None]:
+def dsa_ext_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> data.Series[str | int | float | bool | None]:
     """Compute `dsa_ext_standard_test_gdp_growth_rule` using authored coordinate identities."""
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     def formula(scenario: str) -> str | int | float | bool | None:
@@ -1220,7 +1220,7 @@ def dsa_ext_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_
     return data.DSA_EXT_STANDARD_TEST_GDP_GROWTH_RULE.collect(evaluate(formula, data.DSA_EXT_STANDARD_TEST_GDP_GROWTH_RULE.required))
 
 @publish(data.DSA_EXT_STANDARD_TEST_EXPORTS_RULE.schema, cells=data.DSA_EXT_STANDARD_TEST_EXPORTS_RULE.cells)
-def dsa_ext_standard_test_exports_rule(*, in6opt_standard_historical_average_baseline_projection_exports_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> data.Series[str | int | float | bool | None]:
+def dsa_ext_standard_test_exports_rule(*, in6opt_standard_historical_average_baseline_projection_exports_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> data.Series[str | int | float | bool | None]:
     """Compute `dsa_ext_standard_test_exports_rule` using authored coordinate identities."""
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     def formula(scenario: str) -> str | int | float | bool | None:
@@ -2992,7 +2992,7 @@ def dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio(*, dsa_pub_pv_of_total
     return data.DSA_PUB_PV_OF_PUBLIC_DEBT_TO_REVENUE_AND_GRANTS_RATIO.collect(evaluate(formula, data.DSA_PUB_PV_OF_PUBLIC_DEBT_TO_REVENUE_AND_GRANTS_RATIO.required.bind(TIME_PERIOD=input3_old_debt_service)), domain=data.DSA_PUB_PV_OF_PUBLIC_DEBT_TO_REVENUE_AND_GRANTS_RATIO.required.bind(TIME_PERIOD=input3_old_debt_service))
 
 @publish(data.DSA_PUB_STANDARD_TEST_PARAMETER.schema, cells=data.DSA_PUB_STANDARD_TEST_PARAMETER.cells)
-def dsa_pub_standard_test_parameter(*, in6opt_standard_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold, in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: str | int | float | bool) -> data.Series[str | int | float | bool | None]:
+def dsa_pub_standard_test_parameter(*, in6opt_standard_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold, in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: str | int | float | bool) -> data.Series[str | int | float | bool | None]:
     """Compute `dsa_pub_standard_test_parameter` using authored coordinate identities."""
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     def formula(scenario: str) -> str | int | float | bool | None:
@@ -3157,7 +3157,7 @@ def dsa_pub_b2_pb_non_mkt_pub_revenue(*, dsa_pub_revenue_and_grants: data.Series
     return data.DSA_PUB_B2_PB_NON_MKT_PUB_REVENUE.collect(evaluate(formula, data.DSA_PUB_B2_PB_NON_MKT_PUB_REVENUE.required.bind(TIME_PERIOD=input3_old_debt_service)), domain=data.DSA_PUB_B2_PB_NON_MKT_PUB_REVENUE.required.bind(TIME_PERIOD=input3_old_debt_service))
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_B2_PB_NON_MKT_PUB_STANDARD_TEST_PARAMETER_CELLS)
-def dsa_pub_b2_pb_non_mkt_pub_standard_test_parameter(*, in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+def dsa_pub_b2_pb_non_mkt_pub_standard_test_parameter(*, in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
     """Compute `dsa_pub_b2_pb_non_mkt_pub_standard_test_parameter` using authored coordinate identities."""
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -3179,7 +3179,7 @@ def dsa_pub_b5_depreciation_pub_nominal_appreciation_increase_in_us_dollar_value
     return data.DSA_PUB_B5_DEPRECIATION_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.collect(evaluate(formula, data.DSA_PUB_B5_DEPRECIATION_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.required.bind(TIME_PERIOD=input3_old_debt_service)), domain=data.DSA_PUB_B5_DEPRECIATION_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.required.bind(TIME_PERIOD=input3_old_debt_service))
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_B5_DEPRECIATION_PUB_STANDARD_TEST_FX_DEPRECIATION_CELLS)
-def dsa_pub_b5_depreciation_pub_standard_test_fx_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], in6opt_standard_size_of_fx_depreciation_shock: data.Series[float | str | None]) -> float | str:
+def dsa_pub_b5_depreciation_pub_standard_test_fx_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, in6opt_standard_size_of_fx_depreciation_shock: data.Series[float | str | None]) -> float | str:
     """Compute `dsa_pub_b5_depreciation_pub_standard_test_fx_depreciation` using authored coordinate identities."""
     try:
         return as_measure((in6opt_standard_size_of_fx_depreciation_shock['User defined'] if xl_bool(xl_eq(input6_standard_size_threshold_mode, lookup_ida_terms_new)) else in6opt_standard_size_of_fx_depreciation_shock['Default']))
@@ -3198,7 +3198,7 @@ def dsa_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_i
     return data.DSA_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.collect(evaluate(formula, data.DSA_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.required.bind(TIME_PERIOD=input3_old_debt_service)), domain=data.DSA_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.required.bind(TIME_PERIOD=input3_old_debt_service))
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_STANDARD_TEST_GDP_GROWTH_RULE_CELLS)
-def dsa_pub_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+def dsa_pub_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
     """Compute `dsa_pub_standard_test_gdp_growth_rule` using authored coordinate identities."""
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -3207,7 +3207,7 @@ def dsa_pub_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_STANDARD_TEST_PB_RULE_CELLS)
-def dsa_pub_standard_test_pb_rule(*, in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+def dsa_pub_standard_test_pb_rule(*, in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
     """Compute `dsa_pub_standard_test_pb_rule` using authored coordinate identities."""
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -3216,7 +3216,7 @@ def dsa_pub_standard_test_pb_rule(*, in6opt_standard_historical_average_baseline
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_STANDARD_TEST_FX_DEPRECIATION_CELLS)
-def dsa_pub_standard_test_fx_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], in6opt_standard_b6_combination_size_of_fx_depreciation_shock: data.Series[float | str | None]) -> float | str:
+def dsa_pub_standard_test_fx_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, in6opt_standard_b6_combination_size_of_fx_depreciation_shock: data.Series[float | str | None]) -> float | str:
     """Compute `dsa_pub_standard_test_fx_depreciation` using authored coordinate identities."""
     try:
         return as_measure((in6opt_standard_b6_combination_size_of_fx_depreciation_shock['User defined'] if xl_bool(xl_eq(input6_standard_size_threshold_mode, lookup_ida_terms_new)) else in6opt_standard_b6_combination_size_of_fx_depreciation_shock['Default']))
@@ -3235,7 +3235,7 @@ def dsa_pub_b6_combo_non_mkt_pub_nominal_appreciation_increase_in_us_dollar_valu
     return data.DSA_PUB_B6_COMBO_NON_MKT_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.collect(evaluate(formula, data.DSA_PUB_B6_COMBO_NON_MKT_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.required.bind(TIME_PERIOD=input3_old_debt_service)), domain=data.DSA_PUB_B6_COMBO_NON_MKT_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.required.bind(TIME_PERIOD=input3_old_debt_service))
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_B6_COMBO_NON_MKT_PUB_STANDARD_TEST_GDP_GROWTH_RULE_CELLS)
-def dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+def dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
     """Compute `dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule` using authored coordinate identities."""
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -3244,7 +3244,7 @@ def dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule(*, in6opt_standar
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_B6_COMBO_NON_MKT_PUB_STANDARD_TEST_PB_RULE_CELLS)
-def dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule(*, in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+def dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule(*, in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
     """Compute `dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule` using authored coordinate identities."""
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -3253,7 +3253,7 @@ def dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule(*, in6opt_standard_histor
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_B6_COMBO_NON_MKT_PUB_STANDARD_TEST_FX_DEPRECIATION_CELLS)
-def dsa_pub_b6_combo_non_mkt_pub_standard_test_fx_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], in6opt_standard_b6_combination_size_of_fx_depreciation_shock: data.Series[float | str | None]) -> float | str:
+def dsa_pub_b6_combo_non_mkt_pub_standard_test_fx_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, in6opt_standard_b6_combination_size_of_fx_depreciation_shock: data.Series[float | str | None]) -> float | str:
     """Compute `dsa_pub_b6_combo_non_mkt_pub_standard_test_fx_depreciation` using authored coordinate identities."""
     try:
         return as_measure((in6opt_standard_b6_combination_size_of_fx_depreciation_shock['User defined'] if xl_bool(xl_eq(input6_standard_size_threshold_mode, lookup_ida_terms_new)) else in6opt_standard_b6_combination_size_of_fx_depreciation_shock['Default']))
@@ -11388,7 +11388,7 @@ def c4_mkt_fin_dsr_revenue_stress(*, c4_mkt_fin_adjusted_debt_service: data.Seri
     return data.C4_MKT_FIN_DSR_REVENUE_STRESS.collect(evaluate(formula, data.C4_MKT_FIN_DSR_REVENUE_STRESS.required.bind(TIME_PERIOD=input3_old_debt_service)), domain=data.C4_MKT_FIN_DSR_REVENUE_STRESS.required.bind(TIME_PERIOD=input3_old_debt_service))
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_DEBT_CARRYING_CAPACITY_CELLS)
-def ci_summary_debt_carrying_capacity(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_performance_policy: str | int | float | bool, ci_summary_debt_carrying_capacity_vintage_reconciled: str | int | float | bool) -> str | int | float | bool:
+def ci_summary_debt_carrying_capacity(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, ci_summary_performance_policy: str | int | float | bool, ci_summary_debt_carrying_capacity_vintage_reconciled: str | int | float | bool) -> str | int | float | bool:
     """Compute `ci_summary_debt_carrying_capacity` using authored coordinate identities."""
     try:
         return as_measure((ci_summary_debt_carrying_capacity_vintage_reconciled if xl_bool(xl_eq(input6_standard_size_threshold_mode, lookup_ida_terms_new)) else ci_summary_performance_policy), 'str')
@@ -11468,7 +11468,7 @@ def ci_summary_ds_revenue_heading(*, start_debt_sustainability_analysis: str | i
         return error.code
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_PUBLIC_PV_MEDIUM_CUTOFF_CELLS)
-def ci_summary_public_pv_medium_cutoff(*, lookup_ida_terms_new: str, ci_pub_pv_debt_gdp_new: data.Series[float | str | None], input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_public_pv_heading: str | int | float | bool, ci_summary_cpia_rating: float | str, ci_summary_public_benchmark_grid_heading: str | int | float | bool, ci_summary_public_pv_grid_heading: str | int | float | bool, ci_summary_public_capacity_class_headers: data.Series[str | int | float | bool | None]) -> float | str:
+def ci_summary_public_pv_medium_cutoff(*, lookup_ida_terms_new: str, ci_pub_pv_debt_gdp_new: data.Series[float | str | None], input6_standard_size_threshold_mode: str, ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_public_pv_heading: str | int | float | bool, ci_summary_cpia_rating: float | str, ci_summary_public_benchmark_grid_heading: str | int | float | bool, ci_summary_public_pv_grid_heading: str | int | float | bool, ci_summary_public_capacity_class_headers: data.Series[str | int | float | bool | None]) -> float | str:
     """Compute `ci_summary_public_pv_medium_cutoff` using authored coordinate identities."""
     data.CI_PUB_PV_DEBT_GDP_NEW.schema.validate(ci_pub_pv_debt_gdp_new)
     _ci_summary_public_pv_medium_cutoff_table_0 = lazy_table(((lambda: ci_summary_public_benchmark_grid_heading, lambda: None, lambda: None, view(ci_summary_public_capacity_class_headers, cols=span(data.PARAMETER_AXIS, 'Weak', 'Strong'))), (lambda: ci_summary_public_pv_grid_heading, lambda: None, lambda: None, view(ci_pub_pv_debt_gdp_new, cols=span(data.VARIANT_AXIS, 'Weak', 'Strong')))))
@@ -11480,7 +11480,7 @@ def ci_summary_public_pv_medium_cutoff(*, lookup_ida_terms_new: str, ci_pub_pv_d
         return error.code
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_PV_EXPORTS_APPLICABLE_CELLS)
-def ci_summary_pv_exports_applicable(*, ci_summary_old_policy_exports_threshold: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_pv_debt_exports: data.Series[float | str | None], ci_ext_pv_debt_gdp: data.Series[float | str | None], input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_pv_exports_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_pv_of_debt_grid_heading: str | int | float | bool, ci_summary_pv_exports_grid_heading: str | int | float | bool, ci_summary_pv_gdp_grid_heading: str | int | float | bool) -> float | str:
+def ci_summary_pv_exports_applicable(*, ci_summary_old_policy_exports_threshold: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_pv_debt_exports: data.Series[float | str | None], ci_ext_pv_debt_gdp: data.Series[float | str | None], input6_standard_size_threshold_mode: str, ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_pv_exports_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_pv_of_debt_grid_heading: str | int | float | bool, ci_summary_pv_exports_grid_heading: str | int | float | bool, ci_summary_pv_gdp_grid_heading: str | int | float | bool) -> float | str:
     """Compute `ci_summary_pv_exports_applicable` using authored coordinate identities."""
     data.CI_CLASS_LABELS_THRESHOLDS.schema.validate(ci_class_labels_thresholds)
     data.CI_EXT_PV_DEBT_EXPORTS.schema.validate(ci_ext_pv_debt_exports)
@@ -11494,7 +11494,7 @@ def ci_summary_pv_exports_applicable(*, ci_summary_old_policy_exports_threshold:
         return error.code
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_PV_GDP_APPLICABLE_CELLS)
-def ci_summary_pv_gdp_applicable(*, ci_summary_old_framework_gdp_lookup: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_pv_debt_exports: data.Series[float | str | None], ci_ext_pv_debt_gdp: data.Series[float | str | None], input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_pv_gdp_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_pv_of_debt_grid_heading: str | int | float | bool, ci_summary_pv_exports_grid_heading: str | int | float | bool, ci_summary_pv_gdp_grid_heading: str | int | float | bool) -> float | str:
+def ci_summary_pv_gdp_applicable(*, ci_summary_old_framework_gdp_lookup: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_pv_debt_exports: data.Series[float | str | None], ci_ext_pv_debt_gdp: data.Series[float | str | None], input6_standard_size_threshold_mode: str, ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_pv_gdp_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_pv_of_debt_grid_heading: str | int | float | bool, ci_summary_pv_exports_grid_heading: str | int | float | bool, ci_summary_pv_gdp_grid_heading: str | int | float | bool) -> float | str:
     """Compute `ci_summary_pv_gdp_applicable` using authored coordinate identities."""
     data.CI_CLASS_LABELS_THRESHOLDS.schema.validate(ci_class_labels_thresholds)
     data.CI_EXT_PV_DEBT_EXPORTS.schema.validate(ci_ext_pv_debt_exports)
@@ -11508,7 +11508,7 @@ def ci_summary_pv_gdp_applicable(*, ci_summary_old_framework_gdp_lookup: float |
         return error.code
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_DS_EXPORTS_APPLICABLE_CELLS)
-def ci_summary_ds_exports_applicable(*, ci_summary_old_framework_ds_exports_lookup: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_debt_service_exports: data.Series[float | str | None], ci_ext_debt_service_revenue: data.Series[float | str | None], ci_debt_service_in_percent_of: str, input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_ds_exports_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_ds_exports_grid_heading: str | int | float | bool, ci_summary_ds_revenue_grid_heading: str | int | float | bool) -> float | str:
+def ci_summary_ds_exports_applicable(*, ci_summary_old_framework_ds_exports_lookup: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_debt_service_exports: data.Series[float | str | None], ci_ext_debt_service_revenue: data.Series[float | str | None], ci_debt_service_in_percent_of: str, input6_standard_size_threshold_mode: str, ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_ds_exports_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_ds_exports_grid_heading: str | int | float | bool, ci_summary_ds_revenue_grid_heading: str | int | float | bool) -> float | str:
     """Compute `ci_summary_ds_exports_applicable` using authored coordinate identities."""
     data.CI_CLASS_LABELS_THRESHOLDS.schema.validate(ci_class_labels_thresholds)
     data.CI_EXT_DEBT_SERVICE_EXPORTS.schema.validate(ci_ext_debt_service_exports)
@@ -11522,7 +11522,7 @@ def ci_summary_ds_exports_applicable(*, ci_summary_old_framework_ds_exports_look
         return error.code
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_DS_REVENUE_APPLICABLE_CELLS)
-def ci_summary_ds_revenue_applicable(*, ci_summary_old_framework_ds_revenue_lookup: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_debt_service_exports: data.Series[float | str | None], ci_ext_debt_service_revenue: data.Series[float | str | None], ci_debt_service_in_percent_of: str, input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_ds_revenue_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_ds_exports_grid_heading: str | int | float | bool, ci_summary_ds_revenue_grid_heading: str | int | float | bool) -> float | str:
+def ci_summary_ds_revenue_applicable(*, ci_summary_old_framework_ds_revenue_lookup: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_debt_service_exports: data.Series[float | str | None], ci_ext_debt_service_revenue: data.Series[float | str | None], ci_debt_service_in_percent_of: str, input6_standard_size_threshold_mode: str, ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_ds_revenue_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_ds_exports_grid_heading: str | int | float | bool, ci_summary_ds_revenue_grid_heading: str | int | float | bool) -> float | str:
     """Compute `ci_summary_ds_revenue_applicable` using authored coordinate identities."""
     data.CI_CLASS_LABELS_THRESHOLDS.schema.validate(ci_class_labels_thresholds)
     data.CI_EXT_DEBT_SERVICE_EXPORTS.schema.validate(ci_ext_debt_service_exports)
@@ -11739,7 +11739,7 @@ def ci_summary_debt_carrying_capacity_vintage_reconciled(*, ci_summary_debt_carr
         return error.code
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_DEBT_CARRYING_CAPACITY_CURRENT_VINTAGE_CELLS)
-def ci_summary_debt_carrying_capacity_current_vintage(*, input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_ci_rating: str | int | float | bool, ci_summary_performance_policy: str | int | float | bool) -> str | int | float | bool:
+def ci_summary_debt_carrying_capacity_current_vintage(*, input6_standard_size_threshold_mode: str, ci_summary_ci_rating: str | int | float | bool, ci_summary_performance_policy: str | int | float | bool) -> str | int | float | bool:
     """Compute `ci_summary_debt_carrying_capacity_current_vintage` using authored coordinate identities."""
     try:
         return as_measure((ci_summary_ci_rating if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else ci_summary_performance_policy), 'str')
@@ -14562,7 +14562,7 @@ def in6_tailored_natdisaster(*, trigger_natural_disaster_sample: data.Series[str
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_COMMODITY_PRICE_CELLS)
-def in6_tailored_commodity_price(*, input6_tailored_tests_enabled: Literal["Off", "On"], in6_tailored_share_of_commodities_in_total_exports_of_goods: float | str) -> str | int | float | bool:
+def in6_tailored_commodity_price(*, input6_tailored_tests_enabled: str, in6_tailored_share_of_commodities_in_total_exports_of_goods: float | str) -> str | int | float | bool:
     """Compute `in6_tailored_commodity_price` using authored coordinate identities."""
     try:
         return as_measure((('Yes' if xl_bool(xl_gt(in6_tailored_share_of_commodities_in_total_exports_of_goods, 0.5)) else 'No') if xl_bool(xl_eq(input6_tailored_tests_enabled, 'On')) else 'No'), 'str')
@@ -14570,7 +14570,7 @@ def in6_tailored_commodity_price(*, input6_tailored_tests_enabled: Literal["Off"
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_MKT_FINANCING_CELLS)
-def in6_tailored_mkt_financing(*, trigger_right_headers: data.Series[str | None], input6_tailored_tests_enabled: Literal["Off", "On"], trigger_market_access_country_code: data.Series[int | str | None], trigger_market_access: data.Series[str | int | float | bool | None], in1_basics_country_code: int | str) -> str | int | float | bool:
+def in6_tailored_mkt_financing(*, trigger_right_headers: data.Series[str | None], input6_tailored_tests_enabled: str, trigger_market_access_country_code: data.Series[int | str | None], trigger_market_access: data.Series[str | int | float | bool | None], in1_basics_country_code: int | str) -> str | int | float | bool:
     """Compute `in6_tailored_mkt_financing` using authored coordinate identities."""
     data.TRIGGER_RIGHT_HEADERS.schema.validate(trigger_right_headers)
     try:
@@ -14602,7 +14602,7 @@ class ScanIn6TailoredAdjustedShareOfFuelInExportsOfGSResult:
     in6_tailored_average_of_prices_shock_default: float | str
     input6_tailored_params_2: data.Series[float | str | None]
 
-def scan_in6_tailored_adjusted_share_of_fuel_in_exports_of_g_s(*, input6_tailored_tests_enabled: Literal["Off", "On"], in6_tailored_price_shock_non_fuel: data.Series[float | str | None], in6_tailored_natdisaster_shock_size_default: float | str, in6_tailored_commodity_close_gap_default: float | str, in6_tailored_share_of_fuel_in_exports_of_g_s_default: float | str, in6_tailored_share_of_non_fuel_in_exports_of_g_s_default: float | str, in6_tailored_mitigating_factor_fuel_default: float | str, in6_tailored_mitigating_factor_non_fuel_default: float | str, in6_tailored_mkt_fin_borrowing_cost_default: float | str, in6_tailored_mkt_fin_maturity_defaults: data.Series[float | str | None], in6_tailored_mkt_fin_fx_depreciation_default: float | str, input6_tailored_params_fuel_label: str | int | float | bool) -> ScanIn6TailoredAdjustedShareOfFuelInExportsOfGSResult:
+def scan_in6_tailored_adjusted_share_of_fuel_in_exports_of_g_s(*, input6_tailored_tests_enabled: str, in6_tailored_price_shock_non_fuel: data.Series[float | str | None], in6_tailored_natdisaster_shock_size_default: float | str, in6_tailored_commodity_close_gap_default: float | str, in6_tailored_share_of_fuel_in_exports_of_g_s_default: float | str, in6_tailored_share_of_non_fuel_in_exports_of_g_s_default: float | str, in6_tailored_mitigating_factor_fuel_default: float | str, in6_tailored_mitigating_factor_non_fuel_default: float | str, in6_tailored_mkt_fin_borrowing_cost_default: float | str, in6_tailored_mkt_fin_maturity_defaults: data.Series[float | str | None], in6_tailored_mkt_fin_fx_depreciation_default: float | str, input6_tailored_params_fuel_label: str | int | float | bool) -> ScanIn6TailoredAdjustedShareOfFuelInExportsOfGSResult:
     """Evaluate the recurrence group `in6_tailored_adjusted_share_of_fuel_in_exports_of_g_s`, `in6_tailored_adjusted_share_of_non_fuel_in_exports_of_g_s`, `in6_tailored_average_of_prices_shock_default`, `input6_tailored_params_2` and publish complete tensors."""
     def in6_tailored_adjusted_share_of_fuel_in_exports_of_g_s_formula(variant: str) -> float | str | None:
         if variant == 'Default':
@@ -14674,7 +14674,7 @@ def in6_tailored_commodity_group_price_shock(*, input6_commodity_group_relevant:
     return data.IN6_TAILORED_COMMODITY_GROUP_PRICE_SHOCK.collect(((coord, in6_tailored_commodity_group_price_shock[coord]) for coord in data.IN6_TAILORED_COMMODITY_GROUP_PRICE_SHOCK.required.bind(COMMODITY=input6_commodity_group_relevant)), domain=data.IN6_TAILORED_COMMODITY_GROUP_PRICE_SHOCK.required.bind(COMMODITY=input6_commodity_group_relevant))
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_NATDISASTER_SHOCK_SIZE_DEFAULT_CELLS)
-def in6_tailored_natdisaster_shock_size_default(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> float | str:
+def in6_tailored_natdisaster_shock_size_default(*, input6_tailored_tests_enabled: str) -> float | str:
     """Compute `in6_tailored_natdisaster_shock_size_default` using authored coordinate identities."""
     try:
         return as_measure((10 if xl_bool(xl_eq(input6_tailored_tests_enabled, 'On')) else 0))
@@ -14682,7 +14682,7 @@ def in6_tailored_natdisaster_shock_size_default(*, input6_tailored_tests_enabled
         return error.code
 
 @publish(data.IN6_TAILORED_NATDISASTER_INTERACTION_DEFAULTS.schema, cells=data.IN6_TAILORED_NATDISASTER_INTERACTION_DEFAULTS.cells)
-def in6_tailored_natdisaster_interaction_defaults(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> data.Series[float | str | None]:
+def in6_tailored_natdisaster_interaction_defaults(*, input6_tailored_tests_enabled: str) -> data.Series[float | str | None]:
     """Compute `in6_tailored_natdisaster_interaction_defaults` using authored coordinate identities."""
     def formula(indicator: str) -> float | str | None:
         if indicator == 'Size of associated real GDP growth shock':
@@ -14692,7 +14692,7 @@ def in6_tailored_natdisaster_interaction_defaults(*, input6_tailored_tests_enabl
     return data.IN6_TAILORED_NATDISASTER_INTERACTION_DEFAULTS.collect(evaluate(formula, data.IN6_TAILORED_NATDISASTER_INTERACTION_DEFAULTS.required))
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_COMMODITY_CLOSE_GAP_DEFAULT_CELLS)
-def in6_tailored_commodity_close_gap_default(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> float | str:
+def in6_tailored_commodity_close_gap_default(*, input6_tailored_tests_enabled: str) -> float | str:
     """Compute `in6_tailored_commodity_close_gap_default` using authored coordinate identities."""
     try:
         return as_measure((6 if xl_bool(xl_eq(input6_tailored_tests_enabled, 'On')) else 0))
@@ -14700,7 +14700,7 @@ def in6_tailored_commodity_close_gap_default(*, input6_tailored_tests_enabled: L
         return error.code
 
 @publish(data.IN6_TAILORED_COMMODITY_INTERACTION_DEFAULTS.schema, cells=data.IN6_TAILORED_COMMODITY_INTERACTION_DEFAULTS.cells)
-def in6_tailored_commodity_interaction_defaults(*, in6_tailored_average_of_prices_shock_default: float | str, input6_tailored_tests_enabled: Literal["Off", "On"]) -> data.Series[float | str | None]:
+def in6_tailored_commodity_interaction_defaults(*, in6_tailored_average_of_prices_shock_default: float | str, input6_tailored_tests_enabled: str) -> data.Series[float | str | None]:
     """Compute `in6_tailored_commodity_interaction_defaults` using authored coordinate identities."""
     def formula(indicator: str) -> float | str | None:
         if indicator == 'Size of associated real GDP growth shock':
@@ -14750,7 +14750,7 @@ def in6_tailored_mitigating_factor_non_fuel_default(*, macro_debt_share_of_commo
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_MKT_FIN_BORROWING_COST_DEFAULT_CELLS)
-def in6_tailored_mkt_fin_borrowing_cost_default(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> float | str:
+def in6_tailored_mkt_fin_borrowing_cost_default(*, input6_tailored_tests_enabled: str) -> float | str:
     """Compute `in6_tailored_mkt_fin_borrowing_cost_default` using authored coordinate identities."""
     try:
         return as_measure((400 if xl_bool(xl_eq(input6_tailored_tests_enabled, 'On')) else 0))
@@ -14758,7 +14758,7 @@ def in6_tailored_mkt_fin_borrowing_cost_default(*, input6_tailored_tests_enabled
         return error.code
 
 @publish(data.IN6_TAILORED_MKT_FIN_MATURITY_DEFAULTS.schema, cells=data.IN6_TAILORED_MKT_FIN_MATURITY_DEFAULTS.cells)
-def in6_tailored_mkt_fin_maturity_defaults(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> data.Series[float | str | None]:
+def in6_tailored_mkt_fin_maturity_defaults(*, input6_tailored_tests_enabled: str) -> data.Series[float | str | None]:
     """Compute `in6_tailored_mkt_fin_maturity_defaults` using authored coordinate identities."""
     def formula(indicator: str) -> float | str | None:
         if indicator == 'If original maturity is greater than 5 years, new maturity is':
@@ -14768,7 +14768,7 @@ def in6_tailored_mkt_fin_maturity_defaults(*, input6_tailored_tests_enabled: Lit
     return data.IN6_TAILORED_MKT_FIN_MATURITY_DEFAULTS.collect(evaluate(formula, data.IN6_TAILORED_MKT_FIN_MATURITY_DEFAULTS.required))
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_MKT_FIN_FX_DEPRECIATION_DEFAULT_CELLS)
-def in6_tailored_mkt_fin_fx_depreciation_default(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> float | str:
+def in6_tailored_mkt_fin_fx_depreciation_default(*, input6_tailored_tests_enabled: str) -> float | str:
     """Compute `in6_tailored_mkt_fin_fx_depreciation_default` using authored coordinate identities."""
     try:
         return as_measure((15 if xl_bool(xl_eq(input6_tailored_tests_enabled, 'On')) else 0))
@@ -14776,7 +14776,7 @@ def in6_tailored_mkt_fin_fx_depreciation_default(*, input6_tailored_tests_enable
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_MKT_FIN_FX_PASSTHROUGH_DEFAULT_CELLS)
-def in6_tailored_mkt_fin_fx_passthrough_default(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> float | str:
+def in6_tailored_mkt_fin_fx_passthrough_default(*, input6_tailored_tests_enabled: str) -> float | str:
     """Compute `in6_tailored_mkt_fin_fx_passthrough_default` using authored coordinate identities."""
     try:
         return as_measure((0.3 if xl_bool(xl_eq(input6_tailored_tests_enabled, 'On')) else 0))
@@ -14784,7 +14784,7 @@ def in6_tailored_mkt_fin_fx_passthrough_default(*, input6_tailored_tests_enabled
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_SCENARIO_CELLS)
-def in6opt_standard_scenario(*, lookup_ida_terms_old: str, lookup_onoff_off: str, input6_tailored_tests_enabled: Literal["Off", "On"], input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_interactions: str) -> int | str:
+def in6opt_standard_scenario(*, lookup_ida_terms_old: str, lookup_onoff_off: str, input6_tailored_tests_enabled: str, input6_standard_size_threshold_mode: str, input6_standard_interactions: str) -> int | str:
     """Compute `in6opt_standard_scenario` using authored coordinate identities."""
     try:
         return as_measure((0 if xl_bool(xl_and(xl_eq(input6_standard_size_threshold_mode, lookup_ida_terms_old), xl_eq(input6_standard_interactions, lookup_onoff_off), xl_eq(input6_tailored_tests_enabled, lookup_onoff_off))) else 1), 'int')
@@ -14792,7 +14792,7 @@ def in6opt_standard_scenario(*, lookup_ida_terms_old: str, lookup_onoff_off: str
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_CELLS)
-def in6opt_standard_historical_average_baseline_projection(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+def in6opt_standard_historical_average_baseline_projection(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
     """Compute `in6opt_standard_historical_average_baseline_projection` using authored coordinate identities."""
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -14800,7 +14800,7 @@ def in6opt_standard_historical_average_baseline_projection(*, input6_standard_si
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_B1_REAL_GDP_GROWTH_HISTORICAL_AVERAGE_BASELINE_PROJECTION_CELLS)
-def in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+def in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
     """Compute `in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection` using authored coordinate identities."""
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -14808,7 +14808,7 @@ def in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection(*,
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_B3_EXPORTS_HISTORICAL_AVERAGE_BASELINE_PROJECTION_CELLS)
-def in6opt_standard_b3_exports_historical_average_baseline_projection(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+def in6opt_standard_b3_exports_historical_average_baseline_projection(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
     """Compute `in6opt_standard_b3_exports_historical_average_baseline_projection` using authored coordinate identities."""
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -14816,7 +14816,7 @@ def in6opt_standard_b3_exports_historical_average_baseline_projection(*, input6_
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_CURRENT_TRANSFERS_B4_OTHER_NON_DEBT_CREATING_FLOWS_CELLS)
-def in6opt_standard_historical_average_baseline_projection_current_transfers_b4_other_non_debt_creating_flows(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+def in6opt_standard_historical_average_baseline_projection_current_transfers_b4_other_non_debt_creating_flows(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
     """Compute `in6opt_standard_historical_average_baseline_projection_current_transfers_b4_other_non_debt_creating_flows` using authored coordinate identities."""
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -14824,7 +14824,7 @@ def in6opt_standard_historical_average_baseline_projection_current_transfers_b4_
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_FDI_B4_OTHER_NON_DEBT_CREATING_FLOWS_CELLS)
-def in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt_creating_flows(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+def in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt_creating_flows(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
     """Compute `in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt_creating_flows` using authored coordinate identities."""
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -14832,7 +14832,7 @@ def in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_ONE_TIME_30_PERCENT_NOMINAL_DEPRECIATION_OF_CELLS)
-def in6opt_standard_one_time_30_percent_nominal_depreciation_of(*, input_1_rer_overvaluation: float | str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> int | str:
+def in6opt_standard_one_time_30_percent_nominal_depreciation_of(*, input_1_rer_overvaluation: float | str, input6_standard_size_threshold_mode: str) -> int | str:
     """Compute `in6opt_standard_one_time_30_percent_nominal_depreciation_of` using authored coordinate identities."""
     try:
         return as_measure((input_1_rer_overvaluation if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'NEW')) else 0), 'int')
@@ -14840,7 +14840,7 @@ def in6opt_standard_one_time_30_percent_nominal_depreciation_of(*, input_1_rer_o
         return error.code
 
 @publish(data.IN6OPT_STANDARD_NOMINAL_DEPRECIATION_CLOSE_REAL_OVERVALUATION.schema, cells=data.IN6OPT_STANDARD_NOMINAL_DEPRECIATION_CLOSE_REAL_OVERVALUATION.cells)
-def in6opt_standard_nominal_depreciation_close_real_overvaluation(*, input6_standard_size_threshold_mode: Literal["New", "Old"], baseline_pub_inflation_rate_gdp_deflator_pct: data.Series[float | str | None], in6opt_standard_one_time_30_percent_nominal_depreciation_of: int | str, in6opt_standard_us_inflation_default: float | str, input6_standard_params_2: data.Series[float | str | None], input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount) -> data.Series[float | str | None]:
+def in6opt_standard_nominal_depreciation_close_real_overvaluation(*, input6_standard_size_threshold_mode: str, baseline_pub_inflation_rate_gdp_deflator_pct: data.Series[float | str | None], in6opt_standard_one_time_30_percent_nominal_depreciation_of: int | str, in6opt_standard_us_inflation_default: float | str, input6_standard_params_2: data.Series[float | str | None], input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount) -> data.Series[float | str | None]:
     """Compute `in6opt_standard_nominal_depreciation_close_real_overvaluation` using authored coordinate identities."""
     data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.schema.validate(input3_input_3_macro_current_account)
     def formula(variant: str) -> float | str | None:
@@ -14859,7 +14859,7 @@ def in6opt_standard_apply_all_individual_shocks_b1_through_b5_half(*, input6_sta
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_REAL_GDP_B6_COMBINATION_CELLS)
-def in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+def in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
     """Compute `in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination` using authored coordinate identities."""
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -14875,7 +14875,7 @@ def in6opt_standard_size_of_exports_growth_shock_of_standard(*, input6_standard_
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_EXPORTS_B6_COMBINATION_CELLS)
-def in6opt_standard_historical_average_baseline_projection_exports_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+def in6opt_standard_historical_average_baseline_projection_exports_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
     """Compute `in6opt_standard_historical_average_baseline_projection_exports_b6_combination` using authored coordinate identities."""
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -14891,7 +14891,7 @@ def in6opt_standard_size_of_pb_gdp_shock_of_standard_deviations(*, input6_standa
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_PRIMARY_BALANCE_B6_COMBINATION_CELLS)
-def in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+def in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
     """Compute `in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination` using authored coordinate identities."""
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -14907,7 +14907,7 @@ def in6opt_standard_other_flows_current_transfers_shock_of_standard(*, input6_st
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_CURRENT_TRANSFERS_B6_COMBINATION_CELLS)
-def in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+def in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
     """Compute `in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination` using authored coordinate identities."""
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -14923,7 +14923,7 @@ def in6opt_standard_b6_combination_other_flows_fdi_shock_of_standard_deviations(
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_FDI_B6_COMBINATION_CELLS)
-def in6opt_standard_historical_average_baseline_projection_fdi_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+def in6opt_standard_historical_average_baseline_projection_fdi_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
     """Compute `in6opt_standard_historical_average_baseline_projection_fdi_b6_combination` using authored coordinate identities."""
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -15012,7 +15012,7 @@ def in7_resfin_shares_effective(*, in7_resfin_shares: data.Series[float | str | 
     return data.IN7_RESFIN_SHARES_EFFECTIVE.collect(evaluate(formula, data.IN7_RESFIN_SHARES_EFFECTIVE.required))
 
 @publish(data.IN7_RESFIN_EXT_MLT.schema, cells=data.IN7_RESFIN_EXT_MLT.cells)
-def in7_resfin_ext_mlt(*, in7_resfin_ext_mlt_default: data.Series[float | str | None], _override: data.In7ResfinExtMlt | Unset) -> data.In7ResfinExtMlt:
+def in7_resfin_ext_mlt(*, in7_resfin_ext_mlt_copied: data.Series[float | str | None], _override: data.In7ResfinExtMlt | Unset) -> data.In7ResfinExtMlt:
     """Compute `in7_resfin_ext_mlt` using authored coordinate identities."""
     def formula(indicator: str, variant: str) -> float | str | None:
         if _override is not data.UNSET:
@@ -15020,15 +15020,15 @@ def in7_resfin_ext_mlt(*, in7_resfin_ext_mlt_default: data.Series[float | str | 
             if _displaced is not data.UNSET:
                 return _displaced
         if variant == 'Default':
-            return as_measure(in7_resfin_ext_mlt_default[indicator])
+            return as_measure(in7_resfin_ext_mlt_copied[indicator])
         return as_measure(in7_resfin_ext_mlt[indicator, 'Default'])
 
     in7_resfin_ext_mlt = CoordinateReader('in7_resfin_ext_mlt', data.IN7_RESFIN_EXT_MLT.required, formula)
     return data.IN7_RESFIN_EXT_MLT.collect((coord, in7_resfin_ext_mlt[coord]) for coord in data.IN7_RESFIN_EXT_MLT.required)
 
-@publish(data.IN7_RESFIN_EXT_MLT_DEFAULT.schema, cells=data.IN7_RESFIN_EXT_MLT_DEFAULT.cells)
-def in7_resfin_ext_mlt_default(*, ext_debt_residual_grace_period_residual_financing: float | str, discount_rate: float | str, ext_debt_residual_interest_rate_residual_financing: float | str, ext_debt_residual_maturity_residual_financing: float | str) -> data.Series[float | str | None]:
-    """Compute `in7_resfin_ext_mlt_default` using authored coordinate identities."""
+@publish(data.IN7_RESFIN_EXT_MLT_COPIED.schema, cells=data.IN7_RESFIN_EXT_MLT_COPIED.cells)
+def in7_resfin_ext_mlt_copied(*, ext_debt_residual_grace_period_residual_financing: float | str, discount_rate: float | str, ext_debt_residual_interest_rate_residual_financing: float | str, ext_debt_residual_maturity_residual_financing: float | str) -> data.Series[float | str | None]:
+    """Compute `in7_resfin_ext_mlt_copied` using authored coordinate identities."""
     def formula(indicator: str) -> float | str | None:
         if indicator == 'Avg. nominal interest rate on new borrowing in USD':
             return as_measure(xl_div(ext_debt_residual_interest_rate_residual_financing, 100))
@@ -15038,14 +15038,14 @@ def in7_resfin_ext_mlt_default(*, ext_debt_residual_grace_period_residual_financ
             return as_measure((xl_add(ext_debt_residual_maturity_residual_financing, 1) if xl_bool(xl_eq(ext_debt_residual_maturity_residual_financing, ext_debt_residual_grace_period_residual_financing)) else ext_debt_residual_maturity_residual_financing))
         return as_measure(ext_debt_residual_grace_period_residual_financing)
 
-    return data.IN7_RESFIN_EXT_MLT_DEFAULT.collect(evaluate(formula, data.IN7_RESFIN_EXT_MLT_DEFAULT.required))
+    return data.IN7_RESFIN_EXT_MLT_COPIED.collect(evaluate(formula, data.IN7_RESFIN_EXT_MLT_COPIED.required))
 
 @publish(data.IN7_RESFIN_EXT_MLT_OVERRIDE.schema, cells=data.IN7_RESFIN_EXT_MLT_OVERRIDE.cells)
-def in7_resfin_ext_mlt_override(*, in7_resfin_ext_mlt_default: data.Series[float | str | None], in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow) -> data.Series[float | str | None]:
+def in7_resfin_ext_mlt_override(*, in7_resfin_ext_mlt_copied: data.Series[float | str | None], in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow) -> data.Series[float | str | None]:
     """Compute `in7_resfin_ext_mlt_override` using authored coordinate identities."""
     data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.schema.validate(in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row)
     def formula(indicator: str) -> float | str | None:
-        return as_measure((in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row[indicator] if xl_bool(xl_isnumber(lambda: in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row[indicator])) else in7_resfin_ext_mlt_default[indicator]))
+        return as_measure((in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row[indicator] if xl_bool(xl_isnumber(lambda: in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row[indicator])) else in7_resfin_ext_mlt_copied[indicator]))
 
     return data.IN7_RESFIN_EXT_MLT_OVERRIDE.collect(evaluate(formula, data.IN7_RESFIN_EXT_MLT_OVERRIDE.required))
 
@@ -15952,7 +15952,7 @@ def macro_debt_depreciation_of_nc_depreciation(*, macro_debt_exchange_rate_dolla
     return data.MACRO_DEBT_DEPRECIATION_OF_NC_DEPRECIATION.collect(evaluate(formula, data.MACRO_DEBT_DEPRECIATION_OF_NC_DEPRECIATION.required.bind(TIME_PERIOD=input3_input_3_macro_current_account)), domain=data.MACRO_DEBT_DEPRECIATION_OF_NC_DEPRECIATION.required.bind(TIME_PERIOD=input3_input_3_macro_current_account))
 
 @publish(key=(), domain=None, cells=data.START_DEBT_SUSTAINABILITY_ANALYSIS_CELLS)
-def start_debt_sustainability_analysis(*, start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"], lookup_language_native_name: data.Series[str | None], lookup_language_english_name: data.Series[str | None]) -> str | int | float | bool:
+def start_debt_sustainability_analysis(*, start_working_language: str, lookup_language_native_name: data.Series[str | None], lookup_language_english_name: data.Series[str | None]) -> str | int | float | bool:
     """Compute `start_debt_sustainability_analysis` using authored coordinate identities."""
     data.LOOKUP_LANGUAGE_NATIVE_NAME.schema.validate(lookup_language_native_name)
     data.LOOKUP_LANGUAGE_ENGLISH_NAME.schema.validate(lookup_language_english_name)
@@ -16602,14 +16602,14 @@ def custom_ext_average_interest_rate_new_debt_by_row(*, in7_resfin_ext_mlt_effec
     return data.CUSTOM_EXT_AVERAGE_INTEREST_RATE_NEW_DEBT_BY_ROW.collect(evaluate(formula, data.CUSTOM_EXT_AVERAGE_INTEREST_RATE_NEW_DEBT_BY_ROW.required))
 
 @publish(data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.schema, cells=data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells)
-def in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row(*, in7_resfin_ext_mlt_default: data.Series[float | str | None], _override: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset) -> data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow:
+def in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row(*, in7_resfin_ext_mlt_copied: data.Series[float | str | None], _override: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset) -> data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow:
     """Compute `in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row` using authored coordinate identities."""
     def formula(indicator: str) -> float | str | None:
         if _override is not data.UNSET:
             _displaced = _override[indicator]
             if _displaced is not data.UNSET:
                 return _displaced
-        return as_measure(in7_resfin_ext_mlt_default[indicator])
+        return as_measure(in7_resfin_ext_mlt_copied[indicator])
 
     return data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.collect(evaluate(formula, data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.required))
 
