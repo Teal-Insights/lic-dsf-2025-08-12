@@ -6,7 +6,7 @@ from dataclasses import Field, dataclass, fields
 from dataclasses import field as _field
 from functools import cached_property
 from pathlib import Path
-from typing import Any, ClassVar, Literal, Self
+from typing import Any, ClassVar, Self
 
 from . import data, internals, validation
 from .runtime import InputField, describe_inputs
@@ -418,7 +418,7 @@ class Model(_BoundInputs):
     input5_public_gfns_other_adjustment: data.Input5PublicGfnsOtherAdjustment
     input5_domestic_financing_source: int | str
     input5_gfn_share: data.Input5GfnShare
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"]
+    start_working_language: str
     country: str
     first_projection_year: int | str
     discount_rate: float | str
@@ -438,8 +438,8 @@ class Model(_BoundInputs):
     input8_sdr_interest_historical: data.Input8SdrInterestHistorical
     input8_sdr_interest: data.Input8SdrInterest
     input8_sdr_interest_rate: float | str
-    input6_tailored_tests_enabled: Literal["Off", "On"]
-    input6_standard_size_threshold_mode: Literal["New", "Old"]
+    input6_tailored_tests_enabled: str
+    input6_standard_size_threshold_mode: str
     input6_standard_interactions: str
     input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold
     input3_input_3_macro_gross_domestic_product_us_dollars: data.Input3Input3MacroGrossDomesticProductUsDollars
@@ -539,7 +539,7 @@ class Model(_BoundInputs):
         input5_public_gfns_other_adjustment: data.Input5PublicGfnsOtherAdjustment = data.INPUT5_PUBLIC_GFNS_OTHER_ADJUSTMENT_DEFAULT,
         input5_domestic_financing_source: int | str = data.INPUT5_DOMESTIC_FINANCING_SOURCE_DEFAULT,
         input5_gfn_share: data.Input5GfnShare = data.INPUT5_GFN_SHARE_DEFAULT,
-        start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = data.START_WORKING_LANGUAGE_DEFAULT,
+        start_working_language: str = data.START_WORKING_LANGUAGE_DEFAULT,
         country: str = data.COUNTRY_DEFAULT,
         first_projection_year: int | str = data.FIRST_PROJECTION_YEAR_DEFAULT,
         discount_rate: float | str = data.DISCOUNT_RATE_DEFAULT,
@@ -559,8 +559,8 @@ class Model(_BoundInputs):
         input8_sdr_interest_historical: data.Input8SdrInterestHistorical = data.INPUT8_SDR_INTEREST_HISTORICAL_DEFAULT,
         input8_sdr_interest: data.Input8SdrInterest = data.INPUT8_SDR_INTEREST_DEFAULT,
         input8_sdr_interest_rate: float | str = data.INPUT8_SDR_INTEREST_RATE_DEFAULT,
-        input6_tailored_tests_enabled: Literal["Off", "On"] = data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT,
-        input6_standard_size_threshold_mode: Literal["New", "Old"] = data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT,
+        input6_tailored_tests_enabled: str = data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT,
+        input6_standard_size_threshold_mode: str = data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT,
         input6_standard_interactions: str = data.INPUT6_STANDARD_INTERACTIONS_DEFAULT,
         input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold = data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD_DEFAULT,
         input3_input_3_macro_gross_domestic_product_us_dollars: data.Input3Input3MacroGrossDomesticProductUsDollars = data.INPUT3_INPUT_3_MACRO_GROSS_DOMESTIC_PRODUCT_US_DOLLARS_DEFAULT,
@@ -4578,15 +4578,15 @@ class Model(_BoundInputs):
     @cached_property
     def in7_resfin_ext_mlt(self) -> data.In7ResfinExtMlt:
         _override = getattr(self, "_in7_resfin_ext_mlt__override", data.UNSET)
-        return internals.in7_resfin_ext_mlt(in7_resfin_ext_mlt_default=self.in7_resfin_ext_mlt_default, _override=_override)
+        return internals.in7_resfin_ext_mlt(in7_resfin_ext_mlt_copied=self.in7_resfin_ext_mlt_copied, _override=_override)
 
     @cached_property
-    def in7_resfin_ext_mlt_default(self) -> data.Series[float | str | None]:
-        return internals.in7_resfin_ext_mlt_default(ext_debt_residual_grace_period_residual_financing=self.ext_debt_residual_grace_period_residual_financing, discount_rate=self.discount_rate, ext_debt_residual_interest_rate_residual_financing=self.ext_debt_residual_interest_rate_residual_financing, ext_debt_residual_maturity_residual_financing=self.ext_debt_residual_maturity_residual_financing)
+    def in7_resfin_ext_mlt_copied(self) -> data.Series[float | str | None]:
+        return internals.in7_resfin_ext_mlt_copied(ext_debt_residual_grace_period_residual_financing=self.ext_debt_residual_grace_period_residual_financing, discount_rate=self.discount_rate, ext_debt_residual_interest_rate_residual_financing=self.ext_debt_residual_interest_rate_residual_financing, ext_debt_residual_maturity_residual_financing=self.ext_debt_residual_maturity_residual_financing)
 
     @cached_property
     def in7_resfin_ext_mlt_override(self) -> data.Series[float | str | None]:
-        return internals.in7_resfin_ext_mlt_override(in7_resfin_ext_mlt_default=self.in7_resfin_ext_mlt_default, in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row=self.in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row)
+        return internals.in7_resfin_ext_mlt_override(in7_resfin_ext_mlt_copied=self.in7_resfin_ext_mlt_copied, in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row=self.in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row)
 
     @cached_property
     def in7_resfin_ext_mlt_effective(self) -> data.Series[float | str | None]:
@@ -5088,7 +5088,7 @@ class Model(_BoundInputs):
     @cached_property
     def in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row(self) -> data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow:
         _override = getattr(self, "_in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row__override", data.UNSET)
-        return internals.in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row(in7_resfin_ext_mlt_default=self.in7_resfin_ext_mlt_default, _override=_override)
+        return internals.in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row(in7_resfin_ext_mlt_copied=self.in7_resfin_ext_mlt_copied, _override=_override)
 
     @cached_property
     def leftover_real_interest_rate(self) -> data.Series[float | str | None]:
@@ -6499,7 +6499,7 @@ class Model(_BoundInputs):
 class Realism1ExternalDebtFlowComponentsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_external_debt_flow_components`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -6553,7 +6553,7 @@ class Realism1ExternalDebtCreatingFlowsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     first_projection_year: int | str = _field(
@@ -6583,10 +6583,10 @@ class Realism1ExternalDebtCreatingFlowsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -6730,7 +6730,7 @@ class Realism1ExternalDebtCreatingFlowsInputs(_SnapshotInputs):
 class Realism1ExternalForecastErrorComponentLabelsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_external_forecast_error_component_labels`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -6784,7 +6784,7 @@ class Realism1ExternalForecastErrorComponentsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -6817,10 +6817,10 @@ class Realism1ExternalForecastErrorComponentsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -6964,7 +6964,7 @@ class Realism1ExternalForecastErrorComponentsInputs(_SnapshotInputs):
 class Realism1ExternalForecastErrorDistributionLabelsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_external_forecast_error_distribution_labels`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -7018,7 +7018,7 @@ class Realism1ExternalForecastErrorDistributionInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -7051,10 +7051,10 @@ class Realism1ExternalForecastErrorDistributionInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -7255,7 +7255,7 @@ class Realism1ExternalVintageDebtPathsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -7288,10 +7288,10 @@ class Realism1ExternalVintageDebtPathsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -7435,7 +7435,7 @@ class Realism1ExternalVintageDebtPathsInputs(_SnapshotInputs):
 class Realism1PublicDebtFlowComponentsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_public_debt_flow_components`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -7489,7 +7489,7 @@ class Realism1PublicDebtCreatingFlowsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     first_projection_year: int | str = _field(
@@ -7597,7 +7597,7 @@ class Realism1PublicDebtCreatingFlowsInputs(_SnapshotInputs):
 class Realism1PublicForecastErrorComponentLabelsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_public_forecast_error_component_labels`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -7651,7 +7651,7 @@ class Realism1PublicForecastErrorComponentsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -7768,7 +7768,7 @@ class Realism1PublicForecastErrorLowerQuartileInputs(_SnapshotInputs):
 class Realism1PublicForecastErrorDistributionLabelsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism1_public_forecast_error_distribution_labels`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -7822,7 +7822,7 @@ class Realism1PublicForecastErrorDistributionInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -7990,7 +7990,7 @@ class Realism1PublicVintageDebtPathsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -8224,7 +8224,7 @@ class Realism3InvestmentYearsInputs(_SnapshotInputs):
 class Realism3InvestmentPathLabelsInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism3_investment_path_labels`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -8251,7 +8251,7 @@ class Realism3PublicPrivateInvestmentPathsInputs(_SnapshotInputs):
 class Realism3GrowthAccountingVintagesInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism3_growth_accounting_vintages`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -8305,7 +8305,7 @@ class Realism3GrowthAccountingContributionsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -8335,10 +8335,10 @@ class Realism3GrowthAccountingContributionsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -8461,7 +8461,7 @@ class Realism3GrowthAccountingContributionsInputs(_SnapshotInputs):
 class Realism4Projected3yrAdjustmentLabelInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism4_projected_3yr_adjustment_label`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -8578,7 +8578,7 @@ class Realism4Projected3yrAdjustmentSampleShareInputs(_SnapshotInputs):
 class Realism4FiscalAdjustmentTopBinLabelInputs(_SnapshotInputs):
     """Bound input leaves for `compute_realism4_fiscal_adjustment_top_bin_label`."""
 
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
 
@@ -8644,7 +8644,7 @@ class ProbabilityPvDebtToGdpInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -8689,10 +8689,10 @@ class ProbabilityPvDebtToGdpInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -8884,7 +8884,7 @@ class ProbabilityPvDebtToExportsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -8929,10 +8929,10 @@ class ProbabilityPvDebtToExportsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -9124,7 +9124,7 @@ class ProbabilityDebtServiceToExportsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -9169,10 +9169,10 @@ class ProbabilityDebtServiceToExportsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -9367,7 +9367,7 @@ class ProbabilityDebtServiceToRevenueInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -9412,10 +9412,10 @@ class ProbabilityDebtServiceToRevenueInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -9610,7 +9610,7 @@ class ProbabilityPvDebtToGdpDistressInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -9655,10 +9655,10 @@ class ProbabilityPvDebtToGdpDistressInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -9850,7 +9850,7 @@ class ProbabilityPvDebtToExportsDistressInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -9895,10 +9895,10 @@ class ProbabilityPvDebtToExportsDistressInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -10090,7 +10090,7 @@ class ProbabilityDebtServiceToExportsDistressInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -10135,10 +10135,10 @@ class ProbabilityDebtServiceToExportsDistressInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -10333,7 +10333,7 @@ class ProbabilityDebtServiceToRevenueDistressInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -10378,10 +10378,10 @@ class ProbabilityDebtServiceToRevenueDistressInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -10576,7 +10576,7 @@ class ExternalDsaRiskRatingSignalInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -10621,10 +10621,10 @@ class ExternalDsaRiskRatingSignalInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -10819,7 +10819,7 @@ class ExternalDsaRiskRatingNumericInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -10864,10 +10864,10 @@ class ExternalDsaRiskRatingNumericInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -11062,7 +11062,7 @@ class ExternalBaselineBreachInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -11107,10 +11107,10 @@ class ExternalBaselineBreachInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -11305,7 +11305,7 @@ class ExternalShockBreachInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -11350,10 +11350,10 @@ class ExternalShockBreachInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -11548,7 +11548,7 @@ class ExternalPvDebtToGdpMxShockInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -11593,10 +11593,10 @@ class ExternalPvDebtToGdpMxShockInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -11788,7 +11788,7 @@ class ExternalPvDebtToExportsMxShockInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -11833,10 +11833,10 @@ class ExternalPvDebtToExportsMxShockInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -12028,7 +12028,7 @@ class ExternalDebtServiceToExportsMxShockInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -12073,10 +12073,10 @@ class ExternalDebtServiceToExportsMxShockInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -12271,7 +12271,7 @@ class ExternalDebtServiceToRevenueMxShockInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -12316,10 +12316,10 @@ class ExternalDebtServiceToRevenueMxShockInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -12514,7 +12514,7 @@ class FiscalRiskRatingSignalInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -12565,10 +12565,10 @@ class FiscalRiskRatingSignalInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -12790,7 +12790,7 @@ class FiscalRiskRatingNumericInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -12841,10 +12841,10 @@ class FiscalRiskRatingNumericInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -13066,7 +13066,7 @@ class FiscalBaselineBreachInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -13117,10 +13117,10 @@ class FiscalBaselineBreachInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -13342,7 +13342,7 @@ class FiscalShockBreachInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -13393,10 +13393,10 @@ class FiscalShockBreachInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -13618,7 +13618,7 @@ class FiscalPvDebtToGdpMxShockInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -13669,10 +13669,10 @@ class FiscalPvDebtToGdpMxShockInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -13861,7 +13861,7 @@ class TailoredStressCommodityPriceApplicableInputs(_SnapshotInputs):
     input6_commodity_group_relevant: data.Input6CommodityGroupRelevant = _field(
         metadata={"default": data.INPUT6_COMMODITY_GROUP_RELEVANT_DEFAULT, "cells": data.INPUT6_COMMODITY_GROUP_RELEVANT.cells},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
     input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount = _field(
@@ -13891,7 +13891,7 @@ class TailoredStressMarketFinancingApplicableInputs(_SnapshotInputs):
     country: str = _field(
         metadata={"default": data.COUNTRY_DEFAULT, "cells": data.COUNTRY_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
 
@@ -13945,7 +13945,7 @@ class FiscalSpaceModerateRiskSignalInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -13999,10 +13999,10 @@ class FiscalSpaceModerateRiskSignalInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -14197,7 +14197,7 @@ class OverallRiskRatingSignalInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -14248,10 +14248,10 @@ class OverallRiskRatingSignalInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -14476,7 +14476,7 @@ class OverallRiskRatingNumericInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -14527,10 +14527,10 @@ class OverallRiskRatingNumericInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -14755,7 +14755,7 @@ class ChartOutputChartDataPvOfDebtToGdpRatioPvDebtToGdpInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -14806,10 +14806,10 @@ class ChartOutputChartDataPvOfDebtToGdpRatioPvDebtToGdpInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -15031,7 +15031,7 @@ class ChartOutputChartDataPvOfDebtToRevenueRatioPvDebtToRevenueInputs(_SnapshotI
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -15082,10 +15082,10 @@ class ChartOutputChartDataPvOfDebtToRevenueRatioPvDebtToRevenueInputs(_SnapshotI
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -15307,7 +15307,7 @@ class ChartOutputChartDataDebtServiceToRevenueRatioDebtServiceToRevenueInputs(_S
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -15358,10 +15358,10 @@ class ChartOutputChartDataDebtServiceToRevenueRatioDebtServiceToRevenueInputs(_S
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -15577,7 +15577,7 @@ class ChartOutputChartDataDebtServiceToGdpRatioDebtServiceGdpRatioInputs(_Snapsh
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -15628,10 +15628,10 @@ class ChartOutputChartDataDebtServiceToGdpRatioDebtServiceGdpRatioInputs(_Snapsh
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -15847,7 +15847,7 @@ class ChartPvDebtGdpRatioCustomAlternativeScenarioInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     first_projection_year: int | str = _field(
@@ -15883,10 +15883,10 @@ class ChartPvDebtGdpRatioCustomAlternativeScenarioInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -16105,7 +16105,7 @@ class ChartOutputPvDebtGdpRatioInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -16150,10 +16150,10 @@ class ChartOutputPvDebtGdpRatioInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -16345,7 +16345,7 @@ class ChartPvDebtToExportsCustomAlternativeScenarioInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     first_projection_year: int | str = _field(
@@ -16381,10 +16381,10 @@ class ChartPvDebtToExportsCustomAlternativeScenarioInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -16603,7 +16603,7 @@ class ChartOutputPvDebtToExportsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -16648,10 +16648,10 @@ class ChartOutputPvDebtToExportsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -16843,7 +16843,7 @@ class ChartDebtServiceToExportsCustomAlternativeScenarioInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     first_projection_year: int | str = _field(
@@ -16879,10 +16879,10 @@ class ChartDebtServiceToExportsCustomAlternativeScenarioInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -17098,7 +17098,7 @@ class ChartOutputDebtServiceToExportsInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -17143,10 +17143,10 @@ class ChartOutputDebtServiceToExportsInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -17341,7 +17341,7 @@ class ChartDebtServiceToRevenueCustomAlternativeScenarioInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     first_projection_year: int | str = _field(
@@ -17377,10 +17377,10 @@ class ChartDebtServiceToRevenueCustomAlternativeScenarioInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -17596,7 +17596,7 @@ class ChartOutputDebtServiceToRevenueInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -17641,10 +17641,10 @@ class ChartOutputDebtServiceToRevenueInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -17839,7 +17839,7 @@ class ChartOutputPvDebtToGdpInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -17890,10 +17890,10 @@ class ChartOutputPvDebtToGdpInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -18115,7 +18115,7 @@ class ChartPvDebtToRevenueMxShockStandardTailoredInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -18166,10 +18166,10 @@ class ChartPvDebtToRevenueMxShockStandardTailoredInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
@@ -18391,7 +18391,7 @@ class ChartOutputDebtServiceToRevenueFiscalInputs(_SnapshotInputs):
     input5_gfn_share: data.Input5GfnShare = _field(
         metadata={"default": data.INPUT5_GFN_SHARE_DEFAULT, "cells": data.INPUT5_GFN_SHARE.cells},
     )
-    start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"] = _field(
+    start_working_language: str = _field(
         metadata={"default": data.START_WORKING_LANGUAGE_DEFAULT, "cells": data.START_WORKING_LANGUAGE_CELLS},
     )
     country: str = _field(
@@ -18442,10 +18442,10 @@ class ChartOutputDebtServiceToRevenueFiscalInputs(_SnapshotInputs):
     input8_sdr_interest_rate: float | str = _field(
         metadata={"default": data.INPUT8_SDR_INTEREST_RATE_DEFAULT, "cells": data.INPUT8_SDR_INTEREST_RATE_CELLS},
     )
-    input6_tailored_tests_enabled: Literal["Off", "On"] = _field(
+    input6_tailored_tests_enabled: str = _field(
         metadata={"default": data.INPUT6_TAILORED_TESTS_ENABLED_DEFAULT, "cells": data.INPUT6_TAILORED_TESTS_ENABLED_CELLS},
     )
-    input6_standard_size_threshold_mode: Literal["New", "Old"] = _field(
+    input6_standard_size_threshold_mode: str = _field(
         metadata={"default": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_DEFAULT, "cells": data.INPUT6_STANDARD_SIZE_THRESHOLD_MODE_CELLS},
     )
     input6_standard_interactions: str = _field(
