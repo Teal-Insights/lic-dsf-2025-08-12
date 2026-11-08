@@ -10,500 +10,317 @@ from typing import Any, ClassVar, Literal, Self
 
 from . import data, internals, validation
 from .runtime import InputField, describe_inputs
-from .tensor import align_runtime_keys
+from .tensor import Unset, align_runtime_keys
 from .workbook import read_bound_inputs
 
 
 def _bind_inputs(target: object, inputs: dict[str, Any], *, validate: bool = True, align_snapshot: bool = False) -> None:
+    def store(name: str, value: object) -> None:
+        if name in _OVERRIDE_IDS:
+            setattr(target, f"_{name}__override", value)
+            return
+        setattr(target, name, value)
+
     if not validate:
         for name, value in inputs.items():
-            setattr(target, name, value)
+            store(name, value)
         return
     for name, value in inputs.items():
         if name in {'input4_disbursements', 'input5_interest_rate_on_domestic_debt', 'input5_interest_rate_on_domestic_debt_fx_long', 'input5_public_gfns_other_adjustment', 'customized_public_delta', 'input8_sdr_interest_historical', 'input8_sdr_interest', 'input3_input_3_macro_gross_domestic_product_us_dollars', 'input3_input_3_macro_real_gross_domestic_product', 'input3_input_3_macro_u_s_deflator', 'input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p', 'input3_input_3_macro_national_currency_per_u_s_dollar_p_a', 'input3_input_3_macro_government_revenue_and_grants', 'input3_input_3_macro_government_grants', 'in3_macro_government_primary_expenditures_this_used_be', 'in3_macro_public_sector_liquid_assets_stock_e_g_cash', 'in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g', 'input3_input_3_macro_privatization_proceeds', 'in3_macro_recognition_of_contingent_liab_e_g_bank', 'input3_input_3_macro_debt_relief_non_multilateral_hipc', 'input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify', 'input3_input_3_macro_exports_of_goods_and_services', 'input3_input_3_macro_exports_commodity_fuel', 'input3_input_3_macro_exports_commodity_non_fuel', 'input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number', 'input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number', 'input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number', 'input3_input_3_macro_current_transfers_net', 'input3_input_3_macro_foreign_direct_investment', 'input3_input_3_external_debt_ppg_mlt_external_debt_outstanding', 'input3_input_3_external_debt_ppg_st_external_debt_outstanding', 'input3_input_3_external_debt_ppg_external_debt_interest_due', 'input3_input_3_external_debt_ppg_external_arrears', 'input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding', 'input3_input_3_external_debt_private_sector_st_external_debt_outstanding', 'input3_input_3_external_debt_private_external_debt_interest_due', 'input3_input_3_external_debt_private_mlt_external_debt_amortization_due', 'input3_input_3_old_debt_service_total_principal_payment', 'customized_public_new_forex_borrowing_cumulative_overflow', 'customized_public_new_domestic_mlt_cumulative_overflow', 'customized_public_residual_overflow', 'customized_external_new_forex_borrowing_cumulative_overflow', 'input3_new_disbursements', 'input3_domestic_outstanding_of_existing_debt', 'input3_domestic_o_w_st', 'input3_domestic_interest_payment_from_existing_debt', 'input3_domestic_principal_payment_from_existing_debt', 'input3_domestic_new_gross_disbursement'}:
             continue
         check = validation.CHECKS.get(name)
-        setattr(target, name, value if check is None else check(value))
+        store(name, value if check is None else check(value))
     if 'input4_disbursements' in inputs:
         value = inputs['input4_disbursements']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('input4_disbursements')
-        setattr(
-            target,
-            'input4_disbursements',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('input4_disbursements', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'input5_interest_rate_on_domestic_debt' in inputs:
         value = inputs['input5_interest_rate_on_domestic_debt']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('input5_interest_rate_on_domestic_debt')
-        setattr(
-            target,
-            'input5_interest_rate_on_domestic_debt',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('input5_interest_rate_on_domestic_debt', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'input5_interest_rate_on_domestic_debt_fx_long' in inputs:
         value = inputs['input5_interest_rate_on_domestic_debt_fx_long']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('input5_interest_rate_on_domestic_debt_fx_long')
-        setattr(
-            target,
-            'input5_interest_rate_on_domestic_debt_fx_long',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('input5_interest_rate_on_domestic_debt_fx_long', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'input5_public_gfns_other_adjustment' in inputs:
         value = inputs['input5_public_gfns_other_adjustment']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('input5_public_gfns_other_adjustment')
-        setattr(
-            target,
-            'input5_public_gfns_other_adjustment',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('input5_public_gfns_other_adjustment', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'customized_public_delta' in inputs:
         value = inputs['customized_public_delta']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('customized_public_delta')
-        setattr(
-            target,
-            'customized_public_delta',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('customized_public_delta', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'input8_sdr_interest_historical' in inputs:
         value = inputs['input8_sdr_interest_historical']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('input8_sdr_interest_historical')
-        setattr(
-            target,
-            'input8_sdr_interest_historical',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('input8_sdr_interest_historical', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'input8_sdr_interest' in inputs:
         value = inputs['input8_sdr_interest']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('input8_sdr_interest')
-        setattr(
-            target,
-            'input8_sdr_interest',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('input8_sdr_interest', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'input3_input_3_macro_gross_domestic_product_us_dollars' in inputs:
         value = inputs['input3_input_3_macro_gross_domestic_product_us_dollars']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_macro_gross_domestic_product_us_dollars')
-        setattr(
-            target,
-            'input3_input_3_macro_gross_domestic_product_us_dollars',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_macro_gross_domestic_product_us_dollars', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_macro_real_gross_domestic_product' in inputs:
         value = inputs['input3_input_3_macro_real_gross_domestic_product']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_macro_real_gross_domestic_product')
-        setattr(
-            target,
-            'input3_input_3_macro_real_gross_domestic_product',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_macro_real_gross_domestic_product', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_macro_u_s_deflator' in inputs:
         value = inputs['input3_input_3_macro_u_s_deflator']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_macro_u_s_deflator')
-        setattr(
-            target,
-            'input3_input_3_macro_u_s_deflator',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_macro_u_s_deflator', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p' in inputs:
         value = inputs['input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p')
-        setattr(
-            target,
-            'input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_macro_national_currency_per_u_s_dollar_p_a' in inputs:
         value = inputs['input3_input_3_macro_national_currency_per_u_s_dollar_p_a']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_macro_national_currency_per_u_s_dollar_p_a')
-        setattr(
-            target,
-            'input3_input_3_macro_national_currency_per_u_s_dollar_p_a',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_macro_national_currency_per_u_s_dollar_p_a', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_macro_government_revenue_and_grants' in inputs:
         value = inputs['input3_input_3_macro_government_revenue_and_grants']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_macro_government_revenue_and_grants')
-        setattr(
-            target,
-            'input3_input_3_macro_government_revenue_and_grants',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_macro_government_revenue_and_grants', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_macro_government_grants' in inputs:
         value = inputs['input3_input_3_macro_government_grants']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('input3_input_3_macro_government_grants')
-        setattr(
-            target,
-            'input3_input_3_macro_government_grants',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('input3_input_3_macro_government_grants', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'in3_macro_government_primary_expenditures_this_used_be' in inputs:
         value = inputs['in3_macro_government_primary_expenditures_this_used_be']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('in3_macro_government_primary_expenditures_this_used_be')
-        setattr(
-            target,
-            'in3_macro_government_primary_expenditures_this_used_be',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('in3_macro_government_primary_expenditures_this_used_be', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'in3_macro_public_sector_liquid_assets_stock_e_g_cash' in inputs:
         value = inputs['in3_macro_public_sector_liquid_assets_stock_e_g_cash']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('in3_macro_public_sector_liquid_assets_stock_e_g_cash')
-        setattr(
-            target,
-            'in3_macro_public_sector_liquid_assets_stock_e_g_cash',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('in3_macro_public_sector_liquid_assets_stock_e_g_cash', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g' in inputs:
         value = inputs['in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g')
-        setattr(
-            target,
-            'in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'input3_input_3_macro_privatization_proceeds' in inputs:
         value = inputs['input3_input_3_macro_privatization_proceeds']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('input3_input_3_macro_privatization_proceeds')
-        setattr(
-            target,
-            'input3_input_3_macro_privatization_proceeds',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('input3_input_3_macro_privatization_proceeds', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'in3_macro_recognition_of_contingent_liab_e_g_bank' in inputs:
         value = inputs['in3_macro_recognition_of_contingent_liab_e_g_bank']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('in3_macro_recognition_of_contingent_liab_e_g_bank')
-        setattr(
-            target,
-            'in3_macro_recognition_of_contingent_liab_e_g_bank',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('in3_macro_recognition_of_contingent_liab_e_g_bank', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'input3_input_3_macro_debt_relief_non_multilateral_hipc' in inputs:
         value = inputs['input3_input_3_macro_debt_relief_non_multilateral_hipc']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('input3_input_3_macro_debt_relief_non_multilateral_hipc')
-        setattr(
-            target,
-            'input3_input_3_macro_debt_relief_non_multilateral_hipc',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('input3_input_3_macro_debt_relief_non_multilateral_hipc', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify' in inputs:
         value = inputs['input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify')
-        setattr(
-            target,
-            'input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'input3_input_3_macro_exports_of_goods_and_services' in inputs:
         value = inputs['input3_input_3_macro_exports_of_goods_and_services']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_macro_exports_of_goods_and_services')
-        setattr(
-            target,
-            'input3_input_3_macro_exports_of_goods_and_services',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_macro_exports_of_goods_and_services', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_macro_exports_commodity_fuel' in inputs:
         value = inputs['input3_input_3_macro_exports_commodity_fuel']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_macro_exports_commodity_fuel')
-        setattr(
-            target,
-            'input3_input_3_macro_exports_commodity_fuel',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_macro_exports_commodity_fuel', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_macro_exports_commodity_non_fuel' in inputs:
         value = inputs['input3_input_3_macro_exports_commodity_non_fuel']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_macro_exports_commodity_non_fuel')
-        setattr(
-            target,
-            'input3_input_3_macro_exports_commodity_non_fuel',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_macro_exports_commodity_non_fuel', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number' in inputs:
         value = inputs['input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number')
-        setattr(
-            target,
-            'input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number' in inputs:
         value = inputs['input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number')
-        setattr(
-            target,
-            'input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number' in inputs:
         value = inputs['input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number')
-        setattr(
-            target,
-            'input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_macro_current_transfers_net' in inputs:
         value = inputs['input3_input_3_macro_current_transfers_net']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_macro_current_transfers_net')
-        setattr(
-            target,
-            'input3_input_3_macro_current_transfers_net',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_macro_current_transfers_net', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_macro_foreign_direct_investment' in inputs:
         value = inputs['input3_input_3_macro_foreign_direct_investment']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_macro_foreign_direct_investment')
-        setattr(
-            target,
-            'input3_input_3_macro_foreign_direct_investment',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_macro_foreign_direct_investment', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_external_debt_ppg_mlt_external_debt_outstanding' in inputs:
         value = inputs['input3_input_3_external_debt_ppg_mlt_external_debt_outstanding']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_external_debt_ppg_mlt_external_debt_outstanding')
-        setattr(
-            target,
-            'input3_input_3_external_debt_ppg_mlt_external_debt_outstanding',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_external_debt_ppg_mlt_external_debt_outstanding', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_external_debt_ppg_st_external_debt_outstanding' in inputs:
         value = inputs['input3_input_3_external_debt_ppg_st_external_debt_outstanding']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_external_debt_ppg_st_external_debt_outstanding')
-        setattr(
-            target,
-            'input3_input_3_external_debt_ppg_st_external_debt_outstanding',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_external_debt_ppg_st_external_debt_outstanding', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_external_debt_ppg_external_debt_interest_due' in inputs:
         value = inputs['input3_input_3_external_debt_ppg_external_debt_interest_due']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_external_debt_ppg_external_debt_interest_due')
-        setattr(
-            target,
-            'input3_input_3_external_debt_ppg_external_debt_interest_due',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_external_debt_ppg_external_debt_interest_due', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_external_debt_ppg_external_arrears' in inputs:
         value = inputs['input3_input_3_external_debt_ppg_external_arrears']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_external_debt_ppg_external_arrears')
-        setattr(
-            target,
-            'input3_input_3_external_debt_ppg_external_arrears',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_external_debt_ppg_external_arrears', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding' in inputs:
         value = inputs['input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding')
-        setattr(
-            target,
-            'input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_external_debt_private_sector_st_external_debt_outstanding' in inputs:
         value = inputs['input3_input_3_external_debt_private_sector_st_external_debt_outstanding']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_external_debt_private_sector_st_external_debt_outstanding')
-        setattr(
-            target,
-            'input3_input_3_external_debt_private_sector_st_external_debt_outstanding',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_external_debt_private_sector_st_external_debt_outstanding', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_external_debt_private_external_debt_interest_due' in inputs:
         value = inputs['input3_input_3_external_debt_private_external_debt_interest_due']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_input_3_external_debt_private_external_debt_interest_due')
-        setattr(
-            target,
-            'input3_input_3_external_debt_private_external_debt_interest_due',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_input_3_external_debt_private_external_debt_interest_due', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_input_3_external_debt_private_mlt_external_debt_amortization_due' in inputs:
         value = inputs['input3_input_3_external_debt_private_mlt_external_debt_amortization_due']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('input3_input_3_external_debt_private_mlt_external_debt_amortization_due')
-        setattr(
-            target,
-            'input3_input_3_external_debt_private_mlt_external_debt_amortization_due',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('input3_input_3_external_debt_private_mlt_external_debt_amortization_due', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'input3_input_3_old_debt_service_total_principal_payment' in inputs:
         value = inputs['input3_input_3_old_debt_service_total_principal_payment']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('input3_input_3_old_debt_service_total_principal_payment')
-        setattr(
-            target,
-            'input3_input_3_old_debt_service_total_principal_payment',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('input3_input_3_old_debt_service_total_principal_payment', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'customized_public_new_forex_borrowing_cumulative_overflow' in inputs:
         value = inputs['customized_public_new_forex_borrowing_cumulative_overflow']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('customized_public_new_forex_borrowing_cumulative_overflow')
-        setattr(
-            target,
-            'customized_public_new_forex_borrowing_cumulative_overflow',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('customized_public_new_forex_borrowing_cumulative_overflow', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'customized_public_new_domestic_mlt_cumulative_overflow' in inputs:
         value = inputs['customized_public_new_domestic_mlt_cumulative_overflow']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('customized_public_new_domestic_mlt_cumulative_overflow')
-        setattr(
-            target,
-            'customized_public_new_domestic_mlt_cumulative_overflow',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('customized_public_new_domestic_mlt_cumulative_overflow', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'customized_public_residual_overflow' in inputs:
         value = inputs['customized_public_residual_overflow']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('customized_public_residual_overflow')
-        setattr(
-            target,
-            'customized_public_residual_overflow',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('customized_public_residual_overflow', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'customized_external_new_forex_borrowing_cumulative_overflow' in inputs:
         value = inputs['customized_external_new_forex_borrowing_cumulative_overflow']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('customized_external_new_forex_borrowing_cumulative_overflow')
-        setattr(
-            target,
-            'customized_external_new_forex_borrowing_cumulative_overflow',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('customized_external_new_forex_borrowing_cumulative_overflow', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'input3_new_disbursements' in inputs:
         value = inputs['input3_new_disbursements']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('input3_new_disbursements')
-        setattr(
-            target,
-            'input3_new_disbursements',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('input3_new_disbursements', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'input3_domestic_outstanding_of_existing_debt' in inputs:
         value = inputs['input3_domestic_outstanding_of_existing_debt']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_domestic_outstanding_of_existing_debt')
-        setattr(
-            target,
-            'input3_domestic_outstanding_of_existing_debt',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_domestic_outstanding_of_existing_debt', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_domestic_o_w_st' in inputs:
         value = inputs['input3_domestic_o_w_st']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_domestic_o_w_st')
-        setattr(
-            target,
-            'input3_domestic_o_w_st',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_domestic_o_w_st', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_domestic_interest_payment_from_existing_debt' in inputs:
         value = inputs['input3_domestic_interest_payment_from_existing_debt']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_input_3_macro_current_account)
         check = validation.CHECKS.get('input3_domestic_interest_payment_from_existing_debt')
-        setattr(
-            target,
-            'input3_domestic_interest_payment_from_existing_debt',
-            value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account),
-        )
+        store('input3_domestic_interest_payment_from_existing_debt', value if check is None else check(value, TIME_PERIOD=target.input3_input_3_macro_current_account))
     if 'input3_domestic_principal_payment_from_existing_debt' in inputs:
         value = inputs['input3_domestic_principal_payment_from_existing_debt']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('input3_domestic_principal_payment_from_existing_debt')
-        setattr(
-            target,
-            'input3_domestic_principal_payment_from_existing_debt',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('input3_domestic_principal_payment_from_existing_debt', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
     if 'input3_domestic_new_gross_disbursement' in inputs:
         value = inputs['input3_domestic_new_gross_disbursement']
         if align_snapshot:
             value = align_runtime_keys(value, TIME_PERIOD=target.input3_old_debt_service)
         check = validation.CHECKS.get('input3_domestic_new_gross_disbursement')
-        setattr(
-            target,
-            'input3_domestic_new_gross_disbursement',
-            value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service),
-        )
+        store('input3_domestic_new_gross_disbursement', value if check is None else check(value, TIME_PERIOD=target.input3_old_debt_service))
+
+
+_OVERRIDE_IDS = frozenset({"in7_resfin_ext_mlt", "custom_ext_average_interest_rate_new_debt_by_row", "in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row"})
 
 
 class _BoundInputs:
@@ -520,7 +337,12 @@ class _BoundInputs:
         unknown = overrides.keys() - set(names)
         if unknown:
             raise TypeError(f"unknown inputs: {sorted(unknown)}")
-        values = read_bound_inputs(Path(workbook), names, data)
+        values = read_bound_inputs(
+            Path(workbook),
+            names,
+            data,
+            override_names=data.OVERRIDE_INPUTS,
+        )
         values.update(overrides)
         instance = cls.__new__(cls)
         if isinstance(instance, Model):
@@ -540,6 +362,9 @@ class _BoundInputs:
         values = {name: getattr(self, name) for name in names}
         _bind_inputs(holder, values, align_snapshot=align_snapshot)
         for name in names:
+            if name in _OVERRIDE_IDS:
+                object.__setattr__(self, name, getattr(holder, f"_{name}__override"))
+                continue
             object.__setattr__(self, name, getattr(holder, name))
 
 
@@ -673,8 +498,11 @@ class Model(_BoundInputs):
     input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str
     input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset
+    custom_ext_average_interest_rate_new_debt_by_row: data.CustomExtAverageInterestRateNewDebtByRow | Unset
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative
-    _INPUT_IDS: tuple[str, ...] = ("input4_interest_rate", "input4_grace_period", "input4_loan_maturity", "input4_disbursements", "input4_instrument_names", "input4_blend_variant", "input4_blend_scale_key", "input5_grace_period", "input5_interest_rate_on_domestic_debt", "input5_interest_rate_on_domestic_debt_fx_long", "input5_maturity", "input5_maturity_central_bank", "input5_public_gfns_other_adjustment", "input5_domestic_financing_source", "input5_gfn_share", "start_working_language", "country", "first_projection_year", "discount_rate", "external_domestic_debt_definition", "fiscal_space_moderate_assessment_flag", "fiscal_space_stock_band", "fiscal_space_flow_band", "contingent_liability_other_elements_pct_gdp", "contingent_liability_soe_debt_pct_gdp", "contingent_liability_financial_market_pct_gdp", "ppp_capital_stock_shock_pct", "customized_public_delta", "blend_ida_new_floating_currency", "input_1_rer_overvaluation", "customized_public_include_scenario", "input6_commodity_group_relevant", "input8_sdr_interest_historical", "input8_sdr_interest", "input8_sdr_interest_rate", "input6_tailored_tests_enabled", "input6_standard_size_threshold_mode", "input6_standard_interactions", "input6_standard_user_defined_threshold", "input3_input_3_macro_gross_domestic_product_us_dollars", "input3_input_3_macro_real_gross_domestic_product", "input3_input_3_macro_u_s_deflator", "input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p", "input3_input_3_macro_national_currency_per_u_s_dollar_p_a", "input3_input_3_macro_government_revenue_and_grants", "input3_input_3_macro_government_grants", "in3_macro_government_primary_expenditures_this_used_be", "in3_macro_public_sector_liquid_assets_stock_e_g_cash", "in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g", "input3_input_3_macro_privatization_proceeds", "in3_macro_recognition_of_contingent_liab_e_g_bank", "input3_input_3_macro_debt_relief_non_multilateral_hipc", "input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify", "input3_input_3_macro_current_account", "input3_input_3_macro_exports_of_goods_and_services", "input3_input_3_macro_exports_commodity_fuel", "input3_input_3_macro_exports_commodity_non_fuel", "input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number", "input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number", "input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number", "input3_input_3_macro_current_transfers_net", "input3_input_3_macro_foreign_direct_investment", "input3_input_3_external_debt_ppg_mlt_external_debt_outstanding", "input3_input_3_external_debt_ppg_st_external_debt_outstanding", "input3_input_3_external_debt_ppg_external_debt_interest_due", "input3_input_3_external_debt_ppg_external_arrears", "input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding", "input3_input_3_external_debt_private_sector_st_external_debt_outstanding", "input3_input_3_external_debt_private_external_debt_interest_due", "input3_input_3_external_debt_private_mlt_external_debt_amortization_due", "input3_input_3_old_debt_service_total_principal_payment", "customized_public_template_anchor", "customized_public_natural_disaster_year", "customized_public_external_mlt_disbursement_profile", "customized_public_new_forex_borrowing_cumulative_overflow", "customized_public_new_domestic_mlt_cumulative_overflow", "customized_public_residual_overflow", "customized_public_new_forex_debt_stock_initial", "customized_public_domestic_mlt_interest_initial", "customized_public_domestic_st_interest_initial", "customized_external_debt_profile_period", "customized_external_debt_profile_disbursement", "customized_external_new_forex_borrowing_cumulative_overflow", "input8_sdr_stock", "input3_old_debt_service", "input3_new_disbursements", "input3_domestic_outstanding_of_existing_debt", "input3_domestic_o_w_st", "input3_domestic_interest_payment_from_existing_debt", "input3_domestic_principal_payment_from_existing_debt", "input3_domestic_new_gross_disbursement", "current_year", "input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations", "input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations", "input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations", "pv_base_input_output_cumulative")
+    _INPUT_IDS: tuple[str, ...] = ("input4_interest_rate", "input4_grace_period", "input4_loan_maturity", "input4_disbursements", "input4_instrument_names", "input4_blend_variant", "input4_blend_scale_key", "input5_grace_period", "input5_interest_rate_on_domestic_debt", "input5_interest_rate_on_domestic_debt_fx_long", "input5_maturity", "input5_maturity_central_bank", "input5_public_gfns_other_adjustment", "input5_domestic_financing_source", "input5_gfn_share", "start_working_language", "country", "first_projection_year", "discount_rate", "external_domestic_debt_definition", "fiscal_space_moderate_assessment_flag", "fiscal_space_stock_band", "fiscal_space_flow_band", "contingent_liability_other_elements_pct_gdp", "contingent_liability_soe_debt_pct_gdp", "contingent_liability_financial_market_pct_gdp", "ppp_capital_stock_shock_pct", "customized_public_delta", "blend_ida_new_floating_currency", "input_1_rer_overvaluation", "customized_public_include_scenario", "input6_commodity_group_relevant", "input8_sdr_interest_historical", "input8_sdr_interest", "input8_sdr_interest_rate", "input6_tailored_tests_enabled", "input6_standard_size_threshold_mode", "input6_standard_interactions", "input6_standard_user_defined_threshold", "input3_input_3_macro_gross_domestic_product_us_dollars", "input3_input_3_macro_real_gross_domestic_product", "input3_input_3_macro_u_s_deflator", "input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p", "input3_input_3_macro_national_currency_per_u_s_dollar_p_a", "input3_input_3_macro_government_revenue_and_grants", "input3_input_3_macro_government_grants", "in3_macro_government_primary_expenditures_this_used_be", "in3_macro_public_sector_liquid_assets_stock_e_g_cash", "in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g", "input3_input_3_macro_privatization_proceeds", "in3_macro_recognition_of_contingent_liab_e_g_bank", "input3_input_3_macro_debt_relief_non_multilateral_hipc", "input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify", "input3_input_3_macro_current_account", "input3_input_3_macro_exports_of_goods_and_services", "input3_input_3_macro_exports_commodity_fuel", "input3_input_3_macro_exports_commodity_non_fuel", "input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number", "input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number", "input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number", "input3_input_3_macro_current_transfers_net", "input3_input_3_macro_foreign_direct_investment", "input3_input_3_external_debt_ppg_mlt_external_debt_outstanding", "input3_input_3_external_debt_ppg_st_external_debt_outstanding", "input3_input_3_external_debt_ppg_external_debt_interest_due", "input3_input_3_external_debt_ppg_external_arrears", "input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding", "input3_input_3_external_debt_private_sector_st_external_debt_outstanding", "input3_input_3_external_debt_private_external_debt_interest_due", "input3_input_3_external_debt_private_mlt_external_debt_amortization_due", "input3_input_3_old_debt_service_total_principal_payment", "customized_public_template_anchor", "customized_public_natural_disaster_year", "customized_public_external_mlt_disbursement_profile", "customized_public_new_forex_borrowing_cumulative_overflow", "customized_public_new_domestic_mlt_cumulative_overflow", "customized_public_residual_overflow", "customized_public_new_forex_debt_stock_initial", "customized_public_domestic_mlt_interest_initial", "customized_public_domestic_st_interest_initial", "customized_external_debt_profile_period", "customized_external_debt_profile_disbursement", "customized_external_new_forex_borrowing_cumulative_overflow", "input8_sdr_stock", "input3_old_debt_service", "input3_new_disbursements", "input3_domestic_outstanding_of_existing_debt", "input3_domestic_o_w_st", "input3_domestic_interest_payment_from_existing_debt", "input3_domestic_principal_payment_from_existing_debt", "input3_domestic_new_gross_disbursement", "current_year", "input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations", "input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations", "input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations", "in7_resfin_ext_mlt", "custom_ext_average_interest_rate_new_debt_by_row", "in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row", "pv_base_input_output_cumulative")
 
     def __init__(self, bundle: _BoundInputs | None = None, /, **inputs: Any) -> None:
         if bundle is not None:
@@ -687,7 +515,7 @@ class Model(_BoundInputs):
             values = {field.name: getattr(bundle, field.name) for field in fields(bundle)}
             _bind_inputs(self, values, validate=False)
             return
-        unknown = inputs.keys() - {"input4_interest_rate", "input4_grace_period", "input4_loan_maturity", "input4_disbursements", "input4_instrument_names", "input4_blend_variant", "input4_blend_scale_key", "input5_grace_period", "input5_interest_rate_on_domestic_debt", "input5_interest_rate_on_domestic_debt_fx_long", "input5_maturity", "input5_maturity_central_bank", "input5_public_gfns_other_adjustment", "input5_domestic_financing_source", "input5_gfn_share", "start_working_language", "country", "first_projection_year", "discount_rate", "external_domestic_debt_definition", "fiscal_space_moderate_assessment_flag", "fiscal_space_stock_band", "fiscal_space_flow_band", "contingent_liability_other_elements_pct_gdp", "contingent_liability_soe_debt_pct_gdp", "contingent_liability_financial_market_pct_gdp", "ppp_capital_stock_shock_pct", "customized_public_delta", "blend_ida_new_floating_currency", "input_1_rer_overvaluation", "customized_public_include_scenario", "input6_commodity_group_relevant", "input8_sdr_interest_historical", "input8_sdr_interest", "input8_sdr_interest_rate", "input6_tailored_tests_enabled", "input6_standard_size_threshold_mode", "input6_standard_interactions", "input6_standard_user_defined_threshold", "input3_input_3_macro_gross_domestic_product_us_dollars", "input3_input_3_macro_real_gross_domestic_product", "input3_input_3_macro_u_s_deflator", "input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p", "input3_input_3_macro_national_currency_per_u_s_dollar_p_a", "input3_input_3_macro_government_revenue_and_grants", "input3_input_3_macro_government_grants", "in3_macro_government_primary_expenditures_this_used_be", "in3_macro_public_sector_liquid_assets_stock_e_g_cash", "in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g", "input3_input_3_macro_privatization_proceeds", "in3_macro_recognition_of_contingent_liab_e_g_bank", "input3_input_3_macro_debt_relief_non_multilateral_hipc", "input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify", "input3_input_3_macro_current_account", "input3_input_3_macro_exports_of_goods_and_services", "input3_input_3_macro_exports_commodity_fuel", "input3_input_3_macro_exports_commodity_non_fuel", "input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number", "input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number", "input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number", "input3_input_3_macro_current_transfers_net", "input3_input_3_macro_foreign_direct_investment", "input3_input_3_external_debt_ppg_mlt_external_debt_outstanding", "input3_input_3_external_debt_ppg_st_external_debt_outstanding", "input3_input_3_external_debt_ppg_external_debt_interest_due", "input3_input_3_external_debt_ppg_external_arrears", "input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding", "input3_input_3_external_debt_private_sector_st_external_debt_outstanding", "input3_input_3_external_debt_private_external_debt_interest_due", "input3_input_3_external_debt_private_mlt_external_debt_amortization_due", "input3_input_3_old_debt_service_total_principal_payment", "customized_public_template_anchor", "customized_public_natural_disaster_year", "customized_public_external_mlt_disbursement_profile", "customized_public_new_forex_borrowing_cumulative_overflow", "customized_public_new_domestic_mlt_cumulative_overflow", "customized_public_residual_overflow", "customized_public_new_forex_debt_stock_initial", "customized_public_domestic_mlt_interest_initial", "customized_public_domestic_st_interest_initial", "customized_external_debt_profile_period", "customized_external_debt_profile_disbursement", "customized_external_new_forex_borrowing_cumulative_overflow", "input8_sdr_stock", "input3_old_debt_service", "input3_new_disbursements", "input3_domestic_outstanding_of_existing_debt", "input3_domestic_o_w_st", "input3_domestic_interest_payment_from_existing_debt", "input3_domestic_principal_payment_from_existing_debt", "input3_domestic_new_gross_disbursement", "current_year", "input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations", "input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations", "input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations", "pv_base_input_output_cumulative"}
+        unknown = inputs.keys() - {"input4_interest_rate", "input4_grace_period", "input4_loan_maturity", "input4_disbursements", "input4_instrument_names", "input4_blend_variant", "input4_blend_scale_key", "input5_grace_period", "input5_interest_rate_on_domestic_debt", "input5_interest_rate_on_domestic_debt_fx_long", "input5_maturity", "input5_maturity_central_bank", "input5_public_gfns_other_adjustment", "input5_domestic_financing_source", "input5_gfn_share", "start_working_language", "country", "first_projection_year", "discount_rate", "external_domestic_debt_definition", "fiscal_space_moderate_assessment_flag", "fiscal_space_stock_band", "fiscal_space_flow_band", "contingent_liability_other_elements_pct_gdp", "contingent_liability_soe_debt_pct_gdp", "contingent_liability_financial_market_pct_gdp", "ppp_capital_stock_shock_pct", "customized_public_delta", "blend_ida_new_floating_currency", "input_1_rer_overvaluation", "customized_public_include_scenario", "input6_commodity_group_relevant", "input8_sdr_interest_historical", "input8_sdr_interest", "input8_sdr_interest_rate", "input6_tailored_tests_enabled", "input6_standard_size_threshold_mode", "input6_standard_interactions", "input6_standard_user_defined_threshold", "input3_input_3_macro_gross_domestic_product_us_dollars", "input3_input_3_macro_real_gross_domestic_product", "input3_input_3_macro_u_s_deflator", "input3_input_3_macro_national_currency_per_u_s_dollar_e_o_p", "input3_input_3_macro_national_currency_per_u_s_dollar_p_a", "input3_input_3_macro_government_revenue_and_grants", "input3_input_3_macro_government_grants", "in3_macro_government_primary_expenditures_this_used_be", "in3_macro_public_sector_liquid_assets_stock_e_g_cash", "in3_macro_liquid_financial_assets_used_meet_gfns_flow_e_g", "input3_input_3_macro_privatization_proceeds", "in3_macro_recognition_of_contingent_liab_e_g_bank", "input3_input_3_macro_debt_relief_non_multilateral_hipc", "input3_input_3_macro_other_debt_creating_or_reducing_flow_please_specify", "input3_input_3_macro_current_account", "input3_input_3_macro_exports_of_goods_and_services", "input3_input_3_macro_exports_commodity_fuel", "input3_input_3_macro_exports_commodity_non_fuel", "input3_input_3_macro_imports_of_goods_and_services_enter_as_a_positive_number", "input3_input_3_macro_imports_commodity_fuel_enter_as_a_positive_number", "input3_input_3_macro_imports_commodity_non_fuel_enter_as_a_positive_number", "input3_input_3_macro_current_transfers_net", "input3_input_3_macro_foreign_direct_investment", "input3_input_3_external_debt_ppg_mlt_external_debt_outstanding", "input3_input_3_external_debt_ppg_st_external_debt_outstanding", "input3_input_3_external_debt_ppg_external_debt_interest_due", "input3_input_3_external_debt_ppg_external_arrears", "input3_input_3_external_debt_private_sector_mlt_external_debt_outstanding", "input3_input_3_external_debt_private_sector_st_external_debt_outstanding", "input3_input_3_external_debt_private_external_debt_interest_due", "input3_input_3_external_debt_private_mlt_external_debt_amortization_due", "input3_input_3_old_debt_service_total_principal_payment", "customized_public_template_anchor", "customized_public_natural_disaster_year", "customized_public_external_mlt_disbursement_profile", "customized_public_new_forex_borrowing_cumulative_overflow", "customized_public_new_domestic_mlt_cumulative_overflow", "customized_public_residual_overflow", "customized_public_new_forex_debt_stock_initial", "customized_public_domestic_mlt_interest_initial", "customized_public_domestic_st_interest_initial", "customized_external_debt_profile_period", "customized_external_debt_profile_disbursement", "customized_external_new_forex_borrowing_cumulative_overflow", "input8_sdr_stock", "input3_old_debt_service", "input3_new_disbursements", "input3_domestic_outstanding_of_existing_debt", "input3_domestic_o_w_st", "input3_domestic_interest_payment_from_existing_debt", "input3_domestic_principal_payment_from_existing_debt", "input3_domestic_new_gross_disbursement", "current_year", "input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations", "input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations", "input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations", "in7_resfin_ext_mlt", "custom_ext_average_interest_rate_new_debt_by_row", "in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row", "pv_base_input_output_cumulative"}
         if unknown:
             raise TypeError(f"unknown inputs: {sorted(unknown)}")
         _bind_inputs(self, inputs)
@@ -791,6 +619,9 @@ class Model(_BoundInputs):
         input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations: float | str = data.INPUT6_STANDARD_B1_REAL_GDP_GROWTH_SIZE_OF_REAL_GDP_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT,
         input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations: float | str = data.INPUT6_STANDARD_B2_PRIMARY_BALANCE_SIZE_OF_PB_GDP_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT,
         input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT,
+        in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = data.IN7_RESFIN_EXT_MLT_DEFAULT,
+        custom_ext_average_interest_rate_new_debt_by_row: data.CustomExtAverageInterestRateNewDebtByRow | Unset = data.CUSTOM_EXT_AVERAGE_INTEREST_RATE_NEW_DEBT_BY_ROW_DEFAULT,
+        in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT,
         pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT,
     ) -> Model:
         """Bind every input from `data.*_DEFAULT`, then apply overrides."""
@@ -890,6 +721,9 @@ class Model(_BoundInputs):
             input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations=input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations,
             input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations=input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations,
             input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations=input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations,
+            in7_resfin_ext_mlt=in7_resfin_ext_mlt,
+            custom_ext_average_interest_rate_new_debt_by_row=custom_ext_average_interest_rate_new_debt_by_row,
+            in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row=in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row,
             pv_base_input_output_cumulative=pv_base_input_output_cumulative,
         )
 
@@ -4742,8 +4576,9 @@ class Model(_BoundInputs):
         return internals.in7_resfin_shares_effective(in7_resfin_shares=self.in7_resfin_shares)
 
     @cached_property
-    def in7_resfin_ext_mlt(self) -> data.Series[float | str | None]:
-        return internals.in7_resfin_ext_mlt(in7_resfin_ext_mlt_default=self.in7_resfin_ext_mlt_default)
+    def in7_resfin_ext_mlt(self) -> data.In7ResfinExtMlt:
+        _override = getattr(self, "_in7_resfin_ext_mlt__override", data.UNSET)
+        return internals.in7_resfin_ext_mlt(in7_resfin_ext_mlt_default=self.in7_resfin_ext_mlt_default, _override=_override)
 
     @cached_property
     def in7_resfin_ext_mlt_default(self) -> data.Series[float | str | None]:
@@ -5246,12 +5081,14 @@ class Model(_BoundInputs):
         return internals.leftover_us_gdp_deflator(input6_standard_params_2=self.input6_standard_params_2, input6_tailored_params_3=self.input6_tailored_params_3)
 
     @cached_property
-    def custom_ext_average_interest_rate_new_debt_by_row(self) -> data.Series[float | str | None]:
-        return internals.custom_ext_average_interest_rate_new_debt_by_row(in7_resfin_ext_mlt_effective=self.in7_resfin_ext_mlt_effective)
+    def custom_ext_average_interest_rate_new_debt_by_row(self) -> data.CustomExtAverageInterestRateNewDebtByRow:
+        _override = getattr(self, "_custom_ext_average_interest_rate_new_debt_by_row__override", data.UNSET)
+        return internals.custom_ext_average_interest_rate_new_debt_by_row(in7_resfin_ext_mlt_effective=self.in7_resfin_ext_mlt_effective, _override=_override)
 
     @cached_property
-    def in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row(self) -> data.Series[float | str | None]:
-        return internals.in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row(in7_resfin_ext_mlt_default=self.in7_resfin_ext_mlt_default)
+    def in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row(self) -> data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow:
+        _override = getattr(self, "_in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row__override", data.UNSET)
+        return internals.in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row(in7_resfin_ext_mlt_default=self.in7_resfin_ext_mlt_default, _override=_override)
 
     @cached_property
     def leftover_real_interest_rate(self) -> data.Series[float | str | None]:
@@ -6881,6 +6718,9 @@ class Realism1ExternalDebtCreatingFlowsInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -7112,6 +6952,9 @@ class Realism1ExternalForecastErrorComponentsInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -7342,6 +7185,9 @@ class Realism1ExternalForecastErrorDistributionInputs(_SnapshotInputs):
     )
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -7576,6 +7422,9 @@ class Realism1ExternalVintageDebtPathsInputs(_SnapshotInputs):
     )
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -8975,6 +8824,12 @@ class ProbabilityPvDebtToGdpInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -9208,6 +9063,12 @@ class ProbabilityPvDebtToExportsInputs(_SnapshotInputs):
     )
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -9446,6 +9307,12 @@ class ProbabilityDebtServiceToExportsInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -9683,6 +9550,12 @@ class ProbabilityDebtServiceToRevenueInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -9917,6 +9790,12 @@ class ProbabilityPvDebtToGdpDistressInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -10150,6 +10029,12 @@ class ProbabilityPvDebtToExportsDistressInputs(_SnapshotInputs):
     )
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -10388,6 +10273,12 @@ class ProbabilityDebtServiceToExportsDistressInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -10624,6 +10515,12 @@ class ProbabilityDebtServiceToRevenueDistressInputs(_SnapshotInputs):
     )
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -10862,6 +10759,12 @@ class ExternalDsaRiskRatingSignalInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -11098,6 +11001,12 @@ class ExternalDsaRiskRatingNumericInputs(_SnapshotInputs):
     )
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -11336,6 +11245,12 @@ class ExternalBaselineBreachInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -11573,6 +11488,12 @@ class ExternalShockBreachInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -11807,6 +11728,12 @@ class ExternalPvDebtToGdpMxShockInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -12040,6 +11967,12 @@ class ExternalPvDebtToExportsMxShockInputs(_SnapshotInputs):
     )
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -12278,6 +12211,12 @@ class ExternalDebtServiceToExportsMxShockInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -12514,6 +12453,12 @@ class ExternalDebtServiceToRevenueMxShockInputs(_SnapshotInputs):
     )
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -12785,6 +12730,12 @@ class FiscalRiskRatingSignalInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -13054,6 +13005,12 @@ class FiscalRiskRatingNumericInputs(_SnapshotInputs):
     )
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -13325,6 +13282,12 @@ class FiscalBaselineBreachInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -13595,6 +13558,12 @@ class FiscalShockBreachInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -13864,6 +13833,12 @@ class FiscalPvDebtToGdpMxShockInputs(_SnapshotInputs):
     )
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -14162,6 +14137,12 @@ class FiscalSpaceModerateRiskSignalInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -14434,6 +14415,12 @@ class OverallRiskRatingSignalInputs(_SnapshotInputs):
     )
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -14708,6 +14695,12 @@ class OverallRiskRatingNumericInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -14977,6 +14970,12 @@ class ChartOutputChartDataPvOfDebtToGdpRatioPvDebtToGdpInputs(_SnapshotInputs):
     )
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -15248,6 +15247,12 @@ class ChartOutputChartDataPvOfDebtToRevenueRatioPvDebtToRevenueInputs(_SnapshotI
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -15511,6 +15516,12 @@ class ChartOutputChartDataDebtServiceToRevenueRatioDebtServiceToRevenueInputs(_S
     )
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -15776,6 +15787,12 @@ class ChartOutputChartDataDebtServiceToGdpRatioDebtServiceGdpRatioInputs(_Snapsh
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -16028,6 +16045,12 @@ class ChartPvDebtGdpRatioCustomAlternativeScenarioInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    custom_ext_average_interest_rate_new_debt_by_row: data.CustomExtAverageInterestRateNewDebtByRow | Unset = _field(
+        metadata={"default": data.CUSTOM_EXT_AVERAGE_INTEREST_RATE_NEW_DEBT_BY_ROW_DEFAULT, "cells": data.CUSTOM_EXT_AVERAGE_INTEREST_RATE_NEW_DEBT_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -16261,6 +16284,12 @@ class ChartOutputPvDebtGdpRatioInputs(_SnapshotInputs):
     )
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -16514,6 +16543,12 @@ class ChartPvDebtToExportsCustomAlternativeScenarioInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    custom_ext_average_interest_rate_new_debt_by_row: data.CustomExtAverageInterestRateNewDebtByRow | Unset = _field(
+        metadata={"default": data.CUSTOM_EXT_AVERAGE_INTEREST_RATE_NEW_DEBT_BY_ROW_DEFAULT, "cells": data.CUSTOM_EXT_AVERAGE_INTEREST_RATE_NEW_DEBT_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -16747,6 +16782,12 @@ class ChartOutputPvDebtToExportsInputs(_SnapshotInputs):
     )
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -16997,6 +17038,12 @@ class ChartDebtServiceToExportsCustomAlternativeScenarioInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    custom_ext_average_interest_rate_new_debt_by_row: data.CustomExtAverageInterestRateNewDebtByRow | Unset = _field(
+        metadata={"default": data.CUSTOM_EXT_AVERAGE_INTEREST_RATE_NEW_DEBT_BY_ROW_DEFAULT, "cells": data.CUSTOM_EXT_AVERAGE_INTEREST_RATE_NEW_DEBT_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -17233,6 +17280,12 @@ class ChartOutputDebtServiceToExportsInputs(_SnapshotInputs):
     )
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -17483,6 +17536,12 @@ class ChartDebtServiceToRevenueCustomAlternativeScenarioInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    custom_ext_average_interest_rate_new_debt_by_row: data.CustomExtAverageInterestRateNewDebtByRow | Unset = _field(
+        metadata={"default": data.CUSTOM_EXT_AVERAGE_INTEREST_RATE_NEW_DEBT_BY_ROW_DEFAULT, "cells": data.CUSTOM_EXT_AVERAGE_INTEREST_RATE_NEW_DEBT_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -17719,6 +17778,12 @@ class ChartOutputDebtServiceToRevenueInputs(_SnapshotInputs):
     )
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
@@ -17990,6 +18055,12 @@ class ChartOutputPvDebtToGdpInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -18260,6 +18331,12 @@ class ChartPvDebtToRevenueMxShockStandardTailoredInputs(_SnapshotInputs):
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
     )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
+    )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},
     )
@@ -18523,6 +18600,12 @@ class ChartOutputDebtServiceToRevenueFiscalInputs(_SnapshotInputs):
     )
     input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations: float | str = _field(
         metadata={"default": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_DEFAULT, "cells": data.INPUT6_STANDARD_B3_EXPORTS_SIZE_OF_EXPORTS_GROWTH_SHOCK_OF_STANDARD_DEVIATIONS_CELLS},
+    )
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_EXT_MLT_DEFAULT, "cells": data.IN7_RESFIN_EXT_MLT.cells},
+    )
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset = _field(
+        metadata={"default": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW_DEFAULT, "cells": data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.cells},
     )
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative = _field(
         metadata={"default": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE_DEFAULT, "cells": data.PV_BASE_INPUT_OUTPUT_CUMULATIVE.cells},

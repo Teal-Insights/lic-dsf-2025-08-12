@@ -7,6 +7,7 @@ from typing import Literal
 from . import data
 from .excel import coerce_input_measure, require_input_domain
 from .runtime import require_annotated_domain
+from .tensor import UNSET, Unset
 
 
 def _check_input4_interest_rate(
@@ -1074,6 +1075,39 @@ def _check_input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_d
     return input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations
 
 
+def _check_in7_resfin_ext_mlt(
+    in7_resfin_ext_mlt: data.In7ResfinExtMlt | Unset,
+) -> data.In7ResfinExtMlt | Unset:
+    """Validate `in7_resfin_ext_mlt` before the model reads it."""
+    if in7_resfin_ext_mlt is UNSET:
+        return in7_resfin_ext_mlt
+    data.IN7_RESFIN_EXT_MLT.schema.validate(in7_resfin_ext_mlt)
+    in7_resfin_ext_mlt = coerce_input_measure(in7_resfin_ext_mlt, dtype="float", series_id="in7_resfin_ext_mlt")
+    return in7_resfin_ext_mlt
+
+
+def _check_custom_ext_average_interest_rate_new_debt_by_row(
+    custom_ext_average_interest_rate_new_debt_by_row: data.CustomExtAverageInterestRateNewDebtByRow | Unset,
+) -> data.CustomExtAverageInterestRateNewDebtByRow | Unset:
+    """Validate `custom_ext_average_interest_rate_new_debt_by_row` before the model reads it."""
+    if custom_ext_average_interest_rate_new_debt_by_row is UNSET:
+        return custom_ext_average_interest_rate_new_debt_by_row
+    data.CUSTOM_EXT_AVERAGE_INTEREST_RATE_NEW_DEBT_BY_ROW.schema.validate(custom_ext_average_interest_rate_new_debt_by_row)
+    custom_ext_average_interest_rate_new_debt_by_row = coerce_input_measure(custom_ext_average_interest_rate_new_debt_by_row, dtype="float", series_id="custom_ext_average_interest_rate_new_debt_by_row")
+    return custom_ext_average_interest_rate_new_debt_by_row
+
+
+def _check_in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row(
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row: data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset,
+) -> data.In7ResfinAvgNominalInterestRateNewBorrowingUsdByRow | Unset:
+    """Validate `in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row` before the model reads it."""
+    if in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row is UNSET:
+        return in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row
+    data.IN7_RESFIN_AVG_NOMINAL_INTEREST_RATE_NEW_BORROWING_USD_BY_ROW.schema.validate(in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row)
+    in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row = coerce_input_measure(in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row, dtype="float", series_id="in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row")
+    return in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row
+
+
 def _check_pv_base_input_output_cumulative(
     pv_base_input_output_cumulative: data.PvBaseInputOutputCumulative,
 ) -> data.PvBaseInputOutputCumulative:
@@ -1181,5 +1215,8 @@ CHECKS = {
     "input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations": _check_input6_standard_b1_real_gdp_growth_size_of_real_gdp_growth_shock_of_standard_deviations,
     "input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations": _check_input6_standard_b2_primary_balance_size_of_pb_gdp_shock_of_standard_deviations,
     "input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations": _check_input6_standard_b3_exports_size_of_exports_growth_shock_of_standard_deviations,
+    "in7_resfin_ext_mlt": _check_in7_resfin_ext_mlt,
+    "custom_ext_average_interest_rate_new_debt_by_row": _check_custom_ext_average_interest_rate_new_debt_by_row,
+    "in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row": _check_in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row,
     "pv_base_input_output_cumulative": _check_pv_base_input_output_cumulative,
 }
