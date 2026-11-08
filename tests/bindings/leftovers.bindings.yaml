@@ -1379,6 +1379,8 @@ series:
   sheet: Customized Scenario-External
   data_range: '''Customized Scenario-External''!C21:C24'
   layout: series
+  input:
+    mode: override
   structure:
     measure:
       concept: OBS_VALUE
@@ -1398,13 +1400,14 @@ series:
   key:
   - INDICATOR
   series_context:
-    TABLE: leftover.passthrough
-  notes: Average interest rate on new debt, keyed by row labels.
-  internal: {}
+    TABLE: customized_external.residual_terms
+  notes: Customized external residual terms. A typed literal replaces the Input 7 formula; a remaining formula keeps that term.
 - id: in7_resfin_avg_nominal_interest_rate_new_borrowing_usd_by_row
   sheet: Input 7 - Residual Financing
   data_range: '''Input 7 - Residual Financing''!D14:D17'
   layout: series
+  input:
+    mode: override
   structure:
     measure:
       concept: OBS_VALUE
@@ -1424,9 +1427,10 @@ series:
   key:
   - INDICATOR
   series_context:
-    TABLE: leftover.chrome
-  notes: Graph-coverage chrome (section title, footnote, or lookup token); not a public series.
-  internal: {}
+    TABLE: input_7.residual_financing
+    INSTRUMENT: External MLT debt
+    VARIANT: user_defined
+  notes: User-defined external-MLT residual terms. A typed literal replaces the default formula; a remaining formula keeps the default.
 - id: leftover_real_interest_rate
   sheet:
   - B1_GDP_pub

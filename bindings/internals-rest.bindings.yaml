@@ -8242,7 +8242,8 @@ series:
   sheet: Input 7 - Residual Financing
   data_range: '''Input 7 - Residual Financing''!H14:I17'
   layout: matrix
-  internal: {}
+  input:
+    mode: override
   structure:
     measure:
       concept: OBS_VALUE
@@ -8275,7 +8276,7 @@ series:
   series_context:
     TABLE: input_7.residual_financing
     INSTRUMENT: External MLT debt
-  notes: Default and user-defined public-DSA external-MLT residual terms by indicator.
+  notes: Public-DSA external-MLT residual terms by indicator. A typed literal replaces the template formula for that default or user-defined cell.
 - id: in7_resfin_ext_mlt_default
   sheet: Input 7 - Residual Financing
   data_range: '''Input 7 - Residual Financing''!C14:C17'
