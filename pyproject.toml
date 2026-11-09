@@ -30,5 +30,5 @@ dev = [
     "matplotlib",
 ]
 validation = [
-    "excel-grapher[fast]>=24.1.15",
+    "excel-grapher[fast]>=24.1.17",
 ]
