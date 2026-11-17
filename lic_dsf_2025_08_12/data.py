@@ -9891,11 +9891,14 @@ def overrides(**values: object) -> Iterator[None]:
     if unknown:
         raise AttributeError(f'unknown constants: {sorted(unknown)}')
     namespace = globals()
+    resolved = dict(values)
     for name, value in values.items():
         if name in _CONSTANT_SCHEMAS:
-            _CONSTANT_SCHEMAS[name].validate(value)
-    previous = {name: namespace[name] for name in values}
-    namespace.update(values)
+            resolved[name] = _CONSTANT_SCHEMAS[name].coerce_series(
+                value, cells=namespace[name].cells
+            )
+    previous = {name: namespace[name] for name in resolved}
+    namespace.update(resolved)
     try:
         yield
     finally:

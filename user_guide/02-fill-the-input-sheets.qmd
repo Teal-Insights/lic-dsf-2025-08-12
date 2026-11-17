@@ -17,7 +17,7 @@ print(inspect.signature(api.compute_external_dsa_risk_rating_signal))
 len(api.ExternalDsaRiskRatingSignalInputs.describe())
 ```
 
-The function takes one argument, `inputs`, whose type is `ExternalDsaRiskRatingSignalInputs`. That bundle has **77** leaves; the overall rating needs 89. Each name is the snake_case form of an Input-sheet series (plus a small engine leaf some rating functions also read). Unknown override names fail closed.
+The function takes one argument, `inputs`, whose type is `ExternalDsaRiskRatingSignalInputs`. That bundle has **79** leaves; the overall rating needs 91. Each name is the snake_case form of an Input-sheet series (plus a small engine leaf some rating functions also read). Unknown override names fail closed.
 
 `from_workbook(path)` binds the same leaves from a populated workbook of this vintage, then accepts the same overrides.
 
@@ -61,7 +61,7 @@ pd.DataFrame(
 ).style.hide(axis="index")
 ```
 
-Drop the name filter to see all 77 fields. For a single field, read the attributes directly:
+Drop the name filter to see all 79 fields. For a single field, read the attributes directly:
 
 ```{python}
 tailored = fields["input6_tailored_tests_enabled"]
