@@ -2,7 +2,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 from datetime import datetime
-from typing import cast
+from typing import Literal, cast
 from . import data
 from .tensor import Domain, Series, Unset
 from .excel import XlError, as_measure, xl_add, xl_and, xl_average, xl_bool, xl_choose_lazy, xl_choose_range, xl_concat, xl_count, xl_countif, xl_div, xl_eq, xl_ge, xl_gt, xl_hlookup, xl_iferror, xl_ifna, xl_index, xl_isblank, xl_iserror, xl_isna, xl_isnumber, xl_large, xl_le, xl_left, xl_lookup, xl_lookup_cell, xl_lt, xl_match, xl_max, xl_min, xl_mul, xl_ne, xl_neg, xl_normdist, xl_npv, xl_numbervalue, xl_or, xl_pow, xl_raise, xl_rank, xl_round, xl_rounddown, xl_stdev, xl_sub, xl_sum, xl_sumproduct, xl_typed_range, xl_value, xl_vlookup, xl_xlookup
@@ -563,7 +563,7 @@ class ScanDsaExtNonInterestCurrentAccountDeficitResult:
     dsa_ext_export_shock_sign_flags: data.Series[float | str | None]
     dsa_ext_real_depreciation_identity: data.Series[float | str | None]
 
-def scan_dsa_ext_non_interest_current_account_deficit(*, lookup_ida_terms_old: str, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, dsa_ext_depreciation_of_nc_depreciation: data.Series[float | str | None], dsa_ext_standard_test_gdp_growth_rule_primary: str | int | float | bool, dsa_ext_standard_test_export_growth_rule: str | int | float | bool, dsa_ext_standard_test_current_transfers_rule: str | int | float | bool, dsa_ext_standard_test_current_transfers_rule_b6_mkt: str | int | float | bool, dsa_ext_standard_test_current_transfers_rule_b6_nonmkt: str | int | float | bool, dsa_ext_standard_test_fdi_rule: str | int | float | bool, dsa_ext_standard_test_fdi_rule_b6_mkt: str | int | float | bool, dsa_ext_standard_test_fdi_rule_b6_nonmkt: str | int | float | bool, dsa_ext_standard_test_gdp_growth_rule: data.Series[str | int | float | bool | None], dsa_ext_standard_test_exports_rule: data.Series[str | int | float | bool | None], input6_standard_size_threshold_mode: str, input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount, input3_old_debt_service: data.Input3OldDebtService, macro_debt_total_ext_debt_interest_due_include_interest: data.Series[float | str | None], macro_debt_us_dollars_k: data.Series[float | str | None], macro_debt_us_dollars_v: data.Series[float | str | None], macro_debt_exports_of_goods_services: data.Series[float | str | None], macro_debt_imports_of_goods_services_use_positive_values: data.Series[float | str | None], macro_debt_us_dollars_by_year_k: data.Series[float | str | None], macro_debt_us_dollars_by_year_v: data.Series[float | str | None], macro_debt_main_assumptions_us_dollars_k: data.Series[float | str | None], macro_debt_main_assumptions_us_dollars_v: data.Series[float | str | None], macro_debt_gdp_current_prices_u_s_dollars: data.Series[float | str | None], macro_debt_gdp_constant_prices: data.Series[float | str | None], macro_debt_change_in_gdp_deflator_factor: data.Series[float | str | None], macro_debt_change_in_gdp_deflator_factor_by_year: data.Series[float | str | None], macro_debt_us_gdp_deflator_percent_change: data.Series[float | str | None], leftover_us_gdp_deflator: data.Series[float | str | None], leftover_export_growth_usd: data.Series[float | str | None], leftover_fdi_gdp: data.Series[float | str | None], b1_gdp_ext_ii_key_macroeconomic_assumptions: float | str, b3_exports_ext_iii_averages_standard_deviations: float | str, b4_otherflows_ext_ii_key_macroeconomic_assumptions: int | str, b6_combo_mkt_ext_ii_key_macroeconomic_assumptions: float | str, b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_baseline: float | str, b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_stress: float | str, b6_combo_mkt_ext_y1_includes_both_public_private_sector_ext_debt: float | str, b6_combo_mkt_ext_y1_includes_both_public_pv_total: float | str, b6_combo_nonmkt_ext_ii_key_macroeconomic_assumptions: float | str, b6_combo_nonmkt_ext_increase: float | str, b6_combo_nonmkt_ext_y7_long_run_constant_balance_that_stabilizes: float | str, b6_combo_nonmkt_ext_y7_long_run_constant_private_debt_pv: float | str, b6_combo_nonmkt_ext_y7_long_run_constant_pv_total: float | str, c3_commodity_ext_ii_key_macroeconomic_assumptions: int | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_2: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_3: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_4: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_5: float | str, leftover_official_transfers_gdp: float | str, leftover_real_gdp_growth_2: float | str, leftover_us_gdp_deflator_2: int | str) -> ScanDsaExtNonInterestCurrentAccountDeficitResult:
+def scan_dsa_ext_non_interest_current_account_deficit(*, lookup_ida_terms_old: str, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, dsa_ext_depreciation_of_nc_depreciation: data.Series[float | str | None], dsa_ext_standard_test_gdp_growth_rule_primary: str | int | float | bool, dsa_ext_standard_test_export_growth_rule: str | int | float | bool, dsa_ext_standard_test_current_transfers_rule: str | int | float | bool, dsa_ext_standard_test_current_transfers_rule_b6_mkt: str | int | float | bool, dsa_ext_standard_test_current_transfers_rule_b6_nonmkt: str | int | float | bool, dsa_ext_standard_test_fdi_rule: str | int | float | bool, dsa_ext_standard_test_fdi_rule_b6_mkt: str | int | float | bool, dsa_ext_standard_test_fdi_rule_b6_nonmkt: str | int | float | bool, dsa_ext_standard_test_gdp_growth_rule: data.Series[str | int | float | bool | None], dsa_ext_standard_test_exports_rule: data.Series[str | int | float | bool | None], input6_standard_size_threshold_mode: Literal["New", "Old"], input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount, input3_old_debt_service: data.Input3OldDebtService, macro_debt_total_ext_debt_interest_due_include_interest: data.Series[float | str | None], macro_debt_us_dollars_k: data.Series[float | str | None], macro_debt_us_dollars_v: data.Series[float | str | None], macro_debt_exports_of_goods_services: data.Series[float | str | None], macro_debt_imports_of_goods_services_use_positive_values: data.Series[float | str | None], macro_debt_us_dollars_by_year_k: data.Series[float | str | None], macro_debt_us_dollars_by_year_v: data.Series[float | str | None], macro_debt_main_assumptions_us_dollars_k: data.Series[float | str | None], macro_debt_main_assumptions_us_dollars_v: data.Series[float | str | None], macro_debt_gdp_current_prices_u_s_dollars: data.Series[float | str | None], macro_debt_gdp_constant_prices: data.Series[float | str | None], macro_debt_change_in_gdp_deflator_factor: data.Series[float | str | None], macro_debt_change_in_gdp_deflator_factor_by_year: data.Series[float | str | None], macro_debt_us_gdp_deflator_percent_change: data.Series[float | str | None], leftover_us_gdp_deflator: data.Series[float | str | None], leftover_export_growth_usd: data.Series[float | str | None], leftover_fdi_gdp: data.Series[float | str | None], b1_gdp_ext_ii_key_macroeconomic_assumptions: float | str, b3_exports_ext_iii_averages_standard_deviations: float | str, b4_otherflows_ext_ii_key_macroeconomic_assumptions: int | str, b6_combo_mkt_ext_ii_key_macroeconomic_assumptions: float | str, b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_baseline: float | str, b6_combo_mkt_ext_y1_includes_both_public_nominal_debt_stress: float | str, b6_combo_mkt_ext_y1_includes_both_public_private_sector_ext_debt: float | str, b6_combo_mkt_ext_y1_includes_both_public_pv_total: float | str, b6_combo_nonmkt_ext_ii_key_macroeconomic_assumptions: float | str, b6_combo_nonmkt_ext_increase: float | str, b6_combo_nonmkt_ext_y7_long_run_constant_balance_that_stabilizes: float | str, b6_combo_nonmkt_ext_y7_long_run_constant_private_debt_pv: float | str, b6_combo_nonmkt_ext_y7_long_run_constant_pv_total: float | str, c3_commodity_ext_ii_key_macroeconomic_assumptions: int | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_2: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_3: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_4: float | str, c3_commodity_ext_ii_key_macroeconomic_ii_key_macroeconomic_assumptions_5: float | str, leftover_official_transfers_gdp: float | str, leftover_real_gdp_growth_2: float | str, leftover_us_gdp_deflator_2: int | str) -> ScanDsaExtNonInterestCurrentAccountDeficitResult:
     """Evaluate the recurrence group `dsa_ext_non_interest_current_account_deficit`, `dsa_ext_exports`, `dsa_ext_net_fdi_negative_inflow`, `dsa_ext_nominal_gdp_million_of_us_dollars`, `dsa_ext_real_gdp_growth_in_percent`, `dsa_ext_gdp_deflator_in_us_dollar_terms_change_in_percent`, `dsa_ext_exports_usd_millions`, `dsa_ext_reference_historical_statistics`, `dsa_ext_historical_statistics`, `dsa_ext_historical_statistics_baseline`, `dsa_ext_deficit_in_balance_of_goods_and_services`, `dsa_ext_imports`, `dsa_ext_net_current_transfers_negative_inflow`, `dsa_ext_other_current_account_flows_negative_net_inflow`, `dsa_ext_growth_of_exports_of_g_s_us_dollar_terms_in_percent`, `dsa_ext_export_shock_sign_flags`, `dsa_ext_real_depreciation_identity` and publish complete tensors."""
     data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.schema.validate(input3_input_3_macro_current_account)
     data.INPUT3_OLD_DEBT_SERVICE.schema.validate(input3_old_debt_service)
@@ -1075,7 +1075,7 @@ class ScanDsaExtDepreciationOfNcDepreciationResult:
     in6opt_standard_size_of_fx_depreciation_shock: data.Series[float | str | None]
     in6opt_standard_b6_combination_size_of_fx_depreciation_shock: data.Series[float | str | None]
 
-def scan_dsa_ext_depreciation_of_nc_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount, input3_old_debt_service: data.Input3OldDebtService, in6opt_standard_nominal_depreciation_close_real_overvaluation: data.Series[float | str | None], macro_debt_depreciation_of_nc_depreciation: data.Series[float | str | None]) -> ScanDsaExtDepreciationOfNcDepreciationResult:
+def scan_dsa_ext_depreciation_of_nc_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount, input3_old_debt_service: data.Input3OldDebtService, in6opt_standard_nominal_depreciation_close_real_overvaluation: data.Series[float | str | None], macro_debt_depreciation_of_nc_depreciation: data.Series[float | str | None]) -> ScanDsaExtDepreciationOfNcDepreciationResult:
     """Evaluate the recurrence group `dsa_ext_depreciation_of_nc_depreciation`, `dsa_ext_standard_test_fx_depreciation`, `in6opt_standard_size_of_fx_depreciation_shock`, `in6opt_standard_b6_combination_size_of_fx_depreciation_shock` and publish complete tensors."""
     data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.schema.validate(input3_input_3_macro_current_account)
     data.INPUT3_OLD_DEBT_SERVICE.schema.validate(input3_old_debt_service)
@@ -1324,19 +1324,19 @@ def dsa_ext_revenue(*, dsa_ext_nominal_gdp_million_of_us_dollars: data.Series[fl
     return data.DSA_EXT_REVENUE.collect(evaluate(formula, data.DSA_EXT_REVENUE.required.bind(TIME_PERIOD=input3_old_debt_service)), domain=data.DSA_EXT_REVENUE.required.bind(TIME_PERIOD=input3_old_debt_service))
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_GDP_GROWTH_RULE_PRIMARY_CELLS)
-def dsa_ext_standard_test_gdp_growth_rule_primary(*, in6opt_standard_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Resolve the standard-test GDP growth shock size rule from the applicable threshold mode.
+def dsa_ext_standard_test_gdp_growth_rule_primary(*, in6opt_standard_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Return the primary standard-test GDP growth-rule value for the external LIC-DSF DSA.
 
-    Select either the user-defined real GDP growth shock size or the historical-average/baseline projection depending on whether the standard size threshold mode matches the new IDA-terms lookup value.
+    Selects the standard-test size threshold from either the user-defined threshold series or the historical-average baseline-projection option based on the IDA-terms mode.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection: Scalar option or value for the standard historical-average baseline projection, used when the size threshold mode does not match the new IDA-terms lookup value.
-        lookup_ida_terms_new: Scalar string lookup key representing the new IDA terms, compared against the standardized size threshold mode.
-        input6_standard_size_threshold_mode: Scalar string mode controlling which standardized real GDP growth shock size threshold rule applies.
-        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series value containing the user-defined real GDP growth shock size under the B1 scenario, indexed by scenario, metric, and measure coordinates.
+        in6opt_standard_historical_average_baseline_projection: Scalar (str | int | float | bool) option for using the historical-average baseline projection when the standard-test size threshold mode does not match the IDA-terms-new lookup.
+        lookup_ida_terms_new: Scalar lookup string representing the IDA-terms-new mode label compared against the standard-test size-threshold mode.
+        input6_standard_size_threshold_mode: Scalar literal mode ('New' or 'Old') controlling whether the user-defined threshold series or the historical-average baseline-projection option is selected.
+        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series containing the standard-test user-defined thresholds; its real GDP growth shock-size entry is used when the mode is 'New'.
 
     Returns:
-        Scalar str, int, float, or bool: the selected user-defined size measure when the threshold mode matches the new IDA-terms lookup value, otherwise the standard historical-average baseline projection scalar; an Excel error code string is returned if selection raises an XlError.
+        Scalar (str | int | float | bool): the selected standard-test GDP growth-rule value, or an XlError code string if evaluation fails.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1345,19 +1345,19 @@ def dsa_ext_standard_test_gdp_growth_rule_primary(*, in6opt_standard_historical_
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_EXPORT_GROWTH_RULE_CELLS)
-def dsa_ext_standard_test_export_growth_rule(*, in6opt_standard_b3_exports_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Resolve the standard-test export-growth rule for B3 exports.
+def dsa_ext_standard_test_export_growth_rule(*, in6opt_standard_b3_exports_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Resolve the B3 exports standard-test growth rule from the Input 6 threshold mode and user-defined threshold series.
 
-    Selects the B3 exports growth-shock rule by comparing the size-threshold mode with the IDA terms lookup, falling back to the historical-average baseline projection.
+    Selects the B3 exports historical-average baseline projection or the user-defined standard export-growth shock size for the new-vs-old standard-test rule (B3_Exports_ext!AA63).
 
     Args:
-        in6opt_standard_b3_exports_historical_average_baseline_projection: Scalar option or projection value for the standard B3 exports historical-average baseline case.
-        lookup_ida_terms_new: Scalar string lookup value used to compare against the standard B3 exports size-threshold mode.
-        input6_standard_size_threshold_mode: Scalar string selector for the standard B3 exports size-threshold mode.
-        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold named-axis series containing user-defined threshold coordinates for B3 exports size.
+        in6opt_standard_b3_exports_historical_average_baseline_projection: Scalar fallback value (`str`, `int`, `float`, or `bool`) giving the B3 exports historical-average baseline projection when the standard size threshold mode does not select the user-defined threshold.
+        lookup_ida_terms_new: Scalar string used as the IDA terms sentinel in the threshold-mode comparison that determines whether the user-defined standard export-growth shock size applies.
+        input6_standard_size_threshold_mode: Scalar literal (`'New'` or `'Old'`) selecting the standard export-growth shock-size threshold convention; matching the IDA terms lookup routes evaluation to the user-defined threshold series.
+        input6_standard_user_defined_threshold: Typed `data.Input6StandardUserDefinedThreshold` series: named-axis tensors over catalog coordinates holding Input 6 standard user-defined threshold values, with the B3 exports growth-shock size coordinate used when selected.
 
     Returns:
-        Scalar export-growth rule value as str, int, float, or bool; returns an Excel error code string when evaluation fails.
+        Scalar result (`str`, `int`, `float`, or `bool`) containing the selected B3 exports growth rule value, or the Excel error code string if evaluation raises `XlError`.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1366,19 +1366,19 @@ def dsa_ext_standard_test_export_growth_rule(*, in6opt_standard_b3_exports_histo
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_CURRENT_TRANSFERS_RULE_CELLS)
-def dsa_ext_standard_test_current_transfers_rule(*, in6opt_standard_historical_average_baseline_projection_current_transfers_b4_other_non_debt_creating_flows: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Return the standard-test current-transfers value for B4 other non-debt-creating flows by choosing between the user-defined threshold size and the baseline projection scalar.
+def dsa_ext_standard_test_current_transfers_rule(*, in6opt_standard_historical_average_baseline_projection_current_transfers_b4_other_non_debt_creating_flows: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Evaluate the new-vs-old standard-test current-transfers rule for B4 other non-debt-creating flows.
 
-    Evaluate the LIC-DSF IDA21 new-vs-old standard-test current-transfers rule (B4_other flows_ext!AA64).
+    Select the current-transfers shock size using the standard size-threshold mode, falling back to the historical-average baseline projection value when the mode does not match the new IDA-terms lookup.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_current_transfers_b4_other_non_debt_creating_flows: Scalar B4 other non-debt-creating-flows value used for the current-transfers row when the size-threshold mode does not match the IDA-terms lookup label.
-        lookup_ida_terms_new: Scalar lookup label compared against the size-threshold mode to decide whether the user-defined threshold series supplies the standard-deviation size.
-        input6_standard_size_threshold_mode: Scalar mode selector string that, when equal to the IDA-terms lookup label, switches the rule to the user-defined threshold size.
-        input6_standard_user_defined_threshold: Typed `data.Input6StandardUserDefinedThreshold` series (named-axis tensor over catalog coordinates) supplying the B4 other non-debt-creating-flows shock size under its size coordinate; schema-validated before indexing the 'Other flows (current transfers) shock, # of standard deviations' size entry.
+        in6opt_standard_historical_average_baseline_projection_current_transfers_b4_other_non_debt_creating_flows: Scalar fallback value for the B4 other non-debt-creating current-transfers shock under the historical-average baseline projection.
+        lookup_ida_terms_new: Scalar lookup string for the new IDA terms, compared against the size-threshold mode.
+        input6_standard_size_threshold_mode: Scalar literal selecting whether the new or old standard size-threshold mode is used.
+        input6_standard_user_defined_threshold: Typed data series of user-defined standard-test thresholds indexed by catalog coordinates; supplies the B4 other flows current-transfers shock size when the mode matches.
 
     Returns:
-        Scalar `str | int | float | bool` value selected by the rule, or the Excel error code string when evaluation raises `XlError`.
+        Scalar result of the rule: the selected shock size coerced to a string, integer, float, or boolean, or an Excel error code string if evaluation fails.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1387,19 +1387,19 @@ def dsa_ext_standard_test_current_transfers_rule(*, in6opt_standard_historical_a
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_CURRENT_TRANSFERS_RULE_B6_MKT_CELLS)
-def dsa_ext_standard_test_current_transfers_rule_b6_mkt(*, in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Select the B6 market current-transfers standard-test value for the external DSA.
+def dsa_ext_standard_test_current_transfers_rule_b6_mkt(*, in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Resolve the B6 market current-transfers rule for the standard external DSA test.
 
-    Resolve the current-transfers B6 combination from either the user-defined threshold series or the historical-average baseline projection option.
+    Choose between the standardized user-defined threshold and the baseline/combination option used by the B6 current-transfers market rule.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: Scalar option or flag for the standard historical-average baseline projection current-transfers B6 combination, used when the size-threshold mode does not match the IDA terms lookup value.
-        lookup_ida_terms_new: Scalar string lookup identifier for the new IDA terms entry, compared against the size-threshold mode to choose the user-defined threshold branch.
-        input6_standard_size_threshold_mode: Scalar string standard-test size threshold mode; a match with the IDA terms lookup value selects the user-defined threshold branch.
-        input6_standard_user_defined_threshold: Typed input6 standard user-defined threshold series over B6 combination, current-transfers shock standard-deviation size, and related coordinates; supplies the threshold size when the mode comparison succeeds.
+        in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: Standard historical-average baseline-projection current-transfers B6 combination value; a scalar fallback used when the size-threshold mode does not match the IDA terms key.
+        lookup_ida_terms_new: IDA terms lookup key compared against the size-threshold mode to decide whether the user-defined threshold applies.
+        input6_standard_size_threshold_mode: Size-threshold mode selecting whether the new or old IDA terms definition governs the standardized shock size.
+        input6_standard_user_defined_threshold: Typed Input6 standard user-defined threshold catalog series containing threshold sizes over named axes, including the B6 combination and current-transfers shock coordinates.
 
     Returns:
-        Scalar selected B6 market current-transfers value as a string measure, or the corresponding Excel error code string when evaluation fails.
+        Selected scalar B6 current-transfers shock size or combination value; returns the matching Excel error code string if evaluation raises XlError.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1408,19 +1408,19 @@ def dsa_ext_standard_test_current_transfers_rule_b6_mkt(*, in6opt_standard_histo
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_CURRENT_TRANSFERS_RULE_B6_NONMKT_CELLS)
-def dsa_ext_standard_test_current_transfers_rule_b6_nonmkt(*, in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Return the B6 non-market current-transfers standard-test rule value.
+def dsa_ext_standard_test_current_transfers_rule_b6_nonmkt(*, in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Compute the B6 non-market current-transfers standard-test size rule from authored coordinate identities.
 
-    Selects the current-transfers B6 combination or its user-defined shock size threshold according to the size-threshold mode.
+    Select the B6 current-transfers shock size using the active Input 6 threshold mode or the fallback historical-average/baseline-projection option.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: A scalar fallback selection for the historical-average/baseline projection current-transfers B6 combination.
-        lookup_ida_terms_new: A scalar string lookup label identifying the new IDA terms case used when testing the size-threshold mode.
-        input6_standard_size_threshold_mode: A scalar string giving the standard size-threshold mode being compared against the IDA terms lookup.
-        input6_standard_user_defined_threshold: A typed data.Input6StandardUserDefinedThreshold series of user-defined threshold settings indexed by combination, shock metric, and size.
+        in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination: Scalar historical-average versus baseline-projection option for the B6 non-market current-transfers combination; used when the size-threshold mode does not match the IDA-terms lookup.
+        lookup_ida_terms_new: Scalar string lookup value identifying the applicable new IDA-terms case for the threshold-mode comparison.
+        input6_standard_size_threshold_mode: Scalar literal `'New'` or `'Old'` selecting the active standard size-threshold mode for the B6 current-transfers rule.
+        input6_standard_user_defined_threshold: Named-axis `data.Input6StandardUserDefinedThreshold` series over catalog coordinates; its `'B6. Combination'`, `'Other flows (current transfers) shock, # of standard deviations'`, `'Size'` coordinate provides the user-defined threshold when the mode matches the new IDA terms.
 
     Returns:
-        A scalar str|int|float|bool result: the selected B6 non-market current-transfers combination, or the user-defined other-flows current-transfers shock size when the size-threshold mode equals the new IDA terms lookup; an Excel error code string is returned on XlError.
+        Scalar `str | int | float | bool` containing the selected B6 non-market current-transfers size threshold, or an Excel error code string if the underlying lookup raises `XlError`.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1429,19 +1429,19 @@ def dsa_ext_standard_test_current_transfers_rule_b6_nonmkt(*, in6opt_standard_hi
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_FDI_RULE_CELLS)
-def dsa_ext_standard_test_fdi_rule(*, in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt_creating_flows: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Compute the standard-test FDI rule value for B4 other non-debt-creating flows.
+def dsa_ext_standard_test_fdi_rule(*, in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt_creating_flows: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Select the standard-test FDI rule for B4 other non-debt-creating flows.
 
-    Resolve the new-vs-old standard-test FDI rule by conditionally selecting either the historical-average baseline projection or the user-defined standard threshold shock size.
+    Resolve the external standard-test FDI rule from the IDA terms lookup, size-threshold mode, and the user-defined threshold series.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt_creating_flows: Scalar override or historical-average baseline projection value for B4 other (non-debt-creating) flows, used when the size-threshold mode does not match the IDA terms lookup.
-        lookup_ida_terms_new: String lookup from the IDA terms table, compared with the standard size-threshold mode to choose the FDI rule branch.
-        input6_standard_size_threshold_mode: String mode for the standard size threshold; when it equals the IDA terms lookup, the user-defined B4 other flows FDI shock size is selected instead of the baseline projection scalar.
-        input6_standard_user_defined_threshold: Typed data series of Input 6 standard user-defined threshold entries over catalog coordinates; its B4 other (non-debt-creating) flows FDI shock size at Size is read when the threshold branch applies.
+        in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt_creating_flows: Historical-average baseline projection for FDI B4 other non-debt-creating flows, supplied as a scalar str, int, float, or bool.
+        lookup_ida_terms_new: IDA terms lookup value as a string, compared with the size-threshold mode to choose the rule branch.
+        input6_standard_size_threshold_mode: Size-threshold mode literal, either 'New' or 'Old'.
+        input6_standard_user_defined_threshold: Typed data series for the standard user-defined threshold, indexed over B4 other non-debt-creating flows and shock-size coordinates.
 
     Returns:
-        The evaluated standard-test FDI rule result as a str | int | float | bool scalar, or the corresponding Excel error code string when evaluation fails.
+        Scalar str, int, float, or bool; the selected FDI rule value, or an Excel error code as a string if evaluation fails.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1450,19 +1450,19 @@ def dsa_ext_standard_test_fdi_rule(*, in6opt_standard_historical_average_baselin
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_FDI_RULE_B6_MKT_CELLS)
-def dsa_ext_standard_test_fdi_rule_b6_mkt(*, in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Evaluate the B6 market FDI rule for the external standard test.
+def dsa_ext_standard_test_fdi_rule_b6_mkt(*, in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Apply the new-vs-old standard-test FDI rule for the B6 market combination.
 
-    Select the applicable B6 FDI shock combination from the user-defined threshold or the historical/baseline projection option and return its scalar value.
+    Resolve the B6 market FDI shock size under either the New or Old IDA standard size-threshold regime.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: Scalar option selecting the B6 combination treatment when the user-defined size-threshold branch is not active; may be a string, integer, float, or boolean workbook value.
-        lookup_ida_terms_new: IDA terms lookup string compared with the size-threshold mode to decide whether the user-defined threshold branch applies.
-        input6_standard_size_threshold_mode: Scalar string mode indicating whether the user-defined size threshold is used for the B6 FDI shock.
-        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series holding user-defined Input 6 standardized-threshold values, including the B6 combination FDI shock size coordinate.
+        in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: Scalar combination value for the historical-average baseline projection FDI B6 combination, returned when the size-threshold mode does not match the IDA terms lookup.
+        lookup_ida_terms_new: IDA terms lookup string (the New terms identifier) compared against the size-threshold mode to decide whether the user-defined threshold applies.
+        input6_standard_size_threshold_mode: Literal mode flag, 'New' or 'Old', selecting the standard size-threshold regime in effect.
+        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series over catalog coordinates 'B6. Combination', 'Other flows (FDI) shock, # of standard deviations', and 'Size'.
 
     Returns:
-        Selected scalar result for the B6 market FDI rule as a string, integer, float, or boolean; if the underlying expression raises an Excel error, the error-code string is returned.
+        Scalar (str | int | float | bool) giving the B6 market FDI size: the user-defined threshold 'Size' when the mode equals the IDA terms lookup, otherwise the baseline projection combination scalar; an Excel error code string on XlError.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1471,19 +1471,19 @@ def dsa_ext_standard_test_fdi_rule_b6_mkt(*, in6opt_standard_historical_average_
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_EXT_STANDARD_TEST_FDI_RULE_B6_NONMKT_CELLS)
-def dsa_ext_standard_test_fdi_rule_b6_nonmkt(*, in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Selects the B6 non-market FDI standard-test rule value from either a scalar standard option or the user-defined threshold series.
+def dsa_ext_standard_test_fdi_rule_b6_nonmkt(*, in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Resolves the standardized-test FDI rule value for the B6 non-market combination, selecting the user-defined size threshold when the standard-size threshold mode matches the IDA terms lookup and otherwise falling back to the supplied B6 combination scalar.
 
-    Resolves the standard-test FDI B6 non-market threshold, honoring a size-threshold mode override from IDA terms metadata.
+    Implements the new-versus-old standard-test FDI rule (B6_Combo_non-mkt_ext!AA84) by dispatching between the Input 6 user-defined threshold series and a caller-supplied combination value.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: Scalar standard-test FDI B6 non-market combination option value (string, integer, float, or boolean) used when the size-threshold mode does not match the lookup token.
-        lookup_ida_terms_new: String lookup token identifying the IDA terms or size-threshold mode that triggers the user-defined threshold override.
-        input6_standard_size_threshold_mode: Scalar string mode selecting the standard size-threshold treatment for the B6 FDI rule.
-        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series of user-defined B6 FDI shock thresholds, indexed over combination and standard-deviation size coordinates.
+        in6opt_standard_historical_average_baseline_projection_fdi_b6_combination: Scalar option value for the standard historical-average baseline projection B6 combination, used as the fallback result when the size-threshold mode does not select the user-defined threshold branch.
+        lookup_ida_terms_new: Scalar lookup label for the IDA terms classification, compared against the standard-size threshold mode to decide whether the new-terms branch is taken.
+        input6_standard_size_threshold_mode: Keyword-only scalar literal naming the standard-size threshold mode, one of 'New' or 'Old', which gates whether the user-defined threshold series is read.
+        input6_standard_user_defined_threshold: Typed Input6StandardUserDefinedThreshold series indexed by the standard-test option, the 'Other flows (FDI) shock, # of standard deviations' metric, and the 'Size' coordinate, supplying the threshold value when the new-terms branch is selected.
 
     Returns:
-        Scalar str | int | float | bool representing the selected B6 non-market FDI rule value, or the Excel error code string when evaluation fails.
+        The B6 non-market FDI rule value materialized as a string-encoded measure (or scalar when the underlying coordinate is numeric), or the Excel error code string if evaluation raises an XlError.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -1534,19 +1534,19 @@ def dsa_ext_o_w_interest_additional_borrowing(*, pv_base_add_cost_mkt_shock_addi
     return data.DSA_EXT_O_W_INTEREST_ADDITIONAL_BORROWING.collect(evaluate(formula, data.DSA_EXT_O_W_INTEREST_ADDITIONAL_BORROWING.required.bind(TIME_PERIOD=input3_old_debt_service)), domain=data.DSA_EXT_O_W_INTEREST_ADDITIONAL_BORROWING.required.bind(TIME_PERIOD=input3_old_debt_service))
 
 @publish(data.DSA_EXT_STANDARD_TEST_GDP_GROWTH_RULE.schema, cells=data.DSA_EXT_STANDARD_TEST_GDP_GROWTH_RULE.cells)
-def dsa_ext_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> data.Series[str | int | float | bool | None]:
-    """Select the external DSA standard-test GDP growth rule for the B6 combination under new versus old IDA terms.
+def dsa_ext_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> data.Series[str | int | float | bool | None]:
+    """Select the B6 standard-test real GDP growth shock size for every scenario coordinate.
 
-    Implements the B6_Combo_mkt_ext rule that switches between the historical-average or baseline-projection combination and a user-defined real GDP growth shock size.
+    Resolve the new-vs-old standard-test GDP growth rule that backs B6_Combo_mkt_ext cell AA64.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: Scalar option or label for the standard historical-average versus baseline-projection real GDP growth B6 combination value.
-        lookup_ida_terms_new: String identifier for the new IDA terms vintage used when comparing the standardized size-threshold mode.
-        input6_standard_size_threshold_mode: String mode selecting how the standard real GDP growth shock size threshold is determined against the IDA terms lookup.
-        input6_standard_user_defined_threshold: Typed Input6 standard user-defined threshold series over catalog coordinates, providing the B6 combination and real GDP growth shock standard-deviation size values when the user-defined threshold applies.
+        in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: Scalar B6 combination value (historical-average or baseline-projection size of the real GDP growth shock) used when the standard size-threshold mode does not match the new IDA-terms lookup.
+        lookup_ida_terms_new: Scalar lookup value compared against the size-threshold mode to decide whether the user-defined threshold branch applies.
+        input6_standard_size_threshold_mode: Scalar literal selecting the 'New' or 'Old' standard size-threshold rule; equality with the IDA-terms lookup selects the user-defined threshold.
+        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series supplying the 'B6. Combination' real GDP growth shock size when the new threshold branch is active.
 
     Returns:
-        A data.Series over catalog coordinates containing the selected standard-test real GDP growth rule values as str | int | float | bool | None, corresponding to B6_Combo_mkt_ext!AA64.
+        A data.Series of the resolved B6 standard-test GDP growth rule values, one per scenario coordinate.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     def formula(scenario: str) -> str | int | float | bool | None:
@@ -1555,19 +1555,19 @@ def dsa_ext_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_
     return data.DSA_EXT_STANDARD_TEST_GDP_GROWTH_RULE.collect(evaluate(formula, data.DSA_EXT_STANDARD_TEST_GDP_GROWTH_RULE.required))
 
 @publish(data.DSA_EXT_STANDARD_TEST_EXPORTS_RULE.schema, cells=data.DSA_EXT_STANDARD_TEST_EXPORTS_RULE.cells)
-def dsa_ext_standard_test_exports_rule(*, in6opt_standard_historical_average_baseline_projection_exports_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> data.Series[str | int | float | bool | None]:
-    """Resolve the standardized-test exports-growth shock rule value for each scenario.
+def dsa_ext_standard_test_exports_rule(*, in6opt_standard_historical_average_baseline_projection_exports_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> data.Series[str | int | float | bool | None]:
+    """Compute the new-vs-old standard-test export-growth rule (B6_Combo_mkt_ext!AA70).
 
-    Selects either the user-defined size-of-shock threshold or the authored historical-average/baseline/projection combination depending on the threshold mode.
+    Selects between the user-defined standard-deviation exports shock size and the baseline-projection B6 combination based on the size-threshold mode comparison.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_exports_b6_combination: Scalar export-growth shock combination selector applied when the threshold mode does not match the IDA terms lookup, such as historical average, baseline, or projection.
-        lookup_ida_terms_new: Scalar IDA terms lookup string compared against the threshold mode to determine whether the user-defined threshold value overrides the combination selector.
-        input6_standard_size_threshold_mode: Scalar mode string naming the size-of-shock threshold source, where a match against the IDA terms lookup selects the user-defined standardized-deviation count.
-        input6_standard_user_defined_threshold: Typed Input 6 user-defined threshold series over catalog coordinates, from which the B6 combination size-of-exports-growth-shock standard-deviation count is read when the mode matches.
+        in6opt_standard_historical_average_baseline_projection_exports_b6_combination: Scalar baseline-projection exports B6 combination option from Input 6; used when the size-threshold mode does not match the IDA terms lookup.
+        lookup_ida_terms_new: Scalar string IDA terms lookup key (new terms) compared against the size-threshold mode to decide whether the user-defined threshold applies.
+        input6_standard_size_threshold_mode: Literal scalar selecting the size-threshold mode ('New' or 'Old'); matched against the IDA terms lookup.
+        input6_standard_user_defined_threshold: Typed Input6StandardUserDefinedThreshold series over catalog coordinates (combination, shock-size measure, size) supplying the user-defined standard-deviation shock size.
 
     Returns:
-        A typed series over scenario coordinates holding the resolved export-growth shock rule value as a scalar or None per scenario.
+        A data.Series of scalar str/int/float/bool or None values for the export-growth rule, indexed over the rule's required coordinates.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     def formula(scenario: str) -> str | int | float | bool | None:
@@ -3801,20 +3801,20 @@ def dsa_pub_pv_of_public_debt_to_revenue_and_grants_ratio(*, dsa_pub_pv_of_total
     return data.DSA_PUB_PV_OF_PUBLIC_DEBT_TO_REVENUE_AND_GRANTS_RATIO.collect(evaluate(formula, data.DSA_PUB_PV_OF_PUBLIC_DEBT_TO_REVENUE_AND_GRANTS_RATIO.required.bind(TIME_PERIOD=input3_old_debt_service)), domain=data.DSA_PUB_PV_OF_PUBLIC_DEBT_TO_REVENUE_AND_GRANTS_RATIO.required.bind(TIME_PERIOD=input3_old_debt_service))
 
 @publish(data.DSA_PUB_STANDARD_TEST_PARAMETER.schema, cells=data.DSA_PUB_STANDARD_TEST_PARAMETER.cells)
-def dsa_pub_standard_test_parameter(*, in6opt_standard_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold, in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: str | int | float | bool) -> data.Series[str | int | float | bool | None]:
-    """Compute the B1 real GDP growth standard-test parameter under old or new IDA terms.
+def dsa_pub_standard_test_parameter(*, in6opt_standard_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold, in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: str | int | float | bool) -> data.Series[str | int | float | bool | None]:
+    """Compute public standard-test DSA parameters from Input 6 threshold settings.
 
-    Selects the size of the B1 real GDP growth shock for the public DSA standard test, using user-defined thresholds when the new IDA terms threshold mode is active and historical-average baseline projections otherwise.
+    Selects each scenario's standard-test threshold value from user-defined Input 6 settings or scalar fallbacks according to the IDA terms mode.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection: Scalar fallback value for the historical-average baseline projection when the new IDA threshold mode is not selected.
-        lookup_ida_terms_new: Scalar string identifying the new IDA terms threshold-mode sentinel used to switch between user-defined and historical-average parameter sources.
-        input6_standard_size_threshold_mode: Scalar string naming the active Input 6 standardized size-threshold mode.
-        input6_standard_user_defined_threshold: Typed data series of user-defined standardized-test threshold sizes, indexed by scenario, indicator, and measurement coordinate.
-        in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: Scalar fallback value for the B1 real GDP growth historical-average baseline projection when the new IDA threshold mode is not selected.
+        in6opt_standard_historical_average_baseline_projection: Scalar fallback value for the B1 real GDP growth standard-test threshold when the size-threshold mode does not match the IDA terms lookup.
+        lookup_ida_terms_new: Scalar IDA terms label compared against the size-threshold mode to choose new versus old threshold handling.
+        input6_standard_size_threshold_mode: Scalar literal mode selecting the new or old IDA terms basis for standard-test size thresholds.
+        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series of user-defined threshold sizes over scenario, indicator, and threshold-component coordinates.
+        in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: Scalar fallback value for non-B1 standard-test thresholds when the size-threshold mode does not match the IDA terms lookup.
 
     Returns:
-        A typed data series of scenario-indexed standard-test parameter values (str, int, float, bool, or None) for the B1 real GDP growth rule.
+        Typed data.Series[str | int | float | bool | None] of selected standard-test parameter values over the required scenario coordinates.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     def formula(scenario: str) -> str | int | float | bool | None:
@@ -4136,19 +4136,19 @@ def dsa_pub_b2_pb_non_mkt_pub_revenue(*, dsa_pub_revenue_and_grants: data.Series
     return data.DSA_PUB_B2_PB_NON_MKT_PUB_REVENUE.collect(evaluate(formula, data.DSA_PUB_B2_PB_NON_MKT_PUB_REVENUE.required.bind(TIME_PERIOD=input3_old_debt_service)), domain=data.DSA_PUB_B2_PB_NON_MKT_PUB_REVENUE.required.bind(TIME_PERIOD=input3_old_debt_service))
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_B2_PB_NON_MKT_PUB_STANDARD_TEST_PARAMETER_CELLS)
-def dsa_pub_b2_pb_non_mkt_pub_standard_test_parameter(*, in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Resolve the B2 primary-balance standard-test parameter for non-market public debt under the B2_PB_non_mkt_pub!AA63 rule.
+def dsa_pub_b2_pb_non_mkt_pub_standard_test_parameter(*, in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Select the Input 6 standard-test primary-balance shock size or the B1 baseline growth fallback according to the standard size threshold mode.
 
-    Select the standardized Primary-balance-to-GDP shock size used by the non-market public-debt standard test, switching between the user-defined threshold entry and the B1 historical-average/baseline growth fallback.
+    Implements the new-vs-old standard-test primary-balance rule for the `B2_PB_non_mkt_pub` threshold parameter (workbook `B2_PB_non_mkt_pub!AA63`).
 
     Args:
-        in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: Scalar historical-average or baseline real GDP growth projection value for the B1 option, used as the fallback parameter when the standard size-threshold mode is not active.
-        lookup_ida_terms_new: Scalar IDA-terms lookup value compared against the size-threshold mode to decide whether the user-defined standard shock size applies.
-        input6_standard_size_threshold_mode: Scalar size-threshold mode compared against the IDA-terms lookup to enable the user-defined standard deviation size.
-        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series over Input 6 catalog coordinates whose 'B2. Primary balance' / shock-size coordinates supply the standard deviation size.
+        in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection: Scalar fallback value for the B1 real GDP growth historical-average baseline projection, returned when the size threshold mode does not match the IDA-terms-new lookup value.
+        lookup_ida_terms_new: Scalar string identifier holding the IDA-terms-new lookup value compared against the standard size threshold mode.
+        input6_standard_size_threshold_mode: Scalar literal selector indicating whether the standard size threshold rule uses `New` or `Old` IDA terms.
+        input6_standard_user_defined_threshold: `data.Input6StandardUserDefinedThreshold` series over catalog coordinates, carrying the Input 6 standard user-defined threshold values keyed by primary-balance measure, shock dimension, and size coordinate; validated before indexing.
 
     Returns:
-        Scalar str | int | float | bool: the selected standard-test primary-balance shock-size parameter, or the XlError code string when the underlying workbook expression fails.
+        Scalar `str | int | float | bool`; the selected Input 6 standard user-defined threshold size, the B1 baseline growth fallback value, or an `XlError` code string on failure.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -4181,18 +4181,18 @@ def dsa_pub_b5_depreciation_pub_nominal_appreciation_increase_in_us_dollar_value
     return data.DSA_PUB_B5_DEPRECIATION_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.collect(evaluate(formula, data.DSA_PUB_B5_DEPRECIATION_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.required.bind(TIME_PERIOD=input3_old_debt_service)), domain=data.DSA_PUB_B5_DEPRECIATION_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.required.bind(TIME_PERIOD=input3_old_debt_service))
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_B5_DEPRECIATION_PUB_STANDARD_TEST_FX_DEPRECIATION_CELLS)
-def dsa_pub_b5_depreciation_pub_standard_test_fx_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, in6opt_standard_size_of_fx_depreciation_shock: data.Series[float | str | None]) -> float | str:
-    """Select the standard-test FX depreciation shock size for the public DSA B5 depreciation block.
+def dsa_pub_b5_depreciation_pub_standard_test_fx_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], in6opt_standard_size_of_fx_depreciation_shock: data.Series[float | str | None]) -> float | str:
+    """Select the public standard-test FX depreciation size for the B5 depreciation block.
 
-    Resolve the applicable Input 6 standard-size option using the IDA terms comparison mode and return it as a scalar measure.
+    Chooses either the user-defined or default FX depreciation shock size according to the IDA terms threshold mode and returns the resulting scalar or error code.
 
     Args:
-        lookup_ida_terms_new: IDA terms lookup string used as the comparison value for the standard-size threshold mode.
-        input6_standard_size_threshold_mode: Input 6 standard-size threshold mode string that selects between the user-defined and default FX depreciation shock sizes.
-        in6opt_standard_size_of_fx_depreciation_shock: Named-axis series of standard-size FX depreciation shock options over catalog coordinates, keyed by 'User defined' and 'Default'.
+        lookup_ida_terms_new: Scalar string identifying the new IDA terms label used to test whether the selected threshold mode is the new standard-size variant.
+        input6_standard_size_threshold_mode: Scalar mode indicating whether the new or old standard-size threshold applies; compared against the IDA terms label to choose the series entry.
+        in6opt_standard_size_of_fx_depreciation_shock: Named-axis Input 6 series of new-vs-old standard-test FX depreciation sizes from B5_depreciation_pub!AA62, with entries such as 'User defined' and 'Default' and values that may be numeric, text, or empty.
 
     Returns:
-        The selected standard-test FX depreciation shock size as a scalar float, or a string Excel error code if evaluation fails.
+        The chosen standard-test FX depreciation size as a float or text value, or a string Excel error code when evaluation fails.
     """
     try:
         return as_measure((in6opt_standard_size_of_fx_depreciation_shock['User defined'] if xl_bool(xl_eq(input6_standard_size_threshold_mode, lookup_ida_terms_new)) else in6opt_standard_size_of_fx_depreciation_shock['Default']))
@@ -4221,19 +4221,19 @@ def dsa_pub_nominal_appreciation_increase_in_us_dollar_value_of_local_currency_i
     return data.DSA_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.collect(evaluate(formula, data.DSA_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.required.bind(TIME_PERIOD=input3_old_debt_service)), domain=data.DSA_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.required.bind(TIME_PERIOD=input3_old_debt_service))
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_STANDARD_TEST_GDP_GROWTH_RULE_CELLS)
-def dsa_pub_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Return the standard-test GDP growth rule value for the B6 market-public combination.
+def dsa_pub_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Resolve the standard-test real GDP growth B6 combination according to the size-threshold mode.
 
-    Applies the new-vs-old standard-test rule from `B6_combo_mkt_pub!AB63` by selecting between the user-defined threshold shock size and the standard historical-average baseline B6 combination.
+    Choose the B6 combination value from either the user-defined threshold series or the historical-average baseline projection based on whether the mode matches the IDA terms lookup string.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: Scalar `str | int | float | bool` option selecting the B6 combination for the standard historical-average baseline projection real GDP growth fallback.
-        lookup_ida_terms_new: Scalar `str` lookup label for IDA terms-new used in the threshold-mode equality test.
-        input6_standard_size_threshold_mode: Scalar `str` standard size-threshold mode that, when equal to the IDA terms-new lookup label, selects the user-defined threshold size.
-        input6_standard_user_defined_threshold: Typed `data.Input6StandardUserDefinedThreshold` series over catalog coordinates holding Input 6 standard user-defined threshold assumptions, including the B6 combination and real GDP growth shock size coordinates consumed by the rule.
+        in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: Scalar B6 combination value (str | int | float | bool) for the historical-average baseline real GDP projection, used when the size-threshold mode does not match the IDA terms lookup string.
+        lookup_ida_terms_new: Scalar lookup string compared with the size-threshold mode to determine whether the user-defined threshold series should drive the result.
+        input6_standard_size_threshold_mode: Scalar literal mode, either 'New' or 'Old', selecting between the user-defined threshold series and the standard historical-average B6 combination.
+        input6_standard_user_defined_threshold: Typed data series (data.Input6StandardUserDefinedThreshold) over named catalog coordinates for the Input 6 standard user-defined threshold; supplies the B6 combination and real GDP growth shock size when the mode matches the lookup.
 
     Returns:
-        Scalar `str | int | float | bool` result of the standard-test GDP growth rule: the selected measured value cast to string, or an Excel error code string when the underlying calculation raises `XlError`.
+        Scalar or string return (str | int | float | bool): the selected B6 combination measure, or the XlError code string if evaluation fails.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -4242,19 +4242,19 @@ def dsa_pub_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_STANDARD_TEST_PB_RULE_CELLS)
-def dsa_pub_standard_test_pb_rule(*, in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Select the standardized primary-balance shock for the public DSA standard-test B6 combination.
+def dsa_pub_standard_test_pb_rule(*, in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Selects the B6 combination primary-balance shock size for the public standard-test rule using authored coordinate identities.
 
-    Resolve whether the user-defined PB/GDP shock-size threshold series or the Input 6 standard combination controls the primary-balance rule.
+    Resolves the New-versus-Old IDA terms threshold mode and returns the applicable B6 combination PB/GDP shock measure from the Input 6 user-defined threshold series or the supplied scalar fallback.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: Scalar Input 6 option naming the standard historical-average baseline projection primary-balance B6 combination used when the size-threshold mode does not match the lookup term.
-        lookup_ida_terms_new: Scalar lookup IDA terms indicator compared with the size-threshold mode to choose the active rule branch.
-        input6_standard_size_threshold_mode: Scalar size-threshold mode that determines whether the user-defined threshold series or the Input 6 standard combination supplies the PB/GDP shock size.
-        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series over catalog coordinates carrying the B6 combination and user-defined PB/GDP shock-size threshold values; document as the series, not as expanded component cells.
+        in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: Scalar fallback holding the historical-average/baseline-projection B6 combination primary-balance measure, used when the threshold-mode comparison does not match the IDA terms lookup.
+        lookup_ida_terms_new: Textual IDA terms lookup key compared against the threshold mode to determine which threshold source governs the B6 combination.
+        input6_standard_size_threshold_mode: Input 6 selector giving the standard size threshold mode as the literal 'New' or 'Old'.
+        input6_standard_user_defined_threshold: Typed Input6StandardUserDefinedThreshold series holding the user-defined threshold cells keyed on the B6 combination, the PB/GDP shock size in standard deviations, and the size coordinate.
 
     Returns:
-        Scalar primary-balance shock measure returned as str, int, float, or bool, or the originating Excel error code string when the rule cannot be evaluated.
+        Scalar B6 combination primary-balance shock size as declared by the str | int | float | bool annotation (the measure is string-coerced), or the Excel error code string when evaluation raises.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -4263,18 +4263,18 @@ def dsa_pub_standard_test_pb_rule(*, in6opt_standard_historical_average_baseline
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_STANDARD_TEST_FX_DEPRECIATION_CELLS)
-def dsa_pub_standard_test_fx_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, in6opt_standard_b6_combination_size_of_fx_depreciation_shock: data.Series[float | str | None]) -> float | str:
-    """Selects the public standard-test FX depreciation shock size from the IDA terms comparison.
+def dsa_pub_standard_test_fx_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], in6opt_standard_b6_combination_size_of_fx_depreciation_shock: data.Series[float | str | None]) -> float | str:
+    """Resolve the standardized-test FX depreciation shock size from user-defined or default values.
 
-    Returns the B6 FX depreciation shock magnitude for the public standard test, or the Excel error code when evaluation fails.
+    Select the B6 combination FX depreciation shock magnitude for the public DSA standard test based on the IDA terms lookup and threshold mode.
 
     Args:
-        lookup_ida_terms_new: Lookup label identifying the current IDA terms regime used for comparison against the standard-size threshold mode.
-        input6_standard_size_threshold_mode: Input 6 standard-size threshold mode string compared with the IDA terms label to choose between user-defined and default shock coordinates.
-        in6opt_standard_b6_combination_size_of_fx_depreciation_shock: Named-axis series of standard-test B6 FX depreciation shock sizes over catalog coordinates, containing `User defined` and `Default` entries.
+        lookup_ida_terms_new: Scalar IDA terms lookup string compared against the standard-size threshold mode to choose the active branch.
+        input6_standard_size_threshold_mode: Scalar standard-test size threshold mode selector, either 'New' or 'Old'.
+        in6opt_standard_b6_combination_size_of_fx_depreciation_shock: Typed data.Series[float | str | None] over catalog coordinates for the B6 combination standard-test FX depreciation shock size, indexed by 'User defined' and 'Default'.
 
     Returns:
-        Scalar standard-test FX depreciation shock size as a float when resolved, or the Excel error code as a string when evaluation fails.
+        Selected FX depreciation shock size as a float, or an Excel error code string if the series lookup raises an XlError.
     """
     try:
         return as_measure((in6opt_standard_b6_combination_size_of_fx_depreciation_shock['User defined'] if xl_bool(xl_eq(input6_standard_size_threshold_mode, lookup_ida_terms_new)) else in6opt_standard_b6_combination_size_of_fx_depreciation_shock['Default']))
@@ -4303,19 +4303,19 @@ def dsa_pub_b6_combo_non_mkt_pub_nominal_appreciation_increase_in_us_dollar_valu
     return data.DSA_PUB_B6_COMBO_NON_MKT_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.collect(evaluate(formula, data.DSA_PUB_B6_COMBO_NON_MKT_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.required.bind(TIME_PERIOD=input3_old_debt_service)), domain=data.DSA_PUB_B6_COMBO_NON_MKT_PUB_NOMINAL_APPRECIATION_INCREASE_IN_US_DOLLAR_VALUE_OF_LOCAL_CURRENCY_IN_PERCENT.required.bind(TIME_PERIOD=input3_old_debt_service))
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_B6_COMBO_NON_MKT_PUB_STANDARD_TEST_GDP_GROWTH_RULE_CELLS)
-def dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Compute the B6 combination non-market public standard-test real GDP growth rule.
+def dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule(*, in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Resolve the B6-combination standard-test real GDP growth shock size.
 
-    Selects the B6 combination real GDP growth shock size for the standard test based on the standard size-threshold mode and the user-defined threshold setting.
+    Selects the standardized GDP growth shock size used by the B6 non-market public-debt test, choosing between the user-defined new-threshold value and the historical-average baseline projection according to the active IDA threshold regime.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: Scalar option for the Input 6 standard test: whether the B6 combination real GDP growth rule uses the historical average or the baseline projection, applied when the size-threshold mode does not select the user-defined threshold.
-        lookup_ida_terms_new: Scalar lookup string for the IDA terms (new) mode, compared with the standard size-threshold mode to decide whether to use the user-defined threshold.
-        input6_standard_size_threshold_mode: Scalar string mode controlling the Input 6 standard-test size threshold, such as default versus user-defined sizing; when it matches the IDA terms lookup, the user-defined threshold series is consulted instead of the historical-average or baseline-projection option.
-        input6_standard_user_defined_threshold: Typed data.Input6StandardUserDefinedThreshold series over Input 6 threshold coordinates, validated against its schema; when user-defined thresholding is selected it supplies the B6 combination real GDP growth shock size in number of standard deviations.
+        in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination: Scalar option carried on Input 6 holding the historical-average baseline projected real GDP growth for the B6 combination, used when the legacy threshold regime applies.
+        lookup_ida_terms_new: Scalar IDA terms lookup value compared against the threshold mode to determine whether the new IDA terms definition is in force.
+        input6_standard_size_threshold_mode: Scalar literal selecting which standard size threshold definition governs the lookup, either 'New' or 'Old'.
+        input6_standard_user_defined_threshold: Named-axis Input6StandardUserDefinedThreshold series over the B6 combination, real GDP growth shock size, and size coordinates, supplying the user-defined shock magnitude when the new threshold rule is selected.
 
     Returns:
-        Scalar (str | int | float | bool): the selected B6 combination non-market public standard-test real GDP growth rule value, cast to a measure string; if evaluation raises XlError, its error code string is returned.
+        Scalar str | int | float | bool giving the resolved standard-test real GDP growth shock size for the B6 combination, or the Excel error code string when evaluation raises an XlError.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -4324,19 +4324,19 @@ def dsa_pub_b6_combo_non_mkt_pub_standard_test_gdp_growth_rule(*, in6opt_standar
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_B6_COMBO_NON_MKT_PUB_STANDARD_TEST_PB_RULE_CELLS)
-def dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule(*, in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
-    """Resolve the B6 combined primary-balance rule for the non-market public standard test.
+def dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule(*, in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: str | int | float | bool, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_user_defined_threshold: data.Input6StandardUserDefinedThreshold) -> str | int | float | bool:
+    """Compute the B6 combination non-market public standard test primary balance rule.
 
-    Selects the effective B6 primary-balance input (user-defined shock size versus the supplied combination option) for the LIC-DSF public debt standard-test calculation at B6_combo_non-mkt_pub!AB69.
+    Selects the primary balance shock size for the B6 combination based on the standard size threshold mode and IDA terms lookup.
 
     Args:
-        in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: Scalar B6 combination option taken from Input 6, supplying the historical-average or baseline-projection primary-balance treatment used when the user-defined threshold mode is not in effect.
-        lookup_ida_terms_new: Lookup term for IDA terms (new) used as the comparison key that determines whether the user-defined threshold branch is active for the standard test.
-        input6_standard_size_threshold_mode: Scalar mode selector identifying which size-of-PB/GDP-shock threshold option applies to the standard test.
-        input6_standard_user_defined_threshold: Typed Input 6 series of standard user-defined threshold values over the B6 combination and shock-size coordinates; schema-validated before its B6 combination size cell is read.
+        in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination: The fallback scalar value for the primary balance shock size when the standard size threshold mode does not match the IDA terms new lookup.
+        lookup_ida_terms_new: The IDA terms lookup key (e.g., 'New') used to compare against the standard size threshold mode.
+        input6_standard_size_threshold_mode: The standard size threshold mode ('New' or 'Old') that determines whether to use the user-defined threshold.
+        input6_standard_user_defined_threshold: A typed data series (named-axis tensor over catalog coordinates) containing user-defined threshold values for the B6 combination size of PB/GDP shock in standard deviations.
 
     Returns:
-        The effective B6 primary-balance rule as a scalar: the user-defined size-of-shock measure when the threshold mode matches the IDA-terms lookup key, otherwise the supplied B6 combination option; an Excel error code string is returned if the lookup raises an XlError.
+        The selected primary balance shock size as a scalar (str, int, float, or bool), or an Excel error code string if computation fails.
     """
     data.INPUT6_STANDARD_USER_DEFINED_THRESHOLD.schema.validate(input6_standard_user_defined_threshold)
     try:
@@ -4345,18 +4345,18 @@ def dsa_pub_b6_combo_non_mkt_pub_standard_test_pb_rule(*, in6opt_standard_histor
         return error.code
 
 @publish(key=('SCENARIO',), domain=None, cells=data.DSA_PUB_B6_COMBO_NON_MKT_PUB_STANDARD_TEST_FX_DEPRECIATION_CELLS)
-def dsa_pub_b6_combo_non_mkt_pub_standard_test_fx_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, in6opt_standard_b6_combination_size_of_fx_depreciation_shock: data.Series[float | str | None]) -> float | str:
-    """Return the standard test FX depreciation shock size for the B6 combination.
+def dsa_pub_b6_combo_non_mkt_pub_standard_test_fx_depreciation(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], in6opt_standard_b6_combination_size_of_fx_depreciation_shock: data.Series[float | str | None]) -> float | str:
+    """Select the standard-test B6 combination FX depreciation shock size under the active IDA-terms regime.
 
-    Selects the FX depreciation shock size from the provided series based on the IDA terms lookup and standard size threshold mode.
+    Resolve the B6 non-market public standard-test FX depreciation shock to either its user-defined or default variant.
 
     Args:
-        lookup_ida_terms_new: IDA terms lookup string used as the reference for comparing the standard size threshold mode.
-        input6_standard_size_threshold_mode: Standard size threshold mode string from Input 6, compared against the IDA terms lookup.
-        in6opt_standard_b6_combination_size_of_fx_depreciation_shock: data.Series[float | str | None] over catalog coordinates containing the FX depreciation shock size, with 'User defined' and 'Default' keys.
+        lookup_ida_terms_new: IDA terms label identifying the active standard-test regime ('New' or 'Old') against which the configured threshold mode is compared.
+        input6_standard_size_threshold_mode: Standard-size threshold mode flag ('New' or 'Old') that decides whether the user-defined or default shock magnitude is taken.
+        in6opt_standard_b6_combination_size_of_fx_depreciation_shock: Typed data series over catalog coordinates holding the B6 combination standard-test FX depreciation shock size, indexed by the 'Default' and 'User defined' leaves.
 
     Returns:
-        The selected FX depreciation shock size as a float, or an error code string if an XlError occurs.
+        The selected FX depreciation shock size as a float, or the Excel error code string when the underlying coordinate lookup raises an XlError.
     """
     try:
         return as_measure((in6opt_standard_b6_combination_size_of_fx_depreciation_shock['User defined'] if xl_bool(xl_eq(input6_standard_size_threshold_mode, lookup_ida_terms_new)) else in6opt_standard_b6_combination_size_of_fx_depreciation_shock['Default']))
@@ -4697,32 +4697,32 @@ def input4_terms_ida_regular(*, input4_instrument_names: data.Input4InstrumentNa
 
 @publish(data.INPUT4_TERMS_IDA_AND_LC.schema, cells=data.INPUT4_TERMS_IDA_AND_LC.cells)
 def input4_terms_ida_and_lc(*, input5_internal_grace_period: data.Series[float | str | None], blend_ida_new_fixed_interest_rate: float | str, blend_ida_new_fixed_name: str, blend_ida_new_floating_name: str, input4_instrument_names: data.Input4InstrumentNames, input4_blend_variant: str, input4_blend_scale_key: data.Input4BlendScaleKey, input4_ida_scale_name: data.Series[str | None], input4_ida_scale_service_fee: data.Series[float | str | None], input4_ida_scale_grace: data.Series[int | str | None], input4_ida_scale_maturity: data.Series[int | str | None], input4_ida_scale_blend_fixed: str, input4_ida_scale_blend_fixed_interest: str | int | float | bool, input5_internal_interest_rate_on_domestic_debt: data.Series[float | str | None], input5_internal_maturity: data.Series[float | str | None], blend_ida_new_floating_currency: str, blend_ida_new_floating_interest_rate: float | str, input3_old_debt_service: data.Input3OldDebtService) -> data.Series[float | str | None]:
-    """Compute interest, grace, and maturity terms for IDA windows and LC bonds.
+    """Compute IDA and local-currency bond terms from instrument, scale, and financing inputs.
 
-    Derives IDA and local-currency financing terms by resolving instrument labels through IDA scale and blend lookup tables and averaging domestic-debt rates over the old-debt-service time axis.
+    Resolve instrument-specific interest rate, grace period, and maturity terms for IDA windows and LC bonds using authored coordinate identities.
 
     Args:
-        input5_internal_grace_period: Grace-period series for local-currency instruments, indexed by instrument and residency.
-        blend_ida_new_fixed_interest_rate: Scalar fixed interest rate applied to the new IDA blend fixed-rate instrument.
-        blend_ida_new_fixed_name: Scalar display name for the new IDA blend fixed-rate instrument.
-        blend_ida_new_floating_name: Scalar display name for the new IDA blend floating-rate instrument.
-        input4_instrument_names: Named-axis instrument-name series mapping borrower instruments to IDA scale labels.
-        input4_blend_variant: Scalar IDA blend variant selector used in the blend fixed-rate lookup.
-        input4_blend_scale_key: Named-axis blend-scale-key series keyed by instrument for blend lookup routing.
-        input4_ida_scale_name: IDA scale-name series indexed by scale category, including blend and new-window labels.
-        input4_ida_scale_service_fee: IDA service-fee series indexed by scale category.
-        input4_ida_scale_grace: IDA grace-period series indexed by scale category.
-        input4_ida_scale_maturity: IDA maturity series indexed by scale category.
-        input4_ida_scale_blend_fixed: Scalar fixed-rate label used for the IDA new blend scale row.
-        input4_ida_scale_blend_fixed_interest: Scalar fixed-interest value used for the IDA new blend scale row.
-        input5_internal_interest_rate_on_domestic_debt: Domestic-debt interest-rate series indexed by instrument, residency, and time period.
-        input5_internal_maturity: Local-currency maturity series indexed by instrument and residency.
-        blend_ida_new_floating_currency: Scalar currency code for the new IDA blend floating-rate instrument.
-        blend_ida_new_floating_interest_rate: Scalar floating interest rate applied to the new IDA blend floating-rate instrument.
-        input3_old_debt_service: Old debt service structure supplying the time-period axis used to average domestic-debt rates.
+        input5_internal_grace_period: Typed grace-period series for local-currency bond instruments held by non-residents, keyed by instrument and holder.
+        blend_ida_new_fixed_interest_rate: Fixed interest rate scalar applied to the new IDA blend fixed-rate component.
+        blend_ida_new_fixed_name: Instrument label identifying the new IDA blend fixed-rate component in lookup tables.
+        blend_ida_new_floating_name: Instrument label identifying the new IDA blend floating-rate component in lookup tables.
+        input4_instrument_names: Typed instrument-name series mapping Input 4 instruments to IDA scale labels used in lookup resolution.
+        input4_blend_variant: Blend-variant selector determining which row supplies the new IDA blend floating-rate terms.
+        input4_blend_scale_key: Typed per-instrument blend-scale key selecting the lookup rows used to resolve IDA terms.
+        input4_ida_scale_name: Typed IDA scale-name series used to resolve name-based IDA term lookups by instrument.
+        input4_ida_scale_service_fee: Typed IDA scale service-fee series, used as the interest-rate term for IDA scales.
+        input4_ida_scale_grace: Typed IDA scale grace-period series by scale label.
+        input4_ida_scale_maturity: Typed IDA scale maturity series by scale label.
+        input4_ida_scale_blend_fixed: Scale label identifying the fixed-rate component of the new IDA blend.
+        input4_ida_scale_blend_fixed_interest: Fixed interest-rate term for the new IDA blend, accepted as a scalar numeric, text, or boolean value.
+        input5_internal_interest_rate_on_domestic_debt: Typed domestic-debt interest-rate series by instrument, holder, and time period for LC bond averaging.
+        input5_internal_maturity: Typed maturity series for local-currency bond instruments held by non-residents.
+        blend_ida_new_floating_currency: Currency code for the new IDA blend floating-rate component.
+        blend_ida_new_floating_interest_rate: Floating interest rate scalar applied to the new IDA blend floating-rate component.
+        input3_old_debt_service: Typed old debt-service data supplying the TIME_PERIOD axis used to bound the LC bond averaging window.
 
     Returns:
-        Computed interest-rate, grace-period, and loan-maturity values as a named-axis series over instrument and indicator coordinates, preserving float, string, or null entries.
+        Typed series of computed interest rate, grace period, and loan maturity terms for IDA windows and local-currency bonds.
     """
     data.INPUT4_INSTRUMENT_NAMES.schema.validate(input4_instrument_names)
     data.INPUT4_BLEND_SCALE_KEY.schema.validate(input4_blend_scale_key)
@@ -4738,7 +4738,7 @@ def input4_terms_ida_and_lc(*, input5_internal_grace_period: data.Series[float |
         if instrument == 'IDA NEW Blend (also enter) -->' and indicator == 'Interest rate':
             return as_measure(xl_vlookup(input4_blend_variant, _input4_terms_ida_and_lc_table_2, 3, False))
         elif instrument in ('Bonds (1 to 3 years)-LC', 'Bonds (4 to 7 years)-LC', 'Bonds (beyond 7 years)-LC') and indicator == 'Interest rate':
-            return as_measure(xl_average((input5_internal_interest_rate_on_domestic_debt[instrument, 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0]], input5_internal_interest_rate_on_domestic_debt[instrument, 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[1]], input5_internal_interest_rate_on_domestic_debt[instrument, 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[2]], input5_internal_interest_rate_on_domestic_debt[instrument, 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[3]], input5_internal_interest_rate_on_domestic_debt[instrument, 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[4]], input5_internal_interest_rate_on_domestic_debt[instrument, 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5]], input5_internal_interest_rate_on_domestic_debt[instrument, 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6]], input5_internal_interest_rate_on_domestic_debt[instrument, 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[7]], input5_internal_interest_rate_on_domestic_debt[instrument, 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[8]], input5_internal_interest_rate_on_domestic_debt[instrument, 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[9]], input5_internal_interest_rate_on_domestic_debt[instrument, 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[10]])))
+            return as_measure(xl_average(view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': (instrument,), 'HOLDER': ('non-residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[10])})))
         elif instrument in ('Bonds (1 to 3 years)-LC', 'Bonds (4 to 7 years)-LC', 'Bonds (beyond 7 years)-LC') and indicator == 'Grace period':
             return as_measure(input5_internal_grace_period[instrument, 'non-residents'])
         elif instrument in ('Bonds (1 to 3 years)-LC', 'Bonds (4 to 7 years)-LC', 'Bonds (beyond 7 years)-LC') and indicator == 'Loan Maturity':
@@ -4753,23 +4753,23 @@ def input4_terms_ida_and_lc(*, input5_internal_grace_period: data.Series[float |
 
 @publish(data.INPUT4_TERMS_BONDS_FX_NON_RESIDENTS.schema, cells=data.INPUT4_TERMS_BONDS_FX_NON_RESIDENTS.cells)
 def input4_terms_bonds_fx_non_residents(*, input5_internal_grace_period: data.Series[float | str | None], input5_internal_interest_rate_on_domestic_debt: data.Series[float | str | None], input5_internal_maturity: data.Series[float | str | None], input3_old_debt_service: data.Input3OldDebtService) -> data.Series[float | str | None]:
-    """Compute FX non-resident bond terms from domestic-debt inputs.
+    """Assembles interest-rate, grace-period, and maturity terms for FX-denominated local bonds held by non-residents.
 
-    Builds interest-rate, grace-period, and maturity terms for FX local bonds held by non-residents using the old debt service coordinate domain.
+    Populate the Input 4 terms series for non-resident FX bond holdings by resolving each indicator from the Input 5 terms series and a ten-period interest-rate average.
 
     Args:
-        input5_internal_grace_period: Grace-period series for internal local-currency bonds, keyed by instrument and holder; missing or textual entries are preserved.
-        input5_internal_interest_rate_on_domestic_debt: Interest-rate series on domestic debt, keyed by instrument, holder, and time; values are averaged across the first eleven periods for the interest-rate term.
-        input5_internal_maturity: Maturity series for internal local-currency bonds, keyed by instrument and holder; missing or textual entries are preserved.
-        input3_old_debt_service: Old debt service container supplying the time-period axis and coordinate domain used to align the bond-term calculations.
+        input5_internal_grace_period: Series of Internal grace-period values indexed by instrument and holder on the Input 5 sheet, with blanks allowed and passed through unchanged.
+        input5_internal_interest_rate_on_domestic_debt: Series of Internal interest-rate-on-domestic-debt values indexed by instrument and holder; picked up on the first ten TIME_PERIOD keys of the old-debt-service axis and averaged across those periods.
+        input5_internal_maturity: Series of Internal maturity values indexed by instrument and holder on the Input 5 sheet, with blanks allowed and passed through unchanged.
+        input3_old_debt_service: Dataclass of Input 3 old-debt-service series whose TIME_PERIOD axis supplies the projection grid and the first ten periods used for the interest-rate average.
 
     Returns:
-        A named-axis series of computed bond terms (interest rate, grace period, and maturity) aligned to the input4 coordinate domain, preserving missing and textual values.
+        Series over the Input 4 terms coordinates (instrument, holder, indicator) giving the averaged interest rate, grace period, or maturity — whichever the indicator selects — with blanks preserved as None or text.
     """
     data.INPUT3_OLD_DEBT_SERVICE.schema.validate(input3_old_debt_service)
     def formula(instrument: str, holder: str, indicator: str) -> float | str | None:
         if indicator == 'Interest rate':
-            return as_measure(xl_average((input5_internal_interest_rate_on_domestic_debt[instrument, holder, input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0]], input5_internal_interest_rate_on_domestic_debt[instrument, holder, input3_old_debt_service.domain.axis('TIME_PERIOD').keys[1]], input5_internal_interest_rate_on_domestic_debt[instrument, holder, input3_old_debt_service.domain.axis('TIME_PERIOD').keys[2]], input5_internal_interest_rate_on_domestic_debt[instrument, holder, input3_old_debt_service.domain.axis('TIME_PERIOD').keys[3]], input5_internal_interest_rate_on_domestic_debt[instrument, holder, input3_old_debt_service.domain.axis('TIME_PERIOD').keys[4]], input5_internal_interest_rate_on_domestic_debt[instrument, holder, input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5]], input5_internal_interest_rate_on_domestic_debt[instrument, holder, input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6]], input5_internal_interest_rate_on_domestic_debt[instrument, holder, input3_old_debt_service.domain.axis('TIME_PERIOD').keys[7]], input5_internal_interest_rate_on_domestic_debt[instrument, holder, input3_old_debt_service.domain.axis('TIME_PERIOD').keys[8]], input5_internal_interest_rate_on_domestic_debt[instrument, holder, input3_old_debt_service.domain.axis('TIME_PERIOD').keys[9]], input5_internal_interest_rate_on_domestic_debt[instrument, holder, input3_old_debt_service.domain.axis('TIME_PERIOD').keys[10]])))
+            return as_measure(xl_average(view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': (instrument,), 'HOLDER': (holder,)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[10])})))
         elif indicator == 'Grace period':
             return as_measure(input5_internal_grace_period[instrument, holder])
         return as_measure(input5_internal_maturity[instrument, holder])
@@ -8361,36 +8361,36 @@ def input5_vintage_issuance_year(*, input5_projection_years: data.Series[int | s
 
 @publish(data.INPUT5_VINTAGE_TERMS.schema, cells=data.INPUT5_VINTAGE_TERMS.cells)
 def input5_vintage_terms(*, input5_grace_period: data.Input5GracePeriod, input5_blue_cells_note: str | int | float | bool, input5_projection_years: data.Series[int | str | None], input5_instrument_terms_assumptions_on_domestic_financial_instruments_header: str | int | float | bool, input5_instrument_terms_grace_period_header: str | int | float | bool, input5_instrument_terms_interest_rate_on_domestic_debt_header: str | int | float | bool, input5_instrument_terms_maturity_header: str | int | float | bool, input5_instrument_terms_instrument_label: data.Series[str | int | float | bool | None], input5_interest_rate_on_domestic_debt: data.Input5InterestRateOnDomesticDebt, input5_interest_rate_on_domestic_debt_fx_long: data.Input5InterestRateOnDomesticDebtFxLong, input5_internal_interest_rate_on_domestic_debt: data.Series[float | str | None], input5_maturity: data.Input5Maturity, input5_maturity_central_bank: int | str, input5_constant_grace_period: data.Series[int | str | None], input5_constant_maturity: data.Series[int | str | None], input5_internal_grace_period: data.Series[float | str | None], input5_internal_maturity: data.Series[float | str | None], input5_vintage_instrument_title: data.Series[str | int | float | bool | None], input5_vintage_issuance_year: data.Series[int | str | None], input5_vintage_instrument_label: data.Series[str | int | float | bool | None], input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount, input3_old_debt_service: data.Input3OldDebtService) -> data.Series[float | str | None]:
-    """Compute the Input 5 vintage-terms series across instrument and holder coordinates.
+    """Derive vintage-term debt-service terms for local-currency domestic instruments across projection years.
 
-    Builds the per-vintage instrument terms (grace period, maturity, interest rate) used for domestic debt service projections from Input 5 assumptions.
+    Combines instrument-terms headers, grace-period and maturity inputs, and issuance-year vintages to produce the per-vintage contractual term series consumed by local-currency debt-service calculations.
 
     Args:
-        input5_grace_period: Input 5 grace-period assumptions series over instrument coordinates.
-        input5_blue_cells_note: Workbook blue-cell note flag carried through from the template.
-        input5_projection_years: Projection years series defining the time axis of the output.
-        input5_instrument_terms_assumptions_on_domestic_financial_instruments_header: Header selector for the assumptions on domestic financial instruments block.
-        input5_instrument_terms_grace_period_header: Header selector for the grace-period column of the instrument-terms block.
-        input5_instrument_terms_interest_rate_on_domestic_debt_header: Header selector for the interest-rate-on-domestic-debt column.
-        input5_instrument_terms_maturity_header: Header selector for the maturity column of the instrument-terms block.
-        input5_instrument_terms_instrument_label: Instrument labels for the instrument-terms block over instrument coordinates.
-        input5_interest_rate_on_domestic_debt: Interest rate on domestic debt series over instrument coordinates.
-        input5_interest_rate_on_domestic_debt_fx_long: Interest rate on domestic debt in foreign currency (long) series over instrument coordinates.
-        input5_internal_interest_rate_on_domestic_debt: Internal interest rate on domestic debt series lifted from the vintage-terms engine.
-        input5_maturity: Maturity assumptions series over instrument coordinates.
-        input5_maturity_central_bank: Central-bank maturity scalar used for the central-bank financing instrument.
-        input5_constant_grace_period: Constant grace-period series indexed by instrument.
-        input5_constant_maturity: Constant maturity series indexed by instrument.
-        input5_internal_grace_period: Internal grace-period series indexed by instrument.
-        input5_internal_maturity: Internal maturity series indexed by instrument.
-        input5_vintage_instrument_title: Instrument titles for the vintage-terms rows.
-        input5_vintage_issuance_year: Issuance years for the vintage-terms rows.
-        input5_vintage_instrument_label: Instrument labels for the vintage-terms rows.
-        input3_input_3_macro_current_account: Input 3 macro current-account series providing the time axis used to bind the interest-rate assumptions.
-        input3_old_debt_service: Input 3 old debt service series used to bind the time axis of the domestic-debt interest-rate inputs.
+        input5_grace_period: Grace-period series over catalog coordinates supplying the contractual grace period for each domestic instrument.
+        input5_blue_cells_note: Free-form blue-cell annotation value carried through from the Input 5 sheet without transformation.
+        input5_projection_years: Projection-year series over catalog coordinates defining the horizon and ordering of the returned terms.
+        input5_instrument_terms_assumptions_on_domestic_financial_instruments_header: Instrument-terms header cell identifying the assumptions block for domestic financial instruments, passed through as a label.
+        input5_instrument_terms_grace_period_header: Instrument-terms header cell labelling the grace-period column of the instrument-terms block.
+        input5_instrument_terms_interest_rate_on_domestic_debt_header: Instrument-terms header cell labelling the interest-rate-on-domestic-debt column of the instrument-terms block.
+        input5_instrument_terms_maturity_header: Instrument-terms header cell labelling the maturity column of the instrument-terms block.
+        input5_instrument_terms_instrument_label: Instrument-label series over catalog coordinates naming each row of the instrument-terms block.
+        input5_interest_rate_on_domestic_debt: Interest-rate-on-domestic-debt series over catalog coordinates giving the contractual rate applied to each instrument.
+        input5_interest_rate_on_domestic_debt_fx_long: Interest-rate-on-domestic-debt FX-long series over catalog coordinates giving the foreign-currency-denominated long-term rate variant.
+        input5_internal_interest_rate_on_domestic_debt: Internal interest-rate-on-domestic-debt series over catalog coordinates holding the resolved rate used when vintages are expanded.
+        input5_maturity: Maturity series over catalog coordinates giving the contractual maturity in years for each instrument.
+        input5_maturity_central_bank: Scalar maturity term applied to central bank financing when no instrument-specific value is present.
+        input5_constant_grace_period: Constant grace-period series over catalog coordinates supplying fallback grace periods for instruments without explicit terms.
+        input5_constant_maturity: Constant maturity series over catalog coordinates supplying fallback maturities for instruments without explicit terms.
+        input5_internal_grace_period: Internal grace-period series over catalog coordinates holding the grace period resolved for vintage expansion.
+        input5_internal_maturity: Internal maturity series over catalog coordinates holding the maturity resolved for vintage expansion.
+        input5_vintage_instrument_title: Vintage instrument-title series over catalog coordinates naming each outstanding vintage by instrument.
+        input5_vintage_issuance_year: Vintage issuance-year series over catalog coordinates dating each outstanding vintage, anchoring amortization and grace-period phases.
+        input5_vintage_instrument_label: Vintage instrument-label series over catalog coordinates mapping each vintage row to its instrument-terms entry.
+        input3_input_3_macro_current_account: Macro current-account series over catalog coordinates used to align the vintage-term grid with the Input 3 macro time axis.
+        input3_old_debt_service: Old debt-service series over catalog coordinates whose time axis is bound to the domestic interest-rate inputs and reused for alignment.
 
     Returns:
-        A `data.Series[float | str | None]` of vintage terms over instrument and holder coordinates (10 instruments, residents and non-residents), aligned to the projection-year axis, with blanks preserved as `None`.
+        Domestic instrument vintage terms as a float/str/None series over catalog coordinates, with one value per instrument, holder, and projection year.
     """
     data.INPUT5_GRACE_PERIOD.schema.validate(input5_grace_period)
     data.INPUT5_INTEREST_RATE_ON_DOMESTIC_DEBT.schema.bind(TIME_PERIOD=input3_old_debt_service).validate(input5_interest_rate_on_domestic_debt)
@@ -8403,7 +8403,7 @@ def input5_vintage_terms(*, input5_grace_period: data.Input5GracePeriod, input5_
     _input5_vintage_terms_table_0 = lazy_table(((lambda: input5_blue_cells_note, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(input5_projection_years, cols=span(input3_input_3_macro_current_account.domain.axis('TIME_PERIOD'), input3_input_3_macro_current_account.domain.axis('TIME_PERIOD').keys[12], input3_input_3_macro_current_account.domain.axis('TIME_PERIOD').keys[33]))), (lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: input5_instrument_terms_assumptions_on_domestic_financial_instruments_header, lambda: None, lambda: input5_instrument_terms_grace_period_header, lambda: input5_instrument_terms_maturity_header, lambda: None, lambda: None, lambda: None, lambda: None, lambda: input5_instrument_terms_interest_rate_on_domestic_debt_header, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: input5_instrument_terms_instrument_label['Locally-issued debt', 'residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: input5_instrument_terms_instrument_label['Held by residents', 'residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: input5_instrument_terms_instrument_label['Central bank financing', 'residents'], lambda: None, lambda: input5_grace_period['Central bank financing', 'residents'], lambda: input5_maturity_central_bank, lambda: None, lambda: None, lambda: None, lambda: None, view(input5_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Central bank financing',), 'HOLDER': ('residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5])}), view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Central bank financing',), 'HOLDER': ('residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['Short-term debt', 'residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: input5_instrument_terms_instrument_label['T-bills (denominated in local currency)', 'residents'], lambda: None, lambda: input5_constant_grace_period['T-bills (denominated in local currency)', 'residents'], lambda: input5_constant_maturity['T-bills (denominated in local currency)', 'residents'], lambda: None, lambda: None, lambda: None, lambda: None, view(input5_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('T-bills (denominated in local currency)',), 'HOLDER': ('residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5])}), view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('T-bills (denominated in local currency)',), 'HOLDER': ('residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['T-bills (denominated in foreign currency)', 'residents'], lambda: None, lambda: input5_constant_grace_period['T-bills (denominated in foreign currency)', 'residents'], lambda: input5_constant_maturity['T-bills (denominated in foreign currency)', 'residents'], lambda: None, lambda: None, lambda: None, lambda: None, view(input5_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('T-bills (denominated in foreign currency)',), 'HOLDER': ('residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5])}), view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('T-bills (denominated in foreign currency)',), 'HOLDER': ('residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['MLT debt', 'residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: input5_instrument_terms_instrument_label['Denominated in local currency (LC)', 'residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: input5_instrument_terms_instrument_label['Bonds (1 to 3 years)-LC', 'residents'], lambda: None, lambda: input5_grace_period['Bonds (1 to 3 years)-LC', 'residents'], lambda: input5_maturity['Bonds (1 to 3 years)-LC', 'residents'], lambda: None, lambda: None, lambda: None, lambda: None, view(input5_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (1 to 3 years)-LC',), 'HOLDER': ('residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5])}), view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (1 to 3 years)-LC',), 'HOLDER': ('residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['Bonds (4 to 7 years)-LC', 'residents'], lambda: None, lambda: input5_grace_period['Bonds (4 to 7 years)-LC', 'residents'], lambda: input5_maturity['Bonds (4 to 7 years)-LC', 'residents'], lambda: None, lambda: None, lambda: None, lambda: None, view(input5_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (4 to 7 years)-LC',), 'HOLDER': ('residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5])}), view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (4 to 7 years)-LC',), 'HOLDER': ('residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['Bonds (beyond 7 years)-LC', 'residents'], lambda: None, lambda: input5_grace_period['Bonds (beyond 7 years)-LC', 'residents'], lambda: input5_maturity['Bonds (beyond 7 years)-LC', 'residents'], lambda: None, lambda: None, lambda: None, lambda: None, view(input5_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (beyond 7 years)-LC',), 'HOLDER': ('residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5])}), view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (beyond 7 years)-LC',), 'HOLDER': ('residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['Denominated in foreign currency (FX)', 'residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: input5_instrument_terms_instrument_label['Bonds (1 to 3 years)-FX', 'residents'], lambda: None, lambda: input5_grace_period['Bonds (1 to 3 years)-FX', 'residents'], lambda: input5_maturity['Bonds (1 to 3 years)-FX', 'residents'], lambda: None, lambda: None, lambda: None, lambda: None, view(input5_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (1 to 3 years)-FX',), 'HOLDER': ('residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5])}), view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (1 to 3 years)-FX',), 'HOLDER': ('residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['Bonds (4 to 7 years)-FX', 'residents'], lambda: None, lambda: input5_grace_period['Bonds (4 to 7 years)-FX', 'residents'], lambda: input5_maturity['Bonds (4 to 7 years)-FX', 'residents'], lambda: None, lambda: None, lambda: None, lambda: None, view(input5_interest_rate_on_domestic_debt_fx_long, rows={'INSTRUMENT': ('Bonds (4 to 7 years)-FX',), 'HOLDER': ('residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5])}), view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (4 to 7 years)-FX',), 'HOLDER': ('residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['Bonds (beyond 7 years)-FX', 'residents'], lambda: None, lambda: input5_grace_period['Bonds (beyond 7 years)-FX', 'residents'], lambda: input5_maturity['Bonds (beyond 7 years)-FX', 'residents'], lambda: None, lambda: None, lambda: None, lambda: None, view(input5_interest_rate_on_domestic_debt_fx_long, rows={'INSTRUMENT': ('Bonds (beyond 7 years)-FX',), 'HOLDER': ('residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5])}), view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (beyond 7 years)-FX',), 'HOLDER': ('residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])}))))
     _input5_vintage_terms_table_1 = lazy_table(((lambda: input5_blue_cells_note,), (lambda: None,), (lambda: input5_instrument_terms_assumptions_on_domestic_financial_instruments_header,), (view(input5_instrument_terms_instrument_label, rows={'HOLDER': ('residents',), 'INSTRUMENT': data.INSTRUMENT_AXIS_6.keys}),)))
     _input5_vintage_terms_table_2 = lazy_table(((lambda: input5_blue_cells_note, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, view(input5_projection_years, cols=span(input3_input_3_macro_current_account.domain.axis('TIME_PERIOD'), input3_input_3_macro_current_account.domain.axis('TIME_PERIOD').keys[12], input3_input_3_macro_current_account.domain.axis('TIME_PERIOD').keys[33]))),))
-    _input5_vintage_terms_table_3 = lazy_table(((lambda: input5_instrument_terms_instrument_label['Short-term debt', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: input5_instrument_terms_instrument_label['T-bills (denominated in local currency)', 'non-residents'], lambda: None, lambda: input5_constant_grace_period['T-bills (denominated in local currency)', 'non-residents'], lambda: input5_constant_maturity['T-bills (denominated in local currency)', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: input5_internal_interest_rate_on_domestic_debt['T-bills (denominated in local currency)', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0]], lambda: input5_internal_interest_rate_on_domestic_debt['T-bills (denominated in local currency)', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[1]], lambda: input5_internal_interest_rate_on_domestic_debt['T-bills (denominated in local currency)', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[2]], lambda: input5_internal_interest_rate_on_domestic_debt['T-bills (denominated in local currency)', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[3]], lambda: input5_internal_interest_rate_on_domestic_debt['T-bills (denominated in local currency)', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[4]], lambda: input5_internal_interest_rate_on_domestic_debt['T-bills (denominated in local currency)', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5]], view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('T-bills (denominated in local currency)',), 'HOLDER': ('non-residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['T-bills (denominated in foreign currency)', 'non-residents'], lambda: None, lambda: input5_constant_grace_period['T-bills (denominated in foreign currency)', 'non-residents'], lambda: input5_constant_maturity['T-bills (denominated in foreign currency)', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: input5_internal_interest_rate_on_domestic_debt['T-bills (denominated in foreign currency)', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0]], lambda: input5_internal_interest_rate_on_domestic_debt['T-bills (denominated in foreign currency)', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[1]], lambda: input5_internal_interest_rate_on_domestic_debt['T-bills (denominated in foreign currency)', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[2]], lambda: input5_internal_interest_rate_on_domestic_debt['T-bills (denominated in foreign currency)', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[3]], lambda: input5_internal_interest_rate_on_domestic_debt['T-bills (denominated in foreign currency)', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[4]], lambda: input5_internal_interest_rate_on_domestic_debt['T-bills (denominated in foreign currency)', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5]], view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('T-bills (denominated in foreign currency)',), 'HOLDER': ('non-residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['MLT debt', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: input5_instrument_terms_instrument_label['Denominated in local currency (LC)', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: input5_instrument_terms_instrument_label['Bonds (1 to 3 years)-LC', 'non-residents'], lambda: None, lambda: input5_internal_grace_period['Bonds (1 to 3 years)-LC', 'non-residents'], lambda: input5_internal_maturity['Bonds (1 to 3 years)-LC', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (1 to 3 years)-LC', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (1 to 3 years)-LC', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[1]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (1 to 3 years)-LC', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[2]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (1 to 3 years)-LC', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[3]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (1 to 3 years)-LC', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[4]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (1 to 3 years)-LC', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5]], view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (1 to 3 years)-LC',), 'HOLDER': ('non-residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['Bonds (4 to 7 years)-LC', 'non-residents'], lambda: None, lambda: input5_internal_grace_period['Bonds (4 to 7 years)-LC', 'non-residents'], lambda: input5_internal_maturity['Bonds (4 to 7 years)-LC', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (4 to 7 years)-LC', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (4 to 7 years)-LC', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[1]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (4 to 7 years)-LC', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[2]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (4 to 7 years)-LC', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[3]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (4 to 7 years)-LC', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[4]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (4 to 7 years)-LC', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5]], view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (4 to 7 years)-LC',), 'HOLDER': ('non-residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['Bonds (beyond 7 years)-LC', 'non-residents'], lambda: None, lambda: input5_internal_grace_period['Bonds (beyond 7 years)-LC', 'non-residents'], lambda: input5_internal_maturity['Bonds (beyond 7 years)-LC', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (beyond 7 years)-LC', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (beyond 7 years)-LC', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[1]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (beyond 7 years)-LC', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[2]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (beyond 7 years)-LC', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[3]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (beyond 7 years)-LC', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[4]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (beyond 7 years)-LC', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5]], view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (beyond 7 years)-LC',), 'HOLDER': ('non-residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['Denominated in foreign currency (FX)', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: input5_instrument_terms_instrument_label['Bonds (1 to 3 years)-FX', 'non-residents'], lambda: None, lambda: input5_internal_grace_period['Bonds (1 to 3 years)-FX', 'non-residents'], lambda: input5_internal_maturity['Bonds (1 to 3 years)-FX', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (1 to 3 years)-FX', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (1 to 3 years)-FX', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[1]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (1 to 3 years)-FX', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[2]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (1 to 3 years)-FX', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[3]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (1 to 3 years)-FX', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[4]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (1 to 3 years)-FX', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5]], view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (1 to 3 years)-FX',), 'HOLDER': ('non-residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['Bonds (4 to 7 years)-FX', 'non-residents'], lambda: None, lambda: input5_internal_grace_period['Bonds (4 to 7 years)-FX', 'non-residents'], lambda: input5_internal_maturity['Bonds (4 to 7 years)-FX', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (4 to 7 years)-FX', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (4 to 7 years)-FX', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[1]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (4 to 7 years)-FX', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[2]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (4 to 7 years)-FX', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[3]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (4 to 7 years)-FX', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[4]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (4 to 7 years)-FX', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5]], view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (4 to 7 years)-FX',), 'HOLDER': ('non-residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['Bonds (beyond 7 years)-FX', 'non-residents'], lambda: None, lambda: input5_internal_grace_period['Bonds (beyond 7 years)-FX', 'non-residents'], lambda: input5_internal_maturity['Bonds (beyond 7 years)-FX', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (beyond 7 years)-FX', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (beyond 7 years)-FX', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[1]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (beyond 7 years)-FX', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[2]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (beyond 7 years)-FX', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[3]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (beyond 7 years)-FX', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[4]], lambda: input5_internal_interest_rate_on_domestic_debt['Bonds (beyond 7 years)-FX', 'non-residents', input3_old_debt_service.domain.axis('TIME_PERIOD').keys[5]], view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (beyond 7 years)-FX',), 'HOLDER': ('non-residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[6], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])}))))
+    _input5_vintage_terms_table_3 = lazy_table(((lambda: input5_instrument_terms_instrument_label['Short-term debt', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: input5_instrument_terms_instrument_label['T-bills (denominated in local currency)', 'non-residents'], lambda: None, lambda: input5_constant_grace_period['T-bills (denominated in local currency)', 'non-residents'], lambda: input5_constant_maturity['T-bills (denominated in local currency)', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('T-bills (denominated in local currency)',), 'HOLDER': ('non-residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['T-bills (denominated in foreign currency)', 'non-residents'], lambda: None, lambda: input5_constant_grace_period['T-bills (denominated in foreign currency)', 'non-residents'], lambda: input5_constant_maturity['T-bills (denominated in foreign currency)', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('T-bills (denominated in foreign currency)',), 'HOLDER': ('non-residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['MLT debt', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: input5_instrument_terms_instrument_label['Denominated in local currency (LC)', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: input5_instrument_terms_instrument_label['Bonds (1 to 3 years)-LC', 'non-residents'], lambda: None, lambda: input5_internal_grace_period['Bonds (1 to 3 years)-LC', 'non-residents'], lambda: input5_internal_maturity['Bonds (1 to 3 years)-LC', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (1 to 3 years)-LC',), 'HOLDER': ('non-residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['Bonds (4 to 7 years)-LC', 'non-residents'], lambda: None, lambda: input5_internal_grace_period['Bonds (4 to 7 years)-LC', 'non-residents'], lambda: input5_internal_maturity['Bonds (4 to 7 years)-LC', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (4 to 7 years)-LC',), 'HOLDER': ('non-residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['Bonds (beyond 7 years)-LC', 'non-residents'], lambda: None, lambda: input5_internal_grace_period['Bonds (beyond 7 years)-LC', 'non-residents'], lambda: input5_internal_maturity['Bonds (beyond 7 years)-LC', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (beyond 7 years)-LC',), 'HOLDER': ('non-residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['Denominated in foreign currency (FX)', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None, lambda: None), (lambda: input5_instrument_terms_instrument_label['Bonds (1 to 3 years)-FX', 'non-residents'], lambda: None, lambda: input5_internal_grace_period['Bonds (1 to 3 years)-FX', 'non-residents'], lambda: input5_internal_maturity['Bonds (1 to 3 years)-FX', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (1 to 3 years)-FX',), 'HOLDER': ('non-residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['Bonds (4 to 7 years)-FX', 'non-residents'], lambda: None, lambda: input5_internal_grace_period['Bonds (4 to 7 years)-FX', 'non-residents'], lambda: input5_internal_maturity['Bonds (4 to 7 years)-FX', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (4 to 7 years)-FX',), 'HOLDER': ('non-residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])})), (lambda: input5_instrument_terms_instrument_label['Bonds (beyond 7 years)-FX', 'non-residents'], lambda: None, lambda: input5_internal_grace_period['Bonds (beyond 7 years)-FX', 'non-residents'], lambda: input5_internal_maturity['Bonds (beyond 7 years)-FX', 'non-residents'], lambda: None, lambda: None, lambda: None, lambda: None, view(input5_internal_interest_rate_on_domestic_debt, rows={'INSTRUMENT': ('Bonds (beyond 7 years)-FX',), 'HOLDER': ('non-residents',)}, cols={'TIME_PERIOD': span(input3_old_debt_service.domain.axis('TIME_PERIOD'), input3_old_debt_service.domain.axis('TIME_PERIOD').keys[0], input3_old_debt_service.domain.axis('TIME_PERIOD').keys[20])}))))
     _input5_vintage_terms_table_4 = view(input5_instrument_terms_instrument_label, rows={'HOLDER': ('non-residents',), 'INSTRUMENT': span(data.INSTRUMENT_AXIS_6, 'Short-term debt', 'Bonds (beyond 7 years)-FX')})
     def formula(instrument: str, holder: str, issuance_year: int, indicator: str) -> float | str | None:
         if instrument == 'Central bank financing' and holder == 'residents' and issuance_year == 2024 and indicator == 'Maturity':
@@ -16688,19 +16688,19 @@ def c4_mkt_fin_dsr_revenue_stress(*, c4_mkt_fin_adjusted_debt_service: data.Seri
     return data.C4_MKT_FIN_DSR_REVENUE_STRESS.collect(evaluate(formula, data.C4_MKT_FIN_DSR_REVENUE_STRESS.required.bind(TIME_PERIOD=input3_old_debt_service)), domain=data.C4_MKT_FIN_DSR_REVENUE_STRESS.required.bind(TIME_PERIOD=input3_old_debt_service))
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_DEBT_CARRYING_CAPACITY_CELLS)
-def ci_summary_debt_carrying_capacity(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: str, ci_summary_performance_policy: str | int | float | bool, ci_summary_debt_carrying_capacity_vintage_reconciled: str | int | float | bool) -> str | int | float | bool:
-    """Determine the debt carrying capacity classification using IDA terms and standard size threshold mode.
+def ci_summary_debt_carrying_capacity(*, lookup_ida_terms_new: str, input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_performance_policy: str | int | float | bool, ci_summary_debt_carrying_capacity_vintage_reconciled: str | int | float | bool) -> str | int | float | bool:
+    """Return the effective debt-carrying-capacity classification for the IDA terms threshold mode.
 
-    Selects between the vintage-reconciled and performance-policy debt carrying capacity values based on whether the standard size threshold mode matches the IDA terms lookup.
+    Selects between the vintage-reconciled capacity and performance-policy value according to whether the standard-size threshold mode matches the new IDA terms label.
 
     Args:
-        lookup_ida_terms_new: Lookup value for new IDA terms, used as the comparison target.
-        input6_standard_size_threshold_mode: Standard size threshold mode from Input 6, compared against the IDA terms lookup.
-        ci_summary_performance_policy: Performance-policy debt carrying capacity value, used when the threshold mode does not match the IDA terms lookup.
-        ci_summary_debt_carrying_capacity_vintage_reconciled: Vintage-reconciled debt carrying capacity value, used when the threshold mode matches the IDA terms lookup.
+        lookup_ida_terms_new: Scalar IDA terms identifier used as the comparison value for the active standard-size threshold mode.
+        input6_standard_size_threshold_mode: Scalar threshold-mode literal, either 'New' or 'Old', that determines which capacity source is selected.
+        ci_summary_performance_policy: Scalar performance-policy value, typically the weak/medium/strong classification used for applicable thresholds, returned when the threshold mode does not match the IDA terms label.
+        ci_summary_debt_carrying_capacity_vintage_reconciled: Scalar vintage-reconciled debt-carrying-capacity value, typically the weak/medium/strong classification used for applicable thresholds, returned when the threshold mode matches the IDA terms label.
 
     Returns:
-        The selected debt carrying capacity classification as a scalar (str, int, float, or bool), or an Excel error code string if an XlError occurs.
+        Scalar value selected from the vintage-reconciled capacity or performance policy, returned as a string measure when conversion succeeds, or the workbook error code string when an XlError occurs.
     """
     try:
         return as_measure((ci_summary_debt_carrying_capacity_vintage_reconciled if xl_bool(xl_eq(input6_standard_size_threshold_mode, lookup_ida_terms_new)) else ci_summary_performance_policy), 'str')
@@ -16860,24 +16860,24 @@ def ci_summary_ds_revenue_heading(*, start_debt_sustainability_analysis: str | i
         return error.code
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_PUBLIC_PV_MEDIUM_CUTOFF_CELLS)
-def ci_summary_public_pv_medium_cutoff(*, lookup_ida_terms_new: str, ci_pub_pv_debt_gdp_new: data.Series[float | str | None], input6_standard_size_threshold_mode: str, ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_public_pv_heading: str | int | float | bool, ci_summary_cpia_rating: float | str, ci_summary_public_benchmark_grid_heading: str | int | float | bool, ci_summary_public_pv_grid_heading: str | int | float | bool, ci_summary_public_capacity_class_headers: data.Series[str | int | float | bool | None]) -> float | str:
-    """Return the public PV debt-to-GDP medium capacity threshold from the CI summary lookup.
+def ci_summary_public_pv_medium_cutoff(*, lookup_ida_terms_new: str, ci_pub_pv_debt_gdp_new: data.Series[float | str | None], input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_public_pv_heading: str | int | float | bool, ci_summary_cpia_rating: float | str, ci_summary_public_benchmark_grid_heading: str | int | float | bool, ci_summary_public_pv_grid_heading: str | int | float | bool, ci_summary_public_capacity_class_headers: data.Series[str | int | float | bool | None]) -> float | str:
+    """Return the public PV medium cutoff from the CI summary table for the new IDA terms.
 
-    Selects the applicable public PV medium threshold by matching heading and debt-carrying-capacity labels, falling back to the CPIA rating when the standard-size threshold mode is not IDA terms.
+    Selects the medium PV threshold by carrying-capacity class when the standardized size threshold mode matches the IDA terms label, otherwise falls back to the CPIA rating.
 
     Args:
-        lookup_ida_terms_new: String lookup key identifying the IDA-terms option used when comparing the standard-size threshold mode.
-        ci_pub_pv_debt_gdp_new: Typed data series of public PV debt-to-GDP values over the variant axis, supplying the capacity-class threshold lookup grid.
-        input6_standard_size_threshold_mode: String mode indicating the standard-size threshold treatment; when it matches the IDA-terms lookup, the grid value is returned instead of the CPIA rating.
-        ci_summary_debt_carrying_capacity: Scalar debt-carrying-capacity label used to match a row in the public PV threshold table.
-        ci_summary_public_pv_heading: Scalar public PV heading used to locate the relevant row index in the threshold table.
-        ci_summary_cpia_rating: Scalar CPIA rating returned as the threshold when the standard-size threshold mode does not select the IDA-terms lookup.
-        ci_summary_public_benchmark_grid_heading: Scalar heading identifying the public benchmark grid row in the threshold lookup table.
-        ci_summary_public_pv_grid_heading: Scalar heading identifying the public PV grid row in the threshold lookup table.
-        ci_summary_public_capacity_class_headers: Typed data series of public capacity-class header labels over the parameter axis, defining the lookup table columns.
+        lookup_ida_terms_new: Scalar text label of the IDA terms variant used to decide whether the new standardized size threshold applies.
+        ci_pub_pv_debt_gdp_new: Named-axis series of public PV debt-to-GDP values over catalog coordinates for the new IDA terms variant.
+        input6_standard_size_threshold_mode: Scalar selector indicating whether the standardized size threshold uses the 'New' or 'Old' definition.
+        ci_summary_debt_carrying_capacity: Scalar debt-carrying-capacity class value used as the row lookup key within the CI summary grid.
+        ci_summary_public_pv_heading: Scalar heading value identifying the public PV row to retrieve from the CI summary table.
+        ci_summary_cpia_rating: Scalar CPIA rating returned as the fallback when the threshold mode does not match the IDA terms label.
+        ci_summary_public_benchmark_grid_heading: Scalar heading value identifying the benchmark grid row used to align the CI summary table.
+        ci_summary_public_pv_grid_heading: Scalar heading value identifying the public PV grid row used to align the CI summary table.
+        ci_summary_public_capacity_class_headers: Named-axis series of capacity-class headers over catalog coordinates supplying the column labels for the CI summary lookup.
 
     Returns:
-        The applicable public PV medium capacity threshold as a scalar floating-point value or string, or an Excel error code string if the lookup fails.
+        The public PV medium cutoff as a float when the new IDA terms threshold applies, or the CPIA rating as a float or str fallback; an Excel error code string if the lookup raises an error.
     """
     data.CI_PUB_PV_DEBT_GDP_NEW.schema.validate(ci_pub_pv_debt_gdp_new)
     _ci_summary_public_pv_medium_cutoff_table_0 = lazy_table(((lambda: ci_summary_public_benchmark_grid_heading, lambda: None, lambda: None, view(ci_summary_public_capacity_class_headers, cols=span(data.PARAMETER_AXIS, 'Weak', 'Strong'))), (lambda: ci_summary_public_pv_grid_heading, lambda: None, lambda: None, view(ci_pub_pv_debt_gdp_new, cols=span(data.VARIANT_AXIS, 'Weak', 'Strong')))))
@@ -16889,27 +16889,27 @@ def ci_summary_public_pv_medium_cutoff(*, lookup_ida_terms_new: str, ci_pub_pv_d
         return error.code
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_PV_EXPORTS_APPLICABLE_CELLS)
-def ci_summary_pv_exports_applicable(*, ci_summary_old_policy_exports_threshold: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_pv_debt_exports: data.Series[float | str | None], ci_ext_pv_debt_gdp: data.Series[float | str | None], input6_standard_size_threshold_mode: str, ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_pv_exports_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_pv_of_debt_grid_heading: str | int | float | bool, ci_summary_pv_exports_grid_heading: str | int | float | bool, ci_summary_pv_gdp_grid_heading: str | int | float | bool) -> float | str:
-    """Look up the applicable PV of debt-to-exports threshold from the current CI rating and debt-carrying capacity.
+def ci_summary_pv_exports_applicable(*, ci_summary_old_policy_exports_threshold: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_pv_debt_exports: data.Series[float | str | None], ci_ext_pv_debt_gdp: data.Series[float | str | None], input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_pv_exports_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_pv_of_debt_grid_heading: str | int | float | bool, ci_summary_pv_exports_grid_heading: str | int | float | bool, ci_summary_pv_gdp_grid_heading: str | int | float | bool) -> float | str:
+    """Return the applicable PV of debt-to-exports threshold for the current CI rating.
 
-    Resolve the PV of debt-to-exports threshold used by the CI summary, falling back to the old-policy value or returning an Excel error code.
+    Resolve the CI Summary PV-exports applicable threshold from rating-specific lookup tables or the legacy policy fallback.
 
     Args:
-        ci_summary_old_policy_exports_threshold: Scalar fallback threshold for PV of debt-to-exports under the old policy regime; float or string.
-        lookup_ida_terms_new: Scalar key identifying the new IDA terms option used to compare against the standard-size threshold mode.
-        ci_class_labels_thresholds: Typed series of CI class-label thresholds over variant-axis coordinates from Weak to Strong; string or null per coordinate.
-        ci_ext_pv_debt_exports: Typed series of external PV of debt-to-exports values over variant-axis coordinates from Weak to Strong; float, string, or null per coordinate.
-        ci_ext_pv_debt_gdp: Typed series of external PV of debt-to-GDP values over variant-axis coordinates from Weak to Strong; float, string, or null per coordinate.
-        input6_standard_size_threshold_mode: Scalar Input 6 mode string that selects between new IDA terms and the old-policy fallback.
-        ci_summary_debt_carrying_capacity: Scalar debt-carrying capacity label or code used as the column lookup key against the class-label thresholds.
-        ci_summary_pv_exports_heading: Scalar heading used to locate the PV of debt-to-exports row in the threshold grid.
-        ci_summary_external_thresholds_grid_heading: Scalar heading for the external-thresholds grid block.
-        ci_summary_pv_of_debt_grid_heading: Scalar heading for the PV of debt grid block.
-        ci_summary_pv_exports_grid_heading: Scalar heading for the PV of exports grid block.
-        ci_summary_pv_gdp_grid_heading: Scalar heading for the PV of GDP grid block.
+        ci_summary_old_policy_exports_threshold: Fallback PV-exports threshold for the legacy policy mode; may be numeric or a string sentinel.
+        lookup_ida_terms_new: Lookup key identifying the current IDA terms, used to decide whether the new threshold grid applies.
+        ci_class_labels_thresholds: Named-axis series of CI class labels used to label the Weak-to-Strong threshold columns; validated against catalog coordinates.
+        ci_ext_pv_debt_exports: Named-axis series of external PV of debt-to-exports values used as the lookup payload for the PV-exports grid, narrowed to the Weak-to-Strong variant span.
+        ci_ext_pv_debt_gdp: Named-axis series of external PV of debt-to-GDP values used as the lookup payload for the PV/GDP grid, narrowed to the Weak-to-Strong variant span.
+        input6_standard_size_threshold_mode: Scalar mode selecting between the new and old standardized-size threshold rules.
+        ci_summary_debt_carrying_capacity: Scalar row label for the debt-carrying-capacity dimension, matched against the threshold grid.
+        ci_summary_pv_exports_heading: Scalar heading identifying the PV-exports row to match in the threshold table.
+        ci_summary_external_thresholds_grid_heading: Scalar heading for the external thresholds grid that anchors the rating and metric lookup tables.
+        ci_summary_pv_of_debt_grid_heading: Scalar heading for the PV-of-debt grid column used in the threshold table structure.
+        ci_summary_pv_exports_grid_heading: Scalar heading for the PV-exports grid column whose series supplies lookup values.
+        ci_summary_pv_gdp_grid_heading: Scalar heading for the PV-to-GDP grid column whose series supplies lookup values.
 
     Returns:
-        Applicable PV of debt-to-exports threshold as a scalar float measure, or an Excel error code string if the lookup raises.
+        Applicable PV-exports threshold as returned by the authored coordinate identity: a numeric threshold or a string result, including an Excel error code when the lookup fails.
     """
     data.CI_CLASS_LABELS_THRESHOLDS.schema.validate(ci_class_labels_thresholds)
     data.CI_EXT_PV_DEBT_EXPORTS.schema.validate(ci_ext_pv_debt_exports)
@@ -16923,27 +16923,27 @@ def ci_summary_pv_exports_applicable(*, ci_summary_old_policy_exports_threshold:
         return error.code
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_PV_GDP_APPLICABLE_CELLS)
-def ci_summary_pv_gdp_applicable(*, ci_summary_old_framework_gdp_lookup: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_pv_debt_exports: data.Series[float | str | None], ci_ext_pv_debt_gdp: data.Series[float | str | None], input6_standard_size_threshold_mode: str, ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_pv_gdp_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_pv_of_debt_grid_heading: str | int | float | bool, ci_summary_pv_exports_grid_heading: str | int | float | bool, ci_summary_pv_gdp_grid_heading: str | int | float | bool) -> float | str:
-    """Resolve the PV-of-GDP threshold applicable to the current CI rating by matching the debt-carrying-capacity and PV-of-GDP heading rows against the CI threshold grid.
+def ci_summary_pv_gdp_applicable(*, ci_summary_old_framework_gdp_lookup: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_pv_debt_exports: data.Series[float | str | None], ci_ext_pv_debt_gdp: data.Series[float | str | None], input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_pv_gdp_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_pv_of_debt_grid_heading: str | int | float | bool, ci_summary_pv_exports_grid_heading: str | int | float | bool, ci_summary_pv_gdp_grid_heading: str | int | float | bool) -> float | str:
+    """Compute the applicable PV-of-debt-to-GDP threshold for the current CI rating.
 
-    Selects the applicable PV-of-GDP threshold from the CI summary grid, falling back to the old-framework lookup when the standard-size threshold mode is not the new IDA terms.
+    Selects the PV/GDP threshold from new IDA-terms lookup tables or the old-framework fallback.
 
     Args:
-        ci_summary_old_framework_gdp_lookup: Scalar PV-of-GDP threshold or label from the old framework, returned verbatim when the standard-size threshold mode is not the new IDA terms.
-        lookup_ida_terms_new: Sentinel string for the new IDA-terms standard-size threshold mode, compared for equality against the Input 6 mode to choose the grid lookup path.
-        ci_class_labels_thresholds: Named-axis series over catalog coordinates holding the CI class label and threshold rows, viewed across the Weak-to-Strong variant span to form the CI summary threshold grid.
-        ci_ext_pv_debt_exports: Named-axis series over catalog coordinates of external PV of debt-to-exports values, viewed across the Weak-to-Strong variant span as the exports grid row of the CI summary table.
-        ci_ext_pv_debt_gdp: Named-axis series over catalog coordinates of external PV of debt-to-GDP values, viewed across the Weak-to-Strong variant span as the PV-of-GDP grid row of the CI summary table.
-        input6_standard_size_threshold_mode: Scalar Input 6 setting naming the standardized threshold mode, tested against the new IDA-terms lookup value to decide whether the grid lookup is used.
-        ci_summary_debt_carrying_capacity: Scalar debt-carrying-capacity label matched against the CI summary grid rows to pick the applicable threshold cell.
-        ci_summary_pv_gdp_heading: Scalar PV-of-GDP grid row heading matched against the CI summary grid to pick the row supplying the applicable threshold.
-        ci_summary_external_thresholds_grid_heading: Scalar heading for the external thresholds grid row, labeling the first CI summary table row in the lazy table built for the lookup.
-        ci_summary_pv_of_debt_grid_heading: Scalar heading for the PV-of-debt grid row, used as the row label when the CI summary table is assembled.
-        ci_summary_pv_exports_grid_heading: Scalar heading for the PV-of-exports grid row, labeling the row that carries the PV of debt-to-exports values.
-        ci_summary_pv_gdp_grid_heading: Scalar heading for the PV-of-GDP grid row, labeling the row that carries the PV of debt-to-GDP values used in the match.
+        ci_summary_old_framework_gdp_lookup: Scalar old-framework GDP threshold lookup value (float or string) returned when the new IDA-terms mode is not selected.
+        lookup_ida_terms_new: Scalar string label identifying the new IDA-terms threshold regime, compared against the standard-size threshold mode.
+        ci_class_labels_thresholds: Typed data series of CI class-label threshold strings (nullable) over catalog coordinates, used to match debt-carrying-capacity bands.
+        ci_ext_pv_debt_exports: Typed data series of external PV-of-debt-to-exports values (float, string, or null) over catalog coordinates, viewed across the Weak-to-Strong variant axis.
+        ci_ext_pv_debt_gdp: Typed data series of external PV-of-debt-to-GDP values (float, string, or null) over catalog coordinates, viewed across the Weak-to-Strong variant axis.
+        input6_standard_size_threshold_mode: Scalar literal selecting the standardized-size threshold mode, either 'New' or 'Old', which chooses the lookup path.
+        ci_summary_debt_carrying_capacity: Scalar debt-carrying-capacity key (string, integer, float, or boolean) matched against the external-thresholds grid to select the applicable column.
+        ci_summary_pv_gdp_heading: Scalar heading key (string, integer, float, or boolean) matched against the PV-of-debt-to-GDP row in the threshold table.
+        ci_summary_external_thresholds_grid_heading: Scalar heading key (string, integer, float, or boolean) for the external-thresholds grid, used to build the lazy lookup tables.
+        ci_summary_pv_of_debt_grid_heading: Scalar heading key (string, integer, float, or boolean) for the PV-of-debt grid, used to build the lazy lookup tables.
+        ci_summary_pv_exports_grid_heading: Scalar heading key (string, integer, float, or boolean) for the PV-exports grid, used to build the lazy lookup tables.
+        ci_summary_pv_gdp_grid_heading: Scalar heading key (string, integer, float, or boolean) for the PV-GDP grid, used to build the lazy lookup tables.
 
     Returns:
-        The applicable PV-of-GDP threshold resolved from the current CI rating as a float, or the string representing the Excel error code if the grid lookup raises an XlError.
+        Applicable PV-of-debt-to-GDP threshold as a float, or a string result/error code from the old-framework fallback or a failed Excel lookup.
     """
     data.CI_CLASS_LABELS_THRESHOLDS.schema.validate(ci_class_labels_thresholds)
     data.CI_EXT_PV_DEBT_EXPORTS.schema.validate(ci_ext_pv_debt_exports)
@@ -16957,27 +16957,27 @@ def ci_summary_pv_gdp_applicable(*, ci_summary_old_framework_gdp_lookup: float |
         return error.code
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_DS_EXPORTS_APPLICABLE_CELLS)
-def ci_summary_ds_exports_applicable(*, ci_summary_old_framework_ds_exports_lookup: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_debt_service_exports: data.Series[float | str | None], ci_ext_debt_service_revenue: data.Series[float | str | None], ci_debt_service_in_percent_of: str, input6_standard_size_threshold_mode: str, ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_ds_exports_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_ds_exports_grid_heading: str | int | float | bool, ci_summary_ds_revenue_grid_heading: str | int | float | bool) -> float | str:
-    """Look up the applicable CI debt-service-to-exports threshold from the current rating.
+def ci_summary_ds_exports_applicable(*, ci_summary_old_framework_ds_exports_lookup: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_debt_service_exports: data.Series[float | str | None], ci_ext_debt_service_revenue: data.Series[float | str | None], ci_debt_service_in_percent_of: str, input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_ds_exports_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_ds_exports_grid_heading: str | int | float | bool, ci_summary_ds_revenue_grid_heading: str | int | float | bool) -> float | str:
+    """Compute the applicable debt-service-to-exports threshold.
 
-    Selects the IDA-terms threshold grid or old-framework fallback according to the Input 6 standard-size threshold mode.
+    Resolve the CI summary applicable threshold for the debt-service-to-exports ratio under the selected standard-size threshold framework.
 
     Args:
-        ci_summary_old_framework_ds_exports_lookup: Scalar fallback threshold or label used when the standard-size threshold mode is not the new IDA terms value.
-        lookup_ida_terms_new: Scalar lookup key identifying the new IDA terms variant for the standard-size threshold comparison.
-        ci_class_labels_thresholds: Named-axis data.Series[str | None] of CI class-label thresholds over catalog coordinates, viewed across the Weak-to-Strong variant span.
-        ci_ext_debt_service_exports: Named-axis data.Series[float | str | None] of external debt-service-to-exports values over catalog coordinates, viewed across the Weak-to-Strong variant span.
-        ci_ext_debt_service_revenue: Named-axis data.Series[float | str | None] of external debt-service-to-revenue values over catalog coordinates, viewed across the Weak-to-Strong variant span.
-        ci_debt_service_in_percent_of: Scalar text row label for the debt-service measure, expressed in percent of exports or revenue.
-        input6_standard_size_threshold_mode: Scalar Input 6 standard-size threshold mode text compared against the new IDA terms lookup key.
-        ci_summary_debt_carrying_capacity: Scalar debt-carrying-capacity heading or key matched against the external thresholds grid.
-        ci_summary_ds_exports_heading: Scalar heading or key for the debt-service-to-exports row used as a match value in the grid lookup.
-        ci_summary_external_thresholds_grid_heading: Scalar heading or key for the external thresholds grid used as a match column.
-        ci_summary_ds_exports_grid_heading: Scalar heading or key for the debt-service-to-exports grid row.
-        ci_summary_ds_revenue_grid_heading: Scalar heading or key for the debt-service-to-revenue grid row.
+        ci_summary_old_framework_ds_exports_lookup: Legacy-framework debt-service-to-exports lookup value, as a scalar float or string fallback.
+        lookup_ida_terms_new: Scalar IDA-terms label identifying the new standard-size threshold framework.
+        ci_class_labels_thresholds: Named-axis series over catalog coordinates of CI class-label threshold values, possibly None.
+        ci_ext_debt_service_exports: Named-axis series over catalog coordinates of external debt-service-to-exports ratios, possibly string or None.
+        ci_ext_debt_service_revenue: Named-axis series over catalog coordinates of external debt-service-to-revenue ratios, possibly string or None.
+        ci_debt_service_in_percent_of: Scalar label for the debt-service percentage basis row.
+        input6_standard_size_threshold_mode: Keyword-only scalar selector for the standard-size threshold framework, either 'New' or 'Old'.
+        ci_summary_debt_carrying_capacity: Scalar debt-carrying-capacity label or value used to match the threshold grid.
+        ci_summary_ds_exports_heading: Scalar heading label identifying the debt-service-to-exports row.
+        ci_summary_external_thresholds_grid_heading: Scalar heading label identifying the external thresholds grid.
+        ci_summary_ds_exports_grid_heading: Scalar heading label identifying the debt-service-to-exports grid.
+        ci_summary_ds_revenue_grid_heading: Scalar heading label identifying the debt-service-to-revenue grid.
 
     Returns:
-        Applicable threshold as a float, or a string XlError code if the lookup fails.
+        The applicable debt-service-to-exports threshold as a scalar float, or the XlError code string when the lookup raises.
     """
     data.CI_CLASS_LABELS_THRESHOLDS.schema.validate(ci_class_labels_thresholds)
     data.CI_EXT_DEBT_SERVICE_EXPORTS.schema.validate(ci_ext_debt_service_exports)
@@ -16991,27 +16991,27 @@ def ci_summary_ds_exports_applicable(*, ci_summary_old_framework_ds_exports_look
         return error.code
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_DS_REVENUE_APPLICABLE_CELLS)
-def ci_summary_ds_revenue_applicable(*, ci_summary_old_framework_ds_revenue_lookup: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_debt_service_exports: data.Series[float | str | None], ci_ext_debt_service_revenue: data.Series[float | str | None], ci_debt_service_in_percent_of: str, input6_standard_size_threshold_mode: str, ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_ds_revenue_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_ds_exports_grid_heading: str | int | float | bool, ci_summary_ds_revenue_grid_heading: str | int | float | bool) -> float | str:
-    """Return the applicable debt-service-to-revenue threshold for the current CI rating or an Excel error code.
+def ci_summary_ds_revenue_applicable(*, ci_summary_old_framework_ds_revenue_lookup: float | str, lookup_ida_terms_new: str, ci_class_labels_thresholds: data.Series[str | None], ci_ext_debt_service_exports: data.Series[float | str | None], ci_ext_debt_service_revenue: data.Series[float | str | None], ci_debt_service_in_percent_of: str, input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_debt_carrying_capacity: str | int | float | bool, ci_summary_ds_revenue_heading: str | int | float | bool, ci_summary_external_thresholds_grid_heading: str | int | float | bool, ci_summary_ds_exports_grid_heading: str | int | float | bool, ci_summary_ds_revenue_grid_heading: str | int | float | bool) -> float | str:
+    """Compute the applicable CI summary debt-service-to-revenue threshold.
 
-    Looks up the applicable threshold from the current CI rating using the selected standard-size threshold mode and class-label thresholds.
+    Resolve the DS revenue applicability threshold from the current classification, grid headings, and standard-size threshold mode.
 
     Args:
-        ci_summary_old_framework_ds_revenue_lookup: Scalar or string old-framework debt-service-to-revenue threshold lookup used as a fallback when the new IDA-terms condition is not met.
-        lookup_ida_terms_new: String IDA-terms sentinel compared against the Input 6 standard-size threshold mode to select the new-framework lookup path.
-        ci_class_labels_thresholds: Named-axis series of class labels and threshold markers over catalog coordinates, used to resolve the applicable threshold row.
-        ci_ext_debt_service_exports: Named-axis series of external debt service-to-exports values over catalog coordinates, spanning weak-to-strong variants for the threshold grid.
-        ci_ext_debt_service_revenue: Named-axis series of external debt service-to-revenue values over catalog coordinates, spanning weak-to-strong variants for the threshold grid.
-        ci_debt_service_in_percent_of: String label for the debt-service denominator, such as exports or revenue, that heads the applicable threshold table.
-        input6_standard_size_threshold_mode: String selected standard-size threshold mode from Input 6, controlling whether the new IDA-terms lookup or the old-framework fallback is returned.
-        ci_summary_debt_carrying_capacity: Scalar debt-carrying-capacity heading key used to match the corresponding row in the external thresholds grid.
-        ci_summary_ds_revenue_heading: Scalar debt-service-to-revenue heading key used to match the applicable threshold column in the standard-size table.
-        ci_summary_external_thresholds_grid_heading: Scalar heading key for the external thresholds grid, locating the class-label threshold row.
-        ci_summary_ds_exports_grid_heading: Scalar heading key for the debt-service-to-exports grid, locating the external debt service-to-exports series.
-        ci_summary_ds_revenue_grid_heading: Scalar heading key for the debt-service-to-revenue grid, locating the external debt service-to-revenue series.
+        ci_summary_old_framework_ds_revenue_lookup: Scalar fallback value for the old-framework debt-service-to-revenue threshold, returned when the standard-size threshold mode is not the new IDA terms marker.
+        lookup_ida_terms_new: Scalar marker used to recognize the new IDA terms regime in the Input 6 standard-size threshold mode comparison.
+        ci_class_labels_thresholds: Named-axis series over catalog coordinates holding class-label threshold values (or nulls) for the external-thresholds grid lookup.
+        ci_ext_debt_service_exports: Named-axis series over catalog coordinates holding external debt-service-to-exports values (or nulls) for the DS exports grid slice.
+        ci_ext_debt_service_revenue: Named-axis series over catalog coordinates holding external debt-service-to-revenue values (or nulls) for the DS revenue grid slice.
+        ci_debt_service_in_percent_of: Scalar heading identifying the debt-service denominator row in the CI summary lookup tables.
+        input6_standard_size_threshold_mode: Scalar mode selecting the standard-size threshold regime from Input 6; "New" activates the IDA-terms lookup, while "Old" uses the legacy fallback.
+        ci_summary_debt_carrying_capacity: Scalar debt-carrying-capacity classification used as the match key against the external thresholds grid.
+        ci_summary_ds_revenue_heading: Scalar heading locating the debt-service-to-revenue line in the CI summary table.
+        ci_summary_external_thresholds_grid_heading: Scalar heading locating the external-thresholds grid block in the CI summary table.
+        ci_summary_ds_exports_grid_heading: Scalar heading locating the debt-service-to-exports grid block in the CI summary table.
+        ci_summary_ds_revenue_grid_heading: Scalar heading locating the debt-service-to-revenue grid block in the CI summary table.
 
     Returns:
-        Applicable debt-service-to-revenue threshold as a float, or an Excel error code string if the lookup raises XlError.
+        Applicable debt-service-to-revenue threshold as a float, or the XlError code string when the indexed lookup cannot be resolved.
     """
     data.CI_CLASS_LABELS_THRESHOLDS.schema.validate(ci_class_labels_thresholds)
     data.CI_EXT_DEBT_SERVICE_EXPORTS.schema.validate(ci_ext_debt_service_exports)
@@ -17430,18 +17430,18 @@ def ci_summary_debt_carrying_capacity_vintage_reconciled(*, ci_summary_debt_carr
         return error.code
 
 @publish(key=(), domain=None, cells=data.CI_SUMMARY_DEBT_CARRYING_CAPACITY_CURRENT_VINTAGE_CELLS)
-def ci_summary_debt_carrying_capacity_current_vintage(*, input6_standard_size_threshold_mode: str, ci_summary_ci_rating: str | int | float | bool, ci_summary_performance_policy: str | int | float | bool) -> str | int | float | bool:
-    """Return the current-vintage CI debt-carrying-capacity classification for the summary block.
+def ci_summary_debt_carrying_capacity_current_vintage(*, input6_standard_size_threshold_mode: Literal["New", "Old"], ci_summary_ci_rating: str | int | float | bool, ci_summary_performance_policy: str | int | float | bool) -> str | int | float | bool:
+    """Selects the current-vintage debt-carrying-capacity classification from the new-framework CI rating or the old-framework performance-policy rating.
 
-    Selects the applicable CI or performance-policy rating according to the threshold mode and normalizes it to the template scalar measure.
+    Resolves the applicable current-vintage classification according to the selected standard-size threshold mode.
 
     Args:
-        input6_standard_size_threshold_mode: Scalar string threshold-mode switch; when equal to 'New' the new-framework CI rating is used, otherwise the old-framework performance-policy rating is used.
-        ci_summary_ci_rating: Scalar new-framework CI rating value selected when the threshold mode is 'New'.
-        ci_summary_performance_policy: Scalar old-framework performance-policy rating value selected when the threshold mode is not 'New'.
+        input6_standard_size_threshold_mode: input6_standard_size_threshold_mode: Scalar Literal selecting the standard-size threshold framework; 'New' takes the CI rating, 'Old' takes the performance-policy rating.
+        ci_summary_ci_rating: ci_summary_ci_rating: Scalar new-framework CI rating used when the New standard-size threshold mode is active.
+        ci_summary_performance_policy: ci_summary_performance_policy: Scalar old-framework performance-policy rating used when the Old standard-size threshold mode is active.
 
     Returns:
-        Scalar classification value (str, int, float, or bool) for the current-vintage debt-carrying-capacity signal, taken from the selected CI rating or performance-policy input and normalized by the template measure.
+        Current-vintage debt-carrying-capacity classification as a scalar or string (str | int | float | bool), or the XlError code string if evaluation fails.
     """
     try:
         return as_measure((ci_summary_ci_rating if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else ci_summary_performance_policy), 'str')
@@ -22380,17 +22380,17 @@ def in6_tailored_natdisaster(*, trigger_natural_disaster_sample: data.Series[str
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_COMMODITY_PRICE_CELLS)
-def in6_tailored_commodity_price(*, input6_tailored_tests_enabled: str, in6_tailored_share_of_commodities_in_total_exports_of_goods: float | str) -> str | int | float | bool:
-    """Compute the Input 6 tailored commodity-price applicability flag.
+def in6_tailored_commodity_price(*, input6_tailored_tests_enabled: Literal["Off", "On"], in6_tailored_share_of_commodities_in_total_exports_of_goods: float | str) -> str | int | float | bool:
+    """Determine whether the tailored commodity-price stress test applies.
 
-    Decide whether the tailored commodity-price stress test applies given the tailored-tests toggle and the commodity-export share.
+    Derive the tailored commodity-price applicability flag from the Input 6 tailored-tests switch and the commodity export share.
 
     Args:
-        input6_tailored_tests_enabled: String scalar toggle for the Input 6 tailored tests; the value `'On'` enables the tailored commodity-price test.
-        in6_tailored_share_of_commodities_in_total_exports_of_goods: Float or string scalar giving the share of commodities in total exports of goods, compared against the 0.5 threshold.
+        input6_tailored_tests_enabled: Scalar toggle indicating whether tailored tests are enabled ('On') or disabled ('Off').
+        in6_tailored_share_of_commodities_in_total_exports_of_goods: Scalar share of commodities in total exports of goods, evaluated against the 0.5 threshold.
 
     Returns:
-        `'Yes'` when tailored tests are enabled and the commodity share exceeds 0.5, otherwise `'No'`; an `XlError` code string if evaluation fails.
+        Scalar 'Yes' when tailored tests are on and the commodity export share exceeds 0.5, otherwise 'No'; an error code string is returned if evaluation raises an XlError.
     """
     try:
         return as_measure((('Yes' if xl_bool(xl_gt(in6_tailored_share_of_commodities_in_total_exports_of_goods, 0.5)) else 'No') if xl_bool(xl_eq(input6_tailored_tests_enabled, 'On')) else 'No'), 'str')
@@ -22398,20 +22398,20 @@ def in6_tailored_commodity_price(*, input6_tailored_tests_enabled: str, in6_tail
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_MKT_FINANCING_CELLS)
-def in6_tailored_mkt_financing(*, trigger_right_headers: data.Series[str | None], input6_tailored_tests_enabled: str, trigger_market_access_country_code: data.Series[int | str | None], trigger_market_access: data.Series[str | int | float | bool | None], in1_basics_country_code: int | str) -> str | int | float | bool:
-    """Resolves the Market Financing (Input 6 – Tailored Tests) market-access flag for the selected country.
+def in6_tailored_mkt_financing(*, trigger_right_headers: data.Series[str | None], input6_tailored_tests_enabled: Literal["Off", "On"], trigger_market_access_country_code: data.Series[int | str | None], trigger_market_access: data.Series[str | int | float | bool | None], in1_basics_country_code: int | str) -> str | int | float | bool:
+    """Flag applicability of the Market Financing tailored stress test for the selected country.
 
-    Gates the tailored market-financing stress test behind the Input 6 enable toggle and the country's market-access indicator.
+    Resolve the Input 6 market-access trigger for the active country so downstream tailored-test logic can treat Market Financing as applicable.
 
     Args:
-        trigger_right_headers: Named-axis series of right-hand header labels on the Market financing (Input 6 – Tailored Tests) anchor sheet, including the 'Country code' and 'Market access (for stress tests and market fin. Module)' column headers; blank labels are permitted.
-        input6_tailored_tests_enabled: Scalar switch text from Input 6; only the literal 'On' activates the tailored-tests branch, while any other value short-circuits to 'No'.
-        trigger_market_access_country_code: Named-axis series of country codes keyed by country name, used to locate the row whose code matches the Input 1 basics country code.
-        trigger_market_access: Named-axis series of market-access indicator values keyed by country name; the matched cell is coerced to boolean to decide 'Yes' versus 'No'.
-        in1_basics_country_code: Scalar country code taken from Input 1 (basics), matched positionally against the country-code series to select the row.
+        trigger_right_headers: Named-axis series of right-hand header labels over catalog coordinates, supplying the market-access trigger column header and the country-code column header, with blank cells carried as None.
+        input6_tailored_tests_enabled: Scalar switch holding either 'Off' or 'On' that gates tailored stress tests; when 'Off' the market-access trigger short-circuits to 'No'.
+        trigger_market_access_country_code: Named-axis series of country codes (integer or text, None where blank) indexed by country name.
+        trigger_market_access: Named-axis series of per-country market-access trigger values keyed by country name, holding heterogeneous scalar types with None for blanks.
+        in1_basics_country_code: Scalar country code taken from the Input 1 basics sheet, used to locate the matching row in the market-access trigger series.
 
     Returns:
-        Scalar outcome: the text 'Yes' when tailored tests are enabled and the country is flagged with market access, 'No' otherwise; if formula evaluation raises an Excel error, the error code is returned instead.
+        Text 'Yes' when the selected country's market-access trigger matches and tailored tests are enabled, otherwise 'No'; an XlError code string is returned if evaluation raises a spreadsheet error.
     """
     data.TRIGGER_RIGHT_HEADERS.schema.validate(trigger_right_headers)
     try:
@@ -22462,7 +22462,7 @@ class ScanIn6TailoredAdjustedShareOfFuelInExportsOfGSResult:
     in6_tailored_average_of_prices_shock_default: float | str
     input6_tailored_params_2: data.Series[float | str | None]
 
-def scan_in6_tailored_adjusted_share_of_fuel_in_exports_of_g_s(*, input6_tailored_tests_enabled: str, in6_tailored_price_shock_non_fuel: data.Series[float | str | None], in6_tailored_natdisaster_shock_size_default: float | str, in6_tailored_commodity_close_gap_default: float | str, in6_tailored_share_of_fuel_in_exports_of_g_s_default: float | str, in6_tailored_share_of_non_fuel_in_exports_of_g_s_default: float | str, in6_tailored_mitigating_factor_fuel_default: float | str, in6_tailored_mitigating_factor_non_fuel_default: float | str, in6_tailored_mkt_fin_borrowing_cost_default: float | str, in6_tailored_mkt_fin_maturity_defaults: data.Series[float | str | None], in6_tailored_mkt_fin_fx_depreciation_default: float | str, input6_tailored_params_fuel_label: str | int | float | bool) -> ScanIn6TailoredAdjustedShareOfFuelInExportsOfGSResult:
+def scan_in6_tailored_adjusted_share_of_fuel_in_exports_of_g_s(*, input6_tailored_tests_enabled: Literal["Off", "On"], in6_tailored_price_shock_non_fuel: data.Series[float | str | None], in6_tailored_natdisaster_shock_size_default: float | str, in6_tailored_commodity_close_gap_default: float | str, in6_tailored_share_of_fuel_in_exports_of_g_s_default: float | str, in6_tailored_share_of_non_fuel_in_exports_of_g_s_default: float | str, in6_tailored_mitigating_factor_fuel_default: float | str, in6_tailored_mitigating_factor_non_fuel_default: float | str, in6_tailored_mkt_fin_borrowing_cost_default: float | str, in6_tailored_mkt_fin_maturity_defaults: data.Series[float | str | None], in6_tailored_mkt_fin_fx_depreciation_default: float | str, input6_tailored_params_fuel_label: str | int | float | bool) -> ScanIn6TailoredAdjustedShareOfFuelInExportsOfGSResult:
     """Evaluate the recurrence group `in6_tailored_adjusted_share_of_fuel_in_exports_of_g_s`, `in6_tailored_adjusted_share_of_non_fuel_in_exports_of_g_s`, `in6_tailored_average_of_prices_shock_default`, `input6_tailored_params_2` and publish complete tensors."""
     def in6_tailored_adjusted_share_of_fuel_in_exports_of_g_s_formula(variant: str) -> float | str | None:
         if variant == 'Default':
@@ -22512,20 +22512,20 @@ def scan_in6_tailored_adjusted_share_of_fuel_in_exports_of_g_s(*, input6_tailore
 
 @publish(data.IN6_TAILORED_PRICE_SHOCK_NON_FUEL.schema, cells=data.IN6_TAILORED_PRICE_SHOCK_NON_FUEL.cells)
 def in6_tailored_price_shock_non_fuel(*, in6_tailored_commodity_group_price_shock: data.Series[float | str | None], input6_commodity_group_relevant: data.Input6CommodityGroupRelevant) -> data.Series[float | str | None]:
-    """Compute the tailored non-fuel commodity price shock series for Input 6.
+    """Derive the tailored non-fuel commodity price shock series from the four commodity-group price shocks on Input 6.
 
-    Derive a single non-fuel price shock per variant by averaging the four commodity-group shocks when any group is relevant, and zero otherwise.
+    Averages the relevant commodity-group price shocks per variant column, returning zero when every group is blank.
 
     Args:
-        in6_tailored_commodity_group_price_shock: Per-commodity-group price shock values as a data.Series of float, str, or None keyed by commodity-group coordinate labels.
-        input6_commodity_group_relevant: Commodity-group relevance flags as a data.Input6CommodityGroupRelevant series whose COMMODITY axis fixes the group span and evaluation coordinates.
+        in6_tailored_commodity_group_price_shock: Per-commodity price shock values keyed by commodity-group label, taken from the Input 6 tailored-tests grid; a column of blanks collapses to zero.
+        input6_commodity_group_relevant: Commodity-group relevance flags from Input 6 that determine which commodity rows and variant columns are averaged.
 
     Returns:
-        data.Series[float | str | None] of non-fuel price shocks keyed by the column labels taken from row 16.
+        Non-fuel tailored price shock values keyed by the column labels of row 16, holding either the row-wise average across the relevant commodity groups or zero when all four groups are blank.
     """
     data.INPUT6_COMMODITY_GROUP_RELEVANT.schema.validate(input6_commodity_group_relevant)
     def formula(variant: str) -> float | str | None:
-        return as_measure((0 if xl_bool(xl_and(xl_eq(in6_tailored_commodity_group_price_shock[input6_commodity_group_relevant.domain.axis('COMMODITY').keys[0], variant], ''), xl_eq(in6_tailored_commodity_group_price_shock[input6_commodity_group_relevant.domain.axis('COMMODITY').keys[1], variant], ''), xl_eq(in6_tailored_commodity_group_price_shock[input6_commodity_group_relevant.domain.axis('COMMODITY').keys[2], variant], ''), xl_eq(in6_tailored_commodity_group_price_shock[input6_commodity_group_relevant.domain.axis('COMMODITY').keys[3], variant], ''))) else xl_average(view(in6_tailored_commodity_group_price_shock, rows=span(input6_commodity_group_relevant.domain.axis('COMMODITY'), input6_commodity_group_relevant.domain.axis('COMMODITY').keys[0], input6_commodity_group_relevant.domain.axis('COMMODITY').keys[3]), cols=(variant,)))))
+        return as_measure((0 if xl_bool(xl_and(xl_eq(in6_tailored_commodity_group_price_shock[input6_commodity_group_relevant.domain.axis('COMMODITY').keys[0], variant], ''), xl_eq(in6_tailored_commodity_group_price_shock[input6_commodity_group_relevant.domain.axis('COMMODITY').keys[1], variant], ''), xl_eq(in6_tailored_commodity_group_price_shock[input6_commodity_group_relevant.domain.axis('COMMODITY').keys[2], variant], ''), xl_eq(in6_tailored_commodity_group_price_shock[input6_commodity_group_relevant.domain.axis('COMMODITY').keys[3], variant], ''))) else xl_average(view(in6_tailored_commodity_group_price_shock, rows=input6_commodity_group_relevant.domain.axis('COMMODITY').keys, cols=(variant,)))))
 
     return data.IN6_TAILORED_PRICE_SHOCK_NON_FUEL.collect(evaluate(formula, data.IN6_TAILORED_PRICE_SHOCK_NON_FUEL.required))
 
@@ -22554,16 +22554,16 @@ def in6_tailored_commodity_group_price_shock(*, input6_commodity_group_relevant:
     return data.IN6_TAILORED_COMMODITY_GROUP_PRICE_SHOCK.collect(((coord, in6_tailored_commodity_group_price_shock[coord]) for coord in data.IN6_TAILORED_COMMODITY_GROUP_PRICE_SHOCK.required.bind(COMMODITY=input6_commodity_group_relevant)), domain=data.IN6_TAILORED_COMMODITY_GROUP_PRICE_SHOCK.required.bind(COMMODITY=input6_commodity_group_relevant))
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_NATDISASTER_SHOCK_SIZE_DEFAULT_CELLS)
-def in6_tailored_natdisaster_shock_size_default(*, input6_tailored_tests_enabled: str) -> float | str:
-    """Return the default natural-disaster PPG-debt-GDP shock size when tailored tests are enabled.
+def in6_tailored_natdisaster_shock_size_default(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> float | str:
+    """Compute the default natural-disaster PPG-debt-GDP shock size for tailored tests.
 
-    Resolve the standardized tailored natural-disaster shock magnitude from the tailored-tests applicability flag.
+    Provides the Input 6 default tailored natural-disaster shock size used when tailored tests are enabled.
 
     Args:
-        input6_tailored_tests_enabled: Scalar string toggle indicating whether tailored stress tests are enabled ('On' applies the default shock size, otherwise zero).
+        input6_tailored_tests_enabled: Scalar toggle accepting 'Off' or 'On'; 'On' applies the tailored natural-disaster shock size and 'Off' suppresses it.
 
     Returns:
-        The default natural-disaster PPG-debt-GDP shock size as a float, or the workbook error code as a string when evaluation fails.
+        Scalar shock size as a float (10 when tailored tests are enabled, otherwise 0), or a string workbook error code if evaluation fails.
     """
     try:
         return as_measure((10 if xl_bool(xl_eq(input6_tailored_tests_enabled, 'On')) else 0))
@@ -22571,16 +22571,16 @@ def in6_tailored_natdisaster_shock_size_default(*, input6_tailored_tests_enabled
         return error.code
 
 @publish(data.IN6_TAILORED_NATDISASTER_INTERACTION_DEFAULTS.schema, cells=data.IN6_TAILORED_NATDISASTER_INTERACTION_DEFAULTS.cells)
-def in6_tailored_natdisaster_interaction_defaults(*, input6_tailored_tests_enabled: str) -> data.Series[float | str | None]:
-    """Return default tailored natural-disaster interaction shocks for Input 6.
+def in6_tailored_natdisaster_interaction_defaults(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> data.Series[float | str | None]:
+    """Return the Input 6 tailored natural-disaster interaction shock defaults series.
 
-    Supplies the standard GDP and export growth interaction shock defaults used when tailored tests are enabled.
+    Compute standardized natural-disaster GDP and export growth interaction shocks conditioned on the tailored-tests enable flag.
 
     Args:
-        input6_tailored_tests_enabled: String tailored-tests enable flag; when it equals 'On', the standard shock magnitudes are returned, otherwise zero values are returned.
+        input6_tailored_tests_enabled: Scalar literal flag ('Off' or 'On') that toggles tailored tests; when 'On', the series holds the standard natural-disaster interaction shocks, and when 'Off', it holds zeros.
 
     Returns:
-        A data.Series[float | str | None] of standard natural-disaster GDP and export growth interaction shock defaults keyed by catalog coordinates.
+        A data.Series[float | str | None] over catalog coordinates containing the natural-disaster interaction shock values (1.5 for the real GDP growth shock and 3.5 for the export growth shock when enabled; 0 otherwise).
     """
     def formula(indicator: str) -> float | str | None:
         if indicator == 'Size of associated real GDP growth shock':
@@ -22590,16 +22590,16 @@ def in6_tailored_natdisaster_interaction_defaults(*, input6_tailored_tests_enabl
     return data.IN6_TAILORED_NATDISASTER_INTERACTION_DEFAULTS.collect(evaluate(formula, data.IN6_TAILORED_NATDISASTER_INTERACTION_DEFAULTS.required))
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_COMMODITY_CLOSE_GAP_DEFAULT_CELLS)
-def in6_tailored_commodity_close_gap_default(*, input6_tailored_tests_enabled: str) -> float | str:
-    """Return the Input 6 tailored-commodity close-gap default.
+def in6_tailored_commodity_close_gap_default(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> float | str:
+    """Return the default tailored commodity close-gap duration.
 
-    Supplies the standard years-to-close commodity price gap applied when tailored stress tests are enabled.
+    Resolves the standard years-to-close commodity price gap used when tailored stress tests are enabled, otherwise zero.
 
     Args:
-        input6_tailored_tests_enabled: Scalar string flag from Input 6 indicating whether tailored stress tests are enabled; the literal 'On' activates the tailored-commodity close-gap default.
+        input6_tailored_tests_enabled: Scalar enable/disable flag: 'On' selects the standard commodity close-gap default, while 'Off' selects zero.
 
     Returns:
-        Scalar 6.0 when tailored tests are enabled, 0.0 otherwise, or the Excel error code string if evaluation fails.
+        Float equal to the standard years-to-close commodity price gap (6 when tailored tests are enabled, else 0), or a string workbook error code if evaluation fails.
     """
     try:
         return as_measure((6 if xl_bool(xl_eq(input6_tailored_tests_enabled, 'On')) else 0))
@@ -22607,17 +22607,17 @@ def in6_tailored_commodity_close_gap_default(*, input6_tailored_tests_enabled: s
         return error.code
 
 @publish(data.IN6_TAILORED_COMMODITY_INTERACTION_DEFAULTS.schema, cells=data.IN6_TAILORED_COMMODITY_INTERACTION_DEFAULTS.cells)
-def in6_tailored_commodity_interaction_defaults(*, in6_tailored_average_of_prices_shock_default: float | str, input6_tailored_tests_enabled: str) -> data.Series[float | str | None]:
-    """Compute the Input 6 tailored commodity-price interaction shock defaults.
+def in6_tailored_commodity_interaction_defaults(*, in6_tailored_average_of_prices_shock_default: float | str, input6_tailored_tests_enabled: Literal["Off", "On"]) -> data.Series[float | str | None]:
+    """Return the standard tailored commodity-interaction shock defaults from Input 6.
 
-    Derive standard real-GDP-growth and revenue interaction shocks from a commodity-price shock when tailored stress tests are enabled.
+    Supplies the commodity-price GDP-growth and revenue-drop interaction defaults used by the LIC-DSF tailored stress tests.
 
     Args:
-        in6_tailored_average_of_prices_shock_default: Average-of-prices shock default for the Input 6 tailored commodity-price test, supplied as a scalar or text value and scaled to yield the associated growth and revenue interaction magnitudes.
-        input6_tailored_tests_enabled: Tailored-tests enable flag from Input 6; the interaction shocks are computed only when it equals 'On', otherwise both default to zero.
+        in6_tailored_average_of_prices_shock_default: Scalar default average commodity-price shock, provided as a number or formula string, applied to the tailored commodity interaction calculations.
+        input6_tailored_tests_enabled: Scalar switch, either 'Off' or 'On', that enables or suppresses the tailored commodity interaction defaults.
 
     Returns:
-        A named-axis data.Series over the Input 6 tailored commodity interaction indicators (associated real GDP growth shock size and revenue drop), each holding a float magnitude or zero when tailored tests are off; annotated float | str | None over catalog coordinates.
+        Typed data.Series[float | str | None] over the IN6_TAILORED_COMMODITY_INTERACTION_DEFAULTS coordinate labels; holds the associated real GDP growth shock size and revenue-drop interaction default when tailored tests are on, and zero otherwise.
     """
     def formula(indicator: str) -> float | str | None:
         if indicator == 'Size of associated real GDP growth shock':
@@ -22707,16 +22707,16 @@ def in6_tailored_mitigating_factor_non_fuel_default(*, macro_debt_share_of_commo
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_MKT_FIN_BORROWING_COST_DEFAULT_CELLS)
-def in6_tailored_mkt_fin_borrowing_cost_default(*, input6_tailored_tests_enabled: str) -> float | str:
-    """Determine the standard three-year commercial borrowing-cost increase for tailored market-financing tests.
+def in6_tailored_mkt_fin_borrowing_cost_default(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> float | str:
+    """Default commercial borrowing-cost increase for tailored market-financing tests.
 
-    Provide the default borrowing-cost uplift used when Input 6 tailored tests are enabled.
+    Supplies the standard three-year uplift applied when tailored stress tests are enabled.
 
     Args:
-        input6_tailored_tests_enabled: Keyword-only string flag indicating whether Input 6 tailored tests are enabled, with the literal 'On' activating the uplift.
+        input6_tailored_tests_enabled: A scalar literal flag that enables the tailored-test uplift when set to 'On'; 'Off' yields no increase.
 
     Returns:
-        A float of 400.0 when tailored tests are enabled, 0.0 when disabled, or the workbook error code string if the comparison fails.
+        A float measure of 400 when tailored tests are enabled, otherwise 0; or a string workbook error code on failure.
     """
     try:
         return as_measure((400 if xl_bool(xl_eq(input6_tailored_tests_enabled, 'On')) else 0))
@@ -22724,16 +22724,16 @@ def in6_tailored_mkt_fin_borrowing_cost_default(*, input6_tailored_tests_enabled
         return error.code
 
 @publish(data.IN6_TAILORED_MKT_FIN_MATURITY_DEFAULTS.schema, cells=data.IN6_TAILORED_MKT_FIN_MATURITY_DEFAULTS.cells)
-def in6_tailored_mkt_fin_maturity_defaults(*, input6_tailored_tests_enabled: str) -> data.Series[float | str | None]:
-    """Compute tailored market-financing maturity defaults for commercial and grace-period shortenings.
+def in6_tailored_mkt_fin_maturity_defaults(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> data.Series[float | str | None]:
+    """Return Input 6 tailored-test defaults for market-financing maturity and grace-period shortenings.
 
-    Return the default maturity adjustments applied when tailored market-financing stress tests are enabled.
+    Supplies the standard commercial-maturity and grace-period reductions applied when tailored stress tests are enabled.
 
     Args:
-        input6_tailored_tests_enabled: String flag indicating whether tailored tests are enabled, expected to be 'On' or 'Off'.
+        input6_tailored_tests_enabled: Scalar switch that enables or disables the tailored-test defaults; when enabled, the returned series carries the standard shortening amounts, and when disabled those amounts fall back to zero.
 
     Returns:
-        data.Series[float | str | None] of tailored market-financing maturity defaults keyed by indicator, yielding 5.0 or 0.0 for the greater-than-five-year original-maturity case and 2/3 or 0.0 for the remaining indicators depending on whether tailored tests are enabled.
+        A data.Series[float | str | None] over the IN6_TAILORED_MKT_FIN_MATURITY_DEFAULTS catalog coordinates containing the applicable numeric shortening values, or authored str/None values, for market-financing maturity and grace-period defaults.
     """
     def formula(indicator: str) -> float | str | None:
         if indicator == 'If original maturity is greater than 5 years, new maturity is':
@@ -22743,16 +22743,16 @@ def in6_tailored_mkt_fin_maturity_defaults(*, input6_tailored_tests_enabled: str
     return data.IN6_TAILORED_MKT_FIN_MATURITY_DEFAULTS.collect(evaluate(formula, data.IN6_TAILORED_MKT_FIN_MATURITY_DEFAULTS.required))
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_MKT_FIN_FX_DEPRECIATION_DEFAULT_CELLS)
-def in6_tailored_mkt_fin_fx_depreciation_default(*, input6_tailored_tests_enabled: str) -> float | str:
-    """Return the standard market-financing FX depreciation shock default when tailored tests are enabled.
+def in6_tailored_mkt_fin_fx_depreciation_default(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> float | str:
+    """Default market-financing FX depreciation shock for tailored tests.
 
-    Resolve the Input 6 baseline value for the market-financing FX depreciation tailored stress test, yielding the standard 15 percent shock when tailored tests are switched on.
+    Returns the standard FX depreciation shock applied under the market-financing tailored stress test when tailored tests are enabled.
 
     Args:
-        input6_tailored_tests_enabled: Scalar flag taken from Input 6 indicating whether tailored stress tests are enabled; the string 'On' activates the tailored-tests branch, and any other value leaves the shock at zero.
+        input6_tailored_tests_enabled: Literal string flag ('On' or 'Off') indicating whether tailored stress tests are enabled; 'On' applies the shock, 'Off' yields zero.
 
     Returns:
-        Scalar float giving the default FX depreciation shock (15.0 when `input6_tailored_tests_enabled` is 'On', otherwise 0.0), or the string error code if workbook evaluation raises an `XlError`.
+        A float shock value (15.0 when tailored tests are enabled, otherwise 0.0), or the XL error code as a string if evaluation fails.
     """
     try:
         return as_measure((15 if xl_bool(xl_eq(input6_tailored_tests_enabled, 'On')) else 0))
@@ -22760,16 +22760,16 @@ def in6_tailored_mkt_fin_fx_depreciation_default(*, input6_tailored_tests_enable
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6_TAILORED_MKT_FIN_FX_PASSTHROUGH_DEFAULT_CELLS)
-def in6_tailored_mkt_fin_fx_passthrough_default(*, input6_tailored_tests_enabled: str) -> float | str:
-    """Return the standard market-financing exchange-rate pass-through default for Input 6 tailored tests.
+def in6_tailored_mkt_fin_fx_passthrough_default(*, input6_tailored_tests_enabled: Literal["Off", "On"]) -> float | str:
+    """Return the standard market-financing exchange-rate pass-through default for tailored stress tests.
 
-    Provide the default FX pass-through coefficient used when tailored market-financing tests are active.
+    Provide the tailored market-financing FX pass-through coefficient when tailored tests are enabled.
 
     Args:
-        input6_tailored_tests_enabled: String scalar flag indicating whether tailored tests are enabled, typically 'On'.
+        input6_tailored_tests_enabled: Scalar literal flag indicating whether tailored stress tests are enabled; 'On' activates the standard tailored pass-through and 'Off' disables it.
 
     Returns:
-        The default pass-through as a float (0.3 when tailored tests are enabled, otherwise 0.0), or a string workbook error code if evaluation raises XlError.
+        Scalar pass-through coefficient: 0.3 when the tailored-tests flag is 'On', 0.0 when 'Off', or a string workbook error code if evaluation fails.
     """
     try:
         return as_measure((0.3 if xl_bool(xl_eq(input6_tailored_tests_enabled, 'On')) else 0))
@@ -22777,20 +22777,20 @@ def in6_tailored_mkt_fin_fx_passthrough_default(*, input6_tailored_tests_enabled
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_SCENARIO_CELLS)
-def in6opt_standard_scenario(*, lookup_ida_terms_old: str, lookup_onoff_off: str, input6_tailored_tests_enabled: str, input6_standard_size_threshold_mode: str, input6_standard_interactions: str) -> int | str:
-    """Evaluate the Input 6 optional-standard scenario toggle.
+def in6opt_standard_scenario(*, lookup_ida_terms_old: str, lookup_onoff_off: str, input6_tailored_tests_enabled: Literal["Off", "On"], input6_standard_size_threshold_mode: Literal["New", "Old"], input6_standard_interactions: str) -> int | str:
+    """Evaluate the Input 6(optional)-Standard Test scenario anchor from the legacy IDA-terms and tailored-test switches.
 
-    Return whether the Input 6 standard-size and tailored-test settings match the legacy IDA terms and off sentinels.
+    Determine whether the standard test scenario is active by comparing the standard size-threshold mode, standard interactions, and tailored-tests enable flags against authored lookup tokens.
 
     Args:
-        lookup_ida_terms_old: Legacy IDA terms lookup value, a scalar string compared against the standard-size threshold mode.
-        lookup_onoff_off: Off-state sentinel, a scalar string compared against the standard interactions and tailored-tests flags.
-        input6_tailored_tests_enabled: Input 6 flag indicating whether tailored stress tests are enabled, as a scalar string.
-        input6_standard_size_threshold_mode: Input 6 standard-size threshold mode selector, as a scalar string.
-        input6_standard_interactions: Input 6 standard interactions setting, as a scalar string.
+        lookup_ida_terms_old: Legacy IDA-terms lookup token used as the comparison value for the standard size-threshold mode.
+        lookup_onoff_off: On/off lookup token used as the comparison value for the standard interactions and tailored-tests settings.
+        input6_tailored_tests_enabled: Input 6 tailored stress-test enable switch, compared against the off token.
+        input6_standard_size_threshold_mode: Input 6 standard size-threshold mode selector, compared against the legacy IDA-terms token.
+        input6_standard_interactions: Input 6 standard interactions setting, compared against the off token.
 
     Returns:
-        Integer 0 when the three Input 6 fields equal their respective lookup sentinels; otherwise integer 1. Returns an Excel error-code string if evaluation raises an error.
+        Scalar integer scenario anchor: 0 when the size-threshold mode equals the legacy IDA-terms token and both standard interactions and tailored tests are off, otherwise 1; if an Excel evaluation error occurs, returns its error-code string.
     """
     try:
         return as_measure((0 if xl_bool(xl_and(xl_eq(input6_standard_size_threshold_mode, lookup_ida_terms_old), xl_eq(input6_standard_interactions, lookup_onoff_off), xl_eq(input6_tailored_tests_enabled, lookup_onoff_off))) else 1), 'int')
@@ -22798,18 +22798,18 @@ def in6opt_standard_scenario(*, lookup_ida_terms_old: str, lookup_onoff_off: str
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_CELLS)
-def in6opt_standard_historical_average_baseline_projection(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
-    """Selects the Input 6(optional)-Standard size-threshold option for historical-average versus baseline projection.
+def in6opt_standard_historical_average_baseline_projection(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+    """Resolve the Input 6(optional)-Standard Test threshold option from the chosen mode.
 
-    Resolve the single-cell anchor for the standard historical-average/baseline projection test.
+    Provide the historical-average or whichever-is-lower option for the standard-size threshold projection.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: Scalar string threshold option used when the mode is not 'New'.
-        input6_standard_size_threshold_option_whichever_is_lower: Scalar string threshold option used when the mode is 'New'.
-        input6_standard_size_threshold_mode: Scalar string mode; 'New' selects the whichever-is-lower option, otherwise the historical-average-only option.
+        input6_standard_size_threshold_option_historical_average_only: Historical-average-only threshold option string for the Input 6(optional)-Standard Test.
+        input6_standard_size_threshold_option_whichever_is_lower: Whichever-is-lower threshold option string for the Input 6(optional)-Standard Test.
+        input6_standard_size_threshold_mode: Mode flag, either 'New' or 'Old', selecting whether the whichever-is-lower option overrides the historical-average-only option.
 
     Returns:
-        Scalar result: the selected threshold option string, or an Excel error code string if the lookup fails.
+        The chosen threshold-option string, or an Excel error code string on failure; declared as str | int | float | bool to accommodate the formula measure result.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -22817,18 +22817,18 @@ def in6opt_standard_historical_average_baseline_projection(*, input6_standard_si
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_B1_REAL_GDP_GROWTH_HISTORICAL_AVERAGE_BASELINE_PROJECTION_CELLS)
-def in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
-    """Resolve the Input 6 standard-test B1 real GDP growth historical-average baseline projection option.
+def in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+    """Return the selected Input 6(optional)-Standard Test threshold option for the real GDP growth historical-average baseline projection anchor.
 
-    Selects between the historical-average-only and whichever-is-lower option tokens from the Input 6 threshold mode.
+    Resolve the single-cell anchor by choosing the configured threshold string according to the New/Old mode.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: Historical-average-only option token, selected when the threshold mode is not `New`.
-        input6_standard_size_threshold_option_whichever_is_lower: Whichever-is-lower option token, selected when the threshold mode is `New`.
-        input6_standard_size_threshold_mode: Threshold mode selector; the literal `New` chooses the whichever-is-lower branch, while any other value chooses the historical-average-only branch.
+        input6_standard_size_threshold_option_historical_average_only: Scalar string for the historical-average-only threshold setting at the single-cell anchor.
+        input6_standard_size_threshold_option_whichever_is_lower: Scalar string for the whichever-is-lower threshold setting at the single-cell anchor.
+        input6_standard_size_threshold_mode: Scalar literal indicating whether the New or Old threshold selection rule applies.
 
     Returns:
-        A scalar option value as a string, or the spreadsheet error code when the mode comparison raises an error.
+        Scalar value typed str | int | float | bool, normally the selected threshold option string or the propagated error code.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -22836,18 +22836,18 @@ def in6opt_standard_b1_real_gdp_growth_historical_average_baseline_projection(*,
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_B3_EXPORTS_HISTORICAL_AVERAGE_BASELINE_PROJECTION_CELLS)
-def in6opt_standard_b3_exports_historical_average_baseline_projection(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
-    """Return the Input 6(optional)-Standard B3 exports threshold option selected by the threshold mode.
+def in6opt_standard_b3_exports_historical_average_baseline_projection(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+    """Returns the Input 6(optional)-Standard size-threshold option string selected for the B3 exports historical-average baseline projection.
 
-    Resolve whether the historical-average-only or whichever-is-lower option applies to the B3 exports baseline projection anchor.
+    Chooses between the whichever-is-lower and historical-average-only threshold bases according to the supplied mode flag.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: String scalar naming the Input 6(optional)-Standard size-threshold option that uses the historical average only.
-        input6_standard_size_threshold_option_whichever_is_lower: String scalar naming the Input 6(optional)-Standard size-threshold option that takes whichever is lower.
-        input6_standard_size_threshold_mode: String scalar mode selector; when it equals `New`, the whichever-is-lower option is chosen, otherwise the historical-average-only option is chosen.
+        input6_standard_size_threshold_option_historical_average_only: Scalar string option applied when the historical-average-only basis governs the Input 6 standard size-threshold test.
+        input6_standard_size_threshold_option_whichever_is_lower: Scalar string option applied when the whichever-is-lower basis governs the Input 6 standard size-threshold test.
+        input6_standard_size_threshold_mode: Scalar literal flag ('New' or 'Old') that selects which of the two threshold option strings is returned.
 
     Returns:
-        The chosen threshold option as a `str` scalar, or the Excel error code as an `int`/`str` when evaluation fails, matching the `str | int | float | bool` return annotation.
+        Scalar selected option string, or the workbook error code string when evaluation raises XlError; the annotation admits str, int, float, or bool.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -22855,18 +22855,18 @@ def in6opt_standard_b3_exports_historical_average_baseline_projection(*, input6_
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_CURRENT_TRANSFERS_B4_OTHER_NON_DEBT_CREATING_FLOWS_CELLS)
-def in6opt_standard_historical_average_baseline_projection_current_transfers_b4_other_non_debt_creating_flows(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
-    """Return the active standard size-threshold option for the historical-average, baseline-projection, current-transfers B4 other-non-debt-creating-flows single-cell anchor.
+def in6opt_standard_historical_average_baseline_projection_current_transfers_b4_other_non_debt_creating_flows(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+    """Select the Input 6(optional)-Standard Test size-threshold option for the historical-average baseline projection before other non-debt-creating flows.
 
-    Selects between the historical-average-only and whichever-is-lower Input 6(optional)-Standard Test threshold options according to the threshold mode.
+    Resolve the single-cell threshold option used by the standard test's historical-average baseline projection.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: Scalar string containing the historical-average-only standard size-threshold option.
-        input6_standard_size_threshold_option_whichever_is_lower: Scalar string containing the whichever-is-lower standard size-threshold option.
-        input6_standard_size_threshold_mode: Scalar string giving the threshold mode; when it equals 'New', the whichever-is-lower option is selected, otherwise the historical-average-only option is used.
+        input6_standard_size_threshold_option_historical_average_only: Scalar text flag for the historical-average-only size-threshold option, used when the mode is not 'New'.
+        input6_standard_size_threshold_option_whichever_is_lower: Scalar text flag for the whichever-is-lower size-threshold option, selected when the mode is 'New'.
+        input6_standard_size_threshold_mode: Scalar literal mode selector, either 'New' or 'Old'; 'New' selects the whichever-is-lower option, while 'Old' selects the historical-average-only option.
 
     Returns:
-        A scalar value of type str | int | float | bool: the selected standard size-threshold option string, or an Excel error code when evaluation fails.
+        A scalar string containing the selected threshold option; if formula evaluation raises an XlError, the Excel error code string is returned instead.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -22874,18 +22874,18 @@ def in6opt_standard_historical_average_baseline_projection_current_transfers_b4_
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_FDI_B4_OTHER_NON_DEBT_CREATING_FLOWS_CELLS)
-def in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt_creating_flows(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
-    """Select the Input 6(optional)-Standard size threshold option for FDI B4 other non-debt-creating flows.
+def in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt_creating_flows(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+    """Select the Input 6(optional)-Standard Test size-threshold option for the FDI B4 other non-debt-creating flows anchor.
 
-    Resolve the single-cell historical-average or baseline-projection threshold choice according to the Standard Test mode.
+    Resolve the single-cell anchor by choosing the whichever-is-lower option for New mode and the historical-average-only option otherwise.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: Historical-average-only threshold option supplied as a text scalar from the Input 6(optional)-Standard Test settings.
-        input6_standard_size_threshold_option_whichever_is_lower: Whichever-is-lower threshold option supplied as a text scalar from the Input 6(optional)-Standard Test settings.
-        input6_standard_size_threshold_mode: Mode selector text scalar; when equal to 'New', the whichever-is-lower option is selected, otherwise the historical-average-only option is selected.
+        input6_standard_size_threshold_option_historical_average_only: Historical-average-only Input 6(optional)-Standard Test size-threshold option, supplied as a string.
+        input6_standard_size_threshold_option_whichever_is_lower: Whichever-is-lower Input 6(optional)-Standard Test size-threshold option, supplied as a string.
+        input6_standard_size_threshold_mode: Mode selector as a scalar literal: 'New' picks whichever-is-lower, while 'Old' picks historical-average-only.
 
     Returns:
-        A scalar threshold selection, normally a string and otherwise an integer, float, or boolean when a spreadsheet error code is returned.
+        A string measure containing the selected standard Test size-threshold option; declared as str | int | float | bool because error paths may return an Excel error code instead.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -22893,17 +22893,17 @@ def in6opt_standard_historical_average_baseline_projection_fdi_b4_other_non_debt
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_ONE_TIME_30_PERCENT_NOMINAL_DEPRECIATION_OF_CELLS)
-def in6opt_standard_one_time_30_percent_nominal_depreciation_of(*, input_1_rer_overvaluation: float | str, input6_standard_size_threshold_mode: str) -> int | str:
-    """Return the Input 6(optional)-Standard Test single-cell anchor for one-time nominal depreciation.
+def in6opt_standard_one_time_30_percent_nominal_depreciation_of(*, input_1_rer_overvaluation: float | str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> int | str:
+    """Computes the one-time 30 percent nominal depreciation of the domestic currency or the size needed to close the estimated real exchange rate overvaluation gap, whichever is larger, for the Input 6 optional Standard Test.
 
-    Represent the larger of the one-time 30 percent nominal depreciation and the REER-overvaluation-closing amount under the selected standard size threshold mode.
+    Provides the single-cell Standard Test anchor for the one-time nominal depreciation threshold used in the LIC-DSF template.
 
     Args:
-        input_1_rer_overvaluation: Scalar float or string giving the estimated real exchange rate overvaluation gap used to size the one-time nominal depreciation when the standard size threshold mode is active.
-        input6_standard_size_threshold_mode: Scalar string threshold mode for the Input 6(optional)-Standard Test; `NEW` selects the REER-overvaluation-based amount, while any other value yields zero.
+        input_1_rer_overvaluation: Scalar real exchange rate overvaluation gap, supplied as a float or string-valued input.
+        input6_standard_size_threshold_mode: Literal threshold-mode selector, either 'New' or 'Old', controlling whether the overvaluation gap is applied.
 
     Returns:
-        Scalar integer for the one-time 30 percent nominal depreciation or the REER-overvaluation-closing amount, whichever is larger, for the single-cell anchor, or an Excel error code string if evaluation fails.
+        Integer nominal depreciation size, zero when the threshold mode is not 'New', or an Excel error code string if the computation fails.
     """
     try:
         return as_measure((input_1_rer_overvaluation if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'NEW')) else 0), 'int')
@@ -22911,21 +22911,21 @@ def in6opt_standard_one_time_30_percent_nominal_depreciation_of(*, input_1_rer_o
         return error.code
 
 @publish(data.IN6OPT_STANDARD_NOMINAL_DEPRECIATION_CLOSE_REAL_OVERVALUATION.schema, cells=data.IN6OPT_STANDARD_NOMINAL_DEPRECIATION_CLOSE_REAL_OVERVALUATION.cells)
-def in6opt_standard_nominal_depreciation_close_real_overvaluation(*, input6_standard_size_threshold_mode: str, baseline_pub_inflation_rate_gdp_deflator_pct: data.Series[float | str | None], in6opt_standard_one_time_30_percent_nominal_depreciation_of: int | str, in6opt_standard_us_inflation_default: float | str, input6_standard_params_2: data.Series[float | str | None], input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount) -> data.Series[float | str | None]:
-    """Compute the standard-test nominal depreciation needed to close the real overvaluation gap, keyed by row-14 column labels.
+def in6opt_standard_nominal_depreciation_close_real_overvaluation(*, input6_standard_size_threshold_mode: Literal["New", "Old"], baseline_pub_inflation_rate_gdp_deflator_pct: data.Series[float | str | None], in6opt_standard_one_time_30_percent_nominal_depreciation_of: int | str, in6opt_standard_us_inflation_default: float | str, input6_standard_params_2: data.Series[float | str | None], input3_input_3_macro_current_account: data.Input3Input3MacroCurrentAccount) -> data.Series[float | str | None]:
+    """Compute nominal depreciation needed to close the real overvaluation gap for the Input 6 optional standard test.
 
-    Produces the Input 6 optional standard-test depreciation series used to close a real exchange-rate overvaluation gap under default and customized assumptions.
+    Derive the standard-test depreciation adjustment keyed by row-14 column labels, applying New/Old threshold behavior and default parameter fallbacks.
 
     Args:
-        input6_standard_size_threshold_mode: Scalar mode string selecting the standard size-threshold treatment; a value of 'NEW' enables inclusion of the US inflation default.
-        baseline_pub_inflation_rate_gdp_deflator_pct: Baseline public inflation GDP-deflator percentage series over catalog TIME_PERIOD coordinates, read at the fifteenth period for the default calculation.
-        in6opt_standard_one_time_30_percent_nominal_depreciation_of: Scalar one-time 30 percent nominal depreciation assumption, expressed as an integer or string, added to the baseline inflation term.
-        in6opt_standard_us_inflation_default: Scalar default US inflation rate, in float or string form, added only when the mode indicates the NEW treatment.
-        input6_standard_params_2: Parameter series over catalog coordinates containing the customized depreciation lookup used as the subtraction term in the non-default variant.
-        input3_input_3_macro_current_account: Typed Input 3 macro current-account series whose domain supplies the TIME_PERIOD axis used to index the baseline inflation series.
+        input6_standard_size_threshold_mode: Literal mode selecting the New or Old standardized size-threshold variant.
+        baseline_pub_inflation_rate_gdp_deflator_pct: Baseline public inflation GDP deflator series over catalog coordinates, indexed by the macro current-account time axis.
+        in6opt_standard_one_time_30_percent_nominal_depreciation_of: Scalar one-time 30 percent nominal depreciation value, supplied as an integer or string.
+        in6opt_standard_us_inflation_default: Scalar default US inflation rate, supplied as a float or string.
+        input6_standard_params_2: Input 6 standard parameter series aligned to catalog coordinates, including the default depreciation parameter.
+        input3_input_3_macro_current_account: Typed Input 3 macro current-account series whose time-period domain supplies the year-coordinate used for the baseline inflation lookup.
 
     Returns:
-        A data.Series of float, string, or null values aligned to row-14 column labels, giving the computed nominal depreciation to close real overvaluation.
+        A data.Series[float | str | None] of nominal depreciation values keyed by column labels from row 14, preserving blanks and non-numeric markers where applicable.
     """
     data.INPUT3_INPUT_3_MACRO_CURRENT_ACCOUNT.schema.validate(input3_input_3_macro_current_account)
     def formula(variant: str) -> float | str | None:
@@ -22953,18 +22953,18 @@ def in6opt_standard_apply_all_individual_shocks_b1_through_b5_half(*, input6_sta
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_REAL_GDP_B6_COMBINATION_CELLS)
-def in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
-    """Selects the Input 6 Standard Test size-threshold option for the historical-average/baseline-projection B6 real GDP combination.
+def in6opt_standard_historical_average_baseline_projection_real_gdp_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+    """Resolves the Input 6 optional standardized size-threshold mode between the historical-average-only and whichever-is-lower options.
 
-    Resolves a single-cell anchor by choosing between the historical-average-only and whichever-is-lower threshold settings according to the mode selector.
+    Provides a single-cell anchor for the B6 real GDP combination under the standard test.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: Scalar string option for the historical-average-only standard size-threshold test.
-        input6_standard_size_threshold_option_whichever_is_lower: Scalar string option for the whichever-is-lower standard size-threshold test.
-        input6_standard_size_threshold_mode: Scalar string mode selector; 'New' selects the whichever-is-lower option, otherwise the historical-average-only option.
+        input6_standard_size_threshold_option_historical_average_only: String label for the standardized size-threshold choice that uses only the historical average baseline.
+        input6_standard_size_threshold_option_whichever_is_lower: String label for the standardized size-threshold choice that takes the lower of the historical average and the baseline projection.
+        input6_standard_size_threshold_mode: Literal mode selector where 'New' chooses the whichever-is-lower option and 'Old' chooses the historical-average-only option.
 
     Returns:
-        Selected threshold option as a string, or an error code (str | int | float | bool) if an XlError occurs.
+        The selected scalar threshold option as a string when valid, or the Excel error code string on an XlError; annotated as str | int | float | bool.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -22989,18 +22989,18 @@ def in6opt_standard_size_of_exports_growth_shock_of_standard(*, input6_standard_
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_EXPORTS_B6_COMBINATION_CELLS)
-def in6opt_standard_historical_average_baseline_projection_exports_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
-    """Select the Input 6(optional)-Standard Test stress threshold under historical-average or whichever-is-lower mode.
+def in6opt_standard_historical_average_baseline_projection_exports_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+    """Selects the size threshold option for historical average and baseline projection exports B6.
 
-    Resolve the standardized stress size threshold used by the historical-average/baseline-projection B6 export combination.
+    Combines Input 6(optional)-Standard Test options into a single-cell anchor based on the mode.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: Scalar string single-cell anchor for the historical-average-only threshold option; selected when the mode is not New.
-        input6_standard_size_threshold_option_whichever_is_lower: Scalar string single-cell anchor for the whichever-is-lower threshold option; selected when the mode is New.
-        input6_standard_size_threshold_mode: Scalar string single-cell anchor controlling the threshold mode; when equal to 'New' the whichever-is-lower option is used.
+        input6_standard_size_threshold_option_historical_average_only: A string scalar representing the size threshold option when only the historical average is used.
+        input6_standard_size_threshold_option_whichever_is_lower: A string scalar representing the size threshold option when whichever is lower (historical average or baseline projection) is used.
+        input6_standard_size_threshold_mode: A literal string scalar indicating the mode: 'New' selects the whichever-is-lower option, 'Old' selects the historical-average-only option.
 
     Returns:
-        Scalar return annotated as str | int | float | bool: the selected threshold option string on success, or the caught workbook error code on failure.
+        The selected size threshold option as a string measure, or the XlError code on failure. The return annotation is str | int | float | bool.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -23025,18 +23025,18 @@ def in6opt_standard_size_of_pb_gdp_shock_of_standard_deviations(*, input6_standa
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_PRIMARY_BALANCE_B6_COMBINATION_CELLS)
-def in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
-    """Return the single-cell Input 6(optional)-Standard anchor for the historical-average/baseline-projection primary-balance B6 combination.
+def in6opt_standard_historical_average_baseline_projection_primary_balance_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+    """Select the Input 6 optional Standard Test size-threshold option used by the B6 primary-balance combination.
 
-    Select the applicable Input 6 standard-test threshold option under the configured size-threshold mode.
+    Resolve whether the B6 combination takes the historical-average-only threshold or the whichever-is-lower threshold according to the New/Old mode.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: Scalar string selecting the historical-average-only option for the Input 6(optional)-Standard test.
-        input6_standard_size_threshold_option_whichever_is_lower: Scalar string selecting the whichever-is-lower option for the Input 6(optional)-Standard test.
-        input6_standard_size_threshold_mode: Scalar string giving the Input 6 standard size-threshold mode; the literal 'New' makes the whichever-is-lower option win, otherwise the historical-average-only option is used.
+        input6_standard_size_threshold_option_historical_average_only: Single-cell anchor string for the historical-average-only size-threshold option in the Input 6 optional Standard Test.
+        input6_standard_size_threshold_option_whichever_is_lower: Single-cell anchor string for the whichever-is-lower size-threshold option in the Input 6 optional Standard Test.
+        input6_standard_size_threshold_mode: Mode selector for the threshold behavior: New chooses the whichever-is-lower option, while Old or any other value chooses the historical-average-only option.
 
     Returns:
-        The selected option as a string measure, or the XlError code when evaluation fails; annotated as str | int | float | bool.
+        The selected size-threshold option as a string, or an Excel error code when evaluation raises XlError, matching the str | int | float | bool annotation.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -23061,18 +23061,18 @@ def in6opt_standard_other_flows_current_transfers_shock_of_standard(*, input6_st
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_CURRENT_TRANSFERS_B6_COMBINATION_CELLS)
-def in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
-    """Select the Input 6(optional)-Standard size-threshold option for the B6 combination, preferring 'whichever is lower' when the mode is 'New' and the historical-average-only option otherwise.
+def in6opt_standard_historical_average_baseline_projection_current_transfers_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+    """Select the Input 6(optional)-Standard Test size-threshold option for the historical-average versus baseline-projection current-transfers B6 combination.
 
-    Resolve a single-cell standard-test size-threshold anchor so the B6 combination uses the mode-appropriate Input 6(optional) option.
+    Resolve the standardized-test threshold choice from the configured mode and option scalars.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: Scalar size-threshold option string for the historical-average-only variant, returned when the mode does not select the 'New' option.
-        input6_standard_size_threshold_option_whichever_is_lower: Scalar size-threshold option string for the whichever-is-lower variant, returned when the mode equals 'New'.
-        input6_standard_size_threshold_mode: Scalar mode string that selects between the two Input 6(optional)-Standard options, where 'New' chooses whichever-is-lower.
+        input6_standard_size_threshold_option_historical_average_only: String scalar for the Input 6(optional)-Standard Test size-threshold option that uses the historical average only.
+        input6_standard_size_threshold_option_whichever_is_lower: String scalar for the Input 6(optional)-Standard Test size-threshold option that uses whichever value is lower.
+        input6_standard_size_threshold_mode: Literal scalar for the threshold mode, either 'New' or 'Old', controlling which option is returned.
 
     Returns:
-        The selected option as a str; if the underlying workbook evaluation raises XlError, the error code as a str. The declared annotation is str | int | float | bool.
+        String scalar containing the selected threshold option, or an Excel error code as a scalar if the mode comparison fails.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -23097,18 +23097,18 @@ def in6opt_standard_b6_combination_other_flows_fdi_shock_of_standard_deviations(
         return error.code
 
 @publish(key=(), domain=None, cells=data.IN6OPT_STANDARD_HISTORICAL_AVERAGE_BASELINE_PROJECTION_FDI_B6_COMBINATION_CELLS)
-def in6opt_standard_historical_average_baseline_projection_fdi_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: str) -> str | int | float | bool:
-    """Select the Input 6(optional)-Standard historical-average or baseline-projection FDI B6 combination option.
+def in6opt_standard_historical_average_baseline_projection_fdi_b6_combination(*, input6_standard_size_threshold_option_historical_average_only: str, input6_standard_size_threshold_option_whichever_is_lower: str, input6_standard_size_threshold_mode: Literal["New", "Old"]) -> str | int | float | bool:
+    """Select the Input 6(optional)-Standard Test size-threshold option for the historical-average versus baseline-projection FDI B6 combination.
 
-    Resolve the standardized size-threshold option by applying the threshold mode to choose between historical-average-only and whichever-is-lower values.
+    Resolve the active single-cell anchor according to the chosen standard size-threshold mode.
 
     Args:
-        input6_standard_size_threshold_option_historical_average_only: Historical-average-only option scalar string for the Input 6(optional)-Standard size threshold; a single-cell anchor value.
-        input6_standard_size_threshold_option_whichever_is_lower: Whichever-is-lower option scalar string for the Input 6(optional)-Standard size threshold; a single-cell anchor value.
-        input6_standard_size_threshold_mode: Threshold mode scalar string controlling the choice; a value of 'New' selects the whichever-is-lower option, otherwise the historical-average-only option is used.
+        input6_standard_size_threshold_option_historical_average_only: Scalar text option value used when the historical-average-only standard size-threshold treatment is selected.
+        input6_standard_size_threshold_option_whichever_is_lower: Scalar text option value used when the whichever-is-lower standard size-threshold treatment is selected.
+        input6_standard_size_threshold_mode: Scalar Literal selector ('New' or 'Old') that determines which of the two option values supplies the combination result.
 
     Returns:
-        Selected option scalar as a string when evaluation succeeds; otherwise an error-code scalar under the str | int | float | bool return annotation.
+        Scalar str, int, float, or bool carrying the selected single-cell anchor value; in normal operation this is a str option value, with Excel error codes returned as str labels.
     """
     try:
         return as_measure((input6_standard_size_threshold_option_whichever_is_lower if xl_bool(xl_eq(input6_standard_size_threshold_mode, 'New')) else input6_standard_size_threshold_option_historical_average_only), 'str')
@@ -25045,18 +25045,18 @@ def macro_debt_depreciation_of_nc_depreciation(*, macro_debt_exchange_rate_dolla
     return data.MACRO_DEBT_DEPRECIATION_OF_NC_DEPRECIATION.collect(evaluate(formula, data.MACRO_DEBT_DEPRECIATION_OF_NC_DEPRECIATION.required.bind(TIME_PERIOD=input3_input_3_macro_current_account)), domain=data.MACRO_DEBT_DEPRECIATION_OF_NC_DEPRECIATION.required.bind(TIME_PERIOD=input3_input_3_macro_current_account))
 
 @publish(key=(), domain=None, cells=data.START_DEBT_SUSTAINABILITY_ANALYSIS_CELLS)
-def start_debt_sustainability_analysis(*, start_working_language: str, lookup_language_native_name: data.Series[str | None], lookup_language_english_name: data.Series[str | None]) -> str | int | float | bool:
-    """Resolve the start language's English name from the workbook language lookup.
+def start_debt_sustainability_analysis(*, start_working_language: Literal["English", "Espa\u00f1ol", "Fran\u00e7ais", "Portugues"], lookup_language_native_name: data.Series[str | None], lookup_language_english_name: data.Series[str | None]) -> str | int | float | bool:
+    """Return the English-language name for a selected working language.
 
-    Provides the single-cell anchor used by the Debt Sustainability Analysis (START) pipeline to locate the language entry matching the requested working language.
+    Resolve the single-cell language lookup used by the debt sustainability analysis start anchor.
 
     Args:
-        start_working_language: Scalar working-language string to look up in the language table.
-        lookup_language_native_name: Typed data.Series over the language axis holding native language names, aligned to catalog language coordinates and used as the first lookup column.
-        lookup_language_english_name: Typed data.Series over the language axis holding English language names, aligned to catalog language coordinates and used as the second lookup column.
+        start_working_language: Selected working language, restricted to English, Español, Français, or Portugues.
+        lookup_language_native_name: Named-axis series over catalog language coordinates holding native language names, with nulls allowed.
+        lookup_language_english_name: Named-axis series over catalog language coordinates holding English language names, with nulls allowed.
 
     Returns:
-        Scalar string giving the matched English language name, or a scalar error code if the lookup fails.
+        A scalar string giving the matched English language name, or the spreadsheet error code when the lookup fails; the str | int | float | bool annotation reflects the lookup and error-result surface.
     """
     data.LOOKUP_LANGUAGE_NATIVE_NAME.schema.validate(lookup_language_native_name)
     data.LOOKUP_LANGUAGE_ENGLISH_NAME.schema.validate(lookup_language_english_name)
